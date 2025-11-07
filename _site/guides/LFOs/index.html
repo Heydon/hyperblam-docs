@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title> : HYPERBLAM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
+      <filter id="distort">
+        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+      <filter id="distort-fine">
+        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+    </svg>
+    <a href="#main" class="l-skip">skip to content</a>
+    <div>
+      <nav class="l-sidebar u-pad-small">
+        <a href="/">
+          <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
+        </a>
+        <ul class="l-radiator"><li>
+              <a href="/guides/getting-started/">Getting Started</a>
+            </li><li>
+              <a href="/guides/gain/">What Is Gain?</a>
+            </li><li>
+              <a href="/guides/signal-chains/">Signal chains</a>
+            </li><li>
+              <a href="/guides/humanization/">Humanization</a>
+            </li><li>
+              <a aria-current="page" href="/guides/LFOs/">LFOs</a>
+            </li><li>
+              <a href="/guides/filters/">Filters</a>
+            </li><li>
+              <a href="/guides/sequencing/">Sequencing</a>
+            </li></ul>
+      </nav>
+      <main class="u-pad-small" id="main" tabindex="-1">
+        
+          <h1>LFOs</h1>
+          <p>You hear a sound when a wave of oscillating air particles meets your ear. A synthesizer's oscillator produces such a sound wave electronically.</p>
+<p>So what's an LFO (a Low Frequency Oscillator)? It sounds like an oscillator that's very bassy and guttural. Maybe so bassy that it makes you soil yourself.</p>
+<p>Fear not! Though they could be used to make super low, bowel disrupting sounds, LFOs typically don’t make a peep. Instead, their waveform is used to <em>modulate</em> the <em>parameters</em> of your sounds.</p>
+<p>I hope you like LFOs because, in <strong>HYPERBLAM</strong>, LFOs can even control other LFOs!</p>
+<hr class="u-wave-sawtooth">
+<h2 id="alternation" tabindex="-1">Alternation</h2>
+<p>AC (alternating current) electricity produces a wave that cycles rapidly (<em>alternates</em>) between positive (<code>1</code>) and negative (<code>-1</code>) values. As a guitarist playing at high volume, you may even hear this electrical oscillation as “mains hum” and it can be quite annoying.</p>
+<p>An LFO alternates at a lower, usually inaudible frequency. But it has the same basic anatomy: it cycles between positive and negative values. As with AC electricity, a standard LFO is <em>sinusoidal</em>. A <em>sine wave</em> alternates between <code>1</code> (its <em>peak</em>) and <code>-1</code> (its <em>trough</em>) smoothly and can be represented by a curved, wavy line.</p>
+<p>[diagram: include positive and negative half cycles and wave length]</p>
+<h2 id="modulation" tabindex="-1">Modulation</h2>
+<p>What does this mean in practical terms? Well, your LFO is producing a value that changes between <code>1</code> and <code>-1</code> , passing through <code>0</code> in each direction, over time. This value can be connected to an <code>AudioParam</code> and used as a real-time <em>multiplier</em>. This alternating multiplication is called <em>modulation</em>.</p>
+<p>Modulation has many purposes, but perhaps the most iconic are tremolo (gain modulation) and vibrato (pitch/frequency modulation). The terms “vibrato” and “tremolo” are often used interchangeably and it is a source of great consternation. Your guitar’s <em>whammy bar</em> is not a tremolo! <em>Whamming</em> at it loosens the strings, lowering their <em>pitch</em>.</p>
+<h2 id="tremolo" tabindex="-1">Tremolo</h2>
+<p>Let’s look at tremolo, since that's probably the simplest application. In <strong>HYPERBLAM</strong>, you might have a signal chain that includes a <code>&lt;gain-blam&gt;</code> element. I can set up an LFO by simply inserting the element as a child and assigning the correct <code>param</code>.</p>
+<pre><code class="language-html">&lt;gain-blam gain="1"&gt;
+	&lt;lfo-blam 
+		param="gain"
+		beats="0.25"
+		gain="1"&gt;
+	&lt;/lfo-blam&gt;		 
+&lt;/gain-blam&gt;
+</code></pre>
+<p>The <code>beats</code> prop’ sets the LFO's frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In <strong>HYPERBLAM</strong>, <code>beats</code> is a special term used wherever the value has to be translated from seconds or, in the case of an <a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode"><code>OscillatorNode</code></a>, hertz.</p>
+<p>The important part is the LFO's own <code>gain</code>. This sets how much the <code>&lt;gain-blam&gt;</code> element's <code>gain</code> is modulated. Yes, it’s one <code>gain</code> controlling another, if that was confusing.</p>
+<p>With an initial subject <code>gain</code> value of <code>1</code> and an LFO <code>gain</code> value of  <code>1</code> , the subject <code>gain</code> will modulate between <code>0</code> and <code>2</code>. That's 1 - 1 and 1 + 1.</p>
+<p><code>2</code> is a lot of gain, since it's twice whatever the input gain is. Instead, you might want to set the initial value at <code>0.5</code> and the LFO's modulation gain at <code>0.5</code> too. That gives us 0.5 - 0.5 (0) and 0.5 + 0.5 (1). We have achieved <a href="*https://pedalplayers.com/what-is-unity-gain/*">*unity gain</a>*: the input gain matches the (maximum) output gain.</p>
+<pre><code class="language-html">&lt;gain-blam gain="0.5"&gt;
+	&lt;lfo-blam 
+		param="gain"
+		beats="0.25"
+		gain="0.5"&gt;
+	&lt;/lfo-blam&gt;		 
+&lt;/gain-blam&gt;
+</code></pre>
+<h2 id="changing-the-waveform" tabindex="-1">Changing the waveform</h2>
+<p>What if we didn’t want our gain value to pass smoothly through zero? What if we wanted to alternate directly between the high and low values? This is what square waveforms are for. You can set the waveform to <code>square</code> using the <code>wave</code> prop’.</p>
+<pre><code class="language-html">	&lt;lfo-blam 
+		param="gain"
+		beats="0.25"
+		gain="0.5"
+		wave="square"&gt;
+	&lt;/lfo-blam&gt;	
+</code></pre>
+<p>[diagram]</p>
+<p>Given the <code>x</code> axis represents the time domain, those vertical lines mean an instantaneous <em>switch</em> between low gains of <code>0</code> and <code>1</code>. This gives the tremolo effect quite a different, much <em>harsher</em> character.</p>
+<h2 id="low-frequency-oscillator-oscillators" tabindex="-1">Low Frequency Oscillator Oscillators</h2>
+<p>No, that’s not a typo. <strong>HYPERBLAM</strong>, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In this case, we may want to gradually temper the first LFO’s <code>gain</code> over time. I’ll use the default sine <code>wave</code> for that nested LFO.</p>
+<pre><code class="language-html">	&lt;lfo-blam 
+		param="gain"
+		beats="0.25"
+		gain="0.5"
+		wave="square"&gt;
+			&lt;lfo-blam
+			param="gain"
+			gain="0.25"
+			beats="3"&gt;
+			&lt;/lfo-blam&gt;
+	&lt;/lfo-blam&gt;	
+</code></pre>
+<p>This will have two effects:</p>
+<ol>
+<li>Permutation of the relationship between the low and high gain half-cycles</li>
+<li>Since the high gain half-cycle will dip, a fluctuation in the overall output gain</li>
+</ol>
+<p>Gradual modulation (in this case, over three beats) can be used for all sorts of <em>spacey</em> and <em>woozy</em> effects. It’s also good for emulating the imperfections of mechanical audio equipment such as <em>tape</em>.</p>
+<h2 id="high-low-frequency-oscillators" tabindex="-1">High Low Frequency Oscillators</h2>
+<p>Wait… what? In the Web Audio API, an <code>OscillatorNode</code> is just that. It can have very low frequencies or inaudibly high ones—all measured in hertz.</p>
+<p>In practice, this means the kind of modulation usually associated with a <em>Low</em> Frequency Oscillator can just as easily occur at a (very) high frequency. What can we do with this? One of my favorite things to do is emulate a <a href="*https://en.wikipedia.org/wiki/Bitcrusher*">*Bitcrusher</a>*.</p>
+<p>A real Bitcrusher achieves its characteristic lo-fi sound by being, well, actually <em>low fidelity</em>. It adopts either a lower <em>bit depth</em> or lower <em>sample rate</em> to <em>resample</em> the incoming sound. This true form of bitcrushing is possible using an <a href="https://developer.chrome.com/blog/audio-worklet/">Audio Worklet</a>.</p>
+<p>Unfortunately, last time I checked, Audio Worklets were not consistently implemented between browsers. Fortunately, we can emulate lowering the sample rate by employing analog principles instead. That’s right: we can create <strong>a digital emulation of an analog emulation of a digital effect</strong>.</p>
+<p>Set up to alternate between values of <code>0</code> and <code>1</code>, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done *discretely—*not <em>continuously</em>. Computers only deal in discrete numbers, you see.</p>
+<p>To emulate <em>downsampling</em>, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In <code>beats</code>, we might choose a value like <code>0.001</code></p>
+<pre><code class="language-html">	&lt;lfo-blam 
+		param="gain"
+		beats="0.001"
+		gain="0.5"
+		wave="square"&gt;
+	&lt;/lfo-blam&gt;	
+</code></pre>
+<p>What’s neat about this effect is that slightly changing that <code>beats</code> value can have an enormous impact on the character of the sound. Applying a secondary LFO, as we did before, but to control the principle LFO’s <code>frequency</code> lets us <em>sweep</em> through all sorts of weird, robotic, metallic, fuzzy timbres.</p>
+<pre><code class="language-html">	&lt;lfo-blam 
+		param="gain"
+		beats="0.001"
+		gain="0.5"
+		wave="square"&gt;
+		&lt;lfo-blam
+		  param="beats"
+		  beats="3"
+		  gain="0.01"&gt; 
+	  &lt;/lfo-blam&gt;	
+	&lt;/lfo-blam&gt;
+</code></pre>
+
+        
+      </main>
+    </div>
+  
+</body></html>

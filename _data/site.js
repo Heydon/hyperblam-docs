@@ -1,3 +1,4 @@
 module.exports = {
-  title: 'Site name'
+  title: 'HYPERBLAM',
+  basedir: '/'
 }

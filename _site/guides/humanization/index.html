@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title> : HYPERBLAM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
+      <filter id="distort">
+        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+      <filter id="distort-fine">
+        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+    </svg>
+    <a href="#main" class="l-skip">skip to content</a>
+    <div>
+      <nav class="l-sidebar u-pad-small">
+        <a href="/">
+          <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
+        </a>
+        <ul class="l-radiator"><li>
+              <a href="/guides/getting-started/">Getting Started</a>
+            </li><li>
+              <a href="/guides/gain/">What Is Gain?</a>
+            </li><li>
+              <a href="/guides/signal-chains/">Signal chains</a>
+            </li><li>
+              <a aria-current="page" href="/guides/humanization/">Humanization</a>
+            </li><li>
+              <a href="/guides/LFOs/">LFOs</a>
+            </li><li>
+              <a href="/guides/filters/">Filters</a>
+            </li><li>
+              <a href="/guides/sequencing/">Sequencing</a>
+            </li></ul>
+      </nav>
+      <main class="u-pad-small" id="main" tabindex="-1">
+        
+          <h1>Humanization</h1>
+          <p>Put some samples in a sequence and it can sound stiff, robotic. At least, it can without some intervention. That's because computers are too <em>on the beat;</em> too <em>tight.</em></p>
+<p>But you can get around that. You can humanize electronic music in lots of different ways and <strong>HYPERBLAM</strong> lets you combine a number of different techniques. Get loose, get wobbly, get downright <em>shambolic</em> if that's your bag.</p>
+<h2 id="multiple-samples" tabindex="-1">Multiple samples</h2>
+<p>Drummers are only human so every <em>hit</em> they make is a little different. Louder, quieter, sharper, duller. If they lift the stick quickly, the sound rings out. If they leave it down, the sound is cut short.</p>
+<p>The easiest way to make a sampled snare sound like a real snare is to sample a drummer playing it multiple times. It's the perfect route to imperfection.</p>
+<p>By default, <strong>HYPERBLAM</strong> instruments will play a different sample from their sample bank each time. The more samples you include, the more variety.</p>
+<p>A tonal instrument like the standard <code>&lt;instrument-blam&gt;</code> will select random samples even as it is augmenting their pitch. This multidimensional variation is not common even in expensive, commercial sample-based instruments. At least, not without a lot of configuration.</p>
+<h2 id="randomized-parameters" tabindex="-1">Randomized parameters</h2>
+<p>Including more than a few samples (even when using optimized, next-gen audio formats) is costly in memory. <em>Emulating</em> natural variation is more efficient.</p>
+<p>Each sample is represented as an <code>AudioBufferSourceNode</code>, which comes with certain properties called <code>AudioParam</code>s. The <code>detune</code> param’ can be adjusted in <em>cents</em>.</p>
+<p>Applying the same <code>detune</code> value to all samples alike will change the base tuning of the snare, which may be desirable. But <em>fluctuating</em> the <code>detune</code> value is useful for humanization.</p>
+<p>By including a <code>&lt;param-blam&gt;</code> element, which points to the instrument's <code>detune</code> property, and uses <code>value="-25~25"</code>, the pitch of each successive snare sound will be detuned by <em>somewhere</em> between -25 and 25 cents.</p>
+<p>The pitch of a snare is affected by how close to the center you strike it. So this is a reasonably realistic but efficient way of introducing humanization. Applying this technique across a bank of alternative samples is doubly effective.</p>
+<h2 id="swing" tabindex="-1">Swing</h2>
+<p>Consider the following pattern, wherein <code>1</code>s represent sounds.</p>
+<pre><code class="language-jsx">1 1 1 1 1 1 1 1
+</code></pre>
+<p>That's one sound played 8 times in a regular, or <em>straight,</em> fashion. Nit very inspired. Now consider this pattern, wherein the <code>0</code>s represent pauses.</p>
+<pre><code class="language-jsx">1 0 1 1 0 1 1 0 1 1 0 1
+</code></pre>
+<p>Notice how the sounds bunch together into pairs. This gives the rhythm a kind of <em>elasticity</em> sometimes called <em>swing</em>. At faster tempos, it becomes more of a <em>shuffle</em>. In any case, this elasticity gives your music a perculiar kind of sexy and infectious energy.</p>
+<p>But we have a problem. To achieve this effect, we have to divide the pattern into sets of three, or <em>triplets</em>. It makes the pattern longer (messing with the overall tempo) and harder to read.</p>
+<p>Instead, we can apply swing using the <code>&lt;sequencer-blam&gt;</code> element's <code>swing</code> prop. This pushes every other beat up against the next. By default, these shifted beats are moved <em>one third of one quarter-beat</em> to the right. Effectively, this makes them the third beat in *a inaginary triplet spread over two quarter beats (*or one half beat).</p>
+<p>In practice, it turns that original, straight pattern into this:</p>
+<pre><code class="language-jsx">1  11  11  11  1
+</code></pre>
+<p>Using triplets, either compositionally or algorithmically, may not give you <em>precisely</em> the amount of elasticity you're looking for.</p>
+<p>So, while you can apply <code>choke</code> as a Boolean attribute and get <code>0.333</code> of swing, you can adjust the proportion to taste by supplying an explicit value. This is in keeping with classic hardware drum machines and grooveboxes, which typically offer variable swing.</p>
+<h2 id="lfos" tabindex="-1">LFOs</h2>
+<p>Low Frequency Oscillators offer humanization opportunities as well. But LFOs can do a <em>lot</em> more besides, so head over to the <strong>LFO guide</strong> for a proper introduction.</p>
+
+        
+      </main>
+    </div>
+  
+</body></html>

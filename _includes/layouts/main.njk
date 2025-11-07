@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }} : {{ site.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{site.basedir}}static/css/fonts.css" />
+    <link rel="stylesheet" href="{{site.basedir}}static/css/styles.css" />
+  </head>
+  <body>
+    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
+      <filter id="distort">
+        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"/>
+        <feDisplacementMap in="SourceGraphic" scale="10"/>
+      </filter>
+      <filter id="distort-fine">
+        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"/>
+        <feDisplacementMap in="SourceGraphic" scale="10"/>
+      </filter>
+    </svg>
+    <a href="#main" class="l-skip">skip to content</a>
+    <div>
+      <nav class="l-sidebar u-pad-small">
+        <a href="{{site.basedir}}">
+          <img class="u-logo" src="{{site.basedir}}static/images/logo.svg" alt="HyperBlam docs home">
+        </a>
+        <ul class="l-radiator">
+          {%- for guide in collections.guides -%}
+            <li>
+              <a {% if guide.url in page.url %}aria-current="page"{% endif %}href="{{ guide.url }}">{{ guide.data.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+      <main class="u-pad-small" id="main" tabindex="-1">
+        {% block main %}
+          <h1>{{ title }}</h1>
+          {{ content | safe }}
+        {% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

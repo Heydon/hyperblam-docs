@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title> : HYPERBLAM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
+      <filter id="distort">
+        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+      <filter id="distort-fine">
+        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+    </svg>
+    <a href="#main" class="l-skip">skip to content</a>
+    <div>
+      <nav class="l-sidebar u-pad-small">
+        <a href="/">
+          <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
+        </a>
+        <ul class="l-radiator"><li>
+              <a href="/guides/getting-started/">Getting Started</a>
+            </li><li>
+              <a aria-current="page" href="/guides/gain/">What Is Gain?</a>
+            </li><li>
+              <a href="/guides/signal-chains/">Signal chains</a>
+            </li><li>
+              <a href="/guides/humanization/">Humanization</a>
+            </li><li>
+              <a href="/guides/LFOs/">LFOs</a>
+            </li><li>
+              <a href="/guides/filters/">Filters</a>
+            </li><li>
+              <a href="/guides/sequencing/">Sequencing</a>
+            </li></ul>
+      </nav>
+      <main class="u-pad-small" id="main" tabindex="-1">
+        
+          <h1>What Is Gain?</h1>
+          <p>We need to talk about <em>gain</em>. Gain is not just one of the most important, and widely misunderstood, concepts in amplification. It's also, perhaps, the most foundational and useful type of <em>node</em> belonging to the Web Audio API.</p>
+<hr class="u-wave-sawtooth">
+<h2 id="gain-is-relative" tabindex="-1">Gain is relative</h2>
+<p>This is the first thing to get your head around. In either an analog or a digital context, gain is <em>how much more</em> you add to a signal. That value is necessarily relative to <em>how much you're getting in the first place</em>. Adding more signal = amplification.</p>
+<p>You can <em>add more</em> in multiple different places along your signal chain. These places are sometimes called <em>gain stages</em>. Each stage makes a relative adjustment, in series.</p>
+<p>The gain value of a gain node is set as a number. A gain of <code>0.75</code>, followed by a gain of <code>0.5</code>, followed by a gain of <code>1.5</code>, would give you an outgoing value of <code>0.75</code> * <code>0.5</code> * <code>1.5</code>… or <code>0.5625</code>.</p>
+<pre><code class="language-html">&lt;chain-blam&gt;
+  &lt;gain-blam gain="0.75"&gt;&lt;/gain-blam&gt;
+  &lt;gain-blam gain="0.5"&gt;&lt;/gain-blam&gt;
+  &lt;gain-blam gain="1.5"&gt;&lt;/gain-blam&gt;
+&lt;/chain-blam&gt;
+</code></pre>
+<p>For a more practical application, consider the feedback loop that creates an echo effect. Inside this loop, a single gain stage is passed through multiple times.</p>
+<p>A lowish gain value, like <code>0.5</code> gives noticeably diminishing returns. This approximates a true echo, which loses energy as it is partially absorbed by the surfaces it's bouncing off.</p>
+<pre><code class="language-html">&lt;echo-blam 
+  feeback="0.5" 
+  cutoff="2000"
+&gt;
+&lt;/echo-blam&gt;
+</code></pre>
+<p>Giving the echo effect’s gain (often labeled “feedback” in a commercial unit) a value approaching <code>1</code> causes it to go into a state called <em>self-oscillation</em>. In this state, echos compound and get louder, ultimately leading to <em>distortion</em>.</p>
+<h2 id="distortion-is-when-you-hit-a-ceiling" tabindex="-1">Distortion is when you hit a ceiling</h2>
+<p>The next part is really important. It's important because it accounts for the entire history, and enduring popularity, of rock ‘n’ roll over the best part of a century. Which is a pretty big deal.</p>
+<p>Sometimes you ask for <em>more</em> and there's <em>no more</em> to give. That sounds bad, right? And, yeah, theoretically it is. But it's also the simplest way to create distortion. Sometimes we like distortion. Oftentimes, we love it. We apply <em>gain</em> to create <em>distortion</em> so often, the two terms are often used interchangeably.</p>
+<p>When you tell an amplifier (gain stage) to give you <code>1.5</code>, but all it can manage is <code>1.25</code>, then <code>1.25</code> is its <em>ceiling</em>. There's nowhere for the remaining <code>0.25</code> to go, so it gets decapitated. The more powerful the amplifier, the less likely decapitation will occur. Hence, powerful amplifiers are said to have a lot of <em>headroom</em>.</p>
+<p>Sound decapitation isn’t fatal, though. If it were, rock ‘n’ roll would fall silent. Instead, lopping the top off just changes the <em>shape</em> of the waveform. How abruptly the head is lopped off (how hard the <em>clipping</em>) helps determine the perceived character of the distorted sound.</p>
+<p>A high input gain combined with extremely hard clipping can produce something akin to a square shaped wave. This is why some fuzz guitar effects can make your guitar sound like a synthesizer: synthesizers often produce sounds based on basic square waveforms.</p>
+<p>Nobody likes unintended distortion, but deliberate distortion is transformation: the creation of a new, more complex and textured sound from the old. To conservatives, transformation is transgression. The bold, distorted sound of rock ‘n’ roll is, therefore, <em>“the devil's music”</em>.</p>
+<h2 id="distortion-sounds-loud" tabindex="-1">Distortion sounds loud</h2>
+<p>As I've already established, distortion only happens when amplitude hits a ceiling. It's literally the effect of sound <em>not</em> getting louder. So why does distortion sound loud?</p>
+<p>It's a question of relativity again. The more gain you apply, the more of the sound hits the ceiling. First it's just the louder parts of the sound, then its the quieter parts too. The ceiling doesn't move, but more of it is covered. Altogether, that sounds louder.</p>
+<p>Both distortion and <em>compression</em> add perceived loudness. A compressor just uses a more complex algorithm, flattening the <em>dynamic range</em> without introducing distortion.</p>
+<p>The “loudness wars” are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless.  Where the quieter sounds aren't allowed to be quiet, the loud ones don't come off as loud.</p>
+<h2 id="gain-isn't-just-for-gain" tabindex="-1">Gain isn't just for gain</h2>
+<p>When working with the Web Audio API, gain nodes aren't just useful for affecting gain. A gain node with a gain value of 1 transparently reproduces any signal sent to it. As such, it can be used as a <em>junction box</em>.</p>
+<p>Each of the effects available in <strong>HYPERBLAM</strong> are based on a primitive <code>Box</code> class that implements <code>wet</code> and <code>dry</code> properties. The <em>mix</em> of the effect is the ratio between the wet (affected) and dry (unaffected) versions of the signal.</p>
+<p>In the following example, the first of the echos is already only 25% the amplitude of the initial (dry) sound it follows. By default, <code>dry</code> is <code>1</code>, for <code>&lt;echo-blam&gt;</code>.</p>
+<pre><code class="language-html">&lt;echo-blam 
+  feeback="0.5" 
+  cutoff="2000"
+  wet="0.25"
+&gt;
+&lt;/echo-blam&gt;
+</code></pre>
+<p>This is possible by sending the incoming signal to a transparent gain node, then diverging the signal into parallel wet and dry paths.</p>
+<p>Each of these paths has its own gain node, controlled by the <code>wet</code> and <code>dry</code> props respectively. Finally, these are each connected to an “out” gain node—another junction.</p>
+<p>For the purpose of chaining effects, this is really convenient. Each effect only needs a single entry and single exit point. The mix is handled internally (inside the so-called <em>box)</em>.</p>
+<p>Thanks to class inheritance, the <code>dry</code> and <code>wet</code> getters and setters (and their registry in <code>observedAttributes</code>) only need to be set up once, in the <code>Box.js</code> file on which each effect element is based.</p>
+
+        
+      </main>
+    </div>
+  
+</body></html>

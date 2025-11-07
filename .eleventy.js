@@ -2,6 +2,27 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
+const waveforms = ['square', 'sine', 'sawtooth', 'triangle'];
+
+const random = {
+  oneOf(array) {
+    array = array || [0];
+    return array[Math.floor(Math.random() * array.length)];
+  },
+  chance(fraction) {
+    return Math.random() <= fraction;
+  },
+  floatBetween(min, max) {
+    min = min > max ? max : min;
+    max = max < min ? min : max;
+    return (Math.random() * (max - min) + min);
+  },
+  integerBetween(min, max) {
+    min = min > max ? max : min;
+    max = max < min ? min : max;
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+}
 
 module.exports = function(eleventyConfig) {
   // Put all static assets here
@@ -9,12 +30,12 @@ module.exports = function(eleventyConfig) {
 
   // Log any nunjucks
   eleventyConfig.addFilter('log', value => {
-    console.log(value)
+    console.log(value);
   });
 
   // Example of using dynamic data
   // (could be fetched/compiled from files or API)
-  eleventyConfig.addGlobalData('pages', [
+  /*eleventyConfig.addGlobalData('pages', [
     {
       "title": "Page 2 title",
       "name": "Snugglepants",
@@ -30,7 +51,7 @@ module.exports = function(eleventyConfig) {
       "name": "Pennywise",
       "age": 9
     }
-  ]);
+  ]);*/
 
   // Link the subheadings 
   const markdownLibrary = markdownIt({
@@ -54,7 +75,7 @@ module.exports = function(eleventyConfig) {
       });
       return `
         <nav class="docs-toc" aria-labelledby="toc-title">
-          <span hidden id="toc-title">table of contents</span>
+          <span aria-hidden="true" id="toc-title">table of contents</span>
           <ul>
             ${items.join('')}
           </ul>
@@ -62,6 +83,21 @@ module.exports = function(eleventyConfig) {
       `;
     }
     return null;
+  });
+
+  eleventyConfig.addTransform('all', (content, outputPath) => {
+    if (!outputPath.endsWith('.html')) {
+      return content;
+    }
+
+    const dom = new JSDOM(content);
+    const document = dom.window.document;
+
+    const dividers = [...document.querySelectorAll('hr')];
+    dividers.forEach(d => {
+      d.classList.add(`u-wave-${random.oneOf(waveforms)}`);
+    });
+    return "<!DOCTYPE html>\r\n" + document.documentElement.outerHTML;
   });
 
   return {

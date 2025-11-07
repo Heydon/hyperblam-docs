@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title> : HYPERBLAM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
+      <filter id="distort">
+        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+      <filter id="distort-fine">
+        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+    </svg>
+    <a href="#main" class="l-skip">skip to content</a>
+    <div>
+      <nav class="l-sidebar u-pad-small">
+        <a href="/">
+          <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
+        </a>
+        <ul class="l-radiator"><li>
+              <a href="/guides/getting-started/">Getting Started</a>
+            </li><li>
+              <a href="/guides/gain/">What Is Gain?</a>
+            </li><li>
+              <a href="/guides/signal-chains/">Signal chains</a>
+            </li><li>
+              <a href="/guides/humanization/">Humanization</a>
+            </li><li>
+              <a href="/guides/LFOs/">LFOs</a>
+            </li><li>
+              <a href="/guides/filters/">Filters</a>
+            </li><li>
+              <a aria-current="page" href="/guides/sequencing/">Sequencing</a>
+            </li></ul>
+      </nav>
+      <main class="u-pad-small" id="main" tabindex="-1">
+        
+          <h1>Sequencing</h1>
+          <p>If you're familiar with JavaScript (my sympathies), then you're probably familiar with events and event listeners. Fundamentally, events let a JavaScript application <em>talk to itself</em>.</p>
+<p>Musicians are event emitters and listeners too. A drummer hits their sticks together to count their band in. A bassist performs an elaborate arpeggio to herald a group transition. An orchestral conductor is essentially a high frequency JavaScript event emitter in humanoid form.</p>
+<p><strong>HYPERBLAM</strong> enables generative composition by handling <em>events</em> according to <em>probabilities.</em> But you don't actually have to write the JavaScript for those events; the HTML elements take care of that for you.</p>
+<hr class="u-wave-sawtooth">
+<h2 id="events-based-sequencing" tabindex="-1">Events-based sequencing</h2>
+<p>The <code>&lt;sequencer-blam&gt;</code> element has quite a simple task. It acts as a kind of silent metronome, counting out every step (a quarter-beat, by default) in an infinite sequence. When it knows the exact time the next step should land, it emits a <code>blam</code> event communicating that timing.</p>
+<p>Any <strong>HYPERBLAM</strong> elements listening for that <code>blam</code> event can synchronize itself to the ongoing sequence.</p>
+<p>[diagram: show timeline]</p>
+<p>This opens up some possiblities. You <em>could</em> take a steam of live data and use it to trigger <code>&lt;notes-blam&gt;</code> sounds directly. A live, but perfectly <em>quantized</em>, musical performance of the stock exchange? Or weather patterns? Github commits?</p>
+<p>More commonly, you would subscribe to a <code>&lt;sequencer-blam&gt;</code>'s events using a <code>&lt;track-blam&gt;</code> element. That's where <strong>HYPERBLAM</strong> starts to feel like a drum machine. And it's a one with some pretty cool features, similar to the high-end hardware machines from Elektron or Roland.</p>
+<h2 id="polymetrics" tabindex="-1">Polymetrics</h2>
+<p>Each <code>&lt;track-blam&gt;</code> element presides over one or more <code>&lt;bar-blam&gt;</code> elements. The <code>s</code> prop (for “sequence”, “steps”, “sounds”, or whatever works best for you) sets out the pattern for that bar. For an instrument like the percussion-optimized <code>&lt;pad-blam&gt;</code>, positive integers represent different samples belonging to a <code>&lt;bank-blam&gt;</code>.</p>
+<p>[example with figcaption explaining all the ciphers]</p>
+<p>[diagram: single bar with 8 beats]</p>
+<p>Good start. But what if I introduce another <code>&lt;track-blam&gt;</code>with a bar of a different length?</p>
+<p>[diagram of both tracks]</p>
+<p>The tempo of these two tracks is shared (taken from a common <code>&lt;sequencer-blam&gt;</code>'s <code>bpm</code>) but their <em>time signatures</em> differ*.* The result is <em>polymetric:</em> beats stay obstinately in sync but the bars they belong to diverge*.*</p>
+<p>Working with polymeters is fun because the relationship between the individual tracks changes over time. Since it's difficult (at least for me!) to anticipate what that shifting relationship will sound like, the music stays fresh for longer.</p>
+<h2 id="overrides" tabindex="-1">Overrides</h2>
+<p>We have something to address. In most drumbeats, the kick and snare should occupy their own space. A drummer very rarely plays those two drums at the same time. But, as polymetric track relationships shift over time, collisions are inevitable.</p>
+<p>[diagram: two bars; in the second, snare and kick meet]</p>
+<p>This is where overrides come in. Using the <code>override</code> prop, I can set which tracks take precedence, thereby avoiding collisions.</p>
+<p>[demo with option to turn off override]</p>
+<p>This goes a surprisingly long way to making a simple polymetric arrangement sound like an improvising drummer choosing, in the moment, where to place their kick and snare. But overrides aren't just for drums. You can use them to carve out space for any sounds.</p>
+<h2 id="probabilism" tabindex="-1">Probabilism</h2>
+<p>Multiple <strong>HYPERBLAM</strong> elements are based on a primitive element called <code>Event.js</code> which takes care of generic event handling. All these elements inherit a <code>chance</code> prop that determines how likely the element will respond to a subscribed event. Playing, detuning, filtering, panning, muting, pretty much anything can be <em>left to chance</em>.</p>
+<p>[diagram]</p>
+<p>The <code>&lt;track-blam&gt;</code> element calculates whether a sound should play, at any given time, based on interactions between probabilities, overrides, and other settings. Once you put these conditions in place, you can just sit back and listen to the composition write itself in real time.</p>
+<p>[demo]</p>
+<p>Using generative AI, you can ask for a “sultry country song” and you'll receive 637 low quality mp3s having a plagiaristic lemon party in your long-suffering ear holes. True generative music making isn't about resurrecting the dead. With a handful of kilobytes, you can set about making something genuinely new.</p>
+
+        
+      </main>
+    </div>
+  
+</body></html>

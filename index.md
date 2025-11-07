@@ -1,6 +1,6 @@
 ---
 title: Test
-layout: skeleton.html
+layout: layouts/main.njk
 ---
 
 Some content.

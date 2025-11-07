@@ -1,33 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <title> : Site name</title>
+    <title> : HYPERBLAM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
   </head>
   <body>
-    <a href="#main">skip to content</a>
-    <nav>
-      
-      
-    </nav>
-    <main id="main" tabindex="-1">
-      
+    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
+      <filter id="distort">
+        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+      <filter id="distort-fine">
+        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+      </filter>
+    </svg>
+    <a href="#main" class="l-skip">skip to content</a>
+    <div>
+      <nav class="l-sidebar u-pad-small">
+        <a href="/">
+          <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
+        </a>
+        <ul class="l-radiator"><li>
+              <a href="/guides/getting-started/">Getting Started</a>
+            </li><li>
+              <a href="/guides/gain/">What Is Gain?</a>
+            </li><li>
+              <a href="/guides/signal-chains/">Signal chains</a>
+            </li><li>
+              <a href="/guides/humanization/">Humanization</a>
+            </li><li>
+              <a href="/guides/LFOs/">LFOs</a>
+            </li><li>
+              <a href="/guides/filters/">Filters</a>
+            </li><li>
+              <a href="/guides/sequencing/">Sequencing</a>
+            </li></ul>
+      </nav>
+      <main class="u-pad-small" id="main" tabindex="-1">
         
-        <nav class="docs-toc" aria-labelledby="toc-title">
-          <span hidden id="toc-title">table of contents</span>
-          <ul>
-            <li><a href="#linked-heading">Linked heading</a></li><li><a href="#another-linked-heading">Another linked heading</a></li>
-          </ul>
-        </nav>
-      
-        <h1>Test</h1>
-        <p>Some content.</p>
+          <h1>Test</h1>
+          <p>Some content.</p>
 <h2 id="linked-heading" tabindex="-1">Linked heading</h2>
 <p>Lorem ipsum dolor shit.</p>
 <h2 id="another-linked-heading" tabindex="-1">Another linked heading</h2>
 
-      
-    </main>
-  </body>
-</html>
+        
+      </main>
+    </div>
+  
+</body></html>

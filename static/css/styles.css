@@ -6,7 +6,7 @@
   --pad-s: 1.25rem;
   --pad-m: 2.25rem;
   --pad-x: 3.25rem;
-  --family-base: Helvetica Neue, Helvetica, sans-serif;
+  --family-base: Futura, Century Gothic, sans-serif;
   --family-display: Being, Impact, sans-serif; 
   --wave-square: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 20"><path fill="none" d="M0 19, 20 19, 20 1, 39 1, 39 20" stroke="%23EEE" stroke-width="2"></path></svg>');
   --wave-triangle: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 20"><path fill="none" d="M-1 19.5, 20 1.5, 41 19.5" stroke="%23EEE" stroke-width="2"></path></svg>');
@@ -27,7 +27,7 @@ body {
   background-size: 25rem auto;
   animation-name: dust;
   animation-iteration-count: infinite;
-  animation-timing-function: steps(3);
+  animation-timing-function: steps(9);
   animation-timeline: view();
   min-block-size: 100vh;
 }
@@ -36,8 +36,11 @@ body {
   0% {
     background-position: 0 0;
   }
-  100% {
+  50% {
     background-position: 17rem 17rem;
+  }
+  100% {
+    background-position: 7rem -11rem;
   }
 }
 
@@ -74,6 +77,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--family-display);
   text-transform: uppercase;
   line-height: 1.125;
+  letter-spacing: 2px;
 }
 
 /* text */
@@ -278,6 +282,10 @@ nav > * + * {
 }
 
 /* utilities */
+
+.u-stretch {
+  inline-size: 100%;
+}
 
 .u-logo {
   max-inline-size: min(300px, 100%);

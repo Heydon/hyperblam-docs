@@ -24,13 +24,16 @@
         <a href="{{site.basedir}}">
           <img class="u-logo" src="{{site.basedir}}static/images/logo.svg" alt="HyperBlam docs home">
         </a>
-        <ul class="l-radiator">
-          {%- for guide in collections.guides -%}
-            <li>
-              <a {% if guide.url in page.url %}aria-current="page"{% endif %}href="{{ guide.url }}">{{ guide.data.title }}</a>
-            </li>
-          {%- endfor -%}
-        </ul>
+        <button class="u-stretch" hidden>MENU</button>
+        <div>
+          <ul class="l-radiator">
+            {%- for guide in collections.guides -%}
+              <li>
+                <a {% if guide.url in page.url %}aria-current="page"{% endif %}href="{{ guide.url }}">{{ guide.data.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
       </nav>
       <main class="u-pad-small" id="main" tabindex="-1">
         {% block main %}

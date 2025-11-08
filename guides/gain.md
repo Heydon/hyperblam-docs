@@ -12,7 +12,9 @@ This is the first thing to get your head around. In either an analog or a digita
 
 You can *add more* in multiple different places along your signal chain. These places are sometimes called *gain stages*. Each stage makes a relative adjustment, in series. 
 
-The gain value of a gain node is set as a number. A gain of `0.75`, followed by a gain of `0.5`, followed by a gain of `1.5`, would give you an outgoing value of `0.75` * `0.5` * `1.5`… or `0.5625`. 
+[diagram: gain 1]
+
+The gain value of a gain node is set as a number. A gain of `0.75`, followed by a gain of `0.5`, followed by a gain of `1.5`, would give you an outgoing value of `0.75` &times; `0.5` &times; `1.5`&hellip; or  `0.5625`. 
 
 ```html
 <chain-blam>
@@ -24,7 +26,9 @@ The gain value of a gain node is set as a number. A gain of `0.75`, followed by 
 
 For a more practical application, consider the feedback loop that creates an echo effect. Inside this loop, a single gain stage is passed through multiple times. 
 
-A lowish gain value, like `0.5` gives noticeably diminishing returns. This approximates a true echo, which loses energy as it is partially absorbed by the surfaces it's bouncing off.
+[diagram: gain 2]
+
+A lowish gain value, like `0.5` gives noticeably diminishing returns. This approximates a true echo, which loses energy as it is partially absorbed by the surfaces it’s bouncing off.
 
 ```html
 <echo-blam 
@@ -40,9 +44,11 @@ Giving the echo effect’s gain (often labeled “feedback” in a commercial un
 
 The next part is really important. It's important because it accounts for the entire history, and enduring popularity, of rock ‘n’ roll over the best part of a century. Which is a pretty big deal.
 
-Sometimes you ask for *more* and there's *no more* to give. That sounds bad, right? And, yeah, theoretically it is. But it's also the simplest way to create distortion. Sometimes we like distortion. Oftentimes, we love it. We apply *gain* to create *distortion* so often, the two terms are often used interchangeably.
+Sometimes you ask for *more* and there's *no more* to give. That sounds bad, right? And, yeah, theoretically it is. But it’s also the simplest way to create distortion. Sometimes we like distortion. Oftentimes, we love it. We apply *gain* to create *distortion* so often, the two terms are often used interchangeably.
 
 When you tell an amplifier (gain stage) to give you `1.5`, but all it can manage is `1.25`, then `1.25` is its *ceiling*. There's nowhere for the remaining `0.25` to go, so it gets decapitated. The more powerful the amplifier, the less likely decapitation will occur. Hence, powerful amplifiers are said to have a lot of *headroom*.
+
+[diagram:gain  3]
 
 Sound decapitation isn’t fatal, though. If it were, rock ‘n’ roll would fall silent. Instead, lopping the top off just changes the *shape* of the waveform. How abruptly the head is lopped off (how hard the *clipping*) helps determine the perceived character of the distorted sound. 
 

@@ -1,4 +1,5 @@
 module.exports = {
   title: 'HYPERBLAM',
-  basedir: '/'
+  basedir: '/',
+  hyperblamfile: 'static/hyperblam/src/hyperblam.js'
 }

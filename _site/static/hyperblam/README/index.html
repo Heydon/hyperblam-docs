@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html><head></head><body><h1 id="hyperblam" tabindex="-1">HYPERBLAM</h1>
+<p><strong>HYPERBLAM</strong> is an HTML-based interface for sampling, processing, and sequencing audio in the browser.</p>
+<ul>
+<li><strong><em>Declarative</em></strong>: custom elements FTW (write music, not JavaScript)</li>
+<li><strong><em>Independent</em></strong>: Built from the ground up. Free of monolithic libraries and proprietary technologies.</li>
+<li><strong><em>Powerful</em></strong>: use as many effects, LFOs, and auxiliary envelopes as you want</li>
+<li><strong><em>Flexible</em></strong>: create polymetric beats, generative drones, or event-based sound effects for your game</li>
+<li><strong><em>Probablistic</em></strong>: emulate improvisation using multiple random factors and modulations</li>
+<li><strong><em>No AI</em></strong>: this is for musicians, sound designers, and geeks—not charlatans or ghouls</li>
+<li><strong><em>Unopinionated</em></strong>: bring your own UI</li>
+</ul>
+<h2 id="todo" tabindex="-1">TODO</h2>
+<ul>
+<li>
+<p>[ ] Key shortcuts for <code>Tap.js</code></p>
+</li>
+<li>
+<p>[ ] Loading of samples on different events!</p>
+</li>
+<li>
+<p>[ ] Ability to suspend any events (Boolean in <code>Event.js</code>)</p>
+</li>
+<li>
+<p>[ ] <code>&lt;mod-blam&gt;</code> should group event-based elements so multiple things can be discretely modulated?</p>
+</li>
+<li>
+<p>[ ] Find way to add more data, easily, for CSS custom properties</p>
+</li>
+<li>
+<p>[ ] Props versus params are a mess</p>
+</li>
+<li>
+<p>[ ] Maybe update param in prop getter directly? The <code>calibrate()</code> can be ignored</p>
+<ul>
+<li>This could be used in combination with creating getters and setters for <code>params</code> dynamically, so props for params don't need to be built out in each case
+<ul>
+<li>Then the calibrate method can be ignored?</li>
+</ul>
+</li>
+<li>[ ] Maybe separate blam-blam into param-blam and prop-blam again?</li>
+<li>[ ] Rethink entire props/params relationship, possibly even rethink <code>exposeParams</code>.</li>
+<li>[ ] Maybe Box calibration only happens once, so param changes don't trigger <code>calibrate()</code>
+<ul>
+<li>[ ] Maybe <code>calibrate()</code> then becomes <code>init</code></li>
+</ul>
+</li>
+<li>[ ] <code>Dial</code> and <code>Switch</code> reacting to param changes may be tricky. Already experimented and it got hairy.</li>
+</ul>
+</li>
+<li>
+<p>[ ] <code>ended</code> event may come in useful</p>
+</li>
+<li>
+<p>[ ] <code>&lt;notes-blam&gt;</code> is not respecting bar-blam values</p>
+</li>
+<li>
+<p>[ ] Test that <code>beats</code> actually is in sync correctly for Echo, LFO, and others</p>
+</li>
+<li>
+<p>[ ] Granular synth</p>
+<ul>
+<li>[ ] Soledad on <code>AudioWorklet</code>: <a href="https://soledadpenades.com/posts/2025/using-audioworklets-to-generate-audio/">https://soledadpenades.com/posts/2025/using-audioworklets-to-generate-audio/</a></li>
+<li>[ ] Basic granular synth tutorial: <a href="https://dev.to/hexshift/granular-synthesis-in-the-browser-using-web-audio-api-and-audiobuffer-slicing-2o9h">https://dev.to/hexshift/granular-synthesis-in-the-browser-using-web-audio-api-and-audiobuffer-slicing-2o9h</a></li>
+</ul>
+</li>
+<li>
+<p>[ ] Volume meter woklet (good for animation) <a href="https://googlechromelabs.github.io/web-audio-samples/audio-worklet/basic/volume-meter/">https://googlechromelabs.github.io/web-audio-samples/audio-worklet/basic/volume-meter/</a></p>
+</li>
+<li>
+<p>[ ] Extracting jsdoc as JSON (see <code>-X</code> option) and pipe to file <a href="https://stackoverflow.com/questions/25210156/getting-jsdoc-output-in-json-format">https://stackoverflow.com/questions/25210156/getting-jsdoc-output-in-json-format</a></p>
+</li>
+<li>
+<p>[ ] Oscilloscope tutorial: <a href="https://davidmatthew.ie/creating-an-oscilloscope-with-javascript/">https://davidmatthew.ie/creating-an-oscilloscope-with-javascript/</a></p>
+</li>
+<li>
+<p>[ x ] <code>Monitor</code> x -&gt; Extend <code>PropParamMethod</code> (or just <code>Event</code>?) to do a <code>shift-blam</code>.</p>
+<ul>
+<li>It contains its own LFO and attached analyser to get a multiplier based on the LFO's gain. This is used to change values based on incoming events over time.</li>
+</ul>
+</li>
+<li>
+<p>[ x ] display element</p>
+</li>
+<li>
+<p>[ ] Method on <code>&lt;blam-blam&gt;</code> so it can be controlled by <code>&lt;switch-blam&gt;</code> etc?</p>
+</li>
+<li>
+<p>[ ] param values do not update Dial</p>
+<ul>
+<li>Need to better connect params and props. This will fix a lot of issues.</li>
+</ul>
+</li>
+<li>
+<p>[ ] <code>param</code> Dial values (e.g. <code>detune</code>) don't stick for players because each new buffer is refreshed at the standard detune level</p>
+</li>
+<li>
+<p>[ ] Retrig prop for <code>Track</code></p>
+<ul>
+<li>Can use events to make certain <code>steps</code> retrigger</li>
+<li>The value is divisions of a (quarter)-beat. So <code>3</code> would mean play a triplet rather than 1 note;</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Control props like probability using LFO value at time?</p>
+<ul>
+<li>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatTimeDomainData">https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatTimeDomainData</a></li>
+<li>No need for a loop. Just do <code>analyser.getFloatTimeDomainData(dataArray)</code> on any other event.</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Test <code>Dial</code> using <code>bpm</code> (remember to add the <code>bpm</code> target + use <code>super.modify</code> after <code>this.value</code> is set)</p>
+</li>
+<li>
+<p>[ x ] Redo watcher stuff</p>
+</li>
+<li>
+<p>[ x ] Revisit how to handle when elements are defined</p>
+<ul>
+<li>Should there be one event when installation is finished? On <code>window</code> and elements<br>
+can innit based on that?</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Do events have a generic name so they can be tapped into more easily?</p>
+<ul>
+<li><code>step</code>, <code>bar</code>, <code>play</code> all <code>blam</code>?</li>
+<li>an agreed structure for the data with reserved names for conditions.</li>
+</ul>
+</li>
+<li>
+<p>[ ] Think about how release would work. Do I need to save multiple instances of buffers?</p>
+<ul>
+<li>I can't set it as the next buffer is started because then its exposed params are overwritten</li>
+<li>May need to save the whole of the old instance, including params</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Test multiple tracks with one player (whole drum kit)</p>
+</li>
+<li>
+<p>[ x ] Rename <code>machine-blam</code> and <code>instrument-blam</code> to <code>pads-blam</code> and <code>notes-blam</code></p>
+</li>
+<li>
+<p>[ x ] Bring back length prop for Player</p>
+</li>
+<li>
+<p>[ ] Remove mute functionality from Player, to save memory? Can just use a <code>gain-blam</code> node instead...</p>
+</li>
+<li>
+<p>[ x ] Do <code>prop-blam</code> event element</p>
+</li>
+<li>
+<p>[ x ] Start making control elements (sliders and switches)</p>
+</li>
+<li>
+<p>[ ] Implement proper portamento for notes-blam</p>
+</li>
+<li>
+<p>[ ] Create attack/hold/decay (AHD) element (better than envelope for fluctuation values?)</p>
+</li>
+<li>
+<p>[ ] Fix event param issue with multiple <code>subs</code>. Each change is applied to every <code>sub</code> at that exact time. Sometimes <code>sub.param</code> comes up as <code>undefined</code> too.</p>
+<ul>
+<li>Think I'd have to identify and pair individual <code>pubs</code> and <code>subs</code>. Maybe needs a grouping mechanism? Or use indices?</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Get <code>solo</code> prop' and <code>playOrNot</code> logic into <code>Track</code></p>
+</li>
+<li>
+<p>[ ] Think about adding scales, like Digitakt</p>
+</li>
+<li>
+<p>[ x ] How does the track cipher come into priming tracks? Can that be worked out in sequencer??</p>
+</li>
+<li>
+<p>[ x ] Fix sequencer/track relationship by "priming" tracks in the sequencer. Each should have <code>probable</code> set using <code>!t.suspend &amp;&amp; this.random.chance(this.chance)</code> just before the <code>'step'</code> event! Then the proboability stuff in <code>Track</code> can go.</p>
+</li>
+<li>
+<p>[ ] Create wave/oscillator instrument</p>
+<ul>
+<li>[ ] Use FM synthesis. The main element is the carrier and descendent elements are modulators.</li>
+<li>[ ] Different modulation styles/algorithms (can parallel modulate the carrier and/or modulate modulators with other modulators)</li>
+</ul>
+</li>
+<li>
+<p>[ x ] FILLS! The <code>&lt;bar-blam&gt;</code> element can be shuffled each time it’s accessed (or at the bar event)</p>
+</li>
+<li>
+<p>[ x ] Experiment with dynamic import of envelope drift function</p>
+</li>
+<li>
+<p>[ x ] Change <code>getOut</code> so nested <code>&lt;chain-blam&gt;</code> elements don't short circuit and connect back to their parent <code>&lt;chain-blam&gt;</code> elements</p>
+</li>
+<li>
+<p>[ x ] Test multiple chains</p>
+</li>
+<li>
+<p>[ x ] Test chains inside chains</p>
+</li>
+<li>
+<p>[ x ] Simplify installation further</p>
+<ul>
+<li>Make it just a <code>&lt;script&gt;</code> with <code>src</code>.</li>
+<li>For getting the path, include that as <code>data-blam-path=""</code> <em>on the script tag itself</em>.</li>
+<li>Or dynamically get path by looking up from <code>install</code> script location?</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Do delay box next. Make sure its frequency can be modified in terms of beats.</p>
+</li>
+<li>
+<p>[ x ] Attack, decay, and release elements (sustain not possible with samples)</p>
+<ul>
+<li>Revisit release. Think it was broken before because it worked on the current temp gain, not the previous one</li>
+<li>These work directly with instruments, not anything else</li>
+</ul>
+</li>
+<li>
+<p>[ x ] Allow linear ramp for any <code>&lt;param-blam&gt;</code> change (do set value unless a <code>portamento</code> (or something) value is given)</p>
+</li>
+<li>
+<p>[ ] Slicer instrument</p>
+<ul>
+<li>[] Dynamically creates slices based on steps provided (<code>8</code> equals 8 slices)</li>
+<li>[] See <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode/start">https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode/start</a> (use offset and duration)</li>
+<li>[] cipher now relates to slices, not samples. But all other aspects are the same (random slice or robin picks slice)</li>
+<li>[ ] Allow a <code>bpm</code> or <code>tempo</code> prop on <code>sample-blam</code> so that beat matching can happen for players (a whole beat can be detuned to the set <code>bpm</code>).</li>
+<li>[ ] To keep in sync as <code>bpm</code> shifts, might need to observe <code>bpm</code> to dynamically change <code>playbackRate</code>...</li>
+</ul>
+</li>
+<li>
+<p>[ ] Make sure all opportunities to avoid calculation-on-the-fly are taken. See envelope, where curve is only parsed when attribute changes</p>
+</li>
+<li>
+<p>[ x ] Continue to investigate <code>&lt;param-blam&gt;</code> pops</p>
+<ul>
+<li>Only seems to happen when interrupting an already playing sound?</li>
+<li>First fix static registry thing where <code>&lt;envelope-blam&gt;</code> is registered as <code>&lt;param-blam&gt;</code> (static thingy).
+<ul>
+<li>May need to abstract the param stuff further (move main param code to a helper)</li>
+</ul>
+</li>
+<li>Then see if pops still occur when the envelope is very short (already set up for testing)</li>
+</ul>
+</li>
+<li>
+<p>[ x ] For any event (param, prop) change, support add <code>chance</code> (probably on <code>Event</code> element).</p>
+</li>
+<li>
+<p>[ x ] Ability to fluctuate envelope value/curve.</p>
+</li>
+<li>
+<p>[ x ] Make sure <code>chain-blam</code> works with no boxes/effects in it (short circuit chaining)</p>
+</li>
+<li>
+<p>[ ] Different arpeggiation options for instrument: true random, random but always new, robin, and up/down</p>
+</li>
+<li>
+<p>[ ] UI: Sliders</p>
+<ul>
+<li>[ ] Basic slider looks for param and, if it can't find it, looks for prop instead</li>
+<li>[ ] METAslider controls multiple sliders at once</li>
+</ul>
+</li>
+<li>
+<p>[ ] Find a reusable way to get the closest time set?</p>
+</li>
+<li>
+<p>[ ] Beat translation for LFO should be easy: when connecting, get the translated <code>beats</code> value and translate the LFO <code>gain</code> value. Connect using those values.</p>
+</li>
+<li>
+<p>Nodes as "boxes"?</p>
+</li>
+<li>
+<p>[ ] Make nodes use <code>mix</code> (calculate <code>dry</code> and <code>wet</code> automatically)</p>
+</li>
+<li>
+<p>[ ] Allow for beats or seconds for time values. Is there a way to translate on the fly?</p>
+</li>
+<li>
+<p>[ ] Maybe store translation algorithms for different params. Then, "if param is 'frequency', use the translation"</p>
+</li>
+<li>
+<p>[ x ] Implement the <code>z</code> syntax for envelope</p>
+</li>
+<li>
+<p>[ ] <code>release</code> doesn't work because the <code>prevGainNode</code> is changed as the next buffer is played. May need to track <code>prevGainNode</code>s and clean them up only when their buffer goes past its duration.</p>
+</li>
+<li>
+<p>[ x ] Make <code>exposeParams()</code> function that fires an event on the element with params, so that nodes that need to <em>connect</em> (like LFO, not like envelope) can do so.</p>
+</li>
+<li>
+<p>[ ] Ability to reuse chunks of HTML (subtrees), like <code>&lt;c-lone&gt;</code></p>
+</li>
+<li>
+<p>[ ] Different types of <code>&lt;track-blam&gt;</code>. Each use scheduler, but act more like <code>Event.js</code> and values affect any param or prop (!!!)</p>
+</li>
+<li>
+<p>[ x ] Looping element (drone?) with exponentially adjusted crossfade.</p>
+</li>
+<li>
+<p>[ x ] Do separate events for before (the currentTime) and on (the currentTime) for scheduling and timing animations etc</p>
+</li>
+<li>
+<p>[ ] Remember to change Sequencer to set <code>player.time</code> before running <code>play()</code>.</p>
+</li>
+<li>
+<p>[ ] Handle <code>.</code>, <code>_</code>, and <code>?</code>, in Sequencer. The <code>?</code> just means "don't add a cipher arg".</p>
+</li>
+<li>
+<p>[ ] Make separate <code>event.bar</code> and <code>event.play</code>?</p>
+</li>
+<li>
+<p>[ ] Automate UI creation by "spreading" bank sounds to buttons in a loop</p>
+</li>
+<li>
+<p>[ ] Enable dynamically loading sounds. When a bank's samples change, send event (MutationObserver?)</p>
+</li>
+<li>
+<p>[ x ] Revisit muting. Should be an autonomous method that toggles on or off according to a control or event.</p>
+</li>
+<li>
+<p>[ ] Move assignMIDI from instrument to MIDI element?</p>
+</li>
+<li>
+<p>[ x ] Replace <code>if (!this.sound || this.sound === '?') {</code> in Player. In sequencer, just don't assign an arg</p>
+</li>
+<li>
+<p>[ x ] Maybe set <code>time</code> as <code>this.time</code> on the player. Could be easier for syncing stuff.</p>
+</li>
+<li>
+<p>[ ] Choke should take value, then decay (for crossfade) can come from somewhere else (?)</p>
+</li>
+<li>
+<p>[ ] For drone, will need to use duration to know when to restart the buffer.</p>
+</li>
+<li>
+<p>[ ] Investigate the ability to edit HTML (in general) after samples loaded / sequencer playing. Does it already work? Does it need <code>MutationObserver</code> in places?</p>
+</li>
+<li>
+<p>[] Autodetect pitch? <a href="https://alexanderell.is/posts/tuner/">https://alexanderell.is/posts/tuner/</a></p>
+</li>
+<li>
+<p>Basic, reusable element finding function (look for <code>id</code> then look for descendant)</p>
+<ul>
+<li>Maybe option for child versus descendant</li>
+</ul>
+</li>
+<li>
+<p>Use internals to deal with shared styles, like <code>display: contents</code></p>
+</li>
+<li>
+<p>Simplified player logic with plugin capability</p>
+</li>
+<li>
+<p>Easy <code>&lt;c-ontrol&gt;</code> element that knows what kind of input to render for a param/prop. Typing may be needed.</p>
+</li>
+<li>
+<p>Rename <code>&lt;s-rc&gt;</code> to <code>&lt;s-ample&gt;</code></p>
+<ul>
+<li>Only listen for <code>&lt;s-ample&gt;</code>s loading</li>
+<li>Maybe categorize samples with keyword, rather than using a <code>&lt;l-ibrary&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>Types of player: <code>&lt;s-ampler&gt;</code>, <code>&lt;i-nstrument&gt;</code>, <code>&lt;d-rone&gt;</code></p>
+</li>
+<li>
+<p>CSS <code>@scope</code> for encapsulating styles to components without shadow DOM</p>
+</li>
+<li>
+<p><code>&lt;e-nvelope&gt;</code>, like <code>&lt;l-fo&gt;</code> (listens to <code>play()</code> on instrument/sampler and resets then ramps)</p>
+<ul>
+<li>Could refine stops, as children, for ramping like <code>&lt;s-top value="[x]" offset="[n]"&gt;</code>
+<ul>
+<li><code>offset</code> would be the time after the <code>play()</code> event, using <code>currentTime</code></li>
+<li><code>value</code> would be the value of the parameter defined by the parent <code>&lt;e-nvelope&gt;</code></li>
+<li>First stop would need to <code>setValueAtTime</code> and others would ramp…</li>
+<li>This and other more complex data may benefit from being serialised into actual data for performance. Only gets reserialised when a stop value changes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Dynamically name elements based on class name: Audio → a-udio. Have this function on the Base element. Do registering in static function in constructor.</p>
+</li>
+<li>
+<p>Wait for all elements to be defined before doing any inter-element stuff? Fire an event?</p>
+<ul>
+<li>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined">https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined</a></li>
+<li>Make use of <code>querySelectorAll(":not(:defined)");</code> (empty nodeList if everything is defined already)</li>
+</ul>
+</li>
+</ul>
+<p>What if HTML wasn’t just for text and images and stuff? What if it was for music too? Yes, we have <code>&lt;audio&gt;</code>, but that's just a music <em>player</em>. That’s for music someone's already made. To compose and produce music in HTML, like we write and typeset our shitposts, we need certain capabilities. We need sampling, signal processing, and sequencing.</p>
+<p>“You can do that all with JavaScript.” Sure, you can, but music—like prose—is declarative, not imperative. So writing music with JavaScript is pretty unweildy and notably lacking in joy.</p>
+<p>By using custom elements, we can make the Web Audio API HTML's domain instead. That's what <strong>HYPERBLAM</strong> is all about, and more.</p>
+<h2 id="beats-translation-pseudo-code" tabindex="-1">Beats translation pseudo-code</h2>
+<pre><code class="language-html">&lt;lfo-blam param="detune" beats="1" gain="50"&gt;
+    &lt;lfo-blam param="beats" beats="1" gain="0.5"&gt;&lt;/lfo-blam&gt; &lt;!-- modulates from 0.5 to 1.5 (center: 1) --&gt;
+&lt;/lfo-blam&gt;
+</code></pre>
+</body></html>

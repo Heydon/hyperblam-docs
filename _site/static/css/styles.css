@@ -284,6 +284,7 @@ nav > * + * {
 /* utilities */
 
 .u-stretch {
+  display: block;
   inline-size: 100%;
 }
 
@@ -348,5 +349,24 @@ nav > * + * {
   }
   100% {
     transform: scaleY(1);
+  }
+}
+
+
+/* menu */
+
+.c-menu-button {
+  max-inline-size: 200px;
+  margin-inline: auto;
+  margin-block-start: var(--pad-s);
+}
+
+@media (min-width: 960px) {
+  .c-menu-button {
+    display: none;
+  }
+
+  .c-menu {
+    display: block;
   }
 }

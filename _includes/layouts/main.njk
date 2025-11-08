@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }} : {{ site.title }}</title>
+    <title>{{ title }} : {{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{site.basedir}}static/css/fonts.css" />
     <link rel="stylesheet" href="{{site.basedir}}static/css/styles.css" />
@@ -24,8 +24,8 @@
         <a href="{{site.basedir}}">
           <img class="u-logo" src="{{site.basedir}}static/images/logo.svg" alt="HyperBlam docs home">
         </a>
-        <button class="u-stretch" hidden>MENU</button>
-        <div>
+        <button class="c-menu-button u-stretch">MENU</button>
+        <div class="c-menu">
           <ul class="l-radiator">
             {%- for guide in collections.guides -%}
               <li>
@@ -42,5 +42,10 @@
         {% endblock %}
       </main>
     </div>
+    <script type="module">
+      import { menu } from '{{site.basedir}}static/js/menu.js';
+
+      menu();
+    </script>
   </body>
 </html>

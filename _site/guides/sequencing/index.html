@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="utf-8">
-    <title> : HYPERBLAM</title>
+    <title>Sequencing : HYPERBLAM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/styles.css">
@@ -23,8 +23,8 @@
         <a href="/">
           <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
         </a>
-        <button class="u-stretch" hidden="">MENU</button>
-        <div>
+        <button class="c-menu-button u-stretch">MENU</button>
+        <div class="c-menu">
           <ul class="l-radiator"><li>
                 <a href="/guides/getting-started/">Getting Started</a>
               </li><li>
@@ -48,7 +48,7 @@
           <p>If you're familiar with JavaScript (my sympathies), then you're probably familiar with events and event listeners. Fundamentally, events let a JavaScript application <em>talk to itself</em>.</p>
 <p>Musicians are event emitters and listeners too. A drummer hits their sticks together to count their band in. A bassist performs an elaborate arpeggio to herald a group transition. An orchestral conductor is essentially a high frequency JavaScript event emitter in humanoid form.</p>
 <p><strong>HYPERBLAM</strong> enables generative composition by handling <em>events</em> according to <em>probabilities.</em> But you don't actually have to write the JavaScript for those events; the HTML elements take care of that for you.</p>
-<hr class="u-wave-triangle">
+<hr class="u-wave-sawtooth">
 <h2 id="events-based-sequencing" tabindex="-1">Events-based sequencing</h2>
 <p>The <code>&lt;sequencer-blam&gt;</code> element has quite a simple task. It acts as a kind of silent metronome, counting out every step (a quarter-beat, by default) in an infinite sequence. When it knows the exact time the next step should land, it emits a <code>blam</code> event communicating that timing.</p>
 <p>Any <strong>HYPERBLAM</strong> elements listening for that <code>blam</code> event can synchronize itself to the ongoing sequence.</p>
@@ -79,5 +79,10 @@
         
       </main>
     </div>
+    <script type="module">
+      import { menu } from '/static/js/menu.js';
+
+      menu();
+    </script>
   
 </body></html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="utf-8">
-    <title> : HYPERBLAM</title>
+    <title>LFOs : HYPERBLAM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/styles.css">
@@ -23,8 +23,8 @@
         <a href="/">
           <img class="u-logo" src="/static/images/logo.svg" alt="HyperBlam docs home">
         </a>
-        <button class="u-stretch" hidden="">MENU</button>
-        <div>
+        <button class="c-menu-button u-stretch">MENU</button>
+        <div class="c-menu">
           <ul class="l-radiator"><li>
                 <a href="/guides/getting-started/">Getting Started</a>
               </li><li>
@@ -141,5 +141,10 @@
         
       </main>
     </div>
+    <script type="module">
+      import { menu } from '/static/js/menu.js';
+
+      menu();
+    </script>
   
 </body></html>

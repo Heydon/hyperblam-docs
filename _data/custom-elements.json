@@ -17,7 +17,12 @@
             },
             {
               "kind": "field",
-              "name": "gain"
+              "name": "gain",
+              "type": {
+                "text": "number"
+              },
+              "description": "The output gain, sent to the destination. Think of it as the master volume.",
+              "default": "1"
             },
             {
               "kind": "field",

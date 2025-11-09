@@ -1,0 +1,1516 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Audio.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Audio",
+          "members": [
+            {
+              "kind": "method",
+              "name": "onsample"
+            },
+            {
+              "kind": "field",
+              "name": "gain"
+            },
+            {
+              "kind": "field",
+              "name": "bpm"
+            },
+            {
+              "kind": "field",
+              "name": "context",
+              "default": "new AudioContext()"
+            },
+            {
+              "kind": "field",
+              "name": "sampleCount",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "inNode"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "gain"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Audio",
+          "declaration": {
+            "name": "Audio",
+            "module": "static/hyperblam/src/elements/Audio.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Bank.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Bank",
+          "members": [
+            {
+              "kind": "method",
+              "name": "onblamready"
+            },
+            {
+              "kind": "method",
+              "name": "onsample",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "initBuffers"
+            },
+            {
+              "kind": "field",
+              "name": "sounds",
+              "type": {
+                "text": "array"
+              },
+              "default": "[]"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Bank",
+          "declaration": {
+            "name": "Bank",
+            "module": "static/hyperblam/src/elements/Bank.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Bar.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Bar",
+          "members": [
+            {
+              "kind": "method",
+              "name": "patternToValues",
+              "parameters": [
+                {
+                  "name": "pattern"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCipher",
+              "parameters": [
+                {
+                  "name": "step"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "s"
+            },
+            {
+              "kind": "field",
+              "name": "fill"
+            },
+            {
+              "kind": "field",
+              "name": "chance"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "s"
+            },
+            {
+              "name": "fill"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Bar",
+          "declaration": {
+            "name": "Bar",
+            "module": "static/hyperblam/src/elements/Bar.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Blam.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Blam",
+          "superclass": {
+            "name": "PropParamMethod",
+            "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Blam",
+          "declaration": {
+            "name": "Blam",
+            "module": "static/hyperblam/src/elements/Blam.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Chain.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Chain",
+          "members": [
+            {
+              "kind": "method",
+              "name": "onblamready"
+            },
+            {
+              "kind": "method",
+              "name": "connectBoxes"
+            },
+            {
+              "kind": "field",
+              "name": "out"
+            },
+            {
+              "kind": "field",
+              "name": "isChain",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Chain",
+          "declaration": {
+            "name": "Chain",
+            "module": "static/hyperblam/src/elements/Chain.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Dial.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Dial",
+          "members": [
+            {
+              "kind": "method",
+              "name": "sync",
+              "parameters": [
+                {
+                  "name": "subs"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleEvent",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "defaultPubs"
+            },
+            {
+              "kind": "field",
+              "name": "defaultEvent",
+              "type": {
+                "text": "string"
+              },
+              "default": "'input'"
+            }
+          ],
+          "superclass": {
+            "name": "PropParamMethod",
+            "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Dial",
+          "declaration": {
+            "name": "Dial",
+            "module": "static/hyperblam/src/elements/Dial.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Display.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Display",
+          "members": [
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "element"
+            },
+            {
+              "kind": "field",
+              "name": "prop"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Display",
+          "declaration": {
+            "name": "Display",
+            "module": "static/hyperblam/src/elements/Display.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Echo.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Echo",
+          "members": [
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "field",
+              "name": "beats"
+            },
+            {
+              "kind": "field",
+              "name": "feedback"
+            },
+            {
+              "kind": "field",
+              "name": "cutoff"
+            },
+            {
+              "kind": "field",
+              "name": "node"
+            },
+            {
+              "kind": "field",
+              "name": "gainNode"
+            },
+            {
+              "kind": "field",
+              "name": "filterNode"
+            },
+            {
+              "kind": "field",
+              "name": "dryInitial",
+              "type": {
+                "text": "number"
+              },
+              "default": "1"
+            },
+            {
+              "kind": "field",
+              "name": "wetInitial",
+              "type": {
+                "text": "number"
+              },
+              "default": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "beats"
+            },
+            {
+              "name": "feedback"
+            },
+            {
+              "name": "cutoff"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Echo",
+          "declaration": {
+            "name": "Echo",
+            "module": "static/hyperblam/src/elements/Echo.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Envelope.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Envelope",
+          "members": [
+            {
+              "kind": "method",
+              "name": "parseCurve"
+            },
+            {
+              "kind": "method",
+              "name": "modify",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "curve"
+            },
+            {
+              "kind": "field",
+              "name": "defaultPubs"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "curve"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "/static/hyperblam/src/helpers/Event.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Envelope",
+          "declaration": {
+            "name": "Envelope",
+            "module": "static/hyperblam/src/elements/Envelope.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Filter.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Filter",
+          "members": [
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "field",
+              "name": "freq"
+            },
+            {
+              "kind": "field",
+              "name": "q"
+            },
+            {
+              "kind": "field",
+              "name": "type"
+            },
+            {
+              "kind": "field",
+              "name": "types",
+              "type": {
+                "text": "array"
+              },
+              "default": "['lowpass', 'highpass', 'bandpass', 'notch']"
+            },
+            {
+              "kind": "field",
+              "name": "node"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "freq"
+            },
+            {
+              "name": "q"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Filter",
+          "declaration": {
+            "name": "Filter",
+            "module": "static/hyperblam/src/elements/Filter.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Gain.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Gain",
+          "members": [
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "field",
+              "name": "gain"
+            },
+            {
+              "kind": "field",
+              "name": "node"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "gain"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Gain",
+          "declaration": {
+            "name": "Gain",
+            "module": "static/hyperblam/src/elements/Gain.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/LFO.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "LFO",
+          "members": [
+            {
+              "kind": "method",
+              "name": "connect"
+            },
+            {
+              "kind": "method",
+              "name": "onparams"
+            },
+            {
+              "kind": "field",
+              "name": "wave"
+            },
+            {
+              "kind": "field",
+              "name": "gain"
+            },
+            {
+              "kind": "field",
+              "name": "beats"
+            },
+            {
+              "kind": "field",
+              "name": "invert"
+            },
+            {
+              "kind": "field",
+              "name": "param"
+            },
+            {
+              "kind": "field",
+              "name": "oscNode"
+            },
+            {
+              "kind": "field",
+              "name": "gainNode"
+            },
+            {
+              "kind": "field",
+              "name": "isHertz",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "LFO",
+          "declaration": {
+            "name": "LFO",
+            "module": "static/hyperblam/src/elements/LFO.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Midi.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Midi",
+          "members": [
+            {
+              "kind": "method",
+              "name": "onmidimessage",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getMIDI"
+            },
+            {
+              "kind": "method",
+              "name": "listen"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Midi",
+          "declaration": {
+            "name": "Midi",
+            "module": "static/hyperblam/src/elements/Midi.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Mod.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Mod",
+          "members": [
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "method",
+              "name": "handleEvent",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "beats"
+            },
+            {
+              "kind": "field",
+              "name": "gain"
+            },
+            {
+              "kind": "field",
+              "name": "wave"
+            },
+            {
+              "kind": "field",
+              "name": "invert"
+            },
+            {
+              "kind": "field",
+              "name": "oscNode"
+            },
+            {
+              "kind": "field",
+              "name": "type"
+            },
+            {
+              "kind": "field",
+              "name": "oscGainNode"
+            },
+            {
+              "kind": "field",
+              "name": "analyserNode"
+            },
+            {
+              "kind": "field",
+              "name": "fftSize",
+              "type": {
+                "text": "number"
+              },
+              "default": "32"
+            },
+            {
+              "kind": "field",
+              "name": "length"
+            },
+            {
+              "kind": "field",
+              "name": "data",
+              "default": "new Float32Array(this.length)"
+            },
+            {
+              "kind": "field",
+              "name": "started",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "beats"
+            },
+            {
+              "name": "gain"
+            }
+          ],
+          "superclass": {
+            "name": "PropParamMethod",
+            "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Mod",
+          "declaration": {
+            "name": "Mod",
+            "module": "static/hyperblam/src/elements/Mod.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Notes.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Notes",
+          "members": [
+            {
+              "kind": "method",
+              "name": "assignBuffer",
+              "parameters": [
+                {
+                  "name": "cipher"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getNote",
+              "parameters": [
+                {
+                  "name": "note"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "prePlay",
+              "parameters": [
+                {
+                  "name": "note"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "root"
+            },
+            {
+              "kind": "field",
+              "name": "notes"
+            }
+          ],
+          "superclass": {
+            "name": "Player",
+            "module": "/static/hyperblam/src/helpers/Player.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Notes",
+          "declaration": {
+            "name": "Notes",
+            "module": "static/hyperblam/src/elements/Notes.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/On.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "On",
+          "members": [
+            {
+              "kind": "method",
+              "name": "inRange",
+              "parameters": [
+                {
+                  "name": "noteNum"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "modify",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "device"
+            },
+            {
+              "kind": "field",
+              "name": "root"
+            },
+            {
+              "kind": "field",
+              "name": "range"
+            },
+            {
+              "kind": "field",
+              "name": "spread"
+            },
+            {
+              "kind": "field",
+              "name": "defaultPubs"
+            },
+            {
+              "kind": "field",
+              "name": "defaultSubs"
+            },
+            {
+              "kind": "field",
+              "name": "defaultEvent",
+              "type": {
+                "text": "string"
+              },
+              "default": "'midiOn'"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "/static/hyperblam/src/helpers/Event.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "On",
+          "declaration": {
+            "name": "On",
+            "module": "static/hyperblam/src/elements/On.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Pads.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Pads",
+          "members": [
+            {
+              "kind": "method",
+              "name": "assignBuffer",
+              "parameters": [
+                {
+                  "name": "cipher"
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "Player",
+            "module": "/static/hyperblam/src/helpers/Player.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Pads",
+          "declaration": {
+            "name": "Pads",
+            "module": "static/hyperblam/src/elements/Pads.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Pan.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Pan",
+          "members": [
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "field",
+              "name": "pan"
+            },
+            {
+              "kind": "field",
+              "name": "node"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "pan"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Pan",
+          "declaration": {
+            "name": "Pan",
+            "module": "static/hyperblam/src/elements/Pan.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Phaser.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Phaser",
+          "members": [
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "field",
+              "name": "beats"
+            },
+            {
+              "kind": "field",
+              "name": "center"
+            },
+            {
+              "kind": "field",
+              "name": "depth"
+            },
+            {
+              "kind": "field",
+              "name": "q"
+            },
+            {
+              "kind": "field",
+              "name": "dryInitial",
+              "type": {
+                "text": "number"
+              },
+              "default": "0.5"
+            },
+            {
+              "kind": "field",
+              "name": "wetInitial",
+              "type": {
+                "text": "number"
+              },
+              "default": "0.5"
+            },
+            {
+              "kind": "field",
+              "name": "node"
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "default": "'allpass'"
+            },
+            {
+              "kind": "field",
+              "name": "LFONode"
+            },
+            {
+              "kind": "field",
+              "name": "LFOGainNode"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "depth"
+            },
+            {
+              "name": "q"
+            },
+            {
+              "name": "beats"
+            },
+            {
+              "name": "center"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Phaser",
+          "declaration": {
+            "name": "Phaser",
+            "module": "static/hyperblam/src/elements/Phaser.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Reverb.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Reverb",
+          "members": [
+            {
+              "kind": "method",
+              "name": "onblamready"
+            },
+            {
+              "kind": "method",
+              "name": "onsample",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "calibrate"
+            },
+            {
+              "kind": "field",
+              "name": "src"
+            },
+            {
+              "kind": "field",
+              "name": "cutoff"
+            },
+            {
+              "kind": "field",
+              "name": "dryInitial",
+              "type": {
+                "text": "number"
+              },
+              "default": "1"
+            },
+            {
+              "kind": "field",
+              "name": "wetInitial",
+              "type": {
+                "text": "number"
+              },
+              "default": "0.5"
+            },
+            {
+              "kind": "field",
+              "name": "node"
+            },
+            {
+              "kind": "field",
+              "name": "filterNode"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "cutoff"
+            }
+          ],
+          "superclass": {
+            "name": "Box",
+            "module": "/static/hyperblam/src/helpers/Box.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Reverb",
+          "declaration": {
+            "name": "Reverb",
+            "module": "static/hyperblam/src/elements/Reverb.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Sample.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Sample",
+          "members": [
+            {
+              "kind": "method",
+              "name": "fileToBuffer"
+            },
+            {
+              "kind": "field",
+              "name": "src",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "root"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Sample",
+          "declaration": {
+            "name": "Sample",
+            "module": "static/hyperblam/src/elements/Sample.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Sequencer.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Sequencer",
+          "members": [
+            {
+              "kind": "method",
+              "name": "schedule"
+            },
+            {
+              "kind": "method",
+              "name": "play"
+            },
+            {
+              "kind": "method",
+              "name": "pause"
+            },
+            {
+              "kind": "method",
+              "name": "stop"
+            },
+            {
+              "kind": "method",
+              "name": "playPause"
+            },
+            {
+              "kind": "method",
+              "name": "playStop"
+            },
+            {
+              "kind": "field",
+              "name": "bpm"
+            },
+            {
+              "kind": "field",
+              "name": "swing"
+            },
+            {
+              "kind": "field",
+              "name": "playing",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "odd",
+              "type": {
+                "text": "number"
+              },
+              "default": "1"
+            }
+          ],
+          "superclass": {
+            "name": "Base",
+            "module": "/static/hyperblam/src/helpers/Base.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Sequencer",
+          "declaration": {
+            "name": "Sequencer",
+            "module": "static/hyperblam/src/elements/Sequencer.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Switch.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Switch",
+          "members": [
+            {
+              "kind": "method",
+              "name": "sync"
+            },
+            {
+              "kind": "method",
+              "name": "handleEvent",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "defaultPubs"
+            },
+            {
+              "kind": "field",
+              "name": "defaultEvent",
+              "type": {
+                "text": "string"
+              },
+              "default": "'input'"
+            }
+          ],
+          "superclass": {
+            "name": "PropParamMethod",
+            "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Switch",
+          "declaration": {
+            "name": "Switch",
+            "module": "static/hyperblam/src/elements/Switch.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Tap.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Tap",
+          "members": [
+            {
+              "kind": "method",
+              "name": "handleEvent",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "defaultPubs"
+            },
+            {
+              "kind": "field",
+              "name": "defaultEvent",
+              "type": {
+                "text": "string"
+              },
+              "default": "'click'"
+            }
+          ],
+          "superclass": {
+            "name": "PropParamMethod",
+            "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Tap",
+          "declaration": {
+            "name": "Tap",
+            "module": "static/hyperblam/src/elements/Tap.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "static/hyperblam/src/elements/Track.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Track",
+          "members": [
+            {
+              "kind": "method",
+              "name": "onblamready"
+            },
+            {
+              "kind": "method",
+              "name": "playOrNot",
+              "parameters": [
+                {
+                  "name": "tracks"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "play",
+              "parameters": [
+                {
+                  "name": "player"
+                },
+                {
+                  "name": "tracks"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "barProbable",
+              "parameters": [
+                {
+                  "name": "bar"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "reset"
+            },
+            {
+              "kind": "method",
+              "name": "modify",
+              "parameters": [
+                {
+                  "name": "event"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "solo"
+            },
+            {
+              "kind": "field",
+              "name": "override"
+            },
+            {
+              "kind": "field",
+              "name": "defaultPubs"
+            },
+            {
+              "kind": "field",
+              "name": "defaultSubs"
+            }
+          ],
+          "superclass": {
+            "name": "Event",
+            "module": "/static/hyperblam/src/helpers/Event.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Track",
+          "declaration": {
+            "name": "Track",
+            "module": "static/hyperblam/src/elements/Track.js"
+          }
+        }
+      ]
+    }
+  ]
+}

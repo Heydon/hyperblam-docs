@@ -54,7 +54,8 @@
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "The top-level HYPERBLAM element, setting the audio context for all element operations within it."
         }
       ],
       "exports": [
@@ -103,10 +104,20 @@
               "default": "[]"
             }
           ],
+          "events": [
+            {
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when all the Bank’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`.",
+              "name": "bank"
+            }
+          ],
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "Organizes samples into a single bank for provisioning a sample-based instrument like Pads or Notes."
         }
       ],
       "exports": [
@@ -149,15 +160,29 @@
             },
             {
               "kind": "field",
-              "name": "s"
+              "name": "s",
+              "type": {
+                "text": "string"
+              },
+              "description": "The space-separated pattern representing the distribution of notes or sounds. `0` represents a pause (skipped beat)."
             },
             {
               "kind": "field",
-              "name": "fill"
+              "name": "fill",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether to play a fill: a randomized rearrangement of the bar’s pattern.",
+              "default": "false"
             },
             {
               "kind": "field",
-              "name": "chance"
+              "name": "chance",
+              "type": {
+                "text": "number"
+              },
+              "description": "The probability that the bar’s pattern (in its entirety) will be played.",
+              "default": "1"
             }
           ],
           "attributes": [
@@ -171,7 +196,8 @@
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "Defines a single bar’s pattern, as handled by a parent Track element."
         }
       ],
       "exports": [
@@ -196,7 +222,8 @@
           "superclass": {
             "name": "PropParamMethod",
             "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
-          }
+          },
+          "summary": "A multi-purpose event handling element, used for affecting props, `audioParams`, and triggering methods."
         }
       ],
       "exports": [
@@ -229,7 +256,12 @@
             },
             {
               "kind": "field",
-              "name": "out"
+              "name": "out",
+              "type": {
+                "text": "string"
+              },
+              "description": "The `id` of the next element to connect to, in the signal chain. If not set, it defaults to the ancestor Audio element.",
+              "default": "undefined"
             },
             {
               "kind": "field",
@@ -243,7 +275,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "For connecting together different effects, like in a pedalboard."
         }
       ],
       "exports": [
@@ -300,7 +333,8 @@
           "superclass": {
             "name": "PropParamMethod",
             "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
-          }
+          },
+          "summary": "Add a child input of type `number` or `range` to control a target element’s prop, `audioParam`, or method."
         }
       ],
       "exports": [
@@ -329,17 +363,28 @@
             },
             {
               "kind": "field",
-              "name": "element"
+              "name": "element",
+              "type": {
+                "text": "string"
+              },
+              "description": "A CSS selector representing the element to watch. Defaults to the `parentNode`",
+              "default": "null"
             },
             {
               "kind": "field",
-              "name": "prop"
+              "name": "prop",
+              "type": {
+                "text": "string"
+              },
+              "description": "The attribute defining the value to be displayed.",
+              "default": "null"
             }
           ],
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "For tracking and showing any element’s prop’s value."
         }
       ],
       "exports": [
@@ -368,15 +413,30 @@
             },
             {
               "kind": "field",
-              "name": "beats"
+              "name": "beats",
+              "type": {
+                "text": "number"
+              },
+              "description": "The interval of echos, relative to the beats per minute set by an ancestor Audio or Sequencer element.",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "feedback"
+              "name": "feedback",
+              "type": {
+                "text": "number"
+              },
+              "description": "The intensity of the effect. When applying a `cutoff`, be aware that high values can cause self-oscillation (and things can get very loud).",
+              "default": "0.5"
             },
             {
               "kind": "field",
-              "name": "cutoff"
+              "name": "cutoff",
+              "type": {
+                "text": "number"
+              },
+              "description": "A lowpass filter, applied inside the feedback loop, meaning echos get progressively _duller_ over time. Emulates the behavior of tape echo.",
+              "default": "null"
             },
             {
               "kind": "field",
@@ -421,7 +481,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "An echo effect, using a delay node. Includes a lowpass filter for tape echo-like degradation."
         }
       ],
       "exports": [
@@ -459,7 +520,11 @@
             },
             {
               "kind": "field",
-              "name": "curve"
+              "name": "curve",
+              "type": {
+                "text": "string"
+              },
+              "description": "Comma separated pairs of numbers representing the envelope. Each pair defines the value and the time."
             },
             {
               "kind": "field",
@@ -474,7 +539,8 @@
           "superclass": {
             "name": "Event",
             "module": "/static/hyperblam/src/helpers/Event.js"
-          }
+          },
+          "summary": "An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest player element’s `blam` event."
         }
       ],
       "exports": [
@@ -503,15 +569,30 @@
             },
             {
               "kind": "field",
-              "name": "freq"
+              "name": "freq",
+              "type": {
+                "text": "number"
+              },
+              "description": "The frequency for the filter, in hertz. The role of this frequency depends on the `type`.",
+              "default": "1000"
             },
             {
               "kind": "field",
-              "name": "q"
+              "name": "q",
+              "type": {
+                "text": "number"
+              },
+              "description": "The quality factor (often relating to resonance).",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "type"
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "description": "The type of filter. This can only be one of 'lowpass', 'highpass', 'bandpass', or 'notch'.",
+              "default": "lowpass"
             },
             {
               "kind": "field",
@@ -537,7 +618,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "A single-band filter effect. Important for coloring sound."
         }
       ],
       "exports": [
@@ -566,7 +648,12 @@
             },
             {
               "kind": "field",
-              "name": "gain"
+              "name": "gain",
+              "type": {
+                "text": "number"
+              },
+              "description": "The gain of the gain node. This is relative to the input gain. The default value, `1`, means _no change_.",
+              "default": "1"
             },
             {
               "kind": "field",
@@ -581,7 +668,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "A basic gain (volume) effect. Can be automated with an LFO to create tremolo effects or an Envelope to affect attack or delay."
         }
       ],
       "exports": [
@@ -614,23 +702,47 @@
             },
             {
               "kind": "field",
-              "name": "wave"
+              "name": "wave",
+              "type": {
+                "text": "string"
+              },
+              "description": "The waveform for the oscillator. Can be 'sine', 'square', 'sawtooth', or 'triangle'.",
+              "default": "sine"
             },
             {
               "kind": "field",
-              "name": "gain"
+              "name": "gain",
+              "type": {
+                "text": "number"
+              },
+              "description": "For an LFO, the gain represents how much the `param` value changes in either direction. If the `param` value is `0.5` na the LFO `gain` value is `0.25`, the `param` value will oscillate between `0.25` and `0.75`.",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "beats"
+              "name": "beats",
+              "type": {
+                "text": "number"
+              },
+              "description": "The frequency of the LFO in beats, mapped to the bpm of an ancestor Audio or Sequencer element.",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "invert"
+              "name": "invert",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Reverses the waveform. `1` values become `-1` and vice versa.",
+              "default": "false"
             },
             {
               "kind": "field",
-              "name": "param"
+              "name": "param",
+              "type": {
+                "text": "string"
+              },
+              "description": "The audioParam to which the LFO connects. Its value at the time of connection represents the _center_ value for oscillation."
             },
             {
               "kind": "field",
@@ -652,7 +764,8 @@
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "A multi-purpose Low Frequency Oscillator. Modulate any `audioParam` of any element, including any other LFO."
         }
       ],
       "exports": [
@@ -696,7 +809,8 @@
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "Connects with MIDI devices and converts MIDI events."
         }
       ],
       "exports": [
@@ -734,19 +848,39 @@
             },
             {
               "kind": "field",
-              "name": "beats"
+              "name": "beats",
+              "type": {
+                "text": "number"
+              },
+              "description": "The frequency of the built-in LFO in beats, mapped to the bpm of an ancestor Audio or Sequencer element.",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "gain"
+              "name": "gain",
+              "type": {
+                "text": "number"
+              },
+              "description": "Represents how much the multiplier value changes in either direction.",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "wave"
+              "name": "wave",
+              "type": {
+                "text": "string"
+              },
+              "description": "The waveform for the built-in LFO. Can be 'sine', 'square', 'sawtooth', or 'triangle'.",
+              "default": "triangle"
             },
             {
               "kind": "field",
-              "name": "invert"
+              "name": "invert",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Reverses the LFO. `1` values become `-1` and vice versa.",
+              "default": "false"
             },
             {
               "kind": "field",
@@ -801,7 +935,8 @@
           "superclass": {
             "name": "PropParamMethod",
             "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
-          }
+          },
+          "summary": "Extracts discrete values from LFOs to be used as multipliers. Great for automating regular prop values over time."
         }
       ],
       "exports": [
@@ -853,17 +988,28 @@
             },
             {
               "kind": "field",
-              "name": "root"
+              "name": "root",
+              "type": {
+                "text": "string"
+              },
+              "description": "The root note for the buffers/sounds where not supplied by the individual Sample. Used to calculate pitch shifts.",
+              "default": "C4"
             },
             {
               "kind": "field",
-              "name": "notes"
+              "name": "notes",
+              "type": {
+                "text": "number"
+              },
+              "description": "A set of notes from which to make arpeggios. By default, it's a basic C Minor triad.",
+              "default": "C4 D#4 G4"
             }
           ],
           "superclass": {
             "name": "Player",
             "module": "/static/hyperblam/src/helpers/Player.js"
-          }
+          },
+          "summary": "A pitched instrument, using multiple samples to create tonal variety."
         }
       ],
       "exports": [
@@ -906,19 +1052,39 @@
             },
             {
               "kind": "field",
-              "name": "device"
+              "name": "device",
+              "type": {
+                "text": "string"
+              },
+              "description": "The named MIDI device to listen to. If not set, the element listens to all connected devices.",
+              "default": "null"
             },
             {
               "kind": "field",
-              "name": "root"
+              "name": "root",
+              "type": {
+                "text": "string"
+              },
+              "description": "The key on the MIDI keyboard from which all sounds will be mapped.",
+              "default": "C4"
             },
             {
               "kind": "field",
-              "name": "range"
+              "name": "range",
+              "type": {
+                "text": "number"
+              },
+              "description": "How many keys, from the `root`, will be mapped (will actively make sounds). If `null`, it’s the whole keyboard.",
+              "default": "null"
             },
             {
               "kind": "field",
-              "name": "spread"
+              "name": "spread",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "For non-tonal instruments like Pads. Whether to spread the individual sounds over the range of keys (one sound per key).",
+              "default": "false"
             },
             {
               "kind": "field",
@@ -940,7 +1106,8 @@
           "superclass": {
             "name": "Event",
             "module": "/static/hyperblam/src/helpers/Event.js"
-          }
+          },
+          "summary": "Handles `midiOn` events, typically for playing an instrument’s sounds."
         }
       ],
       "exports": [
@@ -1005,7 +1172,12 @@
             },
             {
               "kind": "field",
-              "name": "pan"
+              "name": "pan",
+              "type": {
+                "text": "number"
+              },
+              "description": "The amount of panning. From `-1` (hard left) to `1` (hard right).",
+              "default": "0"
             },
             {
               "kind": "field",
@@ -1020,7 +1192,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "Stereo panning for your signal chain. Gives instruments their space in the stereo field."
         }
       ],
       "exports": [
@@ -1049,19 +1222,39 @@
             },
             {
               "kind": "field",
-              "name": "beats"
+              "name": "beats",
+              "type": {
+                "text": "number"
+              },
+              "description": "The length of the phasing effect, relative to the bpm.",
+              "default": "1"
             },
             {
               "kind": "field",
-              "name": "center"
+              "name": "center",
+              "type": {
+                "text": "number"
+              },
+              "description": "The frequency phasing centers around.",
+              "default": "4000"
             },
             {
               "kind": "field",
-              "name": "depth"
+              "name": "depth",
+              "type": {
+                "text": "number"
+              },
+              "description": "The distance from the `center` frequency in both directions.",
+              "default": "4000"
             },
             {
               "kind": "field",
-              "name": "q"
+              "name": "q",
+              "type": {
+                "text": "number"
+              },
+              "description": "The quality factor. The resonance of the effect.",
+              "default": "1"
             },
             {
               "kind": "field",
@@ -1117,7 +1310,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "A classic phaser effect. The sound of a signal going in and out of phase with itself."
         }
       ],
       "exports": [
@@ -1159,11 +1353,21 @@
             },
             {
               "kind": "field",
-              "name": "src"
+              "name": "src",
+              "type": {
+                "text": "string"
+              },
+              "description": "The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child Sample element.",
+              "default": "null"
             },
             {
               "kind": "field",
-              "name": "cutoff"
+              "name": "cutoff",
+              "type": {
+                "text": "number"
+              },
+              "description": "The cutoff frequency for the reverb. The lower the value, the _darker_ the reverb.",
+              "default": "10000"
             },
             {
               "kind": "field",
@@ -1198,7 +1402,8 @@
           "superclass": {
             "name": "Box",
             "module": "/static/hyperblam/src/helpers/Box.js"
-          }
+          },
+          "summary": "Convolution based reverb effect using a sample from a Sample element as the impulse response (IR)."
         }
       ],
       "exports": [
@@ -1228,17 +1433,37 @@
             {
               "kind": "field",
               "name": "src",
-              "readonly": true
+              "readonly": true,
+              "type": {
+                "text": "number"
+              },
+              "description": "The path to the sample sound file. Typically, this would be an mp3.",
+              "default": "null"
             },
             {
               "kind": "field",
-              "name": "root"
+              "name": "root",
+              "type": {
+                "text": "string"
+              },
+              "description": "The note the sample represents, if it is tonal. Used for calculating pitch changes.",
+              "default": "C4"
+            }
+          ],
+          "events": [
+            {
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when the buffer has been created. The buffer itself is passed in the event data.",
+              "name": "sample"
             }
           ],
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "Converts a sound file into a buffer that can be triggered as a sound by an instrument."
         }
       ],
       "exports": [
@@ -1287,11 +1512,21 @@
             },
             {
               "kind": "field",
-              "name": "bpm"
+              "name": "bpm",
+              "type": {
+                "text": "number"
+              },
+              "description": "The tempo in beats per minute. Overrules the Audio element’s bpm.",
+              "default": "120"
             },
             {
               "kind": "field",
-              "name": "swing"
+              "name": "swing",
+              "type": {
+                "text": "boolean|number"
+              },
+              "description": "Applied as a Boolean, it applies a swing of `0.333`, making adjacent beats the first and last beats of a triplet. Supply a number to adjust this value.",
+              "default": "null"
             },
             {
               "kind": "field",
@@ -1310,10 +1545,20 @@
               "default": "1"
             }
           ],
+          "events": [
+            {
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Critically contains the time for the scheduled beat, but also supplies Sequencer and Track information.",
+              "name": "blam"
+            }
+          ],
           "superclass": {
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
-          }
+          },
+          "summary": "Schedules future beats in a sequence and alerts subscribing elements."
         }
       ],
       "exports": [
@@ -1365,7 +1610,8 @@
           "superclass": {
             "name": "PropParamMethod",
             "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
-          }
+          },
+          "summary": "Takes an input of type `checkbox` and uses it to change any target prop of any element."
         }
       ],
       "exports": [
@@ -1413,7 +1659,8 @@
           "superclass": {
             "name": "PropParamMethod",
             "module": "/static/hyperblam/src/helpers/PropParamMethod.js"
-          }
+          },
+          "summary": "Takes a child button element and uses it to trigger any method of any element."
         }
       ],
       "exports": [
@@ -1485,11 +1732,21 @@
             },
             {
               "kind": "field",
-              "name": "solo"
+              "name": "solo",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "When applied, all other Track elements belonging to the ancestor Sequencer are suspended (their sounds aren’t played).",
+              "default": "false"
             },
             {
               "kind": "field",
-              "name": "override"
+              "name": "override",
+              "type": {
+                "text": "string"
+              },
+              "description": "A space-separated list of Track `id`s. Tracks whose sounds will _not_ play when this Track plays a sound.",
+              "default": "null"
             },
             {
               "kind": "field",
@@ -1500,10 +1757,20 @@
               "name": "defaultSubs"
             }
           ],
+          "events": [
+            {
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired whenever one bar (defined by a child Bar element) ends and another begins.",
+              "name": "blam"
+            }
+          ],
           "superclass": {
             "name": "Event",
             "module": "/static/hyperblam/src/helpers/Event.js"
-          }
+          },
+          "summary": "Corresponds to a Sequencer and uses child Bar elements to define repeating rhythmic patterns."
         }
       ],
       "exports": [

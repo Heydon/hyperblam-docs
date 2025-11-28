@@ -24,7 +24,18 @@ const random = {
   }
 }
 
-module.exports = function(eleventyConfig) {
+module.exports = async function(eleventyConfig) {
+  const { RenderPlugin } = await import('@11ty/eleventy');
+  eleventyConfig.addPlugin(RenderPlugin);
+
+  const md = new markdownIt({
+    html: true,
+  });
+
+  eleventyConfig.addFilter('md', content => {
+    return md.render(content);
+  });
+
   // Put all static assets here
   eleventyConfig.addPassthroughCopy('./static');
 

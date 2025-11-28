@@ -22,13 +22,6 @@
 body {
   margin: 0;
   line-height: 1.5;
-  background-image: var(--dust);
-  background-position: 7rem 7rem;
-  background-size: 25rem auto;
-  animation-name: dust;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps(9);
-  animation-timeline: view();
   min-block-size: 100vh;
 }
 
@@ -260,7 +253,7 @@ button {
 
 /* flow */
 
-main > *:not(div, hr) {
+main > *:not(div, hr, table) {
   max-inline-size: 65ch;
 }
 
@@ -278,6 +271,23 @@ main > :where(p, ul, ol) + :where(p, ul, ol) {
 
 nav > * + * {
   margin-block-start: var(--pad-m);
+}
+
+/* tables */
+
+table {
+  table-layout: fixed;
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: start;
+  padding: var(--pad-xs);
+}
+
+th, td {
+  border: 1px solid;
 }
 
 /* utilities */

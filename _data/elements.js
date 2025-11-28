@@ -9,4 +9,6 @@ const propsOnly = manifest.modules.map(module => {
   }
 });
 
-console.debug(propsOnly);
+console.log(propsOnly[0].props);
+
+module.exports = propsOnly;

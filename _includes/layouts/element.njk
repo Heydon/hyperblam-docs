@@ -1,7 +1,50 @@
 {% extends 'layouts/main.njk' %}
 
+{% block title %}
+<title>{{ element.name }} element : {{ site.title }}</title>
+{% endblock %}
+
 {% block main %}
-  <h1>{{ title }}</h1>
-  {{ content | toc | safe }}
-  {{ content | safe }}
+  <h1>{{ element.name }}</h1>
+  <dl>
+    <dt>Tag:</dt>
+    <dd><code>&lt;{{ element.tag }}&gt;</code></dd>
+    <dt>Summary:</dt>
+    <dd>{{ element.summary }}</dd>
+  </dl>
+  <hr>
+  <!--{{ content | toc | safe }}
+  {{ content | safe }}-->
+
+  <h2>Props</h2>
+  {% if element.props %}
+  <table>
+    <tr>
+      <th>name</th>
+      <th>type</th>
+      <th>default</th>
+      <th>description</th>
+    </tr>
+    {% for prop in element.props %}
+    <tr>
+      <td>
+        {{ prop.name }}
+      </td>
+      <td>
+        <code>{{ prop.type.text }}</code>
+      </td>
+      <td>
+        {% if prop.type.text == 'string' %}
+          '{{ prop.default }}'
+        {% else %}
+          <code>{{ prop.default }}</code>
+        {% endif %}
+      </td>
+      <td>
+          {{ prop.description | md | safe }}
+      </td>
+      {% endfor %}
+    </tr>
+  </table>
+  {% endif %}
 {% endblock %}

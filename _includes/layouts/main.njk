@@ -10,16 +10,93 @@
     <link rel="stylesheet" href="{{site.basedir}}static/css/styles.css" />
   </head>
   <body>
-    <svg style="position: absolute; clip-path: circle(0)" xmlns="http://www.w3.org/2000/svg">
-      <filter id="distort">
-        <feTurbulence baseFrequency="0.01 0.001" numOctaves="1"/>
-        <feDisplacementMap in="SourceGraphic" scale="10"/>
-      </filter>
-      <filter id="distort-fine">
-        <feTurbulence baseFrequency="0.1 0.001" numOctaves="1"/>
-        <feDisplacementMap in="SourceGraphic" scale="10"/>
-      </filter>
+    <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="noise-big">
+          <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="8" />
+        </filter>
+        <filter id="noise-1">
+          <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="1.5" />
+        </filter>
+        <filter id="noise-2">
+          <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
+        </filter>
+        <filter id="noise-3">
+          <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" />
+        </filter>
+      </defs>
     </svg>
+    <header class="l-box">
+      <a href="#main" class="l-skip">skip to content</a>
+      <nav>
+        <ul class="l-cluster" style="--cluster-gap: 0.5em 1.5em">
+          <li><a href="/guides">Guides</a></li>
+          <li><a href="/elements">Elements</a></li>
+          <li><a href="/experiments">Experiments</a></li>
+          <li><a href="https://github.com/Heydon/hyperblam">Code</a><span aria-hidden="true" class="u-glyph-icon">↗</span></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="l-column l-flow" tabindex="-1">
+      {% block main %}
+        <h1>{{ title }}</h1>
+        {{ content | safe }}
+      {% endblock %}
+    </main>
+    <!--<script type="module" src="{{site.basedir}}{{site.hyperblampath}}"></script>-->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <a href="#main" class="l-skip">skip to content</a>
     <div>
       <nav class="l-sidebar u-pad-small">
@@ -48,6 +125,5 @@
       import { menu } from '{{site.basedir}}static/js/menu.js';
       menu();
     </script>
-    <script type="module" src="{{site.basedir}}{{site.hyperblampath}}"></script>
   </body>
 </html>

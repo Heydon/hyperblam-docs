@@ -44,26 +44,6 @@ module.exports = async function(eleventyConfig) {
     console.log(value);
   });
 
-  // Example of using dynamic data
-  // (could be fetched/compiled from files or API)
-  /*eleventyConfig.addGlobalData('pages', [
-    {
-      "title": "Page 2 title",
-      "name": "Snugglepants",
-      "age": 5
-    },
-    {
-      "title": "Page 3 title",
-      "name": "Lord Featherbottom",
-      "age": 4
-    },
-    {
-      "title": "Page 4 title",
-      "name": "Pennywise",
-      "age": 9
-    }
-  ]);*/
-
   // Link the subheadings 
   const markdownLibrary = markdownIt({
     html: true,
@@ -104,10 +84,18 @@ module.exports = async function(eleventyConfig) {
     const dom = new JSDOM(content);
     const document = dom.window.document;
 
+    // random divider waveforms
     const dividers = [...document.querySelectorAll('hr')];
     dividers.forEach(d => {
       d.classList.add(`u-wave-${random.oneOf(waveforms)}`);
     });
+
+    // lazy load images
+    const images = [...document.querySelectorAll('main img')];
+    images.forEach(img => {
+      img.setAttribute('loading', 'lazy');
+    })
+
     return "<!DOCTYPE html>\r\n" + document.documentElement.outerHTML;
   });
 

@@ -8,13 +8,13 @@ But what is a signal chain anyway?
 
 ---
 
-If you're a guitarist, you’ll no doubt be familiar with the concept of the *pedal board*: a physical platform, usually lavished with Velcro™️, onto which you affix all the expensive guitar effect pedals (or *stomp boxes*) you’ve accumulated. 
+If you’re a guitarist, you’ll no doubt be familiar with the concept of the *pedal board*: a physical platform, usually lavished with Velcro™️, onto which you affix all the expensive guitar effect pedals (or *stomp boxes*) you’ve accumulated. 
 
 Typically, you have one guitar (the input) and one guitar amplifier (the output). To make sure all of your pedals contribute to your sound, you put them in series between your guitar and amp.
 
-[diagram: drawing]
+![A signal chain for a guitar, starting with the guitar itself, connected to a row of effects and finally connected to an amplifier.]({{site.basedir}}/static/images/illustrations/signal-chains1.svg)
 
-Maybe you're not a guitarist. Maybe you have even more disposable income and you’re into *modular synthesis*. In modular synthesis, individual *modules* are connected (or “patched”) together. These, like guitar pedals, may represent effects, used for coloring the incoming sound, or they may perform more complex tasks like [*sequencing](*https://rubadub.co.uk/products/moog-labyrinth-parallel-generative-analog-sequencer*)*. Your modular synthesizer, like a pedal board, represents a *signal chain*.
+Maybe you’re not a guitarist. Maybe you have even more disposable income and you’re into *modular synthesis*. In modular synthesis, individual *modules* are connected (or “patched”) together. These, like guitar pedals, may represent effects, used for coloring the incoming sound, or they may perform more complex tasks like [*sequencing](*https://rubadub.co.uk/products/moog-labyrinth-parallel-generative-analog-sequencer*)*. Your modular synthesizer, like a pedal board, represents a *signal chain*.
 
 Both guitarists and modular synthesis fans spend a lot of their time struggling with wires and trying to join them up to the right places. Literally and figuratively, **HYPERBLAM** requires a lot less wiring.
 
@@ -49,7 +49,7 @@ panNode.connect(context.destination);
 
 That doesn’t really look, or feel, like a pedal board—or a modular synthesizer— to me. This is what it looks like in **HYPERBLAM** (including the sample source omitted from the above example):
 
-```
+```html
 <audio-blam>
   <notes-blam>
     <chain-blam>
@@ -63,11 +63,13 @@ That doesn’t really look, or feel, like a pedal board—or a modular synthesiz
 </audio-blam>
 ```
 
+![A flow diagram for a signal chain. An instrument on the left points to a chain element, which groups a gain and pan effect. Finally, the chain is connected to two speakers, indicating the output.]({{site.basedir}}/static/images/illustrations/signal-chains2.svg)
+
 These kinds of higher level APIs are usually the tip of a giant **JavaScript Library Iceberg**. Not so with **HYPERBLAM**. Adding a `<pan-blam>` element (or 37 `<pan-blam>` elements, for that matter) costs you approximately `700` bytes. And that includes `wet` and `dry` props for controlling the *mix*.
 
 Take the `<pan-blam>` element away, and those `700` bytes go away with it. That’s because **HYPERBLAM** only imports the elements you *actually use*. It doesn’t use a complex bundling system to do this—just dynamic imports based on simple DOM queries. The installation routine itself costs about `600` bytes.
 
-For context, **Tone.js** is over `330KB` of JavaScript. Actually making something *with* **Tone.js** means writing a lot more JavaScript on top of that. The aim of **HYPERBLAM** is to save you writing *any* JavaScript. It’s all just HTML.
+For context, **Tone.js** is over `330KB` of JavaScript. Making something *with* **Tone.js** means writing a lot more JavaScript on top of that. The aim of **HYPERBLAM** is to save you writing *any* JavaScript. It’s all just HTML.
 
 ## Chains within chains
 
@@ -111,3 +113,5 @@ In practice, this means you can create *many-to-one* relationships. For example,
   <filter-blam freq="4000"></filter-blam>
 </chain-blam>
 ```
+
+![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedir}}/static/images/illustrations/signal-chains1.svg)

@@ -1,14 +1,18 @@
 const manifest = require('./custom-elements.json');
+
+const getDescribed = members => {
+  return members && members.filter(prop => prop.description);
+}
+
 const propsOnly = manifest.modules.map(module => {
   const element = module.declarations[0];
   return {
     name : element.name,
     tag: `${element.name.toLowerCase()}-blam`,
     summary: element.summary,
-    props: element.members && element.members.filter(prop => prop.description)
+    super: superName,
+    props: getDescribed(element.members)
   }
 });
-
-console.log(propsOnly[0].props);
 
 module.exports = propsOnly;

@@ -26,7 +26,12 @@
             },
             {
               "kind": "field",
-              "name": "bpm"
+              "name": "bpm",
+              "type": {
+                "text": "number"
+              },
+              "description": "The tempo, in beats per minute. Is overruled by a Sequencer element, if present.",
+              "default": "120"
             },
             {
               "kind": "field",
@@ -1001,7 +1006,7 @@
               "type": {
                 "text": "number"
               },
-              "description": "A set of notes from which to make arpeggios. By default, it's a basic C Minor triad.",
+              "description": "A set of notes from which to make arpeggios. By default, it’s a basic C Minor triad.",
               "default": "C4 D#4 G4"
             }
           ],
@@ -1143,7 +1148,8 @@
           "superclass": {
             "name": "Player",
             "module": "/static/hyperblam/src/helpers/Player.js"
-          }
+          },
+          "summary": "An instrument optimized for drums and other rhythmic or non-melodic patterns."
         }
       ],
       "exports": [

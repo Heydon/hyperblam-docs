@@ -2,6 +2,8 @@
 title: What Is Gain?
 ---
 
+# Gain
+
 We need to talk about *gain*. Gain is not just one of the most important, and widely misunderstood, concepts in amplification. It’s also, perhaps, the most foundational and useful type of *node* belonging to the Web Audio API.
 
 ---
@@ -12,7 +14,7 @@ This is the first thing to get your head around. In either an analog or a digita
 
 You can *add more* in multiple different places along your signal chain. These places are sometimes called *gain stages*. Each stage makes a relative adjustment, in series. 
 
-[diagram: gain 1]
+![Three gain nodes connected in series. The first has a value of 0.5, the second a value of 0.75, and the third a value of 1.5]({{site.basedir}}/static/images/illustrations/gain1.svg)
 
 The gain value of a gain node is set as a number. A gain of `0.75`, followed by a gain of `0.5`, followed by a gain of `1.5`, would give you an outgoing value of `0.75` &times; `0.5` &times; `1.5`&hellip; or  `0.5625`. 
 
@@ -26,7 +28,7 @@ The gain value of a gain node is set as a number. A gain of `0.75`, followed by 
 
 For a more practical application, consider the feedback loop that creates an echo effect. Inside this loop, a single gain stage is passed through multiple times. 
 
-[diagram: gain 2]
+![A delay node is attached to a gain node in a feedback loop. This makes the delay’s output become lower each time]({{site.basedir}}/static/images/illustrations/gain2.svg)
 
 A lowish gain value, like `0.5` gives noticeably diminishing returns. This approximates a true echo, which loses energy as it is partially absorbed by the surfaces it’s bouncing off.
 
@@ -48,7 +50,7 @@ Sometimes you ask for *more* and there’s *no more* to give. That sounds bad, r
 
 When you tell an amplifier (gain stage) to give you `1.5`, but all it can manage is `1.25`, then `1.25` is its *ceiling*. There’s nowhere for the remaining `0.25` to go, so it gets decapitated. The more powerful the amplifier, the less likely decapitation will occur. Hence, powerful amplifiers are said to have a lot of *headroom*.
 
-[diagram:gain  3]
+![Comparing one sine-shaped wave with another that has each trough and peak cut off]({{site.basedir}}/static/images/illustrations/gain3.svg)
 
 Sound decapitation isn’t fatal, though. If it were, rock ‘n’ roll would fall silent. Instead, lopping the top off just changes the *shape* of the waveform. How abruptly the head is lopped off (how hard the *clipping*) helps determine the perceived character of the distorted sound. 
 
@@ -62,7 +64,7 @@ As I’ve already established, distortion only happens when amplitude hits a cei
 
 It’s a question of relativity again. The more gain you apply, the more of the sound hits the ceiling. First it’s just the louder parts of the sound, then it’s the quieter parts too. The ceiling doesn’t move, but more of it is covered. Altogether, that sounds louder.
 
-[diagram: gain 4]
+![As a capped wave gets higher in amplitude the width of each ceiling gets wider]({{site.basedir}}/static/images/illustrations/gain4.svg)
 
 Both distortion and *compression* add perceived loudness. A compressor just uses a more complex algorithm, flattening the *dynamic range* without introducing distortion. 
 
@@ -89,7 +91,7 @@ This is possible by sending the incoming signal to a transparent gain node, then
 
 Each of these paths has its own gain node, controlled by the `wet` and `dry` props respectively. Finally, these are each connected to an “out” gain node—another junction.
 
-[diagram: gain 5]
+![A single line leads to a node labeled in. Two lines emerge from this node, forming parallel lines—one containing a dry gain node and the other an effect node and a wet gain node. Finally, these two lines converge on a node labeled out.]({{site.basedir}}/static/images/illustrations/gain5.svg)
 
 For the purpose of chaining effects, this is really convenient. Each effect only needs a single entry and single exit point. The mix is handled internally (inside the so-called *box)*.
 

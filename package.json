@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy",
-    "analyze": "cem analyze --outdir _data --globs 'static/hyperblam/src/elements/*'"
+    "build": "CONTEXT=pages npx @11ty/eleventy",
+    "analyse": "cem analyze --outdir _data --globs 'static/hyperblam/src/elements/*'"
   },
   "repository": {
     "type": "git",

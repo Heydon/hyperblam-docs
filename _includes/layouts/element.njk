@@ -9,8 +9,10 @@
   <dl>
     <dt>Tag:</dt>
     <dd><code>&lt;{{ element.tag }}&gt;</code></dd>
+    {% if element.summary %}
     <dt>Summary:</dt>
-    <dd>{{ element.summary }}</dd>
+    <dd>{{ element.summary | md | safe }}</dd>
+    {% endif %}
   </dl>
   <hr>
   <!--{{ content | toc | safe }}
@@ -35,7 +37,7 @@
       </td>
       <td>
         {% if prop.type.text == 'string' %}
-          '{{ prop.default }}'
+          ‘{{ prop.default }}’
         {% else %}
           <code>{{ prop.default }}</code>
         {% endif %}

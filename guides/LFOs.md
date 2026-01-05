@@ -18,7 +18,7 @@ AC (alternating current) electricity produces a wave that cycles rapidly (*alter
 
 An LFO alternates at a lower, usually inaudible frequency. But it has the same basic anatomy: it cycles between positive and negative values. As with AC electricity, a standard LFO is *sinusoidal*. A *sine wave* alternates between `1` (its *peak*) and `-1` (its *trough*) smoothly and can be represented by a curved, wavy line.
 
-[diagram: include positive and negative half cycles and wave length]
+![Diagram of a waveform identifying the peak, the amplitude, which is the distance between the peak and the vertical center line, the wavelength, which is the distance from the start of one peak to the end of one trough.]({{site.basedir}}/static/images/illustrations/LFOs1.svg)
 
 ## Modulation
 
@@ -40,7 +40,7 @@ Let’s look at tremolo, since that's probably the simplest application. In **HY
 </gain-blam>
 ```
 
-The `beats` prop’ sets the LFO's frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [`OscillatorNode`](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
+The `beats` prop’ sets the LFO’s frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [`OscillatorNode`](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
 
 The important part is the LFO's own `gain`. This sets how much the `<gain-blam>` element's `gain` is modulated. Yes, it’s one `gain` controlling another, if that was confusing.
 
@@ -58,6 +58,8 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 </gain-blam>
 ```
 
+![Diagram showing how an LFO maps to gain. 1 is max gain, at the peak, 0 is min gain, and 0.5, the default, is at the vertical center.]({{site.basedir}}/static/images/illustrations/LFOs2.svg)
+
 ## Changing the waveform
 
 What if we didn’t want our gain value to pass smoothly through zero? What if we wanted to alternate directly between the high and low values? This is what square waveforms are for. You can set the waveform to `square` using the `wave` prop’.
@@ -71,7 +73,7 @@ What if we didn’t want our gain value to pass smoothly through zero? What if w
 	</lfo-blam>	
 ```
 
-[diagram]
+![A square waveform, with the vertical side of a square indicated as an instant switch between 0 and 1 in gain.]({{site.basedir}}/static/images/illustrations/LFOs3.svg)
 
 Given the `x` axis represents the time domain, those vertical lines mean an instantaneous *switch* between low gains of `0` and `1`. This gives the tremolo effect quite a different, much *harsher* character.
 
@@ -80,17 +82,17 @@ Given the `x` axis represents the time domain, those vertical lines mean an inst
 No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In this case, we may want to gradually temper the first LFO’s `gain` over time. I’ll use the default sine `wave` for that nested LFO.
 
 ```html
-	<lfo-blam 
+<lfo-blam 
+	param="gain"
+	beats="0.25"
+	gain="0.5"
+	wave="square">
+		<lfo-blam
 		param="gain"
-		beats="0.25"
-		gain="0.5"
-		wave="square">
-			<lfo-blam
-			param="gain"
-			gain="0.25"
-			beats="3">
-			</lfo-blam>
-	</lfo-blam>	
+		gain="0.25"
+		beats="3">
+		</lfo-blam>
+</lfo-blam>	
 ```
 
 This will have two effects: 
@@ -104,7 +106,7 @@ Gradual modulation (in this case, over three beats) can be used for all sorts of
 
 Wait… what? In the Web Audio API, an `OscillatorNode` is just that. It can have very low frequencies or inaudibly high ones—all measured in hertz.
 
-In practice, this means the kind of modulation usually associated with a *Low* Frequency Oscillator can just as easily occur at a (very) high frequency. What can we do with this? One of my favorite things to do is emulate a [*Bitcrusher](*https://en.wikipedia.org/wiki/Bitcrusher*)*.
+In practice, this means the kind of modulation usually associated with a *Low* Frequency Oscillator can just as easily occur at a (very) high frequency. What can we do with this? One of my favorite things to do is emulate a [Bitcrusher](https://en.wikipedia.org/wiki/Bitcrusher).
 
 A real Bitcrusher achieves its characteristic lo-fi sound by being, well, actually *low fidelity*. It adopts either a lower *bit depth* or lower *sample rate* to *resample* the incoming sound. This true form of bitcrushing is possible using an [Audio Worklet](https://developer.chrome.com/blog/audio-worklet/). 
 
@@ -123,7 +125,7 @@ To emulate *downsampling*, we need to speed up the oscillator considerably. But 
 	</lfo-blam>	
 ```
 
-What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound. Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us *sweep* through all sorts of weird, robotic, metallic, fuzzy timbres.
+What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound, since the effect is effectively a form of [frequency modulation](https://en.wikipedia.org/wiki/Frequency_modulation). Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us *sweep* through all sorts of weird, robotic, metallic, fuzzy timbres.
 
 ```html
 	<lfo-blam 
@@ -132,9 +134,9 @@ What’s neat about this effect is that slightly changing that `beats` value can
 		gain="0.5"
 		wave="square">
 		<lfo-blam
-		  param="beats"
-		  beats="3"
-		  gain="0.01"> 
-	  </lfo-blam>	
+			param="beats"
+			beats="3"
+			gain="0.01"> 
+		</lfo-blam>	
 	</lfo-blam>
 ```

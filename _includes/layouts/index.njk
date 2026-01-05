@@ -1,0 +1,13 @@
+{% extends 'layouts/main.njk' %}
+
+{% block main %}
+  <h1>{{ title }}</h1>
+  {{ content | safe }}
+  <ul class="l-index">
+    {% for post in collections[collection] %}
+      <li>
+        <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

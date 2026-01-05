@@ -10,7 +10,6 @@ const propsOnly = manifest.modules.map(module => {
     name : element.name,
     tag: `${element.name.toLowerCase()}-blam`,
     summary: element.summary,
-    super: superName,
     props: getDescribed(element.members)
   }
 });

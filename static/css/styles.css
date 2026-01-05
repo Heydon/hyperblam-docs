@@ -29,10 +29,16 @@
 
 body {
   min-block-size: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   padding: var(--s-m) var(--s-s);
+}
+
+main :where(ol, ul) {
+  padding-inline-start: var(--s-s);
 }
 
 a {
@@ -82,9 +88,13 @@ h2 {
   font-size: 2.5rem;
 }
 
-em {
+em, strong {
   line-height: 1;
   font-size: 1.125em;
+}
+
+strong {
+  letter-spacing: 1px;
 }
 
 nav {
@@ -112,6 +122,11 @@ nav a:not(:hover) {
 pre, figure {
   padding: var(--s-m) 0;
   overflow-x: auto;
+}
+
+footer {
+  padding: var(--s-l);
+  text-align: center;
 }
 
 pre code {
@@ -154,7 +169,7 @@ pre code {
   max-inline-size: var(--measure);
 }
 
-.l-column > :where(div, img, svg, aside, hr, pre, form) {
+.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img)) {
   max-inline-size: calc(var(--measure) + 10rem);
 }
 
@@ -171,7 +186,7 @@ pre code {
   margin-block-start: var(--s-l);
 }
 
-.l-flow > p + p {
+.l-flow > p:not(:has(img)) + p:not(:has(img)) {
   margin-block-start: var(--s-s);
 }
 
@@ -190,6 +205,17 @@ pre code {
   margin-block-end: var(--s-m);
 }
 
+.l-index {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-m);
+  font-size: 1.5rem;
+  font-family: var(--font-special);
+  line-height: 1;
+}
+
 /* components */
 
 .c-logo {
@@ -197,7 +223,23 @@ pre code {
   margin-block-end: var(--s-s);
 }
 
+.c-logo:where(:hover, :focus) .transmit {
+  animation: flash 0.6s steps(1) infinite;
+}
+
+.transmit.two { animation-delay: 0.2s }
+
+.transmit.three { animation-delay: 0.4s }
+
 /* basic utilities */
+
+.u-font-special {
+  font-family: var(--font-special);
+}
+
+.u-font-smaller {
+  font-size: 0.75rem;
+}
 
 .u-glyph-icon {
   font-family: var(--font-special);
@@ -329,7 +371,7 @@ button:hover {
   }
 }
 
-h1, .u-squiggle, main > img, main > svg {
+.u-squiggle, main img[src*="/illustration"] {
   animation: squiggle 0.25s linear infinite;
 }
 
@@ -342,5 +384,17 @@ h1, .u-squiggle, main > img, main > svg {
   }
   66% {
     filter: url("#noise-3");
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }

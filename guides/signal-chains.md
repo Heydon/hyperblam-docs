@@ -114,4 +114,4 @@ In practice, this means you can create *many-to-one* relationships. For example,
 </chain-blam>
 ```
 
-![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedir}}/static/images/illustrations/signal-chains1.svg)
+![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedir}}/static/images/illustrations/signal-chains3.svg)

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
     "build": "CONTEXT=pages npx @11ty/eleventy",
+    "jsdoc": "jsdoc -X ./static/hyperblam/src/elements > ./_data/jsdoc.json",
     "analyse": "cem analyze --outdir _data --globs 'static/hyperblam/src/elements/*'"
   },
   "repository": {

@@ -40,7 +40,7 @@ Let’s look at tremolo, since that's probably the simplest application. In **HY
 </gain-blam>
 ```
 
-The `beats` prop’ sets the LFO’s frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [`OscillatorNode`](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
+The `beats` prop’ sets the LFO’s frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
 
 The important part is the LFO's own `gain`. This sets how much the `<gain-blam>` element's `gain` is modulated. Yes, it’s one `gain` controlling another, if that was confusing.
 

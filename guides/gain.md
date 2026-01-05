@@ -2,8 +2,6 @@
 title: What Is Gain?
 ---
 
-# Gain
-
 We need to talk about *gain*. Gain is not just one of the most important, and widely misunderstood, concepts in amplification. It’s also, perhaps, the most foundational and useful type of *node* belonging to the Web Audio API.
 
 ---
@@ -57,6 +55,8 @@ Sound decapitation isn’t fatal, though. If it were, rock ‘n’ roll would fa
 A high input gain combined with extremely hard clipping can produce something akin to a square shaped wave. This is why some fuzz guitar effects can make your guitar sound like a synthesizer: synthesizers often produce sounds based on basic square waveforms.
 
 Nobody likes unintended distortion, but deliberate distortion is transformation: the creation of a new, more complex and textured sound from the old. To conservatives, transformation is transgression. The bold, distorted sound of rock ‘n’ roll is, therefore, *“the devil’s music”*.
+
+![A woman in old fashioned, Victorian dress holds a placard reading “don't push rock and roll junk”]({{site.basedir}}/static/images/illustrations/gain_sign.svg)
 
 ## Distortion sounds loud
 

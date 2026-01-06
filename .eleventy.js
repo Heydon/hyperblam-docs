@@ -3,6 +3,7 @@ const markdownItAnchor = require('markdown-it-anchor');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const waveforms = ['square', 'sine', 'sawtooth', 'triangle'];
+const package = require('./static/hyperblam/package.json');
 
 const random = {
   oneOf(array) {
@@ -25,6 +26,8 @@ const random = {
 }
 
 module.exports = async function(eleventyConfig) {
+  eleventyConfig.addGlobalData('hyperblam', package);
+
   const { RenderPlugin } = await import('@11ty/eleventy');
   eleventyConfig.addPlugin(RenderPlugin);
 

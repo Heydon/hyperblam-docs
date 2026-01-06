@@ -66,9 +66,9 @@ It’s a question of relativity again. The more gain you apply, the more of the 
 
 ![As a capped wave gets higher in amplitude the width of each ceiling gets wider]({{site.basedir}}/static/images/illustrations/gain4.svg)
 
-Both distortion and *compression* add perceived loudness. A compressor just uses a more complex algorithm, flattening the *dynamic range* without introducing distortion. 
+Both distortion and *compression* add perceived loudness. A compressor just uses a more complex algorithm, flattening the [dynamic range](https://en.wikipedia.org/wiki/Dynamic_range) without introducing distortion. 
 
-The “loudness wars” are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless.  Where the quieter sounds aren’t allowed to be quiet, the loud ones don’t come off as loud. 
+The [“loudness wars”](https://en.wikipedia.org/wiki/Loudness_war) are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless. Where the quieter sounds aren’t allowed to be quiet, the loud ones don’t come off as loud. 
 
 ## Gain isn't just for gain
 

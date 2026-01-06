@@ -40,7 +40,7 @@
           <li><a href="{{site.basedir}}/guides">Guides</a></li>
           <li><a href="{{site.basedir}}/elements">Elements</a></li>
           <li><a href="{{site.basedir}}/experiments">Experiments</a></li>
-          <li><a href="https://github.com/Heydon/hyperblam">Code</a><span aria-hidden="true" class="u-glyph-icon">↗</span></li>
+          <li><a href="{{hyperblam.homepage}}">Code</a><span aria-hidden="true" class="u-glyph-icon">↗</span></li>
         </ul>
       </nav>
     </header>
@@ -51,7 +51,8 @@
       {% endblock %}
     </main>
     <footer class="u-font-smaller">
-      Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a>
+      <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
+      <p>Version: <strong>{{ hyperblam.version }}</strong></p>
     </footer>
     <!--<script type="module" src="{{site.basedir}}{{site.hyperblampath}}"></script>-->
   </body>

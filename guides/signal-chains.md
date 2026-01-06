@@ -71,6 +71,7 @@ Take the `<pan-blam>` element away, and those `700` bytes go away with it. That�
 
 For context, **Tone.js** is over `330KB` of JavaScript. Making something *with* **Tone.js** means writing a lot more JavaScript on top of that. The aim of **HYPERBLAM** is to save you writing *any* JavaScript. It’s all just HTML.
 
+<!--
 ## Chains within chains
 
 In many ways, chains in **HYPERBLAM** are treated like the pedals (“boxes” in **HYPERBLAM** terms) they chain together. You can include a `<chain-blam>` within another `<chain-blam>` to group boxes together.
@@ -87,7 +88,7 @@ In many ways, chains in **HYPERBLAM** are treated like the pedals (“boxes” i
 </chain-blam> 
 ```
 
-In this case, you benefit from being able to control the *mix* (`dry` and `wet` ratio) for reverb and echo simultaneously.
+In this case, you benefit from being able to control the *mix* (`dry` and `wet` ratio) for reverb and echo simultaneously.-->
 
 ## Chaining chains
 

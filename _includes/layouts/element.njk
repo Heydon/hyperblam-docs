@@ -9,4 +9,23 @@
   {% if element.summary %}
     <p>{{ element.summary }}</p>
   {% endif %}
+  {% if element.props %}
+    <h2>Props</h2>
+    <table>
+      <tr>
+        <th scope="col">name</th>
+        <th scope="col">type</th>
+        <th scope="col">default</th>
+        <th scope="col">description</th>
+      </tr>
+      {% for prop in element.props %}
+      <tr>
+        <th scope="row">{{ prop.name }}</th>
+        <td><em>{{ prop.type }}</em></td>
+        <td>{{ prop.default }}</td>
+        <td>{{ prop.description }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
 {% endblock %}

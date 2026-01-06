@@ -97,6 +97,21 @@ strong {
   letter-spacing: 1px;
 }
 
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th, td {
+  border: 1px solid;
+  padding: var(--s-s);
+  text-align: left;
+}
+
+tr + tr td:not(:last-child) {
+  text-align: center;
+}
+
 nav {
   text-transform: uppercase;
   letter-spacing: 2px;

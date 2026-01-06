@@ -1,8 +1,0 @@
----
-pagination:
-  data: elements
-  size: 1
-  alias: element
-permalink: 'elements/{{ element.name | slugify }}/index.html'
-layout: layouts/element.njk
----

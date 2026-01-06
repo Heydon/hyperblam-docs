@@ -1,0 +1,11 @@
+{% extends 'layouts/index.njk' %}
+
+{{site.basedir}}
+
+{% block iteration %}
+  {% for element in api %}
+    <li>
+      <a href="{{site.basedir}}/elements/{{element.name}}">{{ element.name }}</a>
+    </li>
+  {% endfor %}
+{% endblock %}

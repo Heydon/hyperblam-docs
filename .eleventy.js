@@ -1,9 +1,11 @@
+const YAML = require('yaml');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const waveforms = ['square', 'sine', 'sawtooth', 'triangle'];
 const package = require('./static/hyperblam/package.json');
+const api = require('./static/hyperblam/dist/api.json');
 
 const random = {
   oneOf(array) {
@@ -26,7 +28,8 @@ const random = {
 }
 
 module.exports = async function(eleventyConfig) {
-  eleventyConfig.addGlobalData('hyperblam', package);
+  eleventyConfig.addGlobalData('package', package);
+  eleventyConfig.addGlobalData('api', api);
 
   const { RenderPlugin } = await import('@11ty/eleventy');
   eleventyConfig.addPlugin(RenderPlugin);
@@ -55,7 +58,7 @@ module.exports = async function(eleventyConfig) {
   }).use(markdownItAnchor, {
     permalink: false
   });
-  eleventyConfig.setLibrary("md", markdownLibrary);
+  eleventyConfig.setLibrary('md', markdownLibrary);
 
   // Table of contents filter
   eleventyConfig.addFilter('toc', function (value) {

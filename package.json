@@ -26,7 +26,8 @@
     "fs-jetpack": "^5.1.0",
     "jsdom": "^20.0.3",
     "markdown-it": "^13.0.1",
-    "markdown-it-anchor": "^8.6.6"
+    "markdown-it-anchor": "^8.6.6",
+    "yaml": "^2.8.2"
   },
   "customElements": "_data/custom-elements.json"
 }

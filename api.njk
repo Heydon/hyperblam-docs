@@ -1,0 +1,16 @@
+---js
+{
+  pagination: {
+    data: 'api',
+    size: 1,
+    alias: 'element',
+    before: function(paginationData) {
+      return paginationData.filter(element => element.defined);
+    }
+  },
+  permalink: function(data) {
+    return `elements/${data.element.name}/index.html`;
+  },
+  layout: 'layouts/element.njk'
+}
+---

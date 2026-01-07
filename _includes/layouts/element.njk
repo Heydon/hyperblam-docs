@@ -6,7 +6,7 @@
 
 {% block main %}
   <h1>{{ element.name }}</h1>
-  {% if element.summary %}
+  {% if element.summary | md | safe %}
     <p>{{ element.summary }}</p>
   {% endif %}
   <dl>
@@ -53,6 +53,23 @@
       <tr>
         <th scope="row">{{ event.name }}</th>
         <td>{{ event.description | md | safe }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+  {% if element.methods %}
+    <h2>Methods</h2>
+    <table>
+      <tr>
+        <th scope="col">name</th>
+        <th scope="col">args</th>
+        <th scope="col">description</th>
+      </tr>
+      {% for method in element.methods %}
+      <tr>
+        <th scope="row">{{ method.name }}</th>
+        <td style="text-align: left">{{ method.args | md | safe }}</td>
+        <td>{{ method.description | md | safe }}</td>
       </tr>
       {% endfor %}
     </table>

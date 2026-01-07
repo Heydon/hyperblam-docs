@@ -39,7 +39,7 @@ module.exports = async function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter('md', content => {
-    return md.render(content);
+    return content ? md.render(content) : '';
   });
 
     eleventyConfig.addFilter('lowercase', content => {

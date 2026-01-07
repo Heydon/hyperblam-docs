@@ -2,9 +2,9 @@
 title: LFOs
 ---
 
-You hear a sound when a wave of oscillating air particles meets your ear. A synthesizer's oscillator produces such a sound wave electronically. 
+You hear a sound when a wave of oscillating air particles meets your ear. A synthesizer’s oscillator produces such a sound wave electronically. 
 
-So what's an LFO (a Low Frequency Oscillator)? It sounds like an oscillator that's very bassy and guttural. Maybe so bassy that it makes you soil yourself.
+So what’s an LFO (a Low Frequency Oscillator)? It sounds like an oscillator that’s very bassy and guttural. Maybe so bassy that it makes you soil yourself.
 
 Fear not! Though they could be used to make super low, bowel disrupting sounds, LFOs typically don’t make a peep. Instead, their waveform is used to *modulate* the *parameters* of your sounds. 
 
@@ -28,7 +28,7 @@ Modulation has many purposes, but perhaps the most iconic are tremolo (gain modu
 
 ## Tremolo
 
-Let’s look at tremolo, since that's probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `param`.
+Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `param`.
 
 ```html
 <gain-blam gain="1">
@@ -42,11 +42,11 @@ Let’s look at tremolo, since that's probably the simplest application. In **HY
 
 The `beats` prop’ sets the LFO’s frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
 
-The important part is the LFO's own `gain`. This sets how much the `<gain-blam>` element's `gain` is modulated. Yes, it’s one `gain` controlling another, if that was confusing.
+The important part is the LFO’s own `gain`. This sets how much the `<gain-blam>` element’s `gain` is modulated. Yes, it’s one `gain` controlling another, if that was confusing.
 
-With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , the subject `gain` will modulate between `0` and `2`. That's 1 - 1 and 1 + 1. 
+With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , the subject `gain` will modulate between `0` and `2`. That’s 1 - 1 and 1 + 1. 
 
-`2` is a lot of gain, since it's twice whatever the input gain is. Instead, you might want to set the initial value at `0.5` and the LFO's modulation gain at `0.5` too. That gives us 0.5 - 0.5 (0) and 0.5 + 0.5 (1). We have achieved [*unity gain](*https://pedalplayers.com/what-is-unity-gain/*)*: the input gain matches the (maximum) output gain.
+`2` is a lot of gain, since it’s twice whatever the input gain is. Instead, you might want to set the initial value at `0.5` and the LFO’s modulation gain at `0.5` too. That gives us 0.5 - 0.5 (0) and 0.5 + 0.5 (1). We have achieved [*unity gain](*https://pedalplayers.com/what-is-unity-gain/*)*: the input gain matches the (maximum) output gain.
 
 ```html
 <gain-blam gain="0.5">

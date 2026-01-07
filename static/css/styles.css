@@ -41,9 +41,20 @@ main :where(ol, ul) {
   padding-inline-start: var(--s-s);
 }
 
+dl > div {
+  display: flex;
+  gap: var(--s-s);
+  padding-block: var(--s-xs);
+}
+
+dt {
+  font-weight: bold;
+}
+
 a {
   text-decoration-style: wavy;
   text-underline-offset: 0.25em;
+  text-decoration-thickness: 0.05em;
 }
 
 a:hover {
@@ -88,7 +99,7 @@ h2 {
   font-size: 2.5rem;
 }
 
-em, strong {
+strong {
   line-height: 1;
   font-size: 1.125em;
 }
@@ -140,6 +151,7 @@ pre, figure {
 }
 
 footer {
+  margin-block-start: auto;
   padding: var(--s-l);
   text-align: center;
 }
@@ -184,8 +196,12 @@ pre code {
   max-inline-size: var(--measure);
 }
 
-.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img)) {
+.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img), table, h2:has(+ table)) {
   max-inline-size: calc(var(--measure) + 10rem);
+}
+
+hr {
+  min-inline-size: 100%;
 }
 
 .l-cluster {
@@ -233,9 +249,13 @@ pre code {
 
 /* components */
 
-.c-logo {
+.c-logo svg {
   max-inline-size: 12rem;
   margin-block-end: var(--s-s);
+}
+
+.c-logo:where(:hover, :focus) svg {
+  animation: squiggle 0.25s linear infinite;
 }
 
 .c-logo:where(:hover, :focus) .transmit {
@@ -412,4 +432,50 @@ button:hover {
   100% {
     opacity: 0;
   }
+}
+
+/* page transitions */
+
+@keyframes distort-in {
+  0% {
+    filter: url(#distort-3);
+    opacity: 1;
+  }
+  33% {
+    filter: url(#distort-1);
+  }
+  66% {
+    filter: url(#distort-2);
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes distort-out {
+  0% {
+    filter: url(#distort-1);
+    opacity: 0.5;
+  }
+  33% {
+    filter: url(#distort-3);
+  }
+  66% {
+    filter: url(#distort-2);
+  }
+  100% {
+     opacity: 1;
+  }
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 0.25s ease-in both distort-in;
+}
+
+::view-transition-new(root) {
+  animation: 0.25s ease-in both distort-out;
 }

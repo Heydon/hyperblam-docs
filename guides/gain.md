@@ -56,7 +56,7 @@ A high input gain combined with extremely hard clipping can produce something ak
 
 Nobody likes unintended distortion, but deliberate distortion is transformation: the creation of a new, more complex and textured sound from the old. To conservatives, transformation is transgression. The bold, distorted sound of rock ‘n’ roll is, therefore, *“the devil’s music”*.
 
-![A woman in old fashioned, Victorian dress holds a placard reading “don't push rock and roll junk”]({{site.basedir}}/static/images/illustrations/gain_sign.svg)
+![A woman in old fashioned, Victorian dress holds a placard reading “don’t push rock and roll junk”]({{site.basedir}}/static/images/illustrations/gain_sign.svg)
 
 ## Distortion sounds loud
 
@@ -70,7 +70,7 @@ Both distortion and *compression* add perceived loudness. A compressor just uses
 
 The [“loudness wars”](https://en.wikipedia.org/wiki/Loudness_war) are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless. Where the quieter sounds aren’t allowed to be quiet, the loud ones don’t come off as loud. 
 
-## Gain isn't just for gain
+## Gain isn’t just for gain
 
 When working with the Web Audio API, gain nodes aren’t just useful for affecting gain. A gain node with a gain value of 1 transparently reproduces any signal sent to it. As such, it can be used as a *junction box*. 
 

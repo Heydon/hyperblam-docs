@@ -42,6 +42,10 @@ module.exports = async function(eleventyConfig) {
     return md.render(content);
   });
 
+    eleventyConfig.addFilter('lowercase', content => {
+    return content.toLowerCase();
+  });
+
   // Put all static assets here
   eleventyConfig.addPassthroughCopy('./static');
 

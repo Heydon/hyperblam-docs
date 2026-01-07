@@ -9,6 +9,20 @@
   {% if element.summary %}
     <p>{{ element.summary }}</p>
   {% endif %}
+  <dl>
+    <div>
+      <dt>class:</dt>
+      <dd>{{ element.name }}</dd>
+    </div>
+    <div>
+      <dt>extends:</dt>
+      <dd>{{ element.extends if element.extends else 'Base' }}</dd>
+    </div>
+    <div>
+      <dt>tag:</dt>
+      <dd><code>&lt;{{ element.name | lowercase }}-blam&gt;</code></dd>
+    </div>
+  </dl>
   {% if element.props %}
     <h2>Props</h2>
     <table>
@@ -23,7 +37,22 @@
         <th scope="row">{{ prop.name }}</th>
         <td><em>{{ prop.type }}</em></td>
         <td>{{ prop.default }}</td>
-        <td>{{ prop.description }}</td>
+        <td>{{ prop.description | md | safe }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+  {% if element.events %}
+    <h2>Events</h2>
+    <table>
+      <tr>
+        <th scope="col">type</th>
+        <th scope="col">description</th>
+      </tr>
+      {% for event in element.events %}
+      <tr>
+        <th scope="row">{{ event.name }}</th>
+        <td>{{ event.description | md | safe }}</td>
       </tr>
       {% endfor %}
     </table>

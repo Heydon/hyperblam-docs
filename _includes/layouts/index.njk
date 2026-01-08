@@ -3,13 +3,14 @@
 {% block main %}
   <h1>{{ title }}</h1>
   {{ content | safe }}
-  <ul class="l-index">
     {% block iteration %}
-      {% for post in collections[key] %}
-        <li>
-          <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
-        </li>
-      {% endfor %}
+      <ul class="l-index">
+        {% for post in collections[key] %}
+          <li>
+            <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
     {% endblock %}
   </ul>
 {% endblock %}

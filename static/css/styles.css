@@ -51,6 +51,11 @@ dt {
   font-weight: bold;
 }
 
+dt:after {
+  content: '.........';
+  font-weight: normal;
+}
+
 a {
   text-decoration-style: wavy;
   text-underline-offset: 0.25em;
@@ -111,6 +116,8 @@ strong {
 table {
   border-collapse: collapse;
   table-layout: fixed;
+  display: block;
+  overflow-x: auto;
 }
 
 th, td {
@@ -196,7 +203,7 @@ pre code {
   max-inline-size: var(--measure);
 }
 
-.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img), table, h2:has(+ table)) {
+.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img)) {
   max-inline-size: calc(var(--measure) + 10rem);
 }
 

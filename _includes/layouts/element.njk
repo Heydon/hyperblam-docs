@@ -11,15 +11,15 @@
   {% endif %}
   <dl>
     <div>
-      <dt>class:</dt>
+      <dt>class</dt>
       <dd>{{ element.name }}</dd>
     </div>
     <div>
-      <dt>extends:</dt>
+      <dt>extends</dt>
       <dd>{{ element.extends if element.extends else 'Base' }}</dd>
     </div>
     <div>
-      <dt>tag:</dt>
+      <dt>tag</dt>
       <dd><code>&lt;{{ element.name | lowercase }}-blam&gt;</code></dd>
     </div>
   </dl>

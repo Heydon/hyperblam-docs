@@ -1,9 +1,9 @@
 module.exports = {
   title: 'HYPERBLAM',
-  basedir: process.env.CONTEXT === 'pages' ? 'https://heydon.github.io/hyperblam' : '',
+  basedir: process.env.CONTEXT === 'pages' ? 'https://heydon.github.io/hyperblam-docs' : '',
   hyperblampath: 'static/hyperblam/dist/hyperblam/hyperblam.js',
   categories: {
-    Sequencing: 'Elements involved for scheduling sounds and other events, creating phrases, loops, compositions.',
+    Sequencing: 'Elements involved in scheduling sounds and other events, creating phrases, loops, compositions.',
     Sampling: 'Elements used for creating and playing sounds as buffers.',
     Modulating: 'Elements that make gradual changes to parameters over time.',
     Processing: 'Elements involved in affecting the character of sounds. Effects, essentially.',

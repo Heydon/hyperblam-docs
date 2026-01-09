@@ -1,5 +1,5 @@
 ---
-title: Signal chains
+title: Signal Chains
 ---
 
 Like most projects and libraries based on the Web Audio API, **HYPERBLAM** lets you create *signal chains*. Unlike other projects and libraries, **HYPERBLAM** lets you do this just by writing HTML, using custom elements.

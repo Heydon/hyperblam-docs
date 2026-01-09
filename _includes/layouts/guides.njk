@@ -1,0 +1,18 @@
+{% extends 'layouts/index.njk' %}
+
+{% block main %}
+  <h1>{{ title }}</h1>
+  {{ content | safe }}
+  {% block iteration %}
+    <ul class="l-grid">
+      {% for post in collections[key] %}
+        <li class="l-card">
+          <img src="{{site.basedir}}/static/images/guides/{{post.data.title | slugify}}.svg" alt="">
+          <a href="{{site.basedir}}{{post.url}}">
+            {{ post.data.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+{% endblock %}

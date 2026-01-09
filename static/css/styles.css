@@ -37,7 +37,7 @@ main {
   padding: var(--s-m) var(--s-s);
 }
 
-main :where(ol, ul) {
+main :where(ol, ul):not([class]) {
   padding-inline-start: var(--s-s);
 }
 
@@ -160,6 +160,7 @@ pre, figure {
 footer {
   margin-block-start: auto;
   padding: var(--s-l);
+  padding-block-start: var(--s-xl);
   text-align: center;
 }
 
@@ -169,10 +170,12 @@ pre code {
 }
 
 :where(pre, figure)::before,
-:where(pre, figure)::after {
+:where(pre, figure)::after,
+.l-index::after {
   content: '';
   display: block;
   block-size: 0.4rem;
+  inline-size: 100%;
   background-image: var(--wave-sine);
 }
 
@@ -203,7 +206,7 @@ pre code {
   max-inline-size: var(--measure);
 }
 
-.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img)) {
+.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img), .l-grid) {
   max-inline-size: calc(var(--measure) + 10rem);
 }
 
@@ -226,6 +229,56 @@ hr {
 
 .l-flow > p:not(:has(img)) + p:not(:has(img)) {
   margin-block-start: var(--s-s);
+}
+
+.l-grid {
+  list-style: none;
+  display: grid;
+  gap: var(--s-m);
+  --grid-min: 18rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min), 100%), 1fr));
+  text-align: center;
+}
+
+.l-card {
+  padding: var(--s-m);
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@keyframes outline {
+  0% {
+    outline: 0 solid;
+  }
+  50% {
+    outline: var(--s-s) solid; 
+    outline-offset: 0;
+  }
+  100% {
+    outline: 0 solid;
+    outline-offset: var(--s-s);
+  }
+}
+
+.l-card:hover, .l-card:focus-within {
+  animation: outline 0.666s linear infinite;
+}
+
+.l-card:hover img, 
+.l-card:focus-within img {
+  animation: squiggle 0.25s linear infinite;
+}
+
+.l-card a:focus {
+  outline: none;
+}
+
+.l-card a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .l-skip:not(:focus-visible) {
@@ -252,6 +305,14 @@ hr {
   font-size: 1.5rem;
   font-family: var(--font-special);
   line-height: 1;
+}
+
+.l-index a:not(:hover) {
+  text-decoration: none;
+}
+
+.l-index::after {
+  margin-block-start: var(--s-m);
 }
 
 /* components */

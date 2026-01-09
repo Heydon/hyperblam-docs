@@ -1,7 +1,7 @@
 ---
 title: Guides
 key: guides
-layout: 'layouts/index.njk'
+layout: 'layouts/guides.njk'
 permalink: '/guides/index.html'
 eleventyExcludeFromCollections: true
 ---

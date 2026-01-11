@@ -14,7 +14,7 @@ Typically, you have one guitar (the input) and one guitar amplifier (the output)
 
 ![A signal chain for a guitar, starting with the guitar itself, connected to a row of effects and finally connected to an amplifier.]({{site.basedir}}/static/images/illustrations/signal-chains1.svg)
 
-Maybe you’re not a guitarist. Maybe you have even more disposable income and you’re into *modular synthesis*. In modular synthesis, individual *modules* are connected (or “patched”) together. These, like guitar pedals, may represent effects, used for coloring the incoming sound, or they may perform more complex tasks like [*sequencing](*https://rubadub.co.uk/products/moog-labyrinth-parallel-generative-analog-sequencer*)*. Your modular synthesizer, like a pedal board, represents a *signal chain*.
+Maybe you’re not a guitarist. Maybe you have even more disposable income and you’re into *modular synthesis*. In modular synthesis, individual *modules* are connected (or “patched”) together. These, like guitar pedals, may represent effects, used for coloring the incoming sound, or they may perform more complex tasks like _[sequencing](*https://rubadub.co.uk/products/moog-labyrinth-parallel-generative-analog-sequencer)_. Your modular synthesizer, like a pedal board, represents a *signal chain*.
 
 Both guitarists and modular synthesis fans spend a lot of their time struggling with wires and trying to join them up to the right places. Literally and figuratively, **HYPERBLAM** requires a lot less wiring.
 
@@ -47,11 +47,11 @@ gainNode.connect(panNode);
 panNode.connect(context.destination);
 ```
 
-That doesn’t really look, or feel, like a pedal board—or a modular synthesizer— to me. This is what it looks like in **HYPERBLAM** (including the sample source omitted from the above example):
+That doesn’t really look, or feel, like a pedal board—or a modular synthesizer— to me. This is what it looks like in **HYPERBLAM**:
 
 ```html
 <audio-blam>
-  <notes-blam>
+  <pads-blam>
     <chain-blam>
       <gain-blam gain="0.75"></gain-blam>
       <pan-blam pan="0.5"></pan-blam>
@@ -59,17 +59,17 @@ That doesn’t really look, or feel, like a pedal board—or a modular synthesiz
     <bank-blam>
       <sample-blam src="/path/to/sound.mp3"></sample-blam>
     </bank-blam>
-  </notes-blam>
+  </pads-blam>
 </audio-blam>
 ```
 
 ![A flow diagram for a signal chain. An instrument on the left points to a chain element, which groups a gain and pan effect. Finally, the chain is connected to two speakers, indicating the output.]({{site.basedir}}/static/images/illustrations/signal-chains2.svg)
 
-These kinds of higher level APIs are usually the tip of a giant **JavaScript Library Iceberg**. Not so with **HYPERBLAM**. Adding a `<pan-blam>` element (or 37 `<pan-blam>` elements, for that matter) costs you approximately `700` bytes. And that includes `wet` and `dry` props for controlling the *mix*.
+Adding a `<pan-blam>` element (or 37 `<pan-blam>` elements, for that matter) costs you approximately `700` bytes of JavaScript. And that includes `wet` and `dry` props for controlling the *mix*.
 
 Take the `<pan-blam>` element away, and those `700` bytes go away with it. That’s because **HYPERBLAM** only imports the elements you *actually use*. It doesn’t use a complex bundling system to do this—just dynamic imports based on simple DOM queries. The installation routine itself costs about `600` bytes.
 
-For context, **Tone.js** is over `330KB` of JavaScript. Making something *with* **Tone.js** means writing a lot more JavaScript on top of that. The aim of **HYPERBLAM** is to save you writing *any* JavaScript. It’s all just HTML.
+For context, [**Tone.js**](https://cdnjs.cloudflare.com/ajax/libs/tone/15.3.5/Tone.js) is over `340KB` of JavaScript. More importantly, making something *with* **Tone.js** means writing a lot more JavaScript on top of that. The aim of **HYPERBLAM** is to save you writing *any* JavaScript. It’s all just HTML.
 
 <!--
 ## Chains within chains

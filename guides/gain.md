@@ -68,7 +68,7 @@ It’s a question of relativity again. The more gain you apply, the more of the 
 
 Both distortion and *compression* add perceived loudness. A compressor just uses a more complex algorithm, flattening the [dynamic range](https://en.wikipedia.org/wiki/Dynamic_range) without introducing distortion. 
 
-The [“loudness wars”](https://en.wikipedia.org/wiki/Loudness_war) are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless. Where the quieter sounds aren’t allowed to be quiet, the loud ones don’t come off as loud. 
+The [“loudness wars”](https://en.wikipedia.org/wiki/Loudness_war) are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless. Where the quieter sounds aren’t allowed to be quiet, the loud ones don’t come off as loud. Remember: it’s all relative.
 
 ## Gain isn’t just for gain
 
@@ -95,4 +95,4 @@ Each of these paths has its own gain node, controlled by the `wet` and `dry` pro
 
 For the purpose of chaining effects, this is really convenient. Each effect only needs a single entry and single exit point. The mix is handled internally (inside the so-called *box)*.
 
-Thanks to class inheritance, the `dry` and `wet` getters and setters (and their registry in `observedAttributes`) only need to be set up once, in the `Box.js` file on which each effect element is based.
+Thanks to class inheritance, the `dry` and `wet` getters and setters (and their registry in `observedAttributes`) only need to be set up once, in the primitive `Box.js` element on which each effect element is based.

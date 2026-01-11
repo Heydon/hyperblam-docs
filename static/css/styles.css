@@ -206,7 +206,7 @@ pre code {
   max-inline-size: var(--measure);
 }
 
-.l-column > :where(div, img, svg, aside, hr, pre, form, p:has(img), .l-grid) {
+.l-column > :where(div, img, svg, aside, hr, pre, form, h1:has(img), p:has(img), .l-grid) {
   max-inline-size: calc(var(--measure) + 10rem);
 }
 

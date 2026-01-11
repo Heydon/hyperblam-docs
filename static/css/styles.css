@@ -281,6 +281,23 @@ hr {
   inset: 0;
 }
 
+.l-frame {
+  position: relative;
+  flex-grow: 1;
+}
+
+.l-frame > * {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
 .l-skip:not(:focus-visible) {
   block-size: 0;
   padding: 0;
@@ -322,7 +339,11 @@ hr {
   margin-block-end: var(--s-s);
 }
 
-.c-logo:where(:hover, :focus) svg {
+.c-logo-small svg {
+  max-inline-size: 7rem;
+}
+
+.c-logo:not(.c-logo-small):where(:hover, :focus) svg {
   animation: squiggle 0.25s linear infinite;
 }
 

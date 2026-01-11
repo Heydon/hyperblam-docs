@@ -1,3 +1,5 @@
+{% extends 'layouts/base.njk' %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +13,7 @@
      <link rel="preload" href="{{site.basedir}}/static/css/fonts/HeydonCaps.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
+    {% block bodyStart %}
     <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
       <defs>
         <filter id="noise-big">
@@ -43,6 +46,8 @@
         </filter>
       </defs>
     </svg>
+    {% endblock %}
+    {% block nav %}
     <header class="l-box">
       <a href="#main" class="l-skip">skip to content</a>
       <nav>
@@ -53,16 +58,17 @@
           <li><a href="{{site.basedir}}/guides">Guides</a></li>
           <li><a href="{{site.basedir}}/elements">Elements</a></li>
           <li><a href="{{site.basedir}}/experiments">Experiments</a></li>
-          <li><a href="{{hyperblam.homepage}}">Code</a><span aria-hidden="true" class="u-glyph-icon">↗</span></li>
+          <li><a href="{{package.homepage}}">Code</a><span aria-hidden="true" class="u-glyph-icon">↗</span></li>
         </ul>
       </nav>
     </header>
-    <main class="l-column l-flow" tabindex="-1">
-      {% block main %}
+    {% endblock %}
+    {% block main %}
+      <main class="l-column l-flow" tabindex="-1">
         <h1>{{ title }}</h1>
         {{ content | safe }}
-      {% endblock %}
-    </main>
+      </main>
+    {% endblock %}
     <footer class="u-font-smaller">
       <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
       <p>Version: <strong>{{ package.version }}</strong></p>

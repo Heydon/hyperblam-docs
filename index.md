@@ -1,12 +1,6 @@
 ---
-title: Test
-layout: layouts/main.njk
+title: Hyperblam
+layout: layouts/home.njk
 ---
 
-Some content.
-
-## Linked heading
-
-Lorem ipsum dolor shit.
-
-## Another linked heading
+Hello

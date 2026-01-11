@@ -1,0 +1,10 @@
+{% extends 'layouts/main.njk' %}
+
+{% block main %}
+  <main class="l-column l-flow" tabindex="-1">
+    <h1>
+      <img src="{{site.basedir}}/static/images/make-music-rough.svg" alt="Hyperblam: write music, not javascript">
+    </h1>
+    {{ content | safe }}
+  </main>
+{% endblock %}

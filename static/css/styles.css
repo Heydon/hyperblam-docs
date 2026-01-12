@@ -246,6 +246,16 @@ hr {
   display: flex;
   flex-direction: column;
   position: relative;
+  gap: var(--s-s);
+  justify-content: center;
+}
+
+.l-card:nth-child(even) {
+  transform: rotate(1.5deg)
+}
+
+.l-card:nth-child(3n) {
+  transform: rotate(-1.5deg)
 }
 
 @keyframes outline {
@@ -253,12 +263,12 @@ hr {
     outline: 0 solid;
   }
   50% {
-    outline: var(--s-s) solid; 
+    outline: var(--s-xs) solid; 
     outline-offset: 0;
   }
   100% {
     outline: 0 solid;
-    outline-offset: var(--s-s);
+    outline-offset: var(--s-xs);
   }
 }
 

@@ -7,8 +7,8 @@
 {% block main %}
   <main class="l-column l-flow" tabindex="-1">
     <h1>{{ element.name }}</h1>
-    {% if element.summary | md | safe %}
-      <p>{{ element.summary }}</p>
+    {% if element.summary %}
+      <p>{{ element.summary | md | safe }}</p>
     {% endif %}
     <dl>
       <div>

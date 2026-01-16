@@ -7,9 +7,21 @@
   </a>
 </header>
 {% endblock %}
+{% block bodyStart %}
+<style>
+  audio-blam, bank-blam, sample-blam, blam-blam,
+  pads-blam, tap-blam {
+    display: contents;
+  }
+</style>
+{% endblock %}
 {% block main %}
   <main tabindex="-1" class="l-frame">
-    {{ content | safe }}
+    <audio-blam>
+      <div class="l-loading">loading...</div>
+      <blam-blam target="hidden" pubs="audio-blam" subs=".l-loading" event="blamsamples"></blam-blam>
+      {{ content | safe }}
+    </audio-blam>
   </main>
 {% endblock %}
 

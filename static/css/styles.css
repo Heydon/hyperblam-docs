@@ -27,6 +27,10 @@
   color: inherit;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   min-block-size: 100vh;
   display: flex;
@@ -247,7 +251,6 @@ hr {
   flex-direction: column;
   position: relative;
   gap: var(--s-s);
-  justify-content: center;
 }
 
 .l-card:nth-child(even) {
@@ -256,6 +259,10 @@ hr {
 
 .l-card:nth-child(3n) {
   transform: rotate(-1.5deg)
+}
+
+.l-card-no-border {
+  border: 0;
 }
 
 @keyframes outline {
@@ -272,7 +279,7 @@ hr {
   }
 }
 
-.l-card:hover, .l-card:focus-within {
+.l-card:has(a):hover, .l-card:focus-within {
   animation: outline 0.666s linear infinite;
 }
 
@@ -381,6 +388,10 @@ hr {
   font-weight: normal;
 }
 
+.u-backed {
+  background-color: var(--color-back);
+}
+
 /* form controls */
 
 input, button {
@@ -417,6 +428,10 @@ button {
 
 button:hover {
   filter: invert(1);
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 [type="range"] { 

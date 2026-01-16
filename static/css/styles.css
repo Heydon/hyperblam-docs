@@ -201,6 +201,10 @@ pre code {
 
 /* layouts */
 
+.l-loading {
+  background-color: var(--color-back);
+}
+
 .l-box {
   padding: var(--box-padding, var(--s-s));
 }

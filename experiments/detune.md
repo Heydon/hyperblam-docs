@@ -16,6 +16,7 @@ title: detune
     <label>
       detune
       <input type="range" min="-500" max="500">
+      <display-blam prop="detune" element="pads-blam"></display-blam>
     <label>
   </dial-blam>
   <blam-blam target="detune" value="-500|0|500" ramp="0.25"></blam-blam>

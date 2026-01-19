@@ -32,11 +32,11 @@ Let’s look at tremolo, since that’s probably the simplest application. In **
 
 ```html
 <gain-blam gain="1">
-	<lfo-blam 
-		param="gain"
-		beats="0.25"
-		gain="1">
-	</lfo-blam>		 
+  <lfo-blam 
+    param="gain"
+    beats="0.25"
+    gain="1">
+  </lfo-blam>		 
 </gain-blam>
 ```
 
@@ -50,11 +50,11 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 
 ```html
 <gain-blam gain="0.5">
-	<lfo-blam 
-		param="gain"
-		beats="0.25"
-		gain="0.5">
-	</lfo-blam>		 
+  <lfo-blam 
+    param="gain"
+    beats="0.25"
+    gain="0.5">
+  </lfo-blam>		 
 </gain-blam>
 ```
 
@@ -65,12 +65,12 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 What if we didn’t want our gain value to pass smoothly through zero? What if we wanted to alternate directly between the high and low values? This is what square waveforms are for. You can set the waveform to `square` using the `wave` prop’.
 
 ```html
-	<lfo-blam 
-		param="gain"
-		beats="0.25"
-		gain="0.5"
-		wave="square">
-	</lfo-blam>	
+<lfo-blam 
+  param="gain"
+  beats="0.25"
+  gain="0.5"
+  wave="square">
+</lfo-blam>	
 ```
 
 ![A square waveform, with the vertical side of a square indicated as an instant switch between 0 and 1 in gain.]({{site.basedir}}/static/images/illustrations/LFOs3.svg)
@@ -83,15 +83,15 @@ No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardw
 
 ```html
 <lfo-blam 
-	param="gain"
-	beats="0.25"
-	gain="0.5"
-	wave="square">
-		<lfo-blam
-		param="gain"
-		gain="0.25"
-		beats="3">
-		</lfo-blam>
+  param="gain"
+  beats="0.25"
+  gain="0.5"
+  wave="square">
+  <lfo-blam
+    param="gain"
+    gain="0.25"
+    beats="3">
+  </lfo-blam>
 </lfo-blam>	
 ```
 
@@ -112,31 +112,31 @@ A real Bitcrusher achieves its characteristic lo-fi sound by being, well, actual
 
 Unfortunately, last time I checked, Audio Worklets were not consistently implemented between browsers. Fortunately, we can emulate lowering the sample rate by employing analog principles instead. That’s right: we can create **a digital emulation of an analog emulation of a digital effect**.
 
-Set up to alternate between values of `0` and `1`, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done *discretely—*not *continuously*. Computers only deal in discrete numbers, you see.
+Set up to alternate between values of `0` and `1`, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done _discretely_—not _continuously_. Computers only deal in discrete numbers, you see.
 
 To emulate *downsampling*, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In `beats`, we might choose a value like `0.001`
 
 ```html
-	<lfo-blam 
-		param="gain"
-		beats="0.001"
-		gain="0.5"
-		wave="square">
-	</lfo-blam>	
+<lfo-blam 
+  param="gain"
+  beats="0.001"
+  gain="0.5"
+  wave="square">
+</lfo-blam>	
 ```
 
-What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound, since the effect is effectively a form of [frequency modulation](https://en.wikipedia.org/wiki/Frequency_modulation). Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us *sweep* through all sorts of weird, robotic, metallic, fuzzy timbres.
+What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound, since the effect is effectively a form of [frequency modulation](https://en.wikipedia.org/wiki/Frequency_modulation). Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us _sweep_ through all sorts of weird, robotic, metallic, fuzzy timbres.
 
 ```html
-	<lfo-blam 
-		param="gain"
-		beats="0.001"
-		gain="0.5"
-		wave="square">
-		<lfo-blam
-			param="beats"
-			beats="3"
-			gain="0.01"> 
-		</lfo-blam>	
-	</lfo-blam>
+<lfo-blam 
+  param="gain"
+  beats="0.001"
+  gain="0.5"
+  wave="square">
+  <lfo-blam
+    param="beats"
+    beats="3"
+    gain="0.01"> 
+  </lfo-blam>	
+</lfo-blam>
 ```

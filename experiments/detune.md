@@ -1,23 +1,31 @@
 ---
-title: detune
+title: Detune
 ---
 
 
-<pads-blam detune="2000">
+<notes-blam choke notes="C4">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit/bongos/01.mp3"></sample-blam>
-    <!--<sample-blam src="{{site.basedir}}/static/sounds/kit/bongos/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit/bongos/03.mp3"></sample-blam>-->
+    <sample-blam src="{{site.basedir}}/static/sounds/kit/hat/03.mp3"></sample-blam>
   </bank-blam>
   <tap-blam target="play">
     <button>Bongo</button>
   </tap-blam>
-  <dial-blam target="detune">
+  <chain-blam>
+    <phaser-blam></phaser-blam>
+  </chain-blam>
+  <!--<dial-blam target="detune">
     <label>
       detune
       <input type="range" min="-500" max="500">
       <display-blam prop="detune" element="pads-blam"></display-blam>
     <label>
-  </dial-blam>
-  <blam-blam target="detune" value="-500|0|500" ramp="0.25"></blam-blam>
-</pads-blam>
+  </dial-blam>-->
+  <!--<switch-blam target="detune" value="-300">
+    <label>
+      detune
+      <input type="checkbox">
+    </label>
+  </switch-blam>-->
+  <!--<envelope-blam target="detune" curve="-500 0, 500 0.02, 0 0.04"></envelope-blam>
+  <blam-blam target="length" value="0.25"></blam-blam>-->
+</notes-blam>

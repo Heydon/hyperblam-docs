@@ -25,13 +25,11 @@ title: Detune
 <notes-blam id="bass" choke>
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit/bass/01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit/bass/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit/bass/03.mp3"></sample-blam>
   </bank-blam>
   <chain-blam>
-    <filter-blam freq="20000" q="10">
+    <!--<filter-blam freq="20000" q="10">
       <envelope-blam target="freq" curve="100 0, 20000 0.2"></envelope-blam>
-    </filter-blam>
+    </filter-blam>-->
   </chain-blam>
   <blam-blam target="length" value="0.25|0.125|1"></blam-blam>
 </notes-blam>
@@ -45,7 +43,7 @@ title: Detune
   <track-blam subs="#kick" id="kickTrack">
     <bar-blam s="1 0 1 0 2"></bar-blam>
   </track-blam>
-  <track-blam subs="#bass">
+  <track-blam subs="#bass" chance="0.75">
     <bar-blam s="E 0 D 0 G#"></bar-blam>
   </track-blam>
 </sequencer-blam>

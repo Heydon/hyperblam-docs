@@ -7,20 +7,10 @@
   </a>
 </header>
 {% endblock %}
-{% block bodyStart %}
-<style>
-  audio-blam, bank-blam, sample-blam, blam-blam,
-  pads-blam, tap-blam, notes-blam, envelope-blam,
-  pan-blam, gain-blam, reverb-blam, echo-blam, phaser-blam 
-  filter-blam {
-    display: contents;
-  }
-</style>
-{% endblock %}
 {% block main %}
   <main tabindex="-1" class="l-frame">
     <audio-blam>
-      <blam-blam target="hidden" pubs="audio-blam" subs=".l-loading" event="blamsamples"></blam-blam>
+      <blam-blam target="hidden" from="audio-blam" to=".l-loading" event="blamsamples"></blam-blam>
       {{ content | safe }}
     </audio-blam>
     <div class="l-loading">loading...</div>

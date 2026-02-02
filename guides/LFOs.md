@@ -28,12 +28,12 @@ Modulation has many purposes, but perhaps the most iconic are tremolo (gain modu
 
 ## Tremolo
 
-Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `param`.
+Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `target` parameter.
 
 ```html
 <gain-blam gain="1">
   <lfo-blam 
-    param="gain"
+    target="gain"
     beats="0.25"
     gain="1">
   </lfo-blam>		 
@@ -51,7 +51,7 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 ```html
 <gain-blam gain="0.5">
   <lfo-blam 
-    param="gain"
+    target="gain"
     beats="0.25"
     gain="0.5">
   </lfo-blam>		 
@@ -66,7 +66,7 @@ What if we didn’t want our gain value to pass smoothly through zero? What if w
 
 ```html
 <lfo-blam 
-  param="gain"
+  target="gain"
   beats="0.25"
   gain="0.5"
   wave="square">
@@ -83,12 +83,12 @@ No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardw
 
 ```html
 <lfo-blam 
-  param="gain"
+  target="gain"
   beats="0.25"
   gain="0.5"
   wave="square">
   <lfo-blam
-    param="gain"
+    target="gain"
     gain="0.25"
     beats="3">
   </lfo-blam>
@@ -114,11 +114,13 @@ Unfortunately, last time I checked, Audio Worklets were not consistently impleme
 
 Set up to alternate between values of `0` and `1`, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done _discretely_—not _continuously_. Computers only deal in discrete numbers, you see.
 
+![A sine wave labeled continuous with individual lines representing discrete sampling points.]({{site.basedir}}/static/images/illustrations/LFOs4.svg)
+
 To emulate *downsampling*, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In `beats`, we might choose a value like `0.001`
 
 ```html
 <lfo-blam 
-  param="gain"
+  target="gain"
   beats="0.001"
   gain="0.5"
   wave="square">
@@ -129,12 +131,12 @@ What’s neat about this effect is that slightly changing that `beats` value can
 
 ```html
 <lfo-blam 
-  param="gain"
+  target="gain"
   beats="0.001"
   gain="0.5"
   wave="square">
   <lfo-blam
-    param="beats"
+    target="beats"
     beats="3"
     gain="0.01"> 
   </lfo-blam>	

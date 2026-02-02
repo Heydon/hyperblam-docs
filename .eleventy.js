@@ -7,6 +7,22 @@ const waveforms = ['square', 'sine', 'sawtooth', 'triangle'];
 const package = require('./static/hyperblam/package.json');
 const api = require('./static/hyperblam/dist/api.json');
 
+const icons = {};
+
+icons.playStop = `
+  <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+    <path class="on" d="M10 8, 26 16, 10 24z"></path>
+    <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
+  </svg>
+`;
+
+icons.playPause = `
+  <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+    <path class="on" d="M10 8, 26 16, 10 24z"></path>
+    <path class="off" d="M9 9, 13 9, 13 23, 9 23z M19 9, 23 9, 23 23, 19 23z"></path>
+  </svg>
+`;
+
 const random = {
   oneOf(array) {
     array = array || [0];
@@ -42,8 +58,12 @@ module.exports = async function(eleventyConfig) {
     return content ? md.render(content) : '';
   });
 
-    eleventyConfig.addFilter('lowercase', content => {
+  eleventyConfig.addFilter('lowercase', content => {
     return content.toLowerCase();
+  });
+
+  eleventyConfig.addShortcode('icon', function(name) {
+    return icons[name];
   });
 
   // Put all static assets here

@@ -23,6 +23,8 @@ icons.playPause = `
   </svg>
 `;
 
+icons.close = `<svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path transform-box="fill-box" transform-origin="center" transform="rotate(45)" d="M8 15, 24 15, 24 17, 8 17z"></path><path transform-box="fill-box" transform-origin="center" transform="rotate(-45)" d="M8 15, 24 15, 24 17, 8 17z"></path></svg>`;
+
 const random = {
   oneOf(array) {
     array = array || [0];
@@ -64,6 +66,12 @@ module.exports = async function(eleventyConfig) {
 
   eleventyConfig.addShortcode('icon', function(name) {
     return icons[name];
+  });
+
+  eleventyConfig.addPairedShortcode('dialog', function(content) { 
+    return `
+      <dialog><header><button class="ghost" aria-label="close">${icons.close}</button></header><div class="l-flow">${content}</div></dialog>
+    `;
   });
 
   // Put all static assets here

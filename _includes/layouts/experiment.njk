@@ -9,14 +9,26 @@
 {% endblock %}
 {% block main %}
   <main tabindex="-1" class="l-frame">
-    <audio-blam>
-      <blam-blam target="hidden" from="audio-blam" to=".l-loading" event="blamsamples"></blam-blam>
-      {{ content | safe }}
-    </audio-blam>
+    <div class="l-cluster">
+      <audio-blam>
+        <blam-blam target="hidden" from="audio-blam" to=".l-loading" event="blamsamples"></blam-blam>
+        {{ content | safe }}
+      </audio-blam>
+    </div>
     <div class="l-loading">loading...</div>
   </main>
 {% endblock %}
 
+{% block footer %}
+<footer class="u-font-smaller">
+  <button id="info" aria-label="about this Hyperblam experiment">?</button>
+</footer>
+{% endblock %}
+
 {% block scripts %}
 <script type="module" src="{{site.basedir}}/{{site.hyperblampath}}"></script>
+<script type="module">
+  import { dialog } from '{{site.basedir}}/static/js/dialog.js';
+  dialog('dialog', '#info');
+</script>
 {% endblock %}

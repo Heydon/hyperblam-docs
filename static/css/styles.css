@@ -78,6 +78,14 @@ img, picture, video, canvas, svg {
   margin-inline: auto;
 }
 
+figcaption {
+  padding-block: var(--s-l);
+  font-size: 0.85rem;
+  max-inline-size: 75%;
+  margin-inline: auto;
+  text-align: center;
+}
+
 :focus-visible {
   outline: 1px dashed var(--color-fore);
   outline-offset: 0.125em;
@@ -156,7 +164,7 @@ nav a:not(:hover) {
   text-decoration: none;
 }
 
-pre, figure {
+pre {
   padding: var(--s-m) 0;
   overflow-x: auto;
 }
@@ -173,8 +181,8 @@ pre code {
   padding: var(--s-m) 0;
 }
 
-:where(pre, figure)::before,
-:where(pre, figure)::after,
+:where(pre)::before,
+:where(pre)::after,
 .l-index::after {
   content: '';
   display: block;
@@ -214,7 +222,7 @@ pre code {
   max-inline-size: var(--measure);
 }
 
-.l-column > :where(div, img, svg, aside, hr, pre, form, h1:has(img), p:has(img), .l-grid) {
+.l-column > :where(div, img, svg, aside, hr, pre, form, h1:has(img), p:has(img), figure:has(img), .l-grid) {
   max-inline-size: calc(var(--measure) + 10rem);
 }
 
@@ -402,6 +410,23 @@ input, button {
   cursor: pointer;
 }
 
+button svg {
+  inline-size: 2.25em;
+  block-size: 2.25em;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+[aria-pressed="true"] .off,
+[aria-pressed="false"] .on {
+  display: revert;
+}
+
+[aria-pressed="true"] .on,
+[aria-pressed="false"] .off {
+  display: none;
+}
+
 form {
   border: 1px solid;
   display: flex;
@@ -428,6 +453,11 @@ button {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+button.ghost {
+  padding: 0;
+  border: 0;
 }
 
 button:hover {
@@ -469,6 +499,30 @@ button:active {
 
 [type="checkbox"]:checked {
   justify-content: flex-end;
+}
+
+/* dialogs */
+
+dialog {
+  background-color: var(--color-back);
+  border-width: 1px;
+  padding: var(--s-m);
+  position: absolute;
+  inline-size: auto;
+  margin-inline: auto;
+  margin-block: auto;
+  border-radius: 0.25rem;
+  max-inline-size: 
+}
+
+dialog header {
+  text-align: right;
+  padding-block-end: var(--s-m);
+}
+
+dialog > div {
+  max-block-size: 60vh;
+  overflow-y: auto;
 }
 
 /* animations */

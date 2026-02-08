@@ -110,11 +110,16 @@ In practice, this means the kind of modulation usually associated with a *Low* F
 
 A real Bitcrusher achieves its characteristic lo-fi sound by being, well, actually *low fidelity*. It adopts either a lower *bit depth* or lower *sample rate* to *resample* the incoming sound. This true form of bitcrushing is possible using an [Audio Worklet](https://developer.chrome.com/blog/audio-worklet/). 
 
-Unfortunately, last time I checked, Audio Worklets were not consistently implemented between browsers. Fortunately, we can emulate lowering the sample rate by employing analog principles instead. That’s right: we can create **a digital emulation of an analog emulation of a digital effect**.
+But we don’t need to use an Audio Worklet to get close to this sound. We can emulate lowering the sample rate by employing analog principles instead. That’s right: we can create **a digital emulation of an analog emulation of a digital effect**.
 
 Set up to alternate between values of `0` and `1`, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done _discretely_—not _continuously_. Computers only deal in discrete numbers, you see.
 
+<figure>
+
 ![A sine wave labeled continuous with individual lines representing discrete sampling points.]({{site.basedir}}/static/images/illustrations/LFOs4.svg)
+
+  <figcaption>The series of “pins” representing discrete sampling points forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
+</figure>
 
 To emulate *downsampling*, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In `beats`, we might choose a value like `0.001`
 
@@ -127,7 +132,21 @@ To emulate *downsampling*, we need to speed up the oscillator considerably. But 
 </lfo-blam>	
 ```
 
-What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound, since the effect is effectively a form of [frequency modulation](https://en.wikipedia.org/wiki/Frequency_modulation). Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us _sweep_ through all sorts of weird, robotic, metallic, fuzzy timbres.
+What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound, since this is a form of [amplitude modulation](https://en.wikipedia.org/wiki/Frequency_modulation). That is, the amplitude of one wave is used to change the amplitude of another, affecting its overall shape. 
+
+Truly _low_ frequency amplitude modulation acts as a tremolo effect: you hear the original sound—with its preserved character—simply dipping in amplitude. When the frequency of the carrier and modulator oscillators become similar, that’s when you hear a unified sound. But a new and surprising one.
+
+It makes me think of the propellor on an airplane. At a slow rate of rotation, it still looks like a propellor. At much higher rates, you it appears as a circle: a completely different shape.
+
+<figure>
+
+![Two propellors. One spins slowly and you can still see its propellor shape. The other spins rapidly and forms a circular shape.]({{site.basedir}}/static/images/illustrations/LFO_prop.svg)
+
+  <figcaption>The term <em>waveshaper</em> is usually preserved for a method of distortion. But we are literally shaping a wave here. Plus any augmentation of a wave’s shape is a <em>de facto</em> form of distortion.</figcaption>
+</figure>
+
+
+Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us _sweep_ through all sorts of weird, robotic, metallic, fuzzy timbres.
 
 ```html
 <lfo-blam 

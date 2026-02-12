@@ -512,7 +512,8 @@ dialog {
   margin-inline: auto;
   margin-block: auto;
   border-radius: 0.25rem;
-  max-inline-size: 
+  max-inline-size: var(--measure);
+  inset-inline: 6vw;
 }
 
 dialog header {

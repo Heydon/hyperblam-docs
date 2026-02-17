@@ -1,5 +1,6 @@
 const dialog = (dialogSelector, buttonSelector) => {
   const dialog = document.querySelector(dialogSelector);
+  if (!dialog) return;
   const buttons = [...document.querySelectorAll(buttonSelector)];
   const closeButton = dialog.querySelector('dialog button');
   buttons.forEach(b => {

@@ -1,4 +1,5 @@
 .DS_Store
+*.wav
 
 # eleventy
 _site

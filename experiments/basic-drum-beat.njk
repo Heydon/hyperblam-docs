@@ -1,0 +1,39 @@
+---
+title: Choking a hat
+category: percussion
+---
+
+<css-blam analyser="analyser-blam"></css-blam>
+<chain-blam id="bus">
+  <analyser-blam></analyser-blam>
+</chain-blam>
+<pads-blam id="hat" choke out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+  </bank-blam>
+</pads-blam>
+<sequencer-blam bpm="90">
+  <track-blam to="#hat">
+    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
+    <bar-blam s="1 2 0 0 ? 0 ? 0"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" target="playPause">
+  <button aria-pressed="false">{% icon 'playPause' %}</button>
+</tap-blam>
+<dial-blam to="sequencer-blam" target="bpm">
+  <label>
+    bpm
+    <input type="range" min="60" max="180" step="1">
+    <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
+  </label>
+</dial-blam>
+<switch-blam to="sequencer-blam" target="swing">
+  <label>
+    swing
+    <input type="checkbox">
+  </label>
+</switch-blam>
+

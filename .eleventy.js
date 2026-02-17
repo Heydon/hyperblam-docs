@@ -1,4 +1,3 @@
-const YAML = require('yaml');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const jsdom = require('jsdom');

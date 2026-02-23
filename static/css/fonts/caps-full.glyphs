@@ -90,7 +90,13 @@ A,
 "GXĞXĠT",
 "EAÉAÊËÈ",
 "EAÉAÊËÈẼ",
-"EGÉJÊAËÈẼ"
+"EGÉJÊAËÈẼ",
+"",
+"̂",
+"̦",
+"̦ȘȚ",
+"Ș",
+"Ț"
 );
 date = "2026-01-01 11:45:26 +0000";
 familyName = "Heydon Caps";
@@ -1351,6 +1357,17 @@ width = 390;
 unicode = (7868,7869);
 },
 {
+glyphname = Schwa;
+lastChange = "2026-02-23 18:15:56 +0000";
+layers = (
+{
+layerId = m01;
+width = 600;
+}
+);
+unicode = (399,601);
+},
+{
 glyphname = F;
 lastChange = "2026-02-23 17:22:40 +0000";
 layers = (
@@ -1746,6 +1763,17 @@ width = 407;
 }
 );
 unicode = (72,104);
+},
+{
+glyphname = Hbar;
+lastChange = "2026-02-23 18:15:56 +0000";
+layers = (
+{
+layerId = m01;
+width = 600;
+}
+);
+unicode = (294,295);
 },
 {
 glyphname = I;
@@ -3827,6 +3855,27 @@ width = 364;
 unicode = (350,351);
 },
 {
+glyphname = Scommaaccent;
+lastChange = "2026-02-23 18:15:56 +0000";
+layers = (
+{
+layerId = m01;
+shapes = (
+{
+ref = S;
+},
+{
+pos = (42,-4);
+ref = commaaccentcomb;
+scale = (0.731,0.7119);
+}
+);
+width = 364;
+}
+);
+unicode = (536,537);
+},
+{
 glyphname = Germandbls;
 lastChange = "2026-02-23 12:15:56 +0000";
 layers = (
@@ -4016,6 +4065,27 @@ width = 397;
 }
 );
 unicode = (84,116);
+},
+{
+glyphname = Tcommaaccent;
+lastChange = "2026-02-23 18:15:56 +0000";
+layers = (
+{
+layerId = m01;
+shapes = (
+{
+ref = T;
+},
+{
+pos = (65,-4);
+ref = commaaccentcomb;
+scale = (0.7195,0.7506);
+}
+);
+width = 397;
+}
+);
+unicode = (538,539);
 },
 {
 glyphname = U;
@@ -13331,6 +13401,70 @@ width = 400;
 }
 );
 unicode = 771;
+},
+{
+glyphname = commaaccentcomb;
+lastChange = "2026-02-23 18:15:09 +0000";
+layers = (
+{
+layerId = m01;
+shapes = (
+{
+closed = 1;
+nodes = (
+(86,-29,o),
+(67,-12,o),
+(68,7,c),
+(69,10,l),
+(69,10,o),
+(69,11,o),
+(69,11,c),
+(70,13,o),
+(72,16,o),
+(77,24,cs),
+(91,45,o),
+(107,71,o),
+(114,85,cs),
+(118,93,o),
+(119,96,o),
+(120,99,cs),
+(122,103,o),
+(122,102,o),
+(126,108,cs),
+(132,116,o),
+(134,118,o),
+(139,120,cs),
+(149,124,o),
+(164,125,o),
+(173,118,cs),
+(180,114,o),
+(184,104,o),
+(185,100,cs),
+(188,91,o),
+(186,86,o),
+(173,69,c),
+(165,56,l),
+(164,55,o),
+(162,53,o),
+(160,50,cs),
+(154,41,o),
+(146,29,o),
+(137,17,cs),
+(116,-10,o),
+(112,-14,o),
+(109,-15,c)
+);
+},
+{
+closed = 1;
+nodes = (
+);
+}
+);
+width = 300;
+}
+);
+unicode = 806;
 },
 {
 glyphname = cedillacomb;

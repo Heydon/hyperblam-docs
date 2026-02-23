@@ -12,16 +12,32 @@
     <div class="l-cluster">
       <audio-blam>
         <blam-blam target="hidden" from="audio-blam" to=".l-loading" event="blamsamples"></blam-blam>
-        {{ content | safe }}
+        {% block center %}
+        {% endblock %}
       </audio-blam>
     </div>
     <div class="l-loading">loading...</div>
   </main>
+  <dialog>
+    <header>
+      <button class="ghost" aria-label="close">
+        <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path transform-box="fill-box" transform-origin="center" transform="rotate(45)" d="M8 15, 24 15, 24 17, 8 17z"></path><path transform-box="fill-box" transform-origin="center" transform="rotate(-45)" d="M8 15, 24 15, 24 17, 8 17z"></path></svg>
+      </button>
+    </header>
+    <div class="l-flow">
+      {% block dialog %}
+      {% endblock %}
+    </div>
+  </dialog>
 {% endblock %}
 
 {% block footer %}
-<footer class="u-font-smaller">
-  <button id="info" aria-label="about this Hyperblam experiment">?</button>
+<footer>
+  <div class="l-cluster">
+    {% block controls %}
+    {% endblock %}
+    <button id="info" aria-label="about this Hyperblam experiment">?</button>
+  </div>
 </footer>
 {% endblock %}
 

@@ -67,12 +67,6 @@ module.exports = async function(eleventyConfig) {
     return icons[name];
   });
 
-  eleventyConfig.addPairedShortcode('dialog', function(content) { 
-    return `
-      <dialog><header><button class="ghost" aria-label="close">${icons.close}</button></header><div class="l-flow">${content}</div></dialog>
-    `;
-  });
-
   // Put all static assets here
   eleventyConfig.addPassthroughCopy('./static');
 

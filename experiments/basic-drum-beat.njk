@@ -3,7 +3,9 @@ title: Choking a hat
 category: percussion
 ---
 
-<css-blam analyser="analyser-blam"></css-blam>
+{% extends 'layouts/experiment.njk' %}
+
+{% block center %}
 <chain-blam id="bus">
   <analyser-blam></analyser-blam>
 </chain-blam>
@@ -21,8 +23,15 @@ category: percussion
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" target="playPause">
-  <button aria-pressed="false">{% icon 'playPause' %}</button>
+  <button aria-pressed="false" class="round">{% icon 'playPause' %}</button>
 </tap-blam>
+{% endblock %}
+
+{% block dialog %}
+Dialog things!
+{% endblock %}
+
+{% block controls %}
 <dial-blam to="sequencer-blam" target="bpm">
   <label>
     bpm
@@ -36,4 +45,4 @@ category: percussion
     <input type="checkbox">
   </label>
 </switch-blam>
-
+{% endblock %}

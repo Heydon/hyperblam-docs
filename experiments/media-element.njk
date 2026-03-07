@@ -1,0 +1,14 @@
+---
+title: Media element source
+---
+
+{% extends 'layouts/experiment.njk' %}
+
+{% block center %}
+<chain-blam id="bus">
+  <echo-blam beats="0.25"></echo-blam>
+</chain-blam>
+<media-blam out="bus">
+  <audio controls src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/01.mp3"></audio>
+</media-blam>
+{% endblock %}

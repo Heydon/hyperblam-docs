@@ -4,7 +4,7 @@ module.exports = {
   hyperblampath: 'static/hyperblam/src/hyperblam.js',
   categories: {
     Sequencing: 'Elements involved in scheduling sounds and other events, creating phrases, loops, compositions.',
-    Sampling: 'Elements used for creating and playing sounds as buffers.',
+    Sampling: 'Elements used for creating and playing sound sources.',
     Modulating: 'Elements that make gradual changes to parameters over time.',
     Processing: 'Elements involved in affecting the character of sounds. Effects, essentially.',
     Controlling: 'Interface elements for triggering functions, changing props and parameters, handling MIDI, and displaying values.',

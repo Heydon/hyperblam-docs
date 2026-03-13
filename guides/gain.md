@@ -1,5 +1,6 @@
 ---
 title: What Is Gain?
+order: 1
 ---
 
 We need to talk about *gain*. Gain is not just one of the most important, and widely misunderstood, concepts in amplification. It’s also, perhaps, the most foundational and useful type of *node* belonging to the Web Audio API.

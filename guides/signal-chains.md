@@ -1,5 +1,6 @@
 ---
 title: Signal Chains
+order: 2
 ---
 
 Like most projects and libraries based on the Web Audio API, **HYPERBLAM** lets you create *signal chains*. Unlike other projects and libraries, **HYPERBLAM** lets you do this just by writing HTML, using custom elements.
@@ -47,7 +48,7 @@ gainNode.connect(panNode);
 panNode.connect(context.destination);
 ```
 
-That doesn’t really look, or feel, like a pedal board—or a modular synthesizer— to me. This is what it looks like in **HYPERBLAM**:
+That doesn’t really look, or feel, like a pedal board—or a modular synthesizer—to me. This is what it looks like in **HYPERBLAM**:
 
 ```html
 <audio-blam>

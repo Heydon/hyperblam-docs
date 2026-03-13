@@ -1,5 +1,6 @@
 ---
 title: Humanization
+order: 3
 ---
 
 Put some samples in a sequence and it can sound stiff, robotic. At least, it can without some intervention. That’s because computers are too *on the beat;* too *tight.*

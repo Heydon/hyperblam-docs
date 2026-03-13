@@ -1,5 +1,6 @@
 ---
 title: LFOs
+order: 6
 ---
 
 You hear a sound when a wave of oscillating air particles meets your ear. A synthesizer’s oscillator produces such a sound wave electronically. 

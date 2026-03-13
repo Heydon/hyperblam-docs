@@ -75,6 +75,12 @@ module.exports = async function(eleventyConfig) {
     console.log(value);
   });
 
+  eleventyConfig.addCollection('guides', function(collections) {
+    const ordered = collections.getFilteredByTag('guides')
+      .sort((a, b) => (a.data.order || 100) - (b.data.order || 100)); 
+    return ordered;
+  });
+
   // Link the subheadings 
   const markdownLibrary = markdownIt({
     html: true,

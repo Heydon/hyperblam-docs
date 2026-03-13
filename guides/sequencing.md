@@ -1,5 +1,6 @@
 ---
 title: Sequencing
+order: 4
 ---
 
 If you’re familiar with JavaScript (my sympathies), then you’re probably familiar with events and event listeners. Fundamentally, events let a JavaScript application *talk to itself*.

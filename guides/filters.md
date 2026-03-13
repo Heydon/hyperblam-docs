@@ -1,5 +1,6 @@
 ---
 title: Filters
+order: 5
 ---
 
 In simple terms, filters remove or add  frequency information. Given that frequency determines *what you hear*, filters could scarcely be more important in sound design. They can give your mix depth and *separation*, power *wah-wah* effects, and sculpt synthesizer timbre. 

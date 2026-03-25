@@ -1,0 +1,33 @@
+---
+title: A Minor Pentatonic Party
+---
+
+{% set previousPost = collections.bass | getPreviousCollectionItem %}
+{% set nextPost = collections.bass | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<notes-blam choke out="bus" notes="A1 A1 A1 C2 D2 D#2 E2 G1">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
+  </bank-blam>
+  <blam-blam target="detune" value="0~25"></blam-blam>
+</notes-blam>
+<tap-blam id="transport" to="notes-blam" target="play">
+  <button class="u-round">{% icon 'play' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+Dialog things!
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

@@ -13,6 +13,38 @@
   </head>
   <body>
     {% block bodyStart %}
+    <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="noise-big">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+        </filter>
+        <filter id="noise-1">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+        </filter>
+        <filter id="noise-2">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
+        </filter>
+        <filter id="noise-3">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+        </filter>
+        <filter id="distort-1">
+          <feTurbulence baseFrequency="0.002 0.1" numOctaves="10"/>
+          <feDisplacementMap in="SourceGraphic" scale="90"/>
+        </filter>
+        <filter id="distort-2">
+          <feTurbulence baseFrequency="0.003 0.1" numOctaves="20"/>
+          <feDisplacementMap in="SourceGraphic" scale="110"/>
+        </filter>
+        <filter id="distort-3">
+          <feTurbulence baseFrequency="0.001 0.1" numOctaves="15"/>
+          <feDisplacementMap in="SourceGraphic" scale="100"/>
+        </filter>
+      </defs>
+    </svg>
     {% endblock %}
     {% block nav %}
     <header class="l-box">

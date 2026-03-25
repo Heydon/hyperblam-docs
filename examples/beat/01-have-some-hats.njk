@@ -1,12 +1,15 @@
 ---
-title: Choking a hat
+title: Have Some Hats!
 ---
 
-{% extends 'layouts/experiment.njk' %}
+{% set previousPost = collections.beat | getPreviousCollectionItem %}
+{% set nextPost = collections.beat | getNextCollectionItem %}
 
-{% block center %}
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
 <chain-blam id="bus">
-  <analyser-blam></analyser-blam>
+  <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <pads-blam id="hat" choke out="bus">
   <bank-blam>
@@ -14,15 +17,16 @@ title: Choking a hat
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
+  <blam-blam target="detune" value="0~25"></blam-blam>
 </pads-blam>
-<sequencer-blam bpm="90">
+<sequencer-blam bpm="90" id="transport">
   <track-blam to="#hat">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
-    <bar-blam s="1 2 0 0 ? 0 ? 0"></bar-blam>
+    <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" target="playPause">
-  <button aria-pressed="false" class="round">{% icon 'playPause' %}</button>
+  <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
 
@@ -38,7 +42,7 @@ Dialog things!
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<switch-blam to="sequencer-blam" target="swing">
+<switch-blam to="sequencer-blam" target="swing" value="0.2">
   <label>
     swing
     <input type="checkbox">

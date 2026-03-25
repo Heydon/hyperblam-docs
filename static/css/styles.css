@@ -41,6 +41,10 @@ main {
   padding: var(--s-m) var(--s-s);
 }
 
+audio {
+  filter: grayscale(1) contrast(100);
+}
+
 main :where(ol, ul):not([class]) {
   padding-inline-start: var(--s-s);
 }
@@ -148,6 +152,11 @@ nav {
   margin-block-end: var(--s-m);
 }
 
+footer nav {
+  margin-block-start: var(--s-s);
+  margin-block-end: 0;
+}
+
 nav li:nth-child(odd), nav li:nth-child(even):hover {
   transform: rotate(1.5deg);
 }
@@ -171,8 +180,7 @@ pre {
 
 footer {
   margin-block-start: auto;
-  padding: var(--s-l);
-  padding-block-start: var(--s-xl);
+  padding: var(--s-m);
   text-align: center;
 }
 
@@ -268,6 +276,10 @@ hr {
   border: 0;
 }
 
+.l-split {
+
+}
+
 @keyframes outline {
   0% {
     outline: 0 solid;
@@ -304,9 +316,10 @@ hr {
 .l-frame {
   position: relative;
   flex-grow: 1;
+  container-type: size;
 }
 
-.l-frame > * {
+.l-frame__framed {
   position: absolute;
   inset: 0;
   inline-size: 100%;
@@ -339,7 +352,6 @@ hr {
   padding: var(--s-s);
   color: var(--color-back);
   background-color: var(--color-fore);
-  margin-block-end: var(--s-m);
 }
 
 .l-index {
@@ -361,23 +373,44 @@ hr {
   margin-block-start: var(--s-m);
 }
 
-/* components */
+.l-split {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
+/* components */
 .c-logo svg {
   max-inline-size: 12rem;
-  margin-block-end: var(--s-s);
+  margin-block: var(--s-s);
 }
 
 .c-logo-small svg {
   max-inline-size: 7rem;
 }
 
-.c-logo:not(.c-logo-small):where(:hover, :focus) svg {
+.c-logo:where(:hover, :focus) svg {
   animation: squiggle 0.25s linear infinite;
 }
 
 .c-logo:where(:hover, :focus) .transmit {
   animation: flash 0.6s steps(1) infinite;
+}
+
+.c-ff-rw {
+  font-family: var(--font-special);
+  font-size: 2rem;
+}
+
+.c-ff-rw a:not(.c-logo) {
+  margin: var(--s-s);
+}
+
+.c-ff-rw a:not(.c-logo):hover {
+  text-decoration: none;
+  margin: var(--s-s);
+  transform: scale(1.2);
 }
 
 .transmit.two { animation-delay: 0.2s }
@@ -388,6 +421,10 @@ hr {
 
 .u-font-special {
   font-family: var(--font-special);
+}
+
+.u-font-larger {
+  font-size: 2rem;
 }
 
 .u-font-smaller {
@@ -455,12 +492,12 @@ button {
   letter-spacing: 1px;
 }
 
-button.round {
+button.u-round {
   padding: 0.666em;
   border-radius: 50%;
 }
 
-button.ghost {
+button.u-ghost {
   padding: 0;
   border: 0;
 }
@@ -657,3 +694,24 @@ dialog > div {
 ::view-transition-new(root) {
   animation: 0.25s ease-in both distort-out;
 }
+
+/* css-blam testing */
+
+props-blam > div {
+  display: flex;
+  align-items: center;
+  flex-direction: row !important;
+  animation: squiggle 0.25s linear infinite;
+  gap: 0.125rem;
+}
+
+props-blam > div > div {
+  inline-size: calc(100cqw / 32);
+  background-color: var(--color-fore);
+  block-size: calc(var(--snareVis-freq) * 100cqh);
+  transition: block-size var(--snareVis-interval) linear;
+}
+
+
+
+

@@ -1,5 +1,5 @@
 ---
-title: Lurching Lengths
+title: Lurching lengths
 ---
 
 {% set previousPost = collections.bass | getPreviousCollectionItem %}
@@ -9,9 +9,9 @@ title: Lurching Lengths
 
 {% block audio %}
 <chain-blam id="bus">
-  <!--<reverb-blam wet="0.05" cutoff="200">
-    <sample-blam src="{{site.basedir}}/static/sounds/IRs/plate.mp3"></sample-blam>
-  </reverb-blam>-->
+  <reverb-blam wet="0.05" cutoff="200">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
+  </reverb-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1">
@@ -24,7 +24,7 @@ title: Lurching Lengths
   <blam-blam target="length" value="0.25|0.5|0.5|0.125"></blam-blam>
   <chain-blam out="bus">
     <filter-blam freq="8000" q="10" bypass>
-      <envelope-blam target="freq" curve="300 0, 11000 0.25"></envelope-blam>
+      <envelope-blam target="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
   <envelope-blam id="bends" target="detune" curve="-200 0, 0 0.125" beats chance="0"></envelope-blam>

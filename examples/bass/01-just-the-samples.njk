@@ -11,14 +11,13 @@ title: Just the samples
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam choke out="bus">
+<pads-blam choke robin out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3"></sample-blam>
   </bank-blam>
-  <blam-blam target="detune" value="0~25"></blam-blam>
 </pads-blam>
 <tap-blam id="transport" to="pads-blam" target="play">
   <button class="u-round">{% icon 'play' %}</button>

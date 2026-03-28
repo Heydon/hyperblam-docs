@@ -1,0 +1,9 @@
+{
+  "tags": "beat",
+  "order": 1,
+  "title": "1. Building a beat",
+  "summary": "Creating a probabilistic beat from the ground up. Choking hats, using compositional features like overrides, and appreciating the virtue of _swing_.",
+  "visualiser": {
+    "count": 12
+  }
+}

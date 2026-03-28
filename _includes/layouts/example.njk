@@ -3,7 +3,7 @@
 <header class="l-box">
   <a href="#main" class="l-skip">skip to content</a>
   <nav>
-    <a class="c-logo c-logo-small" href="{{site.basedir}}/">
+    <a class="c-logo c-logo-small" href="{{site.basedir}}/examples/">
       {{ logo | safe }}
     </a>
   </nav>
@@ -62,6 +62,8 @@
     {% endif %}
     {% if nextPost %}
       <a class="u-font-special" href="{{ nextPost.url }}" aria-label="next example">next →</a>
+    {% else %}
+      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>
     {% endif %}
   </nav>
 </footer>

@@ -1,7 +1,7 @@
 ---
 title: Examples
 key: examples
-layout: 'layouts/index.njk'
+layout: 'layouts/examples.njk'
 permalink: '/examples/index.html'
 eleventyExcludeFromCollections: true
 ---

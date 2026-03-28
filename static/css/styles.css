@@ -131,9 +131,12 @@ strong {
 
 table {
   border-collapse: collapse;
-  table-layout: fixed;
-  display: block;
+  inline-size: 100%;
   overflow-x: auto;
+}
+
+[scope="row"] {
+  text-align: center;
 }
 
 th, td {

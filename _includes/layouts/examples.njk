@@ -1,0 +1,24 @@
+{% extends 'layouts/index.njk' %}
+
+{% block main %}
+  <main class="l-column l-flow" tabindex="-1">
+    <h1>{{ title }}</h1>
+    {{ content | safe }}
+    {% block iteration %}
+      {% for group in site.exampleData %}
+        <h2>{{ group.title }}</h2>
+        {{ group.summary | md | safe }}
+        <table>
+          {% for post in collections[group.tags] %}
+            <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>
+                <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% endfor %}
+    {% endblock %}
+  </main>
+{% endblock %}

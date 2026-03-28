@@ -1,3 +1,12 @@
+const jetpack = require('fs-jetpack');
+
+const exampleData = [];
+const dataFiles = jetpack.find('./examples/', { matching: ['*.json'] });
+dataFiles.forEach(file => {
+  exampleData.push(jetpack.read(file, 'json'));
+});
+exampleData.sort((a, b) => a.order - b.order);
+
 module.exports = {
   title: 'HYPERBLAM',
   basedir: process.env.CONTEXT === 'pages' ? 'https://heydon.github.io/hyperblam-docs' : '',
@@ -10,5 +19,6 @@ module.exports = {
     Controlling: 'Elements for triggering functions, changing props and parameters, and handling MIDI.',
     Automating: 'Elements for changing and randomizing props and parameters automatically (according to events).',
     Visualizing: 'Elements involved in rendering sound and state data in some way.'
-  }
+  },
+  exampleData
 }

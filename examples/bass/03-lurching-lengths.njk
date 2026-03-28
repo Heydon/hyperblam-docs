@@ -9,12 +9,9 @@ title: Lurching lengths
 
 {% block audio %}
 <chain-blam id="bus">
-  <reverb-blam wet="0.05" cutoff="200">
-    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
-  </reverb-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1">
+<notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -29,19 +26,9 @@ title: Lurching lengths
   </chain-blam>
   <envelope-blam id="bends" target="detune" curve="-200 0, 0 0.125" beats chance="0"></envelope-blam>
 </notes-blam>
-<pads-blam id="hat" choke out="bus" detune="1000">
-  <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
-  </bank-blam>
-</pads-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="notes-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
-  </track-blam>
-  <track-blam to="#hat" >
-    <bar-blam s="1 0 0 0 2 0 0 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" target="playPause">

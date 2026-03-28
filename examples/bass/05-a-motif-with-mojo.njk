@@ -1,5 +1,5 @@
 ---
-title: Give the drummer some
+title: A Motif With Mojo
 visualiser:
   count: 16
 ---
@@ -56,9 +56,12 @@ visualiser:
   </bank-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport">
-  <track-blam id="bassTrack" to="notes-blam" chance="0.75">
-    <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
-    <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
+  <track-blam id="bassTrack" to="notes-blam" chance="0.7">
+    <repeat-blam x="3">
+      <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
+      <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 G1 0 G1 G2 ? ? A2" chance="1"></bar-blam>
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.5" override="snareSoftTrack">
     <bar-blam s="1 0 0 3 0 2 1 0"></bar-blam>
@@ -67,11 +70,13 @@ visualiser:
   <track-blam id="hatTrack" to="#hat" chance="1">
     <bar-blam s="1 0 2 0 1 ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 1 0 ?"></bar-blam>
-    <blam-blam target="solo" chance="0.1" revert></blam-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
-    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-    <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+      <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 ? 0 ? ? ? ? ?" chance="1"></bar-blam>
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.6">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?"></bar-blam>

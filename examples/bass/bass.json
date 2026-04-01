@@ -1,7 +1,7 @@
 {
   "tags": "bass",
-  "order": 2,
-  "title": "2. Programming a bass",
+  "order": 3,
+  "title": "Programming a bass",
   "summary": "Taking just 4 samples and creating an improvisation with multiple notes, rests, bends, and a filter effect.",
   "visualiser": {
     "count": 8

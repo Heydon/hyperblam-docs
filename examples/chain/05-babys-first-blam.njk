@@ -1,0 +1,43 @@
+---
+title: Baby’s first blam
+elements:
+  - Media 
+  - Chain 
+  - Gain 
+  - LFO
+  - Blam
+---
+
+{% set previousPost = collections.chain | getPreviousCollectionItem %}
+{% set nextPost = collections.chain | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block visual %}
+{% endblock %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<media-blam id="transport">
+  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <p style="margin-block-start: var(--s-s)">
+    <small>(try playing the audio multiple times...)</small>
+  </p>
+  <chain-blam out="bus">
+    <gain-blam gain="0.5">
+      <lfo-blam target="gain" gain="0.5" beats="0.001">
+        <blam-blam target="beats" value="0.001~0.005"></blam-blam>
+      </lfo-blam>
+    </gain-blam>
+  </chain-blam>
+</media-blam>
+{% endblock %}
+
+{% block dialog %}
+Dialog things!
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

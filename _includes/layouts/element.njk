@@ -75,5 +75,16 @@
         {% endfor %}
       </table>
     {% endif %}
+    <h2>Examples</h2>
+    <p>Examples that use the <strong>{{element.name}}</strong> element:</p>
+    <ul>
+      {% for post in collections['examples'] %}
+        {% if element.name in post.data.elements %}
+        <li>
+          <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
   </main>
 {% endblock %}

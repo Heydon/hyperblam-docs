@@ -1,0 +1,9 @@
+{
+  "tags": "chain",
+  "order": 1,
+  "title": "Making chains",
+  "summary": "Working with signal chains and “signal-conditioning components” (effects and modulators and stuff).",
+  "visualiser": {
+    "count": 12
+  }
+}

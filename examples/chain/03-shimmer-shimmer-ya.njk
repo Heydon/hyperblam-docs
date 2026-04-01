@@ -1,0 +1,45 @@
+---
+title: Shimmer shimmer ya
+elements:
+  - Media 
+  - Chain 
+  - Gain 
+  - Pan
+  - LFO
+---
+
+{% set previousPost = collections.chain | getPreviousCollectionItem %}
+{% set nextPost = collections.chain | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block visual %}
+{% endblock %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<media-blam id="transport">
+  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <chain-blam out="bus">
+    <gain-blam gain="0.5">
+      <lfo-blam target="gain" gain="0.25" beats="0.25"></lfo-blam>
+    </gain-blam>
+    <pan-blam pan="0"></pan-blam>
+  </chain-blam>
+</media-blam>
+{% endblock %}
+
+{% block dialog %}
+Dialog things!
+{% endblock %}
+
+{% block controls %}
+<dial-blam to="lfo-blam" target="gain">
+  <label>
+    LFO gain
+    <input type="range" min="0" max="0.5" step="any">
+  </label>
+</dial-blam>
+{% endblock %}

@@ -1,5 +1,14 @@
 ---
-title: Add a kick...
+title: I wear many hats
+elements: 
+  - Pads 
+  - Bank 
+  - Sample 
+  - Blam 
+  - Sequencer 
+  - Track 
+  - Bar 
+  - Tap
 ---
 
 {% set previousPost = collections.beat | getPreviousCollectionItem %}
@@ -17,22 +26,12 @@ title: Add a kick...
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
-  <blam-blam target="detune" value="0~25"></blam-blam>
-</pads-blam>
-<pads-blam id="kick" out="bus">
-  <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
-  </bank-blam>
+  <blam-blam target="detune" value="0~33"></blam-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="#hat">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
-  </track-blam>
-  <track-blam to="#kick" chance="0.7">
-    <bar-blam s="1 0 2 0 3"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" target="playPause">

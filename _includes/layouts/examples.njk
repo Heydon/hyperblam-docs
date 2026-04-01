@@ -4,6 +4,7 @@
   <main class="l-column l-flow" tabindex="-1">
     <h1>{{ title }}</h1>
     {{ content | safe }}
+    <hr>
     {% block iteration %}
       {% for group in site.exampleData %}
         <h2>{{ group.title }}</h2>

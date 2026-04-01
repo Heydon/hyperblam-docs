@@ -1,0 +1,40 @@
+---
+title: Basic gain control
+elements:
+  - Media 
+  - Chain 
+  - Gain 
+---
+
+{% set previousPost = collections.chain | getPreviousCollectionItem %}
+{% set nextPost = collections.chain | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block visual %}
+{% endblock %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<media-blam id="transport">
+  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <chain-blam out="bus">
+    <gain-blam gain="1"></gain-blam>
+  </chain-blam>
+</media-blam>
+{% endblock %}
+
+{% block dialog %}
+Dialog things!
+{% endblock %}
+
+{% block controls %}
+<dial-blam to="gain-blam" target="gain">
+  <label>
+    gain
+    <input type="range" min="0" max="1" step="any">
+  </label>
+</dial-blam>
+{% endblock %}

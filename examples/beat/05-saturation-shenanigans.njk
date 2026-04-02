@@ -19,9 +19,8 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <saturator-blam></saturator-blam>
-  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
+  <saturator-blam></saturator-blam>
 </chain-blam>
 <pads-blam id="hat" choke out="bus">
   <bank-blam>
@@ -78,12 +77,6 @@ Dialog things!
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="saturator-blam" target="mode" value="2">
-  <label>
-    mode
-    <input type="checkbox">
-  </label>
-</switch-blam>
 <dial-blam to="saturator-blam" target="amount">
   <label>
     amount

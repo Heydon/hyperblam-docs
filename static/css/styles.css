@@ -546,6 +546,36 @@ button:active {
   justify-content: flex-end;
 }
 
+fieldset:has([type="radio"]) {
+  display: flex;
+  border: 0;
+}
+
+[type="radio"] {
+  display: none;
+}
+
+label:has([type="radio"]) {
+  padding: calc(var(--s-xs) / 2) var(--s-xs);
+  border: 2px solid var(--color-fore);
+  background-color: var(--color-back);
+  cursor: pointer;
+}
+
+label:has([type="radio"]) + label {
+  border-inline-start: 0;
+}
+
+label:has([type="radio"]:checked) {
+  background-color: var(--color-fore);
+  color: var(--color-back);
+}
+
+.u-legend {
+  display: inline;
+  padding: 0 var(--s-xs);
+}
+
 /* dialogs */
 
 dialog {

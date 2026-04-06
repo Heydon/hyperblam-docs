@@ -75,7 +75,7 @@ elements:
       <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
       <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
     </repeat-blam>
-    <bar-blam s="0 G1 0 G1 G2 ? ? A2" chance="1"></bar-blam>
+    <bar-blam s="0 G1 0 ? ? ? ? A2" chance="1"></bar-blam>
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.5" override="snareSoftTrack">
     <bar-blam s="1 0 0 3 0 2 1 0"></bar-blam>
@@ -110,18 +110,6 @@ Dialog things!
 <switch-blam to="sequencer-blam" target="swing" value="0.2">
   <label>
     swing
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#bassTrack" target="solo">
-  <label>
-    bass solo
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#hatTrack" target="solo">
-  <label>
-    hat solo
     <input type="checkbox">
   </label>
 </switch-blam>

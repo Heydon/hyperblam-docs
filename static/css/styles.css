@@ -279,10 +279,6 @@ hr {
   border: 0;
 }
 
-.l-split {
-
-}
-
 @keyframes outline {
   0% {
     outline: 0 solid;
@@ -399,21 +395,6 @@ hr {
 
 .c-logo:where(:hover, :focus) .transmit {
   animation: flash 0.6s steps(1) infinite;
-}
-
-.c-ff-rw {
-  font-family: var(--font-special);
-  font-size: 2rem;
-}
-
-.c-ff-rw a:not(.c-logo) {
-  margin: var(--s-s);
-}
-
-.c-ff-rw a:not(.c-logo):hover {
-  text-decoration: none;
-  margin: var(--s-s);
-  transform: scale(1.2);
 }
 
 .transmit.two { animation-delay: 0.2s }

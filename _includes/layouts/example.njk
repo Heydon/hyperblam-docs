@@ -34,7 +34,7 @@
         {% endblock %}
       </div>
     </audio-blam>
-    <div class="l-frame__framed l-loading">loading...</div>
+    <div role="progressbar" class="l-frame__framed l-loading">loading...</div>
   </main>
   <dialog>
     <header>
@@ -59,6 +59,8 @@
   <nav class="l-cluster" aria-label="more examples">
     {% if previousPost %}
       <a class="u-font-special" href="{{ previousPost.url }}" aria-label="previous example">← prev</a>
+    {% else %}
+      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>      
     {% endif %}
     {% if nextPost %}
       <a class="u-font-special" href="{{ nextPost.url }}" aria-label="next example">next →</a>

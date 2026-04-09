@@ -30,7 +30,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
-  <blam-blam target="detune" value="0~25"></blam-blam>
+  <blam-blam prop="detune" value="0~25"></blam-blam>
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
@@ -69,7 +69,7 @@ elements:
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?" chance="0.5"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" target="playPause">
+<tap-blam to="sequencer-blam" prop="playPause">
   <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
@@ -79,7 +79,7 @@ Dialog things!
 {% endblock %}
 
 {% block controls %}
-<radios-blam to="saturator-blam" target="mode">
+<radios-blam to="saturator-blam" prop="mode">
   <fieldset aria-labelledby="modeLabel">
     <span class="u-legend" id="modeLabel">mode</span>
     <label>
@@ -100,13 +100,13 @@ Dialog things!
     </label>
   </fieldset>
 </radios-blam>
-<dial-blam to="saturator-blam" target="dry">
+<dial-blam to="saturator-blam" prop="dry">
   <label>
     dry
     <input type="range" min="0" max="1" step="any">
   </label>
 </dial-blam>
-<dial-blam to="saturator-blam" target="wet">
+<dial-blam to="saturator-blam" prop="wet">
   <label>
     wet
     <input type="range" min="0" max="1" step="any">

@@ -29,12 +29,12 @@ Modulation has many purposes, but perhaps the most iconic are tremolo (gain modu
 
 ## Tremolo
 
-Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `target` parameter.
+Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `param` prop.
 
 ```html
 <gain-blam gain="1">
   <lfo-blam 
-    target="gain"
+    param="gain"
     beats="0.25"
     gain="1">
   </lfo-blam>		 
@@ -52,7 +52,7 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 ```html
 <gain-blam gain="0.5">
   <lfo-blam 
-    target="gain"
+    prop="gain"
     beats="0.25"
     gain="0.5">
   </lfo-blam>		 
@@ -67,7 +67,7 @@ What if we didn’t want our gain value to pass smoothly through zero? What if w
 
 ```html
 <lfo-blam 
-  target="gain"
+  prop="gain"
   beats="0.25"
   gain="0.5"
   wave="square">
@@ -84,12 +84,12 @@ No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardw
 
 ```html
 <lfo-blam 
-  target="gain"
+  prop="gain"
   beats="0.25"
   gain="0.5"
   wave="square">
   <lfo-blam
-    target="gain"
+    prop="gain"
     gain="0.25"
     beats="3">
   </lfo-blam>
@@ -126,7 +126,7 @@ To emulate *downsampling*, we need to speed up the oscillator considerably. But 
 
 ```html
 <lfo-blam 
-  target="gain"
+  prop="gain"
   beats="0.001"
   gain="0.5"
   wave="square">
@@ -151,12 +151,12 @@ Applying a secondary LFO, as we did before, but to control the principle LFO’s
 
 ```html
 <lfo-blam 
-  target="gain"
+  prop="gain"
   beats="0.001"
   gain="0.5"
   wave="square">
   <lfo-blam
-    target="beats"
+    prop="beats"
     beats="3"
     gain="0.01"> 
   </lfo-blam>	

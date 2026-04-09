@@ -31,20 +31,20 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
   </bank-blam>
-  <blam-blam target="length" value="0.25|0.5|0.5|0.125"></blam-blam>
+  <blam-blam prop="length" value="0.25|0.5|0.5|0.125"></blam-blam>
   <chain-blam out="bus">
     <filter-blam freq="8000" q="10" bypass>
-      <envelope-blam target="freq" curve="200 0, 11000 0.25"></envelope-blam>
+      <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="bends" target="detune" curve="-200 0, 0 0.125" beats chance="0"></envelope-blam>
+  <envelope-blam id="bends" prop="detune" curve="-200 0, 0 0.125" beats chance="0"></envelope-blam>
 </notes-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="notes-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam id="transport" to="sequencer-blam" target="playPause">
+<tap-blam id="transport" to="sequencer-blam" prop="playPause">
   <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
@@ -54,19 +54,19 @@ Dialog things!
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="sequencer-blam" target="swing" value="0.2">
+<switch-blam to="sequencer-blam" prop="swing" value="0.2">
   <label>
     swing
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to="#bends" target="chance" value="0.333">
+<switch-blam to="#bends" prop="chance" value="0.333">
   <label>
     bends
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to="filter-blam" target="bypass" reverse>
+<switch-blam to="filter-blam" prop="bypass" reverse>
   <label>
     filter
     <input type="checkbox">

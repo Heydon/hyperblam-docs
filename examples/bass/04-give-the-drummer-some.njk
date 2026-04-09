@@ -34,13 +34,13 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
   </bank-blam>
-  <blam-blam target="length" value="0.25|0.5|0.5|0.125|1"></blam-blam>
+  <blam-blam prop="length" value="0.25|0.5|0.5|0.125|1"></blam-blam>
   <chain-blam out="bus">
     <filter-blam freq="8000" q="10">
-      <envelope-blam target="freq" curve="200 0, 11000 0.25"></envelope-blam>
+      <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="bends" target="detune" curve="-100 0, 0 0.125" beats chance="0.333"></envelope-blam>
+  <envelope-blam id="bends" prop="detune" curve="-100 0, 0 0.125" beats chance="0.333"></envelope-blam>
 </notes-blam>
 <pads-blam id="kick" out="bus" detune="300">
   <bank-blam>
@@ -81,7 +81,7 @@ elements:
   <track-blam id="hatTrack" to="#hat" chance="1">
     <bar-blam s="1 0 2 0 1 ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 1 0 ?"></bar-blam>
-    <blam-blam target="solo" chance="0.1" revert></blam-blam>
+    <blam-blam prop="solo" chance="0.1" revert></blam-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
@@ -92,7 +92,7 @@ elements:
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam id="transport" to="sequencer-blam" target="playPause">
+<tap-blam id="transport" to="sequencer-blam" prop="playPause">
   <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
@@ -102,19 +102,19 @@ Dialog things!
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="sequencer-blam" target="swing" value="0.2">
+<switch-blam to="sequencer-blam" prop="swing" value="0.2">
   <label>
     swing
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to="#bassTrack" target="solo">
+<switch-blam to="#bassTrack" prop="solo">
   <label>
     bass solo
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to="#hatTrack" target="solo">
+<switch-blam to="#hatTrack" prop="solo">
   <label>
     hat solo
     <input type="checkbox">

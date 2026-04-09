@@ -27,8 +27,8 @@ elements:
   </p>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
-      <lfo-blam target="gain" gain="0.5" beats="0.001">
-        <blam-blam target="beats" value="0.001~0.009"></blam-blam>
+      <lfo-blam prop="gain" gain="0.5" beats="0.001">
+        <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
       </lfo-blam>
     </gain-blam>
     <reverb-blam wet="0.5">
@@ -44,7 +44,7 @@ Dialog things!
 {% endblock %}
 
 {% block controls %}
-<dial-blam to="reverb-blam" target="wet">
+<dial-blam to="reverb-blam" prop="wet">
   <label>
     reverb
     <input type="range" min="0" max="1" step="any">

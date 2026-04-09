@@ -23,12 +23,12 @@ elements:
   <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
-      <lfo-blam target="gain" gain="0.5" beats="0.25">
-        <lfo-blam target="beats" gain="0.25" beats="3"></lfo-blam>
+      <lfo-blam prop="gain" gain="0.5" beats="0.25">
+        <lfo-blam prop="beats" gain="0.25" beats="3"></lfo-blam>
       </lfo-blam>
     </gain-blam>
     <pan-blam pan="0">
-      <lfo-blam target="pan" gain="1" beats="5"></lfo-blam>
+      <lfo-blam prop="pan" gain="1" beats="5"></lfo-blam>
     </pan-blam>
   </chain-blam>
 </media-blam>

@@ -45,14 +45,16 @@ The iconic *wah-wah* effect prized by guitarists like Jimi Hendrix uses a *bandp
 
 It sounds like a baby going “wah” because it’s a kind of _spectral glide_, shifting the perceived vowel sound.
 
-You can emulate this effect in **HYPERBLAM** by applying an LFO to the filter. I have a whole [guide on LFOs]({{site.basedir}}/guides/LFOs/). In this case, the LFO emulates Jimi Hendrix’s foot, rocking back and forth to change the frequency band’s position over time.
+You can emulate this effect in **HYPERBLAM** by applying an LFO to the filter. There’s a whole [guide on LFOs]({{site.basedir}}/guides/LFOs/). In this case, the LFO emulates Jimi Hendrix’s foot, rocking back and forth to change the frequency band’s position over time.
 
 ```html
 <filter-blam
   freq="3000"
-  q="400">
+  q="400"
+  type="bandpass"
+>
     <lfo-blam
-      param="freq"
+      prop="freq"
       gain="2000"
       beats="1">
     </lfo-blam>

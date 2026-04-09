@@ -29,12 +29,12 @@ Modulation has many purposes, but perhaps the most iconic are tremolo (gain modu
 
 ## Tremolo
 
-Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `param` prop.
+Let’s look at tremolo, since that’s probably the simplest application. In **HYPERBLAM**, you might have a signal chain that includes a `<gain-blam>` element. I can set up an LFO by simply inserting the element as a child and assigning the correct `prop`.
 
 ```html
 <gain-blam gain="1">
   <lfo-blam 
-    param="gain"
+    prop="gain"
     beats="0.25"
     gain="1">
   </lfo-blam>		 
@@ -47,7 +47,7 @@ The important part is the LFO’s own `gain`. This sets how much the `<gain-blam
 
 With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , the subject `gain` will modulate between `0` and `2`. That’s 1 - 1 and 1 + 1. 
 
-`2` is a lot of gain, since it’s twice whatever the input gain is. Instead, you might want to set the initial value at `0.5` and the LFO’s modulation gain at `0.5` too. That gives us 0.5 - 0.5 (0) and 0.5 + 0.5 (1). We have achieved [*unity gain](*https://pedalplayers.com/what-is-unity-gain/*)*: the input gain matches the (maximum) output gain.
+`2` is a lot of gain, since it’s twice whatever the input gain is. Instead, you might want to set the initial value at `0.5` and the LFO’s modulation gain at `0.5` too. That gives us 0.5 - 0.5 (0) and 0.5 + 0.5 (1). We have achieved [unity gain](https://pedalplayers.com/what-is-unity-gain/): the input gain matches the (maximum) output gain.
 
 ```html
 <gain-blam gain="0.5">
@@ -63,14 +63,14 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 
 ## Changing the waveform
 
-What if we didn’t want our gain value to pass smoothly through zero? What if we wanted to alternate directly between the high and low values? This is what square waveforms are for. You can set the waveform to `square` using the `wave` prop’.
+What if we didn’t want our gain value to pass smoothly through zero? What if we wanted to alternate directly between the high and low values? This is what square waveforms are for. You can set the waveform to `square` using the `type` prop’.
 
 ```html
 <lfo-blam 
   prop="gain"
   beats="0.25"
   gain="0.5"
-  wave="square">
+  type="square">
 </lfo-blam>	
 ```
 
@@ -80,14 +80,14 @@ Given the `x` axis represents the time domain, those vertical lines mean an inst
 
 ## Low Frequency Oscillator Oscillators
 
-No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In this case, we may want to gradually temper the first LFO’s `gain` over time. I’ll use the default sine `wave` for that nested LFO.
+No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In this case, we may want to gradually temper the first LFO’s `gain` over time. I’ll use the default sine `type` for that nested LFO.
 
 ```html
 <lfo-blam 
   prop="gain"
   beats="0.25"
   gain="0.5"
-  wave="square">
+  type="square">
   <lfo-blam
     prop="gain"
     gain="0.25"
@@ -129,7 +129,7 @@ To emulate *downsampling*, we need to speed up the oscillator considerably. But 
   prop="gain"
   beats="0.001"
   gain="0.5"
-  wave="square">
+  type="square">
 </lfo-blam>	
 ```
 
@@ -147,14 +147,14 @@ It makes me think of the propellor on an airplane. At a slow rate of rotation, i
 </figure>
 
 
-Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us _sweep_ through all sorts of weird, robotic, metallic, fuzzy timbres.
+Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us _sweep_ through all sorts of weird, robotic, metallic, fizzy timbres.
 
 ```html
 <lfo-blam 
   prop="gain"
   beats="0.001"
   gain="0.5"
-  wave="square">
+  type="square">
   <lfo-blam
     prop="beats"
     beats="3"

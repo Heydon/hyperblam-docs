@@ -13,16 +13,13 @@ elements:
 
 {% extends 'layouts/example.njk' %}
 
-{% block visual %}
-{% endblock %}
-
 {% block audio %}
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
-  <p style="margin-block-start: var(--s-s)">
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <p class="u-blend-difference" style="margin-block-start: var(--s-s)">
     <small>(try playing the audio multiple times...)</small>
   </p>
   <chain-blam out="bus">

@@ -128,8 +128,7 @@ To emulate *downsampling*, we need to speed up the oscillator considerably. But 
 <lfo-blam 
   prop="gain"
   beats="0.001"
-  gain="0.5"
-  type="square">
+  gain="0.5">
 </lfo-blam>	
 ```
 

@@ -1,0 +1,148 @@
+---
+title: A light lo-fi listen with LFOs
+visualiser:
+  count: 12
+elements: 
+  - Pads
+  - Bank 
+  - Sample 
+  - Blam
+  - Chain 
+  - Filter 
+  - Envelope
+  - Tap
+  - Sequencer 
+  - Switch
+---
+
+{% set previousPost = collections.chain | getPreviousCollectionItem %}
+{% set nextPost = collections.chain | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <filter-blam type="highpass" id="highpass" freq="50" q="10"></filter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<pads-blam id="piano" gain="0.7" choke>
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <reverb-blam wet="0.125">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
+    </reverb-blam>
+    <filter-blam freq="1000">
+      <blam-blam prop="freq" value="8000|8000|1000|2000" from="sequencer-blam" chance="0.75" ramp="0.5"></blam-blam>
+    </filter-blam>
+  </chain-blam>
+  <lfo-blam prop="detune" gain="75" beats="1">
+    <blam-blam prop="beats" value="1.5|1.5|0.25|0.125" from="sequencer-blam" chance="0.5" revert></blam-blam>
+  </lfo-blam>
+</pads-blam>
+<pads-blam id="kick" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/kick-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/kick-02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/kick-03.mp3"></sample-blam>
+  </bank-blam>
+</pads-blam>
+<pads-blam id="snare" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
+  </bank-blam>
+  <blam-blam prop="detune" value="-400~400"></blam-blam>
+</pads-blam>
+<pads-blam id="tom">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/tom.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <pan-blam pan="0">
+      <blam-blam prop="pan" value="-1~1"></blam-blam>
+    </pan-blam>
+    <gain-blam gain="0.5">
+      <lfo-blam prop="gain" gain="0.5" beats="0.001">
+        <blam-blam prop="beats" value="0.0001~0.009"></blam-blam>
+      </lfo-blam>
+    </gain-blam>
+  </chain-blam>
+  <blam-blam prop="length" value="1|0.25|0.125"></blam-blam>
+</pads-blam>
+<pads-blam id="pluck" gain="1.5">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-03.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-04.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-05.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-06.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-07.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-08.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <filter-blam type="highpass" freq="500">
+      <blam-blam prop="freq" value="100~1500"></blam-blam>
+    </filter-blam>
+    <echo-blam beats="0.666"></echo-blam>
+    <reverb-blam wet="0.125">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</pads-blam>
+<sequencer-blam bpm="90" id="transport" swing>
+  <track-blam id="pianoTrack" to="#piano">
+    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
+    <repeat-blam x="6">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 0 0 1 1 0 0 0" chance="0.3"></bar-blam>
+  </track-blam>
+  <track-blam to="#kick" id="kickTrack" override="tomTrack">
+    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 2 0"></bar-blam>
+    <bar-blam s="3 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam chance="0.3" s="3 2 3 0 3 2 0 3"></bar-blam>
+  </track-blam>
+  <track-blam to="#snare" override="tomTrack kickTrack">
+    <bar-blam s="0 0 0 0 1 0 0 0"></bar-blam>
+    <bar-blam s="0 0 1 2 1 0 0 2" chance="0.6"></bar-blam>
+  </track-blam>
+  <track-blam to="#tom" id="tomTrack" chance="0.75">
+    <bar-blam s="0 0 1 0 1 0 0 0 0 1"></bar-blam>
+  </track-blam>
+  <track-blam to="#pluck" chance="0.7">
+    <repeat-blam x="4">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="? 0 0 ? ? 0 0 0"></bar-blam>
+    <bar-blam s="? 0 0 ? 0 0 ? ?"></bar-blam>
+    <bar-blam s="? ? 0 0 ? 0 0 ?"></bar-blam>
+    <bar-blam s="? ? ? ? 0 0 0 0"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam id="transport" to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+Dialog things!
+{% endblock %}
+
+{% block controls %}
+<switch-blam to="#pianoTrack" prop="solo">
+  <label>
+    solo keys
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<dial-blam to="#highpass" prop="freq">
+  <label>
+    cutoff
+    <input type="range" min="50" max="2000" step="10">
+  </label>
+</dial-blam>
+{% endblock %}

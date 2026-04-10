@@ -38,7 +38,7 @@ body {
 }
 
 main {
-  padding: var(--s-m) var(--s-s);
+  margin: var(--s-m) var(--s-s);
 }
 
 audio {
@@ -402,6 +402,10 @@ hr {
 .transmit.three { animation-delay: 0.4s }
 
 /* basic utilities */
+
+.u-blend-difference {
+  mix-blend-mode: difference;
+}
 
 .u-font-special {
   font-family: var(--font-special);

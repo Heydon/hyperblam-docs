@@ -20,9 +20,26 @@ elements:
 
 {% extends 'layouts/example.njk' %}
 
+{% block visual %}
+  <div class="l-frame__framed u-squiggle">
+    <rings-blam 
+      id="example" 
+      fps="12"
+      ratio="1 / 1"
+      analyser="#analyser" 
+      transport="#transport"
+      style="inline-size: 75vw; max-block-size: 100%"
+      count="{{ visualiser.count }}",
+      first="{{ visualiser.first }}",
+      last="{{ visualiser.last }}"
+    >
+    </rings-blam>
+  </div>
+{% endblock %}
+
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
 </chain-blam>
 <notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
@@ -37,7 +54,7 @@ elements:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="bends" prop="detune" curve="-200 0, 0 0.125" beats chance="0"></envelope-blam>
+  <envelope-blam id="bends" prop="detune" curve="-300 0, 0 0.125" beats chance="0"></envelope-blam>
 </notes-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="notes-blam" chance="0.7">

@@ -35,6 +35,7 @@ elements:
       count="{{ visualiser.count }}",
       first="{{ visualiser.first }}",
       last="{{ visualiser.last }}"
+      fill
     >
     </rings-blam>
   </div>
@@ -42,7 +43,7 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.75"></analyser-blam>
 </chain-blam>
 <notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>

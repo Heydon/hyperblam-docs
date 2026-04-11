@@ -429,6 +429,17 @@ hr {
   background-color: var(--color-back);
 }
 
+.u-note {
+  font-style: italic;
+}
+
+.u-note__shout {
+  display: inline-block;
+  font-size: 1.5rem;
+  transform: rotate(2deg);
+  font-family: var(--font-special);
+}
+
 /* form controls */
 
 input, button {

@@ -10,6 +10,9 @@
     {% if element.summary %}
       <p>{{ element.summary | md | safe }}</p>
     {% endif %}
+    {% if element.draft %}
+      <p class="u-note"><strong class="u-note__shout">DRAFT!</strong> This element is in early development and is liable to change or even be replaced.</p>
+    {% endif %}
     <dl>
       <div>
         <dt>class</dt>
@@ -76,15 +79,23 @@
       </table>
     {% endif %}
     <h2>Examples</h2>
+    {% set posts = [] %}
+    {% for post in collections['examples'] %}
+      {% if element.name in post.data.elements %}
+        {% set posts = (posts.push(post), posts) %}
+      {% endif %}
+    {% endfor %}
+    {% if posts.length %}
     <p>Examples that use the <strong>{{element.name}}</strong> element:</p>
     <ul>
-      {% for post in collections['examples'] %}
-        {% if element.name in post.data.elements %}
+      {% for post in posts %}
         <li>
           <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
         </li>
-        {% endif %}
       {% endfor %}
     </ul>
+    {% else %}
+    <p class="u-note"><strong class="u-note__shout">OH FUN!</strong> There are currently no examples using <strong>{{element.name}}</strong>.</p>
+    {% endif %}
   </main>
 {% endblock %}

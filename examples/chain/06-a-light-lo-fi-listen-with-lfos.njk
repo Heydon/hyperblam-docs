@@ -11,6 +11,7 @@ elements:
   - Filter 
   - Envelope
   - Tap
+  - Repeat
   - Sequencer 
   - Switch
 ---
@@ -23,6 +24,7 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <filter-blam type="highpass" id="highpass" freq="50" q="10"></filter-blam>
+  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <pads-blam id="piano" gain="0.7" choke>
@@ -37,7 +39,7 @@ elements:
       <blam-blam prop="freq" value="8000|8000|1000|2000" from="sequencer-blam" chance="0.75" ramp="0.5"></blam-blam>
     </filter-blam>
   </chain-blam>
-  <lfo-blam prop="detune" gain="75" beats="1">
+  <lfo-blam prop="detune" gain="66" beats="1">
     <blam-blam prop="beats" value="1.5|1.5|0.25|0.125" from="sequencer-blam" chance="0.5" revert></blam-blam>
   </lfo-blam>
 </pads-blam>
@@ -65,7 +67,7 @@ elements:
     </pan-blam>
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.5" beats="0.001">
-        <blam-blam prop="beats" value="0.0001~0.009"></blam-blam>
+        <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
       </lfo-blam>
     </gain-blam>
   </chain-blam>

@@ -100,6 +100,13 @@ Dialog things!
     </label>
   </fieldset>
 </radios-blam>
+<dial-blam to="saturator-blam" prop="amount">
+  <label>
+    amount
+    <input type="range" min="10" max="100" step="1">
+    <display-blam element="saturator-blam" prop="amount" aria-hidden="true"></display-blam>
+  </label>
+</dial-blam>
 <dial-blam to="saturator-blam" prop="dry">
   <label>
     dry

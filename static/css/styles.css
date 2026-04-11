@@ -220,10 +220,6 @@ pre code {
 
 /* layouts */
 
-.l-loading {
-  background-color: var(--color-back);
-}
-
 .l-box {
   padding: var(--box-padding, var(--s-s));
 }
@@ -327,6 +323,11 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.l-loading {
+  background-color: var(--color-back);
+  flex-direction: row;
 }
 
 .l-cluster {
@@ -438,6 +439,10 @@ hr {
   font-size: 1.5rem;
   transform: rotate(2deg);
   font-family: var(--font-special);
+}
+
+.u-flash {
+  animation: flash 0.5s steps(1) infinite;
 }
 
 /* form controls */

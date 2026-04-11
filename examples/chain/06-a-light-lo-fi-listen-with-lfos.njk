@@ -42,7 +42,7 @@ elements:
   <lfo-blam prop="detune" gain="66" beats="1">
     <blam-blam prop="beats" value="1.5|1.5|0.25|0.125" from="sequencer-blam" chance="0.5" revert></blam-blam>
   </lfo-blam>
-  <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert inactive></blam-blam>
+  <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert off></blam-blam>
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
@@ -142,7 +142,7 @@ Dialog things!
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to="#killswitch" prop="inactive" reverse>
+<switch-blam to="#killswitch" prop="off" reverse>
   <label>
     killswitch
     <input type="checkbox">

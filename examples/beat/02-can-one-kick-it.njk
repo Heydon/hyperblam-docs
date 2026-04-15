@@ -43,7 +43,7 @@ elements:
     <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
   </track-blam>
   <track-blam to="#kick" chance="0.7">
-    <bar-blam s="1 0 2 0 3"></bar-blam>
+    <bar-blam s="1 0 2 0 0 3"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
@@ -52,7 +52,29 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+The samples for the kick drum come in different _velocities_. The first and second samples are high velocity (the kick is hit pretty hard) and the third less so. The simple, 5 quarter-beat pattern ends on sample `3`, giving extra emphasis to the `1` immediately after it.
+
+For the kick, I have introduced some probabilism via `chance`. There is a diminished `0.7` (70%) chance that any one of the samples/sounds will be triggered, at any time. In effect, the kick pattern now constantly changes. Given the pattern is 6 quarter-beats, we have established a polymeter with the hat pattern from the last example. Polymeters and probabilities quickly create music that (re)creates itself.
+
+```html 
+<sequencer-blam bpm="90" id="transport">
+  <track-blam to="#hat">
+    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
+    <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
+  </track-blam>
+  <track-blam to="#kick" chance="0.7">
+    <bar-blam s="1 0 2 0 0 3"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+```
+
+Try listening for a short while to hear the ongoing changes in syncopation.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
@@ -63,10 +85,4 @@ Dialog things!
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<switch-blam to="sequencer-blam" prop="swing" value="0.2">
-  <label>
-    swing
-    <input type="checkbox">
-  </label>
-</switch-blam>
 {% endblock %}

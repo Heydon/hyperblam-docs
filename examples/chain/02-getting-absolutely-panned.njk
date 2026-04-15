@@ -17,7 +17,7 @@ elements:
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
   <chain-blam out="bus">
     <gain-blam gain="1"></gain-blam>
     <pan-blam pan="0"></pan-blam>
@@ -26,7 +26,26 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+Since I’ve already got a `<chain-blam>` on the go, why don’t I add another element to the chain? After all, it costs me nothing (well, maybe `1` or `2` kilobytes).
+
+Since all signals in **HYPERBLAM** are in stereo, we can pan them left and right in the stereo field. For this, we just need a `<pan-blam>` element, housing a `StereoPannerNode`, with its `pan` prop mapping to the node’s `pan` `audioParam`. Try saying that fast!
+
+```html 
+<chain-blam out="bus">
+  <gain-blam gain="1"></gain-blam>
+  <pan-blam pan="0"></pan-blam>
+</chain-blam>
+```
+
+In this example, `pan` is controlled by another `<dial-blam>` interface. As you move the associated range input back and forth, notice the smooth transition. **HYPERBLAM** is careful to remove the unwanted pops and crackles you might have heared in basic Web Audio implementations. Here, it’s a case of substituting the `setValueAtTime` method with `setTargetAtTime`. 
+
+For every change to the input value, there is a tiny, 5 millisecond interpolation between the former and latter values. This eliminates the popping sound created by an abrupt change severing the signal’s waveform.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

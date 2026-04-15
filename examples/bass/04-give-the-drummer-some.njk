@@ -99,11 +99,11 @@ elements:
   <track-blam id="hatTrack" to="#hat" chance="1">
     <bar-blam s="1 0 2 0 1 ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 1 0 ?"></bar-blam>
-    <blam-blam prop="solo" chance="0.1" revert></blam-blam>
   </track-blam>
-  <track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
+  <track-blam id="snareTrack" to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
     <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    <blam-blam from="#snareTrack" to="#hatTrack" prop="solo" chance="0.2" revert></blam-blam>
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.6">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?"></bar-blam>

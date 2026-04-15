@@ -36,11 +36,11 @@ elements:
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
     </reverb-blam>
     <filter-blam freq="1000">
-      <blam-blam prop="freq" value="8000|8000|1000|2000" from="sequencer-blam" chance="0.75" ramp="0.5"></blam-blam>
+      <blam-blam prop="freq" value="8000|8000|1000|750" from="sequencer-blam" chance="0.75" ramp="0.25"></blam-blam>
     </filter-blam>
   </chain-blam>
   <lfo-blam prop="detune" gain="66" beats="1">
-    <blam-blam prop="beats" value="1.5|1.5|0.25|0.125" from="sequencer-blam" chance="0.5" revert></blam-blam>
+    <blam-blam prop="beats" value="1.5|1.5|0.25|0.125|0.0625" from="sequencer-blam" chance="0.5" revert></blam-blam>
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert off></blam-blam>
 </pads-blam>
@@ -72,7 +72,7 @@ elements:
       </lfo-blam>
     </gain-blam>
   </chain-blam>
-  <blam-blam prop="length" value="1|0.25|0.125"></blam-blam>
+  <blam-blam prop="length" value="1|0.25|0.125| "></blam-blam>
 </pads-blam>
 <pads-blam id="pluck" gain="1.5">
   <bank-blam>
@@ -132,7 +132,24 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+There’s a lot going on here and I’m not going to explain it all. Instead, why not take a listen while you explore the source code? 
+
+The first thing you might notice is the `<media-blam>` and `<audio>` elements are missing. And good riddance, frankly, because we can achieve a lot more with the `<pads-blam>` and `<notes-blam>` elements: true sample-based instruments.
+
+Also, be sure to look inside `<sequencer-blam>` where I’ve written the composition (to be _rewritten_ with each play through). 
+
+One last note on the original electric piano sample, now available via the `<pads-elem>` element with `id="piano"`: I’m always looking for new and better ways to emulate degraded tape. That wobbly, fluttery sound just does something to my Xennial brain. 
+  
+[Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
+
+The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating the tape wheel slowing and speeding up in unexpected places.
+
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

@@ -16,7 +16,7 @@ elements:
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
   <chain-blam out="bus">
     <gain-blam gain="1"></gain-blam>
   </chain-blam>
@@ -24,7 +24,31 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+The standard [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/audio) element lets you play audio, as embedded in a web page. It’s like a home stereo system but for homepages rather than real homes. It is far from a musician’s instrument. It is for consumption, not production.
+
+But that doesn’t mean it can’t be misappropriated. In fact, a lot of creativity is about deliberate misappropriation.  **HYPERBLAM’s** `<media-blam>` element turns `<audio>` into a sound source like an electric guitar or accordion: the input at the beginning of a signal chain.
+
+Along this chain, we can insert any number of **Signal Augmentation Modules** (or “effects” to you and me). In this case, I’ve just included a `<gain-blam>` for adjusting gain. 
+
+```html
+<chain-blam out="bus">
+  <gain-blam gain="1"></gain-blam>
+</chain-blam>
+```
+
+Why would you add an external gain stage when the standard `<audio>` element provides its own volume control? 
+
+First of all, volume and gain are related but not synonymous. You could use multiple gain stages—and not all for actually adjusting the gain. If that’s perplexing, see the [What Is Gain?](/guides/gain/) guide for a general introduction. 
+
+The first advantage of inserting a `<gain-blam>` here is the ability to associate it with an external control, like `<dial-blam>`. This element wraps a standard and accessible range input. 
+
+But, more excitingly, `<gain-blam>`'s `gain` prop (which **HYPERBLAM** maps to a gain `audioParam`) can have its value automated and modulated in various ways, with all the performance benefits of the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API). I’ll get to that shortly.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

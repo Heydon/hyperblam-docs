@@ -11,29 +11,28 @@
 </header>
 {% endblock %}
 {% block main %}
+<audio-blam>
   <main tabindex="-1" class="l-frame">
-    <audio-blam>
-      {% block visual %}
-        <div class="l-frame__framed u-squiggle">
-          <bands-blam 
-            id="example" 
-            fps="8"
-            analyser="#analyser" 
-            transport="#transport"
-            style="inline-size: 75vw; max-block-size: 100%"
-            count="{{ visualiser.count }}",
-            first="{{ visualiser.first }}",
-            last="{{ visualiser.last }}"
-          >
-          </bands-blam>
-        </div>
-      {% endblock %}
-      <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
-      <div class="l-frame__framed">
-        {% block audio %}
-        {% endblock %}
+    {% block visual %}
+      <div class="l-frame__framed u-squiggle">
+        <bands-blam 
+          id="example" 
+          fps="8"
+          analyser="#analyser" 
+          transport="#transport"
+          style="inline-size: 75vw; max-block-size: 100%"
+          count="{{ visualiser.count }}",
+          first="{{ visualiser.first }}",
+          last="{{ visualiser.last }}"
+        >
+        </bands-blam>
       </div>
-    </audio-blam>
+    {% endblock %}
+    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
+    <div class="l-frame__framed">
+      {% block audio %}
+      {% endblock %}
+    </div>
     <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
   </main>
   <dialog>
@@ -69,6 +68,7 @@
     {% endif %}
   </nav>
 </footer>
+</audio-blam>
 {% endblock %}
 
 {% block scripts %}

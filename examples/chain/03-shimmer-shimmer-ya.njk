@@ -18,7 +18,7 @@ elements:
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.25" beats="0.25"></lfo-blam>
@@ -29,35 +29,34 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+Electronically speaking, the [tremolo effect](https://en.wikipedia.org/wiki/Tremolo_(electronic_effect)) is one of the simplest imaginable. Which is why the [margin on tremolo guitar pedals](https://www.sweetwater.com/store/detail/TR2--boss-tr-2-tremolo-pedal) can be so eye-wateringly high. 
+
+Tremolo is just the changing of amplitude repeatedly over time. _Louder, quiter, louder, quieter, louder_—you get the point. It’s not to be be confused with _vibrato_, which controls pitch, and is more _lower, higher, lower, higher_.
+
+All this requires is an oscillator controlling the `gain` prop/param of the  `<gain-blam>` element we already have in our chain. For an introduction to LFOs (Low Frequency Oscillators) see the [LFOs guide](/guides/lfos).
+
+Here, a `<dial-blam>` controls the `gain` of the LFO, which affects rhe _depth_ of the effect. If the `<gain-blam>` `gain` is set at `0.5` and the LFO gain is set at `0.25`, the subject gain will oscillate bwtween `0.25` and `0.75` (plus and minus the LFO gain value). 
+
+If you “dime” the `<dial-blam>`‘s slider to the max `0.5` value,  the LFO will make the gain dip to zero, transforming the _shimmer_ into a more pronounced _stutter_.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
-<radios-blam to="lfo-blam" prop="type">
-  <fieldset aria-labelledby="waveLabel">
-    <span class="u-legend" id="waveLabel">wave</span>
-    <label>
-      <input type="radio" name="wave" value="sine">
-      sine
-    </label>
-    <label>
-      <input type="radio" name="wave" value="square">
-      square
-    </label>
-    <label>
-      <input type="radio" name="wave" value="triangle">
-      triangle
-    </label>
-    <label>
-      <input type="radio" name="wave" value="sawtooth">
-      saw
-    </label>
-  </fieldset>
-</radios-blam>
 <dial-blam to="lfo-blam" prop="gain">
   <label>
-    LFO gain
+    depth
     <input type="range" min="0" max="0.5" step="any">
+  </label>
+</dial-blam>
+<dial-blam to="lfo-blam" prop="beats">
+  <label>
+    rate
+    <input type="range" min="0.1" max="1" step="any">
   </label>
 </dial-blam>
 {% endblock %}

@@ -37,7 +37,29 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+It’s time to introduce the eponymous `<blam-blam>` element. While LFOs change (_modulate_) values over time, **HYPERBLAM’s** own `<blam-blam>` element changes a value from one to another. 
+
+While this may sound quite pedestrian, it’s actually pretty powerful, for a few reasons:
+
+1. You get to choose the event at which the value changes
+2. You get to randomize what the new value will be
+3. You get to control the probability of this change in value taking place
+
+A few artfully deployed `<blam-blam>` elements can turn a repetitive loop into a permutating composition. It can be the difference between basic beat making and generative sound design.
+
+```html
+<lfo-blam prop="gain" gain="0.5" beats="0.001">
+  <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
+</lfo-blam>
+```
+
+In this rudimentary example, the `<blam-blam>` listens to its ancestor `<media-blam>`’s `blam` event, which occurs every time playback is restarted. It responds by applying a new `beats` value to its subject `<lfo-blam>`. Each time, a value between `0.001` and `0.009` is taken. These are very high values for a so-called Low Frequency Oscillator. The high frequency amplitude modulation in this range creates the curious metallic sounds you are hearing.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

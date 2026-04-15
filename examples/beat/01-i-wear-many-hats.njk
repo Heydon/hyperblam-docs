@@ -42,7 +42,60 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+Let’s write a beat that (re)writes itself. I’ll start with the [hi-hat](https://en.wikipedia.org/wiki/Hi-hat) because... why not.
+
+I’m going to use a few techniques to vary the pattern, emulating an improvising drummer. First, I'm going to track two bars’ worth of hat and each bar is going to be a different length.
+
+```html 
+<sequencer-blam bpm="90">
+  <track-blam to="#hat">
+    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
+    <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+```
+
+This gives us an unusual 15 quarter-beat phrase. When I later combine this with more common measures of 8 quarter-beats, I get [polymeters](https://www.ethanhein.com/wp/2023/polymeter-vs-polyrhythm/): compound patterns made from multiple time signatures playing at the same [tempo](https://en.wikipedia.org/wiki/Tempo). This is my favorite way to quickly generate complex and unexpected patterns. An 8 quarter-beat pattern and a 15 quarter-beat pattern make a combined 120 quarter-beat pattern (`8 ⨉ 15`).
+
+Note the `s` notation for the bars:
+
+```html 
+<bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
+<bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
+```
+
+Positive integers reference samples by index, as loaded by an associated `<bank-blam>`...
+
+```html 
+<pads-blam id="hat" choke out="bus">
+  <bank-blam>
+    <sample-blam src="/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+    <sample-blam src="/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    <sample-blam src="/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+  </bank-blam>
+  <blam-blam prop="detune" value="0~33"></blam-blam>
+</pads-blam>
+```
+
+... whereas the `?` cipher means “pick any sample”. The way the sample-based instrument, `<pads-blam>`, is designed, a random sample **but never the previously played sample** will be selected. Unless there’s only one sample given, of course.
+  
+In this case, the three samples are a closed hat (`1`), another slightly different closed hat for variety (`2`) and an open hat (`3`). Note `<pads-blam>`’s `choke` attribute. It ensures the previous sample/sound is silenced when the next one begins playing. This is critical for sequencing hi-hats, since the open hat must be forced shut to be played closed.
+
+In addition, a `<blam-blam>` element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from `<pads-blam>`, scheduling a sound, and assigns a value to the `detune` property/`audioParam` between `0` and `33` cents.
+
+```
+<blam-blam prop="detune" value="0~33"></blam-blam>
+```
+
+This adds additional tonal variety, making it sound somewhat like we are dealing in more than three samples.
+
+Finally, a `<dial-blam>` is proffered for controlling the `<sequencer>`’s `bpm`. Since **HYPERBLAM** sequences compositions in real time, you can change the tempo on the fly, using either an interface like `<dial-blam>` or automation using `<blam-blam>`.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
@@ -53,10 +106,4 @@ Dialog things!
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<switch-blam to="sequencer-blam" prop="swing" value="0.2">
-  <label>
-    swing
-    <input type="checkbox">
-  </label>
-</switch-blam>
 {% endblock %}

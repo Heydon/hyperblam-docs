@@ -62,9 +62,9 @@ elements:
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
   </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft">
-    <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?" chance="0.5"></bar-blam>
-    <bar-blam s="0 0 0 0 0 0 0 ? ? ?" chance="0.5"></bar-blam>
+  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+    <bar-blam s="0 0 0 0 0 0 0 ? 0 0 ?"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
@@ -73,7 +73,29 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+To complete this infinite beat generating machine, I’ve introduced one more component: some soft (“ghost”) snare hits to fill in some occassional spaces. 
+
+```html 
+<track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
+  <bar-blam s="1 0 2 0 3"></bar-blam>
+  <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
+</track-blam>
+<track-blam to="#snare" override="kickTrack snareSoftTrack">
+  <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+</track-blam>
+<track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+  <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?"></bar-blam>
+  <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
+</track-blam>
+```
+
+Note the liberal use of `override`. In addition to overriding the kick, the main snare track overrides the soft/ghost snare (because it doesn’t make sense playing the snare twice at the same time). The kick track works in reverse and overrides the soft snare (because we don’t want to lose too much of its underpinning _thump_).
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

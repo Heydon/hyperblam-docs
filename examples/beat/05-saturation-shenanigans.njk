@@ -53,7 +53,7 @@ elements:
   </bank-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport" swing>
-  <track-blam to="#hat" chance="0.8">
+  <track-blam to="#hat" chance="0.9">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
   </track-blam>
@@ -64,9 +64,9 @@ elements:
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
   </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft">
-    <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?" chance="0.5"></bar-blam>
-    <bar-blam s="0 0 0 0 0 0 0 ? ? ?" chance="0.5"></bar-blam>
+  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+    <bar-blam s="0 0 0 0 0 0 0 ? 0 0 ?"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
@@ -75,7 +75,28 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+You may have noticed each demo includes a `<chain-blam>` with `id="bus"`. I’ve created a many-to-one relationship by connecting other chains and instruments to this shared one. Spot all the `out="bus"` props.
+  
+The advantage of a [mix bus](https://mackie.com/en/blog/all/what_mix_bus.html?srsltid=AfmBOopUScjCjDnzXbxzmk_Jo3XYi-w5pHB5MmY7NnK1alEP6T9yphGj) is that multiple sources can share the same effects and effect parameters. 
+
+In this case, I have just an `<analyser-blam>` element and a newly introduced `<saturator-blam>`. The [**Analyser**](/elements/Analyser/) doesn’t actually affect the sound; it converts the signal into data for visualization. The [**Saturator**](http://localhost:8080/elements/Saturator/) really does affect the sound, though. _Big style_. 
+
+The `<saturator-blam>` element is an interface for a web audio [`WaveShaperNode`](https://developer.mozilla.org/en-US/docs/Web/API/WaveShaperNode). This node literally lets you shape the incoming waveform, mathematically, and is usually applied to create distortion. Here, the bombastic distorted beat you are hearing is brought to you by...
+
+```html
+Math.tanh(x * a);
+```
+
+... where `a` represents the distortion amount. The element offers other algorithms via its `mode` prop. Each was created using trial and error because:
+
+1. I’m not a mathematician.
+2. Distortion _should_ sound messed up and unruly, so all the better that I don’t know what I’m doing here.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

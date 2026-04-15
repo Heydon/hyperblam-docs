@@ -63,7 +63,27 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+Up until now, the rhythm feels a bit loose and random, right? A bit jazz? What I want is a big old snare to strike on every 5 quarter-beats of 8. Regular, expected, satisfying. 
+
+I have three snare samples, each striking slightly different parts of the skin. These are played at random, using the `?` cipher from previous examples.
+
+```html 
+<track-blam to="#snare" override="kickTrack">
+  <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+</track-blam>
+```
+
+Given the polymetric nature of the pattern thus far, we have a problem. Sometimes the snare sound and the kick sound will coincide. As covered in the [Sequencing](/guides/sequencing) guide, this can be avoided using the `override` prop. With this in place, every time a snare _and_ a kick are scheduled to play, the kick will be silenced. 
+
+Makes sense, because drummers rarely play a snare and a kick at the same time. Now it sounds like a drummer actively _choosing_ their kick and snare placement as they improvise.
+
+In this example, I’ve introduce probably my favorite **HYPERBLAM** sequencing feature: `swing`. Start the pattern playing, then switch swing on at the bottom there. Hear the difference? See the [Humanization](/guides/humanization) guide for a breakdown of that algorithm.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

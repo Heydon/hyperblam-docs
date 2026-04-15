@@ -21,8 +21,8 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <saturator-blam></saturator-blam>
   <analyser-blam id="analyser"></analyser-blam>
+  <saturator-blam></saturator-blam>
 </chain-blam>
 <pads-blam id="hat" choke out="bus">
   <bank-blam>
@@ -53,7 +53,7 @@ elements:
   </bank-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport" swing>
-  <track-blam to="#hat" chance="0.8">
+  <track-blam to="#hat" chance="0.9">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
   </track-blam>
@@ -64,9 +64,9 @@ elements:
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
   </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft">
-    <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?" chance="0.5"></bar-blam>
-    <bar-blam s="0 0 0 0 0 0 0 ? ? ?" chance="0.5"></bar-blam>
+  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+    <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
@@ -75,7 +75,19 @@ elements:
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+**HYPERBLAM’s** `<saturator-blam>` element offers various tempering and taming features for the different saturation/distortion modes it supports. 
+
+The `highcut` and `lowcut` props let you take out unwanted shrill and booming frequencies respectively. Combined with calibrating the `wet` and `dry` levels (available to all effects), you can sculpt all sorts of subtle—and not-so-subtle—crunches and squelches.
+
+The fourth `mode` is notable because it produces a lot of different characteristics depending on the precise `amount` given. Some settings give a kind of under-biased “voltage starve” sound, making the distortion gated and spluttery.
+
+This example is the first to use the `<radios-blam>` element, allowing users to assign a discrete value from a choice of standard radio buttons.  
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
@@ -117,6 +129,18 @@ Dialog things!
   <label>
     wet
     <input type="range" min="0" max="1" step="any">
+  </label>
+</dial-blam>
+<dial-blam to="saturator-blam" prop="lowcut">
+  <label>
+    low cut
+    <input type="range" min="100" max="1000" step="any">
+  </label>
+</dial-blam>
+<dial-blam to="saturator-blam" prop="highcut">
+  <label>
+    high cut
+    <input type="range" min="1000" max="20000" step="any">
   </label>
 </dial-blam>
 {% endblock %}

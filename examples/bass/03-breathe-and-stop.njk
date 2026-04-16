@@ -62,31 +62,39 @@ elements:
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+When sequencing my bassline, I want to introduce some pauses—because music isn’t just about the notes, but the silences between them (or some such cliché).
+
+I go about this in a few different ways. Firstly, the sequence itself is [syncopated](https://en.wikipedia.org/wiki/Syncopation). Not every quarter-beat plays a note and some notes land off beat. The zeros in the sequence represent pauses. We always start with the root note, and each successive note is picked at random (`?`).
+
+```html
+<sequencer-blam bpm="90" id="transport">
+  <track-blam to="notes-blam" chance="0.7">
+    <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+```
+
+Secondly, extended pauses may or may not occur according to the `chance` setting, since only about 70% of all notes will be played at all. What’s especially neat here is that the root (**A1**) note at the start of each bar may not be played. And it _may_ be played on one of the `?` quarter-beats. In any case, _resolution_ (returning to the root) may be occassionally suspended, varying the length of phrases.
+
+The third way pauses are introduced is by varying how long each note is sustained.
+
+```html
+<blam-blam prop="length" value="0.25|0.5|0.5|0.125"></blam-blam>
+```
+
+For each note `<notes-blam>` plays, `<blam-blam>` assigns one of its `|`-separated values. These are relative to the duration of the sample itself. It’s the sound of a bass player selectively lifting their finger from the fretboard to cut notes short. Common practice.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="sequencer-blam" prop="swing" value="0.2">
-  <label>
-    swing
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#bends" prop="chance" value="0.333">
-  <label>
-    bends
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="filter-blam" prop="bypass" reverse>
-  <label>
-    filter
-    <input type="checkbox">
-  </label>
-</switch-blam>
 {% endblock %}

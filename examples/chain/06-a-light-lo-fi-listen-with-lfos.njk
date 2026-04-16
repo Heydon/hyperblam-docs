@@ -56,7 +56,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
-  <blam-blam prop="detune" value="-400~400"></blam-blam>
+  <blam-blam prop="detune" value="-400|0|0|400|900"></blam-blam>
 </pads-blam>
 <pads-blam id="tom">
   <bank-blam>
@@ -127,7 +127,7 @@ elements:
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
 

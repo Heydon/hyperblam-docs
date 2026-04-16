@@ -1,5 +1,5 @@
 ---
-title: A motif with some mojo
+title: Give the drummer some
 visualiser:
   count: 16
 elements: 
@@ -14,7 +14,6 @@ elements:
   - Tap
   - Sequencer 
   - Track 
-  - Repeat
   - Bar
   - Switch
 ---
@@ -36,7 +35,6 @@ elements:
       count="{{ visualiser.count }}",
       first="{{ visualiser.first }}",
       last="{{ visualiser.last }}"
-      fill
     >
     </rings-blam>
   </div>
@@ -59,7 +57,7 @@ elements:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="bends" prop="detune" curve="-100 0, 0 0.125" beats chance="0.333"></envelope-blam>
+  <envelope-blam id="slides" prop="detune" curve="-100 0, 0 0.125" beats chance="0.333"></envelope-blam>
 </notes-blam>
 <pads-blam id="kick" out="bus" detune="300">
   <bank-blam>
@@ -89,12 +87,9 @@ elements:
   </bank-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport">
-  <track-blam id="bassTrack" to="notes-blam" chance="0.7">
-    <repeat-blam x="3">
-      <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
-      <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam s="0 G1 0 ? ? ? ? A2" chance="1"></bar-blam>
+  <track-blam id="bassTrack" to="notes-blam" chance="0.75">
+    <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
+    <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.5" override="snareSoftTrack">
     <bar-blam s="1 0 0 3 0 2 1 0"></bar-blam>
@@ -104,12 +99,10 @@ elements:
     <bar-blam s="1 0 2 0 1 ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 1 0 ?"></bar-blam>
   </track-blam>
-  <track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
-    <repeat-blam x="3">
-      <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-      <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam s="0 ? 0 ? ? ? ? ?" chance="1"></bar-blam>
+  <track-blam id="snareTrack" to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
+    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+    <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    <blam-blam from="#snareTrack" to="#hatTrack" prop="solo" chance="0.1" revert></blam-blam>
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.6">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?"></bar-blam>
@@ -117,18 +110,58 @@ elements:
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+Let’s bring in the drum sounds from the [**Beat** examples](/examples/04-getting-ghosted/) and get a full rhythm section going. There’s so much variation happening, it holds some interest without any other instruments in play, don’t you think? Enough to soundtrack 3 or 4 hours of porn, in any case.
+
+Notable in this example is the use of a `<blam-blam>` element to toggle the hi-hat track’s `solo` prop. Every time the snare track plays a snare, there’s a slim (`0.1` or 10%) chance `solo` will be switched on and all other tracks silenced.
+
+```html
+<blam-blam from="#snareTrack" to="#hatTrack" prop="solo" chance="0.1" revert></blam-blam>
+```
+
+Because `revert` is also set, there’s a 100% chance `solo` will “snap back” to `false` the next time a snare comes around. You can create all sorts of compositional fluctuations this way.
+  
+Since a `<switch-blam>` is provided for the same purpose of soloing the hi-hat, its input’s checked state must stay in sync.
+
+```html 
+<switch-blam to="#hatTrack" prop="solo">
+  <label>
+    hat solo
+    <input type="checkbox">
+  </label>
+</switch-blam>
+```
+
+Fortunately, **HYPERBLAM** sees to this automatically. You’ll see the switch toggle whenever `<blam-blam>` does its thing. You can either sit back and watch these kinds of automated changes take place, or you can intervene and change them when it feels right. Some stimulating interfaces can be made this way.
+
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
 <switch-blam to="sequencer-blam" prop="swing" value="0.2">
   <label>
     swing
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#bassTrack" prop="solo">
+  <label>
+    bass solo
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#hatTrack" prop="solo">
+  <label>
+    hat solo
     <input type="checkbox">
   </label>
 </switch-blam>

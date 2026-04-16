@@ -46,7 +46,7 @@ audio {
 }
 
 :where(ol, ul):not([class]) {
-  padding-inline-start: var(--s-m);
+  padding-inline-start: var(--s-l);
 }
 
 dl > div {

@@ -44,12 +44,36 @@ visualiser:
   </bank-blam>
 </pads-blam>
 <tap-blam id="transport" to="pads-blam" prop="play">
-  <button class="u-round">{% icon 'play' %}</button>
+  <button class="u-round" aria-label="play">{% icon 'play' %}</button>
 </tap-blam>
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+I’m going to create an expressive, generative bassline from just 4 individual samples. By applying the `robin` prop to the `<pads-blam>` element here, these samples can be played in order. Just press the `<tap-blam>` button repeatedly.
+
+```html
+<pads-blam choke robin out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3"></sample-blam>
+  </bank-blam>
+</pads-blam>
+<tap-blam id="transport" to="pads-blam" prop="play">
+  <button class="u-round" aria-label="play">{% icon 'play' %}</button>
+</tap-blam>
+```
+
+[Round-robin](https://help.ableton.com/hc/en-us/articles/115000267664-How-to-create-Round-Robin-sample-playback) sampling replaces the default behavior of selecting `<bank-blam>` samples at random. Applying `robin` is useful if the samples are pitched and you want to reproduce the same melody each time. In this case, it’s a simple major [arpeggio](https://en.wikipedia.org/wiki/Arpeggio).
+
+Note the application of `choke`, ensuring each previous sample is silenced as the new sample is played. This is in keeping with how real bass guitars are played. Notes are rarely allowed to ring out and overlap; moving frets mutes one note to be replaced by the next.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

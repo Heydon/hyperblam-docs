@@ -44,12 +44,45 @@ visualiser:
   </bank-blam>
 </notes-blam>
 <tap-blam id="transport" to="notes-blam" prop="play">
-  <button class="u-round">{% icon 'play' %}</button>
+  <button class="u-round" aria-label="play">{% icon 'play' %}</button>
 </tap-blam>
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+The `<pads-blam>` element isn’t especially useful for creating a melodic part like a bassline. Instead, I want something that controls the pitch of each sample’s playback. The `<notes-blam>` element does just that.
+
+```html
+<notes-blam choke out="bus" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
+  </bank-blam>
+</notes-blam>
+```
+
+Each `<sample-blam>` element has a `root` property. This signifies the natural pitch/tuning of the sample itself. Without this, `<notes-blam>` cannot calculate pitch changes accurately. 
+
+```html
+<sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+```
+  
+I’ve supplied samples representing different notes only for _tonal variety_: the [timbre](https://en.wikipedia.org/wiki/Timbre) of notes changes depending where they are played on the fretboard. Because `<notes-blam>` alters pitch _and_ randomizes sample selection for each note played, even two of the same note played in succession will sound different. Just as they would when played live on a bass guitar.
+
+The `notes` prop defines a set of allowed notes, which will be chosen at random. I’ve chosen some notes from the [minor pentatonic](https://en.wikipedia.org/wiki/Pentatonic_scale#Minor_pentatonic_scale) scale, with an added [tritone](https://en.wikipedia.org/wiki/Tritone) (**D#2**) for extra evil.
+
+```html
+notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2"
+```
+
+I’ve included three **A1** notes in this array. Is this a copy/paste error? No. Since **A1** is the root note, a human bass player would (re)visit it frequently. By biasing the notes array, the generative bassline becomes more realistic.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}

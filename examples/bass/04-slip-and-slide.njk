@@ -1,0 +1,118 @@
+---
+title: Slip and slide
+elements: 
+  - Notes
+  - Bank 
+  - Sample 
+  - Blam
+  - Chain 
+  - Filter 
+  - Envelope
+  - Tap
+  - Sequencer 
+  - Track 
+  - Bar
+  - Switch
+---
+
+{% set previousPost = collections.bass | getPreviousCollectionItem %}
+{% set nextPost = collections.bass | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block visual %}
+  <div class="l-frame__framed u-squiggle">
+    <rings-blam 
+      id="example" 
+      fps="12"
+      ratio="1 / 1"
+      analyser="#analyser" 
+      transport="#transport"
+      style="inline-size: 75vw; max-block-size: 100%"
+      count="{{ visualiser.count }}",
+      first="{{ visualiser.first }}",
+      last="{{ visualiser.last }}"
+    >
+    </rings-blam>
+  </div>
+{% endblock %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
+</chain-blam>
+<notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
+  </bank-blam>
+  <blam-blam prop="length" value="0.25|0.5|0.5|0.125"></blam-blam>
+  <chain-blam out="bus">
+    <filter-blam freq="8000" q="10" bypass>
+      <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
+    </filter-blam>
+  </chain-blam>
+  <envelope-blam id="slides" prop="detune" curve="-300 0, 0 0.125" beats chance="0"></envelope-blam>
+</notes-blam>
+<sequencer-blam bpm="90" id="transport">
+  <track-blam to="notes-blam" chance="0.7">
+    <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam id="transport" to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+There’s still more to do if we really want this bassline to come alive.
+
+Some _slides_ might sound nice, for starters. Some bass players, on some tracks, will occasionally slide their finger up to a fret/note. This adds some satisfying _kineticism_.
+
+To achieve this sound in **HYPERBLAM**, I can use `<envelope-blam>`. This element is an [auxiliary envelope](https://www.youtube.com/watch?v=TPezYEfLA2o). Typically only available on high-end synthesizers and groove-boxes, an auxiliary envelope lets you alter _any_ audio parameter over the time a sound is being played.
+
+```html
+<envelope-blam id="slides" prop="detune" curve="-300 0, 0 0.125" beats chance="0.333"></envelope-blam>
+```
+
+The _curve_ of the envelope can be described in stages (attack, decay, sustain, release) or as a more complex set of values. The `<envelope-blam>` element supports the latter, using the curve `prop`. 
+  
+Each pair of numbers represents the value and the time (from the start of the sample) at which it should be assigned. In this case, we start three semitones (or three frets) down and slide up very quickly. Since `beats` is set, `0.125` represents `0.125` beats from the start of the sample/sound. Were it not set, `0.125` would be relative to the length of the sample itself.
+
+Crucially, the chance of this envelope/slide occuring at all is just `0.333` (or 33.333%). To recap: our bassline is made of 4 different samples, randomly selected and played at different pitches, representing different notes in the minor pentatonic scale, sustained for varying lengths of time, and occassionally embellished with a sliding action.
+
+All we need now is a gnarly envelope filter. [Bootsy Collins]() famously uses a Musitronics Mu-Tron III, which can go for [many hundreds of dollars](https://reverb.com/uk/p/mu-tron-mutron-iii). It works by detecting peaks in the playing, which it designates as the “attack” (start) phase of notes, then  filters the sound accordingly.
+
+**HYPERBLAM’s** `<filter-blam>` and `<envelope-blam>` cost nothing (and together are less than `2KB` to download). No peak analysis is needed, since the event sent from `<notes-blam>` tells us when each successive note starts.
+
+```html
+<filter-blam freq="8000" q="10" bypass>
+  <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
+</filter-blam>
+```
+
+As a pedant, I want to point out that the sound you are hearing is not technically [“wah”](https://en.wikipedia.org/wiki/Wah-wah_pedal). I’m using a low-pass filter here and wah-wah pedals use a band-pass filter. See the [**Filters**](/guides/filters) guide for more.
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<switch-blam to="#slides" prop="chance" value="0.333">
+  <label>
+    slides
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="filter-blam" prop="bypass" reverse>
+  <label>
+    filter
+    <input type="checkbox">
+  </label>
+</switch-blam>
+{% endblock %}

@@ -1,5 +1,5 @@
 ---
-title: Give the drummer some
+title: A motif with some mojo
 visualiser:
   count: 16
 elements: 
@@ -14,6 +14,7 @@ elements:
   - Tap
   - Sequencer 
   - Track 
+  - Repeat
   - Bar
   - Switch
 ---
@@ -35,7 +36,6 @@ elements:
       count="{{ visualiser.count }}",
       first="{{ visualiser.first }}",
       last="{{ visualiser.last }}"
-      fill
     >
     </rings-blam>
   </div>
@@ -88,9 +88,12 @@ elements:
   </bank-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport">
-  <track-blam id="bassTrack" to="notes-blam" chance="0.75">
-    <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
-    <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
+  <track-blam id="bassTrack" to="notes-blam" chance="0.7">
+    <repeat-blam x="3">
+      <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
+      <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 G1 0 ? ? ? ? A2" chance="1"></bar-blam>
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.5" override="snareSoftTrack">
     <bar-blam s="1 0 0 3 0 2 1 0"></bar-blam>
@@ -100,10 +103,12 @@ elements:
     <bar-blam s="1 0 2 0 1 ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 1 0 ?"></bar-blam>
   </track-blam>
-  <track-blam id="snareTrack" to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
-    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-    <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
-    <blam-blam from="#snareTrack" to="#hatTrack" prop="solo" chance="0.2" revert></blam-blam>
+  <track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+      <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 ? 0 ? ? ? ? ?" chance="1"></bar-blam>
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.6">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?"></bar-blam>
@@ -111,30 +116,51 @@ elements:
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round">{% icon 'playPause' %}</button>
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}
 
 {% block dialog %}
-Dialog things!
+
+{% renderTemplate "md" %}
+
+It’s neat how the pattern keeps changing and generating new melodies and syncopations. But it’s perhaps a little too random. What might be nice is a periodic coalescence: a coming together of the separate threads to form a familiar motif or “hook”.
+
+I’ve introduced a new element, `<repeat-blam>`, to repeat the same bass and snare patterns 3 times over.
+
+```html
+<track-blam id="bassTrack" to="notes-blam" chance="0.7">
+  <repeat-blam x="3">
+    <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
+    <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
+  </repeat-blam>
+  <bar-blam s="0 0 0 ? ? ? ? A2" chance="1"></bar-blam>
+</track-blam>
+...
+<track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
+  <repeat-blam x="3">
+    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+    <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+  </repeat-blam>
+  <bar-blam s="0 0 0 ? ? ? ? ?" chance="1"></bar-blam>
+</track-blam>
+```
+
+But the final bar stands alone. Its overriding `chance` value of `1` means it plays out more predictably. In the snare’s case it performs a kind of roll. The base syncs with this roll, performing an argeggio that always lands on the octave up from the root: a resolution.
+
+Important things to bear in mind:
+
+1. Because the snare is already set to override the kick and soft/ghost snare tracks, no compositional changes for those tracks are needed. Their patterns don’t even need to share the same number of beats or bars.
+2. Because the bass uses the `?` cipher up until the final **A2** note, the motif is not the same each time. It just has a similar _feel_.
+
+{% endrenderTemplate %}
+
 {% endblock %}
 
 {% block controls %}
 <switch-blam to="sequencer-blam" prop="swing" value="0.2">
   <label>
     swing
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#bassTrack" prop="solo">
-  <label>
-    bass solo
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#hatTrack" prop="solo">
-  <label>
-    hat solo
     <input type="checkbox">
   </label>
 </switch-blam>

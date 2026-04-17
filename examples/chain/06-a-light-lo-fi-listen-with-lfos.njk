@@ -57,6 +57,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-400|0|0|400|900"></blam-blam>
+  <blam-blam prop="length" value="1|1|1|0.25|0.125"></blam-blam>
 </pads-blam>
 <pads-blam id="tom">
   <bank-blam>
@@ -161,7 +162,7 @@ The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp
 </switch-blam>
 <switch-blam to="#killswitch" prop="off" reverse>
   <label>
-    killswitch
+    chop keys
     <input type="checkbox">
   </label>
 </switch-blam>

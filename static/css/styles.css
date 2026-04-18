@@ -198,7 +198,6 @@ pre code {
   content: '';
   display: block;
   block-size: 0.4rem;
-  inline-size: 100%;
   background-image: var(--wave-sine);
 }
 
@@ -746,6 +745,11 @@ props-blam > div > div {
   transition: block-size var(--snareVis-interval) linear;
 }
 
+/* HYPERBLAM elements */
+
+audio-blam, media-blam {
+  display: contents;
+}
 
 
 

@@ -146,6 +146,18 @@ One last note on the original electric piano sample, now available via the `<pad
   
 [Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
 
+```html
+<chain-blam out="bus">
+  ...
+  <filter-blam freq="1000">
+    <blam-blam prop="freq" value="8000|8000|1000|750" from="sequencer-blam" chance="0.75" ramp="0.25"></blam-blam>
+  </filter-blam>
+</chain-blam>
+<lfo-blam prop="detune" gain="66" beats="1">
+  <blam-blam prop="beats" value="1.5|1.5|0.25|0.125|0.0625" from="sequencer-blam" chance="0.5" revert></blam-blam>
+</lfo-blam>
+```
+
 The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating the tape wheel slowing and speeding up in unexpected places.
 
 

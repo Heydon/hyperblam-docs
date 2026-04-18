@@ -58,6 +58,16 @@ A few artfully deployed `<blam-blam>` elements can turn a repetitive loop into a
 
 In this rudimentary example, the `<blam-blam>` listens to its ancestor `<media-blam>`’s `blam` event, which occurs every time playback is restarted. It responds by applying a new `beats` value to its subject `<lfo-blam>`. Each time, a value between `0.001` and `0.009` is taken. These are very high values for a so-called Low Frequency Oscillator. The high frequency amplitude modulation in this range creates the curious metallic sounds you are hearing.
 
+Following the high frequency tremolo effect is a `<reverb-blam>`. This takes the acoustic footprint of a large stadium as an _impulse response_ and applies it to the incoming sound.   
+
+```html
+<reverb-blam wet="0.5">
+  <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
+</reverb-blam>
+```
+
+The reverb creates a sense of space, as well as softening the edges of an otherwise rather harsh sound.
+
 {% endrenderTemplate %}
 
 {% endblock %}

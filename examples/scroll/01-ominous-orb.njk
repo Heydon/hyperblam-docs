@@ -1,0 +1,49 @@
+---
+title: Ominous orb
+elements: 
+  - Intersect
+---
+
+{% set previousPost = collections.scroll | getPreviousCollectionItem %}
+{% set nextPost = collections.scroll | getNextCollectionItem %}
+
+{% block visual %}
+{% endblock %}
+
+{% extends 'layouts/scroll.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<sequencer-blam></sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+<bank-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+</bank-blam>
+{% endblock %}
+
+{% block intersect %}
+<style>
+  .l-intersect__box {
+    background-image: url(/static/css/circle.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

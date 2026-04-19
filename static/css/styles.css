@@ -324,6 +324,19 @@ hr {
   align-items: center;
 }
 
+.l-intersect {
+  block-size: 300vh;
+  background-image: url(chevrons.svg), url(chevrons.svg);
+  background-position: 0, 100%;
+  background-repeat: repeat-y;
+  background-size: 1.125rem auto;
+}
+
+.l-intersect__box {
+  margin-block-start: 100vh;
+  padding-inline: 2rem; 
+}
+
 .l-loading {
   background-color: var(--color-back);
   flex-direction: row;
@@ -442,6 +455,10 @@ hr {
 
 .u-flash {
   animation: flash 0.5s steps(1) infinite;
+}
+
+.u-scroll-y {
+  overflow-y: auto;
 }
 
 /* form controls */

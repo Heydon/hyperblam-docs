@@ -116,18 +116,11 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
   <label>
     amount
     <input type="range" min="10" max="100" step="1">
-    <display-blam element="saturator-blam" prop="amount" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<dial-blam to="saturator-blam" prop="dry">
+<dial-blam to="saturator-blam" prop="mix">
   <label>
-    dry
-    <input type="range" min="0" max="1" step="any">
-  </label>
-</dial-blam>
-<dial-blam to="saturator-blam" prop="wet">
-  <label>
-    wet
+    mix
     <input type="range" min="0" max="1" step="any">
   </label>
 </dial-blam>

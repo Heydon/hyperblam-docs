@@ -32,7 +32,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></sample-blam>
   </bank-blam>
   <chain-blam out="bus">
-    <reverb-blam wet="0.125">
+    <reverb-blam mix="0.125">
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
     </reverb-blam>
     <filter-blam freq="1000">
@@ -91,7 +91,7 @@ elements:
       <blam-blam prop="freq" value="100~1500"></blam-blam>
     </filter-blam>
     <echo-blam beats="0.666"></echo-blam>
-    <reverb-blam wet="0.125">
+    <reverb-blam mix="0.25">
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>

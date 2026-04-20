@@ -11,6 +11,7 @@ elements:
   - Chain 
   - Filter 
   - Envelope
+  - Relay
   - Tap
   - Sequencer 
   - Track 
@@ -57,7 +58,10 @@ elements:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="slides" prop="detune" curve="-100 0, 0 0.125" beats chance="0.333"></envelope-blam>
+  <relay-blam mode="one" chance="0.333" to="notes-blam">
+    <envelope-blam prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
+    <envelope-blam prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+  </relay-blam>
 </notes-blam>
 <pads-blam id="kick" out="bus" detune="300">
   <bank-blam>
@@ -140,6 +144,19 @@ Since a `<switch-blam>` is provided for the same purpose of soloing the hi-hat, 
 ```
 
 Fortunately, **HYPERBLAM** sees to this automatically. You’ll see the switch toggle whenever `<blam-blam>` does its thing. You can either sit back and watch these kinds of automated changes take place, or you can intervene and change them when it feels right. Some stimulating interfaces can be made this way.
+
+Also worth mentioning is the introduction of `<relay-blam>`. This element receives an event and triages multiple (child) handler elements.
+
+```html 
+<relay-blam mode="one" chance="0.333" to="notes-blam">
+  <envelope-blam prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
+  <envelope-blam prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+</relay-blam>
+```
+
+In this case, I've added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note `mode="one"`. There is a 33.333% chance that _one_ of the envelopes will be applied when `<notes-blam>` plays a sound. Because `off` is applied to each individual `<envelope-blam>` element, they do not apply independently. 
+
+When used with `<blam-blam>`, `<relay-blam>` might want to be in the `'all'` or `'some'` modes. You may also want to omit `off` and use different `event` or `to` values. This creates multiple dimensions of event handling.
 
 
 {% endrenderTemplate %}

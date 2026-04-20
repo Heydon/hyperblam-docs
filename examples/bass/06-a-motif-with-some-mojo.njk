@@ -11,6 +11,7 @@ elements:
   - Chain 
   - Filter 
   - Envelope
+  - Relay
   - Tap
   - Sequencer 
   - Track 
@@ -58,7 +59,10 @@ elements:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="bends" prop="detune" curve="-100 0, 0 0.125" beats chance="0.333"></envelope-blam>
+  <relay-blam mode="one" chance="0.333" to="notes-blam">
+    <envelope-blam prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
+    <envelope-blam prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+  </relay-blam>
 </notes-blam>
 <pads-blam id="kick" out="bus" detune="300">
   <bank-blam>

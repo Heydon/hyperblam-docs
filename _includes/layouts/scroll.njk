@@ -1,0 +1,30 @@
+{% extends 'layouts/example.njk' %}
+
+{% block main %}
+<audio-blam>
+  <main tabindex="-1" class="l-frame u-scroll-y">
+    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
+    <div class="l-intersect">
+      <div class="l-frame__framed">
+        {% block audio %}
+        {% endblock %}
+      </div>
+      <intersect-blam class="l-frame__framed l-intersect__box">
+        {% block intersect %}
+        {% endblock %}
+      </intersect-blam>
+    </div>
+    <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
+  </main>
+  <dialog>
+    <header>
+      <button class="u-ghost" aria-label="close">
+        <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path transform-box="fill-box" transform-origin="center" transform="rotate(45)" d="M8 15, 24 15, 24 17, 8 17z"></path><path transform-box="fill-box" transform-origin="center" transform="rotate(-45)" d="M8 15, 24 15, 24 17, 8 17z"></path></svg>
+      </button>
+    </header>
+    <div class="l-flow">
+      {% block dialog %}
+      {% endblock %}
+    </div>
+  </dialog>
+{% endblock %}

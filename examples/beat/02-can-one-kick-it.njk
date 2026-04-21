@@ -55,9 +55,9 @@ elements:
 
 {% renderTemplate "md" %}
 
-The samples for the kick drum come in different _velocities_. The first and second samples are high velocity (the kick is hit pretty hard) and the third less so. The simple, 5 quarter-beat pattern ends on sample `3`, giving extra emphasis to the `1` immediately after it.
+The samples for the kick drum come in different _velocities_. The first and second samples are high velocity (the kick is hit pretty hard) and the third less so. The simple, 6 quarter-beat pattern ends on sample `3`, giving emphasis to the `1` immediately after it.
 
-For the kick, I have introduced some probabilism via `chance`. There is a diminished `0.7` (70%) chance that any one of the samples/sounds will be triggered, at any time. In effect, the kick pattern now constantly changes. Given the pattern is 6 quarter-beats, we have established a polymeter with the hat pattern from the last example. Polymeters and probabilities quickly create music that (re)creates itself.
+I have introduced some probabilism via `chance`. There is a diminished `0.7` (70%) chance that any one of the kick samples/sounds will be triggered, at any time. In effect, the kick pattern now constantly changes. Given the pattern is 6 quarter-beats, we have established a polymeter with the hat pattern from the last example. Polymeters and probabilities quickly create music that (re)creates itself.
 
 ```html 
 <sequencer-blam bpm="90" id="transport">
@@ -71,7 +71,7 @@ For the kick, I have introduced some probabilism via `chance`. There is a dimini
 </sequencer-blam>
 ```
 
-Try listening for a short while to hear the ongoing changes in syncopation.
+Try listening for a short while to hear the ongoing changes in [syncopation](https://en.wikipedia.org/wiki/Syncopation).
 
 {% endrenderTemplate %}
 

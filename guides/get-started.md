@@ -24,7 +24,7 @@ The code for [**HYPERBLAM** lives here](https://git.gay/heydon/hyperblam) on **g
 
 ## Installation
 
-To use **HYPERBLAM** you need an HTML web page that imports the code as a module. Just add the following to the bottom of the page, before the closing `</body>` tag. 
+To use **HYPERBLAM** you need an HTML web page that imports the code as a module. So, grab and unzip [the code](https://git.gay/heydon/hyperblam/raw/branch/main/dist/hyperblam.zip) and add the following to the bottom of the page (before the closing `</body>` tag). 
 
 ```html
 <script type="module" src="path/to/hyperblam/dist/hyperblam.js"></script>
@@ -36,5 +36,9 @@ This **hyperblam.js** script will...
 2. Fire a `blamready` event when this is taken care of. Use this event if you want to do something _after_ **HYPERBLAM** is ready.
 
 ![A web page has some JavaScript injected into its foot and it explodes with loud sounds from its center.]({{site.basedir}}/static/images/illustrations/get-started1.svg)
+
+<p class="u-note">
+    <strong class="u-note__shout">All set!</strong> Now take a look at the <a href="/guides">other guides</a>—or head over to see some <a href="/examples">live examples</a>.
+</p>
 
 

@@ -1,0 +1,151 @@
+---
+title: Automayhem
+elements: 
+  - Pads 
+  - Bank 
+  - Sample 
+  - Blam 
+  - Dial
+  - Saturator
+  - Sequencer 
+  - Track 
+  - Bar 
+  - Tap
+  - Radios
+---
+
+{% set previousPost = collections.beat | getPreviousCollectionItem %}
+{% set nextPost = collections.beat | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <saturator-blam></saturator-blam>
+  <phaser-blam q="2"></phaser-blam>
+  <echo-blam beats="1" feedback="0.7"></echo-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<pads-blam id="hat" choke out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+  </bank-blam>
+  <lfo-blam prop="detune" gain="200" beats="4"></lfo-blam>
+</pads-blam>
+<pads-blam id="kick" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+  </bank-blam>
+</pads-blam>
+<pads-blam id="snare" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+  </bank-blam>
+  <blam-blam prop="detune" value="-500~200"></blam-blam>
+</pads-blam>
+<pads-blam id="snareSoft" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
+  </bank-blam>
+</pads-blam>
+<sequencer-blam bpm="90" id="transport" swing>
+  <track-blam to="#hat" chance="0.9">
+    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
+    <bar-blam s="1 2 0 0 ? 0 ?">
+      <blam-blam to="saturator-blam" prop="amount" value="25~100"></blam-blam>
+    </bar-blam>
+  </track-blam>
+  <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
+    <bar-blam s="1 0 2 0 3">
+      <blam-blam to="saturator-blam" prop="mode" value="1|1||1|2|3|4"></blam-blam>
+    </bar-blam>
+    <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#snare" override="kickTrack snareSoftTrack">
+    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+    <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
+      <blam-blam to="saturator-blam" prop="lowcut" value="50~500"></blam-blam>
+    </bar-blam>
+    <bar-blam s="0 0 0 0 0 0 0 ? ? ?">
+      <blam-blam to="saturator-blam" prop="highcut" value="4000~11000"></blam-blam>
+    </bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+**HYPERBLAM’s** `<saturator-blam>` element offers various tempering and taming features for the different saturation/distortion modes it supports. 
+
+The `highcut` and `lowcut` props let you take out unwanted shrill and booming frequencies respectively. Combined with calibrating the `wet` and `dry` levels (available to all effects), you can sculpt all sorts of subtle—and not-so-subtle—crunches and squelches.
+
+The fourth `mode` is notable because it produces a lot of different characteristics depending on the precise `amount` given. Some settings give a kind of under-biased “voltage starve” sound, making the distortion gated and spluttery.
+
+This example is the first to use the `<radios-blam>` element, allowing users to assign a discrete value from a choice of standard radio buttons.  
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<dial-blam to="sequencer-blam" prop="bpm">
+  <label>
+    bpm
+    <input type="range" min="60" max="180" step="1">
+    <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
+  </label>
+</dial-blam>
+<radios-blam to="saturator-blam" prop="mode">
+  <fieldset aria-labelledby="modeLabel">
+    <span class="u-legend" id="modeLabel">mode</span>
+    <label>
+      <input type="radio" name="mode" value="1">
+      1
+    </label>
+    <label>
+      <input type="radio" name="mode" value="2">
+      2
+    </label>
+    <label>
+      <input type="radio" name="mode" value="3">
+      3
+    </label>
+    <label>
+      <input type="radio" name="mode" value="4">
+      4
+    </label>
+  </fieldset>
+</radios-blam>
+<dial-blam to="saturator-blam" prop="amount">
+  <label>
+    amount
+    <input type="range" min="10" max="100" step="1">
+  </label>
+</dial-blam>
+<dial-blam to="saturator-blam" prop="lowcut">
+  <label>
+    low cut
+    <input type="range" min="100" max="1000" step="any">
+  </label>
+</dial-blam>
+<dial-blam to="saturator-blam" prop="highcut">
+  <label>
+    high cut
+    <input type="range" min="1000" max="20000" step="any">
+  </label>
+</dial-blam>
+{% endblock %}

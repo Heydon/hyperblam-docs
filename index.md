@@ -39,3 +39,7 @@ Create **pedal boards**, **drum machines**, **sampled instruments**. And don’t
     <p>This is for creating new sounds, not stealing old ones and making them worse</p>
   </li>
 </ul>
+
+<p class="u-note">
+  <strong class="u-note__shout">Pretty neat!</strong> Why not take a look at some <a href="/examples">live examples</a> or study the in-depth <a href="/guides">guides</a>.
+</p>

@@ -17,28 +17,32 @@ The code for [**HYPERBLAM** lives here](https://git.gay/heydon/hyperblam) on **g
     - **Elements:** The custom (HTML) element definitions
     - **Primitives:** Some classes that some HTML elements are based on
     - **Tools:** Some little helper scripts
-2. A minified version of that code, under **/dist** (including a zip archive).
+2. A minified version of that code, under **/dist** (including a [zip archive](https://git.gay/heydon/hyperblam/raw/branch/main/dist/hyperblam.zip)).
 3. The **/api** documentation, explaining how to use everything (and prettified into the [elements pages](http://localhost:8080/elements/)).
 
 ![Diagram showing how the Hyperblam elements and the API docs arrive at this website. Hyperblam itself is used in the example pages and the API docs make up the elements pages.]({{site.basedir}}/static/images/illustrations/get-started2.svg)
 
 ## Installation
 
-To use **HYPERBLAM** you need an HTML web page that imports the code as a module. So, grab and unzip [the code](https://git.gay/heydon/hyperblam/raw/branch/main/dist/hyperblam.zip) and add the following to the bottom of the page (before the closing `</body>` tag). 
+To start with, you need to do **4 things**:
+
+1. Grab and unzip the [**HYPERBLAM** code](https://git.gay/heydon/hyperblam/raw/branch/main/dist/hyperblam.zip)  (or clone the [repository itself](https://git.gay/heydon/hyperblam))
+2. Grab some samples
+3. Make a webpage (a file ending in `.html`)
+4. Point the webpage at the `hyperblam.js` file like so:
 
 ```html
-<script type="module" src="path/to/hyperblam/dist/hyperblam.js"></script>
+    <!-- rest of the web page up here ↑ -->
+    <script type="module" src="path/to/hyperblam.js"></script>
+</body>
 ```
 
-This **hyperblam.js** script will...
-
-1. Look for **HYPERBLAM** elements in the page and initialize (“upgrade”) them. Nothing that isn’t used is installed.
-2. Fire a `blamready` event when this is taken care of. Use this event if you want to do something _after_ **HYPERBLAM** is ready.
+This `/hyperblam.js` script will look for **HYPERBLAM** elements in the page and bring them to life. Elements that aren’t used aren’t installed.
 
 ![A web page has some JavaScript injected into its foot and it explodes with loud sounds from its center.]({{site.basedir}}/static/images/illustrations/get-started1.svg)
 
 <p class="u-note">
-    <strong class="u-note__shout">All set!</strong> Now take a look at the <a href="/guides">other guides</a>—or head over to see some <a href="/examples">live examples</a>.
+    <strong class="u-note__shout">All set!</strong> Now take a look at the <a href="/guides">other guides</a>—or head over to see some <a href="/examples">live examples</a> I’ve been messing around with.
 </p>
 
 

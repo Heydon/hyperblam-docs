@@ -1,0 +1,68 @@
+{% extends 'layouts/base.njk' %}
+{% block nav %}
+<header class="l-box u-blend-difference">
+  <a href="#main" class="l-skip">skip to content</a>
+  <nav>
+    <a class="c-logo c-logo-small" href="{{site.basedir}}/examples/" aria-label="Hyperblam examples index">
+      {{ logo | safe }}
+    </a>
+  </nav>
+  <h1 class="u-font-larger">{{ title }}</h1>
+</header>
+{% endblock %}
+{% block main %}
+<audio-blam>
+  <main tabindex="-1" class="l-frame">
+    {% block visual %}
+    {% endblock %}
+    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
+    <div class="l-frame__framed">
+      {% block audio %}
+      {% endblock %}
+    </div>
+    <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
+  </main>
+  <dialog>
+    <header>
+      <button class="u-ghost" aria-label="close">
+        <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path transform-box="fill-box" transform-origin="center" transform="rotate(45)" d="M8 15, 24 15, 24 17, 8 17z"></path><path transform-box="fill-box" transform-origin="center" transform="rotate(-45)" d="M8 15, 24 15, 24 17, 8 17z"></path></svg>
+      </button>
+    </header>
+    <div class="l-flow">
+      {% block dialog %}
+      {% endblock %}
+    </div>
+  </dialog>
+{% endblock %}
+
+{% block footer %}
+<footer>
+  <div class="l-cluster">
+    {% block controls %}
+    {% endblock %}
+    <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
+  </div>
+  <nav class="l-cluster" aria-label="more examples">
+    {% if previousPost %}
+      <a class="u-font-special" href="{{ previousPost.url }}" aria-label="previous example">← prev</a>
+    {% else %}
+      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>      
+    {% endif %}
+    {% if nextPost %}
+      <a class="u-font-special" href="{{ nextPost.url }}" aria-label="next example">next →</a>
+    {% else %}
+      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>
+    {% endif %}
+  </nav>
+</footer>
+</audio-blam>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{site.basedir}}/{{site.hyperblampath}}"></script>
+<script type="module">
+  import { dialog } from '{{site.basedir}}/static/js/dialog.js';
+  dialog('dialog', '#info');
+  window.addEventListener('blamready', () => console.log('window on ready'));
+</script>
+{% endblock %}

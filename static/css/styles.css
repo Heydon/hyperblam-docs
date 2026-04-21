@@ -236,6 +236,11 @@ hr {
   min-inline-size: 100%;
 }
 
+.l-fixed {
+  position: fixed;
+  inset-block-start: var(--fix-start, 0);
+}
+
 .l-flow > * + * {
   margin-block-start: var(--s-l);
 }

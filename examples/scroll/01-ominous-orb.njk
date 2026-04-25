@@ -7,9 +7,6 @@ elements:
 {% set previousPost = collections.scroll | getPreviousCollectionItem %}
 {% set nextPost = collections.scroll | getNextCollectionItem %}
 
-{% block visual %}
-{% endblock %}
-
 {% extends 'layouts/scroll.njk' %}
 
 {% block audio %}
@@ -25,16 +22,6 @@ elements:
   <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
   <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
 </bank-blam>
-{% endblock %}
-
-{% block intersect %}
-<style>
-  .l-intersect__box {
-    background-image: url(/static/css/circle.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-</style>
 {% endblock %}
 
 {% block dialog %}

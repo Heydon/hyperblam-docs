@@ -14,7 +14,9 @@
     <link rel="preload" href="{{site.basedir}}/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/svg+xml" href="{{site.basedir}}/static/images/favicon.svg" sizes="any">
   </head>
-  <body>
+  {% block bodyTag %}
+  <body class="l-view">
+  {% endblock %}
     {% block bodyStart %}
     <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
       <defs>

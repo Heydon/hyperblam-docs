@@ -1,5 +1,5 @@
 :root {
-  --color-fore: #fff;
+  --color-fore: #efefef;
   --color-back: #101010;
   --measure: 40rem;
   --s-xs: 0.4rem;
@@ -31,13 +31,14 @@
   display: none !important;
 }
 
-body {
+.l-view {
   min-block-size: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
-main {
+.l-view main {
   margin: var(--s-m) var(--s-s);
 }
 
@@ -137,6 +138,7 @@ table {
 
 [scope="row"] {
   text-align: center;
+  inline-size: 0;
 }
 
 th, td {
@@ -152,7 +154,6 @@ tr + tr td:not(:last-child) {
 nav {
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-block-end: var(--s-m);
 }
 
 footer nav {
@@ -181,7 +182,7 @@ pre {
   overflow-x: auto;
 }
 
-footer {
+.l-view footer {
   margin-block-start: auto;
   padding: var(--s-m);
   text-align: center;
@@ -238,7 +239,14 @@ hr {
 
 .l-fixed {
   position: fixed;
-  inset-block-start: var(--fix-start, 0);
+  inline-size: 100%;
+  z-index: 100;
+  inset-block-start: var(--fixed-start, 0);
+}
+
+.l-fixed--end {
+  --fixed-start: auto;
+  inset-block-end: var(--fixed-end, 0);
 }
 
 .l-flow > * + * {
@@ -321,25 +329,10 @@ hr {
 .l-frame__framed {
   position: absolute;
   inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.l-intersect {
-  block-size: 300vh;
-  background-image: url(chevrons.svg), url(chevrons.svg);
-  background-position: 0, 100%;
-  background-repeat: repeat-y;
-  background-size: 1.125rem auto;
-}
-
-.l-intersect__box {
-  margin-block-start: 100vh;
-  padding-inline: 2rem; 
 }
 
 .l-loading {
@@ -358,13 +351,15 @@ hr {
 }
 
 .l-skip:not(:focus-visible) {
-  block-size: 0;
-  padding: 0;
+  transform: translateY(-200%);
 }
 
 .l-skip {
   outline: none;
   display: block;
+  position: absolute;
+  z-index: 200;
+  inset: 0 0 auto 0;
   text-align: center;
   padding: var(--s-s);
   color: var(--color-back);
@@ -397,9 +392,20 @@ hr {
   align-items: center;
 }
 
+.l-scroll__main {
+  padding-block-end: 200vh;
+}
+
+.l-scroll__intersectable {
+  block-size: 100vh;
+  margin-block-start: 200vh;
+  margin-inline: 2rem;
+  background-color: var(--color-fore);
+}
+
 /* components */
 .c-logo svg {
-  max-inline-size: 12rem;
+  max-inline-size: 10rem;
   margin-block: var(--s-s);
 }
 
@@ -420,6 +426,13 @@ hr {
 .transmit.three { animation-delay: 0.4s }
 
 /* basic utilities */
+
+.u-chevrons {
+  background-image: url(chevrons.svg), url(chevrons.svg);
+  background-position: 0.5rem, calc(100% - 0.5rem);
+  background-repeat: repeat-y;
+  background-size: 1.125rem auto;
+}
 
 .u-blend-difference {
   mix-blend-mode: difference;
@@ -464,6 +477,15 @@ hr {
 
 .u-scroll-y {
   overflow-y: auto;
+}
+
+.u-vh {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /* form controls */

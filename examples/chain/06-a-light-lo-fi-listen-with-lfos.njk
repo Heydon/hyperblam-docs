@@ -9,11 +9,13 @@ elements:
   - Blam
   - Chain 
   - Filter 
-  - Envelope
+  - LFO
   - Tap
   - Repeat
   - Sequencer 
   - Switch
+  - Dial
+  - Reverb
 ---
 
 {% set previousPost = collections.chain | getPreviousCollectionItem %}
@@ -23,7 +25,7 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <filter-blam type="highpass" id="highpass" freq="50" q="10"></filter-blam>
+  <filter-blam type="highpass" id="highpass" freq="50" q="15"></filter-blam>
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
@@ -104,24 +106,24 @@ elements:
     </repeat-blam>
     <bar-blam s="0 0 0 1 1 0 0 0" chance="0.3"></bar-blam>
   </track-blam>
-  <track-blam to="#kick" id="kickTrack" override="tomTrack">
+  <track-blam class="drum" to="#kick" id="kickTrack" override="tomTrack">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
     <bar-blam s="0 0 0 0 0 0 2 0"></bar-blam>
     <bar-blam s="3 0 0 0 0 0 0 0"></bar-blam>
     <bar-blam chance="0.3" s="3 2 3 0 3 2 0 3"></bar-blam>
   </track-blam>
-  <track-blam to="#snare" override="tomTrack kickTrack">
+  <track-blam class="drum" to="#snare" override="tomTrack kickTrack">
     <bar-blam s="0 0 0 0 1 0 0 0"></bar-blam>
-    <bar-blam s="0 0 1 2 1 0 0 2" chance="0.6"></bar-blam>
+    <bar-blam s="0 0 1 2 1 0 0 2" chance="0.5"></bar-blam>
   </track-blam>
-  <track-blam to="#tom" id="tomTrack" chance="0.75">
-    <bar-blam s="0 0 1 0 1 0 0 0 0 1"></bar-blam>
+  <track-blam class="drum" to="#tom" id="tomTrack" chance="0.75">
+    <bar-blam s="0 0 1 0 1 0 0 0 1 1"></bar-blam>
   </track-blam>
   <track-blam to="#pluck" chance="0.7">
     <repeat-blam x="4">
       <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
     </repeat-blam>
-    <bar-blam s="? 0 0 ? ? 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 ? ? 0 0 0"></bar-blam>
     <bar-blam s="? 0 0 ? 0 0 ? ?"></bar-blam>
     <bar-blam s="? ? 0 0 ? 0 0 ?"></bar-blam>
     <bar-blam s="? ? ? ? 0 0 0 0"></bar-blam>
@@ -169,6 +171,12 @@ The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp
 <switch-blam to="#pianoTrack" prop="solo">
   <label>
     solo keys
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".drum" prop="solo">
+  <label>
+    just drums
     <input type="checkbox">
   </label>
 </switch-blam>

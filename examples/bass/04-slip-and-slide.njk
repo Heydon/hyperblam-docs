@@ -21,7 +21,7 @@ elements:
 {% extends 'layouts/example.njk' %}
 
 {% block visual %}
-  <div class="l-frame__framed u-squiggle">
+  <div class="l-frame__framed">
     <rings-blam 
       id="example" 
       fps="12"
@@ -54,7 +54,10 @@ elements:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="slides" prop="detune" curve="-300 0, 0 0.125" beats chance="0"></envelope-blam>
+  <relay-blam mode="one" chance="0">
+    <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
+    <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+  </relay-blam>
 </notes-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="notes-blam" chance="0.7">
@@ -84,6 +87,19 @@ The _curve_ of the envelope can be described in stages (attack, decay, sustain, 
   
 Each pair of numbers represents the value and the time (from the start of the sample) at which it should be assigned. In this case, we start three semitones (or three frets) down and slide up very quickly. Since `beats` is set, `0.125` represents `0.125` beats from the start of the sample/sound. Were it not set, `0.125` would be relative to the length of the sample itself.
 
+But just slides are not enough variety.
+
+```html 
+<relay-blam mode="one" chance="0.333">
+  <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
+  <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+</relay-blam>
+```
+
+I've used a `<relay-blam>` and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note `mode="one"`. There is a 33.333% chance that _one_ of the envelopes will be applied when `<notes-blam>` plays a sound. Because `off` is applied to each individual `<envelope-blam>` element, they do not apply independently. 
+
+When used with `<blam-blam>`, `<relay-blam>` might want to be in the `'all'` or `'some'` modes. You may also want to omit `off` and use different `event` or `to` values. This creates multiple dimensions of event handling.
+
 Crucially, the chance of this envelope/slide occuring at all is just `0.333` (or 33.333%). To recap: our bassline is made of 4 different samples, randomly selected and played at different pitches, representing different notes in the minor pentatonic scale, sustained for varying lengths of time, and occassionally embellished with a sliding action.
 
 All we need now is a gnarly envelope filter. [Bootsy Collins]() famously uses a Musitronics Mu-Tron III, which can go for [many hundreds of dollars](https://reverb.com/uk/p/mu-tron-mutron-iii). It works by detecting peaks in the playing, which it designates as the “attack” (start) phase of notes, then  filters the sound accordingly.
@@ -103,7 +119,7 @@ As a pedant, I want to point out that the sound you are hearing is not technical
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="#slides" prop="chance" value="0.333">
+<switch-blam to="relay-blam" prop="chance" value="0.333">
   <label>
     slides
     <input type="checkbox">

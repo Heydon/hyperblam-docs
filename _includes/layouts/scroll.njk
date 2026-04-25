@@ -1,20 +1,34 @@
-{% extends 'layouts/example.njk' %}
+{% extends 'layouts/base.njk' %}
 
+{% block bodyTag %}
+<body class="l-scroll u-chevrons">
+{% endblock %}
+
+{% block nav %}
+<header class="l-box u-blend-difference l-fixed">
+  <a href="#main" class="l-skip">skip to content</a>
+  <nav>
+    <a class="c-logo c-logo-small" href="{{site.basedir}}/examples/" aria-label="Hyperblam examples index">
+      {{ logo | safe }}
+    </a>
+  </nav>
+  <h1 class="u-vh">{{ title }}</h1>
+</header>
+{% endblock %}
 {% block main %}
 <audio-blam>
-  <main tabindex="-1" class="l-frame u-scroll-y">
+  <main class="l-scroll__main" tabindex="-1">
+    {% block visual %}
+    {% endblock %}
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
-    <div class="l-intersect">
+    <div class="l-frame l-view">
       <div class="l-frame__framed">
         {% block audio %}
         {% endblock %}
       </div>
-      <intersect-blam class="l-frame__framed l-intersect__box">
-        {% block intersect %}
-        {% endblock %}
-      </intersect-blam>
     </div>
     <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
+    <div class="l-scroll__intersectable"></div>
   </main>
   <dialog>
     <header>
@@ -27,4 +41,34 @@
       {% endblock %}
     </div>
   </dialog>
+{% endblock %}
+
+{% block footer %}
+<footer class="l-box l-fixed l-fixed--end u-blend-difference">
+  <div class="l-cluster">
+    {% block controls %}
+    {% endblock %}
+    <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
+  </div>
+  <nav class="l-cluster" aria-label="more examples">
+    {% if previousPost %}
+      <a class="u-font-special" href="{{ previousPost.url }}" aria-label="previous example">← prev</a>     
+    {% endif %}
+    {% if nextPost %}
+      <a class="u-font-special" href="{{ nextPost.url }}" aria-label="next example">next →</a>
+    {% else %}
+      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>
+    {% endif %}
+  </nav>
+</footer>
+</audio-blam>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{site.basedir}}/{{site.hyperblampath}}"></script>
+<script type="module">
+  import { dialog } from '{{site.basedir}}/static/js/dialog.js';
+  dialog('dialog', '#info');
+  window.addEventListener('blamready', () => console.log('window on ready'));
+</script>
 {% endblock %}

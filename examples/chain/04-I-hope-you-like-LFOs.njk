@@ -12,12 +12,30 @@ elements:
 
 {% extends 'layouts/example.njk' %}
 
+{% block visual %}
+  <div class="l-frame__framed">
+    <rings-blam 
+      id="example" 
+      fps="9"
+      ratio="1 / 1"
+      analyser="#analyser" 
+      transport="#transport"
+      style="inline-size: 75vw; max-block-size: 100%"
+      count="{{ visualiser.count }}",
+      first="{{ visualiser.first }}",
+      last="{{ visualiser.last }}"
+    >
+    </rings-blam>
+  </div>
+{% endblock %}
+
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser"></analyser-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></audio>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.5" beats="0.25">
@@ -37,9 +55,17 @@ elements:
 
 Now we’re cooking. In this example, the LFO that controls the gain (and creates the tremolo effect) is controlled by another LFO. LFO inception!
 
+```html 
+<gain-blam gain="0.5">
+  <lfo-blam prop="gain" gain="0.5" beats="0.25">
+    <lfo-blam prop="beats" gain="0.25" beats="3"></lfo-blam>
+  </lfo-blam>
+</gain-blam>
+```
+
 This supplementary LFO controls the original LFO’s `beats` prop: the frequency or _rate_ of the tremolo (and saves me giving myself **carpal tunnel** by waggling the rate control continuously).
 
-To further demonstrate the flexibility of **HYPERBLAM** LFOs, a companion LFO is used to control (_sweep_) the `pan` parameter of the `<pan-blam>` element. Dynamic panning is the kind of studio effect Jimi Hendrix employed liberally and has since gone out of favour. Probably because it makes you go lose your balance when listening on headphones.
+To further demonstrate the flexibility of **HYPERBLAM** LFOs, a companion LFO is used to control (_sweep_) the `pan` parameter of the `<pan-blam>` element. Dynamic panning is the kind of studio effect Jimi Hendrix employed liberally and has since gone out of favour. Probably because it makes you lose your balance when listening on headphones.
 
 {% endrenderTemplate %}
 

@@ -5,6 +5,9 @@ elements:
   - Chain 
   - Gain 
   - Pan
+  - Limiter
+visualiser: 
+  count: 16
 ---
 
 {% set previousPost = collections.chain | getPreviousCollectionItem %}
@@ -14,10 +17,11 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
+  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></audio>
   <chain-blam out="bus">
     <gain-blam gain="1"></gain-blam>
     <pan-blam pan="0"></pan-blam>

@@ -1,7 +1,7 @@
 ---
 title: A motif with some mojo
 visualiser:
-  count: 16
+  count: 8
 elements: 
   - Notes
   - Pads
@@ -26,10 +26,10 @@ elements:
 {% extends 'layouts/example.njk' %}
 
 {% block visual %}
-  <div class="l-frame__framed u-squiggle">
+  <div class="l-frame__framed">
     <rings-blam 
       id="example" 
-      fps="12"
+      fps="6"
       ratio="1 / 1"
       analyser="#analyser" 
       transport="#transport"
@@ -44,7 +44,7 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser" smoothing="0.75"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
 </chain-blam>
 <notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
@@ -91,7 +91,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
   </bank-blam>
 </pads-blam>
-<sequencer-blam bpm="90" id="transport">
+<sequencer-blam bpm="110" id="transport" swing>
   <track-blam id="bassTrack" to="notes-blam" chance="0.7">
     <repeat-blam x="3">
       <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
@@ -162,10 +162,11 @@ Important things to bear in mind:
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="sequencer-blam" prop="swing" value="0.2">
+<dial-blam to="sequencer-blam" prop="bpm">
   <label>
-    swing
-    <input type="checkbox">
+    bpm
+    <input type="range" min="60" max="180" step="1">
+    <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
-</switch-blam>
+</dial-blam>
 {% endblock %}

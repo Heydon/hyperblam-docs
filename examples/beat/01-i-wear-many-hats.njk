@@ -28,7 +28,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
-  <blam-blam prop="detune" value="0~33"></blam-blam>
+  <blam-blam prop="detune" value="0~60"></blam-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="#hat">
@@ -84,10 +84,10 @@ Positive integers reference samples by index, as loaded by an associated `<bank-
   
 In this case, the three samples are a closed hat (`1`), another slightly different closed hat for variety (`2`) and an open hat (`3`). Note `<pads-blam>`’s `choke` attribute. It ensures the previous sample/sound is silenced when the next one begins playing. This is critical for sequencing hi-hats, since the open hat must be forced shut to be played closed.
 
-In addition, a `<blam-blam>` element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from `<pads-blam>`, scheduling a sound, and assigns a value to the `detune` property/`audioParam` between `0` and `33` cents.
+In addition, a `<blam-blam>` element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from `<pads-blam>`, scheduling a sound, and assigns a value to the `detune` property/`audioParam` between `0` and `60` cents.
 
 ```
-<blam-blam prop="detune" value="0~33"></blam-blam>
+<blam-blam prop="detune" value="0~60"></blam-blam>
 ```
 
 This adds additional tonal variety, making it sound somewhat like we are dealing in more than three samples.

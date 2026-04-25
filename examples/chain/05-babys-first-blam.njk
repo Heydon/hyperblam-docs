@@ -13,12 +13,32 @@ elements:
 
 {% extends 'layouts/example.njk' %}
 
+{% block visual %}
+  <div class="l-frame__framed">
+    <rings-blam 
+      id="example" 
+      fps="9"
+      ratio="1 / 1"
+      analyser="#analyser" 
+      transport="#transport"
+      style="inline-size: 75vw; max-block-size: 100%"
+      count="{{ visualiser.count }}",
+      first="{{ visualiser.first }}",
+      last="{{ visualiser.last }}"
+    >
+    </rings-blam>
+  </div>
+{% endblock %}
+
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser"></analyser-blam>
+  <reverb-blam mix="0.5">
+    <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
+  </reverb-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/jingles/electric-piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></audio>
   <p class="u-blend-difference" style="margin-block-start: var(--s-s)">
     <small>(try playing the audio multiple times...)</small>
   </p>
@@ -28,10 +48,7 @@ elements:
         <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
       </lfo-blam>
     </gain-blam>
-    <reverb-blam mix="0.5">
-      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
-    </reverb-blam>
-    <filter-blam type="highpass" freq="90"></filter-blam>
+    <filter-blam type="highpass" freq="110"></filter-blam>
   </chain-blam>
 </media-blam>
 {% endblock %}

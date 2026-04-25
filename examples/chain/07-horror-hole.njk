@@ -1,0 +1,119 @@
+---
+title: Horror hole
+visualiser:
+  count: 16
+elements: 
+  - Pads
+  - Bank 
+  - Sample 
+  - Blam
+  - Chain 
+  - Filter 
+  - LFO
+  - Envelope
+  - Tap
+  - Sequencer 
+---
+
+{% set previousPost = collections.chain | getPreviousCollectionItem %}
+{% set nextPost = collections.chain | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+
+{% block visual %}
+  <div class="l-frame__framed">
+    <rings-blam 
+      id="example" 
+      fps="9"
+      ratio="1 / 1"
+      analyser="#analyser" 
+      transport="#transport"
+      style="inline-size: 75vw; max-block-size: 100%"
+      count="{{ visualiser.count }}",
+      first="{{ visualiser.first }}",
+      last="{{ visualiser.last }}"
+    >
+    </rings-blam>
+  </div>
+{% endblock %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <filter-blam type="highpass" freq="100"></filter-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
+</chain-blam>
+<pads-blam bank="plucks" id="pluck" gain="14" detune="-1200" robin>
+  <lfo-blam prop="detune" gain="50"></lfo-blam>
+  <envelope-blam prop="gain" curve="0 0, 1 0.333" beats></envelope-blam>
+  <chain-blam out="bus">
+    <filter-blam id="filter" type="lowpass" freq="7000">
+      <lfo-blam prop="freq" gain="5000" beats="7.25"></lfo-blam>
+    </filter-blam>
+    <reverb-blam mix="0.666">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</pads-blam>
+<pads-blam bank="plucks" id="pluck2" gain="0.5">
+  <blam-blam prop="gain" value="0.25|0.33|0.5"></blam-blam>
+  <envelope-blam prop="detune" curve="0 0, 0 0.25, -100 1"></envelope-blam>
+  <chain-blam out="bus">
+    <echo-blam beats="0.666" feedback="0.6" cutoff="2000"></echo-blam>
+    <pan-blam pan="0">
+      <lfo-blam prop="pan" gain="0.4" beats="9"></lfo-blam>
+    </pan-blam>
+    <reverb-blam mix="0.8">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</pads-blam>
+<bank-blam id="plucks">
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-01.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-02.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-03.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-04.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-05.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-06.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-07.mp3"></sample-blam>
+  <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-08.mp3"></sample-blam>
+</bank-blam>
+<sequencer-blam bpm="90" scale="3.5" id="transport">
+  <track-blam to="#pluck">
+    <bar-blam s="? 0 0 ? 0 0 ?"></bar-blam>
+  </track-blam>
+  <track-blam id="plucksTrack2" to="#pluck2" chance="0.75">
+    <bar-blam s="? 0 ? ? 0 ? ? 0"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam id="transport" to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+There’s no reason why two instruments (`<pad-blam>` elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit `bank` prop, pointing to the `<bank-blam>`’s `id`.
+
+Here, one instrument plays the sample samples an ocatve down (`detune="-1200"`) with the _attack_ softened using the first appearance of an `<envelope-blam>`. The gain starts at `0` an is ramped to `1` `0.5` beats in.
+
+```html
+<envelope-blam prop="gain" curve="0 0, 1 0.5" beats></envelope-blam>
+```
+
+Another `<envelope-blam>` is used to bend the pitch at the tail of the accompanying (higher tuned) instrument. It makes the sound extra unsettling. Since this composition generates indefinitely, you can put it on at bedtime and enjoy a whole night of vividly unpleasant dreams.
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<switch-blam to="#plucksTrack2" prop="solo">
+  <label>
+    solo plucks
+    <input type="checkbox">
+  </label>
+</switch-blam>
+{% endblock %}

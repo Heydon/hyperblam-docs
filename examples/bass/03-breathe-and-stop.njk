@@ -13,6 +13,8 @@ elements:
   - Track 
   - Bar
   - Switch
+visualiser: 
+  count: 8
 ---
 
 {% set previousPost = collections.bass | getPreviousCollectionItem %}
@@ -21,10 +23,10 @@ elements:
 {% extends 'layouts/example.njk' %}
 
 {% block visual %}
-  <div class="l-frame__framed u-squiggle">
+  <div class="l-frame__framed">
     <rings-blam 
       id="example" 
-      fps="12"
+      fps="8"
       ratio="1 / 1"
       analyser="#analyser" 
       transport="#transport"

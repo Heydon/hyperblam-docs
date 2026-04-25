@@ -71,7 +71,7 @@ elements:
     </pan-blam>
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.5" beats="0.001">
-        <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
+        <blam-blam prop="beats" value="0.00025~0.01"></blam-blam>
       </lfo-blam>
     </gain-blam>
   </chain-blam>
@@ -192,4 +192,6 @@ The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp
     <input type="range" min="50" max="2000" step="10">
   </label>
 </dial-blam>
+<kbd-blam to="#tom" prop="play" key="1"></kbd-blam>
+<kbd-blam to="#pluck" prop="play" key="2"></kbd-blam>
 {% endblock %}

@@ -20,9 +20,17 @@
     {% block bodyStart %}
     <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
       <defs>
-        <filter id="noise-big">
-          <feTurbulence baseFrequency="0.06" numOctaves="3" result="noise" seed="1"/>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+        <filter id="noise-big-1">
+          <feTurbulence baseFrequency="0.006" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
+        </filter>
+        <filter id="noise-big-2">
+          <feTurbulence baseFrequency="0.008" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" />
+        </filter>
+        <filter id="noise-big-3">
+          <feTurbulence baseFrequency="0.004" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
         </filter>
         <filter id="noise-1">
           <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>

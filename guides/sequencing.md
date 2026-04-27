@@ -130,9 +130,9 @@ Using more complex patterns, this can go a surprisingly long way towards making 
 
 ## Probabilism
 
-Multiple **HYPERBLAM** elements are based on a primitive element called `Event.js` which takes care of generic event handling. All these elements inherit a `chance` prop that determines how likely the element will respond to a subscribed event. Playing, detuning, filtering, panning, muting, pretty much anything can be *left to chance*.
+Multiple **HYPERBLAM** elements are based on a primitive element called `Handle.js` which takes care of generic event handling. All these elements inherit a `chance` prop that determines how likely the element will respond to a subscribed event. Playing, detuning, filtering, panning, muting, pretty much anything can be *left to chance*.
 
-The `<track-blam>` element calculates whether a sound should play, at any given time, based on interactions between probabilities, overrides, and other settings. Once you put these conditions in place, you can just sit back and listen to the composition write itself in real time.
+The `<track-blam>` element calculates whether a sound should play, at any given time, based on interactions between probabilities, overrides, and other settings. Once you put these conditions in place, you can just sit back and listen to the composition write itself in real time. By sending and responding to events, internally, the composition makes decisions for itself.
 
 ![Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line.]({{site.basedir}}/static/images/illustrations/sequencing4.svg)
 

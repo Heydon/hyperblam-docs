@@ -1,9 +1,0 @@
-{
-  "tags": "scroll",
-  "order": 1,
-  "title": "Using the viewport",
-  "summary": "Changing audio parameters as objects come in and out of view.",
-  "visualiser": {
-    "count": 12
-  }
-}

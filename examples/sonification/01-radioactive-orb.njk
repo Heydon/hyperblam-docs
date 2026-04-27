@@ -1,0 +1,53 @@
+---
+title: Radioactive orb
+elements: 
+  - Intersect
+---
+
+{% set previousPost = collections.scroll | getPreviousCollectionItem %}
+{% set nextPost = collections.scroll | getNextCollectionItem %}
+
+{% extends 'layouts/scroll.njk' %}
+
+{% block audio %}
+<pads-blam>
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/geiger/1.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/geiger/2.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/geiger/3.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/geiger/4.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/geiger/5.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam>
+    <filter-blam id="filter" freq="10000" q="5">
+      <blam-blam to="#filter" from="#intersectable" prop="freq" value="10000"></blam-blam>
+    </filter-blam>
+  </chain-blam>
+  <blam-blam prop="detune" value="-50~50"></blam-blam>
+</pads-blam>
+<sequencer-blam bpm="400">
+  <track-blam id="counter" to="pads-blam" chance="0">
+    <bar-blam s="?"></bar-blam>
+    <blam-blam to="#counter" from="#intersectable" prop="chance" value="1"></blam-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+<p><small>(once playing, try scrolling)</small></p>
+{% endblock %}
+
+{% block objects %}
+<intersect-blam id="intersectable" class="l-scroll__intersectable l-scroll__circle u-squiggle--big" steps="20" margin="25%"></intersect-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

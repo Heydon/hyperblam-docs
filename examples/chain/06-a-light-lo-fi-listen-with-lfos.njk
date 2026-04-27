@@ -42,7 +42,8 @@ elements:
     </filter-blam>
   </chain-blam>
   <lfo-blam prop="detune" gain="66" beats="1">
-    <blam-blam prop="beats" value="1.5|1.5|0.25|0.125|0.0625" from="sequencer-blam" chance="0.5" revert></blam-blam>
+    <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+    <blam-blam prop="gain" value="50|50|25|100" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert off></blam-blam>
 </pads-blam>
@@ -75,7 +76,7 @@ elements:
       </lfo-blam>
     </gain-blam>
   </chain-blam>
-  <blam-blam prop="length" value="1|0.25|0.125| "></blam-blam>
+  <blam-blam prop="length" value="1|0.25|0.125"></blam-blam>
 </pads-blam>
 <pads-blam id="pluck" gain="1.5">
   <bank-blam>

@@ -22,7 +22,7 @@ elements:
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam id="hat" choke out="bus">
+<pads-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
@@ -85,4 +85,6 @@ Try listening for a short while to hear the ongoing changes in [syncopation](htt
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
+<kbd-blam to="#kick" prop="play" key="1"></kbd-blam>
+<kbd-blam to="#hat" prop="play" key="2"></kbd-blam>
 {% endblock %}

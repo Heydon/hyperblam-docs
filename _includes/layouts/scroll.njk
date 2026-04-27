@@ -28,7 +28,9 @@
       </div>
     </div>
     <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
-    <div class="l-scroll__intersectable"></div>
+    {% block objects %}
+      <div class="l-scroll__intersectable"></div>
+    {% endblock %}
   </main>
   <dialog>
     <header>

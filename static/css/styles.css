@@ -397,10 +397,17 @@ hr {
 }
 
 .l-scroll__intersectable {
+  display: block;
   block-size: 100vh;
   margin-block-start: 200vh;
   margin-inline: 2rem;
-  background-color: var(--color-fore);
+}
+
+.l-scroll__circle {
+  background-image: url(circle.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
 }
 
 /* components */
@@ -702,6 +709,10 @@ dialog > div {
   animation: squiggle 0.25s linear infinite;
 }
 
+.u-squiggle--big {
+  animation: squiggleBig 0.25s linear infinite;
+}
+
 @keyframes squiggle {
   0% {
     filter: url("#noise-1");
@@ -711,6 +722,18 @@ dialog > div {
   }
   66% {
     filter: url("#noise-3");
+  }
+}
+
+@keyframes squiggleBig {
+  0% {
+    filter: url("#noise-big-1");
+  }
+  33% {
+    filter: url("#noise-big-2");
+  }
+  66% {
+    filter: url("#noise-big-3");
   }
 }
 

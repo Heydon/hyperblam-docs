@@ -814,7 +814,7 @@ props-blam > div > div {
 
 /* HYPERBLAM elements */
 
-audio-blam, media-blam {
+audio-blam, media-blam, kbd-blam {
   display: contents;
 }
 

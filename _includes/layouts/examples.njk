@@ -9,6 +9,7 @@
       {% for group in site.exampleData %}
         <h2>{{ group.title }}</h2>
           {{ group.summary | md | safe }}
+          {% if not 'other' in group.tags %}
           <table>
             {% for post in collections[group.tags] %}
               <tr>
@@ -19,6 +20,15 @@
               </tr>
             {% endfor %}
           </table>
+          {% else %}
+          {% for post in collections[group.tags] %}
+            <ul>
+              <li>
+                <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+              </li>
+            </ul>
+          {% endfor %}
+          {% endif %}
       {% endfor %}
     {% endblock %}
   </main>

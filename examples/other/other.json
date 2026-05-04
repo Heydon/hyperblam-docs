@@ -1,6 +1,6 @@
 {
   "tags": "other",
-  "order": -1000,
+  "order": 1000,
   "title": "More",
   "summary": "Standalone examples. Some are very experimental.",
   "visualiser": {

@@ -2,6 +2,15 @@
 title: Radioactive orb
 elements: 
   - Intersect
+  - Filter 
+  - Bank 
+  - Sample 
+  - Pads 
+  - Blam 
+  - Sequencer 
+  - Track 
+  - Bar 
+  - Tap
 ---
 
 {% set previousPost = collections.scroll | getPreviousCollectionItem %}
@@ -50,4 +59,5 @@ elements:
 {% endblock %}
 
 {% block controls %}
+<kbd-blam key="1" to="pads-blam" prop="play"></kbd-blam>
 {% endblock %}

@@ -3,7 +3,7 @@ title: Filters
 order: 5
 ---
 
-In simple terms, filters remove or add  frequency information. Given that frequency determines *what you hear*, filters could scarcely be more important in sound design. They can give your mix depth and *separation*, power *wah-wah* effects, and sculpt synthesizer timbre. 
+In simple terms, filters remove or add frequency information. Given that frequency determines *what you hear*, filters could scarcely be more important in sound design. They can give your mix depth and *separation*, power *wah-wah* effects, and sculpt synthesizer timbre. 
 
 **HYPERBLAM** supports all of these shenanigans. It even offers a *phaser* effect, using a filter to make your sound slide back and forth, altering its phase relationship *with itself*.
 
@@ -19,13 +19,14 @@ But the source of this warmth is straightforward to both deduce and digitally re
 
 A digital system typically doesn’t know if you’re trying to create a guitar sound or something suiting higher, or lower, frequency data. So it gives you the widest possible range to play with.
 
-That’s where filters can help. When I play my baritone guitar live (directly into a PA system with a much wider frequency response than a guitar amp), people sometimes remark on the sound’s *realism;* its similarity to a real amp*.*This can be attributed to a single *lowpass* filter in my digital signal chain. I just filter out all the frequencies above that 7KHz mark. The rest of the frequencies are *given a pass*.
+That’s where filters can help. When I play my baritone guitar live (directly into a PA system with a much wider frequency response than a guitar amp), people sometimes remark on the sound’s *realism;* its similarity to a real amp. This can be attributed to a single *lowpass* filter in my digital signal chain. I just filter out all the frequencies above that 7KHz mark. The rest of the frequencies are *given a pass*.
 
 Lowpass is the most common and useful *single band* filter, so it’s the default in both the Web Audio API and **HYPERBLAM.** The *cutoff frequency* (the point at which passed frequencies drop off) is set in hertz, using the `freq` prop’:
 
 ```html
 <filter-blam
-  freq="7000">
+  freq="7000"
+>
 </filter-blam>
 ```
 
@@ -33,7 +34,8 @@ The papery, creaky thump of a kick drum sample can be transformed into a soft, d
 
 ```html
 <filter-blam
-  freq="500">
+  freq="500"
+>
 </filter-blam>
 ```
 

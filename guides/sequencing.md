@@ -21,7 +21,7 @@ Any **HYPERBLAM** elements listening for that `blam` event can synchronize itsel
 
 This opens up some possibilities. You could take a steam of live data and use it to trigger `<notes-blam>` sounds directly. A live, but perfectly *quantized*, musical performance of the stock exchange? Or weather patterns? Github commits?
 
-More commonly, you would subscribe to a `<sequencer-blam>`’s events using a `<track-blam>` element. That’s where **HYPERBLAM** starts to feel like a drum machine. And it’s one with some pretty cool features, similar to the high-end hardware machines from Elektron or Roland.
+More commonly, you would subscribe to a `<sequencer-blam>`’s events using a `<track-blam>` element. That’s where **HYPERBLAM** starts to feel like a drum machine. And it’s one with some pretty cool features, similar to the high-end hardware machines from **Elektron** or **Roland**.
 
 ## Polymetrics
 
@@ -58,9 +58,9 @@ Good start. But what if I introduce another `<pads-blam>` with another `<track-b
 </sequencer-blam>
 ```
 
-The tempo of these two tracks is shared (taken from a common `<sequencer-blam>`’s `bpm`) but their *time signatures* differ. The result is *polymetric:* beats stay obstinately in sync but the bars they belong to diverge. 
+The tempo of these two tracks is shared (taken from a common `<sequencer-blam>`’s `bpm`) but their *time signatures* differ. The result is *polymetric:* beats stay obstinately in sync but the bars they belong to diverge.
 
-Working with polymeters is fun because the relationship between the individual tracks changes over time. Since it’s difficult (at least for me!) to anticipate what that shifting relationship will sound like, the music stays fresh for longer. To get the length of the compound pattern, you multiple the lengths of each constituent bar. In this case, it’s `3 × 4`, or `12`.
+Working with polymeters is fun because the relationship between the individual tracks changes over time. Since it’s difficult (at least for me!) to anticipate what that shifting relationship will sound like, the music stays fresh for longer. To get the length of the compound pattern, you multiply the lengths of each constituent bar. In this case, it’s `3 × 4`, or `12`.
 
 ![A two track pattern illustrated as rows of blocks. Four blocks of 3 beats length each take up the same space as three blocks at 4 beats length each.]({{site.basedir}}/static/images/illustrations/sequencing2.svg)
 
@@ -106,11 +106,13 @@ Now it’s `3 × 5 × 4 × 7`, or `420`. So you can see how very little code can
 </track-blam>
 ```
 
-See [**Probabilism**](#probabilism) for more.
+The [“Snare Makes The Groove”]({{site.basedir}}/examples/03-snare-makes-the-groove) example uses polymetrics to help create a constantly evolving beat. This is assisted with [**probabilism**](#probabilism).
 
 ## Overrides
 
-We have something to address. In most drumbeats, the kick and snare should occupy their own space. A drummer very rarely plays those two drums at the same time. But, as polymetric track relationships shift over time, collisions are inevitable. 
+In that [“Snare Makes The Groove”]({{site.basedir}}/examples/03-snare-makes-the-groove) example you’ll see a curious `override` prop being used with the `<track-blam>` elements. This is really important.
+
+In most drumbeats, the kick and snare should occupy their own space. A drummer very rarely plays those two drums at the same time. But, as polymetric track relationships shift over time, collisions are inevitable. 
 
 ![A snare pattern with the snare sound on the third of four beats, with a kick pattern underneath, where the kick sound is the first of three beats. The third kick sound collides with the second snare sound.]({{site.basedir}}/static/images/illustrations/sequencing3.svg)
 
@@ -126,7 +128,9 @@ This is where overrides come in. Using the `override` prop, I can set which trac
 </track-blam>
 ```
 
-Using more complex patterns, this can go a surprisingly long way towards making a simple polymetric arrangement sound like an improvising drummer choosing, in the moment, where to place their kick and snare. But overrides aren’t just for drums. You can use them to carve out space for any sounds.
+Using more complex patterns, this can go a surprisingly long way towards making a simple polymetric arrangement sound like an improvising drummer choosing, in the moment, where to place their kick and snare. In the ensuing [“getting ghosted”]({{site.basedir}}/examples/04-getting-ghosted/) example, the snare track overrides tracks with `id`s `kickTrack` and `softSnareTrack`. Simultaneously, `kickTrack` overrides `softSnareTrack`, to ensure the underpinning kick drum doesn’t become too sparse. 
+
+Overrides aren’t just for drums. You can use them to carve out space for any sounds.
 
 ## Probabilism
 
@@ -136,4 +140,22 @@ The `<track-blam>` element calculates whether a sound should play, at any given 
 
 ![Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line.]({{site.basedir}}/static/images/illustrations/sequencing4.svg)
 
-Using generative AI, you can ask for a “sultry country song” and you’ll receive 637 low quality mp3s having a plagiaristic lemon party in your long-suffering ear holes. True generative music making isn’t about resurrecting the dead. With a handful of kilobytes, you can set about making something genuinely new.
+### Blam Blam!
+
+[“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/06-a-light-lo-fi-listen-with-lfos/) uses multiple event-based elements. The eponymous `<blam-blam>` element does a lot of heavy lifting. Kind of a mascot for **HYPERBLAM**, this element uses incoming events to randomize prop values or fire methods using randomized args. 
+
+For starters, it is affecting both the `length` and `detune` values of the electronic snare sound, adding texture, tension, and—most of all—variety.
+
+```html
+<pads-blam id="snare" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
+  </bank-blam>
+  <blam-blam prop="detune" value="-400|0|0|400|900"></blam-blam>
+  <blam-blam prop="length" value="1|1|1|0.25|0.125"></blam-blam>
+</pads-blam>
+```
+
+Each time the `<pads-blam>` schedules a sound, it fires a `blam` event, letting the `<blam-blam>` elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the `|`-separated syntax and applied. 
+

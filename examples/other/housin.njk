@@ -1,0 +1,69 @@
+---
+title: Housin
+elements:
+  - Chain
+visualiser: 
+  count: 8
+---
+
+{% set previousPost = collections.other | getPreviousCollectionItem %}
+{% set nextPost = collections.other | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<pads-blam id="hat" choke="0.05">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <phaser-blam></phaser-blam>
+  </chain-blam>
+</pads-blam>
+<pads-blam id="kick">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <filter-blam freq="200"></filter-blam>
+  </chain-blam>
+</pads-blam>
+<sequencer-blam bpm="90" id="transport" swing>
+  <track-blam to="#hat">
+    <bar-blam s="3 0"></bar-blam>
+  </track-blam>
+  <track-blam id="kickTrack" to="#kick" suspend>
+    <bar-blam s="1 0 0 0 2 0 0 3"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<dial-blam to="sequencer-blam" prop="bpm">
+  <label>
+    bpm
+    <input type="range" min="60" max="180" step="1">
+    <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
+  </label>
+</dial-blam>
+<kbd-blam to="#kick" key="1" prop="play"></kbd-blam>
+<kbd-blam to="#hat" key="4" prop="play"></kbd-blam>
+{% endblock %}

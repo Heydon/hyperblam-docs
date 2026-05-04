@@ -56,7 +56,6 @@ visualiser:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <envelope-blam id="bends" prop="detune" curve="-300 0, 0 0.125" beats chance="0"></envelope-blam>
 </notes-blam>
 <sequencer-blam bpm="90" id="transport">
   <track-blam to="notes-blam" chance="0.7">
@@ -100,4 +99,5 @@ For each note `<notes-blam>` plays, `<blam-blam>` assigns one of its `|`-separat
 
 {% block controls %}
 <kbd-blam to="notes-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="notes-blam" prop="play" value="A1" key="2"></kbd-blam>
 {% endblock %}

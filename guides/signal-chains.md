@@ -66,7 +66,9 @@ That doesn’t really look, or feel, like a pedal board—or a modular synthesiz
 
 ![A flow diagram for a signal chain. An instrument on the left points to a chain element, which groups a gain and pan effect. Finally, the chain is connected to two speakers, indicating the output.]({{site.basedir}}/static/images/illustrations/signal-chains2.svg)
 
-Adding a `<pan-blam>` element (or 37 `<pan-blam>` elements, for that matter) costs you approximately `700` bytes of JavaScript. And that includes `wet` and `dry` props for controlling the *mix*.
+(The [“Getting Absolutely Panned”]({{site.basedir}}/examples/02-getting-absolutely-panned) example includes `<gain-blam>` and `<pan-blam>` elements, with `<dial-blam>` elements to control each.)
+
+Adding a `<pan-blam>` element (or 37 `<pan-blam>` elements, for that matter) costs you approximately `700` bytes of JavaScript. And that includes the ability to control the `mix` (see [**Gain Isn’t Just For Gain**](/guides/gain/#gain-isn’t-just-for-gain)).
 
 Take the `<pan-blam>` element away, and those `700` bytes go away with it. That’s because **HYPERBLAM** only imports the elements you *actually use*. It doesn’t use a complex bundling system to do this—just dynamic imports based on simple DOM queries. The installation routine itself costs about `600` bytes.
 
@@ -117,3 +119,13 @@ In practice, this means you can create *many-to-one* relationships. For example,
 ```
 
 ![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedir}}/static/images/illustrations/signal-chains3.svg)
+
+[“A Light Lo-fi Listen With LFOs”]({{site.basedir}}/examples/06-a-light-lo-fi-listen-with-lfos) uses multiple signal chains. The `<dial-blam>` labelled “cutoff” controls a `<filter-blam>` in the `id="bus"` chain. You can hear the frequency change applying to all the instruments of the generative composition.
+
+```html
+<chain-blam id="bus">
+  <filter-blam type="highpass" id="highpass" freq="50" q="15"></filter-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam
+```

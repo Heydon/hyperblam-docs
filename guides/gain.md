@@ -39,6 +39,8 @@ A lowish gain value, like `0.5` gives noticeably diminishing returns. This appro
 </echo-blam>
 ```
 
+The [“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/06-a-light-lo-fi-listen-with-lfos/) example uses an `<echo-blam>` for the plucked, guitar-like instrument.
+
 Giving the echo effect’s gain (often labeled “feedback” in a commercial unit) a value approaching `1` causes it to go into a state called *self-oscillation*. In this state, echos compound and get louder, ultimately leading to *distortion*.
 
 ## You get distortion when you hit a ceiling
@@ -59,6 +61,8 @@ Nobody likes _unintended_ distortion, but nobody in revolutionary France was get
 
 ![A woman in old fashioned, Victorian dress holds a placard reading “don’t push rock and roll junk”]({{site.basedir}}/static/images/illustrations/gain_sign.svg)
 
+For some devilishly distorted beats, using **HYPERBLAM’s** signal-decapitating `<saturator-blam>` element, listen to the [“AutoMayhem”]({{site.basedir}}/examples/07-automayhem/) example.
+
 ## Distortion sounds loud
 
 As I’ve already established, distortion only happens when amplitude hits a ceiling. It’s literally the effect of sound *not* getting louder. So why does distortion sound loud? 
@@ -75,25 +79,35 @@ The [“loudness wars”](https://en.wikipedia.org/wiki/Loudness_war) are where 
 
 When working with the Web Audio API, gain nodes aren’t just useful for affecting gain. A gain node with a gain value of 1 transparently reproduces any signal sent to it. As such, it can be used as a *junction box*. 
 
-Each of the effects available in **HYPERBLAM** are based on a primitive `Box` class that implements `wet` and `dry` properties. The *mix* of the effect is the ratio between the wet (affected) and dry (unaffected) versions of the signal.
-
-In the following example, the first of the echos is already only 25% the amplitude of the initial (dry) sound it follows. By default, `dry` is `1`, for `<echo-blam>`.
-
-```html
-<echo-blam 
-  feeback="0.5" 
-  cutoff="2000"
-  wet="0.25"
->
-</echo-blam>
-```
-
-This is possible by sending the incoming signal to a transparent gain node, then diverging the signal into parallel wet and dry paths. 
-
-Each of these paths has its own gain node, controlled by the `wet` and `dry` props respectively. Finally, these are each connected to an “out” gain node—another junction.
+Each of the effects available in **HYPERBLAM** are based on a primitive `Box` class that implements _wet_ and _dry_ parallel paths. The *mix* of the effect is the ratio between the wet (affected) and dry (unaffected) gain nodes. 
 
 ![A single line leads to a node labeled in. Two lines emerge from this node, forming parallel lines—one containing a dry gain node and the other an effect node and a wet gain node. Finally, these two lines converge on a node labeled out.]({{site.basedir}}/static/images/illustrations/gain5.svg)
 
-For the purpose of chaining effects, this is really convenient. Each effect only needs a single entry and single exit point. The mix is handled internally (inside the so-called _box_).
 
-Thanks to class inheritance, the `dry` and `wet` getters and setters (and their registry in `observedAttributes`) only need to be set up once, in the primitive `Box.js` element on which each effect element is based.
+As in the [“Baby’s First Blam”]({{site.basedir}}/examples/05-babys-first-blam/) example, the mix can be calibrated using the (aptly named) `mix` property. 
+
+```html
+<reverb-blam mix="0.5">
+  <sample-blam src="/sounds/IRs/stadium.mp3"></sample-blam>
+</reverb-blam>
+...
+<dial-blam to="reverb-blam" prop="mix">
+  <label>
+    reverb
+    <input type="range" min="0" max="1" step="any">
+  </label>
+</dial-blam>
+```
+
+Under the hood, any change in the `mix` apportions gain to the wet and dry signals. The dry signal is always `1` _minus_ the wet signal:
+
+```js
+setMix() {
+  this.setParam('wet', this.mix);
+  this.setParam('dry', 1 - this.mix);
+  this.prevMix = this.mix;
+}
+```
+
+The `this.prevMix` value is handy when it comes to _bypassing_ the wet signal. When `bypass` is removed, the former `mix` can be restored.
+

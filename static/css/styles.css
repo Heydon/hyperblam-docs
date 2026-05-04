@@ -67,12 +67,20 @@ dt:after {
 
 a {
   text-decoration-style: wavy;
-  text-underline-offset: 0.25em;
+  text-underline-offset: 0.15em;
   text-decoration-thickness: 0.05em;
 }
 
 a:hover {
   text-underline-offset: 0.333em;
+}
+
+main [href*="/examples/"] {
+  font-family: var(--font-special);
+  font-size: 1.333em;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-decoration-thickness: 0.04em;
 }
 
 img, picture, video, canvas, svg {
@@ -119,6 +127,10 @@ h1 {
 
 h2 {
   font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
 }
 
 strong {
@@ -177,8 +189,7 @@ nav a:not(:hover) {
   text-decoration: none;
 }
 
-pre {
-  padding: var(--s-m) 0;
+pre, .l-note {
   overflow-x: auto;
 }
 
@@ -193,13 +204,20 @@ pre code {
   padding: var(--s-m) 0;
 }
 
-:where(pre)::before,
-:where(pre)::after,
+:where(pre, .l-note)::before,
+:where(pre, .l-note)::after,
 .l-index::after {
   content: '';
   display: block;
   block-size: 0.4rem;
   background-image: var(--wave-sine);
+  inline-size: 100%;
+}
+
+.l-note::before,
+.l-note::after {
+  margin-block: var(--s-m);
+  background-image: var(--wave-square);
 }
 
 code {
@@ -407,7 +425,11 @@ hr {
   background-image: url(circle.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 80%;
+  background-size: 80% 80%;
+}
+
+:where(.l-stack, .l-note) > * + * {
+  margin-block-start: var(--stack-gap, var(--s-m));
 }
 
 /* components */
@@ -662,7 +684,7 @@ dialog > div {
   background-position: 0 center;
   animation: osc auto ease-in-out, amp auto linear;
   animation-timeline: view();
-  filter: url(#noise-big);
+  filter: url(#noise-big-1);
 }
 
 .u-wave-square {

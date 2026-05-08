@@ -323,6 +323,7 @@ hr {
   animation: outline 0.666s linear infinite;
 }
 
+p a:hover img,
 .l-card:hover img, 
 .l-card:focus-within img {
   animation: squiggle 0.25s linear infinite;

@@ -41,7 +41,7 @@ Let’s look at tremolo, since that’s probably the simplest application. In **
 </gain-blam>
 ```
 
-The `beats` prop’ sets the LFO’s frequency according to the local BPM (beats per minute). On a tremolo guitar pedal this might be labelled “rate”. In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
+The `beats` prop’ sets the LFO’s frequency according to the local BPM (beats per minute). In **HYPERBLAM**, `beats` is a special term used wherever the value has to be translated from seconds or, in the case of an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode), hertz.
 
 The important part is the LFO’s own `gain`. This sets how much the `<gain-blam>` element’s `gain` is modulated. Yes, it’s one `gain` controlling another, if that was confusing.
 
@@ -58,6 +58,8 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
   </lfo-blam>		 
 </gain-blam>
 ```
+
+The [“Shimmer Shimmer Ya”]({{site.basedire}}/examples/03-shimmer-shimmer-ya) example applies this kind of tremolo to a sample of an electric piano. You can control the depth (gain) and rate (frequency) of the LFO using two `<dial-blam>` elements.
 
 ![Diagram showing how an LFO maps to gain. 1 is max gain, at the peak, 0 is min gain, and 0.5, the default, is at the vertical center.]({{site.basedir}}/static/images/illustrations/LFOs2.svg)
 
@@ -80,28 +82,17 @@ Given the `x` axis represents the time domain, those vertical lines mean an inst
 
 ## Low Frequency Oscillator Oscillators
 
-No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In this case, we may want to gradually temper the first LFO’s `gain` over time. I’ll use the default sine `type` for that nested LFO.
+No, that’s not a typo. **HYPERBLAM**, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In the [“I Hope You Like LFOs”]({{site.basedir}}/examples/04-I-hope-you-like-LFOs) example, the first LFO’s rate (in `beats`) is modulated by a secondary LFO.
 
 ```html
-<lfo-blam 
-  prop="gain"
-  beats="0.25"
-  gain="0.5"
-  type="square">
-  <lfo-blam
-    prop="gain"
-    gain="0.25"
-    beats="3">
+<gain-blam gain="0.5">
+  <lfo-blam prop="gain" gain="0.5" beats="0.25">
+    <lfo-blam prop="beats" gain="0.25" beats="3"></lfo-blam>
   </lfo-blam>
-</lfo-blam>	
+</gain-blam>
 ```
 
-This will have two effects: 
-
-1. Permutation of the relationship between the low and high gain half-cycles
-2. Since the high gain half-cycle will dip, a fluctuation in the overall output gain
-
-Gradual modulation (in this case, over three beats) can be used for all sorts of *spacey* and *woozy* effects. It’s also good for emulating the imperfections of mechanical audio equipment such as *tape*. 
+This has the effect of _destabilizing_ the LFO for a kind of retro sci-fi sounding effect. It’s coupled with modulating the panning (via the `<pan-blam>`’s `pan` prop) to make the sound spin around your head...
 
 ## High Low Frequency Oscillators
 
@@ -134,6 +125,16 @@ To emulate *downsampling*, we need to speed up the oscillator considerably. But 
 
 What’s neat about this effect is that slightly changing that `beats` value can have an enormous impact on the character of the sound, since this is a form of [amplitude modulation](https://en.wikipedia.org/wiki/Frequency_modulation). That is, the amplitude of one wave is used to change the amplitude of another, affecting its overall shape. 
 
+In the [“Baby’s First Blam”]({{site.basedir}}/examples/05-babys-first-blam) example, the precise beats value is randomized using a `<blam-blam>` element. Every time `<blam-blam>` receives a play event from `<media-blam>`, a new value is applied and a new [timbre](https://en.wikipedia.org/wiki/Timbre) created.
+
+```html
+<lfo-blam prop="gain" gain="0.5" beats="0.001" type="square">
+  <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
+</lfo-blam>
+```
+
+The accompanying `<reverb-blam>` helps temper the harshness of the square wave. Reverb is to sound design what blur is to visual design.
+
 Truly _low_ frequency amplitude modulation acts as a tremolo effect: you hear the original sound—with its preserved character—simply dipping in amplitude. When the frequency of the carrier and modulator oscillators become similar, that’s when you hear a unified sound. But a new and surprising one.
 
 It makes me think of the propellor on an airplane. At a slow rate of rotation, it still looks like a propellor. At much higher rates, you it appears as a circle: a completely different shape.
@@ -144,20 +145,3 @@ It makes me think of the propellor on an airplane. At a slow rate of rotation, i
 
   <figcaption>The term <em>waveshaper</em> is usually preserved for a method of distortion. But we are literally shaping a wave here. Plus any augmentation of a wave’s shape is a <em>de facto</em> form of distortion.</figcaption>
 </figure>
-
-
-Applying a secondary LFO, as we did before, but to control the principle LFO’s `frequency` lets us _sweep_ through all sorts of weird, robotic, metallic, fizzy timbres.
-
-```html
-<lfo-blam 
-  prop="gain"
-  beats="0.001"
-  gain="0.5"
-  type="square">
-  <lfo-blam
-    prop="beats"
-    beats="3"
-    gain="0.01"> 
-  </lfo-blam>	
-</lfo-blam>
-```

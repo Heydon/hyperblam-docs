@@ -457,6 +457,18 @@ p a:hover img,
 
 /* basic utilities */
 
+.u-list-inline {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 0.5em;
+}
+
+.u-list-inline li:not(:last-child)::after {
+  content: ',';
+}
+
 .u-chevrons {
   background-image: url(chevrons.svg), url(chevrons.svg);
   background-position: 0.5rem, calc(100% - 0.5rem);

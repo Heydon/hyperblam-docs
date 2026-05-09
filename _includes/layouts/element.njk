@@ -26,9 +26,22 @@
         <dt>tag</dt>
         <dd><code>&lt;{{ element.name | lowercase }}-blam&gt;</code></dd>
       </div>
+      <div>
+        <dt>see</dt>
+        <dd>
+          <ul class="u-list-inline">
+            {% for feature in ['props', 'methods', 'events'] %}
+              {% if element[feature] %}
+                <li><a href="#{{feature}}">{{feature}}</a></li>
+              {% endif %}
+            {% endfor %}
+            <li><a href="#examples">examples</a></li>
+          </ul>
+        </dd>
+      </div>
     </dl>
     {% if element.props %}
-      <h2>Props</h2>
+      <h2 id="props">Props</h2>
       <table>
         <tr>
           <th scope="col">name</th>
@@ -47,7 +60,7 @@
       </table>
     {% endif %}
     {% if element.events %}
-      <h2>Events</h2>
+      <h2 id="events">Events</h2>
       <table>
         <tr>
           <th scope="col">type</th>
@@ -62,7 +75,7 @@
       </table>
     {% endif %}
     {% if element.methods %}
-      <h2>Methods</h2>
+      <h2 id="methods">Methods</h2>
       <table>
         <tr>
           <th scope="col">name</th>
@@ -78,7 +91,7 @@
         {% endfor %}
       </table>
     {% endif %}
-    <h2>Examples</h2>
+    <h2 id="examples">Examples</h2>
     {% set posts = [] %}
     {% for post in collections['examples'] %}
       {% if element.name in post.data.elements %}

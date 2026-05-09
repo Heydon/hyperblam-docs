@@ -1,5 +1,5 @@
 const markdownIt = require('markdown-it');
-const markdownItAnchor = require('markdown-it-anchor');
+const markdownItNamedHeadings = require("markdown-it-named-headings");
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const waveforms = ['square', 'sine', 'sawtooth', 'triangle'];
@@ -90,14 +90,14 @@ module.exports = async function(eleventyConfig) {
   });
 
   // Link the subheadings 
-  const markdownLibrary = markdownIt({
+const markdownOptions = {
     html: true,
     breaks: true,
     linkify: true
-  }).use(markdownItAnchor, {
-    permalink: false
-  });
-  eleventyConfig.setLibrary('md', markdownLibrary);
+};
+const markdownRenderer = markdownIt(markdownOptions).use(markdownItNamedHeadings);
+
+eleventyConfig.setLibrary("md", markdownRenderer);
 
   // Table of contents filter
   eleventyConfig.addFilter('toc', function (value) {
@@ -110,12 +110,9 @@ module.exports = async function(eleventyConfig) {
         items.push(`<li><a href="#${h.id}">${h.textContent}</a></li>`);
       });
       return `
-        <nav class="docs-toc" aria-labelledby="toc-title">
-          <span aria-hidden="true" id="toc-title">table of contents</span>
           <ul>
             ${items.join('')}
           </ul>
-        </nav>
       `;
     }
     return null;

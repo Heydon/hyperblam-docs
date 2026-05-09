@@ -13,8 +13,8 @@ elements:
   - Tap
 ---
 
-{% set previousPost = collections.scroll | getPreviousCollectionItem %}
-{% set nextPost = collections.scroll | getNextCollectionItem %}
+{% set previousPost = collections.other | getPreviousCollectionItem %}
+{% set nextPost = collections.other | getNextCollectionItem %}
 
 {% extends 'layouts/scroll.njk' %}
 
@@ -43,7 +43,7 @@ elements:
 <tap-blam to="sequencer-blam" prop="playPause">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
 </tap-blam>
-<p><small>(once playing, try scrolling)</small></p>
+<p><small>(press play, then try scrolling)</small></p>
 {% endblock %}
 
 {% block objects %}

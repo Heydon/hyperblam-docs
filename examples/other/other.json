@@ -2,7 +2,7 @@
   "tags": "other",
   "order": 1000,
   "title": "More",
-  "summary": "Standalone examples. Some are very experimental.",
+  "summary": "Standalone examples. Some are simple ideas or experiments, others are complete generative compositions.",
   "visualiser": {
     "count": 8
   }

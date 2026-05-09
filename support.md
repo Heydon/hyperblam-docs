@@ -5,6 +5,10 @@ layout: layouts/main.njk
 
 **HYPERBLAM** is an independent open source project. It offers a lot but it could offer a lot more. You can help fund **HYPERBLAM**’s development in some different ways:
 
+## Become a supporter!
+
+I have a <span class="u-font-special-inline">[“Buy Me A Coffee/Beer/Egg”](https://buymeacoffee.com/heydon)</span> page. One-off or monthly donations are welcome. But if you want something to take home, consider one of the following:
+
 ## Buy A T-Shirt!
 
 <ul class="l-grid">
@@ -32,12 +36,12 @@ layout: layouts/main.njk
 
 ## Buy This Font!
 
-The hand-drawn font **Heydon Caps** was originally designed for this website. Since then, its character set has grown to cover all European languages—even Icelandic. Most hand-drawn fonts are kind of limited and “throw away” but this one has some great features, including several contextual alternatives for added realism. 
+The hand-drawn font <span class="u-font-special-inline">[Heydon Caps](https://buymeacoffee.com/heydon/e/536619)</span> was originally designed for this website. Since then, its character set has grown to cover many languages—including Icelandic. Most hand-drawn fonts are kind of limited and “throw away” but this one has some great features, including several contextual alternatives for added realism. 
 
-Anyway, here’s a passage from an Icelandic Saga...
+You can [buy the font in my shop](https://buymeacoffee.com/heydon/e/536619). Anyway, here’s a passage from an Icelandic Saga...
 
 <p>
-<a href="#">
-  <img src="{{site.basedir}}/static/images/icelandic-small.svg" alt="Passage from an Icelandic saga with the following text: Gísli bjóst til hólmgöngu og berjast þeir og lýkur svo að Björn fellur. Gísli þóttist nú hafa unnið mikinn sigur og það er sagt að hann biður Ingibjargar og vildi eigi láta góða konu úr ætt ganga og fær hennar. Nú tekur hann allan fjárhlut og gerist mikill maður fyrir sér. Því næst andast faðir hans og tekur Gísli allan fjárhlut eftir hann. Hann lét drepa þá alla sem með Birni höfðu fylgt.">
-</a>
+  <a href="https://buymeacoffee.com/heydon/e/536619">
+    <img src="{{site.basedir}}/static/images/icelandic-small.svg" alt="Passage from an Icelandic saga that links to the shop page for buying the font.">
+  </a>
 </p>

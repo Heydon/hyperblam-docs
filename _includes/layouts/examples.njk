@@ -21,13 +21,13 @@
             {% endfor %}
           </table>
           {% else %}
-          {% for post in collections[group.tags] %}
-            <ul>
-              <li>
-                <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
-              </li>
-            </ul>
-          {% endfor %}
+          <ul class="l-index">
+            {% for post in collections[group.tags] %}
+                <li>
+                  <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+                </li>
+            {% endfor %}
+          </ul>
           {% endif %}
       {% endfor %}
     {% endblock %}

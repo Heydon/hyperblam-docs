@@ -135,6 +135,18 @@ module.exports = async function(eleventyConfig) {
       d.classList.add(`u-wave-${random.oneOf(waveforms)}`);
     });
 
+    if (outputPath.includes('/guides') || outputPath.includes('/example')) {
+      const elementRefs = [...document.querySelectorAll('p > code')];
+      elementRefs.forEach(ref => {
+        if (ref.innerHTML.includes('-blam&gt;')) {
+          let name = ref.innerHTML.replace('&lt;', '')
+                                  .replace('&gt;', '')
+                                  .split('-')[0];
+          ref.innerHTML = `<a href="/elements/${name}">${ref.innerHTML}</a>`;
+        }
+      });
+    }
+
     // lazy load images
     const images = [...document.querySelectorAll('main img')];
     images.forEach(img => {

@@ -21,10 +21,10 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <saturator-blam></saturator-blam>
-  <phaser-blam q="50" mix="0" center="6000" depth="5000" beats="0.5"></phaser-blam>
-  <echo-blam beats="1" feedback="0.5" cutoff="4000" mix="0"></echo-blam>
   <analyser-blam id="analyser"></analyser-blam>
+  <saturator-blam></saturator-blam>
+  <phaser-blam q="50" mix="0.5" center="6000" depth="5000" beats="0.5"></phaser-blam>
+  <echo-blam beats="0.5" feedback="0.6" cutoff="5000" mix="0"></echo-blam>
 </chain-blam>
 <pads-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
@@ -32,7 +32,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
-  <lfo-blam prop="detune" gain="200" beats="4"></lfo-blam>
+  <lfo-blam prop="detune" gain="100" beats="4"></lfo-blam>
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
@@ -43,11 +43,12 @@ elements:
 </pads-blam>
 <pads-blam id="snare" out="bus">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/01.mp3" reverse></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/02.mp3" reverse></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/03.mp3" reverse></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-500~200"></blam-blam>
+  <blam-blam prop="reverse" value="1" revert></blam-blam>
 </pads-blam>
 <pads-blam id="snareSoft" out="bus">
   <bank-blam>
@@ -64,7 +65,7 @@ elements:
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
     <bar-blam s="1 0 2 0 3">
-      <blam-blam to="saturator-blam" prop="mode" value="1|1||1|2|3|4"></blam-blam>
+      <blam-blam to="saturator-blam" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
@@ -146,12 +147,6 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
   <label>
     high cut
     <input type="range" min="1000" max="20000" step="any">
-  </label>
-</dial-blam>
-<dial-blam to="phaser-blam" prop="mix">
-  <label>
-    phaser
-    <input type="range" min="0" max="1" step="any">
   </label>
 </dial-blam>
 <dial-blam to="echo-blam" prop="mix">

@@ -293,6 +293,11 @@ hr {
   gap: var(--s-s);
 }
 
+.l-card--no-border {
+  padding: var(--s-s);
+  border: 0;
+}
+
 .l-card:nth-child(even) {
   transform: rotate(1.5deg)
 }

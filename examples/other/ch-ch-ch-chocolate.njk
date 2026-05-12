@@ -1,0 +1,78 @@
+---
+title: Ch-ch-ch-chocolate
+elements: 
+  - Chain 
+  - Analyser 
+  - Sequencer 
+  - Pads 
+  - LFO 
+  - Blam 
+  - Envelope 
+  - Track 
+  - Bar 
+  - Bank 
+  - Sample 
+  - Tap 
+---
+
+{% set previousPost = collections.other | getPreviousCollectionItem %}
+{% set nextPost = collections.other | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
+</chain-blam>
+<sequencer-blam bpm="94" id="transport" swing="0.2">
+  <pads-blam to="bus" id="scratch" bank="stab" detune="200" gain="0.75" choke>
+    <lfo-blam prop="detune" gain="700"></lfo-blam>
+    <blam-blam prop="length" value="0.0625~0.15"></blam-blam>
+    <blam-blam prop="reverse" value="1|1|0"></blam-blam>
+  </pads-blam>
+  <pads-blam to="bus" id="release" bank="stab" gain="0.75">
+    <envelope-blam prop="detune" curve="500 0, 0 0.333, 0 3.85, 600 4" beats></envelope-blam>
+    <blam-blam prop="length" value="4|4|0.75"></blam-blam>
+  </pads-blam>
+  <pads-blam to="bus" id="drums" bank="drumsBank"></pads-blam>
+  <track-blam to="#scratch" chance="0.6">
+    <bar-blam s="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#release">
+    <bar-blam s="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#drums" chance="0.8">
+    <bar-blam s="1 0 0 0 3 0 0 2"></bar-blam>
+    <bar-blam s="1 0 0 2 4 0 0 2"></bar-blam>
+    <bar-blam s="1 0 1 2 0 0 0 3"></bar-blam>
+  </track-blam>
+  <bank-blam id="stab">
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/tay/short.mp3" reverse></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/tay/long.mp3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="drumsBank">
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/kick/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/kick/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/snare/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/snare/02.mp3"></sample-blam>
+  </bank-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playPause">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<kbd-blam key="1" to="#scratch" prop="play"></kbd-blam>
+<kbd-blam key="2" to="#release" prop="play"></kbd-blam>
+{% endblock %}

@@ -25,11 +25,11 @@ elements:
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <sequencer-blam bpm="90" id="transport">
-  <pads-blam to="bus" id="scratch" bank="stab" detune="800" choke>
+  <pads-blam out="bus" id="scratch" bank="stab" detune="800" choke>
     <lfo-blam prop="detune" gain="400"></lfo-blam>
     <blam-blam prop="length" value="0.0625~0.125"></blam-blam>
   </pads-blam>
-  <pads-blam to="bus" id="release" bank="stab" length="4" choke>
+  <pads-blam out="bus" id="release" bank="stab" length="4" choke>
     <envelope-blam prop="detune" curve="300 0, 0 0.2, 0 3.85, 600 4" beats></envelope-blam>
   </pads-blam>
   <track-blam to="#scratch" chance="0.7">

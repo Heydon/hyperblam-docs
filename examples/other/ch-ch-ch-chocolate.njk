@@ -37,7 +37,7 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
 </chain-blam>
 <sequencer-blam bpm="94" id="transport" swing="0.2">
   <pads-blam out="bus" id="scratch" bank="stab" gain="0.1" choke>
@@ -45,7 +45,7 @@ elements:
     <blam-blam prop="length" value="0.0625~0.15"></blam-blam>
     <blam-blam prop="reverse" value="1|0"></blam-blam>
   </pads-blam>
-  <pads-blam out="#bus" id="release" bank="stab" gain="0.1">
+  <pads-blam out="#bus" id="release" bank="stab" gain="0.1" choke>
     <envelope-blam prop="detune" curve="-500 0, 0 0.25" beats></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
   </pads-blam>
@@ -99,5 +99,5 @@ elements:
 
 {% block controls %}
 <kbd-blam key="1" to="#scratch" prop="play"></kbd-blam>
-<kbd-blam key="2" to="#release" prop="play"></kbd-blam>
+<kbd-blam key="2" to="#release" prop="play" value="2"></kbd-blam>
 {% endblock %}

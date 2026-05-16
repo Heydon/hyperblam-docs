@@ -40,31 +40,33 @@ elements:
   <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
 </chain-blam>
 <sequencer-blam bpm="94" id="transport" swing="0.2">
-  <pads-blam out="bus" id="scratch" bank="stab" gain="0.6" choke>
-    <lfo-blam prop="detune" gain="700" beats="0.7"></lfo-blam>
+  <pads-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke>
+    <lfo-blam id="wobble" prop="detune" gain="700" beats="0.73"></lfo-blam>
     <blam-blam prop="length" value="0.0625~0.15"></blam-blam>
     <blam-blam prop="reverse" value="1|0"></blam-blam>
   </pads-blam>
-  <pads-blam out="#bus" id="release" bank="stab" gain="0.6" choke>
+  <pads-blam out="#bus" id="release" bank="stabBank" gain="0.6" choke>
     <envelope-blam prop="detune" curve="-700 0, 0 0.25" beats></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
   </pads-blam>
   <pads-blam out="bus" id="drums" bank="drumsBank"></pads-blam>
-  <track-blam to="#scratch" chance="0.6">
-    <repeat-blam x="8">
-      <bar-blam s="1 1"></bar-blam>
+  <pads-blam out="bus" id="blip" bank="blipBank"></pads-blam>
+  <notes-blam out="bus" id="bass" bank="bassBank" gain="0.3"></notes-blam>
+  <track-blam class="tay" to="#scratch" chance="0.6">
+    <repeat-blam x="16">
+      <bar-blam s="0"></bar-blam>
     </repeat-blam>
-    <repeat-blam x="8">
-      <bar-blam s="0 0"></bar-blam>
+    <repeat-blam x="16">
+      <bar-blam s="1"></bar-blam>
     </repeat-blam>
   </track-blam>
-  <track-blam to="#release">
-    <repeat-blam x="8">
-      <bar-blam s="0 0"></bar-blam>
+  <track-blam class="tay" to="#release">
+    <bar-blam s="1"></bar-blam>
+    <repeat-blam x="15">
+      <bar-blam s="0"></bar-blam>
     </repeat-blam>
-    <bar-blam s="1 0"></bar-blam>
-    <repeat-blam x="7">
-      <bar-blam s="0 0"></bar-blam>
+    <repeat-blam x="16">
+      <bar-blam s="0"></bar-blam>
     </repeat-blam>    
   </track-blam>
   <track-blam to="#drums" chance="0.8">
@@ -72,8 +74,32 @@ elements:
     <bar-blam s="1 0 0 2 4 0 5 2"></bar-blam>
     <bar-blam s="1 5 1 2 0 0 0 4"></bar-blam>
   </track-blam>
-  <bank-blam id="stab">
-    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/tay/long.mp3" reverse></sample-blam>
+  <track-blam class="tune" id="bassTrack" override="blipTrack" to="#bass" suspend>
+    <bar-blam s="E2 0 E3 G#3"></bar-blam>
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="G2 0 G3 A#3"></bar-blam>
+    <bar-blam s="0 0 0 0"></bar-blam>
+    <bar-blam s="F2 0 C3 A3"></bar-blam>
+    <bar-blam s="0 0 0 0"></bar-blam>
+    <bar-blam s="E2 0 E3 G#3"></bar-blam>
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="D2 0 A2 F3"></bar-blam>
+    <bar-blam s="0 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam class="tune" to="#blip" id="blipTrack" chance="0.2" suspend>
+    <bar-blam s="1"></bar-blam>
+  </track-blam>
+  <bank-blam id="stabBank">
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/tay.mp3" reverse></sample-blam>
+  </bank-blam>
+  <bank-blam id="bassBank">
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/bass/01.mp3" root="E2"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/bass/02.mp3" root="E3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/bass/03.mp3" root="G#3"></sample-blam>
   </bank-blam>
   <bank-blam id="drumsBank">
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/kick/01.mp3"></sample-blam>
@@ -81,6 +107,9 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/snare/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/snare/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/hat/01.mp3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="blipBank">
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/blip/01.mp3" reverse></sample-blam>
   </bank-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
@@ -92,6 +121,51 @@ elements:
 
 {% renderTemplate "md" %}
 
+By manipulating a few different properties, it’s possible to emulate [scratching](https://en.wikipedia.org/wiki/Scratching) with a reasonable degree of realism.
+
+In this case, I’ve taken a vocal sample from Tay Zonay’s 2006 [**Chocolate Rain**](https://www.youtube.com/watch?v=EwTZ2xpQwpA). I’m going for a “baby scratch” which just involves moving the record back and forth over the same sound—no crossfader control required.
+
+The `#scratch` track has a basic pattern: the first 16 quarter-beats each play the sample. The second 16 are silent. I've used `<repeat-blam>` to stop this getting too verbose.
+
+```html
+<track-blam to="#scratch" chance="0.6">
+  <repeat-blam x="16">
+    <bar-blam s="1"></bar-blam>
+  </repeat-blam>
+  <repeat-blam x="16">
+    <bar-blam s="0"></bar-blam>
+  </repeat-blam>
+</track-blam>
+```
+
+The sample itself is reversed every other time, strafing back and forth over the sample. 
+
+```html
+<blam-blam prop="reverse" value="1|0"></blam-blam>
+```
+
+The effect is humanized in a number of ways. Firstly, note the `chance="0.6"` attribution on `<track-blam>`. This creates gaps/pauses, as if the turntablist is improvising a rhythm. The `length` is also fluctuated—because sometimes you might stop dead while still over part of the sound. 
+
+```html
+<blam-blam prop="length" value="0.0625~0.15"></blam-blam>
+```
+
+Finally, an LFO performs a continuous permutation of the sample pitch (via the `detune` prop). The speed of each scratching motion would not be regular or stable.
+
+```html 
+<lfo-blam prop="detune" gain="700" beats="0.7"></lfo-blam>
+```
+
+You can make the scratches sound sloppier or sharper using the **speed** slider. Imagine smoother or jerkier wrist motions.
+
+A second instrument plays the same **Chocolate Rain** sample at the end of each scratching phrase; either “chocolate rain” or just “chocolate”. An `<envelope-blam>` ramps the sample up to speed. Turntables do not go from `0` to the correct speed in an instant—even when guided by hand.
+
+```html 
+<envelope-blam prop="detune" curve="-700 0, 0 0.25" beats></envelope-blam>
+<blam-blam prop="length" value="4|0.75"></blam-blam>
+```
+
+
 {% endrenderTemplate %}
 
 {% endblock %}
@@ -99,4 +173,29 @@ elements:
 {% block controls %}
 <kbd-blam key="1" to="#scratch" prop="play"></kbd-blam>
 <kbd-blam key="2" to="#release" prop="play" value="1"></kbd-blam>
+
+<dial-blam to="#scratch" prop="detune">
+  <label>
+    speed
+    <input type="range" min="-500" max="800" step="any">
+  </label>
+</dial-blam>
+<switch-blam to="#wobble" prop="beats" value="0.1">
+  <label>
+    squelch
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".tune" prop="suspend" reverse>
+  <label>
+    bass
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".tay" prop="solo">
+  <label>
+    just scratch
+    <input type="checkbox">
+  </label>
+</switch-blam>
 {% endblock %}

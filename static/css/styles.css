@@ -579,6 +579,7 @@ label {
   gap: var(--s-xs);
   line-height: 1;
   align-items: center;
+  text-align: right;
 }
 
 button {

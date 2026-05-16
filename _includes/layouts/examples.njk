@@ -8,27 +8,17 @@
     {% block iteration %}
       {% for group in site.exampleData %}
         <h2>{{ group.title }}</h2>
-          {{ group.summary | md | safe }}
-          {% if not 'other' in group.tags %}
-          <table>
-            {% for post in collections[group.tags] %}
-              <tr>
-                <th scope="row">{{ loop.index }}</th>
-                <td>
-                  <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
-                </td>
-              </tr>
-            {% endfor %}
-          </table>
-          {% else %}
-          <ul class="l-index">
-            {% for post in collections[group.tags] %}
-                <li>
-                  <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
-                </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
+        {{ group.summary | md | safe }}
+        <table>
+          {% for post in collections[group.tags] %}
+            <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>
+                <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
       {% endfor %}
     {% endblock %}
   </main>

@@ -31,7 +31,10 @@
       {% block audio %}
       {% endblock %}
     </div>
-    <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
+    <div role="progressbar" class="l-frame__framed l-loading">
+      loading<span class="u-flash">...</span> 
+      <log-blam from="sample-blam" event="blamsource" prop="file"></log-blam>
+    </div>
   </main>
   <dialog>
     <header>

@@ -24,15 +24,16 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
+  <saturator-blam mode="4" amount="73" mix="0" lowcut="1000" highcut="8000"></saturator-blam>
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <sequencer-blam bpm="94" id="transport" swing="0.2">
   <pads-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke>
-    <lfo-blam id="wobble" prop="detune" gain="700" beats="0.73"></lfo-blam>
+    <lfo-blam id="wobble" prop="detune" gain="700" beats="0.55"></lfo-blam>
     <blam-blam prop="length" value="0.0625~0.15"></blam-blam>
     <blam-blam prop="reverse" value="1|0"></blam-blam>
   </pads-blam>
-  <pads-blam out="#bus" id="release" bank="stabBank" gain="0.6" choke>
+  <pads-blam out="bus" id="release" bank="stabBank" gain="0.6" choke>
     <envelope-blam prop="detune" curve="-700 0, 0 0.25" beats></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
   </pads-blam>
@@ -42,7 +43,10 @@ elements:
       <pan-blam pan="0.5"></pan-blam>
     </chain-blam>
   </pads-blam>
-  <notes-blam out="bus" id="bass" bank="bassBank" gain="0.3"></notes-blam>
+  <notes-blam out="bus" id="bass" bank="bassBank" gain="0.3" choke></notes-blam>
+  <pads-blam out="bus" id="piano" bank="pianoBank" gain="1.25">
+    <envelope-blam prop="detune" curve="100 0, 0 0.05, 0 0.8, -100 1"></envelope-blam>
+  </pads-blam>
   <track-blam class="tay" to="#scratch" chance="0.6">
     <repeat-blam x="16">
       <bar-blam s="0"></bar-blam>
@@ -78,11 +82,17 @@ elements:
     <repeat-blam x="3">
       <bar-blam s="0 0 0 0"></bar-blam>
     </repeat-blam>
-    <bar-blam s="D2 0 A2 F3"></bar-blam>
-    <bar-blam s="0 0 0 0"></bar-blam>
+    <bar-blam s="D2 D3 A2 F3" fill chance="0.75"></bar-blam>
+    <bar-blam s="D3 F4 A3 F3" fill chance="0.5"></bar-blam>
   </track-blam>
   <track-blam class="tune tay" to="#blip" id="blipTrack" chance="0.2" suspend>
     <bar-blam s="1"></bar-blam>
+  </track-blam>
+  <track-blam to="#piano">
+    <bar-blam s="1 0 0 0"></bar-blam>
+    <repeat-blam x="13">
+      <bar-blam s="0 0 0 0"></bar-blam>
+    </repeat-blam>    
   </track-blam>
   <bank-blam id="stabBank">
     <sample-blam src="{{site.basedir}}/static/sounds/chocolate/tay.mp3" reverse></sample-blam>
@@ -95,12 +105,15 @@ elements:
   <bank-blam id="drumsBank">
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/kick/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/kick/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/snare/01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/snare/02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/hat/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/clap/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/clap/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/clap/03.mp3"></sample-blam>
   </bank-blam>
   <bank-blam id="blipBank">
     <sample-blam src="{{site.basedir}}/static/sounds/dissonant/blip/01.mp3" reverse></sample-blam>
+  </bank-blam>
+  <bank-blam id="pianoBank">
+    <sample-blam src="{{site.basedir}}/static/sounds/chocolate/piano.mp3"></sample-blam>
   </bank-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
@@ -186,6 +199,12 @@ A second instrument plays the same **Chocolate Rain** sample at the end of each 
 <switch-blam to=".tay" prop="solo">
   <label>
     break
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="saturator-blam" prop="mix" value="1" ramp="3">
+  <label>
+    megaphone
     <input type="checkbox">
   </label>
 </switch-blam>

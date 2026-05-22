@@ -54,6 +54,35 @@ elements:
 
 {% renderTemplate "md" %}
 
+[Sonification](https://en.wikipedia.org/wiki/Sonification) is the transformation of data into sound. Or, rather, it’s the translation of data you would read into data you can hear.
+
+A classic example of sonification is the [Geiger Counter](https://en.wikipedia.org/wiki/Geiger_counter). When radioactive particles come into contact with the device, brief changes in electrical charge occur. The counter’s circuitry uses these voltage fluctuations to produce clicking sounds. The more frequent the sounds, the higher the radiation exposure.
+
+[The Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) also deals in proximity. When an element being observed comes into view (it “intersects” the viewport) its `intersectionRatio` changes.
+
+**HYPERBLAM’s** `<intersect-blam>` element fires events containing intersection data. In practice, this means you can control audio parameters and other props according to the visibility of different elements.
+
+This example uses the Geiger Counter as an analog. The closer the **radioactive orb**, the higher the probability (`chance`) a clicking sound will be heard. 
+
+```html
+<track-blam id="counter" to="pads-blam" chance="0">
+  <bar-blam s="?"></bar-blam>
+  <blam-blam to="#counter" from="#intersectable" prop="chance" value="1"></blam-blam>
+</track-blam>
+...
+<intersect-blam id="intersectable" steps="20" margin="25%"></intersect-blam>
+```
+
+Used with elements like `<intersect-blam>`, `<blam-blam>` acts as a multiplier. It takes the base value (`value="1"` here) and multiplies it by the `x` value passed in the event data. So, where the element is 50% intersecting, the subject `chance` value will be `1 * 0.5` or `0.5`. 
+
+For an additional sense of distance, the same `<intersect-blam>` controls a `<filter-blam>`. The closer the **radioactive orb**, the _brighter_ the sound of its clicks. 
+
+```html 
+<filter-blam id="filter" freq="10000" q="5">
+  <blam-blam to="#filter" from="#intersectable" prop="freq" value="10000"></blam-blam>
+</filter-blam>
+```
+
 {% endrenderTemplate %}
 
 {% endblock %}

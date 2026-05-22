@@ -10,8 +10,8 @@
     {% if element.summary %}
       <p>{{ element.summary | md | safe }}</p>
     {% endif %}
-    {% if element.draft %}
-      <p class="u-note"><strong class="u-note__shout">DRAFT!</strong> This element is in early development and is liable to change or even be replaced.</p>
+    {% if element.experimental %}
+      <p class="u-note"><strong class="u-note__shout">EXPERIMENTAL!</strong> This element is in early development and is liable to change or possibly be replaced.</p>
     {% endif %}
     <dl>
       <div>

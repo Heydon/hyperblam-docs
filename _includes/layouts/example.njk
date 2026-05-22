@@ -63,7 +63,7 @@
       <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>      
     {% endif %}
     {% if nextPost %}
-      <a class="u-font-special" href="{{ nextPost.url }}" aria-label="next example">next →</a>
+      <a class="u-font-special" href="{{site.basedir}}{{ nextPost.url }}" aria-label="next example">next →</a>
     {% else %}
       <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>
     {% endif %}

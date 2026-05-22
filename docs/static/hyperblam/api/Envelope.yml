@@ -1,0 +1,21 @@
+name: Envelope
+extends: Handle
+category: Modulating
+defined: true
+summary: An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest **Sampler**-based element’s `blam` event.
+props: 
+  - name: curve
+    type: string
+    description: Comma separated pairs of numbers representing the envelope. Each pair defines the value and the time. By default, the time is a proportion of the sample’s duration. For example, `0.5` means half the sample’s duration.
+  - name: beats
+    type: boolean
+    default: false
+    description: Time (the second value of each `curve` pair) is set in beats (relative to the inherited `bpm`) instead of as a proportion of the sample’s duration. In other words, use absolute values. Either way, all values are capped to the sample’s duration. 
+  - name: value
+    description: Not applicable. Use `curve` in its place.
+  - name: prop
+    type: string
+    description: The `audioParam` to affect. Generic props are not applicable.
+  - name: ramp
+    type: string
+    description: Not applicable. The curve is defined using `curve`.

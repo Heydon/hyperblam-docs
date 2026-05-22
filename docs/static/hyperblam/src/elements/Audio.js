@@ -1,0 +1,62 @@
+import { define } from '../tools/define.js';
+import { WithParams } from '../primitives/WithParams.js';
+
+class Audio extends WithParams {
+  constructor() {
+    super();
+
+    this.context = new AudioContext();
+    this.inNode = this.context.createGain();
+    this.sampleCount = 0;
+
+    this.mirrorParams({
+      gain: this.inNode.gain
+    });
+  }
+
+  onblamready() {
+    this.sourceElems = [...this.querySelectorAll('sample-blam, audio, video')];
+    if (this.sourceElems.length < 1) {
+      console.log('< 1');
+      this.fire('blamsources', {}, this, true);
+      return;
+    }
+    this.addEventListener('blamsource', this);
+  }
+
+  onblamsource() {
+    this.sampleCount++;
+    if (this.sourceElems.length == this.sampleCount) {
+      this.inNode.connect(this.context.destination);
+      this.fire('blamsources', {}, this);
+    }
+  }
+
+  static get observedAttributes () {
+    return ['gain'];
+  }
+
+  get gain() {
+    let value = this.getAttribute('gain');
+		return value ? parseFloat(value) : 0.75;
+	}
+
+	set gain(value) {
+		this.setAttribute('gain', value);
+  }
+
+  get bpm() {
+    let value = this.getAttribute('bpm');
+		return value ? parseFloat(value) : 120;
+	}
+
+	set bpm(value) {
+		this.setAttribute('bpm', value);
+  }
+
+  static {
+    define(this);
+  }
+}
+
+export { Audio }

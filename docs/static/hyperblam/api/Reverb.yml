@@ -1,0 +1,15 @@
+name: Reverb 
+extends: Box 
+category: Processing
+defined: true 
+summary: Convolution based reverb effect using a sample from a **Sample** element as the impulse response (IR).
+props: 
+  - name: src 
+    type: string 
+    description: The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child Sample element.
+  - name: cutoff 
+    type: number 
+    default: 10000
+    description: The cutoff frequency for the reverb. The lower the value, the _darker_ the reverb.
+  - name: mix 
+    default: 0.5

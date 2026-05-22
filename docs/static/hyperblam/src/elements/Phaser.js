@@ -1,0 +1,78 @@
+import { Box } from '../primitives/Box.js';
+import { define } from '../tools/define.js';
+
+class Phaser extends Box {
+  constructor() {
+    super();
+    this.mixInitial = 0.5;
+
+    this.node = this.c.createBiquadFilter();
+    this.node.type = 'allpass';
+    this.LFONode = this.c.createOscillator();
+    this.LFONode.start();
+
+    this.LFOGainNode = this.c.createGain();
+    this.LFONode.connect(this.LFOGainNode)
+                .connect(this.node.frequency);
+
+    this.inNode.connect(this.node)
+               .connect(this.wetGainNode);
+
+    this.conversions = {
+      beats: value => this.beatsToHertz(value)
+    }
+
+    this.mirrorParams({
+      depth: this.LFOGainNode.gain,
+      q: this.node.Q,
+      beats: this.LFONode.frequency,
+      center: this.node.frequency
+    });
+  }
+
+  get beats() {
+    let value = this.getAttribute('beats');
+    return this.conversions.beats(value || 1);
+	}
+
+	set beats(value) {
+		this.setAttribute('beats', value);
+  }
+
+  get center() {
+    let value = this.getAttribute('center');
+		return value ? parseFloat(value) : 8000;
+	}
+
+	set center(value) {
+		this.setAttribute('center', value);
+  }
+
+  get depth() {
+    let value = this.getAttribute('depth');
+		return value ? parseFloat(value) : 7000;
+	}
+
+	set depth(value) {
+		this.setAttribute('depth', value);
+  }
+
+  get q() {
+    let value = this.getAttribute('q');
+		return value ? parseFloat(value) : 1;
+	}
+
+	set q(value) {
+		this.setAttribute('q', value);
+  }
+
+  static get observedAttributes () {
+    return [...super.observedAttributes, 'depth', 'q', 'beats', 'center'];
+  }
+
+  static {
+    define(this);
+  }
+}
+
+export { Phaser }

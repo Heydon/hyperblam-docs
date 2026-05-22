@@ -1,0 +1,30 @@
+name: Handle
+category: Automating
+extends: Base
+summary: Base class for all event handling elements.
+props:
+  - name: from
+    type: string
+    description: A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value.
+  - name: to
+    type: string
+    description: A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value.
+  - name: value 
+    type: string 
+    default: undefined
+    description: '**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method.'
+  - name: event
+    type: string
+    default: blam
+    description: The event type to listen for. For many Event-based elements, this is the generic custom event `blam`.
+  - name: prop
+    type: string
+    description: The property (which may be a method or map to an `audioParam`) to affect at the `event`.
+  - name: off
+    type: boolean
+    default: false
+    description: Whether to stop responding to events as they happen.
+  - name: chance
+    type: boolean
+    default: 1
+    description: The probability that the `event` will be responded to. From `0` to `1`.

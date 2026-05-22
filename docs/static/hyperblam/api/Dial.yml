@@ -1,0 +1,9 @@
+name: Dial
+category: Controlling
+defined: true
+extends: Set
+summary: Add a child input of type `number` or `range` to control a target element’s prop, `audioParam`, or method.
+props: 
+  - name: event 
+    default: input 
+    description: Do not supply an `event` prop for this element. It must use the child input’s `input` event.

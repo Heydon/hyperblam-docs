@@ -1,7 +1,7 @@
 import { Osc } from '../primitives/Osc.js';
 import { define } from '../tools/define.js';
 
-class LFO extends Osc {
+class Lfo extends Osc {
   constructor() {
     super();
     this.defaultOut = () => [this.parentNode];
@@ -85,4 +85,4 @@ class LFO extends Osc {
   }
 }
 
-export { LFO }
+export { Lfo }

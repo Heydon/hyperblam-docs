@@ -30,9 +30,9 @@ class Box extends WithParams {
     this.prevMix = this.mix;
   }
 
-  passOrBypass(b) {
-    this.setParam('wet', b ? 0 : this.prevMix);
-    this.setParam('dry', b ? 1 : (1 - this.prevMix));
+  passOrBypass() {
+    this.setParam('wet', this.bypass ? 0 : this.prevMix);
+    this.setParam('dry', this.bypass ? 1 : (1 - this.prevMix));
   }
 
   get mix() {
@@ -59,11 +59,9 @@ class Box extends WithParams {
   attributeChangedCallback(name, oldVal, newVal) {
     if (name === 'mix') {
       this.setMix();
-      return;
     }
     if (name === 'bypass') {
       this.passOrBypass(newVal);
-      return;
     }
     super.attributeChangedCallback(name, oldVal, newVal);
   }

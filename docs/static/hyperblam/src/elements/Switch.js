@@ -13,6 +13,7 @@ class Switch extends Set {
     this.input = this.fromElems[0];
     this.initial = this.toElems[0][this.prop];
     let state = this.value ? this.value === this.initial : !!this.initial;
+    console.log(this, this.reverse);
     this.input.checked = this.reverse ? !state : state;
     this.watchProp(
       this.toElems, 

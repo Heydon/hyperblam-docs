@@ -49,7 +49,7 @@ elements:
   <blam-blam prop="length" value="0.25|0.5|0.5|0.125"></blam-blam>
   <chain-blam out="bus">
     <filter-blam freq="8000" q="10" bypass>
-      <envelope-blam prop="freq" curve="150 0, 11000 0.75" beats></envelope-blam>
+      <envelope-blam prop="freq" curve="100 0, 3000 0.5" beats></envelope-blam>
     </filter-blam>
   </chain-blam>
   <relay-blam mode="one" chance="0">
@@ -100,7 +100,7 @@ When used with `<blam-blam>`, `<relay-blam>` might want to be in the `'all'` or 
 
 Crucially, the chance of this envelope/slide occuring at all is just `0.333` (or 33.333%). To recap: our bassline is made of 4 different samples, randomly selected and played at different pitches, representing different notes in the minor pentatonic scale, sustained for varying lengths of time, and occassionally embellished with a sliding action.
 
-All we need now is a gnarly envelope filter. [Bootsy Collins]() famously uses a Musitronics Mu-Tron III, which can go for [many hundreds of dollars](https://reverb.com/uk/p/mu-tron-mutron-iii). It works by detecting peaks in the playing, which it designates as the “attack” (start) phase of notes, then  filters the sound accordingly.
+All we need now is a gnarly envelope filter. [Bootsy Collins](https://en.wikipedia.org/wiki/Bootsy_Collins) famously uses a Musitronics Mu-Tron III, which can go for [many hundreds of dollars](https://reverb.com/uk/p/mu-tron-mutron-iii). It works by detecting peaks in the playing, which it designates as the “attack” (start) phase of notes, then  filters the sound accordingly.
 
 **HYPERBLAM’s** `<filter-blam>` and `<envelope-blam>` cost nothing (and together are less than `2KB` to download). No peak analysis is needed, since the event sent from `<notes-blam>` tells us when each successive note starts.
 

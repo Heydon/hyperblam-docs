@@ -1,0 +1,1800 @@
+[
+  {
+    "name": "Analyser",
+    "defined": true,
+    "extends": "Box",
+    "category": "Visualizing",
+    "summary": "Put it anywhere in a **Chain** element and extract frequency or time domain data for visualization.",
+    "props": [
+      {
+        "name": "bands",
+        "type": "number",
+        "default": 16,
+        "description": "The number of data points (the `frequencyBinCount`)"
+      },
+      {
+        "name": "smoothing",
+        "type": "number",
+        "default": 0,
+        "description": "An alias for the [`smoothingTimeConstant`](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/smoothingTimeConstant). Makes transitions between data points smoother."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "For **Analyser**, bypassing will mean data will be zeroed."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      }
+    ],
+    "methods": [
+      {
+        "name": "getFrequencyData",
+        "description": "Get a snapshot of the [frequency data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData)"
+      },
+      {
+        "name": "getTimeData",
+        "description": "Get a snapshot of the [time domain data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteTimeDomainData)"
+      }
+    ]
+  },
+  {
+    "name": "Audio",
+    "defined": true,
+    "extends": "WithParams",
+    "summary": "The top-level **HYPERBLAM** element, setting the audio context for all element operations within it.",
+    "props": [
+      {
+        "name": "gain",
+        "type": "number",
+        "default": 0.75,
+        "description": "The output gain, sent to the destination. Think of it as the master volume."
+      },
+      {
+        "name": "bpm",
+        "type": "number",
+        "default": "config.bpm",
+        "description": "The tempo, in beats per minute. Is overruled by a **Sequencer** element, where present."
+      }
+    ],
+    "events": [
+      {
+        "name": "blamsources",
+        "description": "Fired when all descendant sound sources are ready for playing."
+      }
+    ]
+  },
+  {
+    "name": "Bands",
+    "experimental": true,
+    "summary": "Draws frequency bands as rectangles, similar to a classic graphic equalizer.",
+    "extends": "Frame",
+    "category": "Visualizing",
+    "defined": true,
+    "props": [
+      {
+        "name": "count",
+        "type": "number",
+        "default": 16,
+        "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to randomly redistribute data band references among the Shadow DOM-rendered elements."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency at which **Analyser** data is read."
+      },
+      {
+        "name": "time",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to take data from the time (rather than frequency) domain."
+      },
+      {
+        "name": "first",
+        "type": "number",
+        "default": "undefined",
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**."
+      },
+      {
+        "name": "last",
+        "type": "number",
+        "default": "undefined",
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+      }
+    ]
+  },
+  {
+    "name": "Bank",
+    "category": "Sampling",
+    "defined": true,
+    "summary": "Organizes samples into a single bank for provisioning a sample-based instrument like Pads or Notes.",
+    "extends": "Handle",
+    "props": [
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blamready",
+        "description": "By default, the **Bank** fetches and converts constituent samples on the `blamready` event, which is fired on the window when all elements have been defined."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events should be listened to. Defaults to `window` for **Bank**."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. Defaults to the **Bank** element itself, in this case, and should not be altered."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "Not applicable for **Bank**."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "Not applicable for **Bank**."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ],
+    "events": [
+      {
+        "name": "blambank",
+        "description": "Fired when all the **Bank**’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`."
+      }
+    ]
+  },
+  {
+    "name": "Bar",
+    "category": "Sequencing",
+    "defined": true,
+    "summary": "Defines a single bar’s pattern, as handled by a parent **Track** element.",
+    "props": [
+      {
+        "name": "s",
+        "type": "string",
+        "description": "The space-separated pattern representing the distribution of notes or sounds. `0` represents a pause (skipped sound/beat)."
+      },
+      {
+        "name": "chance",
+        "type": "number",
+        "default": 1,
+        "description": "The probability that any one sound in the `s` pattern will be played. Overrides a parent **Track’s** `chance`."
+      },
+      {
+        "name": "fill",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to play a fill (a randomized rearrangement of the bar’s pattern)."
+      }
+    ],
+    "events": [
+      {
+        "name": "blam",
+        "description": "Fired whenever one bar (defined by a child Bar element) ends and another begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element."
+      }
+    ]
+  },
+  {
+    "name": "Blam",
+    "defined": true,
+    "category": "Automating",
+    "extends": "Set",
+    "summary": "Handles events to affect a prop or `AudioParam`, or execute a method. Which of these three are applicable is automatically determined from the `prop` name supplied.",
+    "props": [
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": "undefined",
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Chain",
+    "category": "Processing",
+    "defined": true,
+    "extends": "Box",
+    "summary": "For connecting together different effects, like in a pedalboard.",
+    "props": [
+      {
+        "name": "out",
+        "type": "string",
+        "description": "The `id` of the next element to connect to, in the signal chain. If not set, it connects to the ancestor **Audio** element."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Dial",
+    "category": "Controlling",
+    "defined": true,
+    "extends": "Set",
+    "summary": "Add a child input of type `number` or `range` to control a target element’s prop, `audioParam`, or method.",
+    "props": [
+      {
+        "name": "event",
+        "type": "string",
+        "default": "input",
+        "description": "Do not supply an `event` prop for this element. It must use the child input’s `input` event."
+      },
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": "undefined",
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Display",
+    "category": "Visualizing",
+    "extends": "Base",
+    "defined": true,
+    "summary": "Watches and renders the changing value of any property/attribute of any element.",
+    "props": [
+      {
+        "name": "element",
+        "type": "string",
+        "description": "A CSS selector representing the element to watch. Falls back to the `parentNode` where not supplied."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The attribute defining the value to be displayed. If not supplied, nothing is displayed."
+      }
+    ]
+  },
+  {
+    "name": "Echo",
+    "category": "Processing",
+    "extends": "Box",
+    "defined": true,
+    "summary": "An echo effect, using a delay node. Includes a lowpass filter for tape echo-like degradation.",
+    "props": [
+      {
+        "name": "beats",
+        "type": "number",
+        "default": 1,
+        "description": "The interval of echos, relative to the bpm set by an ancestor **Audio** or **Sequencer** element."
+      },
+      {
+        "name": "feedback",
+        "type": "number",
+        "default": 0.5,
+        "description": "The intensity of the effect. When applying a `cutoff`, be aware that high values can cause self-oscillation (and things can get very loud). For ear safety, the value is capped at `0.75`."
+      },
+      {
+        "name": "cutoff",
+        "type": "number",
+        "default": "null",
+        "description": "A lowpass filter, applied inside the feedback loop, meaning echos get progressively _duller_ over time. Emulates the behavior of tape echo."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 1,
+        "description": "Echo is a special case. The dry signal is always `1` and the wet signal is added on top."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Envelope",
+    "extends": "Handle",
+    "category": "Modulating",
+    "defined": true,
+    "summary": "An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest **Sampler**-based element’s `blam` event.",
+    "props": [
+      {
+        "name": "curve",
+        "type": "string",
+        "description": "Comma separated pairs of numbers representing the envelope. Each pair defines the value and the time. By default, the time is a proportion of the sample’s duration. For example, `0.5` means half the sample’s duration."
+      },
+      {
+        "name": "beats",
+        "type": "boolean",
+        "default": false,
+        "description": "Time (the second value of each `curve` pair) is set in beats (relative to the inherited `bpm`) instead of as a proportion of the sample’s duration. In other words, use absolute values. Either way, all values are capped to the sample’s duration."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "Not applicable. Use `curve` in its place."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The `audioParam` to affect. Generic props are not applicable."
+      },
+      {
+        "name": "ramp",
+        "type": "string",
+        "description": "Not applicable. The curve is defined using `curve`."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Filter",
+    "extends": "Box",
+    "category": "Processing",
+    "defined": true,
+    "summary": "A single-band filter effect. Important for coloring sound.",
+    "props": [
+      {
+        "name": "freq",
+        "type": "number",
+        "default": 1000,
+        "description": "The frequency for the filter, in hertz. The role of this frequency depends on the `type`."
+      },
+      {
+        "name": "q",
+        "type": "number",
+        "default": 1,
+        "description": "The quality factor (often relating to resonance)."
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "default": "lowpass",
+        "description": "The type of filter. This can only be one of ‘lowpass’, ‘highpass’, ‘bandpass’, or ‘notch’."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Gain",
+    "extends": "Box",
+    "category": "Processing",
+    "defined": true,
+    "summary": "A basic gain (volume) effect. Can be automated with an LFO to create tremolo effects or an Envelope to affect attack or delay.",
+    "props": [
+      {
+        "name": "gain",
+        "type": "number",
+        "default": 1,
+        "description": "The gain of the gain node. This is relative to the input gain. The default value, `1`, means _no change_."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Intersect",
+    "defined": true,
+    "experimental": true,
+    "category": "Automating",
+    "summary": "Emits events with intersection data.",
+    "props": [
+      {
+        "name": "root",
+        "type": "string",
+        "default": "(the viewport)",
+        "description": "CSS selector representing the scollable area containing the observed elements. Defaults to the viewport."
+      },
+      {
+        "name": "steps",
+        "type": "number",
+        "default": 10,
+        "description": "The granularity of intersection being observed. Where set to `10`, 10 events are fired, each with a ratio between `0.1` and `1`."
+      },
+      {
+        "name": "margin",
+        "type": "string",
+        "default": 0,
+        "description": "Alias for the standard `rootMargin` supplied to the observer settings. CSS value that must be a `%` or `px` value."
+      }
+    ],
+    "events": [
+      {
+        "name": "blam",
+        "description": "Emitted whenever an intersection occurs, carrying the intersection ratio as `x`, `on` (is intersection happening?), and `switch` (whether the intersection status changed)."
+      }
+    ]
+  },
+  {
+    "name": "Kbd",
+    "extends": "Set",
+    "category": "Controlling",
+    "defined": true,
+    "summary": "Use a single keyboard key to trigger sounds, toggle props, or do just about anything.",
+    "props": [
+      {
+        "name": "key",
+        "default": "Spacebar (‘ ’)",
+        "type": "string",
+        "description": "The relevant key (corresponding to [`event.key`](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values))"
+      },
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": "undefined",
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "LFO",
+    "extends": "Osc",
+    "defined": true,
+    "category": "Modulating",
+    "summary": "A multi-purpose Low Frequency Oscillator. Modulate any `audioParam` of any element, including any other LFO.",
+    "props": [
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "gain",
+        "description": "The `audioParam` to which the **LFO** connects. This may be mapped to a `prop` or exposed separately. Its value at the time of connection represents the _center_ value for oscillation."
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "default": "sine",
+        "description": "The waveform for the oscillator. Can be ‘sine’, ‘square’, ‘sawtooth’, or ‘triangle’."
+      },
+      {
+        "name": "gain",
+        "type": "number",
+        "default": 1,
+        "description": "For an LFO, the gain represents how much the `param` value changes in either direction. If the `param` value is `0.5` and the LFO `gain` value is `0.25`, the `param` value will oscillate between `0.25` and `0.75`, passing through `0.5` in both directions."
+      },
+      {
+        "name": "beats",
+        "type": "number",
+        "default": 1,
+        "description": "The frequency of the LFO in beats, mapped to the `bpm` of an ancestor **Audio** or **Sequencer** element."
+      },
+      {
+        "name": "invert",
+        "type": "boolean",
+        "default": false,
+        "description": "Reverses the LFO polarity. `1` values become `-1` and vice versa."
+      }
+    ]
+  },
+  {
+    "name": "Limiter",
+    "extends": "Box",
+    "category": "Processing",
+    "defined": true,
+    "summary": "A hard-wired limiter module that does its best to eliminate clipping. Best used at the end of a **Chain**.",
+    "props": [
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Log",
+    "category": "Visualizing",
+    "extends": "Handle",
+    "experimental": true,
+    "defined": true,
+    "summary": "Logs event data. Not to be confused with **Display** which tracks prop/param changes.",
+    "props": [
+      {
+        "name": "cumulative",
+        "type": "boolean",
+        "description": "Whether to log additively or to just log the last event’s data. If set, each successively rendered `<span>` will have `role=\"listitem\"` and the element itself will take `role=\"list\"`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property belonging to the event’s data (the `CustomEvent` `detail` property). If not set (`null`), the whole of `event.detail` is stringified."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "Not applicable for **Log**."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "Not applicable for **Log**."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Media",
+    "extends": "Base",
+    "category": "Sampling",
+    "experimental": true,
+    "defined": true,
+    "summary": "Makes an `<audio>` or `<video>` element an audio source and the beginning of a signal chain.",
+    "props": [
+      {
+        "name": "element",
+        "type": "string",
+        "default": null,
+        "description": "A CSS selector for an `<audio>` or `<video>` element. If not set, the element looks for an applicable descendant element."
+      },
+      {
+        "name": "out",
+        "type": "string",
+        "default": null,
+        "description": "The `id` of the next element in the chain. If not set, it defaults to an ancestor `<audio>` or `<video>` element."
+      }
+    ],
+    "events": [
+      {
+        "name": "blamsource",
+        "description": "Fired when the audio can be played through (proxying the `canplaythrough` event)."
+      }
+    ]
+  },
+  {
+    "name": "Midi",
+    "category": "Controlling",
+    "defined": true,
+    "summary": "Connects with MIDI devices and converts MIDI events.",
+    "events": [
+      {
+        "name": "midi",
+        "description": "A generic MIDI event, with data containing the MIDI `device` and `message`."
+      },
+      {
+        "name": "midiOn",
+        "description": "Like the generic “midi” event but specific to MIDI _on_ messages."
+      }
+    ]
+  },
+  {
+    "name": "Mod",
+    "category": "Automating",
+    "defined": true,
+    "experimental": true,
+    "summary": "Extracts discrete values from LFOs to be used as multipliers. Great for automating regular prop values over time.",
+    "extends": "Handle",
+    "props": [
+      {
+        "name": "wave",
+        "type": "string",
+        "default": "triangle",
+        "description": "The waveform for the built-in LFO. Can be ‘sine’, ‘square’, ‘sawtooth’, or ‘triangle’."
+      },
+      {
+        "name": "gain",
+        "type": "number",
+        "default": 1,
+        "description": "Represents how much the multiplier value changes in either direction."
+      },
+      {
+        "name": "beats",
+        "type": "number",
+        "default": 16,
+        "description": "The frequency of the built-in LFO in beats, mapped to the `bpm` of an ancestor **Audio** or **Sequencer** element."
+      },
+      {
+        "name": "invert",
+        "type": "boolean",
+        "default": false,
+        "description": "Reverses the LFO polarity. `1` values become `-1` and vice versa."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Notes",
+    "extends": "Sampler",
+    "category": "Sampling",
+    "defined": true,
+    "summary": "A pitched instrument, using multiple, randomized samples to create tonal variety.",
+    "props": [
+      {
+        "name": "root",
+        "type": "string",
+        "default": "C4",
+        "description": "The root note for the buffers/sounds where not supplied by the individual **Sample** element. Used to calculate pitch shifts."
+      },
+      {
+        "name": "notes",
+        "type": "string",
+        "default": "‘C4 D#4 G4’",
+        "description": "A set of notes from which to select at random."
+      },
+      {
+        "name": "bank",
+        "type": "string",
+        "description": "By default, the sample bank for the element will be a descendant Bank element. Or you can supply an `id` for a remote Bank element."
+      },
+      {
+        "name": "out",
+        "type": "string",
+        "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element."
+      },
+      {
+        "name": "gain (`AudioParam`)",
+        "type": "number",
+        "default": 1,
+        "description": "The gain level for samples played by this element. All subsequent gain settings in the signal chain are relative to this."
+      },
+      {
+        "name": "detune (`AudioParam`)",
+        "type": "number",
+        "default": 0,
+        "description": "Maps to the buffer’s `detune` parameter. Set the detune value in cents. `100` means a half step (semitone) up and `-100` means a half step (semitone) down."
+      },
+      {
+        "name": "length",
+        "type": "number",
+        "default": "null",
+        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects."
+      },
+      {
+        "name": "start",
+        "type": "number",
+        "default": 0,
+        "description": "Where, in beats, to start the sample playback. Maps to the `start` method’s `offset` prop. Where `reverse` is applied, the position is moved to the opposite end of the sample."
+      },
+      {
+        "name": "mute",
+        "type": "boolean",
+        "default": false,
+        "description": "Sets the `gain` to zero. To avoid _popping_ sounds, it slopes the `gain` using the `choke` value, if set, or `0.01` seconds."
+      },
+      {
+        "name": "choke",
+        "type": "boolean|number",
+        "default": false,
+        "description": "Whether to stop the previous sound when a new sound starts. Important for emulating instruments like bass. If set as a Boolean attribute, the gain of the previous sample is rapidly sloped to `0` over `0.01` seconds. Set an explicit value to adjust this."
+      },
+      {
+        "name": "reverse",
+        "type": "boolean|number",
+        "default": false,
+        "description": "Whether to play the reversed version of the sample. Set as a Boolean, there's a 100% chance. Set with a number/float sets the probability. For example, `reverse=\"0.25\"` means a a 25% chance the sample will be played in reverse. It can only do so where the `<sample-blam>` element has `reverse` set (meaning the reversed sample was created)."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "By default, samples are played at random and the same sample is never played twice in a row. With `robin` set, samples are cycled through in order."
+      }
+    ],
+    "methods": [
+      {
+        "name": "play",
+        "description": "Plays one of the associated Bank’s sounds at a given pitch.",
+        "args": "**cipher**: The note (such as ‘C4’) or `id` Where `undefined`, either a random note or the next note from `notes` is played, depending on whether `robin` is true, **time**: When, relative to the context’s `currentTime`, to play the sound. Immediately, if not set."
+      }
+    ],
+    "events": [
+      {
+        "name": "sounds",
+        "description": "Fired when all of the associated Bank element’s buffers are ready for playing."
+      },
+      {
+        "name": "blam",
+        "description": "Fired whenever a sound (buffer) is played."
+      }
+    ]
+  },
+  {
+    "name": "On",
+    "extends": "Handle",
+    "category": "Controlling",
+    "defined": true,
+    "summary": "Handles `midiOn` events, typically for playing an instrument’s sounds.",
+    "props": [
+      {
+        "name": "device",
+        "type": "string",
+        "default": "null",
+        "description": "The named MIDI device to listen to. If not set, the element listens to all connected devices."
+      },
+      {
+        "name": "root",
+        "type": "string",
+        "default": "C4",
+        "description": "The key on the MIDI keyboard from which all sounds will be mapped."
+      },
+      {
+        "name": "range",
+        "type": "number",
+        "default": "null",
+        "description": "How many keys, from the `root`, will be mapped (will actively make sounds). If not set, it’s the whole keyboard."
+      },
+      {
+        "name": "spread",
+        "type": "boolean",
+        "default": false,
+        "description": "For non-tonal instruments like Pads. Whether to spread the individual sounds over the range of keys (one sound per key)."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "CSS selector. Must be a **Midi** element. If not set, looks for an ancestor **Midi** element."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "CSS selector. If not set, it looks for a single **Sampler**-based element."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Pads",
+    "extends": "Sampler",
+    "category": "Sampling",
+    "defined": true,
+    "summary": "An instrument optimized for drums and other rhythmic or non-melodic patterns.",
+    "props": [
+      {
+        "name": "bank",
+        "type": "string",
+        "description": "By default, the sample bank for the element will be a descendant Bank element. Or you can supply an `id` for a remote Bank element."
+      },
+      {
+        "name": "out",
+        "type": "string",
+        "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element."
+      },
+      {
+        "name": "gain (`AudioParam`)",
+        "type": "number",
+        "default": 1,
+        "description": "The gain level for samples played by this element. All subsequent gain settings in the signal chain are relative to this."
+      },
+      {
+        "name": "detune (`AudioParam`)",
+        "type": "number",
+        "default": 0,
+        "description": "Maps to the buffer’s `detune` parameter. Set the detune value in cents. `100` means a half step (semitone) up and `-100` means a half step (semitone) down."
+      },
+      {
+        "name": "length",
+        "type": "number",
+        "default": "null",
+        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects."
+      },
+      {
+        "name": "start",
+        "type": "number",
+        "default": 0,
+        "description": "Where, in beats, to start the sample playback. Maps to the `start` method’s `offset` prop. Where `reverse` is applied, the position is moved to the opposite end of the sample."
+      },
+      {
+        "name": "mute",
+        "type": "boolean",
+        "default": false,
+        "description": "Sets the `gain` to zero. To avoid _popping_ sounds, it slopes the `gain` using the `choke` value, if set, or `0.01` seconds."
+      },
+      {
+        "name": "choke",
+        "type": "boolean|number",
+        "default": false,
+        "description": "Whether to stop the previous sound when a new sound starts. Important for emulating instruments like bass. If set as a Boolean attribute, the gain of the previous sample is rapidly sloped to `0` over `0.01` seconds. Set an explicit value to adjust this."
+      },
+      {
+        "name": "reverse",
+        "type": "boolean|number",
+        "default": false,
+        "description": "Whether to play the reversed version of the sample. Set as a Boolean, there's a 100% chance. Set with a number/float sets the probability. For example, `reverse=\"0.25\"` means a a 25% chance the sample will be played in reverse. It can only do so where the `<sample-blam>` element has `reverse` set (meaning the reversed sample was created)."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "By default, samples are played at random and the same sample is never played twice in a row. With `robin` set, samples are cycled through in order."
+      }
+    ],
+    "events": [
+      {
+        "name": "sounds",
+        "description": "Fired when all of the associated Bank element’s buffers are ready for playing."
+      },
+      {
+        "name": "blam",
+        "description": "Fired whenever a sound (buffer) is played."
+      }
+    ],
+    "methods": [
+      {
+        "name": "play",
+        "description": "Plays one of the associated Bank’s sounds.",
+        "args": "**cipher**: The number (not zero-based) or `id` of the specific sound. Where `undefined`, either a random sound or the next sound is played, depending on whether `robin` is true, **time**: When, relative to the context’s `currentTime`, to play the sound. Immediately, if not set."
+      }
+    ]
+  },
+  {
+    "name": "Pan",
+    "extends": "Box",
+    "category": "Processing",
+    "defined": true,
+    "summary": "Stereo panning for your signal chain. Gives instruments their space in the stereo field.",
+    "props": [
+      {
+        "name": "pan",
+        "type": "number",
+        "default": 0,
+        "description": "The amount of panning. From `-1` (hard left) to `1` (hard right)."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Phaser",
+    "extends": "Box",
+    "defined": true,
+    "category": "Processing",
+    "summary": "A classic phaser effect. The sound of a signal going in and out of phase with itself.",
+    "props": [
+      {
+        "name": "beats",
+        "type": "number",
+        "default": 1,
+        "description": "The length of the phasing effect, relative to the `bpm`."
+      },
+      {
+        "name": "center",
+        "type": "number",
+        "default": 8000,
+        "description": "The frequency phasing centers around."
+      },
+      {
+        "name": "depth",
+        "type": "number",
+        "default": 7000,
+        "description": "The distance from the `center` frequency in both directions."
+      },
+      {
+        "name": "q",
+        "type": "number",
+        "default": 1,
+        "description": "The quality factor. The resonance of the effect."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0.5,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Props",
+    "category": "Visualizing",
+    "extends": "BandsToProps",
+    "defined": true,
+    "summary": "Converts **Analyser** data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, places a custom property of the format `--[name]-[type]-[index]` on the root. In addition, `--[name]-[type]` represents the average value. For frequency data, this is effectively the signal strength. Finally, `--[name]-[type]-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
+    "props": [
+      {
+        "name": "selector",
+        "type": "string",
+        "default": null,
+        "description": "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-[type]: --[name]-[type]-[index]`), meaning all selected elements can be affected with a single declaration."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to randomly distribute data bands among target elements chosen with `selector`."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency at which **Analyser** data is read."
+      },
+      {
+        "name": "time",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to take data from the time (rather than frequency) domain."
+      },
+      {
+        "name": "first",
+        "type": "number",
+        "default": "undefined",
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**."
+      },
+      {
+        "name": "last",
+        "type": "number",
+        "default": "undefined",
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+      }
+    ]
+  },
+  {
+    "name": "Radios",
+    "extends": "Handle",
+    "category": "Controlling",
+    "defined": true,
+    "summary": "Takes a fieldset of radios to offer a multiple choice of target prop/param values.",
+    "props": [
+      {
+        "name": "event",
+        "type": "string",
+        "default": "change",
+        "description": "Do not supply an `event` prop for this element. It must use a child fieldset’s `change` event."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "Not applicable. The value is taken and parsed from the checked radio button."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Relay",
+    "extends": "Handle",
+    "defined": true,
+    "category": "Automating",
+    "summary": "Takes one event and relays it to multiple (child) handler elements. Good for automating multiple changes at once.",
+    "props": [
+      {
+        "name": "mode",
+        "default": "all",
+        "type": "string",
+        "description": "One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the **Relay**. Elements without `off` are activated independently _and_ via **Relay**."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "Not applicable for **Relay**. The `prop` is defined on each subject handler."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "Not applicable for **Relay**. The `value` is defined on each subject handler."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Repeat",
+    "extends": "Base",
+    "category": "Sequencing",
+    "defined": true,
+    "summary": "Group some **Track** element’s **Bars** and repeat the enclosed pattern/part `x` number of times.",
+    "props": [
+      {
+        "name": "x",
+        "type": "number",
+        "default": 1,
+        "description": "How many times the enclosed pattern/part should be repeated. If `x=\"3\"`, the **Bar** or **Bars** will play 3 times before the next **Bar** or **Repeat** element is played."
+      }
+    ]
+  },
+  {
+    "name": "Reverb",
+    "extends": "Box",
+    "category": "Processing",
+    "defined": true,
+    "summary": "Convolution based reverb effect using a sample from a **Sample** element as the impulse response (IR).",
+    "props": [
+      {
+        "name": "src",
+        "type": "string",
+        "description": "The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child Sample element."
+      },
+      {
+        "name": "cutoff",
+        "type": "number",
+        "default": 10000,
+        "description": "The cutoff frequency for the reverb. The lower the value, the _darker_ the reverb."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0.5,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Rings",
+    "summary": "Draws frequency bands as concentric rings or filled circles. Try not to get hypnotized.",
+    "extends": "Frame",
+    "experimental": true,
+    "category": "Visualizing",
+    "defined": true,
+    "props": [
+      {
+        "name": "fill",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to fill the SVG `<circle/>` elements. (The blend mode is set to `difference`, so superimposed circles are not obscured as such.)"
+      },
+      {
+        "name": "count",
+        "type": "number",
+        "default": 16,
+        "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to randomly redistribute data band references among the Shadow DOM-rendered elements."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency at which **Analyser** data is read."
+      },
+      {
+        "name": "time",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to take data from the time (rather than frequency) domain."
+      },
+      {
+        "name": "first",
+        "type": "number",
+        "default": "undefined",
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**."
+      },
+      {
+        "name": "last",
+        "type": "number",
+        "default": "undefined",
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+      }
+    ]
+  },
+  {
+    "name": "Sample",
+    "defined": true,
+    "category": "Sampling",
+    "summary": "Converts a sound file into a buffer that can be triggered as a sound by an instrument.",
+    "props": [
+      {
+        "name": "src",
+        "type": "string",
+        "description": "The path to the sample sound file. Typically, this would be an mp3."
+      },
+      {
+        "name": "root",
+        "type": "string",
+        "default": "C4",
+        "description": "The note the sample represents, if it is tonal. Used for calculating pitch changes."
+      },
+      {
+        "name": "reverse",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to save a reversed version of the sample as well. Used with instruments’ reverse property, which sets the probability of samples being played in reverse."
+      }
+    ],
+    "events": [
+      {
+        "name": "blamsource",
+        "description": "Fired when the buffer has been created. The buffer itself is passed in the event data."
+      }
+    ]
+  },
+  {
+    "name": "Saturator",
+    "extends": "Box",
+    "category": "Processing",
+    "defined": true,
+    "summary": "A saturation/distortion effect with multiple modes, attenuation through a dedicated `gain`, and two filters for cutting any unwanted low and high frequencies.",
+    "props": [
+      {
+        "name": "amount",
+        "default": 50,
+        "type": "number",
+        "description": "The amount of saturation applied. Beware that very low numbers result in a drop in overall volume. Adjust the `wet` and `dry` signals to mix distortion with the incoming sound."
+      },
+      {
+        "name": "mode",
+        "default": 1,
+        "type": "number",
+        "description": "The type of waveshaping algorithm applied. At the time of writing, 4 modes are offered. Check the source file for more. They formulas appear in the `makeCurve()` function."
+      },
+      {
+        "name": "lowcut",
+        "default": 100,
+        "type": "number",
+        "description": "A highpass filter for removing any “booming” frequencies produced by applying the saturation."
+      },
+      {
+        "name": "highcut",
+        "default": 20000,
+        "type": "number",
+        "description": "A lowpass filter for taking out harsher frequencies from the high end."
+      },
+      {
+        "name": "gain",
+        "default": 0.1,
+        "type": "number",
+        "description": "For attenuation purposes. Set very low by default, since the saturation adds a lot of its own gain. In testing, `0.1` seems to be just over [unity gain](https://www.sweetwater.com/insync/what-is-unity-gain-and-why-should-i-care/)."
+      },
+      {
+        "name": "mix",
+        "type": "number",
+        "default": 0,
+        "description": "How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
+      }
+    ]
+  },
+  {
+    "name": "Sequencer",
+    "category": "Sequencing",
+    "defined": true,
+    "summary": "Schedules future beats in a sequence and alerts subscribing elements.",
+    "props": [
+      {
+        "name": "bpm",
+        "type": "number",
+        "default": "null",
+        "description": "The tempo in beats-per-minute. Overrules the ancestor Audio element’s `bpm` if set."
+      },
+      {
+        "name": "scale",
+        "type": "number",
+        "default": 1,
+        "description": "The size of the interval in quarter-beats. `2` would mean each interval is, in effect, a half-beat."
+      },
+      {
+        "name": "swing",
+        "type": "boolean|number",
+        "default": "null",
+        "description": "Applied as a Boolean attribute, it applies a swing of `0.333`, making adjacent beats the first and last beats of a triplet. Supply a number to adjust this value."
+      }
+    ],
+    "events": [
+      {
+        "name": "blam",
+        "description": "Critically contains the time for the scheduled beat (relative to `currentTime`), but also supplies **Sequencer** and **Track** information."
+      }
+    ],
+    "methods": [
+      {
+        "name": "play",
+        "description": "Starts the sequencer, which begins emitting `blam` events at intervals according to the current `scale`."
+      },
+      {
+        "name": "stop",
+        "description": "Ceases emitting `blam` events and resets all descendant **Track** elements, essentially rewinding each to the beginning of their first **Bar**’s `s` pattern."
+      },
+      {
+        "name": "pause",
+        "description": "Ceases emitting `blam` events. Does not reset any constituent **Tracks**."
+      },
+      {
+        "name": "playStop",
+        "description": "Toggles between `play` and `stop`."
+      },
+      {
+        "name": "playPause",
+        "description": "Toggles between `play` and `pause`."
+      }
+    ]
+  },
+  {
+    "name": "Switch",
+    "extends": "Set",
+    "category": "Controlling",
+    "defined": true,
+    "summary": "Takes an input of type `checkbox` and uses it to change any target prop of any element.",
+    "props": [
+      {
+        "name": "event",
+        "type": "string",
+        "default": "input",
+        "description": "Do not supply an `event` prop for this element. It must use the child input’s `input` event."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "If a `value` is supplied, when the input in checked, the `value` is applied. When unchecked, it reapplies the `prop`’s initial value. If no `value` is applied the value is considered Boolean."
+      },
+      {
+        "name": "reverse",
+        "default": false,
+        "description": "Whether to reverse the polarity of the checked state. Useful where the label and prop seem to contradict one another. For example, a switch labeled “filter” that turns a filter _on_ by making its bypass property `false`."
+      },
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": "undefined",
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "Tap",
+    "extends": "Set",
+    "category": "Controlling",
+    "defined": true,
+    "summary": "Takes a child button element and uses it to trigger any method, or to apply any prop or param value. If `aria-pressed` is supplied on page load, the button becomes a toggle and the value will switch between `true` and `false`.",
+    "props": [
+      {
+        "name": "event",
+        "type": "string",
+        "default": "click",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": "undefined",
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ],
+    "events": [
+      {
+        "name": "blam",
+        "description": "Fired whenever the `<button>` is clicked. Where `to` is not set, `Tap` just fires this event. Then users can trigger handlers like `<relay-blam>` directly."
+      }
+    ]
+  },
+  {
+    "name": "Track",
+    "extends": "Handle",
+    "category": "Sequencing",
+    "defined": true,
+    "summary": "Corresponds to a **Sequencer** and uses child **Bar** elements to define repeating rhythmic patterns.",
+    "props": [
+      {
+        "name": "solo",
+        "type": "boolean",
+        "default": false,
+        "description": "When applied, all other **Track** elements belonging to the ancestor **Sequencer** are suspended (their sounds aren’t played)."
+      },
+      {
+        "name": "overrides",
+        "type": "string",
+        "default": "null",
+        "description": "A space-separated list of **Track** `id`s. **Tracks** (belonging to a common **Sequencer**) whose sounds will _not_ play when this **Track** plays a sound. Important for polymetric sequencing, to avoid “collisions”."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor **Sequencer** element for **Tracks**."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements that respond to stated events. Typically one or more **Sampler**-based elements."
+      },
+      {
+        "name": "suspend",
+        "type": "boolean",
+        "default": false,
+        "description": "Stops the **Track** from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "undefined",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "off",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ],
+    "events": [
+      {
+        "name": "blam",
+        "description": "Fired whenever the current bar’s current step makes a sound. For a more regular series of events, use the parent **Sequencer’s** blam event instead."
+      }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-name: LFO 
+name: Lfo
 extends: Osc
 defined: true 
 category: Modulating

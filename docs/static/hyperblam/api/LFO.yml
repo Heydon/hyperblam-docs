@@ -2,7 +2,7 @@ name: Lfo
 extends: Osc
 defined: true 
 category: Modulating
-summary: A multi-purpose Low Frequency Oscillator. Modulate any `audioParam` of any element, including any other LFO. 
+summary: A multi-purpose Low Frequency Oscillator (LFO). Modulate any `audioParam` of any element, including any other LFO. 
 props: 
   - name: prop
     type: string 

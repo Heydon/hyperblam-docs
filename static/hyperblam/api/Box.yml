@@ -1,0 +1,11 @@
+name: Box
+category: Processing
+props:
+  - name: mix
+    type: number
+    default: 0
+    description: How much wet, versus dry, signal should come through. In most cases, this is a proportion of `1`. If `mix` is set to `0.75`, 75% of the signal will be wet and 25% dry.
+  - name: bypass
+    type: boolean
+    default: false
+    description: Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity.

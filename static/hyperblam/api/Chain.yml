@@ -1,0 +1,9 @@
+name: Chain
+category: Processing
+defined: true
+extends: Box
+summary: For connecting together different effects, like in a pedalboard.
+props:
+  - name: out 
+    type: string
+    description: The `id` of the next element to connect to, in the signal chain. If not set, it connects to the ancestor **Audio** element.

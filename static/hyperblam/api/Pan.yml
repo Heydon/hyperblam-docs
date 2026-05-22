@@ -1,0 +1,10 @@
+name: Pan 
+extends: Box
+category: Processing
+defined: true 
+summary: Stereo panning for your signal chain. Gives instruments their space in the stereo field.
+props: 
+  - name: pan 
+    type: number
+    default: 0
+    description: The amount of panning. From `-1` (hard left) to `1` (hard right).

@@ -1,0 +1,12 @@
+name: Set
+category: Controlling
+summary: Handles events to affect a prop or `AudioParam`, or execute a method. Which of these three are applicable is automatically determined from the `prop` name supplied.
+extends: Handle
+props: 
+  - name: ramp
+    type: number
+    default: undefined
+    description: In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values.
+  - name: revert
+    type: boolean
+    description: When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays.

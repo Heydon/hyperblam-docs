@@ -1,0 +1,9 @@
+name: BandsToProps
+category: Visualizing
+extends: Visualiser
+summary: Converts **Analyser** data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, places a custom property of the format `--[name]-[type]-[index]` on the root. In addition, `--[name]-[type]` represents the average value. For frequency data, this is effectively the signal strength. Finally, `--[name]-[type]-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.
+props: 
+  - name: shuffle
+    type: boolean
+    default: false
+    description: Whether to randomly distribute data bands among target elements chosen with `selector`.

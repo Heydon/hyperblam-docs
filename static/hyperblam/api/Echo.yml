@@ -1,0 +1,21 @@
+name: Echo
+category: Processing
+extends: Box
+defined: true
+summary: An echo effect, using a delay node. Includes a lowpass filter for tape echo-like degradation.
+props: 
+  - name: beats
+    type: number
+    default: 1
+    description: The interval of echos, relative to the bpm set by an ancestor **Audio** or **Sequencer** element.
+  - name: feedback
+    type: number
+    default: 0.5
+    description: The intensity of the effect. When applying a `cutoff`, be aware that high values can cause self-oscillation (and things can get very loud). For ear safety, the value is capped at `0.75`.
+  - name: cutoff 
+    type: number
+    default: 'null'
+    description: A lowpass filter, applied inside the feedback loop, meaning echos get progressively _duller_ over time. Emulates the behavior of tape echo.
+  - name: mix 
+    default: 1
+    description: Echo is a special case. The dry signal is always `1` and the wet signal is added on top.

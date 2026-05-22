@@ -1,0 +1,27 @@
+name: Visualiser
+extends: Base
+category: Visualizing
+summary: Base element for translating **Analyser** data.
+props:
+  - name: analyser
+    type: string
+    description: A CSS selector for the **Analyser** element.
+  - name: transport
+    type: string
+    description: A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this.
+  - name: fps
+    type: number 
+    default: 25
+    description: Frames per second. The frequency at which **Analyser** data is read.
+  - name: time 
+    type: boolean
+    default: false 
+    description: Whether to take data from the time (rather than frequency) domain.
+  - name: first 
+    type: number
+    default: undefined 
+    description: The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**.
+  - name: last 
+    type: number
+    default: undefined 
+    description: The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**.

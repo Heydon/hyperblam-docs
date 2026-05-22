@@ -1,0 +1,19 @@
+name: Bar
+category: Sequencing
+defined: true
+summary: Defines a single bar’s pattern, as handled by a parent **Track** element.
+props: 
+  - name: s
+    type: string
+    description: The space-separated pattern representing the distribution of notes or sounds. `0` represents a pause (skipped sound/beat).
+  - name: chance
+    type: number
+    default: 1
+    description: The probability that any one sound in the `s` pattern will be played. Overrides a parent **Track’s** `chance`.
+  - name: fill
+    type: boolean
+    default: false
+    description: Whether to play a fill (a randomized rearrangement of the bar’s pattern).
+events: 
+  - name: blam 
+    description: Fired whenever one bar (defined by a child Bar element) ends and another begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element.

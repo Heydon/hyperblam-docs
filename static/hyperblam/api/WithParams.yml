@@ -1,0 +1,3 @@
+name: WithParams
+extends: Base 
+summary: A primitive element for supporting `audioParam` versus prop relationships

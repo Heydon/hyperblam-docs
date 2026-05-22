@@ -1,2 +1,0 @@
-import { install } from './tools/install.js';
-await install(import.meta.url);

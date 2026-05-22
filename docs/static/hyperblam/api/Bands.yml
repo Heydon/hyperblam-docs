@@ -1,6 +1,0 @@
-name: Bands
-experimental: true
-summary: Draws frequency bands as rectangles, similar to a classic graphic equalizer. 
-extends: Frame
-category: Visualizing
-defined: true

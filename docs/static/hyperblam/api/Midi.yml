@@ -1,9 +1,0 @@
-name: Midi 
-category: Controlling
-defined: true
-summary: Connects with MIDI devices and converts MIDI events. 
-events:
-  - name: midi 
-    description: A generic MIDI event, with data containing the MIDI `device` and `message`.
-  - name: midiOn
-    description: Like the generic “midi” event but specific to MIDI _on_ messages.

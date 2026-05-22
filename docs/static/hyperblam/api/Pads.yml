@@ -1,5 +1,0 @@
-name: Pads 
-extends: Sampler
-category: Sampling
-defined: true 
-summary: An instrument optimized for drums and other rhythmic or non-melodic patterns.

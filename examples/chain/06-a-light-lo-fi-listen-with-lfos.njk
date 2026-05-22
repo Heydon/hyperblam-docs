@@ -25,6 +25,7 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
+  <gain-blam gain="0.85"></gain-blam>
   <filter-blam type="highpass" id="highpass" freq="50" q="15"></filter-blam>
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>

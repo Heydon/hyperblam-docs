@@ -1,0 +1,48 @@
+import { Handle } from '../primitives/Handle.js';
+import { random } from '../tools/random.js';
+import { define } from '../tools/define.js';
+
+class Relay extends Handle {
+  constructor() {
+    super();
+
+    this.select = {
+      one: h => [random.oneOf(h)],
+      some: h => random.some(h),
+      all: h => [h]
+    }
+  }
+
+  onblamready() {
+    super.onblamready();
+    this.handlerElems = [...this.querySelectorAll(':scope > *')];
+  }
+
+  handle(event) {
+    if (random.chance(this.chance)) {
+      let handlers = this.select[this.mode](this.handlerElems);
+      handlers.forEach(h => {
+        h.handle(event);
+      });
+    }
+  }
+
+  get mode() {
+    let value = this.getAttribute('mode');
+		return ['one', 'some', 'all'].find(v => v === value) || 'all';
+	}
+
+	set mode(value) {
+		this.setAttribute('mode', value);
+  }
+
+  disconnectedCallback() {
+    this.unlisten();
+  }
+
+  static {
+    define(this);
+  }
+}
+
+export { Relay }

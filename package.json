@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
-    "build": "rm -rf ./_site && CONTEXT=pages npx @11ty/eleventy",
+    "build": "rm -rf ./docs && CONTEXT=pages npx @11ty/eleventy",
     "mp3": "node node/mp3.js"
   },
   "repository": {

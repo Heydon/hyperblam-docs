@@ -1,0 +1,14 @@
+name: Relay
+extends: Handle
+defined: true
+category: Automating
+summary: Takes one event and relays it to multiple (child) handler elements. Good for automating multiple changes at once.
+props: 
+  - name: mode 
+    default: all
+    type: string 
+    description: One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the **Relay**. Elements without `off` are activated independently _and_ via **Relay**.
+  - name: prop 
+    description: Not applicable for **Relay**. The `prop` is defined on each subject handler.
+  - name: value 
+    description: Not applicable for **Relay**. The `value` is defined on each subject handler.

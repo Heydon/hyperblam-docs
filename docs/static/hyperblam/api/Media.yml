@@ -1,0 +1,18 @@
+name: Media
+extends: Base
+category: Sampling
+experimental: true
+defined: true 
+summary: Makes an `<audio>` or `<video>` element an audio source and the beginning of a signal chain.
+props: 
+  - name: element 
+    type: string 
+    default: null
+    description: A CSS selector for an `<audio>` or `<video>` element. If not set, the element looks for an applicable descendant element.
+  - name: out 
+    type: string 
+    default: null
+    description: The `id` of the next element in the chain. If not set, it defaults to an ancestor `<audio>` or `<video>` element.
+events:
+  - name: blamsource
+    description: Fired when the audio can be played through (proxying the `canplaythrough` event).

@@ -1,0 +1,10 @@
+name: Repeat 
+extends: Base 
+category: Sequencing
+defined: true 
+summary: Group some **Track** element’s **Bars** and repeat the enclosed pattern/part `x` number of times.
+props: 
+  - name: x
+    type: number
+    default: 1
+    description: How many times the enclosed pattern/part should be repeated. If `x="3"`, the **Bar** or **Bars** will play 3 times before the next **Bar** or **Repeat** element is played.

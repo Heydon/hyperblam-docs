@@ -157,5 +157,8 @@ eleventyConfig.setLibrary("md", markdownRenderer);
     markdownTemplateEngine: 'njk',
     dataTemplateEngine: 'njk',
     htmlTemplateEngine: 'njk',
+    dir: {
+      output: 'docs'
+    }
   }
 };

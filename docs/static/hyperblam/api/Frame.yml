@@ -1,0 +1,11 @@
+name: Frame
+extends: BandsToProps
+category: Visualizing
+summary: A Shadow DOM-based **Analyser** visualisation using CSS custom properties and transitions.
+props:
+  - name: count
+    type: number
+    default: 16
+    description: The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats.
+  - name: shuffle
+    description: Whether to randomly redistribute data band references among the Shadow DOM-rendered elements.

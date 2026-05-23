@@ -9,16 +9,14 @@
       {% for group in site.exampleData %}
         <h2>{{ group.title }}</h2>
         {{ group.summary | md | safe }}
-        <table>
+        <ul class="l-examples">
           {% for post in collections[group.tags] %}
-            <tr>
-              <th scope="row">{{ loop.index }}</th>
-              <td>
-                <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
-              </td>
-            </tr>
+            <li>
+              {% if not post.data.unnumbered %}{{ loop.index }}. {% endif %}
+              <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
+            </li>
           {% endfor %}
-        </table>
+        </ul>
       {% endfor %}
     {% endblock %}
   </main>

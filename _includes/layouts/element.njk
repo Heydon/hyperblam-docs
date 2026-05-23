@@ -100,7 +100,7 @@
     {% endfor %}
     {% if posts.length %}
     <p>Examples that use the <strong>{{element.name}}</strong> element:</p>
-    <ul>
+    <ul class="l-examples">
       {% for post in posts %}
         <li>
           <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>

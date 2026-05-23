@@ -1,6 +1,7 @@
 {
   "tags": "other",
   "order": 1000,
+  "unnumbered": true,
   "title": "More",
   "summary": "Standalone examples. Some are simple ideas or experiments, others are complete generative compositions.",
   "visualiser": {

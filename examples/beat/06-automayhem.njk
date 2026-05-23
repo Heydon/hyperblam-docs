@@ -23,7 +23,7 @@ elements:
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
   <saturator-blam></saturator-blam>
-  <phaser-blam beats="2"></phaser-blam>
+  <phaser-blam beats="2" bypass></phaser-blam>
   <echo-blam beats="0.5" feedback="0.6" cutoff="5000" mix="0"></echo-blam>
 </chain-blam>
 <pads-blam id="hat" choke="0.05" out="bus">
@@ -154,7 +154,7 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
     <input type="range" min="0" max="1" step="any">
   </label>
 </dial-blam>
-<switch-blam to="phaser-blam" prop="bypass">
+<switch-blam to="phaser-blam" prop="bypass" reverse>
   <label>
     phaser
     <input type="checkbox">

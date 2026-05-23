@@ -9,7 +9,7 @@ exampleData.sort((a, b) => a.order - b.order);
 
 module.exports = {
   title: 'HYPERBLAM',
-  basedir: process.env.CONTEXT === 'pages' ? 'https://heydon.github.io/hyperblam-docs' : '',
+  basedir: process.env.CONTEXT === 'pages' ? 'https://hyperblam.how' : '',
   hyperblampath: process.env.CONTEXT === 'pages' ? 'static/hyperblam/dist/hyperblam/hyperblam.js' : 'static/hyperblam/src/hyperblam.js',
   categories: {
     Sequencing: 'Elements involved in scheduling sounds and other events, creating phrases, loops, compositions.',

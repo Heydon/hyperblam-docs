@@ -6,4 +6,4 @@ permalink: '/examples/index.html'
 eleventyExcludeFromCollections: true
 ---
 
-Experimental and demonstrative examples of **HYPERBLAM** usage. These double as tests, so please report any issues you experience!
+Experimental and demonstrative examples of **HYPERBLAM** usage. These double as tests, so please [report any issues](https://git.gay/heydon/hyperblam/issues/new) you experience!

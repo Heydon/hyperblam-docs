@@ -3,7 +3,7 @@
 {% block iteration %}
   {% for name, description in site.categories %}
     <div class="l-stack">
-      <h2>{{ name }}</h2>
+      <h2 id="{{ name | slugify }}">{{ name }}</h2>
       <p>{{ description }}</p>
       <ul class="l-index">
         {% for element in api %}

@@ -46,6 +46,15 @@ class Osc extends WithParams {
 		this.setAttribute('gain', value);
   }
 
+  get detune() {
+    let value = this.getAttribute('detune');
+		return value ? parseFloat(value) : 1;
+	}
+
+	set detune(value) {
+		this.setAttribute('detune', value);
+  }
+
   get beats() {
     let value = this.getAttribute('beats');
     let hertz = this.conversions.beats(value || 1);
@@ -65,7 +74,7 @@ class Osc extends WithParams {
 	}
 
   static get observedAttributes () {
-    return ['beats', 'gain', 'type'];
+    return ['beats', 'gain', 'detune', 'type'];
   }
 }
 

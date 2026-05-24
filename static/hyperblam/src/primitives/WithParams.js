@@ -39,7 +39,7 @@ class WithParams extends Base {
     let ramp = param.ramp;
     delete param.ramp;
     let converted = this.convertValue(name, value);
-    if (converted === 0 || converted) {
+    if (isFinite(converted)) {
       if (ramp) {
         param.linearRampToValueAtTime(
           converted, 

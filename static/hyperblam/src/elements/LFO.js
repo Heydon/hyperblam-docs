@@ -55,12 +55,12 @@ class Lfo extends Osc {
 		this.setAttribute('out', value);
   }
 
-  get off() {
-		return this.hasAttribute('off');
+  get bypass() {
+		return this.hasAttribute('bypass');
 	}
 
-	set off(value) {
-		this.toBoolean('off', value);
+	set bypass(value) {
+		this.toBoolean('bypass', value);
 	}
 
   disconnectedCallback() {
@@ -70,12 +70,12 @@ class Lfo extends Osc {
   }
 
   static get observedAttributes () {
-    return [...super.observedAttributes, 'off'];
+    return [...super.observedAttributes, 'bypass'];
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
-    if (name === 'off') {
-      this.params.gain = this.off ? 0 : this.gain;
+    if (name === 'bypass') {
+      this.params.gain = this.bypass ? 0 : this.gain;
     }
     super.attributeChangedCallback(name, oldVal, newVal);
   }

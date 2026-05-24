@@ -14,6 +14,10 @@ props:
     type: number 
     default: 1 
     description: The frequency of the LFO in beats, mapped to the `bpm` of an ancestor **Audio** or **Sequencer** element.
+  - name: detune 
+    type: number 
+    default: 0 
+    description: The _relative_ frequency, in cents (`100` cents is 1 semitone). The default, `0`, means the frequency in `beats` is unchanged. 
   - name: invert 
     type: boolean 
     default: false 

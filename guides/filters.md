@@ -30,11 +30,11 @@ Lowpass is the most common and useful *single band* filter, so it’s the defaul
 </filter-blam>
 ```
 
-The papery, creaky thump of a kick drum sample can be transformed into a soft, dull throb more suitable for EDM. A cutoff frequency of, say, 500Hz, will do for this.
+The papery, creaky thump of a kick drum sample can be transformed into a soft, dull throb more suitable for EDM. In the [“Wah, I’m Sad”]({{site.basedir}}/examples/wah-im-sad/) example, I use `150Hz`:
 
 ```html
 <filter-blam
-  freq="500"
+  freq="150"
 >
 </filter-blam>
 ```
@@ -47,23 +47,15 @@ The iconic *wah-wah* effect prized by guitarists like Jimi Hendrix uses a *bandp
 
 It sounds like a baby going “wah” because it’s a kind of _spectral glide_, shifting the perceived vowel sound.
 
-You can emulate this effect in **HYPERBLAM** by applying an LFO to the filter. There’s a whole [guide on LFOs]({{site.basedir}}/guides/LFOs/). In this case, the LFO emulates Jimi Hendrix’s foot, rocking back and forth to change the frequency band’s position over time.
+You can emulate this effect in **HYPERBLAM** by applying an LFO to the bandpass filter. There’s a whole [guide on LFOs]({{site.basedir}}/guides/LFOs/). In this case, an LFO emulates Jimi Hendrix’s foot, rocking back and forth to change the frequency band’s position over time. See [“Wah, I’m Sad”]({{site.basedir}}/examples/wah-im-sad/) for an implementation.
 
 ```html
-<filter-blam
-  freq="3000"
-  q="400"
-  type="bandpass"
->
-    <lfo-blam
-      prop="freq"
-      gain="2000"
-      beats="1">
-    </lfo-blam>
+<filter-blam type="bandpass" freq="850" q="3">
+  <lfo-blam id="pedal" prop="freq" gain="500" beats="0.75"></lfo-blam>
 </filter-blam>
 ```
 
-Note the `q` prop’. This determines the width of the band. In this case, `freq` determines the band’s center point within the range.
+Note the `q` prop’. For a bandpass filter, this determines the width of the band. The _higher_ the value, the _narrower_ the band. A classic wah pedal has a `q` of about `3`. The center frequency (`freq`) is typically somewhere between `0` and `2KHz`.
 
 ## Phaser
 
@@ -83,8 +75,10 @@ Which is problematic. As you may have already learned from my guide on LFOs, wav
 
 A phaser effect messes with phase on purpose. Using an *allpass* filter (a filter that does *not* alter frequency information), it creates a copy of the original signal. The phase relationship between the copy and the original can be changed over time. 
 
-As the two identical sounds move in and out of phase, frequency information is lost and regained, creating the characteristic swooshing sound of a phaser effect.
+As the two identical sounds move in and out of phase, frequency information is lost and regained, creating the characteristic swooshing sound of a phaser effect. In the already chaotic [“AutoMayhem”]({{site.basedir}}/examples/06-automayhem/) example, you can switch on the `<phaser-blam>` for added texture.
 
-Phasing is great for adding a sense of motion to your music. Let’s take that dull EDM kick drum and place a phased cymbal track over it. 
+```html
+<phaser-blam beats="2"></phaser-blam>
+```
 
-Now it feels like the track is really going somewhere. It’s not, of course. The beauty of writing music in the browser is you can loop it for as long as the browser window is open. But a gradual phasing effect makes the perceived length of the loop longer.
+Phasing is great for adding a sense of motion to your music. The slower the rate of phase, the longer the transformation over time.

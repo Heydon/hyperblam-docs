@@ -1,0 +1,130 @@
+---
+title: Wah, I’m Sad
+visualiser:
+  count: 16
+elements: 
+  - Sample 
+  - Bank
+  - Sequencer 
+  - Bar 
+  - Track 
+  - Pads 
+  - Chain 
+---
+
+{% set previousPost = collections.other | getPreviousCollectionItem %}
+{% set nextPost = collections.other | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <reverb-blam id="spring" mix="0.25">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
+  </reverb-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
+</chain-blam>
+<sequencer-blam id="transport">
+  <pads-blam id="kick">
+    <chain-blam out="bus">
+      <filter-blam freq="150"></filter-blam>
+    </chain-blam>
+    <bank-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/kit/kick/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/kit/kick/02.mp3"></sample-blam>
+    </bank-blam>    
+  </pads-blam>
+  <pads-blam id="guitar" gain="2">
+    <bank-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/guitar/120bpm/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/guitar/120bpm/02.mp3"></sample-blam>
+    </bank-blam>
+    <chain-blam out="bus">
+      <phaser-blam beats="5" center="5000" depth="4000"></phaser-blam>
+      <filter-blam type="bandpass" freq="850" q="3">
+        <lfo-blam id="pedal" prop="freq" gain="500" beats="0.75">
+          <blam-blam 
+            from="sequencer-blam" 
+            to="#pedal" 
+            prop="gain" 
+            value="200~600" 
+            ramp="0.125"
+            chance="0.5">
+          </blam-blam>
+        </lfo-blam>
+      </filter-blam>
+    </chain-blam>
+  </pads-blam>
+  <track-blam to="#guitar">
+    <bar-blam s="? 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#kick">
+    <bar-blam s="1 0 0 0 0 0 0 0 1 0 0 0 0 0 2 0"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+How about some psychadelic sadness? 
+
+Samples of two bars of finger-plucked guitar cycle endlessly while a `<filter-blam>` of `type="bandpass"` sweeps between lighter and darker frequencies. A spring reverb is added via `<reverb-blam>` for depth.
+
+```
+<reverb-blam id="spring" mix="0.25">
+  <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
+</reverb-blam>
+```
+
+To emulate the unsteady motion of a foot operating a [wah pedal](https://en.wikipedia.org/wiki/Wah-wah_pedal), a `<blam-blam>` fluctuates the gain of the `<lfo-blam>`.
+
+```html
+<filter-blam type="bandpass" freq="850" q="3">
+  <lfo-blam id="pedal" prop="freq" gain="500" beats="0.75">
+    <blam-blam 
+      from="sequencer-blam" 
+      to="#pedal" 
+      prop="gain" 
+      value="200~600" 
+      ramp="0.125"
+      chance="0.5">
+    </blam-blam>
+  </lfo-blam>
+</filter-blam>
+```
+
+A `<dial-blam>` is included for changing the position from “towards the heal” to “towards the toe”. This determines the general _area_ in which the foot motion is occuring. It is mapped to the `<filter-blam>`’s center frequency (`freq`).
+
+```html
+<dial-blam to="[type='bandpass']" prop="freq">
+  <label>
+    position
+    <input type="range" min="600" max="1400" step="any">
+  </label>
+</dial-blam>
+```
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<dial-blam to="reverb-blam" prop="mix">
+  <label>
+    reverb
+    <input type="range" min="0" max="1" step="any">
+  </label>
+</dial-blam>
+<dial-blam to="[type='bandpass']" prop="freq">
+  <label>
+    position
+    <input type="range" min="600" max="1400" step="any">
+  </label>
+</dial-blam>
+{% endblock %}

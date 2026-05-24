@@ -15,7 +15,7 @@ class WithParams extends Base {
     for (const name of Object.keys(this.params)) {
       if (this[name]) {
         let pName = this.params[name];
-        if (isFinite(pName)) {
+        if (pName.value || pName.value === 0) {
           pName.value = this[name];
         } else {
           pName[name] = this[name];
@@ -34,7 +34,6 @@ class WithParams extends Base {
 
   setParam(name, value) {
     let param = this.params[name];
-    console.log(name);
     let time = param.time || this.getTime();
     delete param.time;
     let ramp = param.ramp;

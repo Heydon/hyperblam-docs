@@ -53,8 +53,8 @@ elements:
     </filter-blam>
   </chain-blam>
   <relay-blam mode="one" chance="0">
-    <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
-    <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+    <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass></envelope-blam>
+    <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
   </relay-blam>
 </notes-blam>
 <sequencer-blam bpm="90" id="transport">
@@ -89,14 +89,14 @@ But just slides are not enough variety.
 
 ```html 
 <relay-blam mode="one" chance="0.333">
-  <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats off></envelope-blam>
-  <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats off></envelope-blam>
+  <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass></envelope-blam>
+  <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
 </relay-blam>
 ```
 
-I've used a `<relay-blam>` and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note `mode="one"`. There is a 33.333% chance that _one_ of the envelopes will be applied when `<notes-blam>` plays a sound. Because `off` is applied to each individual `<envelope-blam>` element, they do not apply independently. 
+I’ve used a `<relay-blam>` and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note `mode="one"`. There is a 33.333% chance that _one_ of the envelopes will be applied when `<notes-blam>` plays a sound. Because `bypass` is applied to each individual `<envelope-blam>` element, they do not trigger independently. 
 
-When used with `<blam-blam>`, `<relay-blam>` might want to be in the `'all'` or `'some'` modes. You may also want to omit `off` and use different `event` or `to` values. This creates multiple dimensions of event handling.
+When used with `<blam-blam>`, `<relay-blam>` might want to be in the `'all'` or `'some'` modes. You may also want to omit `bypass` and use different `event` or `to` values. This creates multiple dimensions of event handling.
 
 Crucially, the chance of this envelope/slide occuring at all is just `0.333` (or 33.333%). To recap: our bassline is made of 4 different samples, randomly selected and played at different pitches, representing different notes in the minor pentatonic scale, sustained for varying lengths of time, and occassionally embellished with a sliding action.
 

@@ -20,7 +20,7 @@ props:
   - name: prop
     type: string
     description: The property (which may be a method or map to an `audioParam`) to affect at the `event`.
-  - name: off
+  - name: bypass
     type: boolean
     default: false
     description: Whether to stop responding to events as they happen.

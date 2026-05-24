@@ -46,7 +46,7 @@ class Handle extends Base {
   }
 
   handleEvent(event) {
-    if (event.type === this.event && !this.off) {
+    if (event.type === this.event && !this.bypass) {
       this.handle(event);
     } else {
       super.handleEvent(event);
@@ -106,12 +106,12 @@ class Handle extends Base {
 		this.setAttribute('prop', value);
   }
 
-  get off() {
-		return this.hasAttribute('off');
+  get bypass() {
+		return this.hasAttribute('bypass');
 	}
 
-	set off(value) {
-		this.toBoolean('off', value);
+	set bypass(value) {
+		this.toBoolean('bypass', value);
 	}
 
   get chance() {

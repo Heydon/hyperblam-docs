@@ -77,6 +77,7 @@ module.exports = async function(eleventyConfig) {
 
   // Put all static assets here
   eleventyConfig.addPassthroughCopy('./static');
+  eleventyConfig.addPassthroughCopy('./CNAME');
 
   // Log any nunjucks
   eleventyConfig.addFilter('log', value => {

@@ -67,6 +67,10 @@ module.exports = async function(eleventyConfig) {
     return content ? md.render(content) : '';
   });
 
+  eleventyConfig.addFilter('oneOf', content => {
+    return random.oneOf(content);
+  });
+
   eleventyConfig.addFilter('lowercase', content => {
     return content.toLowerCase();
   });

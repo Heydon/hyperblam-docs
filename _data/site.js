@@ -20,5 +20,12 @@ module.exports = {
     Automating: 'Elements for changing and randomizing props and parameters automatically (according to events).',
     Visualizing: 'Elements involved in rendering sound and state data in some way.'
   },
+  cardAlts: {
+    1: 'Drawing of some JavaScript entering some HTML and making it go blam blam.',
+    2: 'Labeled diagram of a waveform, showing peaks, troughs, and wavelength.',
+    3: 'Slogan reading ‘write music, not JavaScript’',
+    4: 'Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.'
+
+  },
   exampleData
 }

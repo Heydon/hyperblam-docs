@@ -13,6 +13,21 @@
     <link rel="preload" href="{{site.basedir}}/static/css/fonts/CourierPrime-Italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{{site.basedir}}/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/svg+xml" href="{{site.basedir}}/static/images/favicon.svg" sizes="any">
+    <meta name="description" content="{{ description if description else 'Documentation for HyperBlam. Make HTML make music.'}}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:description" content="{{ description if description else 'Documentation for HyperBlam. Make HTML make music.'}}">
+    {% set cardNum = [1,2,3,4] | oneOf %}
+    {% if ogImage %}
+    <meta property="og:image" content="{{site.basedir}}/static/images/{{ ogImage }}">
+    {% else %}
+    <meta property="og:image" content="{{site.basedir}}/static/images/card{{ cardNum }}.png">
+    {% endif %}
+    {% if ogImageAlt %}
+    <meta property="og:image" content="{{ ogImageAlt }}">
+    {% else %}
+    <meta property="og:image:alt" content="{{ site.cardAlts[cardNum] }}" />
+    {% endif %} 
   </head>
   {% block bodyTag %}
   <body class="l-view">

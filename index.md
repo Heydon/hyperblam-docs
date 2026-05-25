@@ -1,6 +1,8 @@
 ---
-title: Hyperblam
+title: Hyperblam Docs Home
 layout: layouts/home.njk
+ogImage: cardHome.png
+ogImgAlt: HyperBlam logo and site address (HyperBlam dot how)
 ---
 
 **HYPERBLAM** lets you make music with HTML. It’s a declarative implementation of the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) and is completely dependency free. 

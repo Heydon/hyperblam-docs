@@ -412,8 +412,8 @@ p a:hover img,
 
 .l-scroll__intersectable {
   display: block;
-  block-size: 100vh;
-  margin-block-start: 200vh;
+  block-size: 100dvh;
+  margin-block-start: 200dvh;
   margin-inline: 2rem;
 }
 
@@ -425,7 +425,7 @@ p a:hover img,
 }
 
 .l-view {
-  min-block-size: 100vh;
+  min-block-size: 100dvh;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -478,6 +478,7 @@ p a:hover img,
 .u-list-inline {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   gap: 0.5em;

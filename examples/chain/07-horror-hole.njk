@@ -68,7 +68,7 @@ elements:
     </pan-blam>
   </chain-blam>
 </pads-blam>
-<pads-blam bank="plucks" id="pluckRev" reverse>
+<pads-blam bank="plucks" id="plucksRev" reverse>
   <chain-blam out="plate">
     <echo-blam beats="0.25" feedback="0.666" cutoff="1000"></echo-blam>
   </chain-blam>
@@ -94,7 +94,7 @@ elements:
   <track-blam id="plucksTrack2" to="#pluck2" chance="0.75">
     <bar-blam s="? 0 ? ? 0 ? ? 0"></bar-blam>
   </track-blam>
-  <track-blam to="#pluckRev" chance="0.3">
+  <track-blam id="revTrack" to="#plucksRev" chance="0.3">
     <bar-blam s="0 ? 0 0 0 ? ? 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -142,12 +142,12 @@ Since this composition generates indefinitely, you can put it on at bedtime and 
 {% endblock %}
 
 {% block controls %}
-<switch-blam to="#plucksTrack2" prop="solo">
+<switch-blam to="#revTrack" prop="solo">
   <label>
-    solo plucks
+    solo reversals
     <input type="checkbox">
   </label>
 </switch-blam>
 <kbd-blam to="#pluck2" key="1" prop="play"></kbd-blam>
-<kbd-blam to="#pluckRev" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#plucksRev" key="2" prop="play"></kbd-blam>
 {% endblock %}

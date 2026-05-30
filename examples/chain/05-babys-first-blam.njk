@@ -42,7 +42,7 @@ elements:
   </p>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
-      <lfo-blam prop="gain" gain="0.5" beats="0.001" type="square">
+      <lfo-blam id="hlfo" prop="gain" gain="0.5" beats="0.001" type="square">
         <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
       </lfo-blam>
     </gain-blam>
@@ -66,7 +66,7 @@ While this may sound quite pedestrian, it’s actually pretty powerful, for a fe
 A few artfully deployed `<blam-blam>` elements can turn a repetitive loop into a permutating composition. It can be the difference between basic beat making and generative sound design.
 
 ```html
-<lfo-blam prop="gain" gain="0.5" beats="0.001">
+<lfo-blam prop="gain" gain="0.5" beats="0.001" type="square">
   <blam-blam prop="beats" value="0.001~0.009"></blam-blam>
 </lfo-blam>
 ```
@@ -81,7 +81,18 @@ Following the high frequency tremolo effect is a `<reverb-blam>`. This takes the
 </reverb-blam>
 ```
 
-The reverb creates a sense of space, as well as softening the edges of an otherwise rather harsh sound.
+The reverb creates a sense of space, as well as softening the edges of an otherwise rather harsh sound. 
+
+To further smoothen the sound, a `<switch-blam>` is provided for toggling the LFO’s `type` from `square` (“teetaateetaateeta”) to `sine` (“wooweewooweewoowoo”).
+
+```html 
+<switch-blam to="#hlfo" prop="type" value="sine">
+  <label>
+    smooth
+    <input type="checkbox">
+  </label>
+</switch-blam>
+```
 
 {% endrenderTemplate %}
 
@@ -94,4 +105,10 @@ The reverb creates a sense of space, as well as softening the edges of an otherw
     <input type="range" min="0" max="1" step="any">
   </label>
 </dial-blam>
+<switch-blam to="#hlfo" prop="type" value="sine">
+  <label>
+    smooth
+    <input type="checkbox">
+  </label>
+</switch-blam>
 {% endblock %}

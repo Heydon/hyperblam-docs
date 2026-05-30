@@ -52,6 +52,14 @@ elements:
   <pads-blam out="bus" id="piano" bank="pianoBank" gain="1.25">
     <envelope-blam prop="detune" curve="100 0, 0 0.05, 0 0.8, -100 1"></envelope-blam>
   </pads-blam>
+  <pads-blam id="oooh" gain="0.3">
+    <bank-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/chocolate/oooh.mp3"></sample-blam>
+    </bank-blam>
+    <chain-blam out="bus">
+      <echo-blam feedback="0.3"></echo-blam>
+    </chain-blam>
+  </pads-blam>
   <track-blam class="tay" to="#scratch" chance="0.6">
     <repeat-blam x="16">
       <bar-blam s="0"></bar-blam>
@@ -93,9 +101,18 @@ elements:
   <track-blam class="tune tay" to="#blip" id="blipTrack" chance="0.2" suspend>
     <bar-blam s="1"></bar-blam>
   </track-blam>
-  <track-blam to="#piano">
+  <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0"></bar-blam>
     <repeat-blam x="13">
+      <bar-blam s="0 0 0 0"></bar-blam>
+    </repeat-blam>    
+  </track-blam>
+  <track-blam to="#oooh" override="pianoTrack bassTrack" chance="0.5">
+    <bar-blam s="0 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 0"></bar-blam>
+    <bar-blam s="1 0 0 0"></bar-blam>
+    <repeat-blam x="9">
       <bar-blam s="0 0 0 0"></bar-blam>
     </repeat-blam>    
   </track-blam>
@@ -115,7 +132,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/chocolate/clap/03.mp3"></sample-blam>
   </bank-blam>
   <bank-blam id="blipBank">
-    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/blip/01.mp3" reverse></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/dissonant/blip/01.mp3"></sample-blam>
   </bank-blam>
   <bank-blam id="pianoBank">
     <sample-blam src="{{site.basedir}}/static/sounds/chocolate/piano.mp3"></sample-blam>
@@ -147,7 +164,7 @@ The `#scratch` track has a basic pattern: the first 16 quarter-beats each play t
 </track-blam>
 ```
 
-The sample itself is reversed every other time, strafing back and forth over the sample. 
+The sample itself is reversed every other time, moving back and forth over the sample. 
 
 ```html
 <blam-blam prop="reverse" value="1|0"></blam-blam>
@@ -174,6 +191,14 @@ A second instrument plays the same **Chocolate Rain** sample at the end of each 
 <blam-blam prop="length" value="4|0.75"></blam-blam>
 ```
 
+The bass part also has so variety. There's just three samples but played (using `<notes-blam>`) over four arpeggiated chords. A happy accident: samples repitched to higher notes end up shorter, varying the release time. Some notes are _jabbed_ very briefly.
+  
+The final two bars are in `fill` mode, meaning notes and note placement are randomized like an improvisation.
+
+```html
+<bar-blam s="D2 D3 A2 F3" fill chance="0.75"></bar-blam>
+<bar-blam s="D3 F4 A3 F3" fill chance="0.5"></bar-blam>
+```
 
 {% endrenderTemplate %}
 

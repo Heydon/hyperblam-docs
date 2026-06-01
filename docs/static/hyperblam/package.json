@@ -15,8 +15,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dist": "rm -rf ./dist && mkdir ./dist && cp -R ./src ./dist/hyperblam && node ./scripts/minify.js && zip -r ./dist/hyperblam.zip ./dist/hyperblam && npm run api",
-    "api": "node ./scripts/api.js"
+    "dist": "rm -rf ./dist && mkdir ./dist && cp -R ./src ./dist/hyperblam && node ./node/minify.js && zip -r ./dist/hyperblam.zip ./dist/hyperblam && npm run api",
+    "api": "node ./node/api.js"
   },
   "devDependencies": {
     "fs-jetpack": "^5.1.0",

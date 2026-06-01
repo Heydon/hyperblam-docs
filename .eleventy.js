@@ -3,8 +3,8 @@ const markdownItNamedHeadings = require("markdown-it-named-headings");
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const waveforms = ['square', 'sine', 'sawtooth', 'triangle'];
-const package = require('./static/hyperblam/package.json');
-const api = require('./static/hyperblam/dist/api.json');
+const package = require('./src/static/hyperblam/package.json');
+const api = require('./src/static/hyperblam/dist/api.json');
 
 const icons = {};
 
@@ -80,8 +80,8 @@ module.exports = async function(eleventyConfig) {
   });
 
   // Put all static assets here
-  eleventyConfig.addPassthroughCopy('./static');
-  eleventyConfig.addPassthroughCopy('./CNAME');
+  eleventyConfig.addPassthroughCopy('./src/static');
+  eleventyConfig.addPassthroughCopy('./src/CNAME');
 
   // Log any nunjucks
   eleventyConfig.addFilter('log', value => {
@@ -163,6 +163,7 @@ eleventyConfig.setLibrary("md", markdownRenderer);
     dataTemplateEngine: 'njk',
     htmlTemplateEngine: 'njk',
     dir: {
+      input: 'src',
       output: 'docs'
     }
   }

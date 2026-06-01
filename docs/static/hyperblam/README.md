@@ -14,7 +14,7 @@
 
 Documentation for each [custom element](https://html.spec.whatwg.org/multipage/custom-elements.html) is available in the [**/api**](https://git.gay/heydon/hyperblam/src/branch/main/api) folder. 
 
-However... you’re better off visiting [hyperblam.how](https://hyperbalm.how), where this info is accompanied by [introductory guides](https://hyperblam.how/guides/) and [live examples](https://hyperblam.how/examples/).
+However... you’re better off visiting [hyperblam.how](https://hyperblam.how), where this info is accompanied by [introductory guides](https://hyperblam.how/guides/) and [live examples](https://hyperblam.how/examples/).
 
 ## Contributing
 

@@ -20,6 +20,7 @@ class Bank extends Handle {
     if (event.type === 'blamsource') {
       this.sounds.push(event.detail);
       if (this.sounds.length == this.sampleElems.length) {
+        this.sounds.sort(({index:a}, {index:b}) => a - b);
         this.fire('blambank', {
           sounds: this.sounds
         }, this);
@@ -29,9 +30,8 @@ class Bank extends Handle {
 
   async initBuffers() {
     this.sampleElems = [...this.querySelectorAll(`sample-blam`)];
-    for (const sampleElem of this.sampleElems) {
-      await sampleElem.fileToBuffer();
-    }
+    const samples = this.sampleElems.map((e, i) => e.fileToBuffer(i));
+    await Promise.all(samples);
   }
 
   disconnectedCallback() {

@@ -1,7 +1,7 @@
 const jetpack = require('fs-jetpack');
 
 const exampleData = [];
-const dataFiles = jetpack.find('./examples/', { matching: ['*.json'] });
+const dataFiles = jetpack.find('./src/examples/', { matching: ['*.json'] });
 dataFiles.forEach(file => {
   exampleData.push(jetpack.read(file, 'json'));
 });

@@ -17,7 +17,7 @@ class Sample extends Base {
     return newB;
   }
 
-  async fileToBuffer(i) {
+  async fileToBuffer() {
     if (!this.src) {
       return;
     }
@@ -32,7 +32,6 @@ class Sample extends Base {
       {
         file: fileName,
         id: this.id,
-        index: i + 1,
         root: this.root,
         buffer,
         reversed

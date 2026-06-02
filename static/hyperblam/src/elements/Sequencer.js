@@ -7,9 +7,6 @@ class Sequencer extends Base {
     super();
     this.playing = false;
     this.odd = 1;
-  }
-
-  onblamready() {
     this.c = this.context();
   }
 

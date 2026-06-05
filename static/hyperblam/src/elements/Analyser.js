@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Analyser extends Box {
   constructor() {
@@ -39,10 +38,6 @@ class Analyser extends Box {
 
 	set smoothing(value) {
 		this.setAttribute('smoothing', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

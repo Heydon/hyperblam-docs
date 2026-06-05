@@ -1,5 +1,4 @@
 import { Handle } from '../primitives/Handle.js';
-import { define } from '../tools/define.js';
 import { random } from '../tools/random.js';
 
 class Envelope extends Handle {
@@ -61,10 +60,6 @@ class Envelope extends Handle {
     if (name === 'curve') {
       this.parseCurve();
     }
-  }
-
-  static {
-    define(this);
   }
 }
 

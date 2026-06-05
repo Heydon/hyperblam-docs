@@ -1,5 +1,4 @@
 import { Set } from '../primitives/Set.js';
-import { define } from '../tools/define.js';
 
 class Dial extends Set {
   constructor() {
@@ -31,10 +30,6 @@ class Dial extends Set {
   handle(event) {
     let value = event.target.value;
     super.handle(event, value);
-  }
-
-  static {
-    define(this);
   }
 }
 

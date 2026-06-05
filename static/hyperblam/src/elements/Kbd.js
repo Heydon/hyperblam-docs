@@ -1,5 +1,4 @@
 import { Set } from '../primitives/Set.js';
-import { define } from '../tools/define.js';
 
 class Kbd extends Set {
   constructor() {
@@ -24,10 +23,6 @@ class Kbd extends Set {
 
 	set key(value) {
 		this.setAttribute('ramp', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

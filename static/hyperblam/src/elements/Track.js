@@ -1,5 +1,4 @@
 import { Handle } from '../primitives/Handle.js';
-import { define } from '../tools/define.js';
 
 class Track extends Handle {
   constructor() {
@@ -116,10 +115,6 @@ class Track extends Handle {
 	set suspend(value) {
 		this.toBoolean('suspend', value);
 	}
-
-  static {
-    define(this);
-  }
 }
 
 export { Track }

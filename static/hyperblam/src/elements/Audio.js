@@ -1,4 +1,3 @@
-import { define } from '../tools/define.js';
 import { WithParams } from '../primitives/WithParams.js';
 
 class Audio extends WithParams {
@@ -52,10 +51,6 @@ class Audio extends WithParams {
 
 	set bpm(value) {
 		this.setAttribute('bpm', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

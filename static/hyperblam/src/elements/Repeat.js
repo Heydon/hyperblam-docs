@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 
 class Repeat extends Base {
   constructor() {
@@ -14,10 +13,6 @@ class Repeat extends Base {
 
 	set x(value) {
 		this.setAttribute('x', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

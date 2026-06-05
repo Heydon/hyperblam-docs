@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Limiter extends Box {
   constructor() {
@@ -15,10 +14,6 @@ class Limiter extends Box {
     this.node.release.setValueAtTime(0.25, time);
     this.inNode.connect(this.node)
                .connect(this.wetGainNode);
-  }
-
-  static {
-    define(this);
   }
 }
 

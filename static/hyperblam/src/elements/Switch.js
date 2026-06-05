@@ -1,5 +1,4 @@
 import { Set } from '../primitives/Set.js';
-import { define } from '../tools/define.js';
 
 class Switch extends Set {
   constructor() {
@@ -45,10 +44,6 @@ class Switch extends Set {
 	set reverse(value) {
 		this.toBoolean('reverse', value);
 	}
-
-  static {
-    define(this);
-  }
 }
 
 export { Switch }

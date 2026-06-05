@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Phaser extends Box {
   constructor() {
@@ -68,10 +67,6 @@ class Phaser extends Box {
 
   static get observedAttributes () {
     return [...super.observedAttributes, 'depth', 'q', 'beats', 'center'];
-  }
-
-  static {
-    define(this);
   }
 }
 

@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 
 class Display extends Base {
   render() {
@@ -40,10 +39,6 @@ class Display extends Base {
       _ => this.render(),
       [this.prop]
     );
-  }
-
-  static {
-    define(this);
   }
 }
 

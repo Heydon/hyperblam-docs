@@ -1,5 +1,4 @@
 import { Handle } from '../primitives/Handle.js';
-import { define } from '../tools/define.js';
 
 class On extends Handle {
   constructor() {
@@ -72,10 +71,6 @@ class On extends Handle {
 	set spread(value) {
 		this.toBoolean('spread', value);
 	}
-
-  static {
-    define(this);
-  }
 }
 
 export { On }

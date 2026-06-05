@@ -1,5 +1,4 @@
 import { Frame } from '../primitives/Frame.js';
-import { define } from '../tools/define.js';
 
 class Rings extends Frame {
 render(band, interval, ratio) {
@@ -54,10 +53,6 @@ render(band, interval, ratio) {
 	set fill(value) {
 		this.toBoolean('fill', value);
 	}
-
-  static {
-    define(this);
-  }
 }
 
 export { Rings }

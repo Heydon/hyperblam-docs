@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Chain extends Box {
   constructor() {
@@ -35,10 +34,6 @@ class Chain extends Box {
 
 	set out(value) {
 		this.setAttribute('out', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

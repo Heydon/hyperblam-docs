@@ -1,5 +1,4 @@
 import { Handle } from '../primitives/Handle.js';
-import { define } from '../tools/define.js';
 
 class Bank extends Handle {
 	constructor() {
@@ -38,10 +37,6 @@ class Bank extends Handle {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('blamsource', this);
-  }
-
-  static {
-    define(this);
   }
 }
 

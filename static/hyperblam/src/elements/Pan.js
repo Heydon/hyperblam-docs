@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Pan extends Box {
   constructor() {
@@ -24,10 +23,6 @@ class Pan extends Box {
 
   static get observedAttributes () {
     return [...super.observedAttributes, 'pan'];
-  }
-
-  static {
-    define(this);
   }
 }
 

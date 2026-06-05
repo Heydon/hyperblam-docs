@@ -1,5 +1,4 @@
 import { BandsToProps } from '../primitives/BandsToProps.js';
-import { define } from '../tools/define.js';
 
 class Props extends BandsToProps {
 	init() {
@@ -20,10 +19,6 @@ class Props extends BandsToProps {
 
 	set selector(value) {
 		this.setAttribute('selector', value);
-	}
-
-	static {
-		define(this);
 	}
 }
 

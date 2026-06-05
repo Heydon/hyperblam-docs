@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 
 class Midi extends Base {
   onmidimessage(event) {
@@ -40,10 +39,6 @@ class Midi extends Base {
 
   connectedCallback() {
     this.getMIDI();
-  }
-
-  static {
-    define(this);
   }
 }
 

@@ -1,1 +1,1 @@
-import{Frame}from"../primitives/Frame.js";import{define}from"../tools/define.js";class Bands extends Frame{static{define(this)}}export{Bands};
+import{Frame}from"../primitives/Frame.js";class Bands extends Frame{}export{Bands};

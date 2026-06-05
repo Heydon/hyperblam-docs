@@ -1,4 +1,3 @@
-import { define } from '../tools/define.js';
 import { WithParams } from '../primitives/WithParams.js';
 import { random } from '../tools/random.js';
 
@@ -173,10 +172,6 @@ class Sampler extends WithParams {
 
   static get observedAttributes () {
     return ['gain', 'detune'];
-  }
-
-  static {
-    define(this);
   }
 }
 

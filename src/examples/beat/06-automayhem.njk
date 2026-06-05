@@ -22,7 +22,7 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam></saturator-blam>
+  <saturator-blam id="twiddled"></saturator-blam>
   <phaser-blam beats="2" bypass></phaser-blam>
   <echo-blam beats="0.5" feedback="0.6" cutoff="5000" mix="0"></echo-blam>
 </chain-blam>
@@ -33,6 +33,24 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-200~200"></blam-blam>
+</pads-blam>
+<pads-blam id="stab" choke>
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab2.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam>
+    <saturator-blam amount="30" lowcut="100"></saturator-blam>
+  </chain-blam>
+</pads-blam>
+<pads-blam id="fdup" gain="2">
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup1.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup2.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup3.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup4.mp3"></sample-blam>
+  </bank-blam>
+  <lfo-blam prop="detune" gain="100" beats="5"></lfo-blam>
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
@@ -59,24 +77,37 @@ elements:
   <track-blam to="#hat" chance="0.9">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 ? 0 ?">
-      <blam-blam to="saturator-blam" prop="amount" value="25~100"></blam-blam>
+      <blam-blam to="#twiddled" prop="amount" value="25~100"></blam-blam>
     </bar-blam>
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
     <bar-blam s="1 0 2 0 3">
-      <blam-blam to="saturator-blam" prop="mode" value="1|1|1|2|3"></blam-blam>
+      <blam-blam to="#twiddled" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
   </track-blam>
+  <track-blam to="#stab" suspend>
+    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
+    <repeat-blam x="2">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam chance="0.35" s="0 0 2 2 0 2 2 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#fdup" suspend>
+    <repeat-blam x="3">
+      <bar-blam s="3 0 4 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
+  </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
-      <blam-blam to="saturator-blam" prop="lowcut" value="50~500"></blam-blam>
+      <blam-blam to="#twiddled" prop="lowcut" value="50~500"></blam-blam>
     </bar-blam>
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?">
-      <blam-blam to="saturator-blam" prop="highcut" value="4000~11000"></blam-blam>
+      <blam-blam to="#twiddled" prop="highcut" value="4000~11000"></blam-blam>
     </bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -109,7 +140,7 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<radios-blam to="saturator-blam" prop="mode">
+<radios-blam to="#twiddled" prop="mode">
   <fieldset aria-labelledby="modeLabel">
     <span class="u-legend" id="modeLabel">mode</span>
     <label>
@@ -130,19 +161,19 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
     </label>
   </fieldset>
 </radios-blam>
-<dial-blam to="saturator-blam" prop="amount">
+<dial-blam to="#twiddled" prop="amount">
   <label>
     amount
     <input type="range" min="10" max="100" step="1">
   </label>
 </dial-blam>
-<dial-blam to="saturator-blam" prop="lowcut">
+<dial-blam to="#twiddled" prop="lowcut">
   <label>
     low cut
     <input type="range" min="100" max="1000" step="any">
   </label>
 </dial-blam>
-<dial-blam to="saturator-blam" prop="highcut">
+<dial-blam to="#twiddled" prop="highcut">
   <label>
     high cut
     <input type="range" min="1000" max="20000" step="any">
@@ -157,6 +188,12 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
 <switch-blam to="phaser-blam" prop="bypass" reverse>
   <label>
     phaser
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="[to='#stab'], [to='#fdup']" prop="suspend" reverse>
+  <label>
+    f**cked
     <input type="checkbox">
   </label>
 </switch-blam>

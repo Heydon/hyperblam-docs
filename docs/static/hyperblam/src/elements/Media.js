@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 
 class Media extends Base {
   onblamready() {
@@ -41,10 +40,6 @@ class Media extends Base {
 
 	set element(value) {
 		this.setAttribute('element', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Saturator extends Box {
   constructor() {
@@ -104,10 +103,6 @@ class Saturator extends Box {
       this.shaperNode.curve = this.makeCurve();
     }
     super.attributeChangedCallback(name, oldVal, newVal);
-  }
-
-  static {
-    define(this);
   }
 }
 

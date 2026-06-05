@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 
 class Intersect extends Base {
   buildThresholds(steps) {
@@ -71,10 +70,6 @@ class Intersect extends Base {
     }, options);
 
     this.observer.observe(this);
-  }
-
-  static {
-    define(this);
   }
 }
 

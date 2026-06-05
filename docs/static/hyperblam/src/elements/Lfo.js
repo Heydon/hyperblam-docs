@@ -1,5 +1,4 @@
 import { Osc } from '../primitives/Osc.js';
-import { define } from '../tools/define.js';
 
 class Lfo extends Osc {
   constructor() {
@@ -78,10 +77,6 @@ class Lfo extends Osc {
       this.params.gain = this.bypass ? 0 : this.gain;
     }
     super.attributeChangedCallback(name, oldVal, newVal);
-  }
-
-  static {
-    define(this);
   }
 }
 

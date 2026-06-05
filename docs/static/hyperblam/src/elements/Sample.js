@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 
 class Sample extends Base {
   reverseClone(b) {
@@ -60,10 +59,6 @@ class Sample extends Base {
 
 	set root(value) {
 		this.setAttribute('root', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

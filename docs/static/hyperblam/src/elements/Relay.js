@@ -1,6 +1,5 @@
 import { Handle } from '../primitives/Handle.js';
 import { random } from '../tools/random.js';
-import { define } from '../tools/define.js';
 
 class Relay extends Handle {
   constructor() {
@@ -38,10 +37,6 @@ class Relay extends Handle {
 
   disconnectedCallback() {
     this.unlisten();
-  }
-
-  static {
-    define(this);
   }
 }
 

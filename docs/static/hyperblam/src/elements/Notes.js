@@ -1,5 +1,4 @@
 import { Sampler } from '../primitives/Sampler.js';
-import { define } from '../tools/define.js';
 import { nameToNum } from '../tools/nameToNum.js';
 import { random } from '../tools/random.js';
 
@@ -53,10 +52,6 @@ class Notes extends Sampler {
 
 	set notes(value) {
 		this.setAttribute('notes', value);
-  }
-
-  static {
-    define(this);
   }
 }
 

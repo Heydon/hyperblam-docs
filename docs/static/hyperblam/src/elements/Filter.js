@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Filter extends Box {
   constructor() {
@@ -46,10 +45,6 @@ class Filter extends Box {
 
   static get observedAttributes () {
     return [...super.observedAttributes, 'freq', 'q'];
-  }
-
-  static {
-    define(this);
   }
 }
 

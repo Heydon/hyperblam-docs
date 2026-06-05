@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Reverb extends Box {
   constructor() {
@@ -47,10 +46,6 @@ class Reverb extends Box {
 
   static get observedAttributes () {
     return [...super.observedAttributes, 'cutoff'];
-  }
-
-  static {
-    define(this);
   }
 }
 

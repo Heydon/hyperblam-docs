@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 import { random } from '../tools/random.js';
 
 class Bar extends Base {
@@ -69,10 +68,6 @@ class Bar extends Base {
     if (name === 's') {
       this.steps = this.patternToValues(this.s);
     }
-  }
-
-  static {
-    define(this);
   }
 }
 

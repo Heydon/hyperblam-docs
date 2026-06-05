@@ -1,5 +1,4 @@
 import { Base } from '../primitives/Base.js';
-import { define } from '../tools/define.js';
 import { random } from '../tools/random.js';
 
 class Sequencer extends Base {
@@ -97,10 +96,6 @@ class Sequencer extends Base {
 
   connectedCallback() {
     this.trackElems = [...this.querySelectorAll('track-blam')];
-  }
-
-  static {
-    define(this);
   }
 }
 

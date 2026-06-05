@@ -1,5 +1,4 @@
 import { Set } from '../primitives/Set.js';
-import { define } from '../tools/define.js';
 
 class Tap extends Set {
   constructor() {
@@ -20,10 +19,6 @@ class Tap extends Set {
     } else {
       this.fire('blam', {}, this);
     }
-  }
-
-  static {
-    define(this);
   }
 }
 

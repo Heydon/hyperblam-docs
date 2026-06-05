@@ -1,5 +1,4 @@
 import { Set } from '../primitives/Set.js';
-import { define } from '../tools/define.js';
 
 class Radios extends Set {
   constructor() {
@@ -35,10 +34,6 @@ class Radios extends Set {
   handle(event) {
     let value = this.stringNumBool(event.target.value);
     super.handle(event, value);
-  }
-
-  static {
-    define(this);
   }
 }
 

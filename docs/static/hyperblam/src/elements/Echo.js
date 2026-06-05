@@ -1,5 +1,4 @@
 import { Box } from '../primitives/Box.js';
-import { define } from '../tools/define.js';
 
 class Echo extends Box {
   constructor() {
@@ -64,10 +63,6 @@ class Echo extends Box {
 
   static get observedAttributes () {
     return [...super.observedAttributes, 'beats', 'feedback', 'cutoff'];
-  }
-
-  static {
-    define(this);
   }
 }
 

@@ -1,5 +1,4 @@
 import { Sampler } from '../primitives/Sampler.js';
-import { define } from '../tools/define.js';
 
 class Pads extends Sampler {
   assignBuffer(cipher) {
@@ -16,10 +15,6 @@ class Pads extends Sampler {
         this.sound = this.prevSound = this.cycle(this.prevSound, this.bankElem.sounds);
       }      
     }
-  }
-
-  static {
-    define(this);
   }
 }
 

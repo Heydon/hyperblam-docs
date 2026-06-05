@@ -1,5 +1,4 @@
 import { Set } from '../primitives/Set.js';
-import { define } from '../tools/define.js';
 
 class Mod extends Set {
   constructor() {
@@ -82,10 +81,6 @@ class Mod extends Set {
         this.oscNode.stop(this.getTime());
       }
     }
-  }
-
-  static {
-    define(this);
   }
 }
 

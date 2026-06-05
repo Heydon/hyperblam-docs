@@ -1,5 +1,4 @@
 import { Handle } from '../primitives/Handle.js';
-import { define } from '../tools/define.js';
 
 class Log extends Handle {
   onblamready() {
@@ -32,10 +31,6 @@ class Log extends Handle {
 	set cumulative(value) {
 		this.toBoolean('cumulative', value);
 	}
-
-  static {
-    define(this);
-  }
 }
 
 

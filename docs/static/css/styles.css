@@ -1,6 +1,4 @@
 :root {
-  --color-fore: #efefef;
-  --color-back: #101010;
   --measure: 40rem;
   --s-xs: 0.4rem;
   --s-s: 0.75rem;
@@ -16,8 +14,6 @@
   color: var(--color-fore);
   font-family: var(--font);
   font-size: clamp(1rem, 3vmin, 1.4rem);
-  background-color: var(--color-back);
-  line-height: 1.5;
 }
 
 *, *::after, *::before {
@@ -257,14 +253,6 @@ hr {
   inset-block-end: var(--fixed-end, 0);
 }
 
-.l-flow > * + * {
-  margin-block-start: var(--s-l);
-}
-
-.l-flow > p:not(:has(img)) + p:not(:has(img)) {
-  margin-block-start: var(--s-s);
-}
-
 .l-grid {
   list-style: none;
   display: grid;
@@ -364,22 +352,6 @@ p a:hover img,
   justify-content: center;
 }
 
-.l-skip:not(:focus-visible) {
-  transform: translateY(-200%);
-}
-
-.l-skip {
-  outline: none;
-  display: block;
-  position: absolute;
-  z-index: 200;
-  inset: 0 0 auto 0;
-  text-align: center;
-  padding: var(--s-s);
-  color: var(--color-back);
-  background-color: var(--color-fore);
-}
-
 .l-index {
   list-style: none;
   padding: 0;
@@ -422,17 +394,6 @@ p a:hover img,
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80% 80%;
-}
-
-.l-view {
-  min-block-size: 100dvh;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.l-view main {
-  margin: var(--s-m) var(--s-s);
 }
 
 .l-examples {

@@ -34,7 +34,7 @@ class Set extends Handle {
         if (typeof param === 'object') {
           param.time = time;
           param.ramp = this.ramp;
-        } 
+        }
 
         switch (typeof to[this.prop]) {
           case 'boolean':
@@ -51,6 +51,9 @@ class Set extends Handle {
             to[this.prop] = value;
         }
         this.reverting = revert ? false : true;
+        if (this.once) {
+          this.unlisten();
+        }
       } 
     }
   }
@@ -75,6 +78,14 @@ class Set extends Handle {
   static get observedAttributes () {
     return ['off'];
   }
+
+  get once() {
+		return this.hasAttribute('once');
+	}
+
+	set once(value) {
+		this.toBoolean('once', value);
+	}
 
   attributeChangedCallback(name, _, newVal) {
     if (name === 'off' && newVal) {

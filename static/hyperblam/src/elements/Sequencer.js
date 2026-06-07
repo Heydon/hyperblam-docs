@@ -44,7 +44,6 @@ class Sequencer extends Base {
     this.pause();
     this.odd = 1;
     this.trackElems.length && this.trackElems.forEach(t => t.reset());
-    this.fire('blamstop', {}, this);
   }
 
   playPause() {

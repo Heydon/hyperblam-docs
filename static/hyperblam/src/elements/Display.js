@@ -34,7 +34,7 @@ class Display extends Base {
   connectedCallback() {
     this.elem = document.querySelector(this.element) || this.parentNode;
     this.render();
-    this.watchProp(
+    this.watchProps(
       [this.elem], 
       _ => this.render(),
       [this.prop]

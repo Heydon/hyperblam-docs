@@ -408,6 +408,21 @@ p a:hover img,
   margin-block-start: var(--stack-gap, var(--s-m));
 }
 
+.l-log {
+  font-size: 0.75rem;
+  overflow: auto;
+  justify-content: center;
+}
+
+.l-log ul {
+  padding: 0;
+}
+
+.l-log li {
+  text-align: center;
+  list-style: none;
+}
+
 /* components */
 .c-logo {
   display: inline-block;

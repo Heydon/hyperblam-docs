@@ -1,0 +1,21 @@
+name: Template
+category: Visualizing
+extends: Handle
+experimental: true
+props: 
+  - name: additive
+    type: boolean
+    default: false
+    description: Whether to log cumulatively or to just log the most recent data.
+  - name: max
+    type: number
+    default: 16
+    description: The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy.
+  - name: value 
+    description: not applicable
+  - name: prop 
+    description: not applicable
+  - name: to 
+    type: string
+    default: 'null' 
+    description: The `id` of the element to appended templated data to. If not set (`null`), it defaults to the Template-based element itself.

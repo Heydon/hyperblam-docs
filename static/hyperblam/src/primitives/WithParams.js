@@ -13,14 +13,7 @@ class WithParams extends Base {
   mirrorParams(params) {
     this.params = Object.assign(this.params, params);
     for (const name of Object.keys(this.params)) {
-      if (this[name]) {
-        let pName = this.params[name];
-        if (pName.value || pName.value === 0) {
-          pName.value = this[name];
-        } else {
-          pName[name] = this[name];
-        }
-      }
+      this.setParam(name, this[name]);
     }
     this.fire(
       'blamparams', 

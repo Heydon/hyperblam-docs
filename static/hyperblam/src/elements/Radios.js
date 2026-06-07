@@ -16,7 +16,7 @@ class Radios extends Set {
     if (this.active) {
       this.active.checked = true;
     }
-    this.watchProp(
+    this.watchProps(
       this.toElems, 
       to => this.sync(to),
       [this.prop]

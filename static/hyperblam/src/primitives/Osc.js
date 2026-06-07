@@ -9,7 +9,6 @@ class Osc extends WithParams {
     this.oscNode.connect(this.gainNode);
     this.oscNode.type = this.type;
 
-    this.toHertz = true;
     this.conversions.beats = value => this.beatsToHertz(value);
 
     this.mirrorParams({
@@ -56,9 +55,8 @@ class Osc extends WithParams {
   }
 
   get beats() {
-    let value = this.getAttribute('beats');
-    let hertz = this.conversions.beats(value || 1);
-    return this.invert ? hertz * -1 : hertz;
+    let value = parseFloat(this.getAttribute('beats'));
+    return this.invert ? value * -1 : value;
   }
 
   set beats(value) {

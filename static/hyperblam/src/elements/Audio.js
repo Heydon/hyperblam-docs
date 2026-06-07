@@ -4,8 +4,8 @@ class Audio extends WithParams {
   constructor() {
     super();
 
-    this.context = new AudioContext();
-    this.inNode = this.context.createGain();
+    this.audioContext = new AudioContext();
+    this.inNode = this.context().createGain();
     this.sampleCount = 0;
 
     this.mirrorParams({
@@ -26,7 +26,7 @@ class Audio extends WithParams {
   onblamsource() {
     this.sampleCount++;
     if (this.sourceElems.length == this.sampleCount) {
-      this.inNode.connect(this.context.destination);
+      this.inNode.connect(this.context().destination);
       this.fire('blamsources', {}, this);
     }
   }

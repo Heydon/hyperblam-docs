@@ -5,8 +5,13 @@ extends: Handle
 props: 
   - name: ramp
     type: number
-    default: undefined
+    default: null
     description: In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values.
   - name: revert
     type: boolean
+    default: false
     description: When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays.
+  - name: once 
+    type: boolean 
+    default: false 
+    description: Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`.

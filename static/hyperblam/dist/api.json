@@ -150,12 +150,13 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "Not applicable for **Bank**."
       },
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "Not applicable for **Bank**."
       },
       {
@@ -219,13 +220,20 @@
       {
         "name": "ramp",
         "type": "number",
-        "default": "undefined",
+        "default": null,
         "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
       },
       {
         "name": "revert",
         "type": "boolean",
+        "default": false,
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "once",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
         "name": "from",
@@ -240,7 +248,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
@@ -252,6 +260,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -310,13 +319,20 @@
       {
         "name": "ramp",
         "type": "number",
-        "default": "undefined",
+        "default": null,
         "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
       },
       {
         "name": "revert",
         "type": "boolean",
+        "default": false,
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "once",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
         "name": "from",
@@ -331,12 +347,13 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -432,12 +449,13 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "Not applicable. Use `curve` in its place."
       },
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The `audioParam` to affect. Generic props are not applicable."
       },
       {
@@ -590,13 +608,20 @@
       {
         "name": "ramp",
         "type": "number",
-        "default": "undefined",
+        "default": null,
         "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
       },
       {
         "name": "revert",
         "type": "boolean",
+        "default": false,
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "once",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
         "name": "from",
@@ -611,7 +636,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
@@ -623,6 +648,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -711,39 +737,35 @@
     "extends": "Handle",
     "experimental": true,
     "defined": true,
-    "summary": "Logs event data. Not to be confused with **Display** which tracks prop/param changes.",
+    "summary": "Listens to events and uses the element’s HTML as a template for appending event data to an elected element. Data props are included using square bracket syntax like `[[prop]]`.",
     "props": [
-      {
-        "name": "cumulative",
-        "type": "boolean",
-        "description": "Whether to log additively or to just log the last event’s data. If set, each successively rendered `<span>` will have `role=\"listitem\"` and the element itself will take `role=\"list\"`."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "description": "The property belonging to the event’s data (the `CustomEvent` `detail` property). If not set (`null`), the whole of `event.detail` is stringified."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "undefined",
-        "description": "Not applicable for **Log**."
-      },
-      {
-        "name": "to",
-        "type": "string",
-        "description": "Not applicable for **Log**."
-      },
       {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
       },
       {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
         "name": "event",
         "type": "string",
         "default": "blam",
         "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",
@@ -848,7 +870,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
@@ -860,6 +882,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -1016,7 +1039,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
@@ -1028,6 +1051,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -1271,7 +1295,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "Not applicable. The value is taken and parsed from the checked radio button."
       },
       {
@@ -1287,6 +1311,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -1319,12 +1344,13 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "Not applicable for **Relay**. The `prop` is defined on each subject handler."
       },
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "Not applicable for **Relay**. The `value` is defined on each subject handler."
       },
       {
@@ -1618,7 +1644,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "If a `value` is supplied, when the input in checked, the `value` is applied. When unchecked, it reapplies the `prop`’s initial value. If no `value` is applied the value is considered Boolean."
       },
       {
@@ -1629,13 +1655,20 @@
       {
         "name": "ramp",
         "type": "number",
-        "default": "undefined",
+        "default": null,
         "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
       },
       {
         "name": "revert",
         "type": "boolean",
+        "default": false,
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "once",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
         "name": "from",
@@ -1650,6 +1683,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -1682,13 +1716,20 @@
       {
         "name": "ramp",
         "type": "number",
-        "default": "undefined",
+        "default": null,
         "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
       },
       {
         "name": "revert",
         "type": "boolean",
+        "default": false,
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "once",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
         "name": "from",
@@ -1703,12 +1744,13 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -1769,7 +1811,7 @@
       {
         "name": "value",
         "type": "string",
-        "default": "undefined",
+        "default": "null",
         "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
@@ -1781,6 +1823,7 @@
       {
         "name": "prop",
         "type": "string",
+        "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
@@ -1800,6 +1843,75 @@
       {
         "name": "blam",
         "description": "Fired whenever the current bar’s current step makes a sound. For a more regular series of events, use the parent **Sequencer’s** blam event instead."
+      }
+    ]
+  },
+  {
+    "name": "Watch",
+    "category": "Visualizing",
+    "extends": "Template",
+    "experimental": true,
+    "defined": true,
+    "summary": "Observes changes to **HYERBLAM** element attributes and logs those changes using the element’s HTML as a template. Data props are included using square bracket syntax (`[[prop]]`). The available props are **name** (the attribute name), **oldValue** (the previous attribute value), **newValue** (the new attribute value), **id** (the element `id` if present, or the `nodeName`), and **time** (the approximate `currentTime` the attribute changed).",
+    "props": [
+      {
+        "name": "allowed",
+        "type": "string",
+        "default": null,
+        "description": "A space-separated set of attribute names to watch over. If not set, all attributes trigger templating/appending."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": null,
+        "description": "not applicable"
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A selector to match all the elements to watch for attribute changes. Filtered to only include **HYPERBLAM** elements."
+      },
+      {
+        "name": "additive",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to log cumulatively or to just log the most recent data."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "default": 16,
+        "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "not applicable"
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "not applicable"
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "The `id` of the element to appended templated data to. If not set (`null`), it defaults to the Template-based element itself.",
+        "default": "null"
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
       }
     ]
   }

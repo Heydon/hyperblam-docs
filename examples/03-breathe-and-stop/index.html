@@ -96,6 +96,9 @@
     </rings-blam>
   </div>
 
+      <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+        <ul id="log"></ul>
+      </aside>
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
     <div class="l-frame__framed">
       
@@ -170,6 +173,10 @@
     
 <kbd-blam to="notes-blam" prop="play" key="1"></kbd-blam>
 <kbd-blam to="notes-blam" prop="play" value="A1" key="2"></kbd-blam>
+<watch-blam from="audio-blam *:not(rings-blam)" to="log" additive="" bypass="">
+  <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
+</watch-blam>
+<blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once=""></blam-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>

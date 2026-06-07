@@ -13,7 +13,7 @@ class Switch extends Set {
     this.initial = this.toElems[0][this.prop];
     let state = this.value ? this.value === this.initial : !!this.initial;
     this.input.checked = this.reverse ? !state : state;
-    this.watchProp(
+    this.watchProps(
       this.toElems, 
       to => this.sync(to),
       [this.prop]
@@ -22,8 +22,7 @@ class Switch extends Set {
 
   sync(to) {
     let toValue = to[0].target[this.prop];
-    let fromValue = this.convertValue(this.prop, this.value, to[0].target);
-    let state = this.value ? fromValue === toValue : !!toValue;
+    let state = this.value ? this.value === toValue : !!toValue;
     this.input.checked = this.reverse ? !state : state;
   }
 
@@ -33,6 +32,7 @@ class Switch extends Set {
       value = event.target.checked;
     } else {
       value = event.target.checked ? this.value : this.initial;
+      console.log(value);
     }
     super.handle(event, value);
   }

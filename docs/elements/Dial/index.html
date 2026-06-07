@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -153,7 +153,7 @@
         <tr>
           <th scope="row">ramp</th>
           <td><em>number</em></td>
-          <td>undefined</td>
+          <td></td>
           <td><p>In beats. Where the <code>prop</code> is an <code>audioParam</code>, whether to ramp the value. For example, for <code>gain</code>, whether to fade/slide between the start and end values.</p>
 </td>
         </tr>
@@ -161,8 +161,16 @@
         <tr>
           <th scope="row">revert</th>
           <td><em>boolean</em></td>
-          <td></td>
+          <td>false</td>
           <td><p>When <code>revert</code> is applied, values do not <em>stick</em>. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low <code>chance</code>, you create the effect of a regular value that just occasionally, and momentarily, strays.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">once</th>
+          <td><em>boolean</em></td>
+          <td>false</td>
+          <td><p>Whether to only handle the event one time. Interesting, compositionally, when paired with a low <code>chance</code>.</p>
 </td>
         </tr>
         
@@ -185,7 +193,7 @@
         <tr>
           <th scope="row">value</th>
           <td><em>string</em></td>
-          <td>undefined</td>
+          <td>null</td>
           <td><p><strong>Handle</strong>-derived elements support special <code>value</code> syntax. Separate with <code>|</code> and one value is chosen at random. Separate with <code>~</code> and a value is chosen within the range <code>[x]~[n]</code>. Separate with <code> </code> (a single space) if you are supplying multiple args to an element’s method.</p>
 </td>
         </tr>
@@ -193,7 +201,7 @@
         <tr>
           <th scope="row">prop</th>
           <td><em>string</em></td>
-          <td></td>
+          <td>null</td>
           <td><p>The property (which may be a method or map to an <code>audioParam</code>) to affect at the <code>event</code>.</p>
 </td>
         </tr>

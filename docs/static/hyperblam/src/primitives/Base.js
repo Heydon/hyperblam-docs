@@ -21,7 +21,7 @@ class Base extends HTMLElement {
 
   context() {
     let closest = this.closest('audio-blam');
-    return closest ? closest.context : document.querySelector('audio-blam').context;
+    return closest ? closest.audioContext : document.querySelector('audio-blam').audioContext;
   }
 
   getTime() {
@@ -94,7 +94,7 @@ class Base extends HTMLElement {
     return num >= low && num <= high;
   }
 
-  watchProp(elems, func, filter) {
+  watchProps(elems, func, filter = undefined, old = false) {
     const callback = (list, observer) => {
 			func(list, observer);
 		};
@@ -102,7 +102,8 @@ class Base extends HTMLElement {
     const observer = new MutationObserver(callback);
     const settings = { 
       attributes: true,
-      attributeFilter: filter || null
+      attributeFilter: filter,
+      attributeOldValue: old
     }
 
     for (const elem of elems) {

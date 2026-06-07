@@ -15,7 +15,7 @@ class Dial extends Set {
     this.input = this.fromElems[0];
     let value = this.toElems[0][this.prop]
     this.input.value = this.convertValue(this.prop, value, this.toElems[0]); 
-    this.watchProp(
+    this.watchProps(
       this.toElems, 
       to => this.sync(to),
       [this.prop]

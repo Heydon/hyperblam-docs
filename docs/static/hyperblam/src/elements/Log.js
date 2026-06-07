@@ -1,37 +1,16 @@
-import { Handle } from '../primitives/Handle.js';
+import { Template } from '../primitives/Template.js';
 
-class Log extends Handle {
+class Log extends Template {
   onblamready() {
     super.onblamready();
-    if (this.cumulative) {
-      this.setAttribute('role', 'list');
-    }
+    this.listen();
   }
 
   handle(event) {
-    let eventData = event?.detail;
-    if (!eventData) {
-      return;
-    }
-    let data = this.prop ? eventData[this.prop] : eventData;
-    if (!this.cumulative) {
-      this.innerHTML = ''; 
-    } 
-    this.innerHTML += `
-      <span ${this.cumulative ? 'role="listitem"' : ''}>
-        ${typeof data === 'object' ? JSON.stringify(data): data}
-      </span>
-    `;
+    let data = event?.detail;
+    if (!data) return;
+    this.interpolate(this.template, data);
   }
-
-  get cumulative() {
-		return this.hasAttribute('cumulative');
-	}
-
-	set cumulative(value) {
-		this.toBoolean('cumulative', value);
-	}
 }
-
 
 export { Log }

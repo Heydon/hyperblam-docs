@@ -12,7 +12,6 @@ class Lfo extends Osc {
       this.connect(outElem);
       outElem.addEventListener('blamparams', this);
     }
-    // ↓ Start all LFOs at the same time
     this.start(this.c.currentTime);
   }
 
@@ -25,14 +24,8 @@ class Lfo extends Osc {
     if (target) {
       this.gainNode.connect(target);
       if (this.prop === 'beats') {
-        // ↓ Convert to either hertz or seconds
-        let gain;
-        if (outElem.toHertz) {
-          let beats = this.hertzToBeats(target.value);
-          gain = (this.gainNode.gain.value / beats) * target.value;
-        } else {
-          gain = this.conversions.beats(this.gain);
-        }
+        // ↓ Convert
+        let gain = this.outElem.conversions.beats(this.gain);
         this.gainNode.gain.value = gain;
       }
     }

@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-<title>Reverb element : HYPERBLAM</title>
+<title>Watch element : HYPERBLAM</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -95,24 +95,26 @@
     
     
   <main class="l-column l-flow" tabindex="-1">
-    <h1>Reverb</h1>
+    <h1>Watch</h1>
     
-      <p></p><p>Convolution based reverb effect using a sample from a <strong>Sample</strong> element as the impulse response (IR).</p>
+      <p></p><p>Observes changes to <strong>HYERBLAM</strong> element attributes and logs those changes using the element’s HTML as a template. Data props are included using square bracket syntax (<code>[[prop]]</code>). The available props are <strong>name</strong> (the attribute name), <strong>oldValue</strong> (the previous attribute value), <strong>newValue</strong> (the new attribute value), <strong>id</strong> (the element <code>id</code> if present, or the <code>nodeName</code>), and <strong>time</strong> (the approximate <code>currentTime</code> the attribute changed).</p>
 <p></p>
     
+    
+      <p class="u-note"><strong class="u-note__shout">EXPERIMENTAL!</strong> This element is in early development and is liable to change or possibly be replaced.</p>
     
     <dl>
       <div>
         <dt>class</dt>
-        <dd>Reverb</dd>
+        <dd>Watch</dd>
       </div>
       <div>
         <dt>extends</dt>
-        <dd>Box</dd>
+        <dd>Template</dd>
       </div>
       <div>
         <dt>tag</dt>
-        <dd><code>&lt;reverb-blam&gt;</code></dd>
+        <dd><code>&lt;watch-blam&gt;</code></dd>
       </div>
       <div>
         <dt>see</dt>
@@ -143,26 +145,66 @@
         </tr>
         
         <tr>
-          <th scope="row">src</th>
+          <th scope="row">allowed</th>
           <td><em>string</em></td>
           <td></td>
-          <td><p>The Sample element supplying the impulse response for convolution. Supply an <code>id</code> with this prop, or just supply a child Sample element.</p>
+          <td><p>A space-separated set of attribute names to watch over. If not set, all attributes trigger templating/appending.</p>
 </td>
         </tr>
         
         <tr>
-          <th scope="row">cutoff</th>
-          <td><em>number</em></td>
-          <td>10000</td>
-          <td><p>The cutoff frequency for the reverb. The lower the value, the <em>darker</em> the reverb.</p>
+          <th scope="row">event</th>
+          <td><em>string</em></td>
+          <td></td>
+          <td><p>not applicable</p>
 </td>
         </tr>
         
         <tr>
-          <th scope="row">mix</th>
+          <th scope="row">from</th>
+          <td><em>string</em></td>
+          <td></td>
+          <td><p>A selector to match all the elements to watch for attribute changes. Filtered to only include <strong>HYPERBLAM</strong> elements.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">additive</th>
+          <td><em>boolean</em></td>
+          <td>false</td>
+          <td><p>Whether to log cumulatively or to just log the most recent data.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">max</th>
           <td><em>number</em></td>
-          <td>0.5</td>
-          <td><p>How much wet, versus dry, signal should come through. In most cases, this is a proportion of <code>1</code>. If <code>mix</code> is set to <code>0.75</code>, 75% of the signal will be wet and 25% dry.</p>
+          <td>16</td>
+          <td><p>The number of times data is logged before clearing the <code>to</code> element and starting over. Stops the DOM getting too unwieldy.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">value</th>
+          <td><em>string</em></td>
+          <td>null</td>
+          <td><p>not applicable</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">prop</th>
+          <td><em>string</em></td>
+          <td>null</td>
+          <td><p>not applicable</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">to</th>
+          <td><em>string</em></td>
+          <td>null</td>
+          <td><p>The <code>id</code> of the element to appended templated data to. If not set (<code>null</code>), it defaults to the Template-based element itself.</p>
 </td>
         </tr>
         
@@ -170,7 +212,15 @@
           <th scope="row">bypass</th>
           <td><em>boolean</em></td>
           <td>false</td>
-          <td><p>Whether to send <em>just</em> the dry signal. If set, the <code>dry</code> signal is sent using the <code>wet</code> signal’s gain value, for parity.</p>
+          <td><p>Whether to stop responding to events as they happen.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">chance</th>
+          <td><em>boolean</em></td>
+          <td>1</td>
+          <td><p>The probability that the <code>event</code> will be responded to. From <code>0</code> to <code>1</code>.</p>
 </td>
         </tr>
         
@@ -216,8 +266,6 @@
       
     
       
-        
-      
     
       
     
@@ -228,14 +276,7 @@
       
     
     
-    <p>Examples that use the <strong>Reverb</strong> element:</p>
-    <ul class="l-examples">
-      
-        <li>
-          <a href="https://hyperblam.how/examples/06-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
-        </li>
-      
-    </ul>
+    <p class="u-note"><strong class="u-note__shout">OH FUN!</strong> There are currently no examples using <strong>Watch</strong>.</p>
     
   </main>
 

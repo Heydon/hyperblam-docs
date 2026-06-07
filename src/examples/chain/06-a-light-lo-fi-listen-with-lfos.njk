@@ -32,21 +32,21 @@ elements:
 </chain-blam>
 <pads-blam id="piano" gain="0.7" choke>
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/piano.mp3" reverse></sample-blam>
   </bank-blam>
   <chain-blam out="bus">
     <reverb-blam mix="0.125">
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
     </reverb-blam>
     <filter-blam freq="1000">
-      <blam-blam prop="freq" value="8000|8000|1000|750" from="sequencer-blam" chance="0.75" ramp="0.25"></blam-blam>
+      <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
     </filter-blam>
   </chain-blam>
   <lfo-blam prop="detune" gain="66" beats="1">
     <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
-    <blam-blam prop="gain" value="50|50|25|100" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+    <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
   </lfo-blam>
-  <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert></blam-blam>
+  <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert bypass></blam-blam>
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
@@ -73,7 +73,7 @@ elements:
     </pan-blam>
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.5" beats="0.001">
-        <blam-blam prop="beats" value="0.00025~0.01"></blam-blam>
+        <blam-blam prop="beats" value="0.00025~0.01" ramp="0.25"></blam-blam>
       </lfo-blam>
     </gain-blam>
   </chain-blam>
@@ -103,10 +103,9 @@ elements:
 <sequencer-blam bpm="90" id="transport" swing>
   <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
-    <repeat-blam x="6">
+    <repeat-blam x="7">
       <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
     </repeat-blam>
-    <bar-blam s="0 0 0 1 1 0 0 0" chance="0.3"></bar-blam>
   </track-blam>
   <track-blam class="drum" to="#kick" id="kickTrack" override="tomTrack">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
@@ -131,8 +130,8 @@ elements:
     <bar-blam s="? ? ? ? 0 0 0 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam id="transport" to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+<tap-blam id="transport" to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
 </tap-blam>
 {% endblock %}
 
@@ -154,15 +153,16 @@ One last note on the original electric piano sample, now available via the `<pad
 <chain-blam out="bus">
   ...
   <filter-blam freq="1000">
-    <blam-blam prop="freq" value="8000|8000|1000|750" from="sequencer-blam" chance="0.75" ramp="0.25"></blam-blam>
+    <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
   </filter-blam>
 </chain-blam>
 <lfo-blam prop="detune" gain="66" beats="1">
-  <blam-blam prop="beats" value="1.5|1.5|0.25|0.125|0.0625" from="sequencer-blam" chance="0.5" revert></blam-blam>
+  <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+  <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
 </lfo-blam>
 ```
 
-The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating the tape wheel slowing and speeding up in unexpected places.
+The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final `<blam-blam>` fluctuates the `gain` of the LFO; the _depth_ of the pitch modulation. Some parts of the tape are in worse condition than others.
 
 
 {% endrenderTemplate %}
@@ -197,4 +197,8 @@ The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp
 <kbd-blam to="#tom" prop="play" key="1"></kbd-blam>
 <kbd-blam to="#snare" prop="play" key="2"></kbd-blam>
 <kbd-blam to="#pluck" prop="play" key="3"></kbd-blam>
+<watch-blam from="audio-blam *:not(bands-blam)" to="log" additive bypass>
+  <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
+</watch-blam>
+<blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once></blam-blam>
 {% endblock %}

@@ -1,0 +1,16 @@
+name: Watch
+category: Visualizing
+extends: Template
+experimental: true
+defined: true
+summary: Observes changes to **HYERBLAM** element attributes and logs those changes using the element’s HTML as a template. Data props are included using square bracket syntax (`[[prop]]`). The available props are **name** (the attribute name), **oldValue** (the previous attribute value), **newValue** (the new attribute value), **id** (the element `id` if present, or the `nodeName`), and **time** (the approximate `currentTime` the attribute changed). 
+props: 
+  - name: allowed
+    type: string
+    default: null
+    description: A space-separated set of attribute names to watch over. If not set, all attributes trigger templating/appending.
+  - name: event 
+    default: null
+    description: not applicable
+  - name: from 
+    description: A selector to match all the elements to watch for attribute changes. Filtered to only include **HYPERBLAM** elements.

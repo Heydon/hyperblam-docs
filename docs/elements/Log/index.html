@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -97,7 +97,7 @@
   <main class="l-column l-flow" tabindex="-1">
     <h1>Log</h1>
     
-      <p></p><p>Logs event data. Not to be confused with <strong>Display</strong> which tracks prop/param changes.</p>
+      <p></p><p>Listens to events and uses the element’s HTML as a template for appending event data to an elected element. Data props are included using square bracket syntax like <code>[[prop]]</code>.</p>
 <p></p>
     
     
@@ -145,38 +145,6 @@
         </tr>
         
         <tr>
-          <th scope="row">cumulative</th>
-          <td><em>boolean</em></td>
-          <td></td>
-          <td><p>Whether to log additively or to just log the last event’s data. If set, each successively rendered <code>&lt;span&gt;</code> will have <code>role="listitem"</code> and the element itself will take <code>role="list"</code>.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">prop</th>
-          <td><em>string</em></td>
-          <td></td>
-          <td><p>The property belonging to the event’s data (the <code>CustomEvent</code> <code>detail</code> property). If not set (<code>null</code>), the whole of <code>event.detail</code> is stringified.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">value</th>
-          <td><em>string</em></td>
-          <td>undefined</td>
-          <td><p>Not applicable for <strong>Log</strong>.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">to</th>
-          <td><em>string</em></td>
-          <td></td>
-          <td><p>Not applicable for <strong>Log</strong>.</p>
-</td>
-        </tr>
-        
-        <tr>
           <th scope="row">from</th>
           <td><em>string</em></td>
           <td></td>
@@ -185,10 +153,34 @@
         </tr>
         
         <tr>
+          <th scope="row">to</th>
+          <td><em>string</em></td>
+          <td></td>
+          <td><p>A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s <code>defaultTo</code> function’s return value.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">value</th>
+          <td><em>string</em></td>
+          <td>null</td>
+          <td><p><strong>Handle</strong>-derived elements support special <code>value</code> syntax. Separate with <code>|</code> and one value is chosen at random. Separate with <code>~</code> and a value is chosen within the range <code>[x]~[n]</code>. Separate with <code> </code> (a single space) if you are supplying multiple args to an element’s method.</p>
+</td>
+        </tr>
+        
+        <tr>
           <th scope="row">event</th>
           <td><em>string</em></td>
           <td>blam</td>
           <td><p>The event type to listen for. For many Event-based elements, this is the generic custom event <code>blam</code>.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">prop</th>
+          <td><em>string</em></td>
+          <td>null</td>
+          <td><p>The property (which may be a method or map to an <code>audioParam</code>) to affect at the <code>event</code>.</p>
 </td>
         </tr>
         

@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -96,77 +96,83 @@
         </bands-blam>
       </div>
     
+      <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+        <ul id="log"></ul>
+      </aside>
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
     <div class="l-frame__framed">
       
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam id="twiddled"></saturator-blam>
+  <saturator-blam id="crunchy"></saturator-blam>
   <phaser-blam beats="2" bypass=""></phaser-blam>
-  <echo-blam beats="0.5" feedback="0.6" cutoff="5000" mix="0"></echo-blam>
+  <echo-blam feedback="0.4" cutoff="5000" mix="0"></echo-blam>
 </chain-blam>
-<pads-blam id="hat" choke="0.05" out="bus">
-  <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
-  </bank-blam>
-  <blam-blam prop="detune" value="-200~200"></blam-blam>
-</pads-blam>
-<pads-blam id="stab" choke="">
-  <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/mayhem/stab.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/mayhem/stab2.mp3"></sample-blam>
-  </bank-blam>
-  <chain-blam>
-    <saturator-blam amount="30" lowcut="100"></saturator-blam>
-  </chain-blam>
-</pads-blam>
-<pads-blam id="fdup" gain="2">
-  <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup1.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup2.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup3.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup4.mp3"></sample-blam>
-  </bank-blam>
-  <lfo-blam prop="detune" gain="100" beats="5"></lfo-blam>
-</pads-blam>
-<pads-blam id="kick" out="bus">
-  <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
-  </bank-blam>
-</pads-blam>
-<pads-blam id="snare" out="bus">
-  <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
-  </bank-blam>
-  <blam-blam prop="detune" value="-500~200"></blam-blam>
-</pads-blam>
-<pads-blam id="snareSoft" out="bus">
-  <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
-  </bank-blam>
-</pads-blam>
 <sequencer-blam bpm="90" id="transport" swing="">
+  <pads-blam id="hat" choke="0.05" out="bus">
+    <bank-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    </bank-blam>
+    <blam-blam prop="detune" value="-200~200"></blam-blam>
+  </pads-blam>
+  <pads-blam id="stab" choke="">
+    <bank-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/stab.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/stab2.mp3"></sample-blam>
+    </bank-blam>
+    <chain-blam>
+      <saturator-blam amount="30" lowcut="100"></saturator-blam>
+    </chain-blam>
+    <lfo-blam prop="detune" gain="66" beats="1">
+      <blam-blam prop="beats" value="0.25~1"></blam-blam>
+    </lfo-blam>
+  </pads-blam>
+  <pads-blam id="fdup" gain="2">
+    <bank-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup1.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup2.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup3.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup4.mp3"></sample-blam>
+    </bank-blam>
+    <lfo-blam prop="detune" gain="50" beats="5"></lfo-blam>
+  </pads-blam>
+  <pads-blam id="kick" out="bus">
+    <bank-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+    </bank-blam>
+  </pads-blam>
+  <pads-blam id="snare" out="bus">
+    <bank-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+    </bank-blam>
+    <blam-blam prop="detune" value="-500~200"></blam-blam>
+  </pads-blam>
+  <pads-blam id="snareSoft" out="bus">
+    <bank-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
+    </bank-blam>
+  </pads-blam>
+
   <track-blam to="#hat" chance="0.9">
-    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
-    <bar-blam s="1 2 0 0 ? 0 ?">
-      <blam-blam to="#twiddled" prop="amount" value="25~100"></blam-blam>
+    <bar-blam s="? 0 ? 0 ? ? ? 0"></bar-blam>
+    <bar-blam s="? ? 0 0 ? 0 ?">
+      <blam-blam to="#crunchy" prop="amount" value="25~100"></blam-blam>
     </bar-blam>
   </track-blam>
   <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
-    <bar-blam s="1 0 2 0 3">
-      <blam-blam to="#twiddled" prop="mode" value="1|1|1|2|3"></blam-blam>
-    </bar-blam>
+    <bar-blam s="1 0 2 0 3"></bar-blam>
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
-    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 0 ? 0 0 0">
+      <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
+    </bar-blam>
   </track-blam>
   <track-blam to="#stab" suspend="">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
@@ -183,10 +189,10 @@
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
-      <blam-blam to="#twiddled" prop="lowcut" value="50~500"></blam-blam>
+      <blam-blam to="#crunchy" prop="lowcut" value="50~400"></blam-blam>
     </bar-blam>
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?">
-      <blam-blam to="#twiddled" prop="highcut" value="4000~11000"></blam-blam>
+      <blam-blam to="#crunchy" prop="highcut" value="4000~11000"></blam-blam>
     </bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -235,7 +241,7 @@
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<radios-blam to="#twiddled" prop="mode">
+<radios-blam to="#crunchy" prop="mode">
   <fieldset aria-labelledby="modeLabel">
     <span class="u-legend" id="modeLabel">mode</span>
     <label>
@@ -256,19 +262,19 @@
     </label>
   </fieldset>
 </radios-blam>
-<dial-blam to="#twiddled" prop="amount">
+<dial-blam to="#crunchy" prop="amount">
   <label>
     amount
     <input type="range" min="10" max="100" step="1">
   </label>
 </dial-blam>
-<dial-blam to="#twiddled" prop="lowcut">
+<dial-blam to="#crunchy" prop="lowcut">
   <label>
     low cut
-    <input type="range" min="100" max="1000" step="any">
+    <input type="range" min="50" max="400" step="any">
   </label>
 </dial-blam>
-<dial-blam to="#twiddled" prop="highcut">
+<dial-blam to="#crunchy" prop="highcut">
   <label>
     high cut
     <input type="range" min="1000" max="20000" step="any">
@@ -296,6 +302,10 @@
 <kbd-blam to="#snare" key="2" prop="play"></kbd-blam>
 <kbd-blam to="#snareSoft" key="3" prop="play"></kbd-blam>
 <kbd-blam to="#hat" key="4" prop="play"></kbd-blam>
+<watch-blam from="audio-blam *:not(bands-blam)" to="log" additive="" bypass="">
+  <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
+</watch-blam>
+<blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once=""></blam-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>

@@ -25,6 +25,9 @@ elements:
   <saturator-blam id="crunchy"></saturator-blam>
   <phaser-blam beats="2" bypass></phaser-blam>
   <echo-blam feedback="0.4" cutoff="5000" mix="0"></echo-blam>
+  <reverb-blam mix="0.3">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
+  </reverb-blam>
 </chain-blam>
 <sequencer-blam bpm="90" id="transport" swing>
   <pads-blam id="hat" choke="0.05" out="bus">
@@ -34,7 +37,7 @@ elements:
     </bank-blam>
     <blam-blam prop="detune" value="-200~200"></blam-blam>
   </pads-blam>
-  <pads-blam id="stab" choke>
+  <pads-blam id="stab" choke gain="0.7">
     <bank-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab.mp3"></sample-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab2.mp3"></sample-blam>

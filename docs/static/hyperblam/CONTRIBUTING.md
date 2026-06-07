@@ -30,3 +30,19 @@ Here are some things that will help make **HYPERBLAM** more robust, lean, versat
 - General moaning about the Web Audio API or custom elements. If you prefer your DSP to use other technologies, contribute to a different project.
 - Arbitrary changes. Reimplementing features in ways that don’t reduce overall code or make performance or reliability improvements.
 - Equivocation and browbeating. **HYPERBLAM** is not your opportunity to exhibit how much you know about JavaScript or DSP. If you can help, help. Don’t use this space to spark interminable pissing contests.
+
+## Commands
+
+Before creating a pull request, please run the following commands to build **HYPERBLAM**.
+
+If you have changed any part of **/api**:
+
+```
+npm run api
+```
+
+And _always_ run:
+
+```
+npm run dist
+```

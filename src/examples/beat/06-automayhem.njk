@@ -29,7 +29,7 @@ elements:
 <chain-blam id="drums" out="bus">
   <saturator-blam id="crunchy"></saturator-blam>
   <phaser-blam beats="2" bypass></phaser-blam>
-  <echo-blam feedback="0.5" cutoff="5000" mix="0"></echo-blam>
+  <echo-blam feedback="0.55" cutoff="5000" beats="0.5" mix="0"></echo-blam>
 </chain-blam>
 <sequencer-blam bpm="90" id="transport" swing>
   <pads-blam id="hat" choke="0.05" out="drums">
@@ -51,7 +51,7 @@ elements:
       <blam-blam prop="beats" value="0.25~1"></blam-blam>
     </lfo-blam>
   </pads-blam>
-  <pads-blam id="fdup" gain="2" out="bus">
+  <pads-blam id="fdup" gain="1.5" out="bus">
     <bank-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup1.mp3"></sample-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup2.mp3"></sample-blam>
@@ -81,7 +81,7 @@ elements:
       <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
     </bank-blam>
   </pads-blam>
-  <track-blam to="#hat" chance="0.9">
+  <track-blam id="hatTrack" to="#hat" chance="0.9">
     <bar-blam s="? 0 ? 0 ? ? ? 0"></bar-blam>
     <bar-blam s="? ? 0 0 ? 0 ?">
       <blam-blam to="#crunchy" prop="amount" value="25~100"></blam-blam>
@@ -92,11 +92,11 @@ elements:
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
-    <bar-blam s="0 0 0 0 ? 0 0 0">
+    <bar-blam s="0 0 0 0 ? 0 0 ?">
       <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
   </track-blam>
-  <track-blam to="#stab" suspend>
+  <track-blam to="#stab" override="snareTrack hatTrack" suspend>
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
     <repeat-blam x="2">
       <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
@@ -143,7 +143,7 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
 <dial-blam to="sequencer-blam" prop="bpm">
   <label>
     bpm
-    <input type="range" min="60" max="180" step="1">
+    <input type="range" min="30" max="180" step="1">
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>

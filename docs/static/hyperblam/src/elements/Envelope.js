@@ -23,7 +23,7 @@ class Envelope extends Handle {
         return;
       }
       let data = event.detail;
-      let length = event.detail.instance.length;
+      let length = event.detail.length;
       let time = data.time;
       let x = this.beats ? this.beat : length;
       param.cancelScheduledValues(time);

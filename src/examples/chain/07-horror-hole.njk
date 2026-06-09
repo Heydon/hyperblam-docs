@@ -77,6 +77,15 @@ elements:
   </lfo-blam>
   <envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"></envelope-blam>
 </pads-blam>
+<notes-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
+  <envelope-blam prop="gain" curve="0.5 0, 0 0.008"></envelope-blam>
+  <chain-blam out="bus">
+    <echo-blam beats="0.125" feedback="0.7"></echo-blam>
+    <reverb-blam mix="0.85">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/spring.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</notes-blam>
 <bank-blam id="plucks">
   <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-01.mp3" reverse></sample-blam>
   <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-02.mp3" reverse></sample-blam>
@@ -91,11 +100,17 @@ elements:
   <track-blam to="#pluck">
     <bar-blam s="? 0 0 ? 0 0 ?"></bar-blam>
   </track-blam>
-  <track-blam id="plucksTrack2" to="#pluck2" chance="0.75">
+  <track-blam id="plucksTrack2" to="#pluck2" chance="0.6">
     <bar-blam s="? 0 ? ? 0 ? ? 0"></bar-blam>
   </track-blam>
   <track-blam id="revTrack" to="#plucksRev" chance="0.3">
     <bar-blam s="0 ? 0 0 0 ? ? 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#knocks" chance="0.7" override="plucksTrack2">
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" prop="playPause">
@@ -148,6 +163,8 @@ Since this composition generates indefinitely, you can put it on at bedtime and 
     <input type="checkbox">
   </label>
 </switch-blam>
-<kbd-blam to="#pluck2" key="1" prop="play"></kbd-blam>
-<kbd-blam to="#plucksRev" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#pluck" key="1" prop="play"></kbd-blam>
+<kbd-blam to="#pluck2" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#plucksRev" key="3" prop="play"></kbd-blam>
+<kbd-blam to="#knocks" key="4" prop="play"></kbd-blam>
 {% endblock %}

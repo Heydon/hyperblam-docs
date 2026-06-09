@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -142,6 +142,15 @@
   </lfo-blam>
   <envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"></envelope-blam>
 </pads-blam>
+<notes-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
+  <envelope-blam prop="gain" curve="0.5 0, 0 0.008"></envelope-blam>
+  <chain-blam out="bus">
+    <echo-blam beats="0.125" feedback="0.7"></echo-blam>
+    <reverb-blam mix="0.85">
+      <sample-blam src="https://hyperblam.how/static/sounds/IRs/spring.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</notes-blam>
 <bank-blam id="plucks">
   <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-01.mp3" reverse=""></sample-blam>
   <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-02.mp3" reverse=""></sample-blam>
@@ -156,11 +165,17 @@
   <track-blam to="#pluck">
     <bar-blam s="? 0 0 ? 0 0 ?"></bar-blam>
   </track-blam>
-  <track-blam id="plucksTrack2" to="#pluck2" chance="0.75">
+  <track-blam id="plucksTrack2" to="#pluck2" chance="0.6">
     <bar-blam s="? 0 ? ? 0 ? ? 0"></bar-blam>
   </track-blam>
   <track-blam id="revTrack" to="#plucksRev" chance="0.3">
     <bar-blam s="0 ? 0 0 0 ? ? 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#knocks" chance="0.7" override="plucksTrack2">
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam id="transport" to="sequencer-blam" prop="playPause">
@@ -221,8 +236,10 @@
     <input type="checkbox">
   </label>
 </switch-blam>
-<kbd-blam to="#pluck2" key="1" prop="play"></kbd-blam>
-<kbd-blam to="#plucksRev" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#pluck" key="1" prop="play"></kbd-blam>
+<kbd-blam to="#pluck2" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#plucksRev" key="3" prop="play"></kbd-blam>
+<kbd-blam to="#knocks" key="4" prop="play"></kbd-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>

@@ -69,10 +69,8 @@ class Sampler extends WithParams {
       );
       let start = this.reversing ? this.sound.buffer.duration - this.start - this.sound.length : this.start;
       this.instance.node.start(this.time, Math.max(start, 0));
-    
       this.fire('blam', {
-        instance: this.instance,
-        player: this,
+        ...this.sound,
         time: this.time
       }, this);
 

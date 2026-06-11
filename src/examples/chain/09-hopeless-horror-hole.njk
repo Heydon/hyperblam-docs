@@ -1,5 +1,5 @@
 ---
-title: Horror hole
+title: Hopeless Horror hole
 visualiser:
   count: 16
 elements: 
@@ -39,6 +39,7 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <filter-blam type="highpass" freq="100"></filter-blam>
+  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <chain-blam id="plate" out="bus">
@@ -46,9 +47,17 @@ elements:
     <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
 </chain-blam>
-<pads-blam bank="plucks" id="pluck" gain="14" detune="-1200" robin>
+<pads-blam bank="plucks" id="original">
+  <chain-blam>
+    <echo-blam beats="0.666"></echo-blam>
+    <reverb-blam mix="0.25">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</pads-blam>
+<pads-blam bank="plucks" id="pluck" gain="20" detune="-1200" robin>
   <lfo-blam prop="detune" gain="50"></lfo-blam>
-  <envelope-blam prop="gain" curve="0 0, 1 0.333" beats></envelope-blam>
+  <envelope-blam prop="gain" curve="0 0, 1 0.25" beats></envelope-blam>
   <chain-blam out="bus">
     <filter-blam id="filter" type="lowpass" freq="7000">
       <lfo-blam prop="freq" gain="5000" beats="7.25"></lfo-blam>
@@ -163,8 +172,9 @@ Since this composition generates indefinitely, you can put it on at bedtime and 
     <input type="checkbox">
   </label>
 </switch-blam>
-<kbd-blam to="#pluck" key="1" prop="play"></kbd-blam>
-<kbd-blam to="#pluck2" key="2" prop="play"></kbd-blam>
-<kbd-blam to="#plucksRev" key="3" prop="play"></kbd-blam>
-<kbd-blam to="#knocks" key="4" prop="play"></kbd-blam>
+<kbd-blam to="#original" key="1" prop="play"></kbd-blam>
+<kbd-blam to="#pluck" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#pluck2" key="3" prop="play"></kbd-blam>
+<kbd-blam to="#plucksRev" key="4" prop="play"></kbd-blam>
+<kbd-blam to="#knocks" key="5" prop="play"></kbd-blam>
 {% endblock %}

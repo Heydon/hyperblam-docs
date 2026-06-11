@@ -1,0 +1,91 @@
+---
+title: Tape emulation
+visualiser:
+  count: 12
+elements: 
+  - Pads
+  - Bank 
+  - Sample 
+  - Blam
+  - Chain 
+  - Filter 
+  - LFO
+  - Tap
+  - Repeat
+  - Sequencer 
+  - Switch
+  - Dial
+  - Reverb
+---
+
+{% set previousPost = collections.chain | getPreviousCollectionItem %}
+{% set nextPost = collections.chain | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <gain-blam gain="0.85"></gain-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<pads-blam id="piano" gain="0.7" choke>
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/minimal/piano.mp3" reverse></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <reverb-blam mix="0.125">
+      <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
+    </reverb-blam>
+    <filter-blam freq="1000">
+      <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
+    </filter-blam>
+  </chain-blam>
+  <lfo-blam prop="detune" gain="66" beats="1">
+    <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+    <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+  </lfo-blam>
+  <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert bypass></blam-blam>
+</pads-blam>
+<sequencer-blam bpm="90" id="transport" swing>
+  <track-blam id="pianoTrack" to="#piano">
+    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
+    <repeat-blam x="3">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam id="transport" to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+  
+[Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
+
+```html
+<chain-blam out="bus">
+  ...
+  <filter-blam freq="1000">
+    <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
+  </filter-blam>
+</chain-blam>
+<lfo-blam prop="detune" gain="66" beats="1">
+  <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+  <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
+</lfo-blam>
+```
+
+The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final `<blam-blam>` fluctuates the `gain` of the LFO; the _depth_ of the pitch modulation. Some parts of the tape are in worse condition than others.
+
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+
+{% endblock %}

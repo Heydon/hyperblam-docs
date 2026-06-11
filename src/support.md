@@ -13,22 +13,22 @@ There’s a <span class="u-font-special-inline">[“Buy Me A Coffee/Beer/Egg”]
 
 <ul class="l-grid">
   <li class="l-card l-card--no-border l-card l-card--no-border--no-border">
-    <a href="#">
+    <a href="https://webbed-briefs.teemill.com/product/eradicate-capitalism/">
       <img src="{{site.basedir}}/static/images/tees/capitalism-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Eradicating Capitalism">
     </a>
   </li>
   <li class="l-card l-card--no-border">
-    <a href="#">
+    <a href="https://webbed-briefs.teemill.com/product/gender-norms/">
       <img src="{{site.basedir}}/static/images/tees/gender-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Dismantling Gender Norms">
     </a>
   </li>
   <li class="l-card l-card--no-border">
-    <a href="#">
+    <a href="https://webbed-briefs.teemill.com/product/regicide/">
       <img src="{{site.basedir}}/static/images/tees/regicide-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Committing Regicide">
     </a>
   </li>
   <li class="l-card l-card--no-border">
-    <a href="#">
+    <a href="https://webbed-briefs.teemill.com/product/seizing-production/">
       <img src="{{site.basedir}}/static/images/tees/production-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Seizing The Means Of Production">
     </a>
   </li>

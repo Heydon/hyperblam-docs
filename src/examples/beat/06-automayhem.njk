@@ -39,7 +39,7 @@ elements:
     </bank-blam>
     <blam-blam prop="detune" value="-200~200"></blam-blam>
   </pads-blam>
-  <pads-blam id="stab" choke gain="0.7">
+  <pads-blam id="stab" choke gain="0.7" detune="-300">
     <bank-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab.mp3"></sample-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab2.mp3"></sample-blam>
@@ -47,7 +47,7 @@ elements:
     <chain-blam out="bus">
       <saturator-blam amount="30" lowcut="100"></saturator-blam>
     </chain-blam>
-    <lfo-blam prop="detune" gain="66" beats="1">
+    <lfo-blam prop="detune" gain="45" beats="1">
       <blam-blam prop="beats" value="0.25~1"></blam-blam>
     </lfo-blam>
   </pads-blam>

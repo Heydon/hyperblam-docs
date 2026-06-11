@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-    <title>Saturation shenanigans : HYPERBLAM</title>
+    <title>A light lo-fi listen with LFOs : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -15,7 +15,7 @@
     <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
-    <meta property="og:title" content="Saturation shenanigans">
+    <meta property="og:title" content="A light lo-fi listen with LFOs">
     <meta property="og:site_name" content="HYPERBLAM">
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
@@ -84,7 +84,7 @@
   
     </a>
   </nav>
-  <h1 class="u-font-larger">Saturation shenanigans</h1>
+  <h1 class="u-font-larger">A light lo-fi listen with LFOs</h1>
 </header>
 
     
@@ -103,59 +103,116 @@
     <div class="l-frame__framed">
       
 <chain-blam id="bus">
+  <gain-blam gain="0.85"></gain-blam>
+  <filter-blam type="highpass" id="highpass" freq="50" q="15"></filter-blam>
+  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam amount="25"></saturator-blam>
 </chain-blam>
-<pads-blam id="hat" choke="0.05" out="bus">
+<pads-blam id="piano" gain="0.7" choke="">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/piano.mp3" reverse=""></sample-blam>
   </bank-blam>
-  <blam-blam prop="detune" value="0~60"></blam-blam>
+  <chain-blam out="bus">
+    <reverb-blam mix="0.125">
+      <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
+    </reverb-blam>
+    <filter-blam freq="1000">
+      <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
+    </filter-blam>
+  </chain-blam>
+  <lfo-blam prop="detune" gain="66" beats="1">
+    <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert=""></blam-blam>
+    <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert=""></blam-blam>
+  </lfo-blam>
+  <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert="" bypass=""></blam-blam>
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/kick-01.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/kick-02.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/kick-03.mp3"></sample-blam>
   </bank-blam>
 </pads-blam>
 <pads-blam id="snare" out="bus">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/snare-01.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
+  <blam-blam prop="detune" value="-400~400"></blam-blam>
+  <blam-blam prop="length" value="1|1|1|0.25|0.125|0.05"></blam-blam>
 </pads-blam>
-<pads-blam id="snareSoft" out="bus">
+<pads-blam id="tom">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/tom.mp3"></sample-blam>
   </bank-blam>
+  <chain-blam out="bus">
+    <pan-blam pan="0">
+      <blam-blam prop="pan" value="-1~1"></blam-blam>
+    </pan-blam>
+    <gain-blam gain="0.5">
+      <lfo-blam prop="gain" gain="0.5" beats="0.001">
+        <blam-blam prop="beats" value="0.00025~0.01" ramp="0.25"></blam-blam>
+      </lfo-blam>
+    </gain-blam>
+  </chain-blam>
+  <blam-blam prop="length" value="1|0.25|0.125"></blam-blam>
+</pads-blam>
+<pads-blam id="pluck" gain="1.5">
+  <bank-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-01.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-02.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-03.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-04.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-05.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-06.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-07.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/minimal/pluck-08.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="bus">
+    <filter-blam type="highpass" freq="500">
+      <blam-blam prop="freq" value="100~1500"></blam-blam>
+    </filter-blam>
+    <echo-blam beats="0.666"></echo-blam>
+    <reverb-blam mix="0.25">
+      <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
 </pads-blam>
 <sequencer-blam bpm="90" id="transport" swing="">
-  <track-blam to="#hat" chance="0.8">
-    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
-    <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
+  <track-blam id="pianoTrack" to="#piano">
+    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
+    <repeat-blam x="7">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
   </track-blam>
-  <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
-    <bar-blam s="1 0 2 0 3"></bar-blam>
-    <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
+  <track-blam class="drum" to="#kick" id="kickTrack" override="tomTrack">
+    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="0 0 0 0 0 0 2 0"></bar-blam>
+    <bar-blam s="3 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam chance="0.3" s="3 2 3 0 3 2 0 3"></bar-blam>
   </track-blam>
-  <track-blam to="#snare" override="kickTrack snareSoftTrack">
-    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+  <track-blam class="drum" to="#snare" override="tomTrack kickTrack">
+    <bar-blam s="0 0 0 0 1 0 0 0"></bar-blam>
+    <bar-blam s="0 0 1 2 1 0 0 2" chance="0.5"></bar-blam>
   </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
-    <bar-blam s="0 0 0 0 0 0 0 ? 0 0 ?"></bar-blam>
-    <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
+  <track-blam class="drum" to="#tom" id="tomTrack" chance="0.75">
+    <bar-blam s="0 0 1 0 1 0 0 0 1 1"></bar-blam>
+  </track-blam>
+  <track-blam to="#pluck" chance="0.7">
+    <repeat-blam x="4">
+      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+    </repeat-blam>
+    <bar-blam s="0 0 0 ? ? 0 0 0"></bar-blam>
+    <bar-blam s="? 0 0 ? 0 0 ? ?"></bar-blam>
+    <bar-blam s="? ? 0 0 ? 0 0 ?"></bar-blam>
+    <bar-blam s="? ? ? ? 0 0 0 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
+<tap-blam id="transport" to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">
   <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
     <path class="on" d="M10 8, 26 16, 10 24z"></path>
-    <path class="off" d="M9 9, 13 9, 13 23, 9 23z M19 9, 23 9, 23 23, 19 23z"></path>
+    <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
 </tap-blam>
@@ -175,17 +232,23 @@
     <div class="l-flow">
       
 
-<p>You may have noticed each demo includes a <code><a href="/elements/chain">&lt;chain-blam&gt;</a></code> with <code>id="bus"</code>. I’ve created a many-to-one relationship by connecting other chains and instruments to this shared one. Spot all the <code>out="bus"</code> props.</p>
-<p>The advantage of a <a href="https://mackie.com/en/blog/all/what_mix_bus.html?srsltid=AfmBOopUScjCjDnzXbxzmk_Jo3XYi-w5pHB5MmY7NnK1alEP6T9yphGj">mix bus</a> is that multiple sources can share the same effects and effect parameters.</p>
-<p>In this case, I have just an <code><a href="/elements/analyser">&lt;analyser-blam&gt;</a></code> element and a newly introduced <code><a href="/elements/saturator">&lt;saturator-blam&gt;</a></code>. The <a href="/elements/Analyser/"><strong>Analyser</strong></a> doesn’t actually affect the sound; it converts the signal into data for visualization. The <a href="http://localhost:8080/elements/Saturator/"><strong>Saturator</strong></a> really does affect the sound, though. <em>Big style</em>.</p>
-<p>The <code><a href="/elements/saturator">&lt;saturator-blam&gt;</a></code> element is an interface for a web audio <a href="https://developer.mozilla.org/en-US/docs/Web/API/WaveShaperNode"><code>WaveShaperNode</code></a>. This node literally lets you shape the incoming waveform, mathematically, and is usually applied to create distortion. Here, the bombastic distorted beat you are hearing is brought to you by...</p>
-<pre><code class="language-html">Math.tanh(x * a);
+<p>There’s a lot going on here and I’m not going to explain it all. Instead, why not take a listen while you explore the source code?</p>
+<p>The first thing you might notice is the <code><a href="/elements/media">&lt;media-blam&gt;</a></code> and <code>&lt;audio&gt;</code> elements are missing. And good riddance, frankly, because we can achieve a lot more with the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> and <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> elements: true sample-based instruments.</p>
+<p>Also, be sure to look inside <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> where I’ve written the composition (to be <em>rewritten</em> with each play through).</p>
+<p>One last note on the original electric piano sample, now available via the <code>&lt;pads-elem&gt;</code> element with <code>id="piano"</code>: I’m always looking for new and better ways to emulate degraded tape. That wobbly, fluttery sound just does something to my Xennial brain.</p>
+<p><a href="https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac">Logic</a>, <a href="https://line6.com/support/topic/62459-retro-reel/">Helix</a>, and other platforms all have their tape emulation plugins. Using <strong>HYPERBLAM</strong>, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (<code><a href="/elements/filter">&lt;filter-blam&gt;</a></code>), an LFO controlling the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>s <code>detune</code> property (which modulates pitch, creating a <em>vibrato</em>) and a couple of <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>s.</p>
+<pre><code class="language-html">&lt;chain-blam out="bus"&gt;
+  ...
+  &lt;filter-blam freq="1000"&gt;
+    &lt;blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"&gt;&lt;/blam-blam&gt;
+  &lt;/filter-blam&gt;
+&lt;/chain-blam&gt;
+&lt;lfo-blam prop="detune" gain="66" beats="1"&gt;
+  &lt;blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert&gt;&lt;/blam-blam&gt;
+  &lt;blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert&gt;&lt;/blam-blam&gt;
+&lt;/lfo-blam&gt;
 </code></pre>
-<p>... where <code>a</code> represents the distortion amount. The element offers other algorithms via its <code>mode</code> prop. Each was created using trial and error because:</p>
-<ol>
-<li>I’m not a mathematician.</li>
-<li>Distortion <em>should</em> sound messed up and unruly, so all the better that I don’t know what I’m doing here.</li>
-</ol>
+<p>The first <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> randomizes the filter’s frequency value, using a <code>ramp</code> to interpolate between each successive frequency. This emulates <em>wear</em>: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> controls the frequency (in <code>beats</code>) of the LFO attached to <code>detune</code>. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> fluctuates the <code>gain</code> of the LFO; the <em>depth</em> of the pitch modulation. Some parts of the tape are in worse condition than others.</p>
 
 
 
@@ -196,31 +259,46 @@
 <footer>
   <div class="l-cluster">
     
-<dial-blam to="saturator-blam" prop="amount">
+<switch-blam to="#pianoTrack" prop="solo">
   <label>
-    amount
-    <input type="range" min="0" max="100" step="1">
-  </label>
-</dial-blam>
-<switch-blam to="saturator-blam" prop="bypass">
-  <label>
-    bypass
+    solo keys
     <input type="checkbox">
   </label>
 </switch-blam>
-<kbd-blam to="#kick" key="1" prop="play"></kbd-blam>
-<kbd-blam to="#snare" key="2" prop="play"></kbd-blam>
-<kbd-blam to="#snareSoft" key="3" prop="play"></kbd-blam>
-<kbd-blam to="#hat" key="4" prop="play"></kbd-blam>
+<switch-blam to=".drum" prop="solo">
+  <label>
+    just drums
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#killswitch" prop="bypass" reverse="">
+  <label>
+    chop keys
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<dial-blam to="#highpass" prop="freq">
+  <label>
+    cutoff
+    <input type="range" min="50" max="2000" step="10">
+  </label>
+</dial-blam>
+<kbd-blam to="#tom" prop="play" key="1"></kbd-blam>
+<kbd-blam to="#snare" prop="play" key="2"></kbd-blam>
+<kbd-blam to="#pluck" prop="play" key="3"></kbd-blam>
+<watch-blam from="audio-blam *:not(bands-blam)" to="log" additive="" bypass="">
+  <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
+</watch-blam>
+<blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once=""></blam-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster" aria-label="more examples">
     
-      <a class="u-font-special" href="/examples/04-getting-ghosted/" aria-label="previous example">← prev</a>
+      <a class="u-font-special" href="/examples/07-tape-emulation/" aria-label="previous example">← prev</a>
     
     
-      <a class="u-font-special" href="https://hyperblam.how/examples/06-automayhem/" aria-label="next example">next →</a>
+      <a class="u-font-special" href="https://hyperblam.how/examples/09-hopeless-horror-hole/" aria-label="next example">next →</a>
     
   </nav>
 </footer>

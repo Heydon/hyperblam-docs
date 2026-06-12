@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -121,27 +121,6 @@
     </bank-blam>
     <blam-blam prop="detune" value="-200~200"></blam-blam>
   </pads-blam>
-  <pads-blam id="stab" choke="" gain="0.7" detune="-300">
-    <bank-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/stab.mp3"></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/stab2.mp3"></sample-blam>
-    </bank-blam>
-    <chain-blam out="bus">
-      <saturator-blam amount="30" lowcut="100"></saturator-blam>
-    </chain-blam>
-    <lfo-blam prop="detune" gain="45" beats="1">
-      <blam-blam prop="beats" value="0.25~1"></blam-blam>
-    </lfo-blam>
-  </pads-blam>
-  <pads-blam id="fdup" gain="1.5" out="bus">
-    <bank-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup1.mp3"></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup2.mp3"></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup3.mp3"></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/mayhem/fdup4.mp3"></sample-blam>
-    </bank-blam>
-    <lfo-blam prop="detune" gain="50" beats="5"></lfo-blam>
-  </pads-blam>
   <pads-blam id="kick" out="drums">
     <bank-blam>
       <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
@@ -177,19 +156,6 @@
     <bar-blam s="0 0 0 0 ? 0 0 ?">
       <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
-  </track-blam>
-  <track-blam to="#stab" override="snareTrack hatTrack" suspend="">
-    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
-    <repeat-blam x="2">
-      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam chance="0.35" s="0 0 2 2 0 2 2 0"></bar-blam>
-  </track-blam>
-  <track-blam to="#fdup" suspend="">
-    <repeat-blam x="3">
-      <bar-blam s="3 0 4 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
@@ -293,12 +259,6 @@
 <switch-blam to="phaser-blam" prop="bypass" reverse="">
   <label>
     phaser
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="[to='#stab'], [to='#fdup']" prop="suspend" reverse="">
-  <label>
-    f**cked
     <input type="checkbox">
   </label>
 </switch-blam>

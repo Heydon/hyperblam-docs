@@ -6,12 +6,15 @@ elements:
   - Sample 
   - Blam 
   - Dial
+  - Switch
   - Saturator
   - Sequencer 
   - Track 
   - Bar 
   - Tap
   - Radios
+  - Kbd
+  - Watch
 ---
 
 {% set previousPost = collections.beat | getPreviousCollectionItem %}
@@ -38,27 +41,6 @@ elements:
       <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     </bank-blam>
     <blam-blam prop="detune" value="-200~200"></blam-blam>
-  </pads-blam>
-  <pads-blam id="stab" choke gain="0.7" detune="-300">
-    <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab2.mp3"></sample-blam>
-    </bank-blam>
-    <chain-blam out="bus">
-      <saturator-blam amount="30" lowcut="100"></saturator-blam>
-    </chain-blam>
-    <lfo-blam prop="detune" gain="45" beats="1">
-      <blam-blam prop="beats" value="0.25~1"></blam-blam>
-    </lfo-blam>
-  </pads-blam>
-  <pads-blam id="fdup" gain="1.5" out="bus">
-    <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup1.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup2.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup3.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/mayhem/fdup4.mp3"></sample-blam>
-    </bank-blam>
-    <lfo-blam prop="detune" gain="50" beats="5"></lfo-blam>
   </pads-blam>
   <pads-blam id="kick" out="drums">
     <bank-blam>
@@ -95,19 +77,6 @@ elements:
     <bar-blam s="0 0 0 0 ? 0 0 ?">
       <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
-  </track-blam>
-  <track-blam to="#stab" override="snareTrack hatTrack" suspend>
-    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
-    <repeat-blam x="2">
-      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam chance="0.35" s="0 0 2 2 0 2 2 0"></bar-blam>
-  </track-blam>
-  <track-blam to="#fdup" suspend>
-    <repeat-blam x="3">
-      <bar-blam s="3 0 4 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
   </track-blam>
   <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
@@ -195,12 +164,6 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
 <switch-blam to="phaser-blam" prop="bypass" reverse>
   <label>
     phaser
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="[to='#stab'], [to='#fdup']" prop="suspend" reverse>
-  <label>
-    f**cked
     <input type="checkbox">
   </label>
 </switch-blam>

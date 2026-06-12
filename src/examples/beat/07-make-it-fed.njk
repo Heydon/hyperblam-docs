@@ -6,12 +6,16 @@ elements:
   - Sample 
   - Blam 
   - Dial
+  - Switch
   - Saturator
   - Sequencer 
+  - Reverb
   - Track 
   - Bar 
   - Tap
   - Radios
+  - Watch
+  - Analyser
 ---
 
 {% set previousPost = collections.beat | getPreviousCollectionItem %}
@@ -45,7 +49,7 @@ elements:
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab2.mp3"></sample-blam>
     </bank-blam>
     <chain-blam out="bus">
-      <saturator-blam amount="30" lowcut="100"></saturator-blam>
+      <saturator-blam amount="30" lowcut="130"></saturator-blam>
     </chain-blam>
     <lfo-blam prop="detune" gain="45" beats="1">
       <blam-blam prop="beats" value="0.25~1"></blam-blam>

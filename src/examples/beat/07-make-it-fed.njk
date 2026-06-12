@@ -1,5 +1,5 @@
 ---
-title: Automayhem
+title: Make It Fed
 elements: 
   - Pads 
   - Bank 
@@ -21,7 +21,7 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <reverb-blam mix="0.3">
+  <reverb-blam mix="0.2">
     <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
   </reverb-blam>
   <analyser-blam id="analyser"></analyser-blam>
@@ -39,7 +39,7 @@ elements:
     </bank-blam>
     <blam-blam prop="detune" value="-200~200"></blam-blam>
   </pads-blam>
-  <pads-blam id="stab" choke gain="0.7" detune="-300">
+  <pads-blam id="stab" choke gain="0.7">
     <bank-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab.mp3"></sample-blam>
       <sample-blam src="{{site.basedir}}/static/sounds/mayhem/stab2.mp3"></sample-blam>
@@ -81,6 +81,16 @@ elements:
       <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
     </bank-blam>
   </pads-blam>
+  <pads-blam id="violins" out="drums" reverse="0.5">
+    <bank-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/dissonant/violin/01.mp3" reverse></sample-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/dissonant/violin/02.mp3" reverse></sample-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/dissonant/violin/03.mp3" reverse></sample-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/dissonant/violin/05.mp3" reverse></sample-blam>
+      <sample-blam src="{{site.basedir}}/static/sounds/dissonant/violin/08.mp3" reverse></sample-blam>
+    </bank-blam>
+    <blam-blam prop="detune" value="-300|900"></blam-blam>
+  </pads-blam>
   <track-blam id="hatTrack" to="#hat" chance="0.9">
     <bar-blam s="? 0 ? 0 ? ? ? 0"></bar-blam>
     <bar-blam s="? ? 0 0 ? 0 ?">
@@ -92,9 +102,10 @@ elements:
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack">
-    <bar-blam s="0 0 0 0 ? 0 0 ?">
+    <bar-blam s="0 0 0 0 ? 0 0 0">
       <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
+    <bar-blam s="0 0 0 0 ? 0 0 ?"></bar-blam>
   </track-blam>
   <track-blam to="#stab" override="snareTrack hatTrack" suspend>
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
@@ -117,6 +128,9 @@ elements:
       <blam-blam to="#crunchy" prop="highcut" value="4000~11000"></blam-blam>
     </bar-blam>
   </track-blam>
+  <track-blam id="violinsTrack" to="#violins" chance="0.25" suspend>
+    <bar-blam s="?"></bar-blam>
+  </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playPause">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
@@ -127,13 +141,7 @@ elements:
 
 {% renderTemplate "md" %}
 
-**HYPERBLAM’s** `<saturator-blam>` element offers various tempering and taming features for the different saturation/distortion modes it supports. 
-
-The `highcut` and `lowcut` props let you take out unwanted shrill and booming frequencies respectively. Combined with calibrating the `wet` and `dry` levels (available to all effects), you can sculpt all sorts of subtle—and not-so-subtle—crunches and squelches.
-
-The fourth `mode` is notable because it produces a lot of different characteristics depending on the precise `amount` given. Some settings give a kind of under-biased “voltage starve” sound, making the distortion gated and spluttery.
-
-This example is the first to use the `<radios-blam>` element, allowing users to assign a discrete value from a choice of standard radio buttons.  
+The beat from the previous example is a good basis for something even more _messed_ up. Some dissonant violin samples, sporadically reversed and pumped through the same distortion modes, sound like guitar feedback in places.
 
 {% endrenderTemplate %}
 
@@ -145,45 +153,6 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
     bpm
     <input type="range" min="30" max="180" step="1">
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
-  </label>
-</dial-blam>
-<radios-blam to="#crunchy" prop="mode">
-  <fieldset aria-labelledby="modeLabel">
-    <span class="u-legend" id="modeLabel">mode</span>
-    <label>
-      <input type="radio" name="mode" value="1">
-      1
-    </label>
-    <label>
-      <input type="radio" name="mode" value="2">
-      2
-    </label>
-    <label>
-      <input type="radio" name="mode" value="3">
-      3
-    </label>
-    <label>
-      <input type="radio" name="mode" value="4">
-      4
-    </label>
-  </fieldset>
-</radios-blam>
-<dial-blam to="#crunchy" prop="amount">
-  <label>
-    amount
-    <input type="range" min="10" max="100" step="1">
-  </label>
-</dial-blam>
-<dial-blam to="#crunchy" prop="lowcut">
-  <label>
-    low cut
-    <input type="range" min="50" max="400" step="any">
-  </label>
-</dial-blam>
-<dial-blam to="#crunchy" prop="highcut">
-  <label>
-    high cut
-    <input type="range" min="1000" max="20000" step="any">
   </label>
 </dial-blam>
 <dial-blam to="echo-blam" prop="mix">
@@ -201,6 +170,12 @@ This example is the first to use the `<radios-blam>` element, allowing users to 
 <switch-blam to="[to='#stab'], [to='#fdup']" prop="suspend" reverse>
   <label>
     f**cked
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#violinsTrack" prop="suspend" reverse>
+  <label>
+    strings
     <input type="checkbox">
   </label>
 </switch-blam>

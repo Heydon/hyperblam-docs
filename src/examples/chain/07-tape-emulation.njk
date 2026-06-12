@@ -64,7 +64,9 @@ elements:
 
 {% renderTemplate "md" %}
   
-[Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
+I’m always looking for new and better ways to emulate degraded tape. That wobbly, fluttery sound just does something to my Xennial brain. [Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. 
+
+Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
 
 ```html
 <chain-blam out="bus">
@@ -79,7 +81,11 @@ elements:
 </lfo-blam>
 ```
 
-The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final `<blam-blam>` fluctuates the `gain` of the LFO; the _depth_ of the pitch modulation. Some parts of the tape are in worse condition than others.
+The `<blam-blam>` elements listen for events. In this case: events sent from `<sequencer-blam>`, containing beat/sound scheduling data. Think of `<sequencer-blam>` as a kind of metronome.
+
+The first `<blam-blam>` randomizes a filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final `<blam-blam>` fluctuates the `gain` of the LFO; the _depth_ of the pitch modulation. Some parts of the tape are in worse condition than others.
+
+Importantly, each `<blam-blam>` takes a `chance` of less than `1`. By only responding to some events, the modulation pattern is realistically uneven and intermittent.
 
 
 {% endrenderTemplate %}

@@ -141,29 +141,9 @@ elements:
 
 There’s a lot going on here and I’m not going to explain it all. Instead, why not take a listen while you explore the source code? 
 
-The first thing you might notice is the `<media-blam>` and `<audio>` elements are missing. And good riddance, frankly, because we can achieve a lot more with the `<pads-blam>` and `<notes-blam>` elements: true sample-based instruments.
+As in the previous example, the original `<media-blam>` and `<audio>` elements are now missing. And good riddance, frankly, because we can achieve a lot more with the `<pads-blam>` and `<notes-blam>` elements: true sample-based instruments.
 
-Also, be sure to look inside `<sequencer-blam>` where I’ve written the composition (to be _rewritten_ with each play through). 
-
-One last note on the original electric piano sample, now available via the `<pads-elem>` element with `id="piano"`: I’m always looking for new and better ways to emulate degraded tape. That wobbly, fluttery sound just does something to my Xennial brain. 
-  
-[Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
-
-```html
-<chain-blam out="bus">
-  ...
-  <filter-blam freq="1000">
-    <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
-  </filter-blam>
-</chain-blam>
-<lfo-blam prop="detune" gain="66" beats="1">
-  <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
-  <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
-</lfo-blam>
-```
-
-The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp` to interpolate between each successive frequency. This emulates _wear_: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another `<blam-blam>` controls the frequency (in `beats`) of the LFO attached to `detune`. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final `<blam-blam>` fluctuates the `gain` of the LFO; the _depth_ of the pitch modulation. Some parts of the tape are in worse condition than others.
-
+Also, be sure to look inside `<sequencer-blam>` where I’ve written the composition (to be _rewritten_ with each play through). The note choices, rhythms, and audio parameters (such as the `length` of snare sounds) are all fluctuated or randomized. This gives the composition life.
 
 {% endrenderTemplate %}
 
@@ -197,7 +177,7 @@ The first `<blam-blam>` randomizes the filter’s frequency value, using a `ramp
 <kbd-blam to="#tom" prop="play" key="1"></kbd-blam>
 <kbd-blam to="#snare" prop="play" key="2"></kbd-blam>
 <kbd-blam to="#pluck" prop="play" key="3"></kbd-blam>
-<watch-blam from="audio-blam *:not(bands-blam)" to="log" additive bypass>
+<watch-blam aria-hidden="true" from="audio-blam *:not(bands-blam)" to="log" additive bypass>
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>
 <blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once></blam-blam>

@@ -157,7 +157,8 @@
     <div class="l-flow">
       
 
-<p><a href="https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac">Logic</a>, <a href="https://line6.com/support/topic/62459-retro-reel/">Helix</a>, and other platforms all have their tape emulation plugins. Using <strong>HYPERBLAM</strong>, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (<code><a href="/elements/filter">&lt;filter-blam&gt;</a></code>), an LFO controlling the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>s <code>detune</code> property (which modulates pitch, creating a <em>vibrato</em>) and a couple of <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>s.</p>
+<p>I’m always looking for new and better ways to emulate degraded tape. That wobbly, fluttery sound just does something to my Xennial brain. <a href="https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac">Logic</a>, <a href="https://line6.com/support/topic/62459-retro-reel/">Helix</a>, and other platforms all have their tape emulation plugins.</p>
+<p>Using <strong>HYPERBLAM</strong>, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (<code><a href="/elements/filter">&lt;filter-blam&gt;</a></code>), an LFO controlling the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>s <code>detune</code> property (which modulates pitch, creating a <em>vibrato</em>) and a couple of <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>s.</p>
 <pre><code class="language-html">&lt;chain-blam out="bus"&gt;
   ...
   &lt;filter-blam freq="1000"&gt;
@@ -169,7 +170,9 @@
   &lt;blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert&gt;&lt;/blam-blam&gt;
 &lt;/lfo-blam&gt;
 </code></pre>
-<p>The first <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> randomizes the filter’s frequency value, using a <code>ramp</code> to interpolate between each successive frequency. This emulates <em>wear</em>: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> controls the frequency (in <code>beats</code>) of the LFO attached to <code>detune</code>. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> fluctuates the <code>gain</code> of the LFO; the <em>depth</em> of the pitch modulation. Some parts of the tape are in worse condition than others.</p>
+<p>The <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> elements listen for events. In this case: events sent from <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code>, containing beat/sound scheduling data. Think of <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> as a kind of metronome.</p>
+<p>The first <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> randomizes a filter’s frequency value, using a <code>ramp</code> to interpolate between each successive frequency. This emulates <em>wear</em>: a tape will—unnevenly—lose the ability to reproduce higher frequencies over time. Another <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> controls the frequency (in <code>beats</code>) of the LFO attached to <code>detune</code>. This creates “flutters” in the pitch modulation, emulating chewed up tape and the turbulent playback it produces. A final <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> fluctuates the <code>gain</code> of the LFO; the <em>depth</em> of the pitch modulation. Some parts of the tape are in worse condition than others.</p>
+<p>Importantly, each <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> takes a <code>chance</code> of less than <code>1</code>. By only responding to some events, the modulation pattern is realistically uneven and intermittent.</p>
 
 
 

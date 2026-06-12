@@ -57,7 +57,7 @@ elements:
     <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
   </relay-blam>
 </notes-blam>
-<sequencer-blam bpm="90" id="transport">
+<sequencer-blam bpm="100" id="transport">
   <track-blam to="notes-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
@@ -130,7 +130,7 @@ As a pedant, I want to point out that the sound you are hearing is not technical
   </label>
 </switch-blam>
 <kbd-blam to="notes-blam" prop="play" key="1"></kbd-blam>
-<watch-blam from="audio-blam *:not(rings-blam)" to="log" additive bypass>
+<watch-blam aria-hidden="true" from="audio-blam *:not(rings-blam)" to="log" additive bypass>
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>
 <blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once></blam-blam>

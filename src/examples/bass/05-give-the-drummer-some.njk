@@ -43,7 +43,7 @@ elements:
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
 </chain-blam>
-<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" gain="1.5">
+<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" gain="1.25">
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -88,7 +88,7 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
   </bank-blam>
 </pads-blam>
-<sequencer-blam bpm="90" id="transport">
+<sequencer-blam bpm="100" id="transport">
   <track-blam id="bassTrack" to="notes-blam" chance="0.75">
     <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
     <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>

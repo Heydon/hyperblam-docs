@@ -21,14 +21,10 @@ class Frame extends BandsToProps {
 
         :host > * {
           flex-grow: 1;
-          block-size: 0;
+          block-size: 100cqh;
           transform: scaleY(${band});
           transition: transform ${interval} linear;
           background-color: #fff;
-        }
-
-        :host([data-playing]) > * {
-          block-size: 100cqh;
         }
       </style>
       ${this.renderItems()}
@@ -42,7 +38,7 @@ class Frame extends BandsToProps {
   }
 
   declaration(i) {
-    return `--${this.name}-${this.type}: var(--${this.name}-${this.type}-${i})`;
+    return `--${this.name}-${this.type}: var(--${this.name}-${this.type}-${i}, 0)`;
   }
 
   renderItems() {

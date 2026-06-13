@@ -23,15 +23,10 @@ render(band, interval, ratio) {
         }
 
         circle {
-          fill: ${this.fill ? 'currentColor' : 'none'};
           transform-origin: center;
-          transform: scale(0);
-          transition: transform ${interval} linear;
-        }
-
-        :host([data-playing]) circle {
-          mix-blend-mode: difference;
           transform: scale(${band});
+          mix-blend-mode: difference;
+          transition: transform ${interval} linear;
         }
       </style>
       <svg viewBox="0 0 100 100">
@@ -45,14 +40,6 @@ render(band, interval, ratio) {
       <circle cx="50" cy="50" r="50" style="${this.declaration(i)}"></circle>
     `;
   }
-
-  get fill() {
-		return this.hasAttribute('fill');
-	}
-
-	set fill(value) {
-		this.toBoolean('fill', value);
-	}
 }
 
 export { Rings }

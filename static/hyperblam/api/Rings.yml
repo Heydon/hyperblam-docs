@@ -1,11 +1,6 @@
 name: Rings
 summary: Draws frequency bands as concentric rings or filled circles. Try not to get hypnotized.
 extends: Frame
-experimental: true
+draft: true
 category: Visualizing
 defined: true
-props: 
-  - name: fill
-    type: boolean
-    default: false
-    description: Whether to fill the SVG `<circle/>` elements. (The blend mode is set to `difference`, so superimposed circles are not obscured as such.)

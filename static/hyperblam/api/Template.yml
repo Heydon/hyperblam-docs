@@ -1,7 +1,7 @@
 name: Template
 category: Visualizing
 extends: Handle
-experimental: true
+draft: true
 props: 
   - name: additive
     type: boolean

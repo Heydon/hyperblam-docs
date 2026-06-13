@@ -14,7 +14,7 @@ class Dial extends Set {
     super.onblamready(event);
     this.input = this.fromElems[0];
     let value = this.toElems[0][this.prop]
-    this.input.value = this.convertValue(this.prop, value, this.toElems[0]); 
+    this.input.value = value; 
     this.watchProps(
       this.toElems, 
       to => this.sync(to),
@@ -24,7 +24,7 @@ class Dial extends Set {
 
   sync(to) {
     let value = to[0].target[to[0].attributeName]
-    this.input.value = this.convertValue(this.prop, value, to[0].target);
+    this.input.value = value;
   }
 
   handle(event) {

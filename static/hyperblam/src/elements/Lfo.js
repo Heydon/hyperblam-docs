@@ -25,7 +25,7 @@ class Lfo extends Osc {
       this.gainNode.connect(target);
       if (this.prop === 'beats') {
         // ↓ Convert
-        let gain = this.outElem.conversions.beats(this.gain);
+        let gain = outElem.conversions.beats(this.gain);
         this.gainNode.gain.value = gain;
       }
     }

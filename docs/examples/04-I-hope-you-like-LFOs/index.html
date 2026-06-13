@@ -111,7 +111,8 @@
   <chain-blam out="bus">
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.5" beats="0.25">
-        <lfo-blam prop="beats" gain="0.25" beats="3"></lfo-blam>
+        <lfo-blam prop="beats" gain="0.25" beats="4"></lfo-blam>
+        <lfo-blam prop="gain" gain="0.4" beats="5"></lfo-blam>
       </lfo-blam>
     </gain-blam>
     <pan-blam pan="0">
@@ -135,14 +136,15 @@
     <div class="l-flow">
       
 
-<p>Now we’re cooking. In this example, the LFO that controls the gain (and creates the tremolo effect) is controlled by another LFO. LFO inception!</p>
+<p>Now we’re cooking. In this example, the LFO is controlled by another LFO. LFO inception! In fact, why not have <em>two</em> meta-LFOs: one for modulating the rate (<code>beats</code>) and one for depth (<code>gain</code>)? Even better, their own rates differ, so the <em>relationship</em> between depth and rate evolves over time too.</p>
 <pre><code class="language-html">&lt;gain-blam gain="0.5"&gt;
   &lt;lfo-blam prop="gain" gain="0.5" beats="0.25"&gt;
-    &lt;lfo-blam prop="beats" gain="0.25" beats="3"&gt;&lt;/lfo-blam&gt;
+    &lt;lfo-blam prop="beats" gain="0.25" beats="4"&gt;&lt;/lfo-blam&gt;
+    &lt;lfo-blam prop="gain" gain="0.4" beats="5"&gt;&lt;/lfo-blam&gt;
   &lt;/lfo-blam&gt;
 &lt;/gain-blam&gt;
 </code></pre>
-<p>This supplementary LFO controls the original LFO’s <code>beats</code> prop: the frequency or <em>rate</em> of the tremolo (and saves me giving myself <strong>carpal tunnel</strong> by waggling the rate control continuously).</p>
+<p>That’s much better than waggling the depth and rate controls manually and giving myself a sore wrist.</p>
 <p>To further demonstrate the flexibility of <strong>HYPERBLAM</strong> LFOs, a companion LFO is used to control (<em>sweep</em>) the <code>pan</code> parameter of the <code><a href="/elements/pan">&lt;pan-blam&gt;</a></code> element. Dynamic panning is the kind of studio effect Jimi Hendrix employed liberally and has since gone out of favour. Probably because it makes you lose your balance when listening on headphones.</p>
 
 

@@ -1,7 +1,7 @@
 name: Watch
 category: Visualizing
 extends: Template
-experimental: true
+draft: true
 defined: true
 summary: Observes changes to **HYERBLAM** element attributes and logs those changes using the element’s HTML as a template. Data props are included using square bracket syntax (`[[prop]]`). The available props are **name** (the attribute name), **oldValue** (the previous attribute value), **newValue** (the new attribute value), **id** (the element `id` if present, or the `nodeName`), and **time** (the approximate `currentTime` the attribute changed). 
 props: 

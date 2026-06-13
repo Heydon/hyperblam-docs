@@ -1,7 +1,7 @@
 name: Mod
 category: Automating
 defined: true
-experimental: true
+draft: true
 summary: Extracts discrete values from LFOs to be used as multipliers. Great for automating regular prop values over time.
 extends: Handle
 props: 

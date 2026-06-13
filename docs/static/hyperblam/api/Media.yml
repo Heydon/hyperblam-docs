@@ -1,7 +1,7 @@
 name: Media
 extends: Base
 category: Sampling
-experimental: true
+draft: true
 defined: true 
 summary: Makes an `<audio>` or `<video>` element an audio source and the beginning of a signal chain.
 props: 

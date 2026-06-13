@@ -1,6 +1,6 @@
 name: Intersect 
 defined: true 
-experimental: true
+draft: true
 category: Automating
 summary: Emits events with intersection data.
 props: 

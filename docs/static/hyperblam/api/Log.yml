@@ -1,6 +1,6 @@
 name: Log
 category: Visualizing
 extends: Handle
-experimental: true
+draft: true
 defined: true
 summary: Listens to events and uses the element’s HTML as a template for appending event data to an elected element. Data props are included using square bracket syntax like `[[prop]]`.

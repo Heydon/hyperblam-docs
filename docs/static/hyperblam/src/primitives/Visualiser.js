@@ -25,14 +25,12 @@ class Visualiser extends Base {
   }
 
   onblamplay() {
-    this.setAttribute('data-playing', '');
     this.logger = setInterval(() => {
       this.data = this.analyserElem[this.function]()
       this.translate();
       if (this.stopping) {
         if (this.data.every(datum => datum == 0)) {
           clearInterval(this.logger);
-          this.removeAttribute('data-playing');
           this.stopping = false;
         }
       }

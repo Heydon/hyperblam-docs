@@ -13,8 +13,13 @@
 {% block main %}
 <audio-blam>
   <main tabindex="-1" class="l-frame">
+    {% if video %}
+    <div class="l-frame__framed u-contain s-playstop" hidden>
+      <video src="{{site.basedir}}/static/video/{{video}}" autoplay muted loop></video>
+    </div>
+    {% endif %}
     {% block visual %}
-      <div class="l-frame__framed">
+      <div class="l-frame__framed u-blend-difference">
         <bands-blam 
           id="example" 
           fps="8"
@@ -26,9 +31,9 @@
         </bands-blam>
       </div>
     {% endblock %}
-      <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
-        <ul id="log"></ul>
-      </aside>
+    <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+      <ul id="log" class="s-playstop" hidden></ul>
+    </aside>
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
     <div class="l-frame__framed">
       {% block audio %}
@@ -72,6 +77,8 @@
     {% endif %}
   </nav>
 </footer>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamstop"></blam-blam>
 </audio-blam>
 {% endblock %}
 

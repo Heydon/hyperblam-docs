@@ -1,5 +1,6 @@
 ---
 title: Ch-ch-ch-chocolate
+video: dancer.mp4
 visualiser:
   count: 12
 elements: 
@@ -25,6 +26,10 @@ elements:
 
 {% extends 'layouts/example.njk' %}
 
+{% block video %}
+
+{% endblock %}
+
 {% block audio %}
 <chain-blam id="bus">
   <saturator-blam mode="4" amount="73" mix="0" lowcut="1000" highcut="8000"></saturator-blam>
@@ -37,7 +42,7 @@ elements:
     <blam-blam prop="reverse" value="1|0"></blam-blam>
   </pads-blam>
   <pads-blam out="bus" id="release" bank="stabBank" gain="0.6" choke>
-    <envelope-blam prop="detune" curve="-700 0, 0 0.25" beats></envelope-blam>
+    <envelope-blam prop="detune" curve="-1200 0, 0 0.25" beats></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
   </pads-blam>
   <pads-blam out="bus" id="drums" bank="drumsBank" gain="1.5">
@@ -139,8 +144,8 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/chocolate/piano.mp3"></sample-blam>
   </bank-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
 </tap-blam>
 {% endblock %}
 

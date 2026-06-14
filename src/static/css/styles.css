@@ -451,6 +451,15 @@ p a:hover img,
 
 /* basic utilities */
 
+.u-contain {
+  object-fit: contain;
+}
+
+.u-contain > * {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
 .u-list-inline {
   list-style: none;
   display: flex;
@@ -851,7 +860,7 @@ props-blam > div > div {
 
 /* HYPERBLAM elements */
 
-audio-blam, media-blam, kbd-blam {
+audio-blam, media-blam, kbd-blam, blam-blam {
   display: contents;
 }
 

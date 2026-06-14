@@ -54,8 +54,10 @@ class Handle extends Base {
   }
 
   listen() {
-    for (const from of this.fromElems) {
-      from.addEventListener(this.event, this);
+    if (this.fromElems?.length && this.toElems?.length) {
+      for (const from of this.fromElems) {
+        from.addEventListener(this.event, this);
+      }
     }
   }
 

@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -91,14 +91,19 @@
 <audio-blam>
   <main tabindex="-1" class="l-frame">
     
-      <div class="l-frame__framed">
+    <div class="l-frame__framed u-contain s-playstop" hidden="">
+      <video src="https://hyperblam.how/static/video/dancer.mp4" autoplay="" muted="" loop=""></video>
+    </div>
+    
+    
+      <div class="l-frame__framed u-blend-difference">
         <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="12">
         </bands-blam>
       </div>
     
-      <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
-        <ul id="log"></ul>
-      </aside>
+    <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+      <ul id="log" class="s-playstop" hidden=""></ul>
+    </aside>
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
     <div class="l-frame__framed">
       
@@ -113,7 +118,7 @@
     <blam-blam prop="reverse" value="1|0"></blam-blam>
   </pads-blam>
   <pads-blam out="bus" id="release" bank="stabBank" gain="0.6" choke="">
-    <envelope-blam prop="detune" curve="-700 0, 0 0.25" beats=""></envelope-blam>
+    <envelope-blam prop="detune" curve="-1200 0, 0 0.25" beats=""></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
   </pads-blam>
   <pads-blam out="bus" id="drums" bank="drumsBank" gain="1.5">
@@ -215,11 +220,11 @@
     <sample-blam src="https://hyperblam.how/static/sounds/chocolate/piano.mp3"></sample-blam>
   </bank-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
+<tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">
   <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
     <path class="on" d="M10 8, 26 16, 10 24z"></path>
-    <path class="off" d="M9 9, 13 9, 13 23, 9 23z M19 9, 23 9, 23 23, 19 23z"></path>
+    <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
 </tap-blam>
@@ -329,6 +334,8 @@
     
   </nav>
 </footer>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamstop"></blam-blam>
 </audio-blam>
 
     

@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -151,7 +151,7 @@
     <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
   </bank-blam>
 </pads-blam>
-<sequencer-blam bpm="90" id="transport" swing="">
+<sequencer-blam bpm="100" id="transport">
   <track-blam id="bassTrack" to="notes-blam" chance="0.7">
     <repeat-blam x="3">
       <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
@@ -163,8 +163,8 @@
     <bar-blam s="1 0 0 3 0 2 1 0"></bar-blam>
     <bar-blam s="1 0 1 3 0 2 1 0"></bar-blam>
   </track-blam>
-  <track-blam id="hatTrack" to="#hat" chance="1">
-    <bar-blam s="1 0 2 0 1 ? ? 0"></bar-blam>
+  <track-blam id="hatTrack" to="#hat" chance="0.9">
+    <bar-blam s="1 0 2 0 1 ? ? 0 ?"></bar-blam>
     <bar-blam s="1 2 0 0 1 0 ?"></bar-blam>
   </track-blam>
   <track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9">
@@ -210,7 +210,7 @@
     &lt;bar-blam s="A1 0 0 ? 0 ? ? 0"&gt;&lt;/bar-blam&gt;
     &lt;bar-blam s="C2 0 ? 0 0 ? ? 0"&gt;&lt;/bar-blam&gt;
   &lt;/repeat-blam&gt;
-  &lt;bar-blam s="0 0 0 ? ? ? ? A2" chance="1"&gt;&lt;/bar-blam&gt;
+  &lt;bar-blam s="0 G1 0 ? ? ? ? A2" chance="1"&gt;&lt;/bar-blam&gt;
 &lt;/track-blam&gt;
 ...
 &lt;track-blam to="#snare" override="kickTrack snareSoftTrack" chance="0.9"&gt;
@@ -218,7 +218,7 @@
     &lt;bar-blam s="0 0 0 0 ? 0 0 0"&gt;&lt;/bar-blam&gt;
     &lt;bar-blam s="0 0 ? 0 0 0 0 0"&gt;&lt;/bar-blam&gt;
   &lt;/repeat-blam&gt;
-  &lt;bar-blam s="0 0 0 ? ? ? ? ?" chance="1"&gt;&lt;/bar-blam&gt;
+  &lt;bar-blam s="0 ? 0 ? ? ? ? ?" chance="1"&gt;&lt;/bar-blam&gt;
 &lt;/track-blam&gt;
 </code></pre>
 <p>But the final bar stands alone. Its overriding <code>chance</code> value of <code>1</code> means it plays out more predictably. In the snare’s case it performs a kind of roll. The base syncs with this roll, performing an argeggio that always lands on the octave up from the root: a resolution.</p>
@@ -244,6 +244,12 @@
     <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
+<switch-blam to="sequencer-blam" prop="swing" value="0.2">
+  <label>
+    swing
+    <input type="checkbox">
+  </label>
+</switch-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>

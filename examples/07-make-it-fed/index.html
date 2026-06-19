@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -178,17 +178,17 @@
     </bank-blam>
     <blam-blam prop="detune" value="-300|900"></blam-blam>
   </pads-blam>
-  <track-blam id="hatTrack" to="#hat" chance="0.9">
+  <track-blam class="drum" id="hatTrack" to="#hat" chance="0.9">
     <bar-blam s="? 0 ? 0 ? ? ? 0"></bar-blam>
     <bar-blam s="? ? 0 0 ? 0 ?">
       <blam-blam to="#crunchy" prop="amount" value="25~100"></blam-blam>
     </bar-blam>
   </track-blam>
-  <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
+  <track-blam class="drum" id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
     <bar-blam s="1 0 2 0 3"></bar-blam>
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
-  <track-blam to="#snare" override="kickTrack snareSoftTrack">
+  <track-blam class="drum" to="#snare" override="kickTrack snareSoftTrack">
     <bar-blam s="0 0 0 0 ? 0 0 0">
       <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
@@ -207,7 +207,7 @@
     </repeat-blam>
     <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
   </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+  <track-blam class="drum" id="snareSoftTrack" to="#snareSoft" chance="0.5">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
       <blam-blam to="#crunchy" prop="lowcut" value="50~400"></blam-blam>
     </bar-blam>
@@ -282,6 +282,12 @@
 <switch-blam to="#violinsTrack" prop="suspend" reverse="">
   <label>
     strings
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".drum" prop="suspend" reverse="">
+  <label>
+    drums
     <input type="checkbox">
   </label>
 </switch-blam>

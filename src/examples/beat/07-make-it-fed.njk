@@ -96,17 +96,17 @@ elements:
     </bank-blam>
     <blam-blam prop="detune" value="-300|900"></blam-blam>
   </pads-blam>
-  <track-blam id="hatTrack" to="#hat" chance="0.9">
+  <track-blam class="drum" id="hatTrack" to="#hat" chance="0.9">
     <bar-blam s="? 0 ? 0 ? ? ? 0"></bar-blam>
     <bar-blam s="? ? 0 0 ? 0 ?">
       <blam-blam to="#crunchy" prop="amount" value="25~100"></blam-blam>
     </bar-blam>
   </track-blam>
-  <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
+  <track-blam class="drum" id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
     <bar-blam s="1 0 2 0 3"></bar-blam>
     <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
   </track-blam>
-  <track-blam to="#snare" override="kickTrack snareSoftTrack">
+  <track-blam class="drum" to="#snare" override="kickTrack snareSoftTrack">
     <bar-blam s="0 0 0 0 ? 0 0 0">
       <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
     </bar-blam>
@@ -125,7 +125,7 @@ elements:
     </repeat-blam>
     <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
   </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
+  <track-blam class="drum" id="snareSoftTrack" to="#snareSoft" chance="0.5">
     <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
       <blam-blam to="#crunchy" prop="lowcut" value="50~400"></blam-blam>
     </bar-blam>
@@ -181,6 +181,12 @@ The beat from the previous example is a good basis for something even more _mess
 <switch-blam to="#violinsTrack" prop="suspend" reverse>
   <label>
     strings
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".drum" prop="suspend" reverse>
+  <label>
+    drums
     <input type="checkbox">
   </label>
 </switch-blam>

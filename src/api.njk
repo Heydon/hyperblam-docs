@@ -9,7 +9,7 @@
     }
   },
   permalink: function(data) {
-    return `elements/${data.element.name}/index.html`;
+    return `elements/${data.element.name.toLowerCase()}/index.html`;
   },
   layout: 'layouts/element.njk'
 }

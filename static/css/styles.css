@@ -739,7 +739,7 @@ dialog > div {
   }
 }
 
-.u-squiggle, main img[src*="/illustration"] {
+.u-squiggle, main img[src*="/illustration"]:hover {
   animation: squiggle 0.25s linear infinite;
 }
 

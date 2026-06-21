@@ -9,7 +9,7 @@
         {% for element in api %}
           {% if element.category == name %}
           <li>
-            <a href="{{site.basedir}}/elements/{{element.name}}">{{ element.name }}</a>
+            <a href="{{site.basedir}}/elements/{{element.name | slugify}}">{{ element.name }}</a>
           </li>
           {% endif %}
         {% endfor %}

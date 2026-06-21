@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -212,7 +212,7 @@
     <div class="l-flow">
       
 
-<p>There’s no reason why two or more instruments (<code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit <code>bank</code> prop, pointing to the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>’s <code>id</code>.</p>
+<p>There’s no reason why two or more instruments (<code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit <code>bank</code> prop, pointing to the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>’s <code>id</code>.</p>
 <p>This example uses 3 tiers of chaining. Some chains connect direct with the <code>bus</code> chain and some go via a <code>plate</code> chain, for adding <a href="https://www.izotope.com/community/blog/plate-reverb">plate reverb</a>. This saves loading the plate impulse response twice.</p>
 <p>Here, one instrument plays the sample samples an ocatve down (<code>detune="-1200"</code>) with the <em>attack</em> softened using  an <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code>. The gain starts at <code>0</code> and is ramped to <code>1</code> <code>0.5</code> beats in.</p>
 <pre><code class="language-html">&lt;envelope-blam prop="gain" curve="0 0, 1 0.5" beats&gt;&lt;/envelope-blam&gt;

@@ -17,7 +17,7 @@ The easiest way to make a sampled [hi-hat](https://en.wikipedia.org/wiki/Hi-hat)
 
 By default, **HYPERBLAM** instruments will play a different sample from their sample bank each time. The more samples you include, the more variety.
 
-![Three buffers converge on an icon of a dice which, in turn, points at a source node.]({{site.basedir}}/static/images/illustrations/humanization1.svg)
+![Three buffers converge on an icon of a dice which, in turn, points at a source node.]({{site.basedircdn}}/static/images/illustrations/humanization1.svg)
 
 A tonal instrument like the standard `<notes-blam>` will select random samples even as it is augmenting their pitch. This multidimensional variation is not common even in expensive, commercial sample-based instruments. At least, not without a lot of configuration. Take a listen to the [“pentatonic party”]({{site.basedir}}/examples/02-pentatonic-party) example to see this in action.
 
@@ -27,7 +27,7 @@ Including more than a few samples (even when using optimized, next-gen audio for
 
 Each sample is represented as an `AudioBufferSourceNode`, which comes with certain properties called `AudioParam`s. The `detune` param’ can be adjusted in *cents*.  
 
-![A detune parameter, represented as a dice, pointing to a source node.]({{site.basedir}}/static/images/illustrations/humanization2.svg)
+![A detune parameter, represented as a dice, pointing to a source node.]({{site.basedircdn}}/static/images/illustrations/humanization2.svg)
 
 Applying the same `detune` value to all samples alike will change the base tuning of the hi-hat, which may be desirable. But *fluctuating* the `detune` value is useful for humanization.
 
@@ -65,7 +65,7 @@ But we have a problem. In that last example, we had to divide the pattern into s
 
 Instead, we can apply swing using the `<sequencer-blam>` element’s `swing` prop. This pushes every other beat up against the next. By default, these shifted beats are moved *one sixth of one quarter-beat* to the right. Effectively, this makes them the third beat in *a imaginary triplet* spread over two quarter beats (or one half beat).
 
-![Diagram comparing straight and swing patterns. In the swing version, a dot representing the second of three beats is swung to the right.]({{site.basedir}}/static/images/illustrations/humanization3.svg)
+![Diagram comparing straight and swing patterns. In the swing version, a dot representing the second of three beats is swung to the right.]({{site.basedircdn}}/static/images/illustrations/humanization3.svg)
 
 In practice, it turns that original, straight pattern into this:
 

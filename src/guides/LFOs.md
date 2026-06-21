@@ -19,7 +19,7 @@ AC (alternating current) electricity produces a wave that cycles rapidly (*alter
 
 An LFO alternates at a lower, usually inaudible frequency. But it has the same basic anatomy: it cycles between positive and negative values. As with AC electricity, a standard LFO is *sinusoidal*. A *sine wave* alternates between `1` (its *peak*) and `-1` (its *trough*) smoothly and can be represented by a curved, wavy line.
 
-![Diagram of a waveform identifying the peak, the amplitude, which is the distance between the peak and the vertical center line, the wavelength, which is the distance from the start of one peak to the end of one trough.]({{site.basedir}}/static/images/illustrations/LFOs1.svg)
+![Diagram of a waveform identifying the peak, the amplitude, which is the distance between the peak and the vertical center line, the wavelength, which is the distance from the start of one peak to the end of one trough.]({{site.basedircdn}}/static/images/illustrations/LFOs1.svg)
 
 ## Modulation
 
@@ -61,7 +61,7 @@ With an initial subject `gain` value of `1` and an LFO `gain` value of  `1` , th
 
 The [“Shimmer Shimmer Ya”]({{site.basedire}}/examples/03-shimmer-shimmer-ya) example applies this kind of tremolo to a sample of an electric piano. You can control the depth (gain) and rate (frequency) of the LFO using two `<dial-blam>` elements.
 
-![Diagram showing how an LFO maps to gain. 1 is max gain, at the peak, 0 is min gain, and 0.5, the default, is at the vertical center.]({{site.basedir}}/static/images/illustrations/LFOs2.svg)
+![Diagram showing how an LFO maps to gain. 1 is max gain, at the peak, 0 is min gain, and 0.5, the default, is at the vertical center.]({{site.basedircdn}}/static/images/illustrations/LFOs2.svg)
 
 ## Changing the waveform
 
@@ -76,7 +76,7 @@ What if we didn’t want our gain value to pass smoothly through zero? What if w
 </lfo-blam>	
 ```
 
-![A square waveform, with the vertical side of a square indicated as an instant switch between 0 and 1 in gain.]({{site.basedir}}/static/images/illustrations/LFOs3.svg)
+![A square waveform, with the vertical side of a square indicated as an instant switch between 0 and 1 in gain.]({{site.basedircdn}}/static/images/illustrations/LFOs3.svg)
 
 Given the `x` axis represents the time domain, those vertical lines mean an instantaneous *switch* between low gains of `0` and `1`. This gives the tremolo effect quite a different, much *harsher* character.
 
@@ -108,7 +108,7 @@ Set up to alternate between values of `0` and `1`, our square wave tremolo alrea
 
 <figure>
 
-![A sine wave labeled continuous with individual lines representing discrete sampling points.]({{site.basedir}}/static/images/illustrations/LFOs4.svg)
+![A sine wave labeled continuous with individual lines representing discrete sampling points.]({{site.basedircdn}}/static/images/illustrations/LFOs4.svg)
 
   <figcaption>The series of “pins” representing discrete sampling points forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
 </figure>
@@ -141,7 +141,7 @@ It makes me think of the propellor on an airplane. At a slow rate of rotation, i
 
 <figure>
 
-![Two propellors. One spins slowly and you can still see its propellor shape. The other spins rapidly and forms a circular shape.]({{site.basedir}}/static/images/illustrations/LFO_prop.svg)
+![Two propellors. One spins slowly and you can still see its propellor shape. The other spins rapidly and forms a circular shape.]({{site.basedircdn}}/static/images/illustrations/LFO_prop.svg)
 
   <figcaption>The term <em>waveshaper</em> is usually preserved for a method of distortion. But we are literally shaping a wave here. Plus any augmentation of a wave’s shape is a <em>de facto</em> form of distortion.</figcaption>
 </figure>

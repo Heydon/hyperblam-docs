@@ -97,11 +97,11 @@
       <main class="l-column l-flow" tabindex="-1">
         <h1>What Is Gain?</h1>
         <p>We need to talk about <em>gain</em>. Gain is not just one of the most important, and widely misunderstood, concepts in amplification. It’s also, perhaps, the most foundational and useful type of <em>node</em> belonging to the Web Audio API.</p>
-<hr class="u-wave-sine">
+<hr class="u-wave-triangle">
 <h2 id="gain-is-relative">Gain is relative</h2>
 <p>This is the first thing to get your head around. In either an analog or a digital context, gain is <em>how much more you add</em>. That value is necessarily relative to <em>how much you’re getting in the first place</em>. Adding more signal = amplification.</p>
 <p>You can <em>add more</em> in multiple different places along your signal chain. These places are sometimes called <em>gain stages</em>. Each stage makes a relative adjustment, in series.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/gain1.svg" alt="Three gain nodes connected in series. The first has a value of 0.5, the second a value of 0.75, and the third a value of 1.5" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/gain1.svg" alt="Three gain nodes connected in series. The first has a value of 0.5, the second a value of 0.75, and the third a value of 1.5" loading="lazy"></p>
 <p>The gain value of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/GainNode"><code>gainNode</code></a> is set as a number. A gain of <code>0.75</code>, followed by a gain of <code>0.5</code>, followed by a gain of <code>1.5</code>, would give you an outgoing value of <code>0.75</code> × <code>0.5</code> × <code>1.5</code>… or  <code>0.5625</code>.</p>
 <pre><code class="language-html">&lt;chain-blam&gt;
   &lt;gain-blam gain="0.75"&gt;&lt;/gain-blam&gt;
@@ -110,7 +110,7 @@
 &lt;/chain-blam&gt;
 </code></pre>
 <p>For a more practical application, consider the feedback loop that creates an echo effect. Inside this loop, a single gain stage is passed through multiple times.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/gain2.svg" alt="A delay node is attached to a gain node in a feedback loop. This makes the delay’s output become lower each time" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/gain2.svg" alt="A delay node is attached to a gain node in a feedback loop. This makes the delay’s output become lower each time" loading="lazy"></p>
 <p>A lowish gain value, like <code>0.5</code> gives noticeably diminishing returns. This approximates a true echo, which loses energy as it is partially absorbed by the surfaces it bounces off.</p>
 <pre><code class="language-html">&lt;echo-blam 
   feeback="0.5" 
@@ -124,22 +124,22 @@
 <p>The next part is really important. It’s important because it accounts for the entire history, and enduring popularity, of rock ‘n’ roll over the best part of a century. Which is a pretty big deal.</p>
 <p>Sometimes you ask for <em>more</em> and there’s <em>no more</em> to give. That sounds bad, right? And, yeah, theoretically it is. But it’s also the simplest way to create distortion. Sometimes we like distortion. Oftentimes, we love it. We apply <em>gain</em> to create <em>distortion</em> so often, the two terms are often used interchangeably.</p>
 <p>When you tell an amplifier (gain stage) to give you <code>1.5</code>, but all it can manage is <code>1.25</code>, then <code>1.25</code> is its <em>ceiling</em>. There’s nowhere for the remaining <code>0.25</code> to go, so it gets decapitated (or “clipped”). The more powerful the amplifier, the less likely decapitation will occur. Hence, powerful amplifiers are said to have a lot of <em>headroom</em>.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/gain3.svg" alt="Comparing one sine-shaped wave with another that has each trough and peak cut off" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/gain3.svg" alt="Comparing one sine-shaped wave with another that has each trough and peak cut off" loading="lazy"></p>
 <p>Sound decapitation isn’t fatal, though. If it were, rock ‘n’ roll would fall silent. Instead, lopping the top off just changes the <em>shape</em> of the waveform. How abruptly the head is lopped off (how hard the <em>clipping</em>) helps determine the perceived character of the distorted sound.</p>
 <p>A high input gain combined with extremely hard clipping can produce something akin to a square shaped wave. This is why some fuzz guitar effects can make your guitar sound like a synthesizer: synthesizers often produce sounds based on basic square waveforms.</p>
 <p>Nobody likes <em>unintended</em> distortion, but nobody in revolutionary France was getting decapitated by accident. Distortion is transformation; the creation of a new, more complex and textured sound from the old. To conservatives, transformation is transgression. The bold, distorted sound of rock ‘n’ roll is, therefore, <em>“the devil’s music”</em>.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/gain_sign.svg" alt="A woman in old fashioned, Victorian dress holds a placard reading “don’t push rock and roll junk”" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/gain_sign.svg" alt="A woman in old fashioned, Victorian dress holds a placard reading “don’t push rock and roll junk”" loading="lazy"></p>
 <p>For some devilishly distorted beats, using <strong>HYPERBLAM’s</strong> signal-decapitating <code><a href="/elements/saturator">&lt;saturator-blam&gt;</a></code> element, listen to the <a href="https://hyperblam.how/examples/07-automayhem/">“AutoMayhem”</a> example.</p>
 <h2 id="distortion-sounds-loud">Distortion sounds loud</h2>
 <p>As I’ve already established, distortion only happens when amplitude hits a ceiling. It’s literally the effect of sound <em>not</em> getting louder. So why does distortion sound loud?</p>
 <p>Again, it’s a question of relativity. The more gain you apply, the more of the sound hits the ceiling. First it’s just the louder parts of the sound, then it’s the quieter parts too. The ceiling doesn’t move, but more of it is covered. It’s <em>more maximum at once</em>, which is perceivably louder.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/gain4.svg" alt="As a capped wave gets higher in amplitude the width of each ceiling gets wider" loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/gain4.svg" alt="As a capped wave gets higher in amplitude the width of each ceiling gets wider" loading="lazy"></p>
 <p>Both distortion and <em>compression</em> add perceived loudness. A compressor just uses a more complex algorithm, flattening the <a href="https://en.wikipedia.org/wiki/Dynamic_range">dynamic range</a> without introducing clipping.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/Loudness_war">“loudness wars”</a> are where producers competitively add compression, to make their tracks sound louder than their peers’. Unfortunately, this results in popular music sounding, overall, more flat and lifeless. Where the quieter sounds aren’t allowed to be quiet, the loud ones don’t come off as loud. Remember: it’s all relative.</p>
 <h2 id="gain-isnt-just-for-gain">Gain isn’t just for gain</h2>
 <p>When working with the Web Audio API, gain nodes aren’t just useful for affecting gain. A gain node with a gain value of 1 transparently reproduces any signal sent to it. As such, it can be used as a <em>junction box</em>.</p>
 <p>Each of the effects available in <strong>HYPERBLAM</strong> are based on a primitive <code>Box</code> class that implements <em>wet</em> and <em>dry</em> parallel paths. The <em>mix</em> of the effect is the ratio between the wet (affected) and dry (unaffected) gain nodes.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/gain5.svg" alt="A single line leads to a node labeled in. Two lines emerge from this node, forming parallel lines—one containing a dry gain node and the other an effect node and a wet gain node. Finally, these two lines converge on a node labeled out." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/gain5.svg" alt="A single line leads to a node labeled in. Two lines emerge from this node, forming parallel lines—one containing a dry gain node and the other an effect node and a wet gain node. Finally, these two lines converge on a node labeled out." loading="lazy"></p>
 <p>As in the <a href="https://hyperblam.how/examples/05-babys-first-blam/">“Baby’s First Blam”</a> example, the mix can be calibrated using the (aptly named) <code>mix</code> property.</p>
 <pre><code class="language-html">&lt;reverb-blam mix="0.5"&gt;
   &lt;sample-blam src="/sounds/IRs/stadium.mp3"&gt;&lt;/sample-blam&gt;

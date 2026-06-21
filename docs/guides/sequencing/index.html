@@ -103,7 +103,7 @@
 <h2 id="events-based-sequencing">Events-based sequencing</h2>
 <p>The <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> element has quite a simple task. It acts as a kind of silent metronome, counting out every step (a quarter-beat, by default) in an infinite sequence. When it knows the exact time the next step should land, it emits a <code>blam</code> event communicating that timing.</p>
 <p>Any <strong>HYPERBLAM</strong> elements listening for that <code>blam</code> event can synchronize itself to the ongoing sequence.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/sequencing1.svg" alt="Timeline showing how the sequencer element sets the future time, transmits an event with time data, then is consumed by a subscriber element, before the time finally coming along." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/sequencing1.svg" alt="Timeline showing how the sequencer element sets the future time, transmits an event with time data, then is consumed by a subscriber element, before the time finally coming along." loading="lazy"></p>
 <p>This opens up some possibilities. You could take a steam of live data and use it to trigger <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> sounds directly. A live, but perfectly <em>quantized</em>, musical performance of the stock exchange? Or weather patterns? Github commits?</p>
 <p>More commonly, you would subscribe to a <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code>’s events using a <code><a href="/elements/track">&lt;track-blam&gt;</a></code> element. That’s where <strong>HYPERBLAM</strong> starts to feel like a drum machine. And it’s one with some pretty cool features, similar to the high-end hardware machines from <strong>Elektron</strong> or <strong>Roland</strong>.</p>
 <h2 id="polymetrics">Polymetrics</h2>
@@ -136,7 +136,7 @@
 </code></pre>
 <p>The tempo of these two tracks is shared (taken from a common <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code>’s <code>bpm</code>) but their <em>time signatures</em> differ. The result is <em>polymetric:</em> beats stay obstinately in sync but the bars they belong to diverge.</p>
 <p>Working with polymeters is fun because the relationship between the individual tracks changes over time. Since it’s difficult (at least for me!) to anticipate what that shifting relationship will sound like, the music stays fresh for longer. To get the length of the compound pattern, you multiply the lengths of each constituent bar. In this case, it’s <code>3 × 4</code>, or <code>12</code>.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/sequencing2.svg" alt="A two track pattern illustrated as rows of blocks. Four blocks of 3 beats length each take up the same space as three blocks at 4 beats length each." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/sequencing2.svg" alt="A two track pattern illustrated as rows of blocks. Four blocks of 3 beats length each take up the same space as three blocks at 4 beats length each." loading="lazy"></p>
 <p>What if each track had two bars with different pattern lengths?</p>
 <pre><code class="language-html">&lt;track-blam&gt;
   &lt;bar-blam s="1 0 3"&gt;&lt;/bar-blam&gt;
@@ -174,7 +174,7 @@
 <h2 id="overrides">Overrides</h2>
 <p>In that <a href="https://hyperblam.how/examples/03-snare-makes-the-groove">“Snare Makes The Groove”</a> example you’ll see a curious <code>override</code> prop being used with the <code><a href="/elements/track">&lt;track-blam&gt;</a></code> elements. This is really important.</p>
 <p>In most drumbeats, the kick and snare should occupy their own space. A drummer very rarely plays those two drums at the same time. But, as polymetric track relationships shift over time, collisions are inevitable.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/sequencing3.svg" alt="A snare pattern with the snare sound on the third of four beats, with a kick pattern underneath, where the kick sound is the first of three beats. The third kick sound collides with the second snare sound." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/sequencing3.svg" alt="A snare pattern with the snare sound on the third of four beats, with a kick pattern underneath, where the kick sound is the first of three beats. The third kick sound collides with the second snare sound." loading="lazy"></p>
 <p>This is where overrides come in. Using the <code>override</code> prop, I can set which tracks take precedence, thereby avoiding collisions.</p>
 <pre><code class="language-html">&lt;track-blam id="snare" override="kick"&gt;
   &lt;bar-blam s="0 0 1 0"&gt;&lt;/bar-blam&gt;
@@ -189,7 +189,7 @@
 <h2 id="probabilism">Probabilism</h2>
 <p>Multiple <strong>HYPERBLAM</strong> elements are based on a primitive element called <code>Handle.js</code> which takes care of generic event handling. All these elements inherit a <code>chance</code> prop that determines how likely the element will respond to a subscribed event. Playing, detuning, filtering, panning, muting, pretty much anything can be <em>left to chance</em>.</p>
 <p>The <code><a href="/elements/track">&lt;track-blam&gt;</a></code> element calculates whether a sound should play, at any given time, based on interactions between probabilities, overrides, and other settings. Once you put these conditions in place, you can just sit back and listen to the composition write itself in real time. By sending and responding to events, internally, the composition makes decisions for itself.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/sequencing4.svg" alt="Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/sequencing4.svg" alt="Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line." loading="lazy"></p>
 <h3 id="blam-blam">Blam Blam!</h3>
 <p><a href="https://hyperblam.how/examples/06-a-light-lo-fi-listen-with-lfos/">“Light Lo-Fi Listen With LFOs”</a> uses multiple event-based elements. The eponymous <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> element does a lot of heavy lifting. Kind of a mascot for <strong>HYPERBLAM</strong>, this element uses incoming events to randomize prop values or fire methods using randomized args.</p>
 <p>For starters, it is affecting both the <code>length</code> and <code>detune</code> values of the electronic snare sound, adding texture, tension, and—most of all—variety.</p>

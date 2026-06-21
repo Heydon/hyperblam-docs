@@ -14,22 +14,22 @@ There’s a <span class="u-font-special-inline">[“Buy Me A Coffee/Beer/Egg”]
 <ul class="l-grid">
   <li class="l-card l-card--no-border l-card l-card--no-border--no-border">
     <a href="https://webbed-briefs.teemill.com/product/eradicate-capitalism/">
-      <img src="{{site.basedir}}/static/images/tees/capitalism-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Eradicating Capitalism">
+      <img src="{{site.basedircdn}}/static/images/tees/capitalism-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Eradicating Capitalism">
     </a>
   </li>
   <li class="l-card l-card--no-border">
     <a href="https://webbed-briefs.teemill.com/product/gender-norms/">
-      <img src="{{site.basedir}}/static/images/tees/gender-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Dismantling Gender Norms">
+      <img src="{{site.basedircdn}}/static/images/tees/gender-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Dismantling Gender Norms">
     </a>
   </li>
   <li class="l-card l-card--no-border">
     <a href="https://webbed-briefs.teemill.com/product/regicide/">
-      <img src="{{site.basedir}}/static/images/tees/regicide-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Committing Regicide">
+      <img src="{{site.basedircdn}}/static/images/tees/regicide-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Committing Regicide">
     </a>
   </li>
   <li class="l-card l-card--no-border">
     <a href="https://webbed-briefs.teemill.com/product/seizing-production/">
-      <img src="{{site.basedir}}/static/images/tees/production-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Seizing The Means Of Production">
+      <img src="{{site.basedircdn}}/static/images/tees/production-with-tee.svg" alt="Hyperblam T-shirt with big aggressive text reading Lo-fi Beats For Seizing The Means Of Production">
     </a>
   </li>
 </ul>
@@ -42,6 +42,6 @@ You can [buy the font in the BuyMeACoffee shop](https://buymeacoffee.com/heydon/
 
 <p>
   <a href="https://buymeacoffee.com/heydon/e/536619">
-    <img src="{{site.basedir}}/static/images/icelandic-small.svg" alt="Passage from an Icelandic saga linking to the shop page for buying the font.">
+    <img src="{{site.basedircdn}}/static/images/icelandic-small.svg" alt="Passage from an Icelandic saga linking to the shop page for buying the font.">
   </a>
 </p>

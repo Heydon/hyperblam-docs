@@ -17,7 +17,7 @@ The `<sequencer-blam>` element has quite a simple task. It acts as a kind of sil
 
 Any **HYPERBLAM** elements listening for that `blam` event can synchronize itself to the ongoing sequence. 
 
-![Timeline showing how the sequencer element sets the future time, transmits an event with time data, then is consumed by a subscriber element, before the time finally coming along.]({{site.basedir}}/static/images/illustrations/sequencing1.svg)
+![Timeline showing how the sequencer element sets the future time, transmits an event with time data, then is consumed by a subscriber element, before the time finally coming along.]({{site.basedircdn}}/static/images/illustrations/sequencing1.svg)
 
 This opens up some possibilities. You could take a steam of live data and use it to trigger `<notes-blam>` sounds directly. A live, but perfectly *quantized*, musical performance of the stock exchange? Or weather patterns? Github commits?
 
@@ -62,7 +62,7 @@ The tempo of these two tracks is shared (taken from a common `<sequencer-blam>`�
 
 Working with polymeters is fun because the relationship between the individual tracks changes over time. Since it’s difficult (at least for me!) to anticipate what that shifting relationship will sound like, the music stays fresh for longer. To get the length of the compound pattern, you multiply the lengths of each constituent bar. In this case, it’s `3 × 4`, or `12`.
 
-![A two track pattern illustrated as rows of blocks. Four blocks of 3 beats length each take up the same space as three blocks at 4 beats length each.]({{site.basedir}}/static/images/illustrations/sequencing2.svg)
+![A two track pattern illustrated as rows of blocks. Four blocks of 3 beats length each take up the same space as three blocks at 4 beats length each.]({{site.basedircdn}}/static/images/illustrations/sequencing2.svg)
 
 What if each track had two bars with different pattern lengths?
 
@@ -114,7 +114,7 @@ In that [“Snare Makes The Groove”]({{site.basedir}}/examples/03-snare-makes-
 
 In most drumbeats, the kick and snare should occupy their own space. A drummer very rarely plays those two drums at the same time. But, as polymetric track relationships shift over time, collisions are inevitable. 
 
-![A snare pattern with the snare sound on the third of four beats, with a kick pattern underneath, where the kick sound is the first of three beats. The third kick sound collides with the second snare sound.]({{site.basedir}}/static/images/illustrations/sequencing3.svg)
+![A snare pattern with the snare sound on the third of four beats, with a kick pattern underneath, where the kick sound is the first of three beats. The third kick sound collides with the second snare sound.]({{site.basedircdn}}/static/images/illustrations/sequencing3.svg)
 
 This is where overrides come in. Using the `override` prop, I can set which tracks take precedence, thereby avoiding collisions. 
 
@@ -138,7 +138,7 @@ Multiple **HYPERBLAM** elements are based on a primitive element called `Handle.
 
 The `<track-blam>` element calculates whether a sound should play, at any given time, based on interactions between probabilities, overrides, and other settings. Once you put these conditions in place, you can just sit back and listen to the composition write itself in real time. By sending and responding to events, internally, the composition makes decisions for itself.
 
-![Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line.]({{site.basedir}}/static/images/illustrations/sequencing4.svg)
+![Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line.]({{site.basedircdn}}/static/images/illustrations/sequencing4.svg)
 
 ### Blam Blam!
 

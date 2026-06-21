@@ -8,7 +8,7 @@
       <ul class="l-grid">
         {% for post in collections[key] %}
           <li class="l-card">
-            <img src="{{site.basedir}}/static/images/guides/{{post.data.title | slugify}}.svg" alt="">
+            <img src="{{site.basedircdn}}/static/images/guides/{{post.data.title | slugify}}.svg" alt="">
             <a href="{{site.basedir}}{{post.url}}">
               {{ post.data.title }}
             </a>

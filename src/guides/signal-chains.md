@@ -13,7 +13,7 @@ If you’re a guitarist, you’ll no doubt be familiar with the concept of the *
 
 Typically, you have one guitar (the input) and one guitar amplifier (the output). To make sure all of your pedals contribute to your sound, you put them in series between your guitar and amp.
 
-![A signal chain for a guitar, starting with the guitar itself, connected to a row of effects and finally connected to an amplifier.]({{site.basedir}}/static/images/illustrations/signal-chains1.svg)
+![A signal chain for a guitar, starting with the guitar itself, connected to a row of effects and finally connected to an amplifier.]({{site.basedircdn}}/static/images/illustrations/signal-chains1.svg)
 
 Maybe you’re not a guitarist. Maybe you have even more disposable income and you’re into *modular synthesis*. In modular synthesis, individual *modules* are connected (or “patched”) together. These, like guitar pedals, may represent effects, used for coloring the incoming sound, or they may perform more complex tasks like _[sequencing](*https://rubadub.co.uk/products/moog-labyrinth-parallel-generative-analog-sequencer)_. Your modular synthesizer, like a pedal board, represents a *signal chain*.
 
@@ -64,7 +64,7 @@ That doesn’t really look, or feel, like a pedal board—or a modular synthesiz
 </audio-blam>
 ```
 
-![A flow diagram for a signal chain. An instrument on the left points to a chain element, which groups a gain and pan effect. Finally, the chain is connected to two speakers, indicating the output.]({{site.basedir}}/static/images/illustrations/signal-chains2.svg)
+![A flow diagram for a signal chain. An instrument on the left points to a chain element, which groups a gain and pan effect. Finally, the chain is connected to two speakers, indicating the output.]({{site.basedircdn}}/static/images/illustrations/signal-chains2.svg)
 
 (The [“Getting Absolutely Panned”]({{site.basedir}}/examples/02-getting-absolutely-panned) example includes `<gain-blam>` and `<pan-blam>` elements, with `<dial-blam>` elements to control each.)
 
@@ -118,7 +118,7 @@ In practice, this means you can create *many-to-one* relationships. For example,
 </chain-blam>
 ```
 
-![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedir}}/static/images/illustrations/signal-chains3.svg)
+![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedircdn}}/static/images/illustrations/signal-chains3.svg)
 
 [“A Light Lo-fi Listen With LFOs”]({{site.basedir}}/examples/06-a-light-lo-fi-listen-with-lfos) uses multiple signal chains. The `<dial-blam>` labelled “cutoff” controls a `<filter-blam>` in the `id="bus"` chain. You can hear the frequency change applying to all the instruments of the generative composition.
 

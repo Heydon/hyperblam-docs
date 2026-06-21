@@ -135,7 +135,7 @@ elements:
 
 {% renderTemplate "md" %}
 
-There’s no reason why two or more instruments (`<pad-blam>` elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit `bank` prop, pointing to the `<bank-blam>`’s `id`.
+There’s no reason why two or more instruments (`<pads-blam>` elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit `bank` prop, pointing to the `<bank-blam>`’s `id`.
 
 This example uses 3 tiers of chaining. Some chains connect direct with the `bus` chain and some go via a `plate` chain, for adding [plate reverb](https://www.izotope.com/community/blog/plate-reverb). This saves loading the plate impulse response twice.
 

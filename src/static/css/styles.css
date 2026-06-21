@@ -288,22 +288,8 @@ hr {
   border: 0;
 }
 
-@keyframes outline {
-  0% {
-    outline: 0 solid;
-  }
-  50% {
-    outline: var(--s-xs) solid; 
-    outline-offset: 0;
-  }
-  100% {
-    outline: 0 solid;
-    outline-offset: var(--s-xs);
-  }
-}
-
 .l-card:has(a):hover, .l-card:focus-within {
-  animation: outline 0.666s linear infinite;
+  outline: 0.25rem solid; 
 }
 
 p a:hover img,

@@ -63,6 +63,11 @@ module.exports = async function(eleventyConfig) {
     html: true,
   });
 
+  eleventyConfig.addFilter('mapDate', value => { 
+    let dateObject = new Date(value);
+    return dateObject.toISOString();
+  });
+
   eleventyConfig.addFilter('md', content => {
     return content ? md.render(content) : '';
   });

@@ -20,10 +20,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -108,10 +108,10 @@
 </chain-blam>
 <notes-blam choke="" out="bus" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/bass/01.mp3" root="A1"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/bass/03.mp3" root="E2"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/bass/04.mp3" root="A2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/04.mp3" root="A2"></sample-blam>
   </bank-blam>
 </notes-blam>
 <tap-blam id="transport" to="notes-blam" prop="play">
@@ -140,15 +140,15 @@
 <p>The <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> element isn’t especially useful for creating a melodic part like a bassline. Instead, I want something that controls the pitch of each sample’s playback. The <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> element does just that.</p>
 <pre><code class="language-html">&lt;notes-blam choke out="bus" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2"&gt;
   &lt;bank-blam&gt;
-    &lt;sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"&gt;&lt;/sample-blam&gt;
-    &lt;sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"&gt;&lt;/sample-blam&gt;
-    &lt;sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"&gt;&lt;/sample-blam&gt;
-    &lt;sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="{{site.basedircdn}}/static/sounds/bass/03.mp3" root="E2"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="{{site.basedircdn}}/static/sounds/bass/04.mp3" root="A2"&gt;&lt;/sample-blam&gt;
   &lt;/bank-blam&gt;
 &lt;/notes-blam&gt;
 </code></pre>
 <p>Each <code><a href="/elements/sample">&lt;sample-blam&gt;</a></code> element has a <code>root</code> property. This signifies the natural pitch/tuning of the sample itself. Without this, <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> cannot calculate pitch changes accurately.</p>
-<pre><code class="language-html">&lt;sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"&gt;&lt;/sample-blam&gt;
+<pre><code class="language-html">&lt;sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"&gt;&lt;/sample-blam&gt;
 </code></pre>
 <p>I’ve supplied samples representing different notes only for <em>tonal variety</em>: the <a href="https://en.wikipedia.org/wiki/Timbre">timbre</a> of notes changes depending where they are played on the fretboard. Because <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> alters pitch <em>and</em> randomizes sample selection for each note played, even two of the same note played in succession will sound different. Just as they would when played live on a bass guitar.</p>
 <p>The <code>notes</code> prop defines a set of allowed notes, which will be chosen at random. I’ve chosen some notes from the <a href="https://en.wikipedia.org/wiki/Pentatonic_scale#Minor_pentatonic_scale">minor pentatonic</a> scale, with an added <a href="https://en.wikipedia.org/wiki/Tritone">tritone</a> (<strong>D#2</strong>) for extra evil.</p>

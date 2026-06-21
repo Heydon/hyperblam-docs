@@ -36,7 +36,7 @@ elements:
 </chain-blam>
 <pads-blam id="piano" gain="0.7" choke>
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/piano.mp3" reverse></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/piano.mp3" reverse></sample-blam>
   </bank-blam>
   <chain-blam out="bus">
     <reverb-blam mix="0.125">
@@ -54,22 +54,22 @@ elements:
 </pads-blam>
 <pads-blam id="kick" out="bus">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/kick-01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/kick-02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/kick-03.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/kick-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/kick-02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/kick-03.mp3"></sample-blam>
   </bank-blam>
 </pads-blam>
 <pads-blam id="snare" out="bus">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/snare-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-400~400"></blam-blam>
   <blam-blam prop="length" value="1|1|1|0.25|0.125|0.05"></blam-blam>
 </pads-blam>
 <pads-blam id="tom">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/tom.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/tom.mp3"></sample-blam>
   </bank-blam>
   <chain-blam out="bus">
     <pan-blam pan="0">
@@ -85,14 +85,14 @@ elements:
 </pads-blam>
 <pads-blam id="pluck" gain="1.5">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-02.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-03.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-04.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-05.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-06.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-07.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/pluck-08.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-03.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-04.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-05.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-06.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-07.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-08.mp3"></sample-blam>
   </bank-blam>
   <chain-blam out="bus">
     <filter-blam type="highpass" freq="500">

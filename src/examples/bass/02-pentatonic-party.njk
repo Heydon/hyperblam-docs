@@ -36,10 +36,10 @@ visualiser:
 </chain-blam>
 <notes-blam choke out="bus" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
   </bank-blam>
 </notes-blam>
 <tap-blam id="transport" to="notes-blam" prop="play">
@@ -56,10 +56,10 @@ The `<pads-blam>` element isn’t especially useful for creating a melodic part 
 ```html
 <notes-blam choke out="bus" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/bass/04.mp3" root="A2"></sample-blam>
   </bank-blam>
 </notes-blam>
 ```
@@ -67,7 +67,7 @@ The `<pads-blam>` element isn’t especially useful for creating a melodic part 
 Each `<sample-blam>` element has a `root` property. This signifies the natural pitch/tuning of the sample itself. Without this, `<notes-blam>` cannot calculate pitch changes accurately. 
 
 ```html
-<sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+<sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
 ```
   
 I’ve supplied samples representing different notes only for _tonal variety_: the [timbre](https://en.wikipedia.org/wiki/Timbre) of notes changes depending where they are played on the fretboard. Because `<notes-blam>` alters pitch _and_ randomizes sample selection for each note played, even two of the same note played in succession will sound different. Just as they would when played live on a bass guitar.

@@ -25,7 +25,7 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <reverb-blam mix="0.3">
-    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
   </reverb-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
@@ -37,30 +37,30 @@ elements:
 <sequencer-blam bpm="90" id="transport" swing>
   <pads-blam id="hat" choke="0.05" out="drums">
     <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     </bank-blam>
     <blam-blam prop="detune" value="-200~200"></blam-blam>
   </pads-blam>
   <pads-blam id="kick" out="drums">
     <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
     </bank-blam>
   </pads-blam>
   <pads-blam id="snare" out="drums">
     <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
     </bank-blam>
     <blam-blam prop="detune" value="-500~200"></blam-blam>
   </pads-blam>
   <pads-blam id="snareSoft" out="drums">
     <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
     </bank-blam>
   </pads-blam>
   <track-blam id="hatTrack" to="#hat" chance="0.9">

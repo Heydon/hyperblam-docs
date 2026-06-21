@@ -105,7 +105,7 @@
       
 <chain-blam id="bus">
   <reverb-blam id="spring" mix="0.25">
-    <sample-blam src="https://hyperblam.how/static/sounds/IRs/spring.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/IRs/spring.mp3"></sample-blam>
   </reverb-blam>
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
@@ -115,14 +115,14 @@
       <filter-blam freq="150"></filter-blam>
     </chain-blam>
     <bank-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/kit/kick/01.mp3"></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/kit/kick/02.mp3"></sample-blam>
+      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit/kick/01.mp3"></sample-blam>
+      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit/kick/02.mp3"></sample-blam>
     </bank-blam>    
   </pads-blam>
   <pads-blam id="guitar" gain="2">
     <bank-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/guitar/120bpm/01.mp3"></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/guitar/120bpm/02.mp3"></sample-blam>
+      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/guitar/120bpm/01.mp3"></sample-blam>
+      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/guitar/120bpm/02.mp3"></sample-blam>
     </bank-blam>
     <chain-blam out="bus">
       <phaser-blam beats="5" center="5000" depth="4000"></phaser-blam>
@@ -169,7 +169,7 @@
 <p>How about some psychedelic sadness?</p>
 <p>Samples of two bars of finger-plucked guitar cycle endlessly while a <code><a href="/elements/filter">&lt;filter-blam&gt;</a></code> of <code>type="bandpass"</code> sweeps between lighter and darker frequencies. A spring reverb is added via <code><a href="/elements/reverb">&lt;reverb-blam&gt;</a></code> for depth.</p>
 <pre><code>&lt;reverb-blam id="spring" mix="0.25"&gt;
-  &lt;sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"&gt;&lt;/sample-blam&gt;
+  &lt;sample-blam src="{{site.basedircdn}}/static/sounds/IRs/spring.mp3"&gt;&lt;/sample-blam&gt;
 &lt;/reverb-blam&gt;
 </code></pre>
 <p>To emulate the unsteady motion of a foot operating a <a href="https://en.wikipedia.org/wiki/Wah-wah_pedal">wah pedal</a>, a <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> fluctuates the gain of the <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code>.</p>

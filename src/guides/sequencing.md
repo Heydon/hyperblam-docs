@@ -149,8 +149,8 @@ For starters, it is affecting both the `length` and `detune` values of the elect
 ```html
 <pads-blam id="snare" out="bus">
   <bank-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-01.mp3"></sample-blam>
-    <sample-blam src="{{site.basedir}}/static/sounds/minimal/snare-02.mp3"></sample-blam>
+    <sample-blam src="/sounds/minimal/snare-01.mp3"></sample-blam>
+    <sample-blam src="/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-400|0|0|400|900"></blam-blam>
   <blam-blam prop="length" value="1|1|1|0.25|0.125"></blam-blam>

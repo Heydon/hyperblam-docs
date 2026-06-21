@@ -25,7 +25,7 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <reverb-blam id="spring" mix="0.25">
-    <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/IRs/spring.mp3"></sample-blam>
   </reverb-blam>
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
@@ -35,14 +35,14 @@ elements:
       <filter-blam freq="150"></filter-blam>
     </chain-blam>
     <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit/kick/01.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/kit/kick/02.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit/kick/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/kit/kick/02.mp3"></sample-blam>
     </bank-blam>    
   </pads-blam>
   <pads-blam id="guitar" gain="2">
     <bank-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/guitar/120bpm/01.mp3"></sample-blam>
-      <sample-blam src="{{site.basedir}}/static/sounds/guitar/120bpm/02.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/guitar/120bpm/01.mp3"></sample-blam>
+      <sample-blam src="{{site.basedircdn}}/static/sounds/guitar/120bpm/02.mp3"></sample-blam>
     </bank-blam>
     <chain-blam out="bus">
       <phaser-blam beats="5" center="5000" depth="4000"></phaser-blam>
@@ -83,7 +83,7 @@ Samples of two bars of finger-plucked guitar cycle endlessly while a `<filter-bl
 
 ```
 <reverb-blam id="spring" mix="0.25">
-  <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
+  <sample-blam src="{{site.basedircdn}}/static/sounds/IRs/spring.mp3"></sample-blam>
 </reverb-blam>
 ```
 

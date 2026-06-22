@@ -28,7 +28,7 @@
 }
 
 audio {
-  filter: grayscale(1) contrast(100);
+  filter: grayscale(1);
 }
 
 :where(ol, ul):not([class]) {

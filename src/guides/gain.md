@@ -39,7 +39,7 @@ A lowish gain value, like `0.5` gives noticeably diminishing returns. This appro
 </echo-blam>
 ```
 
-The [“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/06-a-light-lo-fi-listen-with-lfos/) example uses an `<echo-blam>` for the plucked, guitar-like instrument.
+The [“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/08-a-light-lo-fi-listen-with-lfos/) example uses an `<echo-blam>` for the plucked, guitar-like instrument.
 
 Giving the echo effect’s gain (often labeled “feedback” in a commercial unit) a value approaching `1` causes it to go into a state called *self-oscillation*. In this state, echos compound and get louder, ultimately leading to *distortion*.
 

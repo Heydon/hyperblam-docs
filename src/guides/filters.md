@@ -30,7 +30,7 @@ Lowpass is the most common and useful *single band* filter, so it’s the defaul
 </filter-blam>
 ```
 
-The papery, creaky thump of a kick drum sample can be transformed into a soft, dull throb more suitable for EDM. In the [“Wah, I’m Sad”]({{site.basedir}}/examples/wah-im-sad/) example, I use `150Hz`:
+The papery, creaky thump of a kick drum sample can be transformed into a soft, dull throb more suitable for EDM. In the [“Wah, I’m Sad”]({{site.basedir}}/examples/wah-Im-sad/) example, I use `150Hz`:
 
 ```html
 <filter-blam
@@ -47,7 +47,7 @@ The iconic *wah-wah* effect prized by guitarists like Jimi Hendrix uses a *bandp
 
 It sounds like a baby going “wah” because it’s a kind of _spectral glide_, shifting the perceived vowel sound.
 
-You can emulate this effect in **HYPERBLAM** by applying an LFO to the bandpass filter. There’s a whole [guide on LFOs]({{site.basedir}}/guides/LFOs/). In this case, an LFO emulates Jimi Hendrix’s foot, rocking back and forth to change the frequency band’s position over time. See [“Wah, I’m Sad”]({{site.basedir}}/examples/wah-im-sad/) for an implementation.
+You can emulate this effect in **HYPERBLAM** by applying an LFO to the bandpass filter. There’s a whole [guide on LFOs]({{site.basedir}}/guides/LFOs/). In this case, an LFO emulates Jimi Hendrix’s foot, rocking back and forth to change the frequency band’s position over time. See [“Wah, I’m Sad”]({{site.basedir}}/examples/wah-Im-sad/) for an implementation.
 
 ```html
 <filter-blam type="bandpass" freq="850" q="3">

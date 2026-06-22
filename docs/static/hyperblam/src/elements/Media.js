@@ -5,10 +5,11 @@ class Media extends Base {
     this.mediaElem = this.element ? document.querySelector(this.element) : this.querySelector('audio, video');
 
     this.mediaElem.addEventListener('canplaythrough', () => {
-      this.fire('blamsource', {}, this, true);   
+      this.fire('blamsource', {}, this, true);
     });
 
     this.mediaElem.addEventListener('play', () => {
+      this.context().resume();
       this.fire('blam', {}, this);
       this.fire('blamplay', {}, this);
     }); 
@@ -19,7 +20,6 @@ class Media extends Base {
 
     this.source = this.context().createMediaElementSource(this.mediaElem);
     this.sourceSrc = this.mediaElem.src;
-    this.mediaElem.removeAttribute('src');
     this.mediaElem.setAttribute('src', this.sourceSrc);
 
     this.outElem = this.getOut();

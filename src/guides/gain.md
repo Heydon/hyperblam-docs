@@ -33,7 +33,7 @@ A lowish gain value, like `0.5` gives noticeably diminishing returns. This appro
 
 ```html
 <echo-blam 
-  feeback="0.5" 
+  feedback="0.5" 
   cutoff="2000"
 >
 </echo-blam>

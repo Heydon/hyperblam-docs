@@ -160,7 +160,7 @@
 <p>Set up to alternate between values of <code>0</code> and <code>1</code>, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done <em>discretely</em>—not <em>continuously</em>. Computers only deal in discrete numbers, you see.</p>
 <figure>
 <p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs4.svg" alt="A sine wave labeled continuous with individual lines representing discrete sampling points." loading="lazy"></p>
-  <figcaption>The series of “pins” representing discrete sampling points forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
+  <figcaption>The series of “pins” representing discrete sampling points<br> forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
 </figure>
 <p>To emulate <em>downsampling</em>, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In <code>beats</code>, we might choose a value like <code>0.001</code></p>
 <pre><code class="language-html">&lt;lfo-blam 
@@ -182,6 +182,11 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFO_prop.svg" alt="Two propellors. One spins slowly and you can still see its propellor shape. The other spins rapidly and forms a circular shape." loading="lazy"></p>
   <figcaption>The term <em>waveshaper</em> is usually preserved for a method of distortion. But we are literally shaping a wave here. Plus any augmentation of a wave’s shape is a <em>de facto</em> form of distortion.</figcaption>
 </figure>
+<h2 id="worn-tape-emulation">Worn tape emulation</h2>
+<p>Poorly maintain analog tape has very unstable frequency reproduction, due to <a href="https://babyaud.io/blog/wow-and-flutter">“wow” and “flutter”</a>. It’s something weirdly pleasing to my ear.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs5.svg" alt="A cassette tape with tape spooled out and looking chewed up. One wheel is labelled as “irregular rotation speed: wheels struggling to turn” and the tape itself as “more frequent fluctuations: tape chewed up in places”" loading="lazy"></p>
+<p>The <a href="https://hyperblam.how/examples/07-tape-emulation">“Tape Emulation”</a> example uses multiple LFOs, manipulated semi-randomly using event-based <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> elements, to achieve a wobbly, fluttery lo-fi sound. More details under “INFO” on that page.</p>
+
       </main>
     
     

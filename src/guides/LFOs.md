@@ -110,7 +110,7 @@ Set up to alternate between values of `0` and `1`, our square wave tremolo alrea
 
 ![A sine wave labeled continuous with individual lines representing discrete sampling points.]({{site.basedircdn}}/static/images/illustrations/LFOs4.svg)
 
-  <figcaption>The series of “pins” representing discrete sampling points forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
+  <figcaption>The series of “pins” representing discrete sampling points<br> forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
 </figure>
 
 To emulate *downsampling*, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In `beats`, we might choose a value like `0.001`
@@ -145,3 +145,11 @@ It makes me think of the propellor on an airplane. At a slow rate of rotation, i
 
   <figcaption>The term <em>waveshaper</em> is usually preserved for a method of distortion. But we are literally shaping a wave here. Plus any augmentation of a wave’s shape is a <em>de facto</em> form of distortion.</figcaption>
 </figure>
+
+## Worn tape emulation
+
+Poorly maintain analog tape has very unstable frequency reproduction, due to [“wow” and “flutter”](https://babyaud.io/blog/wow-and-flutter). It’s something weirdly pleasing to my ear.
+
+![A cassette tape with tape spooled out and looking chewed up. One wheel is labelled as “irregular rotation speed: wheels struggling to turn” and the tape itself as “more frequent fluctuations: tape chewed up in places”]({{site.basedircdn}}/static/images/illustrations/LFOs5.svg)
+
+The [“Tape Emulation”]({{site.basedir}}/examples/07-tape-emulation) example uses multiple LFOs, manipulated semi-randomly using event-based `<blam-blam>` elements, to achieve a wobbly, fluttery lo-fi sound. More details under “INFO” on that page.

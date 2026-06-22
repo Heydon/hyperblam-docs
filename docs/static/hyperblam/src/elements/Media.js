@@ -9,13 +9,12 @@ class Media extends Base {
     this.mediaElem = this.element ? document.querySelector(this.element) : this.querySelector('audio, video');
     this.mediaElem.crossOrigin = 'anonymous';
 
-    this.mediaElem.addEventListener('canplaythrough', () => {
-      this.onSource();
-    });
-
     if (this.mediaElem.readyState > 3) {
       this.onSource();
     }
+
+    this.mediaElem.addEventListener('canplaythrough', this.onSource.bind(this), { once: true });
+    this.mediaElem.addEventListener('canplay', this.onSource.bind(this), { once: true });
 
     this.mediaElem.addEventListener('play', () => {
       this.context().resume();

@@ -1,13 +1,21 @@
 import { Base } from '../primitives/Base.js';
 
 class Media extends Base {
+  onSource() {
+    this.fire('blamsource', {}, this, true);
+  }
+
   onblamready() {
     this.mediaElem = this.element ? document.querySelector(this.element) : this.querySelector('audio, video');
     this.mediaElem.crossOrigin = 'anonymous';
 
     this.mediaElem.addEventListener('canplaythrough', () => {
-      this.fire('blamsource', {}, this, true);
+      this.onSource();
     });
+
+    if (this.mediaElem.readyState > 3) {
+      this.onSource();
+    }
 
     this.mediaElem.addEventListener('play', () => {
       this.context().resume();

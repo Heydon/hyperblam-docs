@@ -32,7 +32,6 @@ class Switch extends Set {
       value = event.target.checked;
     } else {
       value = event.target.checked ? this.value : this.initial;
-      console.log(value);
     }
     super.handle(event, value);
   }

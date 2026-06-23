@@ -446,6 +446,7 @@ p a:hover img,
 
 .u-fit video {
   box-shadow: inset  0 0 0 3rem var(--color-back);
+  object-fit: fill;
 }
 
 .u-list-inline {

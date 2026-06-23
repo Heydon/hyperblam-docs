@@ -181,7 +181,7 @@ Also, be sure to look inside `<sequencer-blam>` where I’ve written the composi
 <kbd-blam to="#tom" prop="play" key="1"></kbd-blam>
 <kbd-blam to="#snare" prop="play" key="2"></kbd-blam>
 <kbd-blam to="#pluck" prop="play" key="3"></kbd-blam>
-<watch-blam aria-hidden="true" from="audio-blam *:not(bands-blam)" to="log" additive bypass>
+<watch-blam hidden from="audio-blam *:not(bands-blam)" to="#log" additive bypass>
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>
 <blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once></blam-blam>

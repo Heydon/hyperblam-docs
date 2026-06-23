@@ -16,7 +16,6 @@ class Audio extends WithParams {
   onblamready() {
     this.sourceElems = [...this.querySelectorAll('sample-blam, media-blam > audio, media-blam > video')];
     if (this.sourceElems.length < 1) {
-      console.log('< 1');
       this.fire('blamsources', {}, this, true);
       return;
     }

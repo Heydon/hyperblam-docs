@@ -227,8 +227,10 @@
 
     </div>
     <div role="progressbar" class="l-frame__framed l-loading">
-      loading<span class="u-flash">...</span> 
-      <log-blam from="sample-blam" event="blamsource" prop="file"></log-blam>
+      <span id="samples">installing</span><span class="u-flash">...</span>
+      <log-blam from="sample-blam" to="#samples" event="blamsource" hidden="">
+        sampling [[file]]
+      </log-blam>
     </div>
   </main>
   <dialog>
@@ -314,7 +316,7 @@
     <input type="checkbox">
   </label>
 </switch-blam>
-<watch-blam aria-hidden="true" from="audio-blam *:not(bands-blam)" to="log" additive="" bypass="">
+<watch-blam hidden="" from="audio-blam *:not(bands-blam)" to="#log" additive="" bypass="">
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>
 <blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once=""></blam-blam>
@@ -323,10 +325,10 @@
   </div>
   <nav class="l-cluster" aria-label="more examples">
     
-      <a class="u-font-special" href="https://hyperblam.how/examples/" aria-label="next example">index</a>      
+      <a class="u-font-special" href="/examples/wah-Im-sad/" aria-label="previous example">← prev</a>
     
     
-      <a class="u-font-special" href="https://hyperblam.how/examples/radioactive-orb/" aria-label="next example">next →</a>
+      <a class="u-font-special" href="https://hyperblam.how/examples/" aria-label="next example">index</a>
     
   </nav>
 </footer>

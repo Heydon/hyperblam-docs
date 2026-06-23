@@ -125,6 +125,10 @@ class Handle extends Base {
 		this.setAttribute('chance', value);
   }
 
+  connectedCallback() {
+    this.listen();
+  }
+
   disconnectedCallback() {
     this.unlisten();
   }

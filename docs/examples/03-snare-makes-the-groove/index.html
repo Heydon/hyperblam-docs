@@ -149,8 +149,10 @@
 
     </div>
     <div role="progressbar" class="l-frame__framed l-loading">
-      loading<span class="u-flash">...</span> 
-      <log-blam from="sample-blam" event="blamsource" prop="file"></log-blam>
+      <span id="samples">installing</span><span class="u-flash">...</span>
+      <log-blam from="sample-blam" to="#samples" event="blamsource" hidden="">
+        sampling [[file]]
+      </log-blam>
     </div>
   </main>
   <dialog>

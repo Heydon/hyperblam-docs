@@ -1,10 +1,15 @@
 import { Handle } from './Handle.js';
 
 class Template extends Handle {
+  constructor() {
+    super();
+    this.hidden = true;
+    this.count = 0;
+  }
+
   onblamready() {
     this.setToFrom();
     this.init();
-    this.count = 0
   }
 
   init() {
@@ -19,20 +24,14 @@ class Template extends Handle {
     });
     if (this.additive) {
       if (this.count >= this.max) {
-        this.toElem.innerHTML = '';
+        this.toElems[0].innerHTML = '';
         this.count = 0;
       }
-      this.toElem.innerHTML += interpolated;
+      this.toElems[0].innerHTML += interpolated;
     } else {
-      this.toElem.innerHTML = interpolated;
+      this.toElems[0].innerHTML = interpolated;
     }
     this.additive && this.count++;
-  }
-
-  setToFrom() {
-    this.allElems = this.from ? [...document.querySelectorAll(this.from)] : this.defaultFrom();
-    this.fromElems = this.allElems.filter(elem => elem.nodeName.includes('-BLAM'));
-    this.toElem = this.to ? document.getElementById(this.to) : this.defaultTo(); 
   }
 
   get additive() {

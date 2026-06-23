@@ -1892,7 +1892,7 @@
       {
         "name": "to",
         "type": "string",
-        "description": "The `id` of the element to appended templated data to. If not set (`null`), it defaults to the Template-based element itself.",
+        "description": "A selector for the element to which templated data will be appended. If not set (`null`), it defaults to the **Template**-based element itself.",
         "default": "null"
       },
       {

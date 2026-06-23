@@ -145,8 +145,10 @@
 
     </div>
     <div role="progressbar" class="l-frame__framed l-loading">
-      loading<span class="u-flash">...</span> 
-      <log-blam from="sample-blam" event="blamsource" prop="file"></log-blam>
+      <span id="samples">installing</span><span class="u-flash">...</span>
+      <log-blam from="sample-blam" to="#samples" event="blamsource" hidden="">
+        sampling [[file]]
+      </log-blam>
     </div>
   </main>
   <dialog>
@@ -193,7 +195,7 @@
       <a class="u-font-special" href="/examples/05-babys-first-blam/" aria-label="previous example">← prev</a>
     
     
-      <a class="u-font-special" href="https://hyperblam.how/examples/08-a-light-lo-fi-listen-with-lfos/" aria-label="next example">next →</a>
+      <a class="u-font-special" href="https://hyperblam.how/examples/09-hopeless-horror-hole/" aria-label="next example">next →</a>
     
   </nav>
 </footer>

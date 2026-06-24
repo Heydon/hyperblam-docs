@@ -18,7 +18,7 @@ The code for [**HYPERBLAM** lives here](https://git.gay/heydon/hyperblam) on **g
     - **Primitives:** Some classes that some HTML elements are based on
     - **Tools:** Some little helper scripts
 2. A minified version of that code, under **/dist** (including a [zip archive](https://git.gay/heydon/hyperblam/raw/branch/main/dist/hyperblam.zip)).
-3. The **/api** documentation, explaining how to use everything (and prettified into the [elements pages](http://localhost:8080/elements/)).
+3. The **/api** documentation, explaining how to use everything (and prettified into the [elements pages]({{site.basedir}}/elements)).
 
 ![Diagram showing how the Hyperblam elements and the API docs arrive at this website. Hyperblam itself is used in the example pages and the API docs make up the elements pages.]({{site.basedircdn}}/static/images/illustrations/get-started2.svg)
 

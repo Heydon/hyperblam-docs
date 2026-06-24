@@ -11,10 +11,9 @@ class Media extends Base {
 
     if (this.mediaElem.readyState > 3) {
       this.onSource();
+    } else {
+      this.mediaElem.addEventListener('canplaythrough', this.onSource.bind(this));
     }
-
-    this.mediaElem.addEventListener('canplaythrough', this.onSource.bind(this), { once: true });
-    this.mediaElem.addEventListener('canplay', this.onSource.bind(this), { once: true });
 
     this.mediaElem.addEventListener('play', () => {
       this.context().resume();

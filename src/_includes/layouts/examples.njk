@@ -10,7 +10,7 @@
         <h2>{{ group.title }}</h2>
         {{ group.summary | md | safe }}
         <ul class="l-examples">
-          {% for post in collections[group.tags] %}
+          {% for post in collections[group.tags] | sort(attribute='fileSlug') %}
             <li>
               {% if not post.data.unnumbered %}{{ loop.index }}. {% endif %}
               <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>

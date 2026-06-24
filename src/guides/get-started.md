@@ -27,9 +27,10 @@ The code for [**HYPERBLAM** lives here](https://git.gay/heydon/hyperblam) on **g
 To start with, you need to do **4 things**:
 
 1. Grab and unzip the [**HYPERBLAM** code](https://git.gay/heydon/hyperblam/raw/branch/main/dist/hyperblam.zip)  (or clone the [repository itself](https://git.gay/heydon/hyperblam))
-2. Grab some samples
+2. Grab some [samples](https://github.com/Heydon/hyperblam-docs/tree/main/src/static/sounds)
 3. Make a webpage (a file ending in `.html`)
-4. Point the webpage at the `hyperblam.js` file like so:
+4. Get that webpage running on a local server (try something like [Simple Web Server](https://simplewebserver.org/))
+5. Point the webpage at the `hyperblam.js` file like so:
 
 ```html
     <!-- rest of the web page up here ↑ -->

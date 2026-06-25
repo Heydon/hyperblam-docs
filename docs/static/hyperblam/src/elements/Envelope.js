@@ -23,14 +23,14 @@ class Envelope extends Handle {
         return;
       }
       let data = event.detail;
-      let length = event.detail.length;
+      let length = event.detail?.length;
       let time = data.time;
-      let x = this.beats ? this.beat : length;
+      let x = !this.beats && length ? length : this.beat;
       param.cancelScheduledValues(time);
       for (let pair of this.pairs) {
         param.linearRampToValueAtTime(
           pair[0], 
-          time + (Math.min(pair[1] * x, length))
+          time + (Math.min(pair[1] * x, length || 100))
         );
       }
     }

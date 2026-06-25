@@ -49,7 +49,7 @@ class Sampler extends WithParams {
   }
 
   postPlay() {
-    this.length && this.instance && this.instance.gainNode.gain.setTargetAtTime(
+    this.length < 100 && this.instance && this.instance.gainNode.gain.setTargetAtTime(
       0,
       this.time + this.length, 
       this.choke || 0.005
@@ -141,7 +141,7 @@ class Sampler extends WithParams {
 
   get length() {
     let value = this.getAttribute('length');
-		return value ? this.conversions.beats(value) : null;
+		return value ? this.conversions.beats(value) : 100;
 	}
 
 	set length(value) {

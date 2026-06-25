@@ -943,8 +943,8 @@
       {
         "name": "length",
         "type": "number",
-        "default": "null",
-        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects."
+        "default": 100,
+        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over."
       },
       {
         "name": "start",
@@ -1100,8 +1100,8 @@
       {
         "name": "length",
         "type": "number",
-        "default": "null",
-        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects."
+        "default": 100,
+        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over."
       },
       {
         "name": "start",

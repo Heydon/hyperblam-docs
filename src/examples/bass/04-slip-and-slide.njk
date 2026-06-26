@@ -1,5 +1,6 @@
 ---
 title: Slip and slide
+bpm: 100
 elements: 
   - Notes
   - Bank 
@@ -59,7 +60,7 @@ elements:
     <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
   </relay-blam>
 </notes-blam>
-<sequencer-blam bpm="100" id="transport">
+<sequencer-blam id="transport">
   <track-blam to="notes-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>

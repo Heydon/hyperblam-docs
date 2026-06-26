@@ -33,8 +33,7 @@ class Base extends HTMLElement {
   }
 
   get beat() {
-    const bpm = this.closest(`sequencer-blam, audio-blam`).bpm;
-		return 60 / bpm;
+    return 60 / this.closest(`audio-blam`).bpm;
 	}
 
   get quarterBeat() {

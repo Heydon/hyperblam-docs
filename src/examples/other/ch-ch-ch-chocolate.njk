@@ -1,5 +1,6 @@
 ---
 title: Ch-ch-ch-chocolate
+bpm: 94
 video: dancer.mp4
 visualiser:
   count: 12
@@ -35,7 +36,7 @@ elements:
   <saturator-blam mode="4" amount="73" mix="0" lowcut="1000" highcut="8000"></saturator-blam>
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<sequencer-blam bpm="94" id="transport" swing="0.2">
+<sequencer-blam id="transport" swing="0.2">
   <pads-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke>
     <lfo-blam id="wobble" prop="detune" gain="700" beats="0.7"></lfo-blam>
     <blam-blam prop="length" value="0.0625~0.15"></blam-blam>

@@ -1,5 +1,6 @@
 ---
 title: Tape emulation
+bpm: 90
 video: static.mp4
 visualiser:
   count: 12
@@ -48,7 +49,7 @@ elements:
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert bypass></blam-blam>
 </pads-blam>
-<sequencer-blam bpm="90" id="transport" swing>
+<sequencer-blam id="transport" swing>
   <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
     <repeat-blam x="3">

@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-    <title>Make It Fed : HYPERBLAM</title>
+    <title>Dub Club : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -11,15 +11,15 @@
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
-    <meta property="og:title" content="Make It Fed">
+    <meta property="og:title" content="Dub Club">
     <meta property="og:site_name" content="HYPERBLAM">
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -80,16 +80,12 @@
   
     </a>
   </nav>
-  <h1 class="u-font-larger">Make It Fed</h1>
+  <h1 class="u-font-larger">Dub Club</h1>
 </header>
 
     
-<audio-blam>
+<audio-blam bpm="85">
   <main tabindex="-1" class="l-frame">
-    
-    <div class="l-frame__framed u-fit s-playstop" hidden="">
-      <video src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/video/baby.mp4" autoplay="" muted="" loop=""></video>
-    </div>
     
     
       <div class="l-frame__framed u-blend-difference">
@@ -103,126 +99,140 @@
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
     <div class="l-frame__framed">
       
-<chain-blam id="bus">
-  <reverb-blam mix="0.2">
-    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/IRs/room-medium.mp3"></sample-blam>
-  </reverb-blam>
-  <analyser-blam id="analyser"></analyser-blam>
-</chain-blam>
-<chain-blam id="drums" out="bus">
-  <saturator-blam id="crunchy"></saturator-blam>
-  <phaser-blam beats="2" bypass=""></phaser-blam>
-  <echo-blam feedback="0.55" cutoff="5000" beats="0.5" mix="0"></echo-blam>
-</chain-blam>
-<sequencer-blam bpm="90" id="transport" swing="">
-  <pads-blam id="hat" choke="0.05" out="drums">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
-    </bank-blam>
-    <blam-blam prop="detune" value="-200~200"></blam-blam>
-  </pads-blam>
-  <pads-blam id="stab" choke="" gain="0.7">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/mayhem/stab.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/mayhem/stab2.mp3"></sample-blam>
-    </bank-blam>
-    <chain-blam out="bus">
-      <saturator-blam amount="30" lowcut="130"></saturator-blam>
-    </chain-blam>
-    <lfo-blam prop="detune" gain="45" beats="1">
-      <blam-blam prop="beats" value="0.25~1"></blam-blam>
-    </lfo-blam>
-  </pads-blam>
-  <pads-blam id="fdup" gain="1.5" out="bus">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/mayhem/fdup1.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/mayhem/fdup2.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/mayhem/fdup3.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/mayhem/fdup4.mp3"></sample-blam>
-    </bank-blam>
-    <lfo-blam prop="detune" gain="50" beats="5"></lfo-blam>
-  </pads-blam>
-  <pads-blam id="kick" out="drums">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
-    </bank-blam>
-  </pads-blam>
-  <pads-blam id="snare" out="drums">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
-    </bank-blam>
-    <blam-blam prop="detune" value="-500~200"></blam-blam>
-  </pads-blam>
-  <pads-blam id="snareSoft" out="drums">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
-    </bank-blam>
-  </pads-blam>
-  <pads-blam id="violins" out="drums" reverse="0.5">
-    <bank-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/dissonant/violin/01.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/dissonant/violin/02.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/dissonant/violin/03.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/dissonant/violin/05.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/dissonant/violin/08.mp3" reverse=""></sample-blam>
-    </bank-blam>
-    <blam-blam prop="detune" value="-300|900"></blam-blam>
-  </pads-blam>
-  <track-blam class="drum" id="hatTrack" to="#hat" chance="0.9">
-    <bar-blam s="? 0 ? 0 ? ? ? 0"></bar-blam>
-    <bar-blam s="? ? 0 0 ? 0 ?">
-      <blam-blam to="#crunchy" prop="amount" value="25~100"></blam-blam>
-    </bar-blam>
-  </track-blam>
-  <track-blam class="drum" id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
-    <bar-blam s="1 0 2 0 3"></bar-blam>
-    <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
-  </track-blam>
-  <track-blam class="drum" to="#snare" override="kickTrack snareSoftTrack">
-    <bar-blam s="0 0 0 0 ? 0 0 0">
-      <blam-blam to="#crunchy" prop="mode" value="1|1|1|2|3"></blam-blam>
-    </bar-blam>
-    <bar-blam s="0 0 0 0 ? 0 0 ?"></bar-blam>
-  </track-blam>
-  <track-blam to="#stab" override="snareTrack hatTrack" suspend="">
-    <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
-    <repeat-blam x="2">
-      <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam chance="0.35" s="0 0 2 2 0 2 2 0"></bar-blam>
-  </track-blam>
-  <track-blam to="#fdup" suspend="">
-    <repeat-blam x="3">
-      <bar-blam s="3 0 4 0 0 0 0 0"></bar-blam>
-    </repeat-blam>
-    <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
-  </track-blam>
-  <track-blam class="drum" id="snareSoftTrack" to="#snareSoft" chance="0.5">
-    <bar-blam s="0 0 0 0 0 0 ? 0 0 0 ?">
-      <blam-blam to="#crunchy" prop="lowcut" value="50~400"></blam-blam>
-    </bar-blam>
-    <bar-blam s="0 0 0 0 0 0 0 ? ? ?">
-      <blam-blam to="#crunchy" prop="highcut" value="4000~11000"></blam-blam>
-    </bar-blam>
-  </track-blam>
-  <track-blam id="violinsTrack" to="#violins" chance="0.25" suspend="">
-    <bar-blam s="?"></bar-blam>
-  </track-blam>
-</sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round" aria-label="play">
+  <!-- bus! (master signal chain) -->
+  <chain-blam id="bus">
+    <gain-blam id="bits" gain="0.25" bypass="">
+      <lfo-blam type="square" beats="1" prop="gain" gain="0.25">
+        <blam-blam from="#kick" prop="beats" value="0.001~0.003" chance="0.3"></blam-blam>
+      </lfo-blam>
+    </gain-blam>
+    <phaser-blam id="swoosh" center="6000" depth="4000" q="0.5" bypass=""></phaser-blam>
+    <analyser-blam id="analyser"></analyser-blam>
+  </chain-blam>
+
+  <!-- sequencer! -->
+  <sequencer-blam swing="0.25" id="transport">
+    <pads-blam id="organ" bank="organBank" length="0.125|0.333" gain="1.2" out="bus">
+      <blam-blam prop="length" value="0|0.125|0.125"></blam-blam>
+      <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
+    </pads-blam>
+
+    <!-- instruments! -->
+    <pads-blam id="kick" bank="kickBank" out="bus" gain="1.5"></pads-blam>
+    <pads-blam id="hat" bank="hatBank" choke="0.005" gain="0.7">
+      <!-- chain for a single instrument -->
+      <chain-blam out="bus">
+        <pan-blam pan="-0.5"></pan-blam>
+      </chain-blam>
+      <!-- parameter randomization on every trigger -->
+      <blam-blam prop="detune" value="-30~30"></blam-blam>
+    </pads-blam>
+    <pads-blam id="snare" bank="snareBank">
+      <chain-blam out="bus">
+        <echo-blam id="dub" beats="1" cutoff="2500" feedback="0.6">
+          <blam-blam prop="beats" value="0.5|0.25|0.333|0.125|0.0625"></blam-blam>
+        </echo-blam>
+        <pan-blam pan="0.25"></pan-blam>
+      </chain-blam>
+    </pads-blam>
+    <pads-blam id="snareGhost" bank="snareGhostBank" out="bus"></pads-blam>
+    <pads-blam id="cow" bank="cowBank" reverse="0.05" gain="0.7">
+      <chain-blam out="bus">
+        <pan-blam id="ghostPan" pan="0.65"></pan-blam>
+      </chain-blam>
+    </pads-blam>
+    <!-- melodic instrument (no `out`; bypasses bus chain directly to speakers) -->
+    <notes-blam id="bass" bank="bassBank" notes="E2 G2 B2 A#2 E3" choke=""></notes-blam>
+    <!-- 
+      tracks!
+      (with bars setting out triggers)
+      -->
+    <track-blam id="bassTrack" to="#bass" chance="0.9">
+      <bar-blam s="E2 0 0 0 G2 0 E2 B2 0 0 0 E3 0 0 0 0"></bar-blam>
+      <bar-blam s="E2 D2 E2 0 G2 0 E2 B2 0 0 0 E3 0 0 0 0"></bar-blam>
+      <bar-blam s="E2 0 0 0 G2 0 A#2 B2 0 0 0 0 0 E3 0 G2"></bar-blam>
+    </track-blam>    
+      <track-blam id="organTrack" to="#organ" chance="0.2" override="bassTrack">
+      <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
+    </track-blam> 
+    <track-blam id="kickTrack" to="#kick" override="snareGhostTrack" chance="0.75">
+      <bar-blam s="1 0 2 0 0 0 0 3"></bar-blam>
+    </track-blam>
+    <track-blam to="#snare" override="kickTrack">
+      <repeat-blam x="4">
+        <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+      </repeat-blam>
+      <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    </track-blam>
+    <track-blam id="snareGhostTrack" to="#snareGhost" override="snareTrack hatTrack" chance="0.7">
+      <bar-blam s="0 0 0 0 ? 0 ?"></bar-blam>
+      <bar-blam s="? 0 0 ? 0 ? 0"></bar-blam>
+    </track-blam>
+    <track-blam id="hatTrack" to="#hat">
+      <repeat-blam x="5">
+        <bar-blam s="1 0 0 0 2 0 0 3"></bar-blam>
+      </repeat-blam>
+      <bar-blam s="1 2 1 3"></bar-blam>
+      <bar-blam s="1 0 2 0 4 3" fill=""></bar-blam>
+      <bar-blam s="1 0 4 2 0 1 0 3" fill=""></bar-blam>
+    </track-blam>
+    <track-blam id="cowTrack" to="#cow" chance="0">
+      <bar-blam s="?"></bar-blam>
+    </track-blam>
+  </sequencer-blam>
+  <tap-blam to="sequencer-blam" prop="playStop">
+    <button aria-pressed="false" class="u-round" aria-label="play">
   <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
     <path class="on" d="M10 8, 26 16, 10 24z"></path>
-    <path class="off" d="M9 9, 13 9, 13 23, 9 23z M19 9, 23 9, 23 23, 19 23z"></path>
+    <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
-</tap-blam>
+  </tap-blam>
+  <!-- 
+    sample banks! 
+    Grab more samples from https://github.com/Heydon/hyperblam-docs/tree/main/docs/static/sounds.
+    (you’ll need to convert to jsdelivr links)
+    -->
+  <bank-blam id="hatBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-03.mp3"></sample-blam>   
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-04.mp3"></sample-blam> 
+  </bank-blam>
+  <bank-blam id="snareBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-03.mp3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="snareGhostBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-ghost-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-ghost-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-ghost-03.mp3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="kickBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-03.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-04.mp3"></sample-blam>          
+  </bank-blam>
+  <bank-blam id="cowBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/cowbell-01.mp3" reverse=""></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/cowbell-02.mp3" reverse=""></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/cowbell-03.mp3" reverse=""></sample-blam>      
+  </bank-blam>
+  <bank-blam id="bassBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-01.mp3" root="E2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-02.mp3" root="G2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-03.mp3" root="B2"></sample-blam> 
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-04.mp3" root="E3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="organBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/organ-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/organ-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/organ-03.mp3"></sample-blam> 
+  </bank-blam>
+
+
 
     </div>
     <div role="progressbar" class="l-frame__framed l-loading">
@@ -241,7 +251,7 @@
     <div class="l-flow">
       
 
-<p>The beat from the previous example is a good basis for something even more <em>messed</em> up. Some dissonant violin samples, sporadically reversed and pumped through the same distortion modes, sound like guitar feedback in places.</p>
+<p>It’s fun randomizing the echo rate.</p>
 
 
 
@@ -252,47 +262,43 @@
 <footer>
   <div class="l-cluster">
     
-<dial-blam to="audio-blam" prop="bpm">
+
+<dial-blam to="audio-blam" prop="bpm" reverse="">
   <label>
     bpm
-    <input type="range" min="30" max="180" step="1">
-    <display-blam element="audio-blam" prop="bpm" aria-hidden="true"></display-blam>
+    <input type="range" min="60" max="140">
   </label>
 </dial-blam>
-<dial-blam to="echo-blam" prop="mix">
+<switch-blam to="#dub" prop="bypass" reverse="">
   <label>
-    echo
-    <input type="range" min="0" max="1" step="any">
+    dub
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#bits" prop="bypass" reverse="">
+  <label>
+    crush
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#swoosh" prop="bypass" reverse="">
+  <label>
+    phase
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<dial-blam to="#cowTrack" prop="chance">
+  <label>
+    cowbells
+    <input type="range" min="0" max="0.9" step="0.1">
   </label>
 </dial-blam>
-<switch-blam to="phaser-blam" prop="bypass" reverse="">
-  <label>
-    phaser
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="[to='#stab'], [to='#fdup']" prop="suspend" reverse="">
-  <label>
-    f**cked
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#violinsTrack" prop="suspend" reverse="">
-  <label>
-    strings
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to=".drum" prop="suspend" reverse="">
-  <label>
-    drums
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<kbd-blam to="#kick" key="1" prop="play"></kbd-blam>
-<kbd-blam to="#snare" key="2" prop="play"></kbd-blam>
-<kbd-blam to="#snareSoft" key="3" prop="play"></kbd-blam>
-<kbd-blam to="#hat" key="4" prop="play"></kbd-blam>
+<kbd-blam key="1" to="#kick" prop="play"></kbd-blam>
+<kbd-blam key="2" to="#snare" prop="play"></kbd-blam>
+<kbd-blam key="3" to="#hat" prop="play"></kbd-blam>
+<kbd-blam key="4" to="#cow" prop="play"></kbd-blam>
+<kbd-blam key="5" to="#bass" prop="play"></kbd-blam>
+<kbd-blam key="6" to="#organ" prop="play"></kbd-blam>
 <watch-blam hidden="" from="audio-blam *:not(bands-blam)" to="#log" additive="" bypass="">
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>
@@ -301,7 +307,7 @@
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster" aria-label="more examples">
-    <a class="u-font-special" href="https://hyperblam.how/examples/#beatexamples" aria-label="previous example">← back</a>
+    <a class="u-font-special" href="https://hyperblam.how/examples/#otherexamples" aria-label="previous example">← back</a>
   </nav>
 </footer>
 <blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>

@@ -153,11 +153,11 @@ The beat from the previous example is a good basis for something even more _mess
 {% endblock %}
 
 {% block controls %}
-<dial-blam to="sequencer-blam" prop="bpm">
+<dial-blam to="audio-blam" prop="bpm">
   <label>
     bpm
     <input type="range" min="30" max="180" step="1">
-    <display-blam element="sequencer-blam" prop="bpm" aria-hidden="true"></display-blam>
+    <display-blam element="audio-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
 <dial-blam to="echo-blam" prop="mix">

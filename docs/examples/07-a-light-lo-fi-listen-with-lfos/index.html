@@ -84,7 +84,7 @@
 </header>
 
     
-<audio-blam>
+<audio-blam bpm="90">
   <main tabindex="-1" class="l-frame">
     
     
@@ -169,13 +169,13 @@
     <filter-blam type="highpass" freq="500">
       <blam-blam prop="freq" value="100~1500"></blam-blam>
     </filter-blam>
-    <echo-blam beats="0.666"></echo-blam>
+    <echo-blam beats="0.5"></echo-blam>
     <reverb-blam mix="0.25">
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
 </pads-blam>
-<sequencer-blam bpm="90" id="transport" swing="">
+<sequencer-blam id="transport" swing="">
   <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
     <repeat-blam x="7">
@@ -279,12 +279,7 @@
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster" aria-label="more examples">
-    
-      <a class="u-font-special" href="/examples/08-hopeless-horror-hole/" aria-label="previous example">← prev</a>
-    
-    
-      <a class="u-font-special" href="https://hyperblam.how/examples/" aria-label="next example">index</a>
-    
+    <a class="u-font-special" href="https://hyperblam.how/examples/#chainexamples" aria-label="previous example">← back</a>
   </nav>
 </footer>
 <blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>

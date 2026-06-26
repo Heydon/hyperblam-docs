@@ -1,0 +1,217 @@
+---
+title: Dub Club
+bpm: 85
+visualiser:
+  count: 12
+elements: 
+  - Chain 
+  - Analyser 
+  - Sequencer 
+  - Pads 
+  - Notes
+  - Lfo
+  - Blam 
+  - Envelope 
+  - Repeat
+  - Pan
+  - Track 
+  - Bar 
+  - Bank 
+  - Sample 
+  - Tap 
+---
+
+{% set previousPost = collections.other | getPreviousCollectionItem %}
+{% set nextPost = collections.other | getNextCollectionItem %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block video %}
+
+{% endblock %}
+
+{% block audio %}
+  <!-- bus! (master signal chain) -->
+  <chain-blam id="bus">
+    <gain-blam id="bits" gain="0.25" bypass>
+      <lfo-blam type="square" beats="1" prop="gain" gain="0.25">
+        <blam-blam from="#kick" prop="beats" value="0.001~0.003" chance="0.3"></blam-blam>
+      </lfo-blam>
+    </gain-blam>
+    <phaser-blam id="swoosh" center="6000" depth="4000" q="0.5" bypass></phaser-blam>
+    <analyser-blam id="analyser"></analyser-blam>
+  </chain-blam>
+
+  <!-- sequencer! -->
+  <sequencer-blam swing="0.25" id="transport">
+    <pads-blam id="organ" bank="organBank" length="0.125|0.333" gain="1.2" out="bus">
+      <blam-blam prop="length" value="0|0.125|0.125"></blam-blam>
+      <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
+    </pads-blam>
+
+    <!-- instruments! -->
+    <pads-blam id="kick" bank="kickBank" out="bus" gain="1.5"></pads-blam>
+    <pads-blam id="hat" bank="hatBank" choke="0.005" gain="0.7">
+      <!-- chain for a single instrument -->
+      <chain-blam out="bus">
+        <pan-blam pan="-0.5"></pan-blam>
+      </chain-blam>
+      <!-- parameter randomization on every trigger -->
+      <blam-blam prop="detune" value="-30~30"></blam-blam>
+    </pads-blam>
+    <pads-blam id="snare" bank="snareBank">
+      <chain-blam out="bus">
+        <echo-blam id="dub" beats="1" cutoff="2500" feedback="0.6">
+          <blam-blam prop="beats" value="0.5|0.25|0.333|0.125|0.0625"></blam-blam>
+        </echo-blam>
+        <pan-blam pan="0.25"></pan-blam>
+      </chain-blam>
+    </pads-blam>
+    <pads-blam id="snareGhost" bank="snareGhostBank" out="bus"></pads-blam>
+    <pads-blam id="cow" bank="cowBank" reverse="0.05" gain="0.7">
+      <chain-blam out="bus">
+        <pan-blam id="ghostPan" pan="0.65"></pan-blam>
+      </chain-blam>
+    </pads-blam>
+    <!-- melodic instrument (no `out`; bypasses bus chain directly to speakers) -->
+    <notes-blam id="bass" bank="bassBank" notes="E2 G2 B2 A#2 E3" choke></notes-blam>
+    <!-- 
+      tracks!
+      (with bars setting out triggers)
+      -->
+    <track-blam id="bassTrack" to="#bass" chance="0.9">
+      <bar-blam s="E2 0 0 0 G2 0 E2 B2 0 0 0 E3 0 0 0 0"></bar-blam>
+      <bar-blam s="E2 D2 E2 0 G2 0 E2 B2 0 0 0 E3 0 0 0 0"></bar-blam>
+      <bar-blam s="E2 0 0 0 G2 0 A#2 B2 0 0 0 0 0 E3 0 G2"></bar-blam>
+    </track-blam>    
+      <track-blam id="organTrack" to="#organ" chance="0.2" override="bassTrack">
+      <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
+    </track-blam> 
+    <track-blam id="kickTrack" to="#kick" override="snareGhostTrack" chance="0.75">
+      <bar-blam s="1 0 2 0 0 0 0 3"></bar-blam>
+    </track-blam>
+    <track-blam to="#snare" override="kickTrack">
+      <repeat-blam x="4">
+        <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+      </repeat-blam>
+      <bar-blam s="0 0 ? 0 0 0 0 0"></bar-blam>
+    </track-blam>
+    <track-blam id="snareGhostTrack" to="#snareGhost" override="snareTrack hatTrack" chance="0.7">
+      <bar-blam s="0 0 0 0 ? 0 ?"></bar-blam>
+      <bar-blam s="? 0 0 ? 0 ? 0"></bar-blam>
+    </track-blam>
+    <track-blam id="hatTrack" to="#hat">
+      <repeat-blam x="5">
+        <bar-blam s="1 0 0 0 2 0 0 3"></bar-blam>
+      </repeat-blam>
+      <bar-blam s="1 2 1 3"></bar-blam>
+      <bar-blam s="1 0 2 0 4 3" fill></bar-blam>
+      <bar-blam s="1 0 4 2 0 1 0 3" fill></bar-blam>
+    </track-blam>
+    <track-blam id="cowTrack" to="#cow" chance="0">
+      <bar-blam s="?"></bar-blam>
+    </track-blam>
+  </sequencer-blam>
+  <tap-blam to="sequencer-blam" prop="playStop">
+    <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+  </tap-blam>
+  <!-- 
+    sample banks! 
+    Grab more samples from https://github.com/Heydon/hyperblam-docs/tree/main/docs/static/sounds.
+    (you’ll need to convert to jsdelivr links)
+    -->
+  <bank-blam id="hatBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-03.mp3"></sample-blam>   
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/hat-04.mp3"></sample-blam> 
+  </bank-blam>
+  <bank-blam id="snareBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-03.mp3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="snareGhostBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-ghost-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-ghost-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/snare-ghost-03.mp3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="kickBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-03.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/kick-04.mp3"></sample-blam>          
+  </bank-blam>
+  <bank-blam id="cowBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/cowbell-01.mp3" reverse></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/cowbell-02.mp3" reverse></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/cowbell-03.mp3" reverse></sample-blam>      
+  </bank-blam>
+  <bank-blam id="bassBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-01.mp3" root="E2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-02.mp3" root="G2"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-03.mp3" root="B2"></sample-blam> 
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/bass-rasp-04.mp3" root="E3"></sample-blam>
+  </bank-blam>
+  <bank-blam id="organBank">
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/organ-01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/organ-02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/docs/static/sounds/dubbing/organ-03.mp3"></sample-blam> 
+  </bank-blam>
+
+</audio-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+It’s fun randomizing the echo rate. 
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+
+<dial-blam to="audio-blam" prop="bpm" reverse>
+  <label>
+    bpm
+    <input type="range" min="60" max="140">
+  </label>
+</dial-blam>
+<switch-blam to="#dub" prop="bypass" reverse>
+  <label>
+    dub
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#bits" prop="bypass" reverse>
+  <label>
+    crush
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#swoosh" prop="bypass" reverse>
+  <label>
+    phase
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<dial-blam to="#cowTrack" prop="chance">
+  <label>
+    cowbells
+    <input type="range" min="0" max="0.9" step="0.1">
+  </label>
+</dial-blam>
+<kbd-blam key="1" to="#kick" prop="play"></kbd-blam>
+<kbd-blam key="2" to="#snare" prop="play"></kbd-blam>
+<kbd-blam key="3" to="#hat" prop="play"></kbd-blam>
+<kbd-blam key="4" to="#cow" prop="play"></kbd-blam>
+<kbd-blam key="5" to="#bass" prop="play"></kbd-blam>
+<kbd-blam key="6" to="#organ" prop="play"></kbd-blam>
+<watch-blam hidden from="audio-blam *:not(bands-blam)" to="#log" additive bypass>
+  <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
+</watch-blam>
+<blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once></blam-blam>
+{% endblock %}

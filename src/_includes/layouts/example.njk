@@ -11,7 +11,7 @@
 </header>
 {% endblock %}
 {% block main %}
-<audio-blam>
+<audio-blam {% if bpm %}bpm="{{bpm}}"{% endif %}>
   <main tabindex="-1" class="l-frame">
     {% if video %}
     <div class="l-frame__framed u-fit s-playstop" hidden>
@@ -67,16 +67,7 @@
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster" aria-label="more examples">
-    {% if previousPost %}
-      <a class="u-font-special" href="{{ previousPost.url }}" aria-label="previous example">← prev</a>
-    {% else %}
-      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>      
-    {% endif %}
-    {% if nextPost %}
-      <a class="u-font-special" href="{{site.basedir}}{{ nextPost.url }}" aria-label="next example">next →</a>
-    {% else %}
-      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>
-    {% endif %}
+    <a class="u-font-special" href="{{ site.basedir }}/examples/#{{tags[1]}}examples" aria-label="previous example">← back</a>
   </nav>
 </footer>
 <blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>

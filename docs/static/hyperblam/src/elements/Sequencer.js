@@ -54,15 +54,6 @@ class Sequencer extends Base {
     this.playing ? this.stop() : this.play();
   }
 
-  get bpm() {
-    let value = this.getAttribute('bpm');
-		return value ? parseFloat(value) : 120;
-	}
-
-	set bpm(value) {
-		this.setAttribute('bpm', value);
-  }
-
   get swing() {
     let value = this.getAttribute('swing');
     if (value === '') {

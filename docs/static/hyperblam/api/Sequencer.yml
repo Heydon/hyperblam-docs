@@ -3,10 +3,6 @@ category: Sequencing
 defined: true 
 summary:  Schedules future beats in a sequence and alerts subscribing elements.
 props: 
-  - name: bpm 
-    type: number 
-    default: 'null'
-    description: The tempo in beats-per-minute. Overrules the ancestor Audio element’s `bpm` if set.
   - name: scale 
     type: number 
     default: 1

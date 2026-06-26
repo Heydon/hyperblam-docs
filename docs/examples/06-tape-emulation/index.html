@@ -84,7 +84,7 @@
 </header>
 
     
-<audio-blam>
+<audio-blam bpm="90">
   <main tabindex="-1" class="l-frame">
     
     <div class="l-frame__framed u-fit s-playstop" hidden="">
@@ -126,7 +126,7 @@
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert="" bypass=""></blam-blam>
 </pads-blam>
-<sequencer-blam bpm="90" id="transport" swing="">
+<sequencer-blam id="transport" swing="">
   <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
     <repeat-blam x="3">
@@ -191,12 +191,7 @@
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster" aria-label="more examples">
-    
-      <a class="u-font-special" href="/examples/05-babys-first-blam/" aria-label="previous example">← prev</a>
-    
-    
-      <a class="u-font-special" href="https://hyperblam.how/examples/08-hopeless-horror-hole/" aria-label="next example">next →</a>
-    
+    <a class="u-font-special" href="https://hyperblam.how/examples/#chainexamples" aria-label="previous example">← back</a>
   </nav>
 </footer>
 <blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>

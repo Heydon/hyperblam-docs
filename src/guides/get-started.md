@@ -13,7 +13,7 @@ It doesn’t have a complex build or installation process and you can use as muc
     <img src="{{site.basedircdn}}/static/images/sandbox.svg" alt="A bucket and shovel in a pile of sand">
     <div class="l-flow">
         <h2><a href="https://codepen.io/heydon/pen/RNKgMEe" id="sandbox-label">Try the sandbox!</a></h2>
-        <p>Probably the easiest way to get started is opening up <a href="https://codepen.io/heydon/pen/RNKgMEe">the sandbox</a>, hosted on codepen. You get a tune with a lot of samples, different instruments, and effects to mess about with or swap out.</p>
+        <p>Probably the easiest way to get started is opening up <a href="https://codepen.io/heydon/pen/RNKgMEe">the sandbox</a>, hosted on codepen. You get a tune with a lot of samples, different instruments, and effects to try or swap out. Or you can <a href="#installation">install <strong>HYPERBLAM</strong> locally</a>.</p>
     </div>
 </aside>
 
@@ -30,7 +30,7 @@ The code for [**HYPERBLAM** lives here](https://git.gay/heydon/hyperblam) on **g
 
 ![Diagram showing how the Hyperblam elements and the API docs arrive at this website. Hyperblam itself is used in the example pages and the API docs make up the elements pages.]({{site.basedircdn}}/static/images/illustrations/get-started2.svg)
 
-## Installation
+<h2 id="installation" tabindex="-1">Installation</h2>
 
 To start with, you need to do **4 things**:
 

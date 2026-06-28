@@ -42,6 +42,14 @@ Create **pedal boards**, **drum machines**, **sampled instruments**. And don’t
   </li>
 </ul>
 
+<aside class="l-with-sidebar c-sandbox" aria-describedby="sandbox-label">
+    <img src="{{site.basedircdn}}/static/images/sandbox.svg" alt="A bucket and shovel in a pile of sand">
+    <div class="l-flow">
+        <h2><a href="https://codepen.io/heydon/pen/RNKgMEe" id="sandbox-label">Try the sandbox!</a></h2>
+        <p>Probably the easiest way to get started is opening up <a href="https://codepen.io/heydon/pen/RNKgMEe">the sandbox</a>, hosted on codepen. You get a tune with a lot of samples, different instruments, and effects to try or swap out.</p>
+    </div>
+</aside>
+
 <p class="u-note">
   <strong class="u-note__shout">Pretty neat!</strong> Why not take a look at some <a href="/examples">live examples</a> or study the in-depth <a href="/guides">guides</a>.
 </p>

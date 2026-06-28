@@ -9,6 +9,14 @@ It doesn’t have a complex build or installation process and you can use as muc
 
 ---
 
+<aside class="l-with-sidebar c-sandbox" aria-describedby="sandbox-label">
+    <img src="{{site.basedircdn}}/static/images/sandbox.svg" alt="A bucket and shovel in a pile of sand">
+    <div class="l-flow">
+        <h2><a href="https://codepen.io/heydon/pen/RNKgMEe" id="sandbox-label">Try the sandbox!</a></h2>
+        <p>Probably the easiest way to get started is opening up <a href="https://codepen.io/heydon/pen/RNKgMEe">the sandbox</a>, hosted on codepen. You get a tune with a lot of samples, different instruments, and effects to mess about with or swap out.</p>
+    </div>
+</aside>
+
 ## Structure
 
 The code for [**HYPERBLAM** lives here](https://git.gay/heydon/hyperblam) on **git.gay**. It’s quite a small project that consists of:

@@ -18,22 +18,12 @@ class Handle extends Base {
     }
   }
 
-  getNewIndex(prevIndex, arr) {
-    if (arr.length < 2) {
-      return preIndex;
-    }
-    let subset = arr.map((a, i) => i).filter(k => k !== prevIndex);
-    return random.oneOf(subset);
-  }
-
   choose(value) {
     if (value.includes('|')) {
       let values = value.split('|').map(v => this.stringNumBool(v));
-      this.prevIndex = this.getNewIndex(this.prevIndex, values);
-      if (this.id === 'lengthBlam') {
-        console.log(this.prevIndex, values[this.prevIndex]);
-      }
-      return values[this.prevIndex];
+      let result = this.newItem(this.prevValue, values);
+      this.prevValue = result;
+      return result;
     }
     if (value.includes('~')) {
       let values = value.split('~').map(v => parseFloat(v));

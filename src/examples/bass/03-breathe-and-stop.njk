@@ -43,7 +43,7 @@ visualiser:
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
 </chain-blam>
-<notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
+<notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" robin>
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -62,7 +62,7 @@ visualiser:
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam id="transport" to="sequencer-blam" prop="playPause">
+<tap-blam to="sequencer-blam" prop="playPause">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
 </tap-blam>
 {% endblock %}

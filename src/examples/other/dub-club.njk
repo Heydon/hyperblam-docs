@@ -44,8 +44,8 @@ elements:
 
   <!-- sequencer! -->
   <sequencer-blam swing="0.25" id="transport">
-    <pads-blam id="organ" bank="organBank" length="0.125|0.333" gain="1.2" out="bus">
-      <blam-blam prop="length" value="0|0.125|0.125"></blam-blam>
+    <pads-blam id="organ" bank="organBank" length="0.333" gain="1.2" out="bus">
+      <blam-blam id="lengthBlam" prop="length" value="0.25|0.125|0.125"></blam-blam>
       <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
     </pads-blam>
 

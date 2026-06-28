@@ -249,7 +249,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -348,7 +348,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "prop",
@@ -637,7 +637,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -753,7 +753,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -871,7 +871,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -1040,7 +1040,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -1733,7 +1733,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "prop",
@@ -1800,7 +1800,7 @@
         "name": "value",
         "type": "string",
         "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",

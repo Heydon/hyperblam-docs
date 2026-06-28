@@ -74,19 +74,16 @@ class Base extends HTMLElement {
     return elem.conversions?.[name] ? elem.conversions[name](value) : value;
   }
 
-  newItem(discard, keep) {
-    if (keep.length < 2) {
-      return keep[0];
+  newIndex(prevIndex, arr) {
+    if (arr.length < 2) {
+      return prevIndex;
     }
-    let subset = keep.filter(keeper => keeper !== discard);
-    return subset.length ? random.oneOf(subset) : discard;
+    let subset = arr.map((a, i) => i).filter(k => k !== prevIndex);
+    return random.oneOf(subset);
   }
 
-  // ↓ Get next item in array (wrap around if needed)
-  cycle(prevItem, steps) {
-    let prevIndex = prevItem ? steps.indexOf(prevItem) : -1;
-    let nextIndex = steps[prevIndex + 1] ? prevIndex + 1 : 0;
-    return steps[nextIndex];
+  cycle(prevIndex, arr) {
+    return arr[prevIndex + 1] ? prevIndex + 1 : 0;
   }
 
   between(num, low, high) {

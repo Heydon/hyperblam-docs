@@ -13,7 +13,8 @@ class Notes extends Sampler {
       this.sound = null;
       return;
     }
-    this.sound = this.prevSound = this.newItem(this.prevSound, this.bankElem.sounds);
+    this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.sounds);
+    this.sound = this.bankElem.sounds[this.prevIndex];
   }
 
   getNote(note) {
@@ -21,8 +22,8 @@ class Notes extends Sampler {
       if (!this.robin) {
         return random.oneOf(this.notes);
       } else {
-        this.prevNote = this.cycle(this.prevNote, this.notes);
-        return this.prevNote;
+        this.prevNoteIndex = this.cycle(this.prevNoteIndex, this.notes);
+        return this.notes[this.prevNoteIndex];
       }
     }
     return note;

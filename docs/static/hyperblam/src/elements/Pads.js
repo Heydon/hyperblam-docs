@@ -10,10 +10,11 @@ class Pads extends Sampler {
       this.sound = this.bankElem.sounds[cipher - 1];
     } else {
       if (!this.robin) {
-        this.sound = this.prevSound = this.newItem(this.prevSound, this.bankElem.sounds);
+        this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.sounds);
       } else {
-        this.sound = this.prevSound = this.cycle(this.prevSound, this.bankElem.sounds);
-      }      
+        this.prevIndex = this.cycle(this.prevIndex, this.bankElem.sounds);
+      } 
+      this.sound = this.bankElem.sounds[this.prevIndex];
     }
   }
 }

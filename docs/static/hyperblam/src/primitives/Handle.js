@@ -21,9 +21,8 @@ class Handle extends Base {
   choose(value) {
     if (value.includes('|')) {
       let values = value.split('|').map(v => this.stringNumBool(v));
-      let result = this.newItem(this.prevValue, values);
-      this.prevValue = result;
-      return result;
+      this.prevIndex = this.newIndex(this.prevIndex, values);
+      return values[this.prevIndex];
     }
     if (value.includes('~')) {
       let values = value.split('~').map(v => parseFloat(v));

@@ -16,6 +16,8 @@ class Tap extends Set {
         'aria-pressed', 
         !JSON.parse(input.getAttribute('aria-pressed'))
       );
+    } else {
+      this.fire('blam', {}, this);
     }
   }
 }

@@ -5,6 +5,7 @@
   --s-m: 1.5rem;
   --s-l: 2.5rem;
   --s-xl: 3.5rem;
+  --grip: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="%23101010" stroke-width="2" overflow="visible" stroke-linecap="round"><path d="M1 1, 1 15 M8 1, 8 15 M15 1, 15 15"></path></svg>');
   --font: Courier Prime, monospace;
   --font-special: Heydon Caps, cursive;
   --wave-square: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 20"><path fill="none" d="M0 19, 20 19, 20 1, 39 1, 39.5 20.5" stroke="%23EEE" stroke-width="2" stroke-linecap="square"></path></svg>');
@@ -631,42 +632,111 @@ button:active {
   transform: scale(0.95);
 }
 
-[type="range"] { 
-  accent-color: white; 
-  filter: brightness(1000);
-  inline-size: 100%;
-  max-inline-size: 8rem;
+fieldset:has([type="radio"]) {
+  display: flex;
+  align-items: center;
+  border: 0;
+}
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 9rem;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: var(--color-fore);
+  border-radius: 0.25rem;
+  height: 0.5rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -0.5rem;
+  background-color: var(--color-fore);
+  border-radius: 0.25rem;
+  border: 0;
+  box-shadow: 0 0 0 0.2rem var(--color-back);
+  height: 1.5rem;
+  width: 1.5rem;
+  background-image: var(--grip);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: 1px dashed var(--color-fore);
+  outline-offset: 0.125rem;
+}
+
+input[type="range"]::-moz-range-track {
+  background-color: var(--color-fore);
+  border-radius: 0.25rem;
+  height: 0.5rem;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: var(--color-fore);
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 0.2rem var(--color-back);
+  height: 1.5rem;
+  width: 1.5rem;
+  background-image: var(--grip);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: 1px dashed var(--color-fore);
+  outline-offset: 0.125rem;
 }
 
 [type="checkbox"] {
   appearance: none;
+  cursor: pointer;
   position: relative;
-  inline-size: 1.75rem;
-  block-size: 0.5rem;
-  border-radius: 0.125rem;
-  background-color: var(--color-fore);
-  display: flex;
-  align-items: center;
+  background-color: var(--color-back);
+  border-radius: 0.5rem;
+  width: 2.5rem;
+  height: 1.5rem;
+  outline: 0.125rem solid var(--color-fore);
+  outline-offset: -0.333rem;
 }
 
 [type="checkbox"]::before {
   content: '';
   display: inline-block;
-  inline-size: 1rem;
-  block-size: 1rem;
-  border-radius: 100%;
-  border: 3px solid;
-  background-color: var(--color-back);
-  outline: 3px solid var(--color-back);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 0.2rem var(--color-back);
+  background-color: var(--color-fore);
+  position: absolute;
+  background-image: var(--grip);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-[type="checkbox"]:checked {
-  justify-content: flex-end;
+[type="checkbox"]:focus-visible::before {
+  outline: 1px dashed var(--color-fore);
+  outline-offset: 0.125rem;
 }
 
-fieldset:has([type="radio"]) {
-  display: flex;
-  border: 0;
+[type="checkbox"]:checked::before {
+  inset-inline-end: 0;
 }
 
 [type="radio"] {
@@ -674,10 +744,18 @@ fieldset:has([type="radio"]) {
 }
 
 label:has([type="radio"]) {
-  padding: calc(var(--s-xs) / 2) var(--s-xs);
+  padding: calc(var(--s-s) / 2) var(--s-s);
   border: 2px solid var(--color-fore);
   background-color: var(--color-back);
   cursor: pointer;
+}
+
+label:has([type="radio"]):first-of-type {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+label:has([type="radio"]):last-of-type {
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 label:has([type="radio"]) + label {

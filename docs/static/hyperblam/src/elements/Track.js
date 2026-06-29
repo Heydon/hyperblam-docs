@@ -65,7 +65,7 @@ class Track extends Handle {
     return this.barElems[this.indices[this.bar]];
   }
 
-  barBlam() {
+  barBlam(data) {
     this.fire('blam', data, this.getBar());
   }
 

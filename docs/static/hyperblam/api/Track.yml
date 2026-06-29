@@ -21,5 +21,5 @@ props:
     default: false 
     description: Stops the **Track** from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out.
 events: 
-  - name: blam
-    description: Fired whenever the current bar’s current step makes a sound. For a more regular series of events, use the parent **Sequencer’s** blam event instead.
+  - name: blambar
+    description: Fired at the start of each new bar.

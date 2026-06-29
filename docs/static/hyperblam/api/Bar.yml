@@ -16,4 +16,4 @@ props:
     description: Whether to play a fill (a randomized rearrangement of the bar’s pattern).
 events: 
   - name: blam 
-    description: Fired whenever one bar (defined by a child Bar element) ends and another begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element.
+    description: Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element.

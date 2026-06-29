@@ -206,7 +206,7 @@
     "events": [
       {
         "name": "blam",
-        "description": "Fired whenever one bar (defined by a child Bar element) ends and another begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element."
+        "description": "Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element."
       }
     ]
   },
@@ -806,6 +806,14 @@
       {
         "name": "blamsource",
         "description": "Fired when the audio can be played through (proxying the `canplaythrough` event)."
+      },
+      {
+        "name": "blamplay",
+        "description": "Alias for the `<video>` or `<audio>` element’s `play` event."
+      },
+      {
+        "name": "blamstop",
+        "description": "Alias for the `<video>` or `<audio>` element’s `ended` event."
       }
     ]
   },
@@ -1829,8 +1837,8 @@
     ],
     "events": [
       {
-        "name": "blam",
-        "description": "Fired whenever the current bar’s current step makes a sound. For a more regular series of events, use the parent **Sequencer’s** blam event instead."
+        "name": "blambar",
+        "description": "Fired at the start of each new bar."
       }
     ]
   },

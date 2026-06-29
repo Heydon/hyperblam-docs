@@ -16,3 +16,7 @@ props:
 events:
   - name: blamsource
     description: Fired when the audio can be played through (proxying the `canplaythrough` event).
+  - name: blamplay
+    description: Alias for the `<video>` or `<audio>` element’s `play` event.
+  - name: blamstop
+    description: Alias for the `<video>` or `<audio>` element’s `ended` event.

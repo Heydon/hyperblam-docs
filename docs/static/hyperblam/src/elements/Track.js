@@ -66,10 +66,7 @@ class Track extends Handle {
   }
 
   barBlam() {
-    this.fire('blam', { 
-      time: this.time
-    }, 
-    this.getBar());
+    this.fire('blam', data, this.getBar());
   }
 
   handle(event) {
@@ -80,7 +77,9 @@ class Track extends Handle {
     this.time = event.detail.time;
 
     if (this.step > this.getBar().steps.length - 1) {
-      this.barBlam();
+      let data = { time: this.time };
+      this.barBlam(data);
+      this.fire('blambar', data, this);
       this.step = 0;
       this.bar++;
       this.bars++;

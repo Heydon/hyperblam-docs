@@ -58,6 +58,7 @@ a {
 
 kbd {
   border: 2px solid; 
+  border-radius: 0.125em;
   padding: 0.125em 0.5em;
   display: inline-block;
   border-width: 2px 4px 4px 2px;

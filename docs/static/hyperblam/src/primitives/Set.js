@@ -10,18 +10,18 @@ class Set extends Handle {
 
   onblamready() {
     super.onblamready();
-    this.baseValue = this.toElems[0][this.prop];
+    this.baseValues = this.toElems.map(to => to[this.prop]);
   }
 
   handle(event, value) {
     let revert = this.revert && this.reverting;
     value = value !== undefined ? value : this.value;
-    if (revert) {
-      value = this.baseValue;
-    }
-    for (const to of this.toElems) {
+    for (const [i, to] of this.toElems.entries()) {
       if (to[this.prop] === undefined) {
         return;
+      }
+      if (revert) {
+        value = this.baseValues[i];
       }
       let chance = revert ? true : random.chance(this.chance);
       if (chance) {

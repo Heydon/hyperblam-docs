@@ -35,6 +35,22 @@ elements:
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
+<pads-blam id="tom">
+  <chain-blam out="bus">
+    <pan-blam pan="0">
+      <blam-blam prop="pan" value="-1~1"></blam-blam>
+    </pan-blam>
+    <gain-blam gain="0.5">
+      <lfo-blam prop="gain" gain="0.5" beats="0.001">
+        <blam-blam prop="beats" value="0.00025~0.01" ramp="0.25"></blam-blam>
+      </lfo-blam>
+    </gain-blam>
+  </chain-blam>
+  <blam-blam prop="length" value="1|0.25|0.125"></blam-blam>
+  <bank-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/tom.mp3"></sample-blam>
+  </bank-blam>
+</pads-blam>
 <pads-blam id="piano" gain="0.7" choke>
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/piano.mp3" reverse></sample-blam>
@@ -67,22 +83,6 @@ elements:
   </bank-blam>
   <blam-blam prop="detune" value="-400~400"></blam-blam>
   <blam-blam prop="length" value="1|1|1|0.25|0.125|0.05"></blam-blam>
-</pads-blam>
-<pads-blam id="tom">
-  <bank-blam>
-    <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/tom.mp3"></sample-blam>
-  </bank-blam>
-  <chain-blam out="bus">
-    <pan-blam pan="0">
-      <blam-blam prop="pan" value="-1~1"></blam-blam>
-    </pan-blam>
-    <gain-blam gain="0.5">
-      <lfo-blam prop="gain" gain="0.5" beats="0.001">
-        <blam-blam prop="beats" value="0.00025~0.01" ramp="0.25"></blam-blam>
-      </lfo-blam>
-    </gain-blam>
-  </chain-blam>
-  <blam-blam prop="length" value="1|0.25|0.125"></blam-blam>
 </pads-blam>
 <pads-blam id="pluck" gain="1.5">
   <bank-blam>

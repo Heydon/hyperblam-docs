@@ -76,7 +76,7 @@ class Base extends HTMLElement {
 
   newIndex(prevIndex, arr) {
     if (arr.length < 2) {
-      return prevIndex;
+      return 0;
     }
     let subset = arr.map((a, i) => i).filter(k => k !== prevIndex);
     return random.oneOf(subset);

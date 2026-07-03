@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Making HTML Make Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="{{site.basedir}}/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{site.basedircdn}}/static/css/fonts.css"></noscript>
+    <link rel="preload" href="{{site.basedir}}/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{site.basedir}}/static/css/styles.css"></noscript>
+    <link rel="preload" href="{{site.basedir}}/static/css/slides.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{site.basedir}}/static/css/slides.css"></noscript>
+    <link rel="icon" type="image/svg+xml" href="{{site.basedir}}/static/images/favicon.svg" sizes="any">
+    <style>
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+    </style>
+  </head>
+  <body>
+    <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="warp-1" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence type="turbulence" baseFrequency="0.009" id="turbulence" numOctaves="1" result="turbulence" seed="5"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="100" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
+        </filter>
+        <filter id="warp-2" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence type="turbulence" baseFrequency="0.005" id="turbulence" numOctaves="1" result="turbulence" seed="5"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="100" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
+        </filter>
+        <filter id="warp-3" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence type="turbulence" baseFrequency="0.007" id="turbulence" numOctaves="1" result="turbulence" seed="5"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="100" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
+        </filter>
+        <filter id="warp-4" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence type="turbulence" baseFrequency="0.004" id="turbulence" numOctaves="1" result="turbulence" seed="5"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="100" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
+        </filter>
+        <filter id="noise-big-1">
+          <feTurbulence baseFrequency="0.006" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
+        </filter>
+        <filter id="noise-big-2">
+          <feTurbulence baseFrequency="0.008" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" />
+        </filter>
+        <filter id="noise-big-3">
+          <feTurbulence baseFrequency="0.004" numOctaves="3" result="noise" seed="1"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+        </filter>
+        <filter id="noise-1">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+        </filter>
+        <filter id="noise-2">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+        </filter>
+        <filter id="noise-3">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="4"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
+        </filter>
+        <filter id="distort-1">
+          <feTurbulence baseFrequency="0.001 0.1" numOctaves="4"/>
+          <feDisplacementMap in="SourceGraphic" scale="90"/>
+        </filter>
+        <filter id="distort-2">
+          <feTurbulence baseFrequency="0.009 0.3" numOctaves="2"/>
+          <feDisplacementMap in="SourceGraphic" scale="110"/>
+        </filter>
+        <filter id="distort-3">
+          <feTurbulence baseFrequency="0.003 0.1" numOctaves="16"/>
+          <feDisplacementMap in="SourceGraphic" scale="200"/>
+        </filter>
+        <filter id="distort-4">
+          <feTurbulence baseFrequency="0.007 0.2" numOctaves="1"/>
+          <feDisplacementMap in="SourceGraphic" scale="100"/>
+        </filter>
+        <filter id="distort-5">
+          <feTurbulence baseFrequency="0.001 0.1" numOctaves="1"/>
+          <feDisplacementMap in="SourceGraphic" scale="70"/>
+        </filter>
+      </defs>
+    </svg>
+    <audio-blam>
+      <section id="intro">
+        <h1>MAKING HTML<br> MAKE MUSIC</h1>
+        <p class="u-tilt">with <a href="#">Heydon</a></p>
+      </section>
+      <section id="cowbell">
+        <dial-blam>
+          <label>
+            cowbell 
+            <input type="range">
+          </label>
+        </dial-blam>
+      </section>
+      <section id="other">
+        <h1>3</h1></p>
+      </section>      
+    </audio-blam>
+
+    <script>
+      const fire = (name, data, target = window, bubbles = false) => {
+        let event = new CustomEvent(name, {
+          detail: data,
+          bubbles: bubbles
+        });
+
+        target.dispatchEvent(event);
+      }
+
+      const slides = [... document.querySelectorAll('section')];
+
+      slides.forEach((s, i) => {
+        s.hidden = true;
+        s.id = `slide-${i + 1}`
+      });
+      slides[0].hidden = false;
+
+      document.addEventListener('keydown', e => {
+        let thisSlide = document.querySelector('section:not([hidden])');
+        if (!event.key.includes('Arrow')) {
+          return;
+        }
+        let back = ['Up', 'Left'].some(key => e.key.includes(key));
+        let newDir = back ? 'previous' : 'next';
+        let newSlide = thisSlide[`${newDir}ElementSibling`];
+        if (!newSlide) {
+          return;
+        }
+        if (!window.waiting) {
+          thisSlide.classList.add('wait');
+          window.waiting = true;
+          window.lastKey = e.key;
+          fire('slidewaiting', {}, this);
+          return;
+        }
+        if (window.lastKey !== e.key) {
+          return;  
+        }
+        slides.forEach(slide => slide.hidden = true);
+        thisSlide.classList.remove('wait');
+        window.waiting = newSlide.hidden = false;
+        fire('slidechange', {}, this);
+      });
+    </script>
+    <script type="module" src="{{site.basedir}}/{{site.hyperblampath}}"></script>
+  </body>
+</html>

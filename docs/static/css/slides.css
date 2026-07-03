@@ -1,0 +1,123 @@
+:root {
+  --color-fore: #fff;
+  --color-back: #000;
+  --grip: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="%23101010" stroke-width="2" overflow="visible" stroke-linecap="round"><path d="M1 1, 1 15 M8 1, 8 15 M15 1, 15 15"></path></svg>');
+  --font: Courier Prime, monospace;
+  --font-special: Heydon Caps, cursive;
+  --bounce: linear(
+    0, 0.004, 0.016, 0.035, 0.063, 0.098, 0.141 13.6%, 0.25, 0.391, 0.563, 0.765,
+    1, 0.891 40.9%, 0.848, 0.813, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785,
+    0.813, 0.848, 0.891 68.2%, 1 72.7%, 0.973, 0.953, 0.941, 0.938, 0.941, 0.953,
+    0.973, 1, 0.988, 0.984, 0.988, 1
+  );
+  color: var(--color-fore);
+  background-color: 
+  var(--color-back);
+  line-height: 1.5;
+  font-size: 4cqmin;
+  font-family: var(--font);
+}
+
+a {
+  text-decoration-style: wavy;
+  text-decoration-thickness: 0.045em;
+  text-underline-offset: 0.25rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+}
+
+body {
+  block-size: 100vh;
+  inline-size: 100vw;
+  position: relative;
+  container-type: size;
+  overflow: hidden;
+}
+
+section {
+  filter: url(#warp);
+  background-color: var(--color-back);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--slide-gap, 1rem);
+  padding: 1rem;
+  animation: zoom 0.25s 1 var(--bounce);
+}
+
+@keyframes zoom {
+  0% {
+    transform: translateY(-3em) scaleY(0.25);
+  }
+  33% {
+    transform: translateY(3em) scaleY(0.75);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.wait {
+  animation: var(--wait, distort) var(--wait-speed, 0.2s) infinite alternate;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-special);
+  font-weight: normal;
+  line-height: 0.9;
+  text-align: center;
+}
+
+h1 { font-size: 24cqmin }
+
+[hidden] {
+  display: none;
+}
+
+/* controls */
+
+label {
+  font-size: 8cqmin;
+  gap: 0.5em;
+}
+
+@keyframes distort {
+  0% {
+    filter: url(#distort-3);
+  }
+  33% {
+    filter: url(#distort-1);
+  }
+  64% {
+    filter: url(#distort-5);
+  }
+  66% {
+    filter: url(#distort-4);
+  }
+  70% {
+    filter: url(#distort-1);
+  }
+  90% {
+    filter: url(#distort-2);
+  }
+  100% {
+    filter: url(#distort-3);
+  }
+}
+
+.u-tilt {
+  transform: rotate(var(--tilt, 1.5deg));
+}
+
+/* AUDIOBLAM styles */
+
+audio-blam {
+  display: block;
+}

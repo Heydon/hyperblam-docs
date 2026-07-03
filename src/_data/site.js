@@ -10,6 +10,7 @@ console.log(exampleData);
 
 module.exports = {
   title: 'HYPERBLAM',
+  cachebuster: Date.now().toString(36),
   basedir: process.env.CONTEXT === 'pages' ? 'https://hyperblam.how' : '',
   hyperblampath: process.env.CONTEXT === 'pages' ? 'static/hyperblam/dist/hyperblam/hyperblam.js' : 'static/hyperblam/src/hyperblam.js',
   basedircdn: process.env.CONTEXT === 'pages' ? 'https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src' : '',

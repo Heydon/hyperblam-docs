@@ -260,4 +260,11 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://hyperblam.how/slides/</loc>
+    <lastmod>2026-07-03T09:33:02.665Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

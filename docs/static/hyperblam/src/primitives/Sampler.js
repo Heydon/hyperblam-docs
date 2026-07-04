@@ -28,9 +28,7 @@ class Sampler extends WithParams {
   }
 
   chokePrev(time) {
-    this.choke && 
-    this.prevGainNode && 
-    this.prevGainNode.gain.setTargetAtTime(0, time, this.choke);
+    this.choke && this.stop(time);
   }
 
   prePlay() {
@@ -67,6 +65,9 @@ class Sampler extends WithParams {
         this.time,
         0.005
       );
+      
+      if (this.loop) this.instance.node.loop = true;
+
       let start = this.reversing ? this.sound.buffer.duration - this.start - this.sound.length : this.start;
       this.instance.node.start(this.time, Math.max(start, 0));
       this.fire('blam', {
@@ -78,6 +79,12 @@ class Sampler extends WithParams {
     }
 
     this.postPlay();
+  }
+
+  stop(time) {
+    time = time || this.context().currentTime;
+    this.prevGainNode && 
+    this.prevGainNode.gain.setTargetAtTime(0, time, this.choke || 0.005);
   }
 
   get bank() {
@@ -111,6 +118,14 @@ class Sampler extends WithParams {
 
 	set robin(value) {
 		this.toBoolean('robin', value);
+	}
+
+  get loop() {
+		return this.hasAttribute('loop');
+	}
+
+	set loop(value) {
+		this.toBoolean('loop', value);
 	}
 
   get choke() {

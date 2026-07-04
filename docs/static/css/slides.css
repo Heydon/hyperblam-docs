@@ -54,10 +54,10 @@ section {
 
 @keyframes zoom {
   0% {
-    transform: translateY(-3em) scaleY(0.25);
+    transform: translateY(-3em) scale(0.5, 2);
   }
   33% {
-    transform: translateY(3em) scaleY(0.75);
+    transform: translateY(3em) scale(2, 0.5);
   }
   100% {
     transform: translateY(0);

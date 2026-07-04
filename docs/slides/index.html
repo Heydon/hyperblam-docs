@@ -93,8 +93,28 @@
         </dial-blam>
       </section>
       <section id="other">
-        <h1>3</h1><p></p>
-      </section>      
+        <h1>3</h1>
+      </section>     
+
+      <!-- instruments -->
+      <pads-blam id="kicks">
+        <bank-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/kick-01.mp3"></sample-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/kick-02.mp3"></sample-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/kick-03.mp3"></sample-blam>
+        </bank-blam>
+        <blam-blam from="body" prop="play" event="slidechange"></blam-blam>
+      </pads-blam>
+
+      <pads-blam id="radio" gain="0.1" detune="600" loop="">
+        <bank-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/radio.mp3"></sample-blam>
+        </bank-blam>
+        <lfo-blam id="radioSpeed" prop="detune" gain="1200" beats="3"></lfo-blam>
+        <blam-blam from="body" to="#radioSpeed" prop="beats" value="0.1~1" event="slidewaiting"></blam-blam>
+        <blam-blam from="body" prop="play" event="slidewaiting"></blam-blam>
+        <blam-blam from="body" prop="stop" event="slidechange"></blam-blam>
+      </pads-blam>
     </audio-blam>
 
     <script>
@@ -130,7 +150,7 @@
           thisSlide.classList.add('wait');
           window.waiting = true;
           window.lastKey = e.key;
-          fire('slidewaiting', {}, this);
+          fire('slidewaiting', {}, document.body);
           return;
         }
         if (window.lastKey !== e.key) {
@@ -139,7 +159,11 @@
         slides.forEach(slide => slide.hidden = true);
         thisSlide.classList.remove('wait');
         window.waiting = newSlide.hidden = false;
-        fire('slidechange', {}, this);
+        fire('slidechange', {}, document.body);
+      });
+
+      window.addEventListener('slidechange', () => {
+          console.log('ready');
       });
     </script>
     <script type="module" src="https://hyperblam.how/static/hyperblam/dist/hyperblam/hyperblam.js"></script>

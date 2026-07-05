@@ -81,21 +81,29 @@
       </defs>
     </svg>
     <audio-blam>
-      <section id="intro">
-        <h1>MAKING HTML<br> MAKE MUSIC</h1>
-        <p class="u-tilt">with <a href="#">Heydon</a></p>
-      </section>
-      <section id="cowbell">
-        <dial-blam>
-          <label>
-            cowbell 
-            <input type="range">
-          </label>
-        </dial-blam>
-      </section>
-      <section id="other">
-        <h1>3</h1>
-      </section>     
+      <div>
+        <section>
+          <h1>MAKING HTML<br> MAKE MUSIC</h1>
+          <p class="u-tilt">with <a href="#">Heydon</a></p>
+        </section>
+        <section class="u-cursor-none">
+          <video class="u-mono" src="{{site.basedir}}/static/video/bottle.mp4" loop></video>
+          <marquee direction="down" behavior="alternate">
+            <marquee behavior="alternate">HYDRATION BREAK</marquee>
+          </marquee>
+        </section>
+        <section>
+          <dial-blam>
+            <label>
+              cowbell 
+              <input type="range" data-speech="cowbell, slider">
+            </label>
+          </dial-blam>
+        </section>
+        <section class="u-cursor-none">
+          <video class="u-mono" src="{{site.basedir}}/static/video/dancer.mp4" loop></video>
+        </section>
+      </div>  
 
       <!-- instruments -->
       <pads-blam id="kicks">
@@ -107,7 +115,7 @@
         <blam-blam from="body" prop="play" event="slidechange"></blam-blam>
       </pads-blam>
 
-      <pads-blam id="radio" gain="0.1" detune="600" loop>
+      <pads-blam id="radio" gain="0.1" detune="300" loop>
         <bank-blam>
           <sample-blam src="{{site.basedir}}/static/sounds/slides/radio.mp3"></sample-blam>
         </bank-blam>
@@ -118,7 +126,29 @@
       </pads-blam>
     </audio-blam>
 
-    <script>
+    <script type="module">
+      import { random } from '{{ site.basedir }}/static/hyperblam/src/tools/random.js';
+
+      const utter = (text) => {
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = random.oneOf(window.voices);
+        utterance.volume = 0.2;
+        speech.speak(utterance);
+      };
+
+      const narrated = [...document.querySelectorAll('[data-speech]')];
+      narrated.forEach(elem => {
+        elem.addEventListener('mouseover', () => {
+          let text = elem.dataset.speech;
+          utter(text);
+        });
+      });
+
+      window.speech = window.speechSynthesis;
+      speech.addEventListener('voiceschanged', () => {
+        window.voices = speech.getVoices().filter(voice => ['en-IE', 'en-GB', 'en-IN', 'en-AU', 'en-US'].includes(voice.lang) && voice.localService);
+      });
+
       const fire = (name, data, target = window, bubbles = false) => {
         let event = new CustomEvent(name, {
           detail: data,
@@ -129,6 +159,7 @@
       }
 
       const slides = [... document.querySelectorAll('section')];
+      const videos = [... document.querySelectorAll('video')];
 
       slides.forEach((s, i) => {
         s.hidden = true;
@@ -139,6 +170,9 @@
       document.addEventListener('keydown', e => {
         let thisSlide = document.querySelector('section:not([hidden])');
         if (!event.key.includes('Arrow')) {
+          return;
+        }
+        if (document.activeElement.tagName === 'INPUT') {
           return;
         }
         let back = ['Up', 'Left'].some(key => e.key.includes(key));
@@ -160,11 +194,23 @@
         slides.forEach(slide => slide.hidden = true);
         thisSlide.classList.remove('wait');
         window.waiting = newSlide.hidden = false;
+        videos.forEach(video => {
+          video.pause();
+          video.currentTime = 0;
+        });
+        let newVideo = newSlide.querySelector('video');
+        newVideo && newVideo.play();
         fire('slidechange', {}, document.body);
       });
 
       window.addEventListener('slidechange', () => {
           console.log('ready');
+      });
+
+      videos.forEach(video => {
+        video.addEventListener('play', event => {
+          event.stopPropagation();
+        });
       });
     </script>
     <script type="module" src="{{site.basedir}}/{{site.hyperblampath}}"></script>

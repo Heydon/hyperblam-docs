@@ -18,10 +18,8 @@
   font-family: var(--font);
 }
 
-a {
-  text-decoration-style: wavy;
-  text-decoration-thickness: 0.045em;
-  text-underline-offset: 0.25rem;
+* {
+  cursor: url('cursor_small.svg'), auto !important;
 }
 
 * {
@@ -30,15 +28,22 @@ a {
   color: inherit;
 }
 
+a {
+  text-decoration-style: wavy;
+  text-decoration-thickness: 0.045em;
+  text-underline-offset: 0.25rem;
+}
+
 body {
   block-size: 100vh;
   inline-size: 100vw;
   position: relative;
-  container-type: size;
   overflow: hidden;
 }
 
 section {
+  position: relative;
+  container-type: size;
   filter: url(#warp);
   background-color: var(--color-back);
   position: absolute;
@@ -48,19 +53,32 @@ section {
   align-items: center;
   flex-direction: column;
   gap: var(--slide-gap, 1rem);
-  padding: 1rem;
-  animation: zoom 0.25s 1 var(--bounce);
+  animation: zoom 0.7s 1 var(--bounce);
+}
+
+video {
+  position: absolute;
+  inset: 0;
+  object-fit: fill;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+marquee {
+  font-weight: bold;
+  mix-blend-mode: difference;
+  font-size: 2rem;
 }
 
 @keyframes zoom {
   0% {
-    transform: translateY(-3em) scale(0.5, 2);
+    transform: scaleY(5);
   }
-  33% {
-    transform: translateY(3em) scale(2, 0.5);
+  25% {
+    transform: scaleY(1);
   }
   100% {
-    transform: translateY(0);
+    transform: scaleY(1);
   }
 }
 
@@ -112,8 +130,20 @@ label {
   }
 }
 
+/*  */
+
+/* utilities */
+
+.u-mono {
+  filter: contrast(10);
+}
+
 .u-tilt {
   transform: rotate(var(--tilt, 1.5deg));
+}
+
+.u-cursor-none, .u-cursor-none * {
+  cursor: none !important;
 }
 
 /* AUDIOBLAM styles */

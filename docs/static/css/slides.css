@@ -42,7 +42,6 @@ body {
 }
 
 section {
-  position: relative;
   container-type: size;
   filter: url(#warp);
   background-color: var(--color-back);
@@ -101,9 +100,29 @@ h1 { font-size: 24cqmin }
 
 /* controls */
 
-label {
+button, label {
   font-size: 8cqmin;
+  font-weight: normal;
+  text-transform: lowercase;
+}
+
+label {
   gap: 0.5em;
+}
+
+button {
+  box-shadow: 0 0.125em var(--color-fore);
+  position: relative;
+}
+
+button:active {
+  top: 0.125em;
+  transform: none;
+  box-shadow: none;
+}
+
+button:hover {
+  filter: none;
 }
 
 @keyframes distort {
@@ -130,9 +149,28 @@ label {
   }
 }
 
-/*  */
+
 
 /* utilities */
+
+.u-alert {
+  padding: var(--s-m);
+  background-color: var(--color-fore);
+  color: var(--color-back);
+  font-family: Impact, sans-serif;
+  font-size: 10cqmin;
+  animation: flash 1s steps(1) infinite; 
+  line-height: 1;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+}
 
 .u-mono {
   filter: contrast(10);

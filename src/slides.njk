@@ -86,11 +86,23 @@
           <h1>MAKING HTML<br> MAKE MUSIC</h1>
           <p class="u-tilt">with <a href="#">Heydon</a></p>
         </section>
-        <section class="u-cursor-none">
+        <section>
+          <div class="l-stack">
+            <div class="l-cluster">
+              <tap-blam data-speech="cow, button">
+                <button>COW</button>
+              </tap-blam>
+              <tap-blam data-speech="bell, button">
+                <button>BELL</button>
+              </tap-blam>
+            </div>
+          </div>
+        </section>
+        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 gallons of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Put your lips around the bottle. Tip your head back. Feel the water hit the back of your throat." data-voice="Moira">
           <video class="u-mono" src="{{site.basedir}}/static/video/bottle.mp4" loop></video>
-          <marquee direction="down" behavior="alternate">
-            <marquee behavior="alternate">HYDRATION BREAK</marquee>
-          </marquee>
+          <div class="l-frame__framed">
+            <div class="u-alert u-tilt">HYDRATION BREAK</div>
+          </div>
         </section>
         <section>
           <dial-blam>
@@ -129,24 +141,32 @@
     <script type="module">
       import { random } from '{{ site.basedir }}/static/hyperblam/src/tools/random.js';
 
-      const utter = (text) => {
+      const utter = elem => {
+        let text = elem.dataset.speech;
+        let voiceData = elem.dataset.voice;
+        let voice;
+        if (voiceData) {
+          voice = window.voices.find(v => v.name === voiceData);
+        } else {
+          voice = random.oneOf(window.voices);
+        }
         let utterance = new SpeechSynthesisUtterance(text);
-        utterance.voice = random.oneOf(window.voices);
+        utterance.voice = voice;
         utterance.volume = 0.2;
         speech.speak(utterance);
       };
 
-      const narrated = [...document.querySelectorAll('[data-speech]')];
+      const narrated = [...document.querySelectorAll('[data-speech]:not(section)')];
       narrated.forEach(elem => {
         elem.addEventListener('mouseover', () => {
           let text = elem.dataset.speech;
-          utter(text);
+          utter(elem);
         });
       });
 
       window.speech = window.speechSynthesis;
       speech.addEventListener('voiceschanged', () => {
-        window.voices = speech.getVoices().filter(voice => ['en-IE', 'en-GB', 'en-IN', 'en-AU', 'en-US'].includes(voice.lang) && voice.localService);
+        window.voices = speech.getVoices().filter(voice => ['en-IE', 'en-GB'].includes(voice.lang) && voice.localService);
       });
 
       const fire = (name, data, target = window, bubbles = false) => {
@@ -182,6 +202,7 @@
           return;
         }
         if (!window.waiting) {
+          window.speech.cancel();
           thisSlide.classList.add('wait');
           window.waiting = true;
           window.lastKey = e.key;
@@ -194,6 +215,9 @@
         slides.forEach(slide => slide.hidden = true);
         thisSlide.classList.remove('wait');
         window.waiting = newSlide.hidden = false;
+        if (newSlide.dataset.speech) {
+          utter(newSlide);
+        }
         videos.forEach(video => {
           video.pause();
           video.currentTime = 0;

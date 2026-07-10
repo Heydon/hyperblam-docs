@@ -216,9 +216,13 @@ pre code {
   background-image: var(--wave-square);
 }
 
+pre {
+  font-family: inherit;
+}
+
 code {
-  font-family: Menlo, Monaco, Courier New, Courier, monospace;
   font-weight: bold;
+  font-family: inherit;
 }
 
 code:not(pre > *) {

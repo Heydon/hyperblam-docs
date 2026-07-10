@@ -3,19 +3,17 @@
     <meta charset="utf-8">
     <title>Making HTML Make Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/slides.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/slides.css"></noscript>
-    <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
+    <link rel="preload" href="/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/static/css/fonts.css"></noscript>
+    <link rel="preload" href="/static/css/slides.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/static/css/slides.css"></noscript>
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg" sizes="any">
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   <body>
-    <svg style="block-size: 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="block-size: 0; overflow: hidden; position: absolute;">
       <defs>
         <filter id="warp-1" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence type="turbulence" baseFrequency="0.009" id="turbulence" numOctaves="1" result="turbulence" seed="5"></feTurbulence>
@@ -50,11 +48,11 @@
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"></feDisplacementMap>
         </filter>
         <filter id="noise-2">
-          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="3"></feTurbulence>
+          <feTurbulence baseFrequency="0.01" numOctaves="3" result="noise" seed="3"></feTurbulence>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"></feDisplacementMap>
         </filter>
         <filter id="noise-3">
-          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="4"></feTurbulence>
+          <feTurbulence baseFrequency="0.002" numOctaves="3" result="noise" seed="4"></feTurbulence>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"></feDisplacementMap>
         </filter>
         <filter id="distort-1">
@@ -82,53 +80,134 @@
     <audio-blam>
       <div>
         <section>
-          <h1>MAKING HTML<br> MAKE MUSIC</h1>
-          <p class="u-tilt">with <a href="#">Heydon</a></p>
-        </section>
-        <section>
-          <div class="l-stack">
-            <div class="l-cluster">
-              <tap-blam data-speech="cow, button">
-                <button>COW</button>
-              </tap-blam>
-              <tap-blam data-speech="bell, button">
-                <button>BELL</button>
-              </tap-blam>
+          <div class="l-screen">
+            <div class="l-frame">
+              <h1 class="u-squiggle">Making HTML<br>Make Music</h1>
+              <p class="u-tilt">with <a href="https://front-end.social/@heydon">Heydon</a></p>
             </div>
           </div>
         </section>
-        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 gallons of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Put your lips around the bottle. Tip your head back. Feel the water hit the back of your throat." data-voice="Moira">
-          <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
-          <div class="l-frame__framed">
-            <div class="u-alert u-tilt">HYDRATION BREAK</div>
+
+        <section class="u-cursor-none">
+          <video onloadstart="this.volume=0.2" class="u-mono" src="/static/video/intro_masked.mp4"></video>
+        </section>
+
+        <section class="u-cursor-none">
+          <media-blam>
+            <video onloadstart="this.volume=0.2" class="u-mono" src="/static/video/intro_masked.mp4"></video>
+            <chain-blam>
+              <reverb-blam>
+                <sample-blam src="/static/sounds/IRs/stadium.mp3"></sample-blam>
+              </reverb-blam>
+            </chain-blam>
+          </media-blam>
+          <div class="l-screen">
+            <div class="l-frame">
+              <div class="l-pos-tl">
+                <h2><span class="u-impact u-blocked">Reverb</span></h2>
+              </div>
+              <div class="l-pos-br">
+                <div>
+<pre><code>&lt;chain-blam&gt;
+  &lt;reverb-blam&gt;
+    &lt;sample-blam src="stadium.mp3"&gt;
+    &lt;/sample-blam&gt;
+  &lt;/reverb-blam&gt;
+&lt;/chain-blam&gt;</code></pre>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
+
+        <section class="u-cursor-none">
+          <media-blam>
+            <video onloadstart="this.volume=0.2" class="u-mono" src="/static/video/intro_masked.mp4"></video>
+            <chain-blam>
+              <reverb-blam>
+                <sample-blam src="/static/sounds/IRs/stadium.mp3"></sample-blam>
+              </reverb-blam>
+              <saturator-blam mode="3" amount="21" mix="1" lowcut="300" highcut="8000"></saturator-blam>
+            </chain-blam>
+          </media-blam>
+          <div class="l-screen">
+            <div class="l-frame">
+              <div class="l-pos-tl">
+                <h2><span class="u-blocked u-impact">Reverb &amp;<br> Saturation</span></h2>
+              </div>
+              <div class="l-pos-br">
+                <div>
+    <pre><code>&lt;chain-blam&gt;
+  &lt;reverb-blam&gt;
+    &lt;sample-blam src="stadium.mp3"&gt;
+    &lt;/sample-blam&gt;
+  &lt;/reverb-blam&gt;
+  &lt;saturator-blam&gt;&lt;/saturator-blam&gt;
+&lt;/chain-blam&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section>
-          <dial-blam>
+          <div class="l-screen">
+            <div class="l-frame">
+              <div class="l-cluster">
+                <tap-blam data-speech="cow, button">
+                  <button>COW</button>
+                </tap-blam>
+                <tap-blam data-speech="bell, button">
+                  <button>BELL</button>
+                </tap-blam>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira">
+          <video class="u-mono" src="/static/video/bottle.mp4" loop=""></video>
+          <div class="l-screen">
+            <div class="l-frame">
+              <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
+            </div>
+          </div>
+        </section>
+
+        <section class="l-vertical">
+          <dial-blam id="cowDial">
             <label>
               cowbell 
               <input type="range" data-speech="cowbell, slider">
             </label>
           </dial-blam>
+<pre><code id="cowChance">
+&lt;track-blam chance="0"&gt;...&lt;/track-blam&gt;</code></pre>
         </section>
+
         <section class="u-cursor-none">
-          <video class="u-mono" src="https://hyperblam.how/static/video/dancer.mp4" loop=""></video>
+          <video class="u-mono" src="/static/video/dancer.mp4" loop=""></video>
+        </section>
+
+        <section class="u-cursor-none" data-speech="YListen to me, you dehydrated piece of shit. Most people’s bodies are 70% water. You are running on about 15%, which is about the same water content as beef fucking jerky. Drink some fucking water before I absolutely lose my shit, you dry mouthed motherfucking clown." data-voice="Google UK English 6 (Natural)">
+          <video class="u-mono" src="/static/video/bottle.mp4" loop=""></video>
+          <div class="l-frame__framed">
+            <div class="u-alert u-tilt">HYDRATION BREAK</div>
+          </div>
         </section>
       </div>  
 
       <!-- instruments -->
       <pads-blam id="kicks">
         <bank-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/kick-01.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/kick-02.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/kick-03.mp3"></sample-blam>
+          <sample-blam src="/static/sounds/slides/drop.mp3"></sample-blam>
         </bank-blam>
         <blam-blam from="body" prop="play" event="slidechange"></blam-blam>
       </pads-blam>
 
       <pads-blam id="radio" gain="0.1" detune="300" loop="">
         <bank-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/radio.mp3"></sample-blam>
+          <sample-blam src="/static/sounds/slides/radio.mp3"></sample-blam>
         </bank-blam>
         <lfo-blam id="radioSpeed" prop="detune" gain="1200" beats="3"></lfo-blam>
         <blam-blam from="body" to="#radioSpeed" prop="beats" value="0.1~1" event="slidewaiting"></blam-blam>
@@ -138,7 +217,7 @@
     </audio-blam>
 
     <script type="module">
-      import { random } from 'https://hyperblam.how/static/hyperblam/src/tools/random.js';
+      import { random } from '/static/hyperblam/src/tools/random.js';
 
       const utter = elem => {
         let text = elem.dataset.speech;
@@ -149,6 +228,7 @@
         } else {
           voice = random.oneOf(window.voices);
         }
+        console.log(voice.name);
         let utterance = new SpeechSynthesisUtterance(text);
         utterance.voice = voice;
         utterance.volume = 0.2;
@@ -202,7 +282,7 @@
         }
         if (!window.waiting) {
           window.speech.cancel();
-          thisSlide.classList.add('wait');
+          thisSlide.classList.add('u-wait');
           window.waiting = true;
           window.lastKey = e.key;
           fire('slidewaiting', {}, document.body);
@@ -212,7 +292,7 @@
           return;  
         }
         slides.forEach(slide => slide.hidden = true);
-        thisSlide.classList.remove('wait');
+        thisSlide.classList.remove('u-wait');
         window.waiting = newSlide.hidden = false;
         if (newSlide.dataset.speech) {
           utter(newSlide);
@@ -236,6 +316,6 @@
         });
       });
     </script>
-    <script type="module" src="https://hyperblam.how/static/hyperblam/dist/hyperblam/hyperblam.js"></script>
+    <script type="module" src="/static/hyperblam/src/hyperblam.js"></script>
   
 </body></html>

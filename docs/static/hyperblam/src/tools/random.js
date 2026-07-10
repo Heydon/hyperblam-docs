@@ -26,9 +26,9 @@ const random = {
     }
     return array;
   },
-  some(array) {
+  some(array, amount) {
     let shuffled = this.shuffle(array);
-    let amount = this.integerBetween(1, array.length);
+    amount = amount || this.integerBetween(1, array.length);
     return shuffled.slice(0, amount);
   }
 }

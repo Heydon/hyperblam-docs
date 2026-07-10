@@ -1,0 +1,18 @@
+name: Sync
+extends: Watch
+category: Visualizing
+defined: true 
+summary: Watches for prop changes and converts them into CSS custom property declarations. Can be used to effectively synchronize audio settings with the visual interface.
+props:
+  - name: to 
+    default: null 
+    description: The elements that should receive the custom properties. These elements and their child descendants will be subject to the values (where they're used).
+  - name: event 
+    default: null
+    description: not applicable
+  - name: from 
+    description: A selector to match all the elements to watch for attribute changes. 
+  - name: allowed
+    type: string
+    default: null
+    description: A space-separated set of attribute names to watch over. If not set, all attributes are converted to CSS custom properties (when changed).

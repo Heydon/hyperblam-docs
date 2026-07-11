@@ -142,7 +142,7 @@ The `<track-blam>` element calculates whether a sound should play, at any given 
 
 ### Blam Blam!
 
-[“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/08-a-light-lo-fi-listen-with-lfos/) uses multiple event-based elements. The eponymous `<blam-blam>` element does a lot of heavy lifting. Kind of a mascot for **HYPERBLAM**, this element uses incoming events to randomize prop values or fire methods using randomized args. 
+[“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/07-a-light-lo-fi-listen-with-lfos/) uses multiple event-based elements. The eponymous `<blam-blam>` element does a lot of heavy lifting. Kind of a mascot for **HYPERBLAM**, this element uses incoming events to randomize prop values or fire methods using randomized args. 
 
 For starters, it is affecting both the `length` and `detune` values of the electronic snare sound, adding texture, tension, and—most of all—variety.
 

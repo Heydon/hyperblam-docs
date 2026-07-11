@@ -120,7 +120,7 @@ In practice, this means you can create *many-to-one* relationships. For example,
 
 ![In this example, there are two parallel instrument tracks, each connected to its own pan effect. These two pan effects then converge on a single reverb effect and the reverb connects to the speakers.]({{site.basedircdn}}/static/images/illustrations/signal-chains3.svg)
 
-[“A Light Lo-fi Listen With LFOs”]({{site.basedir}}/examples/08-a-light-lo-fi-listen-with-lfos) uses multiple signal chains. The `<dial-blam>` labelled “cutoff” controls a `<filter-blam>` in the `id="bus"` chain. You can hear the frequency change applying to all the instruments of the generative composition.
+[“A Light Lo-fi Listen With LFOs”]({{site.basedir}}/examples/07-a-light-lo-fi-listen-with-lfos) uses multiple signal chains. The `<dial-blam>` labelled “cutoff” controls a `<filter-blam>` in the `id="bus"` chain. You can hear the frequency change applying to all the instruments of the generative composition.
 
 ```html
 <chain-blam id="bus">

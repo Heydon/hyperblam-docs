@@ -152,4 +152,4 @@ Poorly maintain analog tape has very unstable frequency reproduction, due to [�
 
 ![A cassette tape with tape spooled out and looking chewed up. One wheel is labelled as “irregular rotation speed: wheels struggling to turn” and the tape itself as “more frequent fluctuations: tape chewed up in places”]({{site.basedircdn}}/static/images/illustrations/LFOs5.svg)
 
-The [“Tape Emulation”]({{site.basedir}}/examples/07-tape-emulation) example uses multiple LFOs, manipulated semi-randomly using event-based `<blam-blam>` elements, to achieve a wobbly, fluttery lo-fi sound. More details under “INFO” on that page.
+The [“Tape Emulation”]({{site.basedir}}/examples/06-tape-emulation) example uses multiple LFOs, manipulated semi-randomly using event-based `<blam-blam>` elements, to achieve a wobbly, fluttery lo-fi sound. More details under “INFO” on that page.

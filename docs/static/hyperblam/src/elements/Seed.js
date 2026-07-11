@@ -15,7 +15,7 @@ class Seed extends Handle {
       let name = this.name ? this.name : to.id ? to.id : this.id ? this.id : to.nodeName;
       for (let seed = 0; seed < this.seeds; seed++) {
         let value = random.floatBetween(0, 1);
-        to.style.setProperty(`--seed-${name}-${seed}`, value);
+        to.style.setProperty(`--seed-${name}-${seed + 1}`, value);
       }
     }
   }

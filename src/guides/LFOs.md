@@ -148,7 +148,7 @@ It makes me think of the propellor on an airplane. At a slow rate of rotation, i
 
 ## Worn tape emulation
 
-Poorly maintain analog tape has very unstable frequency reproduction, due to [“wow” and “flutter”](https://babyaud.io/blog/wow-and-flutter). It’s something weirdly pleasing to my ear.
+Poorly maintained analog tape has very unstable frequency reproduction, due to [“wow” and “flutter”](https://babyaud.io/blog/wow-and-flutter). It’s something weirdly pleasing to my ear.
 
 ![A cassette tape with tape spooled out and looking chewed up. One wheel is labelled as “irregular rotation speed: wheels struggling to turn” and the tape itself as “more frequent fluctuations: tape chewed up in places”]({{site.basedircdn}}/static/images/illustrations/LFOs5.svg)
 

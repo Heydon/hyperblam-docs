@@ -1,4 +1,4 @@
-import { Handle } from './Handle.js';
+import { Handle } from '../primitives/Handle.js';
 import { random } from '../tools/random.js';
 
 class Seed extends Handle {
@@ -11,8 +11,8 @@ class Seed extends Handle {
     if (!random.chance(this.chance)) {
       return;
     }
-    for (const to in this.toElems) {
-      let name = this.name ? this.name : to.id ? to.id : this.id ? this.id : to.nodeName;
+    for (const to of this.toElems) {
+      let name = this.name ? this.name : to.id ? to.id : this.id ? this.id : to.nodeName.toLowerCase();
       for (let seed = 0; seed < this.seeds; seed++) {
         let value = random.floatBetween(0, 1);
         to.style.setProperty(`--seed-${name}-${seed + 1}`, value);
@@ -37,3 +37,5 @@ class Seed extends Handle {
 		this.setAttribute('name', value);
   }
 }
+
+export { Seed }

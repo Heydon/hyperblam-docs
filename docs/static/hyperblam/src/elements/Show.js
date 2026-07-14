@@ -1,4 +1,4 @@
-import { Handle } from './Handle.js';
+import { Handle } from '../primitives/Handle.js';
 import { random } from '../tools/random.js';
 
 class Show extends Handle {
@@ -6,33 +6,39 @@ class Show extends Handle {
     super();
     this.defaultTo = () => [this];
     this.defaultFrom = () => [this.closest('[data-sampler-blam]')];
+    this.slides = [];
+    this.prevIndex = 0;
   }
 
   onblamready() {
     super.onblamready();
     this.toElems.forEach(to => {
-      to.slides = [...to.querySelectorAll(this.selector)];
+      this.slides.push([...to.querySelectorAll(this.selector)]);
     });
   }
 
   handle(event) {
-    if (!random.chance(this.chance)) {
-      return;
-    }
-    for (const to in this.toElems) {
-      // ↓ Don’t operate if the ancesrtor element is hidden
+    this.toElems.forEach((to, i) => {
+      if (!random.chance(this.chance)) {
+        return;
+      }
+      // ↓ Don’t operate if the ancestor element is hidden
       if (to.hidden) return;
-
-      to.slides.forEach(slide => slide.hidden = true);
-      let chosen;
-      if (this.cycle) {
-        this.prevIndex =  this.cycle(this.slides, this.prevIndex);
-        chosen = to.slides[this.prevIndex];
+      let slides = this.slides[i];
+      slides.forEach(slide => slide.hidden = true);
+      let chosen = [];
+      if (this.some) {
+        chosen = random.some(slides, this.some);
       } else {
-        chosen = this.some ? random.some(to.slides, this.some) : random.oneOf(to.slides);
+        if (this.cycle) {
+          this.prevIndex = this.nextIndex(this.prevIndex, slides);
+        } else {
+          this.prevIndex = this.newIndex(this.prevIndex, slides);
+        }
+        chosen.push(slides[this.prevIndex]);
       }
       chosen.forEach(slide => slide.hidden = false);
-    }
+    });
   }
 
 	get selector() {

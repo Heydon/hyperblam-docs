@@ -82,7 +82,7 @@ class Base extends HTMLElement {
     return random.oneOf(subset);
   }
 
-  cycle(prevIndex, arr) {
+  nextIndex(prevIndex, arr) {
     return arr[prevIndex + 1] ? prevIndex + 1 : 0;
   }
 

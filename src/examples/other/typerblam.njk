@@ -1,0 +1,120 @@
+---
+title: Typerblam
+bpm: 120
+visualiser:
+  count: 16
+elements: 
+  - Sample 
+---
+
+{% extends 'layouts/example.njk' %}
+
+{% block visual %}
+<style>
+  show-blam {
+    transform: scale(max(0.25, var(--seed-stretch-1)), max(0.25, var(--seed-stretch-2)));
+  }
+
+  @keyframes jolt {
+    0% {
+      transform: translateY(0) scale(0.75);
+    }
+    20% {
+      transform: translateY(-0.75rem) scale(0.75);
+    }
+    40% {
+      transform: translateY(0.5rem);
+    }
+    60% {
+      transform: translateY(-0.25rem);
+    }
+    80% {
+      transform: translateY(0.125rem);
+    }
+    100% {
+      transform: translateY(0rem);
+    }
+  }
+
+  show-blam > div {
+    line-height: 0;
+    font-size: 100cqmin;
+    animation: jolt 0.15s linear 1;
+    animation-fill-mode: forwards;
+  }
+</style>
+<show-blam from="#keys" class="l-screen u-impact" cycle>
+  <div>H</div>
+  <div hidden>Y</div>
+  <div hidden>P</div>
+  <div hidden>E</div>
+  <div hidden>R</div>
+  <div hidden>B</div>
+  <div hidden>L</div>
+  <div hidden>A</div>
+  <div hidden>M</div>
+</show-blam>
+{% endblock %}
+
+{% block audio %}
+<pads-blam id="keys" choke>
+  <bank-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/effects/key-01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/effects/key-02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/effects/key-03.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/effects/key-04.mp3"></sample-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/effects/key-05.mp3"></sample-blam>
+  </bank-blam>
+  <seed-blam name="stretch" to="show-blam" seeds="2"></seed-blam>
+</pads-blam>
+<sequencer-blam>
+  <track-blam to="#keys">
+    <bar-blam s="?" chance="0.3"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+This simple visualization uses two event-driven elements—`<show-blam>` and `<seed-blam>`—and a little CSS animation.
+
+As the name suggests, `<show-blam>` just... shows stuff. In this case, I'm showing the characters for the term **HYPERBLAM** in turn. So I apply the `cycle` prop. 
+
+```html 
+<show-blam from="#keys" cycle>...</show-blam>
+```
+
+The `<seed-blam>` element is simple but powerful. It adds custom properties with random values between `0` and `1`. These can be used to randomize all sorts of styles. In this case, two seeds are applied for affecting `scale`.
+
+```css 
+show-blam {
+  transform: scale(max(0.25, var(--seed-stretch-1)), max(0.25, var(--seed-stretch-2)));
+}
+```
+
+(Note the `max()` function, ensuring the scale—on either axis—is never smaller than `0.25`.)
+
+Both `<show-blam>` and `<seed-blam>` respond to the `<pads-blam>`’s generic “blam” event. That is, every time a sound is played, a new character—semi-randomly stretched—appears. 
+
+Each character’s element has a CSS animation applied that jolts/shakes the character as it appears. This acts as a visual metaphor for the rattling sound of the keys.
+
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+</tap-blam>
+<dial-blam to="audio-blam" prop="bpm">
+  <label>
+  speed
+  <input type="range" min="60" max="180">
+  </label>
+</dial-blam>
+
+{% endblock %}

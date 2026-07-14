@@ -990,6 +990,11 @@
         "name": "play",
         "description": "Plays one of the associated Bank’s sounds at a given pitch.",
         "args": "**cipher**: The note (such as ‘C4’) or `id` Where `undefined`, either a random note or the next note from `notes` is played, depending on whether `robin` is true, **time**: When, relative to the context’s `currentTime`, to play the sound. Immediately, if not set."
+      },
+      {
+        "name": "stop",
+        "description": "Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use **Sequencer’s** `stop` event.",
+        "args": "**time**: When to stop the sound. By default, it’s immediately, using `currentTime`."
       }
     ],
     "events": [
@@ -1157,6 +1162,11 @@
         "name": "play",
         "description": "Plays one of the associated Bank’s sounds.",
         "args": "**cipher**: The number (not zero-based) or `id` of the specific sound. Where `undefined`, either a random sound or the next sound is played, depending on whether `robin` is true, **time**: When, relative to the context’s `currentTime`, to play the sound. Immediately, if not set."
+      },
+      {
+        "name": "stop",
+        "description": "Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use **Sequencer’s** `stop` event.",
+        "args": "**time**: When to stop the sound. By default, it’s immediately, using `currentTime`."
       }
     ]
   },
@@ -1625,6 +1635,73 @@
     ]
   },
   {
+    "name": "Show",
+    "extends": "Handle",
+    "category": "Visualizing",
+    "defined": true,
+    "summary": "Simply shows and hides one or more elements according to events. Can show one of a set of elements at random, the _next_ one of a set of elements (looping back where applicable), or _some_ of a set of elements.",
+    "props": [
+      {
+        "name": "selector",
+        "type": "string",
+        "default": ":scope > *",
+        "description": "Selector for descendant elements to be shown and unshown. Can be any elements and can change subject to (for example) **Blam** `value` randomization. Can be SVG elements belonging to an inline SVG."
+      },
+      {
+        "name": "some",
+        "type": "boolean or number",
+        "default": false,
+        "description": "Set as a boolean attribute, some elements are shown each time. By default it’s between one and all. If a numeric value is given, that’s how many (random) elements are shown."
+      },
+      {
+        "name": "cycle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to show each element in turn"
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
     "name": "Switch",
     "extends": "Set",
     "category": "Controlling",
@@ -1695,6 +1772,75 @@
         "description": "The probability that the `event` will be responded to. From `0` to `1`."
       }
     ]
+  },
+  {
+    "name": "Sync",
+    "extends": "Watch",
+    "category": "Visualizing",
+    "defined": true,
+    "summary": "Watches for prop changes and converts them into CSS custom property declarations. Can be used to effectively synchronize audio settings with the visual interface.",
+    "props": [
+      {
+        "name": "to",
+        "type": "string",
+        "description": "The elements that should receive the custom properties. These elements and their child descendants will be subject to the values (where they're used).",
+        "default": null
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": null,
+        "description": "not applicable"
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A selector to match all the elements to watch for attribute changes."
+      },
+      {
+        "name": "allowed",
+        "type": "string",
+        "default": null,
+        "description": "A space-separated set of attribute names to watch over. If not set, all attributes are converted to CSS custom properties (when changed)."
+      },
+      {
+        "name": "additive",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to log cumulatively or to just log the most recent data."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "default": 16,
+        "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "not applicable"
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "not applicable"
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ],
+    "draft": true
   },
   {
     "name": "Tap",

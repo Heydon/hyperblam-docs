@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -88,16 +88,16 @@
   <main tabindex="-1" class="l-frame">
     
     
-      <div class="l-frame__framed u-blend-difference">
+      <div class="l-framed u-blend-difference">
         <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="12">
         </bands-blam>
       </div>
     
-    <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+    <aside class="l-framed l-log u-blend-difference" aria-label="Props log">
       <ul id="log" class="s-playstop" hidden=""></ul>
     </aside>
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
-    <div class="l-frame__framed">
+    <div class="l-framed">
       
   <!-- bus! (master signal chain) -->
   <chain-blam id="bus">
@@ -235,7 +235,7 @@
 
 
     </div>
-    <div role="progressbar" class="l-frame__framed l-loading">
+    <div role="progressbar" class="l-framed l-loading">
       <span id="samples">installing</span><span class="u-flash">...</span>
       <log-blam from="sample-blam" to="#samples" event="blamsource" hidden="">
         sampling [[file]]

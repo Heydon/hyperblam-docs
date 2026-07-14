@@ -1,0 +1,1 @@
+import{Watch}from"../primitives/Watch.js";class Sync extends Watch{constructor(){super(),this.defaultTo=()=>[this]}handle(list,observer){if(!this.bypass)for(const mutation of list)if("attributes"===mutation.type){let prop=mutation.attributeName,value=node[prop];for(const to in this.toElems)to.style.setProperty(`--${prop}`,value)}}}export{Sync};

@@ -43,7 +43,7 @@ elements:
     animation-fill-mode: forwards;
   }
 </style>
-<show-blam from="#keys" class="l-screen u-impact" cycle>
+<show-blam role="img" aria-label="Animation that shows letters spelling out HyperBlam when typing sound is playing" from="#keys" class="l-screen u-impact" cycle>
   <div>H</div>
   <div hidden>Y</div>
   <div hidden>P</div>
@@ -99,8 +99,6 @@ show-blam {
 Both `<show-blam>` and `<seed-blam>` respond to the `<pads-blam>`’s generic “blam” event. That is, every time a sound is played, a new character—semi-randomly stretched—appears. 
 
 Each character’s element has a CSS animation applied that jolts/shakes the character as it appears. This acts as a visual metaphor for the rattling sound of the keys.
-
-(**Note:** If you are using bluetooth headphones, you may hear some latency.)
 
 {% endrenderTemplate %}
 

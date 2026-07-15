@@ -11,6 +11,6 @@ props:
     description: A space-separated set of attribute names to watch over. If not set, all attributes trigger templating/appending.
   - name: event 
     default: null
-    description: not applicable
+    description: Not applicable. Watches attributes instead.
   - name: from 
     description: A selector to match all the elements to watch for attribute changes. Filtered to only include **HYPERBLAM** elements.

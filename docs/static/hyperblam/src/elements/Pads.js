@@ -12,7 +12,7 @@ class Pads extends Sampler {
       if (!this.robin) {
         this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.sounds);
       } else {
-        this.prevIndex = this.cycle(this.prevIndex, this.bankElem.sounds);
+        this.prevIndex = this.nextIndex(this.prevIndex, this.bankElem.sounds);
       } 
       this.sound = this.bankElem.sounds[this.prevIndex];
     }

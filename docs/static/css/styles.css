@@ -216,9 +216,13 @@ pre code {
   background-image: var(--wave-square);
 }
 
+pre {
+  font-family: inherit;
+}
+
 code {
-  font-family: Menlo, Monaco, Courier New, Courier, monospace;
   font-weight: bold;
+  font-family: inherit;
 }
 
 code:not(pre > *) {
@@ -280,7 +284,8 @@ hr {
 
 .l-with-sidebar > :first-child {
   flex-grow: 1;
-  flex-basis: var(--sidebar-width, 350px);
+  flex-basis: 0;
+  min-inline-size: 350px;
 }
 
 .l-with-sidebar > :last-child {
@@ -335,19 +340,29 @@ p a:hover img,
   inset: 0;
 }
 
-.l-frame {
+.l-frame, .l-screen {
   position: relative;
-  flex-grow: 1;
   container-type: size;
 }
 
-.l-frame__framed {
+.l-frame {
+  flex-grow: 1;
+}
+
+.l-framed, .l-screen {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.l-screen {
+  aspect-ratio: var(--ratio, 9 / 6);
+  margin: auto;
+  max-inline-size: 100%;
+  max-block-size: 100%;
 }
 
 .l-loading {
@@ -469,6 +484,10 @@ p a:hover img,
 .transmit.three { animation-delay: 0.4s }
 
 /* basic utilities */
+
+.u-impact {
+  font-family: Impact, serif;
+}
 
 .u-fit > * {
   width: 100%;
@@ -619,6 +638,10 @@ button.u-round {
   border-radius: 50%;
 }
 
+footer button.u-round {
+  font-size: 0.666rem;
+}
+
 button.u-ghost {
   padding: 0;
   border: 0;
@@ -638,36 +661,34 @@ fieldset:has([type="radio"]) {
   border: 0;
 }
 
-/*********** Baseline, reset styles ***********/
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 9rem;
+  width: 9em;
 }
 
-/* Removes default focus */
 input[type="range"]:focus {
   outline: none;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
   background-color: var(--color-fore);
-  border-radius: 0.25rem;
-  height: 0.5rem;
+  border-radius: 0.25em;
+  height: 0.5em;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  margin-top: -0.5rem;
+  margin-top: -0.5em;
   background-color: var(--color-fore);
-  border-radius: 0.25rem;
+  border-radius: 0.25em;
   border: 0;
-  box-shadow: 0 0 0 0.2rem var(--color-back);
-  height: 1.5rem;
-  width: 1.5rem;
+  box-shadow: 0 0 0 0.2em var(--color-back);
+  height: 1.5em;
+  width: 1.5em;
   background-image: var(--grip);
   background-size: 50%;
   background-repeat: no-repeat;
@@ -676,22 +697,22 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: 1px dashed var(--color-fore);
-  outline-offset: 0.125rem;
+  outline-offset: 0.125em;
 }
 
 input[type="range"]::-moz-range-track {
   background-color: var(--color-fore);
-  border-radius: 0.25rem;
-  height: 0.5rem;
+  border-radius: 0.25em;
+  height: 0.5em;
 }
 
 input[type="range"]::-moz-range-thumb {
   background-color: var(--color-fore);
   border: 0;
-  border-radius: 0.25rem;
-  box-shadow: 0 0 0 0.2rem var(--color-back);
-  height: 1.5rem;
-  width: 1.5rem;
+  border-radius: 0.25em;
+  box-shadow: 0 0 0 0.2em var(--color-back);
+  height: 1.5em;
+  width: 1.5em;
   background-image: var(--grip);
   background-size: 50%;
   background-repeat: no-repeat;
@@ -700,7 +721,7 @@ input[type="range"]::-moz-range-thumb {
 
 input[type="range"]:focus-visible::-moz-range-thumb {
   outline: 1px dashed var(--color-fore);
-  outline-offset: 0.125rem;
+  outline-offset: 0.125em;
 }
 
 [type="checkbox"] {
@@ -708,20 +729,20 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   cursor: pointer;
   position: relative;
   background-color: var(--color-back);
-  border-radius: 0.5rem;
-  width: 2.5rem;
-  height: 1.5rem;
-  outline: 0.125rem solid var(--color-fore);
-  outline-offset: -0.333rem;
+  border-radius: 0.5em;
+  width: 2.5em;
+  height: 1.5em;
+  outline: 0.125em solid var(--color-fore);
+  outline-offset: -0.333em;
 }
 
 [type="checkbox"]::before {
   content: '';
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 0.25rem;
-  box-shadow: 0 0 0 0.2rem var(--color-back);
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.25em;
+  box-shadow: 0 0 0 0.2em var(--color-back);
   background-color: var(--color-fore);
   position: absolute;
   background-image: var(--grip);
@@ -732,7 +753,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 
 [type="checkbox"]:focus-visible::before {
   outline: 1px dashed var(--color-fore);
-  outline-offset: 0.125rem;
+  outline-offset: 0.125em;
 }
 
 [type="checkbox"]:checked::before {
@@ -751,11 +772,11 @@ label:has([type="radio"]) {
 }
 
 label:has([type="radio"]):first-of-type {
-  border-radius: 0.25rem 0 0 0.25rem;
+  border-radius: 0.25em 0 0 0.25em;
 }
 
 label:has([type="radio"]):last-of-type {
-  border-radius: 0 0.25rem 0.25rem 0;
+  border-radius: 0 0.25em 0.25em 0;
 }
 
 label:has([type="radio"]) + label {

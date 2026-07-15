@@ -49,3 +49,6 @@ methods:
   - name: play 
     description: Plays one of the associated Bank’s sounds. 
     args: '**cipher**: The number (not zero-based) or `id` of the specific sound. Where `undefined`, either a random sound or the next sound is played, depending on whether `robin` is true, **time**: When, relative to the context’s `currentTime`, to play the sound. Immediately, if not set.'
+  - name: stop 
+    description: Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use **Sequencer’s** `stop` event. 
+    args: '**time**: When to stop the sound. By default, it’s immediately, using `currentTime`.'

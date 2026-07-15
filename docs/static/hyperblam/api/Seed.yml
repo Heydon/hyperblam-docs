@@ -1,0 +1,14 @@
+name: Seed
+category: Visualizing
+extends: Handle
+draft: true
+summary: Responds to an event by setting one or more name-spaced custom properties, with values between `0` and `1`. USeful for adding variety/randomness to any aspect of the visual UI. Can be used with CSS `clamp()` and other functions. Where `name` is “distance” and `seeds` is `3`, the second of three custom properties will be named `--seed-distance-2`.
+props:
+  - name: name 
+    type: string
+    default: null 
+    description: For name-spacing purposes. Must use characters allowed in CSS custom property names. If not set, it uses the `to` element’s `id`, `this.id`, or the `to` element’s `nodeName` (but lowercase), in that order of priority.
+  - name: seeds
+    type: number 
+    default: 1 
+    description: The number of custom properties to generate.

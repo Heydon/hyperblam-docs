@@ -88,16 +88,16 @@
   <main tabindex="-1" class="l-frame">
     
     
-  <div class="l-frame__framed">
+  <div class="l-framed">
     <rings-blam id="example" fps="8" ratio="1 / 1" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="8">
     </rings-blam>
   </div>
 
-    <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+    <aside class="l-framed l-log u-blend-difference" aria-label="Props log">
       <ul id="log" class="s-playstop" hidden=""></ul>
     </aside>
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
-    <div class="l-frame__framed">
+    <div class="l-framed">
       
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
@@ -131,7 +131,7 @@
 </tap-blam>
 
     </div>
-    <div role="progressbar" class="l-frame__framed l-loading">
+    <div role="progressbar" class="l-framed l-loading">
       <span id="samples">installing</span><span class="u-flash">...</span>
       <log-blam from="sample-blam" to="#samples" event="blamsource" hidden="">
         sampling [[file]]

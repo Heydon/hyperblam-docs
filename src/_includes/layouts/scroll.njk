@@ -22,12 +22,12 @@
     {% endblock %}
     <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
     <div class="l-frame l-view">
-      <div class="l-frame__framed">
+      <div class="l-framed">
         {% block audio %}
         {% endblock %}
       </div>
     </div>
-    <div role="progressbar" class="l-frame__framed l-loading">loading<span class="u-flash">...</span></div>
+    <div role="progressbar" class="l-framed l-loading">loading<span class="u-flash">...</span></div>
     {% block objects %}
       <div class="l-scroll__intersectable"></div>
     {% endblock %}

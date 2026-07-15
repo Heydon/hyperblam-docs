@@ -18,22 +18,6 @@ class Handle extends Base {
     }
   }
 
-  choose(value) {
-    if (value.includes('|')) {
-      let values = value.split('|').map(v => this.stringNumBool(v));
-      this.prevIndex = this.newIndex(this.prevIndex, values);
-      return values[this.prevIndex];
-    }
-    if (value.includes('~')) {
-      let values = value.split('~').map(v => parseFloat(v));
-      return random.floatBetween(values[0], values[1]);
-    }
-    if (value.includes(' ')) {
-      return value.split(' ').map(arg => this.stringNumBool(arg));
-    }
-    return this.stringNumBool(value);
-  }
-
   setToFrom() {
     this.fromElems = this.from ? [...document.querySelectorAll(this.from)] : this.defaultFrom();
     this.toElems = this.to ? [...document.querySelectorAll(this.to)] : this.defaultTo();
@@ -80,15 +64,6 @@ class Handle extends Base {
 
 	set to(value) {
 		this.setAttribute('to', value);
-  }
-
-  get value() {
-    let value = this.getAttribute('value');
-    return value ? this.choose(value) : null;
-	}
-
-	set value(value) {
-		this.setAttribute('value', value);
   }
 
   get event() {

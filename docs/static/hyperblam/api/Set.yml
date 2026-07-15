@@ -11,6 +11,10 @@ props:
     type: boolean
     default: false
     description: When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays.
+  - name: value 
+    type: string 
+    default: 'null'
+    description: '**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method.'
   - name: once 
     type: boolean 
     default: false 

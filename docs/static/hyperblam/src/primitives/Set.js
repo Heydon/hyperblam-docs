@@ -13,6 +13,22 @@ class Set extends Handle {
     this.baseValues = this.toElems.map(to => to[this.prop]);
   }
 
+  choose(value) {
+    if (value.includes('|')) {
+      let values = value.split('|').map(v => this.stringNumBool(v));
+      this.prevIndex = this.newIndex(this.prevIndex, values);
+      return values[this.prevIndex];
+    }
+    if (value.includes('~')) {
+      let values = value.split('~').map(v => parseFloat(v));
+      return random.floatBetween(values[0], values[1]);
+    }
+    if (value.includes(' ')) {
+      return value.split(' ').map(arg => this.stringNumBool(arg));
+    }
+    return this.stringNumBool(value);
+  }
+
   handle(event, value) {
     let revert = this.revert && this.reverting;
     value = value !== undefined ? value : this.value;
@@ -75,10 +91,6 @@ class Set extends Handle {
 		this.toBoolean('revert', value);
 	}
 
-  static get observedAttributes () {
-    return ['off'];
-  }
-
   get once() {
 		return this.hasAttribute('once');
 	}
@@ -87,11 +99,13 @@ class Set extends Handle {
 		this.toBoolean('once', value);
 	}
 
-  attributeChangedCallback(name, _, newVal) {
-    if (name === 'off' && newVal) {
-      this.reverting = true;
-      this.handle();
-    }
+  get value() {
+    let value = this.getAttribute('value');
+    return value ? this.choose(value) : null;
+	}
+
+	set value(value) {
+		this.setAttribute('value', value);
   }
 }
 

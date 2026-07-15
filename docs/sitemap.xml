@@ -142,22 +142,8 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/guides/LFOs/</loc>
-    <lastmod>2026-06-21T17:25:03.828Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://hyperblam.how/guides/filters/</loc>
     <lastmod>2026-06-21T17:25:03.828Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/guides/gain/</loc>
-    <lastmod>2026-06-21T17:25:03.829Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -172,20 +158,6 @@
   <url>
     <loc>https://hyperblam.how/guides/humanization/</loc>
     <lastmod>2026-06-21T17:25:03.829Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/guides/sequencing/</loc>
-    <lastmod>2026-06-21T17:25:03.829Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/guides/signal-chains/</loc>
-    <lastmod>2026-06-21T17:25:03.830Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -256,6 +228,48 @@
   <url>
     <loc>https://hyperblam.how/examples/dub-club/</loc>
     <lastmod>2026-06-26T11:31:06.476Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/guides/LFOs/</loc>
+    <lastmod>2026-07-11T16:45:42.155Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/guides/gain/</loc>
+    <lastmod>2026-07-11T16:45:42.156Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/guides/sequencing/</loc>
+    <lastmod>2026-07-11T16:45:42.157Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/guides/signal-chains/</loc>
+    <lastmod>2026-07-11T16:45:42.157Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/slides/</loc>
+    <lastmod>2026-07-11T16:45:42.157Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/typerblam/</loc>
+    <lastmod>2026-07-12T15:23:15.140Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

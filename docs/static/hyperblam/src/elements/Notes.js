@@ -22,7 +22,7 @@ class Notes extends Sampler {
       if (!this.robin) {
         return random.oneOf(this.notes);
       } else {
-        this.prevNoteIndex = this.cycle(this.prevNoteIndex, this.notes);
+        this.prevNoteIndex = this.nextIndex(this.prevNoteIndex, this.notes);
         return this.notes[this.prevNoteIndex];
       }
     }

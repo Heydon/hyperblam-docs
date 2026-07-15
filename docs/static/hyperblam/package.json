@@ -1,6 +1,6 @@
 {
   "name": "hyperblam",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Declarative digital signal processing and sequencing, with custom elements, for sound design and generative music.",
   "homepage": "https://git.gay/heydon/hyperblam",
   "bugs": {

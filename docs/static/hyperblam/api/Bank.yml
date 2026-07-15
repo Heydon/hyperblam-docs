@@ -14,9 +14,6 @@ props:
   - name: prop
     type: string
     description: Not applicable for **Bank**.
-  - name: value
-    type: string
-    description: Not applicable for **Bank**.
 events: 
   - name: blambank
     description: Fired when all the **Bank**’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`.

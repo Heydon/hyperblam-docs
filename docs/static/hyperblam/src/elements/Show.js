@@ -25,7 +25,6 @@ class Show extends Handle {
       // ↓ Don’t operate if the ancestor element is hidden
       if (to.hidden) return;
       let slides = this.slides[i];
-      slides.forEach(slide => slide.hidden = true);
       let chosen = [];
       if (this.some) {
         chosen = random.some(slides, this.some);
@@ -37,7 +36,10 @@ class Show extends Handle {
         }
         chosen.push(slides[this.prevIndex]);
       }
-      chosen.forEach(slide => slide.hidden = false);
+      window.setTimeout(() => {
+        slides.forEach(slide => slide.hidden = true);
+        chosen.forEach(slide => slide.hidden = false);
+      }, this.context().outputLatency * 1000);
     });
   }
 

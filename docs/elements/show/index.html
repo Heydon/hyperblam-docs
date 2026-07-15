@@ -93,9 +93,11 @@
   <main class="l-column l-flow" tabindex="-1">
     <h1>Show</h1>
     
-      <p></p><p>Simply shows and hides one or more elements according to events. Can show one of a set of elements at random, the <em>next</em> one of a set of elements (looping back where applicable), or <em>some</em> of a set of elements.</p>
+      <p></p><p>Simply shows and hides one or more elements according to events. Can show one of a set of elements at random, the <em>next</em> one of a set of elements (looping back where applicable), or <em>some</em> of a set of elements. Compensates for latency associated with bluetooth headphones and USB audio devices.</p>
 <p></p>
     
+    
+      <p class="u-note"><strong class="u-note__shout">DRAFT!</strong> This element is in early development and is liable to change or possibly be replaced.</p>
     
     <dl>
       <div>
@@ -147,6 +149,14 @@
         </tr>
         
         <tr>
+          <th scope="row">prop</th>
+          <td><em>string</em></td>
+          <td>null</td>
+          <td><p>Not applicable.</p>
+</td>
+        </tr>
+        
+        <tr>
           <th scope="row">some</th>
           <td><em>boolean or number</em></td>
           <td>false</td>
@@ -179,26 +189,10 @@
         </tr>
         
         <tr>
-          <th scope="row">value</th>
-          <td><em>string</em></td>
-          <td>null</td>
-          <td><p><strong>Handle</strong>-derived elements support special <code>value</code> syntax. Separate with <code>|</code> and one value is chosen at random. You can “prefer” certian values by including them more than once, like <code>0.1|0.1|0.2</code>. Separate with <code>~</code> and a value is chosen within the range <code>[x]~[n]</code>. Separate with <code> </code> (a single space) if you are supplying multiple args to an element’s method.</p>
-</td>
-        </tr>
-        
-        <tr>
           <th scope="row">event</th>
           <td><em>string</em></td>
           <td>blam</td>
           <td><p>The event type to listen for. For many Event-based elements, this is the generic custom event <code>blam</code>.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">prop</th>
-          <td><em>string</em></td>
-          <td>null</td>
-          <td><p>The property (which may be a method or map to an <code>audioParam</code>) to affect at the <code>event</code>.</p>
 </td>
         </tr>
         
@@ -285,7 +279,7 @@
     
     <footer class="u-font-smaller">
       <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
-      <p>Version: <strong>0.0.3</strong></p>
+      <p>Version: <strong>0.0.4</strong></p>
     </footer>
     
     

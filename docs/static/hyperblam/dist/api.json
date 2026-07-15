@@ -154,12 +154,6 @@
         "description": "Not applicable for **Bank**."
       },
       {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "Not applicable for **Bank**."
-      },
-      {
         "name": "bypass",
         "type": "boolean",
         "default": false,
@@ -230,6 +224,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
         "name": "once",
         "type": "boolean",
         "default": false,
@@ -244,12 +244,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -329,6 +323,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
         "name": "once",
         "type": "boolean",
         "default": false,
@@ -343,12 +343,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "prop",
@@ -445,12 +439,6 @@
         "type": "boolean",
         "default": false,
         "description": "Time (the second value of each `curve` pair) is set in beats (relative to the inherited `bpm`) instead of as a proportion of the sample’s duration. In other words, use absolute values. Either way, all values are capped to the sample’s duration."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "Not applicable. Use `curve` in its place."
       },
       {
         "name": "prop",
@@ -618,6 +606,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
         "name": "once",
         "type": "boolean",
         "default": false,
@@ -632,12 +626,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -748,12 +736,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -874,12 +856,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -1048,12 +1024,6 @@
         "name": "to",
         "type": "string",
         "description": "CSS selector. If not set, it looks for a single **Sampler**-based element."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "event",
@@ -1311,12 +1281,6 @@
         "description": "Do not supply an `event` prop for this element. It must use a child fieldset’s `change` event."
       },
       {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "Not applicable. The value is taken and parsed from the checked radio button."
-      },
-      {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
@@ -1363,13 +1327,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Not applicable for **Relay**. The `prop` is defined on each subject handler."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "Not applicable for **Relay**. The `value` is defined on each subject handler."
+        "description": "Not applicable for **Relay**. The `prop` is defined on each subject element."
       },
       {
         "name": "from",
@@ -1638,14 +1596,21 @@
     "name": "Show",
     "extends": "Handle",
     "category": "Visualizing",
+    "draft": true,
     "defined": true,
-    "summary": "Simply shows and hides one or more elements according to events. Can show one of a set of elements at random, the _next_ one of a set of elements (looping back where applicable), or _some_ of a set of elements.",
+    "summary": "Simply shows and hides one or more elements according to events. Can show one of a set of elements at random, the _next_ one of a set of elements (looping back where applicable), or _some_ of a set of elements. Compensates for latency associated with bluetooth headphones and USB audio devices.",
     "props": [
       {
         "name": "selector",
         "type": "string",
         "default": ":scope > *",
         "description": "Selector for descendant elements to be shown and unshown. Can be any elements and can change subject to (for example) **Blam** `value` randomization. Can be SVG elements belonging to an inline SVG."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Not applicable."
       },
       {
         "name": "some",
@@ -1670,22 +1635,10 @@
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
       },
       {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
-      },
-      {
         "name": "event",
         "type": "string",
         "default": "blam",
         "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",
@@ -1777,6 +1730,7 @@
     "name": "Sync",
     "extends": "Watch",
     "category": "Visualizing",
+    "draft": true,
     "defined": true,
     "summary": "Watches for prop changes and converts them into CSS custom property declarations. Can be used to effectively synchronize audio settings with the visual interface.",
     "props": [
@@ -1790,7 +1744,7 @@
         "name": "event",
         "type": "string",
         "default": null,
-        "description": "not applicable"
+        "description": "Not applicable."
       },
       {
         "name": "from",
@@ -1816,16 +1770,10 @@
         "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
       },
       {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "not applicable"
-      },
-      {
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "not applicable"
+        "description": "Not applicable."
       },
       {
         "name": "bypass",
@@ -1839,8 +1787,7 @@
         "default": 1,
         "description": "The probability that the `event` will be responded to. From `0` to `1`."
       }
-    ],
-    "draft": true
+    ]
   },
   {
     "name": "Tap",
@@ -1868,6 +1815,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
         "name": "once",
         "type": "boolean",
         "default": false,
@@ -1882,12 +1835,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
         "name": "prop",
@@ -1951,12 +1898,6 @@
         "description": "Stops the **Track** from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out."
       },
       {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Handle**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
-      },
-      {
         "name": "event",
         "type": "string",
         "default": "blam",
@@ -2006,7 +1947,7 @@
         "name": "event",
         "type": "string",
         "default": null,
-        "description": "not applicable"
+        "description": "Not applicable. Watches attributes instead."
       },
       {
         "name": "from",
@@ -2026,16 +1967,10 @@
         "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
       },
       {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "not applicable"
-      },
-      {
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "not applicable"
+        "description": "Not applicable."
       },
       {
         "name": "to",

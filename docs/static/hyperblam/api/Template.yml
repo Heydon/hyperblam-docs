@@ -11,10 +11,8 @@ props:
     type: number
     default: 16
     description: The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy.
-  - name: value 
-    description: not applicable
   - name: prop 
-    description: not applicable
+    description: Not applicable.
   - name: to 
     type: string
     default: 'null' 

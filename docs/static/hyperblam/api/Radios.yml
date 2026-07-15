@@ -7,5 +7,3 @@ props:
   - name: event 
     default: change
     description: Do not supply an `event` prop for this element. It must use a child fieldset’s `change` event.
-  - name: value 
-    description: Not applicable. The value is taken and parsed from the checked radio button. 

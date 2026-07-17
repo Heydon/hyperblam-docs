@@ -2,9 +2,9 @@ name: Props
 category: Visualizing
 extends: BandsToProps
 defined: true
-summary: Converts **Analyser** data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, places a custom property of the format `--[name]-[type]-[index]` on the root. In addition, `--[name]-[type]` represents the average value. For frequency data, this is effectively the signal strength. Finally, `--[name]-[type]-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.
+summary: Converts **Analyser** frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Finally, `--[name]-freq-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.
 props:
   - name: selector
     type: string
     default: null
-    description: "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-[type]: --[name]-[type]-[index]`), meaning all selected elements can be affected with a single declaration."
+    description: "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-freq: --[name]-freq-[index]`), meaning all selected elements can be affected with a single declaration."

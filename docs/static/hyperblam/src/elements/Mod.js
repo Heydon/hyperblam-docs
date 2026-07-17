@@ -3,10 +3,10 @@ import { Set } from '../primitives/Set.js';
 class Mod extends Set {
   constructor() {
     super();
-    this.oscNode = this.c.createOscillator();
+    this.oscNode = this.context().createOscillator();
     this.oscNode.type = this.wave;
-    this.oscGainNode = this.c.createGain();
-    this.analyserNode = this.c.createAnalyser();
+    this.oscGainNode = this.context().createGain();
+    this.analyserNode = this.context().createAnalyser();
     this.analyserNode.fftSize = 32;
     this.length = this.analyserNode.fftSize;
     this.data = new Float32Array(this.length);

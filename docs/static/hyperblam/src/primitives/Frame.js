@@ -7,6 +7,11 @@ class Frame extends BandsToProps {
     this.propsRoot = this.shadowRoot.host;
 	}
 
+  onblamready() {
+    super.onblamready();
+    this.init();
+  }
+
   render(band, interval, ratio) {
     this.shadowRoot.innerHTML = `
       <style>
@@ -32,13 +37,13 @@ class Frame extends BandsToProps {
   }
 
   init() {
-    let band = `var(--${this.name}-${this.type})`;
+    let band = `var(--${this.name}-freq)`;
     let interval = `var(--${this.name}-interval)`;
     this.render(band, interval, this.ratio, this.count);
   }
 
   declaration(i) {
-    return `--${this.name}-${this.type}: var(--${this.name}-${this.type}-${i}, 0)`;
+    return `--${this.name}-freq: var(--${this.name}-freq-${i}, 0)`;
   }
 
   renderItems() {
@@ -71,7 +76,7 @@ class Frame extends BandsToProps {
 
 	set ratio(value) {
 		this.setAttribute('ratio', value);
-	}  
+	}
 }
 
 export { Frame }

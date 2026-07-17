@@ -13,6 +13,12 @@
         "description": "The number of data points (the `frequencyBinCount`)"
       },
       {
+        "name": "gain",
+        "type": "number",
+        "default": 1,
+        "description": "Use this to adjust the strength of the signal. It does not affect the audio output; only the signal _data_. The mix coming out of an **Analyser** is 100% dry by default. It is not recommended you change the `mix`."
+      },
+      {
         "name": "smoothing",
         "type": "number",
         "default": 0,
@@ -38,7 +44,7 @@
       },
       {
         "name": "getTimeData",
-        "description": "Get a snapshot of the [time domain data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteTimeDomainData)"
+        "description": "Get a snapshot of the [time domain data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatTimeDomainData)"
       }
     ]
   },
@@ -83,34 +89,6 @@
         "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats."
       },
       {
-        "name": "shuffle",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to randomly redistribute data band references among the Shadow DOM-rendered elements."
-      },
-      {
-        "name": "analyser",
-        "type": "string",
-        "description": "A CSS selector for the **Analyser** element."
-      },
-      {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
-        "name": "fps",
-        "type": "number",
-        "default": 25,
-        "description": "Frames per second. The frequency at which **Analyser** data is read."
-      },
-      {
-        "name": "time",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to take data from the time (rather than frequency) domain."
-      },
-      {
         "name": "first",
         "type": "number",
         "default": "undefined",
@@ -121,6 +99,28 @@
         "type": "number",
         "default": "undefined",
         "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to shuffle the band/frequency data."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency with which **Analyser** data is read."
       }
     ]
   },
@@ -1168,6 +1168,31 @@
     ]
   },
   {
+    "name": "Peak",
+    "extends": "Visualiser",
+    "category": "Visualizing",
+    "defined": true,
+    "summary": "Takes **Analyser** data, finds the peak (RMS-based) value and coverts it to a single CSS custom property of the format `--[name]-peak` on the element. Additionally, `--[name]-interval` represents the duration of one frame (based on the `fps` value). This is useful for applying CSS transitions between data changes.",
+    "props": [
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency with which **Analyser** data is read."
+      }
+    ]
+  },
+  {
     "name": "Phaser",
     "extends": "Box",
     "defined": true,
@@ -1217,41 +1242,13 @@
     "category": "Visualizing",
     "extends": "BandsToProps",
     "defined": true,
-    "summary": "Converts **Analyser** data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, places a custom property of the format `--[name]-[type]-[index]` on the root. In addition, `--[name]-[type]` represents the average value. For frequency data, this is effectively the signal strength. Finally, `--[name]-[type]-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
+    "summary": "Converts **Analyser** frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Finally, `--[name]-freq-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
     "props": [
       {
         "name": "selector",
         "type": "string",
         "default": null,
-        "description": "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-[type]: --[name]-[type]-[index]`), meaning all selected elements can be affected with a single declaration."
-      },
-      {
-        "name": "shuffle",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to randomly distribute data bands among target elements chosen with `selector`."
-      },
-      {
-        "name": "analyser",
-        "type": "string",
-        "description": "A CSS selector for the **Analyser** element."
-      },
-      {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
-        "name": "fps",
-        "type": "number",
-        "default": 25,
-        "description": "Frames per second. The frequency at which **Analyser** data is read."
-      },
-      {
-        "name": "time",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to take data from the time (rather than frequency) domain."
+        "description": "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-freq: --[name]-freq-[index]`), meaning all selected elements can be affected with a single declaration."
       },
       {
         "name": "first",
@@ -1264,6 +1261,28 @@
         "type": "number",
         "default": "undefined",
         "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to shuffle the band/frequency data."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency with which **Analyser** data is read."
       }
     ]
   },
@@ -1421,34 +1440,6 @@
         "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats."
       },
       {
-        "name": "shuffle",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to randomly redistribute data band references among the Shadow DOM-rendered elements."
-      },
-      {
-        "name": "analyser",
-        "type": "string",
-        "description": "A CSS selector for the **Analyser** element."
-      },
-      {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamstart` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
-        "name": "fps",
-        "type": "number",
-        "default": 25,
-        "description": "Frames per second. The frequency at which **Analyser** data is read."
-      },
-      {
-        "name": "time",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to take data from the time (rather than frequency) domain."
-      },
-      {
         "name": "first",
         "type": "number",
         "default": "undefined",
@@ -1459,6 +1450,28 @@
         "type": "number",
         "default": "undefined",
         "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to shuffle the band/frequency data."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+      },
+      {
+        "name": "transport",
+        "type": "string",
+        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency with which **Analyser** data is read."
       }
     ]
   },

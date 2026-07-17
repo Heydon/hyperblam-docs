@@ -17,10 +17,10 @@ elements:
 
   @keyframes jolt {
     0% {
-      transform: translateY(0) scale(0.75);
+      transform: translateY(0);
     }
     20% {
-      transform: translateY(-0.75rem) scale(0.75);
+      transform: translateY(-0.75rem);
     }
     40% {
       transform: translateY(0.5rem);
@@ -57,7 +57,10 @@ elements:
 {% endblock %}
 
 {% block audio %}
-<pads-blam id="keys" choke>
+<chain-blam id="bus">
+  <analyser-blam gain="100"></analyser-blam>
+</chain-blam>
+<pads-blam id="keys" out="bus" choke>
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/effects/key-01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/effects/key-02.mp3"></sample-blam>

@@ -8,6 +8,10 @@ props:
     type: number
     default: 16
     description: The number of data points (the `frequencyBinCount`)
+  - name: gain
+    type: number
+    default: 1
+    description: Use this to adjust the strength of the signal. It does not affect the audio output; only the signal _data_. The mix coming out of an **Analyser** is 100% dry by default. It is not recommended you change the `mix`.
   - name: smoothing
     type: number 
     default: 0
@@ -18,5 +22,5 @@ methods:
   - name: getFrequencyData
     description: Get a snapshot of the [frequency data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData)
   - name: getTimeData
-    description: Get a snapshot of the [time domain data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteTimeDomainData)
+    description: Get a snapshot of the [time domain data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getFloatTimeDomainData)
 

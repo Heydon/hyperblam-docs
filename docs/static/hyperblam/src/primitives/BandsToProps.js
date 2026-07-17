@@ -2,11 +2,6 @@ import { Visualiser } from './Visualiser.js';
 import { random } from '../tools/random.js';
 
 class BandsToProps extends Visualiser {
-  constructor() {
-    super();
-    this.propsRoot = this;
-  }
-
   createIndices(count) {
     this.unshuffled = Array(this.analyserElem.bands)
       .fill().map((_, i) => i + 1)
@@ -28,11 +23,10 @@ class BandsToProps extends Visualiser {
   }
 
   translate() {
-    this.propsRoot.style.setProperty(`--${this.name}-interval`, `${this.ms / 1000}s`)
+    this.style.setProperty(`--${this.name}-interval`, `${this.ms / 1000}s`);
     for (let i = 0; i < this.data.length; i++) {
-      this.propsRoot.style.setProperty(`--${this.name}-${this.type}-${i + 1}`, this.data[i] / 255);
+      this.style.setProperty(`--${this.name}-freq-${i + 1}`, this.data[i] / 255);
     }
-    this.propsRoot.style.setProperty(`--${this.name}-${this.type}`, this.getAverage(this.data) / 255);
   }
 
   get shuffle() {
@@ -42,6 +36,22 @@ class BandsToProps extends Visualiser {
 	set shuffle(value) {
 		this.toBoolean('shuffle', value);
 	}
+
+  get first() {
+    return this.getAttribute('first');
+	}
+
+	set first(value) {
+		this.setAttribute('first', value);
+  }
+
+  get last() {
+    return this.getAttribute('last');
+	}
+
+	set last(value) {
+		this.setAttribute('last', value);
+  }
 
   static get observedAttributes () {
     return ['shuffle'];

@@ -6,7 +6,6 @@ dataFiles.forEach(file => {
   exampleData.push(jetpack.read(file, 'json'));
 });
 exampleData.sort((a, b) => a.order - b.order);
-console.log(exampleData);
 
 module.exports = {
   title: 'HYPERBLAM',

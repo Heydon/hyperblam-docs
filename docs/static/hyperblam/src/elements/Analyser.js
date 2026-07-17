@@ -3,13 +3,20 @@ import { Box } from '../primitives/Box.js';
 class Analyser extends Box {
   constructor() {
     super();
-    this.node = this.context().createAnalyser();
-    this.inNode.connect(this.node)
+    this.node = this.c.createAnalyser();
+    this.boostNode = this.c.createGain();
+    this.inNode.connect(this.boostNode)
+               .connect(this.node)
                .connect(this.wetGainNode);
     this.node.fftSize = Math.max(this.bands, 16) * 2;
     this.node.smoothingTimeConstant = this.smoothing;
     this.dataFrequencies = new Uint8Array(this.bands);
-    this.dataTime = new Uint8Array(this.bands);
+    this.dataTime = new Float32Array(this.node.frequencyBinCount);
+    this.mixInitial = 0;
+
+    this.mirrorParams({
+      gain: this.boostNode.gain
+    });
   }
 
   getFrequencyData() {
@@ -18,7 +25,7 @@ class Analyser extends Box {
   }
 
   getTimeData() {
-    this.node.getByteTimeDomainData(this.dataTime);
+    this.node.getFloatTimeDomainData(this.dataTime);
     return this.dataTime;
   }
 
@@ -38,6 +45,15 @@ class Analyser extends Box {
 
 	set smoothing(value) {
 		this.setAttribute('smoothing', value);
+  }
+
+  get gain() {
+    let value = this.getAttribute('gain');
+		return value ? parseFloat(value) : 1;
+	}
+
+	set gain(value) {
+		this.setAttribute('gain', value);
   }
 }
 

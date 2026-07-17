@@ -2,22 +2,12 @@ import { Base } from '../primitives/Base.js';
 
 class Visualiser extends Base {
   onblamready() {
-    this.type = this.time ? 'time' : 'freq';
-    this.analyserElem = document.querySelector('analyser-blam');
-    this.name = this.id || this.analyserElem.id || this.parentNode.outerHTML.length;
+    this.analyserElem = document.querySelector(this.analyser || 'analyser-blam');
+    this.name = this.id || this.analyserElem.id || Math.random().toString(36).substring(2, 6);
     this.transportElem = this.transport ? document.querySelector(this.transport) : this.closest('sequencer-blam');
     this.transportElem.addEventListener('blamplay', this);
     this.transportElem.addEventListener('blamstop', this);
-    this.function = this.time ? 'getTimeData' : 'getFrequencyData';
-    this.init && this.init();
-  }
-
-  getAverage() {
-    let sum = 0;
-    for (const band of this.data) {
-      sum += band * band;
-    }  
-    return Math.sqrt(sum / this.data.length);
+    this.function = 'getFrequencyData';
   }
 
   translate() {
@@ -29,7 +19,7 @@ class Visualiser extends Base {
       this.data = this.analyserElem[this.function]()
       this.translate();
       if (this.stopping) {
-        if (this.data.every(datum => datum == 0)) {
+        if (this.data.every(d => d == 0)) {
           clearInterval(this.logger);
           this.stopping = false;
         }
@@ -66,33 +56,9 @@ class Visualiser extends Base {
 		this.setAttribute('fps', value);
   }
 
-  get first() {
-    return this.getAttribute('first');
-	}
-
-	set first(value) {
-		this.setAttribute('first', value);
-  }
-
-  get last() {
-    return this.getAttribute('last');
-	}
-
-	set last(value) {
-		this.setAttribute('last', value);
-  }
-
   get ms() {
     return 1000 / this.fps;
   }
-
-  get time() {
-		return this.hasAttribute('time');
-	}
-
-	set time(value) {
-		this.toBoolean('time', value);
-	}
 
   disconnectedCallback() {
     this.transportElem.removeEventListener('blamplay');

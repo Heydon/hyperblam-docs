@@ -13,10 +13,12 @@ class Seed extends Handle {
     }
     for (const to of this.toElems) {
       let name = this.name ? this.name : to.id ? to.id : this.id ? this.id : to.nodeName.toLowerCase();
-      for (let seed = 0; seed < this.seeds; seed++) {
-        let value = random.floatBetween(0, 1);
-        to.style.setProperty(`--seed-${name}-${seed + 1}`, value);
-      }
+      window.setTimeout(() => {
+        for (let seed = 0; seed < this.seeds; seed++) {
+          let value = random.floatBetween(0, 1);
+          to.style.setProperty(`--seed-${name}-${seed + 1}`, value);
+        }
+      }, this.context().outputLatency * 1000);
     }
   }
 

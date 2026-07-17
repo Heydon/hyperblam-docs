@@ -93,7 +93,7 @@
   <main class="l-column l-flow" tabindex="-1">
     <h1>Props</h1>
     
-      <p></p><p>Converts <strong>Analyser</strong> data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, places a custom property of the format <code>--[name]-[type]-[index]</code> on the root. In addition, <code>--[name]-[type]</code> represents the average value. For frequency data, this is effectively the signal strength. Finally, <code>--[name]-[type]-interval</code> represents the duration of one frame (based on the <code>fps</code> value). This is useful for CSS transitions.</p>
+      <p></p><p>Converts <strong>Analyser</strong> frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format <code>--[name]-freq-[index]</code> on the root. Finally, <code>--[name]-freq-interval</code> represents the duration of one frame (based on the <code>fps</code> value). This is useful for CSS transitions.</p>
 <p></p>
     
     
@@ -142,47 +142,7 @@
           <th scope="row">selector</th>
           <td><em>string</em></td>
           <td></td>
-          <td><p>A CSS selector representing all the elements to which data values should be mapped. Each element’s <code>--[name]-[type]</code> property is mapped to a specific band (<code>--[name]-[type]: --[name]-[type]-[index]</code>), meaning all selected elements can be affected with a single declaration.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">shuffle</th>
-          <td><em>boolean</em></td>
-          <td>false</td>
-          <td><p>Whether to randomly distribute data bands among target elements chosen with <code>selector</code>.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">analyser</th>
-          <td><em>string</em></td>
-          <td></td>
-          <td><p>A CSS selector for the <strong>Analyser</strong> element.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">transport</th>
-          <td><em>string</em></td>
-          <td></td>
-          <td><p>A CSS selector representing the element used to start and stop listening to analyser data. This element must fire <code>blamstart</code> and <code>blamstop</code> events. At the time of writing, <strong>Media</strong>, <strong>Pads</strong>, and <strong>Notes</strong> do this.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">fps</th>
-          <td><em>number</em></td>
-          <td>25</td>
-          <td><p>Frames per second. The frequency at which <strong>Analyser</strong> data is read.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">time</th>
-          <td><em>boolean</em></td>
-          <td>false</td>
-          <td><p>Whether to take data from the time (rather than frequency) domain.</p>
+          <td><p>A CSS selector representing all the elements to which data values should be mapped. Each element’s <code>--[name]-[type]</code> property is mapped to a specific band (<code>--[name]-freq: --[name]-freq-[index]</code>), meaning all selected elements can be affected with a single declaration.</p>
 </td>
         </tr>
         
@@ -199,6 +159,38 @@
           <td><em>number</em></td>
           <td>undefined</td>
           <td><p>The last of the data bands to use. If <code>undefined</code>, it’s the very last band provided by the <strong>Analyser</strong>.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">shuffle</th>
+          <td><em>boolean</em></td>
+          <td>false</td>
+          <td><p>Whether to shuffle the band/frequency data.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">analyser</th>
+          <td><em>string</em></td>
+          <td></td>
+          <td><p>A CSS selector for the <strong>Analyser</strong> element. Defaults to the first <strong>Analyser</strong> found in the page.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">transport</th>
+          <td><em>string</em></td>
+          <td></td>
+          <td><p>A CSS selector representing the element used to start and stop listening to analyser data. This element must fire <code>blamplay</code> and <code>blamstop</code> events. At the time of writing, <strong>Media</strong>, <strong>Pads</strong>, and <strong>Notes</strong> do this.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">fps</th>
+          <td><em>number</em></td>
+          <td>25</td>
+          <td><p>Frames per second. The frequency with which <strong>Analyser</strong> data is read.</p>
 </td>
         </tr>
         

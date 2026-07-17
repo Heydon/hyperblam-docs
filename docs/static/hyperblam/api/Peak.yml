@@ -1,0 +1,6 @@
+name: Peak
+extends: Visualiser
+category: Visualizing
+defined: true
+summary: Takes **Analyser** data, finds the peak (RMS-based) value and coverts it to a single CSS custom property of the format `--[name]-peak` on the element. Additionally, `--[name]-interval` represents the duration of one frame (based on the `fps` value). This is useful for applying CSS transitions between data changes.
+

@@ -9,7 +9,7 @@ class Props extends BandsToProps {
 	distribute() {
 		let indices = this.createIndices(this.bandElems.length);
 		this.bandElems.forEach((b, i) => {
-      b.style.setProperty(`--${this.name}-${this.type}`, `var(--${this.name}-${this.type}-${indices[i]})`);
+      b.style.setProperty(`--${this.name}-freq`, `var(--${this.name}-${indices[i]})`);
     });
 	}
 

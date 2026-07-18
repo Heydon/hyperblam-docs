@@ -11,8 +11,8 @@ elements:
 
 {% block visual %}
 <style>
-  show-blam {
-    transform: scale(max(0.25, var(--seed-stretch-1)), max(0.25, var(--seed-stretch-2)));
+  #glyphs {
+    transform: scale(max(0.25, var(--stretch-x)), max(0.25, var(--stretch-y)));
   }
 
   @keyframes jolt {
@@ -36,15 +36,16 @@ elements:
     }
   }
 
-  show-blam > div {
+  #glyphs > div {
     line-height: 0;
     font-size: 100cqmin;
     animation: jolt 0.15s linear 1;
     animation-fill-mode: forwards;
+    font-family: Georgia, serif;
   }
 </style>
-<show-blam role="img" aria-label="Animation that shows letters spelling out HyperBlam when typing sound is playing" from="#keys" class="l-screen u-impact" cycle>
-  <div>H</div>
+<div id="glyphs" role="img" aria-label="Animation that shows letters spelling out HyperBlam when typing sound is audible" from="#keys" class="l-screen" cycle>
+  <div hidden>H</div>
   <div hidden>Y</div>
   <div hidden>P</div>
   <div hidden>E</div>
@@ -53,7 +54,7 @@ elements:
   <div hidden>L</div>
   <div hidden>A</div>
   <div hidden>M</div>
-</show-blam>
+</div>
 {% endblock %}
 
 {% block audio %}
@@ -68,7 +69,9 @@ elements:
     <sample-blam src="{{site.basedir}}/static/sounds/effects/key-04.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/effects/key-05.mp3"></sample-blam>
   </bank-blam>
-  <seed-blam name="stretch" to="show-blam" seeds="2"></seed-blam>
+  <blam-blam prop="--stretch-x" to="#glyphs" value="0~1"></blam-blam>
+  <blam-blam prop="--stretch-y" to="#glyphs" value="0~1"></blam-blam>
+  <one-blam prop="hidden" to="#glyphs > *" fwd revert></one-blam>
 </pads-blam>
 <sequencer-blam>
   <track-blam to="#keys">

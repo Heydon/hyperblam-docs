@@ -1,6 +1,6 @@
 name: Set
 category: Controlling
-summary: Handles events to affect a prop or `AudioParam`, or execute a method. Which of these three are applicable is automatically determined from the `prop` name supplied.
+summary: Handles events to affect a prop, set an attribute, execute a method, or append a CSS custom property. Which of these three are applicable is automatically determined from the `prop` name supplied.
 extends: Handle
 props: 
   - name: ramp
@@ -11,6 +11,8 @@ props:
     type: boolean
     default: false
     description: When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays.
+  - name: prop
+    description: Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. 
   - name: value 
     type: string 
     default: 'null'

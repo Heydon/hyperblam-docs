@@ -1,0 +1,37 @@
+import { Blam } from './Blam.js';
+import { random } from '../tools/random.js';
+
+class One extends Blam {
+  handle(event, value) {
+    if (!random.chance(this.chance)) {
+      return;
+    }
+
+    if (this.revert) {
+      this.toElems.forEach((elem, i) => elem[this.prop] = this.baseValues[i]);
+    }
+
+    if (this.fwd) {
+      this.prevIndex = this.nextIndex(this.prevIndex, this.toElems);
+    } else {
+      this.prevIndex = this.newIndex(this.prevIndex, this.toElems);
+    }
+    let to = this.toElems[this.prevIndex];
+
+    this.set(event, to, value);
+
+    if (this.once) {
+      this.unlisten();
+    }
+  }
+
+  get fwd() {
+		return this.hasAttribute('fwd');
+	}
+
+	set fwd(value) {
+		this.toBoolean('fwd', value);
+	}
+}
+
+export { One }

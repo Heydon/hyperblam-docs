@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -89,8 +89,8 @@
     
     
 <style>
-  show-blam {
-    transform: scale(max(0.25, var(--seed-stretch-1)), max(0.25, var(--seed-stretch-2)));
+  #glyphs {
+    transform: scale(max(0.25, var(--stretch-x)), max(0.25, var(--stretch-y)));
   }
 
   @keyframes jolt {
@@ -114,15 +114,16 @@
     }
   }
 
-  show-blam > div {
+  #glyphs > div {
     line-height: 0;
     font-size: 100cqmin;
     animation: jolt 0.15s linear 1;
     animation-fill-mode: forwards;
+    font-family: Georgia, serif;
   }
 </style>
-<show-blam role="img" aria-label="Animation that shows letters spelling out HyperBlam when typing sound is playing" from="#keys" class="l-screen u-impact" cycle="">
-  <div>H</div>
+<div id="glyphs" role="img" aria-label="Animation that shows letters spelling out HyperBlam when typing sound is audible" from="#keys" class="l-screen" cycle="">
+  <div hidden="">H</div>
   <div hidden="">Y</div>
   <div hidden="">P</div>
   <div hidden="">E</div>
@@ -131,7 +132,7 @@
   <div hidden="">L</div>
   <div hidden="">A</div>
   <div hidden="">M</div>
-</show-blam>
+</div>
 
     <aside class="l-framed l-log u-blend-difference" aria-label="Props log">
       <ul id="log" class="s-playstop" hidden=""></ul>
@@ -150,7 +151,9 @@
     <sample-blam src="https://hyperblam.how/static/sounds/effects/key-04.mp3"></sample-blam>
     <sample-blam src="https://hyperblam.how/static/sounds/effects/key-05.mp3"></sample-blam>
   </bank-blam>
-  <seed-blam name="stretch" to="show-blam" seeds="2"></seed-blam>
+  <blam-blam prop="--stretch-x" to="#glyphs" value="0~1"></blam-blam>
+  <blam-blam prop="--stretch-y" to="#glyphs" value="0~1"></blam-blam>
+  <one-blam prop="hidden" to="#glyphs > *" fwd="" revert=""></one-blam>
 </pads-blam>
 <sequencer-blam>
   <track-blam to="#keys">

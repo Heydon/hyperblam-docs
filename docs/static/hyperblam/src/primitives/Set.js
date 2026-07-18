@@ -29,48 +29,59 @@ class Set extends Handle {
     return this.stringNumBool(value);
   }
 
-  handle(event, value) {
-    let revert = this.revert && this.reverting;
-    value = value !== undefined ? value : this.value;
-    for (const [i, to] of this.toElems.entries()) {
-      if (to[this.prop] === undefined) {
-        return;
-      }
-      if (revert) {
-        value = this.baseValues[i];
-      }
-      let chance = revert ? true : random.chance(this.chance);
-      if (chance) {
-        let time = event?.detail?.time || this.getTime();
-        if (event?.detail?.x !== undefined && !!Number(value)) {
-          value *= event.detail.x;
-        } 
+  set(event, to, value) {
+    if (this.prop.startsWith('--')) {
+      to.style.setProperty(this.prop, value);
+      return;
+    }
 
+    let time = event?.detail?.time || this.getTime();
+    if (event?.detail?.x !== undefined && !!Number(value)) {
+      value *= event.detail.x;
+    }
+
+    switch (typeof to[this.prop]) {
+      case 'undefined':
+        to.setAttribute(this.prop, value);
+        break;
+      case 'boolean':
+        to[this.prop] = !to[this.prop];
+        break;
+      case 'function':
+        if (Array.isArray(value)) {
+          to[this.prop](...value);
+        } else {
+          to[this.prop](value);
+        } 
+        break;
+      default: 
         let param = to?.params?.[this.prop];
         if (typeof param === 'object') {
           param.time = time;
           param.ramp = this.ramp;
-        }
+        }          
+        to[this.prop] = value;
+    }  
+  }
 
-        switch (typeof to[this.prop]) {
-          case 'boolean':
-            to[this.prop] = !to[this.prop];
-            break;
-          case 'function':
-            if (Array.isArray(value)) {
-              to[this.prop](...value);
-            } else {
-              to[this.prop](value);
-            }
-            break;
-          default: 
-            to[this.prop] = value;
-        }
-        this.reverting = revert ? false : true;
-        if (this.once) {
-          this.unlisten();
-        }
-      } 
+  handle(event, value) {
+    let revert = this.revert && this.reverting;
+
+    for (const [i, to] of this.toElems.entries()) {
+      value = revert ? this.baseValues[i] : value || this.value;
+
+      let chance = revert ? true : random.chance(this.chance);
+      if (!chance) {
+        return;
+      }
+
+      this.set(event, to, value);
+      
+      this.reverting = revert ? false : true;
+
+      if (this.once) {
+        this.unlisten();
+      }
     }
   }
 

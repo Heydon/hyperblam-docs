@@ -29,7 +29,7 @@ class Set extends Handle {
     return this.stringNumBool(value);
   }
 
-  set(event, to, value) {
+  triage(event, to, value) {
     if (this.prop.startsWith('--')) {
       to.style.setProperty(this.prop, value);
       return;
@@ -54,7 +54,7 @@ class Set extends Handle {
           to[this.prop](value);
         } 
         break;
-      default: 
+      default:
         let param = to?.params?.[this.prop];
         if (typeof param === 'object') {
           param.time = time;
@@ -68,21 +68,21 @@ class Set extends Handle {
     let revert = this.revert && this.reverting;
 
     for (const [i, to] of this.toElems.entries()) {
-      value = revert ? this.baseValues[i] : value || this.value;
+      value = revert ? this.baseValues[i] : value !== undefined ? value : this.value;
 
       let chance = revert ? true : random.chance(this.chance);
       if (!chance) {
         return;
       }
 
-      this.set(event, to, value);
+      this.triage(event, to, value);
       
       this.reverting = revert ? false : true;
 
       if (this.once) {
         this.unlisten();
       }
-    }
+    }    
   }
 
   get ramp() {

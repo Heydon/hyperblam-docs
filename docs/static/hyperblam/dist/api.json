@@ -209,7 +209,7 @@
     "defined": true,
     "category": "Automating",
     "extends": "Set",
-    "summary": "Handles events to affect a prop or `AudioParam`, or execute a method. Which of these three are applicable is automatically determined from the `prop` name supplied.",
+    "summary": "Handles events to affect a prop, set an attribute, execute a method, or append a CSS custom property. Which of these three are applicable is automatically determined from the `prop` name supplied.",
     "props": [
       {
         "name": "ramp",
@@ -222,6 +222,12 @@
         "type": "boolean",
         "default": false,
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
       },
       {
         "name": "value",
@@ -250,12 +256,6 @@
         "type": "string",
         "default": "blam",
         "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",
@@ -323,6 +323,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+      },
+      {
         "name": "value",
         "type": "string",
         "default": "null",
@@ -343,12 +349,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",
@@ -606,6 +606,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+      },
+      {
         "name": "value",
         "type": "string",
         "default": "null",
@@ -632,12 +638,6 @@
         "type": "string",
         "default": "blam",
         "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",
@@ -1036,6 +1036,79 @@
         "type": "string",
         "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
+      },
+      {
+        "name": "bypass",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to stop responding to events as they happen."
+      },
+      {
+        "name": "chance",
+        "type": "boolean",
+        "default": 1,
+        "description": "The probability that the `event` will be responded to. From `0` to `1`."
+      }
+    ]
+  },
+  {
+    "name": "One",
+    "defined": true,
+    "category": "Automating",
+    "extends": "Set",
+    "summary": "Like **Blam** but it only affects one of the elements selected using `to`.",
+    "props": [
+      {
+        "name": "fwd",
+        "type": "boolean",
+        "default": false,
+        "description": "By default, one element is chosen at random, each time (but never the same element twice in a row). With `fwd` set, the elements are targeted in order. Used with the “hidden” as the `prop` and `revert`, selected elements appear and disappear like slides in a slideshow."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "default": false,
+        "description": "In the case of **One**, `revert` reverts all `prop` values at each event, before setting the `value` just for the chosen _one_."
+      },
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": null,
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
+      },
+      {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
+      },
+      {
+        "name": "once",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "event",
+        "type": "string",
+        "default": "blam",
+        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
       },
       {
         "name": "bypass",
@@ -1606,36 +1679,53 @@
     ]
   },
   {
-    "name": "Show",
-    "extends": "Handle",
-    "category": "Visualizing",
-    "draft": true,
+    "name": "Some",
     "defined": true,
-    "summary": "Simply shows and hides one or more elements according to events. Can show one of a set of elements at random, the _next_ one of a set of elements (looping back where applicable), or _some_ of a set of elements. Compensates for latency associated with bluetooth headphones and USB audio devices.",
+    "category": "Automating",
+    "extends": "Set",
+    "summary": "Like **Blam** but it only affects _some_ of the elements selected using `to`.",
     "props": [
       {
-        "name": "selector",
-        "type": "string",
-        "default": ":scope > *",
-        "description": "Selector for descendant elements to be shown and unshown. Can be any elements and can change subject to (for example) **Blam** `value` randomization. Can be SVG elements belonging to an inline SVG."
+        "name": "min",
+        "type": "number",
+        "default": 1,
+        "description": "The minimum number of elements to affect."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "default": null,
+        "description": "The maximum number of elements to affect. If not set (null), it the total number of elements selected with `to`."
+      },
+      {
+        "name": "revert",
+        "type": "boolean",
+        "default": false,
+        "description": "In the case of **Some**, `revert` reverts all `prop` values at each event, before setting the `value` just for _some_."
+      },
+      {
+        "name": "ramp",
+        "type": "number",
+        "default": null,
+        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
       },
       {
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Not applicable."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
       },
       {
-        "name": "some",
-        "type": "boolean or number",
-        "default": false,
-        "description": "Set as a boolean attribute, some elements are shown each time. By default it’s between one and all. If a numeric value is given, that’s how many (random) elements are shown."
+        "name": "value",
+        "type": "string",
+        "default": "null",
+        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
       },
       {
-        "name": "cycle",
+        "name": "once",
         "type": "boolean",
         "default": false,
-        "description": "Whether to show each element in turn"
+        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
         "name": "from",
@@ -1704,6 +1794,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+      },
+      {
         "name": "once",
         "type": "boolean",
         "default": false,
@@ -1718,12 +1814,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",
@@ -1828,6 +1918,12 @@
         "description": "When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays."
       },
       {
+        "name": "prop",
+        "type": "string",
+        "default": "null",
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+      },
+      {
         "name": "value",
         "type": "string",
         "default": "null",
@@ -1848,12 +1944,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
       },
       {
         "name": "bypass",

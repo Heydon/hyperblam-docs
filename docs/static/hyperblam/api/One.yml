@@ -1,0 +1,12 @@
+name: One
+defined: true
+category: Automating
+extends: Set
+summary: Like **Blam** but it only affects one of the elements selected using `to`.
+props: 
+  - name: fwd 
+    type: boolean 
+    default: false 
+    description: By default, one element is chosen at random, each time (but never the same element twice in a row). With `fwd` set, the elements are targeted in order. Used with the “hidden” as the `prop` and `revert`, selected elements appear and disappear like slides in a slideshow.
+  - name: revert 
+    description: In the case of **One**, `revert` reverts all `prop` values at each event, before setting the `value` just for the chosen _one_.

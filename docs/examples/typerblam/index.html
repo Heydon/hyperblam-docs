@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -84,7 +84,7 @@
 </header>
 
     
-<audio-blam bpm="120">
+<audio-blam bpm="150">
   <main tabindex="-1" class="l-frame">
     
     
@@ -178,18 +178,22 @@
     <div class="l-flow">
       
 
-<p>This simple visualization uses two event-driven elements—<code><a href="/elements/show">&lt;show-blam&gt;</a></code> and <code><a href="/elements/seed">&lt;seed-blam&gt;</a></code>—and a little CSS animation.</p>
-<p>As the name suggests, <code><a href="/elements/show">&lt;show-blam&gt;</a></code> just... shows stuff. In this case, I'm showing the characters for the term <strong>HYPERBLAM</strong> in turn. So I apply the <code>cycle</code> prop.</p>
-<pre><code class="language-html">&lt;show-blam from="#keys" cycle&gt;...&lt;/show-blam&gt;
+<p>This simple visualization introduces a new event-based element: <code><a href="/elements/one">&lt;one-blam&gt;</a></code>. It works like <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> but one affects <em>one</em> of the selected <code>to</code> elements each event. In this case, it’s used with <code>fwd</code> (<em>forward</em>), meaning each selected element is affected <em>in order</em>, at each event.</p>
+<pre><code class="language-html">&lt;one-blam prop="hidden" to="#glyphs &gt; *" fwd revert&gt;&lt;/one-blam&gt;
 </code></pre>
-<p>The <code><a href="/elements/seed">&lt;seed-blam&gt;</a></code> element is simple but powerful. It adds custom properties with random values between <code>0</code> and <code>1</code>. These can be used to randomize all sorts of styles. In this case, two seeds are applied for affecting <code>scale</code>.</p>
+<p>Every time the parent <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> triggers a sound, the next <code>#glyphs &gt; *</code> element is unhidden. Since <code>revert</code> is also in place, all but the selected element are reverted to their initial <code>hidden</code> state each time.</p>
+<p>The <code><a href="/elements/one">&lt;one-blam&gt;</a></code> is used in conjunction with a couple of <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>s setting CSS custom properties. These are like seed numbers, setting a random value between <code>0</code> and <code>1</code> at each sound event:</p>
+<pre><code class="language-html">&lt;blam-blam prop="--stretch-x" to="#glyphs" value="0~1"&gt;&lt;/blam-blam&gt;
+&lt;blam-blam prop="--stretch-y" to="#glyphs" value="0~1"&gt;&lt;/blam-blam&gt;
+</code></pre>
+<p>The CSS applies these to <em>stretch</em> the characters in different ways. Note the use of CSS’s <code>max()</code> function here, making sure no glyph is ever squished below <code>0.25</code> (25%) along either axis.</p>
 <pre><code class="language-css">show-blam {
-  transform: scale(max(0.25, var(--seed-stretch-1)), max(0.25, var(--seed-stretch-2)));
+  transform: scale(max(0.25, var(--stretch-x)), max(0.25, var(--stretch-y)));
 }
 </code></pre>
-<p>(Note the <code>max()</code> function, ensuring the scale—on either axis—is never smaller than <code>0.25</code>.)</p>
-<p>Both <code><a href="/elements/show">&lt;show-blam&gt;</a></code> and <code><a href="/elements/seed">&lt;seed-blam&gt;</a></code> respond to the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>’s generic “blam” event. That is, every time a sound is played, a new character—semi-randomly stretched—appears.</p>
-<p>Each character’s element has a CSS animation applied that jolts/shakes the character as it appears. This acts as a visual metaphor for the rattling sound of the keys.</p>
+<p>Each character’s element has a CSS animation applied that jolts/shakes the character as it is unhidden. This is a visual metaphor for the rattling sound of the keys.</p>
+<pre><code class="language-css">animation: jolt 0.15s linear 1;
+</code></pre>
 
 
 

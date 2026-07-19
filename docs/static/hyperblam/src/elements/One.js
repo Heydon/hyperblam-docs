@@ -1,14 +1,10 @@
-import { Blam } from './Blam.js';
+import { Set } from '../primitives/Set.js';
 import { random } from '../tools/random.js';
 
-class One extends Blam {
+class One extends Set {
   handle(event, value) {
     if (!random.chance(this.chance)) {
       return;
-    }
-
-    if (this.revert) {
-      this.toElems.forEach((elem, i) => elem[this.prop] = this.baseValues[i]);
     }
 
     if (this.fwd) {
@@ -18,7 +14,11 @@ class One extends Blam {
     }
     let to = this.toElems[this.prevIndex];
 
-    this.set(event, to, value);
+    if (this.revert) {
+      this.toElems.forEach((elem, i) => elem[this.prop] = this.baseValues[i]);
+    }
+
+    this.triage(event, to, value);
 
     if (this.once) {
       this.unlisten();

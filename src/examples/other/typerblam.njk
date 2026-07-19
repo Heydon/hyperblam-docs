@@ -1,10 +1,18 @@
 ---
 title: Typerblam
-bpm: 120
+bpm: 150
 visualiser:
   count: 16
 elements: 
   - Sample 
+  - Chain 
+  - Analyser 
+  - Blam 
+  - Bank 
+  - One 
+  - Sequencer 
+  - Track 
+  - Bar
 ---
 
 {% extends 'layouts/example.njk' %}
@@ -84,27 +92,34 @@ elements:
 
 {% renderTemplate "md" %}
 
-This simple visualization uses two event-driven elements—`<show-blam>` and `<seed-blam>`—and a little CSS animation.
-
-As the name suggests, `<show-blam>` just... shows stuff. In this case, I'm showing the characters for the term **HYPERBLAM** in turn. So I apply the `cycle` prop. 
+This simple visualization introduces a new event-based element: `<one-blam>`. It works like `<blam-blam>` but one affects _one_ of the selected `to` elements each event. In this case, it’s used with `fwd` (_forward_), meaning each selected element is affected _in order_, at each event.
 
 ```html 
-<show-blam from="#keys" cycle>...</show-blam>
+<one-blam prop="hidden" to="#glyphs > *" fwd revert></one-blam>
 ```
 
-The `<seed-blam>` element is simple but powerful. It adds custom properties with random values between `0` and `1`. These can be used to randomize all sorts of styles. In this case, two seeds are applied for affecting `scale`.
+Every time the parent `<pads-blam>` triggers a sound, the next `#glyphs > *` element is unhidden. Since `revert` is also in place, all but the selected element are reverted to their initial `hidden` state each time.
+
+The `<one-blam>` is used in conjunction with a couple of `<blam-blam>`s setting CSS custom properties. These are like seed numbers, setting a random value between `0` and `1` at each sound event:
+
+```html 
+<blam-blam prop="--stretch-x" to="#glyphs" value="0~1"></blam-blam>
+<blam-blam prop="--stretch-y" to="#glyphs" value="0~1"></blam-blam>
+```
+
+The CSS applies these to _stretch_ the characters in different ways. Note the use of CSS’s `max()` function here, making sure no glyph is ever squished below `0.25` (25%) along either axis.
 
 ```css 
 show-blam {
-  transform: scale(max(0.25, var(--seed-stretch-1)), max(0.25, var(--seed-stretch-2)));
+  transform: scale(max(0.25, var(--stretch-x)), max(0.25, var(--stretch-y)));
 }
 ```
 
-(Note the `max()` function, ensuring the scale—on either axis—is never smaller than `0.25`.)
+Each character’s element has a CSS animation applied that jolts/shakes the character as it is unhidden. This is a visual metaphor for the rattling sound of the keys.
 
-Both `<show-blam>` and `<seed-blam>` respond to the `<pads-blam>`’s generic “blam” event. That is, every time a sound is played, a new character—semi-randomly stretched—appears. 
-
-Each character’s element has a CSS animation applied that jolts/shakes the character as it appears. This acts as a visual metaphor for the rattling sound of the keys.
+```css 
+animation: jolt 0.15s linear 1;
+```
 
 {% endrenderTemplate %}
 

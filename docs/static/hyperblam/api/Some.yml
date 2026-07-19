@@ -1,0 +1,16 @@
+name: Some
+defined: true
+category: Automating
+extends: Set
+summary: Like **Blam** but it only affects _some_ of the elements selected using `to`.
+props: 
+  - name: min 
+    type: number 
+    default: 1 
+    description: The minimum number of elements to affect.
+  - name: max
+    type: number 
+    default: null 
+    description: The maximum number of elements to affect. If not set (null), it the total number of elements selected with `to`.
+  - name: revert 
+    description: In the case of **Some**, `revert` reverts all `prop` values at each event, before setting the `value` just for _some_.

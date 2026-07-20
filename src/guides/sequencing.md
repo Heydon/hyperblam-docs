@@ -48,20 +48,22 @@ Each `<track-blam>` element presides over one or more `<bar-blam>` elements. The
 Good start. But what if I introduce another `<pads-blam>` with another `<track-blam>` with a bar using a pattern of a different length?
 
 ```html
-<sequencer-blam bpm="90">
-  ...
-  <track-blam>
-    <bar-blam s="1 0 3"></bar-blam>
-  </track-blam>
-  ...
-  <track-blam>
-    <bar-blam s="2 0 2 0"></bar-blam>
-  </track-blam>
-  ...
-</sequencer-blam>
+<audio-blam bpm="90">
+  <sequencer-blam>
+    ...
+    <track-blam>
+      <bar-blam s="1 0 3"></bar-blam>
+    </track-blam>
+    ...
+    <track-blam>
+      <bar-blam s="2 0 2 0"></bar-blam>
+    </track-blam>
+    ...
+  </sequencer-blam>
+</audio-blam>
 ```
 
-The tempo of these two tracks is shared (taken from a common `<sequencer-blam>`’s `bpm`) but their *time signatures* differ. The result is *polymetric:* beats stay obstinately in sync but the bars they belong to diverge.
+The tempo of these two tracks is shared (inherited from `<audio-blam>`’s `bpm`) but their *time signatures* differ. The result is *polymetric:* beats stay obstinately in sync but the bars they belong to diverge.
 
 Working with polymeters is fun because the relationship between the individual tracks changes over time. Since it’s difficult (at least for me!) to anticipate what that shifting relationship will sound like, the music stays fresh for longer. To get the length of the compound pattern, you multiply the lengths of each constituent bar. In this case, it’s `3 × 4`, or `12`.
 

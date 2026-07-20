@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -182,7 +182,7 @@
 <pre><code class="language-html">&lt;one-blam prop="hidden" to="#glyphs &gt; *" fwd revert&gt;&lt;/one-blam&gt;
 </code></pre>
 <p>Every time the parent <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> triggers a sound, the next <code>#glyphs &gt; *</code> element is unhidden. Since <code>revert</code> is also in place, all but the selected element are reverted to their initial <code>hidden</code> state each time.</p>
-<p>The <code><a href="/elements/one">&lt;one-blam&gt;</a></code> is used in conjunction with a couple of <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>s setting CSS custom properties. These are like seed numbers, setting a random value between <code>0</code> and <code>1</code> at each sound event:</p>
+<p>The <code><a href="/elements/one">&lt;one-blam&gt;</a></code> is used in conjunction with a couple of <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>s setting CSS custom properties. These are like <a href="https://en.wikipedia.org/wiki/Random_seed">seed numbers</a>, setting a random value between <code>0</code> and <code>1</code> at each sound event:</p>
 <pre><code class="language-html">&lt;blam-blam prop="--stretch-x" to="#glyphs" value="0~1"&gt;&lt;/blam-blam&gt;
 &lt;blam-blam prop="--stretch-y" to="#glyphs" value="0~1"&gt;&lt;/blam-blam&gt;
 </code></pre>

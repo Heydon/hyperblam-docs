@@ -7,7 +7,10 @@ If you’re familiar with JavaScript (my sympathies), then you’re probably fam
 
 Musicians are event emitters and listeners too. A drummer hits their sticks together to count their band in. A bassist performs an elaborate arpeggio to herald a group transition. An orchestral conductor is essentially a high frequency JavaScript event emitter in humanoid form.
 
-**HYPERBLAM** enables generative composition by handling *events* according to *probabilities.* But you don’t actually have to write the JavaScript for those events; the HTML elements take care of that for you.
+
+**HYPERBLAM** enables generative composition by handling *events* according to *probabilities.* But you don’t actually have to write the JavaScript for those events; the HTML elements take care of that for you. In **HYPERBLAM**, HTML generates sound that writes HTML that generates sound.
+
+![Spiderman pointing at himself. One spider man uses HTML to generate sound then the other spider man uses sound to generate HTML]({{site.basedircdn}}/static/images/illustrations/sequencing_spiderman.svg)
 
 ---
 
@@ -140,11 +143,11 @@ The `<track-blam>` element calculates whether a sound should play, at any given 
 
 ![Three tracks with their own probabilities, represented as dice, with each pointing to an output with a dashed line.]({{site.basedircdn}}/static/images/illustrations/sequencing4.svg)
 
-### Blam Blam!
+## Blam Blam!
 
-[“Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/07-a-light-lo-fi-listen-with-lfos/) uses multiple event-based elements. The eponymous `<blam-blam>` element does a lot of heavy lifting. Kind of a mascot for **HYPERBLAM**, this element uses incoming events to randomize prop values or fire methods using randomized args. 
+The eponymous `<blam-blam>` element does a lot of heavy lifting. Kind of a mascot for **HYPERBLAM**, this element uses incoming events to change props, write attributes, fire methods, and even apply CSS custom properties.
 
-For starters, it is affecting both the `length` and `detune` values of the electronic snare sound, adding texture, tension, and—most of all—variety.
+In [“A Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/07-a-light-lo-fi-listen-with-lfos/) it does a lot. For a start, it is affecting both the `length` and `detune` values of the electronic snare sound, adding texture, tension, and—most of all—variety.
 
 ```html
 <pads-blam id="snare" out="bus">
@@ -157,5 +160,18 @@ For starters, it is affecting both the `length` and `detune` values of the elect
 </pads-blam>
 ```
 
-Each time the `<pads-blam>` schedules a sound, it fires a `blam` event, letting the `<blam-blam>` elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the `|`-separated syntax and applied. 
+Each time the `<pads-blam>` schedules a sound, it fires a `blam` event, letting the `<blam-blam>` elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the `|`-separated syntax and applied. One pad; multiple sounds.
+
+## Visualization
+
+The `<analyser-blam>` element converts the incoming signal into frequency data. You can use this data to visualize frequency _bands_ with elements like `<props-blam>` and `<peak-blam>`, which convert the data into CSS custom properties.
+
+But you can also create synchronized visual effects just based on events. In the [“Typerblam”]({{site.basedir}}/examples/typerblam) example, `<blam-blam>` elements create [seed numbers](https://en.wikipedia.org/wiki/Random_seed), as custom properties, with values between `0` and `1`.
+
+```html 
+<blam-blam prop="--stretch-x" to="#glyphs" value="0~1"></blam-blam>
+<blam-blam prop="--stretch-y" to="#glyphs" value="0~1"></blam-blam>
+```
+
+Go to “Info” to read about the full [“Typerblam”]({{site.basedir}}/examples/typerblam) example. It uses a specialized version of `<blam-blam>` called `<one-blam>` to “type” each glyph, in turn.
 

@@ -115,6 +115,7 @@
   &lt;sample-blam src="<span class="u-hl">cowbell-01.mp3</span>"&gt;&lt;/sample-blam&gt;
   &lt;sample-blam src="<span class="u-hl">cowbell-02.mp3</span>"&gt;&lt;/sample-blam&gt;
   &lt;sample-blam src="<span class="u-hl">cowbell-03.mp3</span>"&gt;&lt;/sample-blam&gt;
+  &lt;sample-blam src="<span class="u-hl">cowbell-04.mp3</span>"&gt;&lt;/sample-blam&gt;
 &lt;/bank-blam&gt; </code></pre>
             </div>
           </div>
@@ -148,6 +149,22 @@
 
         <section class="u-cursor-none">
           <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/too_slow.mp4"></video>
+        </section>
+
+        <section id="detuneSlide" data-speech="An HTML range input with the label “more cowbell” associated with a track element with a chance property. Some sort of SNL reference probabaly. Yawn." data-pause="1.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <dial-blam>
+                <label>
+                  more<br> cowbell
+                  <input type="range" min="0" max="1" step="any">
+                </label>
+              </dial-blam>
+<pre><code>&lt;track-blam chance="0"&gt;
+  &lt;bar-blam s="?"&gt;&lt;/bar-blam&gt;
+&lt;/track-blam&gt;</code></pre>
+            </div>
+          </div>
         </section>
 
         <!--
@@ -284,9 +301,10 @@
 
       <pads-blam id="cowbell" choke="0.025" gain="1.5">
         <bank-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/dubbing/cowbell-01.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/dubbing/cowbell-02.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/dubbing/cowbell-03.mp3"></sample-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-01.mp3"></sample-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-02.mp3"></sample-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-03.mp3"></sample-blam>
+          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-04.mp3"></sample-blam>
         </bank-blam> 
         <blam-blam id="cowLength" prop="length" value="0.03|0.05|1|1" bypass=""></blam-blam>    
         <blam-blam id="cowDetune" prop="detune" value="-15~25" bypass=""></blam-blam>   
@@ -306,11 +324,11 @@
         } else {
           voice = random.oneOf(window.voices);
         }
-        //console.log(voice.name);
         let utterance = new SpeechSynthesisUtterance(text);
+        console.log(utterance);
         utterance.voice = voice;
         utterance.volume = 0.3;
-        window.setTimeout(() => {
+        window.speechTimeout = window.setTimeout(() => {
           speech.speak(utterance);
         }, pause ? parseInt(pause) * 1000 : 0);
       };
@@ -372,6 +390,7 @@
           return;  
         }
         slides.forEach(slide => slide.hidden = true);
+        clearTimeout(window.speechTimeout);
         thisSlide.classList.remove('u-wait');
         window.waiting = newSlide.hidden = false;
         if (newSlide.dataset.speech) {

@@ -7,7 +7,7 @@ class One extends Set {
       return;
     }
 
-    if (this.fwd) {
+    if (this.robin) {
       this.prevIndex = this.nextIndex(this.prevIndex, this.toElems);
     } else {
       this.prevIndex = this.newIndex(this.prevIndex, this.toElems);
@@ -25,12 +25,12 @@ class One extends Set {
     }
   }
 
-  get fwd() {
-		return this.hasAttribute('fwd');
+  get robin() {
+		return this.hasAttribute('robin');
 	}
 
-	set fwd(value) {
-		this.toBoolean('fwd', value);
+	set robin(value) {
+		this.toBoolean('robin', value);
 	}
 }
 

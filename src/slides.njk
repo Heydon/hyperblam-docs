@@ -32,47 +32,47 @@
           <feTurbulence type="turbulence" baseFrequency="0.004" id="turbulence" numOctaves="1" result="turbulence" seed="5"></feTurbulence>
           <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="100" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
         </filter>
-        <filter id="noise-big-1">
-          <feTurbulence baseFrequency="0.006" numOctaves="3" result="noise" seed="1"/>
+        <filter id="noise-big-1" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.006" numOctaves="1" result="noise" seed="1"/>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
         </filter>
-        <filter id="noise-big-2">
-          <feTurbulence baseFrequency="0.008" numOctaves="3" result="noise" seed="1"/>
+        <filter id="noise-big-2" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.008" numOctaves="1" result="noise" seed="1"/>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" />
         </filter>
-        <filter id="noise-big-3">
-          <feTurbulence baseFrequency="0.004" numOctaves="3" result="noise" seed="1"/>
+        <filter id="noise-big-3" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.004" numOctaves="1" result="noise" seed="1"/>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
         </filter>
-        <filter id="noise-1">
-          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+        <filter id="noise-1" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.02" numOctaves="1" result="noise" seed="2"/>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
         </filter>
-        <filter id="noise-2">
-          <feTurbulence baseFrequency="0.01" numOctaves="3" result="noise" seed="3"/>
+        <filter id="noise-2" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.01" numOctaves="1" result="noise" seed="3"/>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
         </filter>
-        <filter id="noise-3">
-          <feTurbulence baseFrequency="0.002" numOctaves="3" result="noise" seed="4"/>
+        <filter id="noise-3" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.002" numOctaves="1" result="noise" seed="4"/>
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
         </filter>
-        <filter id="distort-1">
-          <feTurbulence baseFrequency="0.001 0.1" numOctaves="4"/>
+        <filter id="distort-1" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.001 0.1" numOctaves="1"/>
           <feDisplacementMap in="SourceGraphic" scale="90"/>
         </filter>
-        <filter id="distort-2">
-          <feTurbulence baseFrequency="0.009 0.3" numOctaves="2"/>
+        <filter id="distort-2" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.009 0.3" numOctaves="1"/>
           <feDisplacementMap in="SourceGraphic" scale="110"/>
         </filter>
-        <filter id="distort-3">
-          <feTurbulence baseFrequency="0.003 0.1" numOctaves="16"/>
+        <filter id="distort-3" width="100%" height="100%" x="0%" y="0%">
+          <feTurbulence baseFrequency="0.003 0.1" numOctaves="1"/>
           <feDisplacementMap in="SourceGraphic" scale="200"/>
         </filter>
-        <filter id="distort-4">
+        <filter id="distort-4" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence baseFrequency="0.007 0.2" numOctaves="1"/>
           <feDisplacementMap in="SourceGraphic" scale="100"/>
         </filter>
-        <filter id="distort-5">
+        <filter id="distort-5" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence baseFrequency="0.001 0.1" numOctaves="1"/>
           <feDisplacementMap in="SourceGraphic" scale="70"/>
         </filter>
@@ -89,6 +89,69 @@
           </div>
         </section>
 
+        <section class="u-cursor-none">
+          <video onloadstart="this.volume=0.7" src="{{site.basedir}}/static/video/err.mp4"></video>
+        </section>
+
+        <section data-speech="an HTML cowbell button, with a single sample bank" data-pause="1.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <tap-blam to="#cowbell" prop="play" value="1">
+                <button>cowbell</button>
+              </tap-blam>
+<pre><code>&lt;bank-blam>
+  &lt;sample-blam src="<span class="u-hl">cowbell-01.mp3</span>">&lt;/sample-blam>
+&lt;/bank-blam> </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section data-speech="another HTML cowbell button, this time with multiple samples." data-pause="1.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <tap-blam to="#cowbell" prop="play">
+                <button>cowbell</button>
+              </tap-blam>
+<pre><code>&lt;bank-blam>
+  &lt;sample-blam src="<span class="u-hl">cowbell-01.mp3</span>">&lt;/sample-blam>
+  &lt;sample-blam src="<span class="u-hl">cowbell-02.mp3</span>">&lt;/sample-blam>
+  &lt;sample-blam src="<span class="u-hl">cowbell-03.mp3</span>">&lt;/sample-blam>
+&lt;/bank-blam> </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="lengthSlide" data-speech="another bloody HTML cowbell button, now with a blam blam element." data-pause="1.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <tap-blam to="#cowbell" prop="play">
+                <button>cowbell</button>
+              </tap-blam>
+<pre><code>&lt;blam-blam prop="length" value="0.03|0.05|1|1">&lt;/blam-blam></code></pre>
+            </div>
+          </div>
+          <blam-blam from="#lengthSlide" to="#cowLength" prop="bypass" event="slideNext" once></blam-blam>
+        </section>
+
+        <section id="detuneSlide" data-speech="yet another fecking HTML cowbell button. And two fecking blam blam elements." data-pause="1.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <tap-blam to="#cowbell" prop="play">
+                <button>cowbell</button>
+              </tap-blam>
+<pre><code>&lt;blam-blam prop="length" value="0.03|0.05|1|1">&lt;/blam-blam>
+&lt;blam-blam prop="detune" value="-25~25">&lt;/blam-blam>
+</code></pre>
+            </div>
+          </div>
+          <blam-blam from="#detuneSlide" to="#cowDetune" prop="bypass" event="slideNext" once></blam-blam>
+        </section>
+
+        <section class="u-cursor-none">
+          <video onloadstart="this.volume=0.7" src="{{site.basedir}}/static/video/too_slow.mp4"></video>
+        </section>
+
+        <!--
         <section class="u-cursor-none">
           <video onloadstart="this.volume=0.2" class="u-mono" src="{{site.basedir}}/static/video/intro_masked.mp4"></video>
         </section>
@@ -195,25 +258,39 @@
           <div class="l-framed">
             <div class="u-alert u-tilt">HYDRATION BREAK</div>
           </div>
-        </section>
+        </section>-->
       </div>  
 
       <!-- instruments -->
-      <pads-blam id="kicks">
+      <pads-blam id="stabs" gain="0.6">
         <bank-blam>
-          <sample-blam src="{{site.basedir}}/static/sounds/slides/drop.mp3"></sample-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/slides/stab-01.mp3"></sample-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/slides/stab-02.mp3"></sample-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/slides/stab-03.mp3"></sample-blam>
         </bank-blam>
-        <blam-blam from="body" prop="play" event="slidechange"></blam-blam>
+        <blam-blam from="section" prop="play" event="slideNext"></blam-blam>
       </pads-blam>
 
-      <pads-blam id="radio" gain="0.1" detune="300" loop>
+      <pads-blam id="radio" gain="0.07" detune="0" loop>
         <bank-blam>
           <sample-blam src="{{site.basedir}}/static/sounds/slides/radio.mp3"></sample-blam>
         </bank-blam>
-        <lfo-blam id="radioSpeed" prop="detune" gain="1200" beats="3"></lfo-blam>
-        <blam-blam from="body" to="#radioSpeed" prop="beats" value="0.1~1" event="slidewaiting"></blam-blam>
+        <lfo-blam id="radioSpeed" prop="detune" gain="1200" beats="3">
+          <blam-blam from="body" prop="beats" value="0.01~4" event="slidewaiting"></blam-blam>
+        </lfo-blam>
+        <blam-blam from="body" prop="detune" value="0~4000" event="slidewaiting"></blam-blam>
         <blam-blam from="body" prop="play" event="slidewaiting"></blam-blam>
-        <blam-blam from="body" prop="stop" event="slidechange"></blam-blam>
+        <blam-blam from="body" prop="stop" event="slideChange"></blam-blam>
+      </pads-blam>
+
+      <pads-blam id="cowbell" choke="0.025" gain="1.5">
+        <bank-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/dubbing/cowbell-01.mp3"></sample-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/dubbing/cowbell-02.mp3"></sample-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/dubbing/cowbell-03.mp3"></sample-blam>
+        </bank-blam> 
+        <blam-blam id="cowLength" prop="length" value="0.03|0.05|1|1" bypass></blam-blam>    
+        <blam-blam id="cowDetune" prop="detune" value="-15~25" bypass></blam-blam>   
       </pads-blam>
     </audio-blam>
 
@@ -223,17 +300,20 @@
       const utter = elem => {
         let text = elem.dataset.speech;
         let voiceData = elem.dataset.voice;
+        let pause = elem.dataset.pause;
         let voice;
         if (voiceData) {
           voice = window.voices.find(v => v.name === voiceData);
         } else {
           voice = random.oneOf(window.voices);
         }
-        console.log(voice.name);
+        //console.log(voice.name);
         let utterance = new SpeechSynthesisUtterance(text);
         utterance.voice = voice;
-        utterance.volume = 0.2;
-        speech.speak(utterance);
+        utterance.volume = 0.3;
+        window.setTimeout(() => {
+          speech.speak(utterance);
+        }, pause ? parseInt(pause) * 1000 : 0);
       };
 
       const narrated = [...document.querySelectorAll('[data-speech]:not(section)')];
@@ -263,8 +343,8 @@
 
       slides.forEach((s, i) => {
         s.hidden = true;
-        s.id = `slide-${i + 1}`
       });
+      
       slides[0].hidden = false;
 
       document.addEventListener('keydown', e => {
@@ -304,11 +384,10 @@
         });
         let newVideo = newSlide.querySelector('video');
         newVideo && newVideo.play();
-        fire('slidechange', {}, document.body);
-      });
 
-      window.addEventListener('slidechange', () => {
-          console.log('ready');
+        fire('slideChange', {}, document.body);
+        fire('slidePrev', {}, thisSlide);
+        fire('slideNext', {}, newSlide);
       });
 
       videos.forEach(video => {

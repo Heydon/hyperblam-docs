@@ -16,7 +16,11 @@ class Set extends Handle {
   choose(value) {
     if (value.includes('|')) {
       let values = value.split('|').map(v => this.stringNumBool(v));
-      this.prevIndex = this.newIndex(this.prevIndex, values);
+      if (this.robin) {
+        this.prevIndex = this.nextIndex(this.prevIndex, values);
+      } else {
+        this.prevIndex = this.newIndex(this.prevIndex, values);
+      }
       return values[this.prevIndex];
     }
     if (value.includes('~')) {
@@ -108,6 +112,14 @@ class Set extends Handle {
 
 	set once(value) {
 		this.toBoolean('once', value);
+	}
+
+  get robin() {
+		return this.hasAttribute('robin');
+	}
+
+	set robin(value) {
+		this.toBoolean('robin', value);
 	}
 
   get value() {

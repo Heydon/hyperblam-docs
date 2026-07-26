@@ -79,7 +79,7 @@ elements:
   </bank-blam>
   <blam-blam prop="--stretch-x" to="#glyphs" value="0~1"></blam-blam>
   <blam-blam prop="--stretch-y" to="#glyphs" value="0~1"></blam-blam>
-  <one-blam prop="hidden" to="#glyphs > *" fwd revert></one-blam>
+  <one-blam prop="hidden" to="#glyphs > *" robin revert></one-blam>
 </pads-blam>
 <sequencer-blam>
   <track-blam to="#keys">
@@ -92,10 +92,10 @@ elements:
 
 {% renderTemplate "md" %}
 
-This simple visualization introduces a new event-based element: `<one-blam>`. It works like `<blam-blam>` but one affects _one_ of the selected `to` elements each event. In this case, it’s used with `fwd` (_forward_), meaning each selected element is affected _in order_, at each event.
+This simple visualization introduces a new event-based element: `<one-blam>`. It works like `<blam-blam>` but one affects _one_ of the selected `to` elements each event. In this case, it’s used with `robin` (_forward_), meaning each selected element is affected _in order_, at each event.
 
 ```html 
-<one-blam prop="hidden" to="#glyphs > *" fwd revert></one-blam>
+<one-blam prop="hidden" to="#glyphs > *" robin revert></one-blam>
 ```
 
 Every time the parent `<pads-blam>` triggers a sound, the next `#glyphs > *` element is unhidden. Since `revert` is also in place, all but the selected element are reverted to their initial `hidden` state each time.

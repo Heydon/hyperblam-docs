@@ -4,7 +4,6 @@ class Tap extends Set {
   constructor() {
     super();
     this.defaultFrom = () => [this.querySelector('button')];
-    this.defaultTo = null;
     this.defaultEvent = 'click';
   }
 

@@ -242,6 +242,12 @@
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
+      },
+      {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
@@ -339,6 +345,12 @@
         "type": "boolean",
         "default": false,
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
         "name": "from",
@@ -622,6 +634,12 @@
         "type": "boolean",
         "default": false,
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
         "name": "from",
@@ -1093,6 +1111,12 @@
         "type": "boolean",
         "default": false,
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
         "name": "from",
@@ -1728,6 +1752,12 @@
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
       },
       {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
+      },
+      {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
@@ -1804,6 +1834,12 @@
         "type": "boolean",
         "default": false,
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
         "name": "from",
@@ -1934,6 +1970,12 @@
         "type": "boolean",
         "default": false,
         "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
+      },
+      {
+        "name": "robin",
+        "type": "boolean",
+        "default": false,
+        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
         "name": "from",

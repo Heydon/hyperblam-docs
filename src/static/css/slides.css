@@ -10,6 +10,7 @@
   font-family: var(--font);
   text-align: center;
   line-height: 1.4;
+  cursor: url('cursor_small.svg'), auto !important;
 }
 
 * {
@@ -57,11 +58,16 @@ pre {
   text-align: left;
   padding: 0.5rem;
   background-color: #000;
-  border: 2px solid;
 }
 
 code {
   font-family: var(--font);
+}
+
+.u-hl {
+  border-radius: 0.125em;
+  outline: 0.0625em dotted;
+  background-color: var(--color-back);
 }
 
 label {
@@ -75,7 +81,6 @@ input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
-  cursor: pointer;
   font-size: 1em;
   width: 8em;
 }
@@ -138,7 +143,6 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 [type="checkbox"] {
   font-size: 1em;
   appearance: none;
-  cursor: pointer;
   position: relative;
   background-color: var(--color-back);
   border-radius: 0.5em;
@@ -196,7 +200,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1.5em;
   font-size: 5cqmin;
 }
 
@@ -303,6 +307,37 @@ h3 {
 
 section:not([hidden]) .u-squiggle {
   animation: squiggle 0.25s linear infinite alternate;
+}
+
+@keyframes jolt {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-2rem);
+  }
+  30% {
+    transform: translateY(2rem);
+  }
+  40% {
+    transform: translateY(-1.5rem);
+  }
+  50% {
+    transform: translateY(1.5rem);
+  }
+  60% {
+    transform: translateY(-0.75rem);
+  }
+  80% {
+    transform: translateY(0.75rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+section {
+  animation: jolt 0.3s linear 1;
 }
 
 .u-impact {

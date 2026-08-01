@@ -131,7 +131,7 @@ class Sampler extends WithParams {
   get choke() {
     let value = this.getAttribute('choke');
     if (value === '') return 0.005;
-    if (value === null) return 0;
+    if (isNaN(value) || value === null) return 0;
     return parseFloat(value);
 	}
 

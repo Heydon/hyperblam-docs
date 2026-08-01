@@ -45,7 +45,7 @@ class Echo extends Box {
 
   get feedback() {
     let value = this.getAttribute('feedback');
-		return value ? Math.min(parseFloat(value), 0.75) : 0.5;
+		return value ? parseFloat(value) : 0.5;
 	}
 
 	set feedback(value) {

@@ -1,17 +1,27 @@
 import { Base } from '../primitives/Base.js';
 
 class Display extends Base {
+  onblamready() {
+    this.elem = document.querySelector(this.to) || this.parentNode;
+    this.render();
+    this.watchProps(
+      [this.elem], 
+      _ => this.render(),
+      [this.prop]
+    );
+  }
+
   render() {
     let value = this.elem[this.prop];
     this.textContent = isNaN(value) ? value : parseFloat(value).toFixed(this.places);
   }
 
-  get element() {
-		return this.getAttribute('element');
+  get to() {
+		return this.getAttribute('to');
 	}
 
-	set element(value) {
-		this.setAttribute('element', value);
+	set to(value) {
+		this.setAttribute('to', value);
   }
 
   get prop() {
@@ -29,16 +39,6 @@ class Display extends Base {
 
 	set places(value) {
 		this.setAttribute('places', value);
-  }
-
-  connectedCallback() {
-    this.elem = document.querySelector(this.element) || this.parentNode;
-    this.render();
-    this.watchProps(
-      [this.elem], 
-      _ => this.render(),
-      [this.prop]
-    );
   }
 }
 

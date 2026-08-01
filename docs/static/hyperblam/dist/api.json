@@ -384,7 +384,7 @@
     "summary": "Watches and renders the changing value of any property/attribute of any element.",
     "props": [
       {
-        "name": "element",
+        "name": "to",
         "type": "string",
         "description": "A CSS selector representing the element to watch. Falls back to the `parentNode` where not supplied."
       },
@@ -1915,6 +1915,12 @@
         "description": "Not applicable."
       },
       {
+        "name": "places",
+        "type": "number",
+        "default": 1,
+        "description": "For numeric data, the number of (fixed) decimal places. Set to `3`, `1` will become `1.000`."
+      },
+      {
         "name": "bypass",
         "type": "boolean",
         "default": false,
@@ -2116,6 +2122,12 @@
         "type": "string",
         "default": "null",
         "description": "Not applicable."
+      },
+      {
+        "name": "places",
+        "type": "number",
+        "default": 1,
+        "description": "For numeric data, the number of (fixed) decimal places. Set to `3`, `1` will become `1.000`."
       },
       {
         "name": "to",

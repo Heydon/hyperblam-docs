@@ -13,6 +13,10 @@ props:
     description: The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy.
   - name: prop 
     description: Not applicable.
+  - name: places
+    type: number 
+    default: 1
+    description: For numeric data, the number of (fixed) decimal places. Set to `3`, `1` will become `1.000`. 
   - name: to 
     type: string
     default: 'null' 

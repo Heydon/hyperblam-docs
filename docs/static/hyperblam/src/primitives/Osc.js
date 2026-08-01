@@ -55,7 +55,7 @@ class Osc extends WithParams {
   }
 
   get beats() {
-    let value = parseFloat(this.getAttribute('beats'));
+    let value = parseFloat(this.getAttribute('beats') || 1);
     return this.invert ? value * -1 : value;
   }
 

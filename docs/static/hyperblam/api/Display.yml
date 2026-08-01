@@ -4,7 +4,7 @@ extends: Base
 defined: true
 summary: Watches and renders the changing value of any property/attribute of any element. 
 props: 
-  - name: element
+  - name: to
     type: string
     description: A CSS selector representing the element to watch. Falls back to the `parentNode` where not supplied.
   - name: prop

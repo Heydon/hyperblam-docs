@@ -45,15 +45,15 @@
         </filter>
         <filter id="noise-1" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence baseFrequency="0.02" numOctaves="1" result="noise" seed="2"></feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"></feDisplacementMap>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"></feDisplacementMap>
         </filter>
         <filter id="noise-2" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence baseFrequency="0.01" numOctaves="1" result="noise" seed="3"></feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"></feDisplacementMap>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"></feDisplacementMap>
         </filter>
         <filter id="noise-3" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence baseFrequency="0.002" numOctaves="1" result="noise" seed="4"></feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"></feDisplacementMap>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="6"></feDisplacementMap>
         </filter>
         <filter id="distort-1" width="100%" height="100%" x="0%" y="0%">
           <feTurbulence baseFrequency="0.001 0.1" numOctaves="1"></feTurbulence>
@@ -88,7 +88,7 @@
           </div>
         </section>
 
-        <section class="u-cursor-none">
+        <section class="u-cursor-none u-no-stab">
           <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/err.mp4"></video>
         </section>
 
@@ -121,7 +121,7 @@
           </div>
         </section>
 
-        <section id="lengthSlide" data-speech="another bloody HTML cowbell button, now with a blam blam element." data-pause="1.5" data-voice="Moira">
+        <section id="lengthSlide" data-speech="another fecking HTML cowbell button, now with a blam blam element." data-pause="1.5" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <tap-blam to="#cowbell" prop="play">
@@ -130,41 +130,140 @@
 <pre><code>&lt;blam-blam prop="length" value="0.03|0.05|1|1"&gt;&lt;/blam-blam&gt;</code></pre>
             </div>
           </div>
-          <blam-blam from="#lengthSlide" to="#cowLength" prop="bypass" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowLength" prop="bypass" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section id="detuneSlide" data-speech="yet another fecking HTML cowbell button. And two fecking blam blam elements." data-pause="1.5" data-voice="Moira">
+        <section>
           <div class="l-screen">
             <div class="l-frame">
-              <tap-blam to="#cowbell" prop="play">
-                <button>cowbell</button>
-              </tap-blam>
-<pre><code>&lt;blam-blam prop="length" value="0.03|0.05|1|1"&gt;&lt;/blam-blam&gt;
-&lt;blam-blam prop="detune" value="-25~25"&gt;&lt;/blam-blam&gt;
-</code></pre>
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
             </div>
           </div>
-          <blam-blam from="#detuneSlide" to="#cowDetune" prop="bypass" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section class="u-cursor-none">
+        <section class="u-cursor-none u-no-stab">
           <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/too_slow.mp4"></video>
         </section>
 
-        <section id="detuneSlide" data-speech="An HTML range input with the label “more cowbell” associated with a track element with a chance property. Some sort of SNL reference probabaly. Yawn." data-pause="1.5" data-voice="Moira">
+        <section id="trackSlide" data-speech="An HTML range input with the label “more cowbell” associated with a track element with a chance property." data-pause="1.5" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
-              <dial-blam>
+              <dial-blam to="#cowbellTrack" prop="chance">
                 <label>
-                  more<br> cowbell
-                  <input type="range" min="0" max="1" step="any">
+                  more cowbell
+                  <input type="range" min="0.0" max="1.0" step="any">
                 </label>
               </dial-blam>
-<pre><code>&lt;track-blam chance="0"&gt;
-  &lt;bar-blam s="?"&gt;&lt;/bar-blam&gt;
-&lt;/track-blam&gt;</code></pre>
+<pre><code>&lt;sequencer-blam&gt;
+  &lt;track-blam <span class="u-hl">chance="<display-blam to="#cowbellTrack" prop="chance" places="2"></display-blam>"</span>&gt;
+    &lt;bar-blam s="?"&gt;&lt;/bar-blam&gt;
+  &lt;/track-blam&gt;
+&lt;sequencer-blam&gt;</code></pre>
             </div>
           </div>
+          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section data-speech="A more. more. cowbell range input" data-pause="1.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <dial-blam to="audio-blam" prop="bpm">
+                <label>
+                  more more<br>cowbell
+                  <input type="range" min="90" max="200" step="1">
+                </label>
+              </dial-blam>
+<pre><code>&lt;audio-blam bpm="<span class="u-hl"><display-blam to="audio-blam" prop="bpm"></display-blam></span>"
+  &lt;sequencer-blam&gt;
+    &lt;track-blam chance="<display-blam to="#cowbellTrack" prop="chance" places="2"></display-blam>"&gt;
+      &lt;bar-blam s="?"&gt;&lt;/bar-blam&gt;
+    &lt;/track-blam&gt;
+  &lt;sequencer-blam&gt;
+&lt;/audio-blam&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="reverseDiagram">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/reverse_sample.svg" alt="A sample waveform and the same waveform reversed using Array dot prototype dot reverse.">
+            </div>
+          </div>
+          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section>
+          <div class="l-screen">
+            <div class="l-frame">
+              <dial-blam to="#cowbell" prop="reverse">
+                <label>
+                  reverse cowgirl
+                  <input type="range" min="0" max="1" step="0.01">
+                </label>
+              </dial-blam>
+<pre><code>&lt;pads-blam reverse="<span class="u-hl"><display-blam to="#cowbell" prop="reverse" places="2"></display-blam></span>"&gt;...&lt;/pads-blam&gt;</code></pre>
+            </div>
+          </div>
+          <blam-blam to="#cowLength" prop="bypass" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbell" prop="length" value="1" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbellTrack" prop="chance" value="0.5" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbell" prop="choke" value="false" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section>
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/signal_chain.svg" alt="a signal chain starting with an input and ending with an output. Along the way are echo and reverb effects.">              
+            </div>
+          </div>
+          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/stomp_box.svg" alt="a stomp box with rate and feedback dials">               
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="l-screen">
+            <div class="l-frame">
+              <dial-blam to="#cowEcho" prop="feedback">
+                <label>
+                  echo feedback
+                  <input type="range" min="0.1" max="0.75" step="any">
+                </label>
+              </dial-blam>
+              <dial-blam to="#cowVerb" prop="mix">
+                <label>
+                  reverb mix
+                  <input type="range" min="0.1" max="0.9" step="any">
+                </label>
+              </dial-blam>
+              <pre>&lt;chain-blam&gt;
+  &lt;echo-blam beats="1.5" feeback="0.7"&gt;&lt;/echo-blam&gt;
+  &lt;reverb-blam&gt;
+    &lt;sample-blam mix="1" src="/IR.mp3"&gt;&lt;/sample-blam&gt;
+  &lt;/reverb-blam&gt;
+&lt;/chain-blam&gt;</pre>         
+            </div>
+          </div>
+          <blam-blam to="#cowbellsAmb" prop="playStop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="audio-blam" prop="bpm" value="60" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="5">
+          <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
+          <div class="l-screen">
+            <div class="l-frame">
+              <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
+            </div>
+          </div>
+          <blam-blam to="#cowbellsAmb" prop="playStop" event="slideNext" once=""></blam-blam>
         </section>
 
         <!--
@@ -284,7 +383,7 @@
           <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-02.mp3"></sample-blam>
           <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-03.mp3"></sample-blam>
         </bank-blam>
-        <blam-blam from="section" prop="play" event="slideNext"></blam-blam>
+        <blam-blam from="section:not(.u-no-stab)" prop="play" event="slideNext"></blam-blam>
       </pads-blam>
 
       <pads-blam id="radio" gain="0.07" detune="0" loop="">
@@ -292,24 +391,49 @@
           <sample-blam src="https://hyperblam.how/static/sounds/slides/radio.mp3"></sample-blam>
         </bank-blam>
         <lfo-blam id="radioSpeed" prop="detune" gain="1200" beats="3">
-          <blam-blam from="body" prop="beats" value="0.01~4" event="slidewaiting"></blam-blam>
+          <blam-blam from="body" prop="beats" value="0.01~4" event="slideWaiting"></blam-blam>
         </lfo-blam>
-        <blam-blam from="body" prop="detune" value="0~4000" event="slidewaiting"></blam-blam>
-        <blam-blam from="body" prop="play" event="slidewaiting"></blam-blam>
+        <blam-blam from="body" prop="detune" value="0~4000" event="slideWaiting"></blam-blam>
+        <blam-blam from="body" prop="play" event="slideWaiting"></blam-blam>
         <blam-blam from="body" prop="stop" event="slideChange"></blam-blam>
       </pads-blam>
 
-      <pads-blam id="cowbell" choke="0.025" gain="1.5">
-        <bank-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-01.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-02.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-03.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-04.mp3"></sample-blam>
-        </bank-blam> 
-        <blam-blam id="cowLength" prop="length" value="0.03|0.05|1|1" bypass=""></blam-blam>    
-        <blam-blam id="cowDetune" prop="detune" value="-15~25" bypass=""></blam-blam>   
+      <pads-blam id="cowbell" bank="cowBank" choke="0.05"> 
+        <blam-blam id="cowLength" prop="length" value="0.1|0.05|1|1" bypass=""></blam-blam>  
       </pads-blam>
+
+      <!-- sequencer basic -->
+      <sequencer-blam id="cowbells">
+        <track-blam id="cowbellTrack" to="#cowbell" chance="0">
+          <bar-blam s="?"></bar-blam>
+        </track-blam>
+      </sequencer-blam>
+
+      <pads-blam id="cowbellReverse" reverse="0.65" bank="cowBank" gain="0.45">    
+        <blam-blam prop="detune" value="0|400|-1200|-1200|-800|-600|-500|-200"></blam-blam> 
+        <chain-blam>
+          <echo-blam id="cowEcho" mix="1" beats="1.5" feeback="0.7" cutoff="3000"></echo-blam>
+          <reverb-blam id="cowVerb">
+            <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
+          </reverb-blam>
+          <limiter-blam></limiter-blam>
+        </chain-blam>
+        <lfo-blam prop="detune" gain="40"></lfo-blam>
+      </pads-blam>
+
+      <sequencer-blam id="cowbellsAmb">
+        <track-blam id="cowbellAmbTrack" to="#cowbellReverse" chance="0.4">
+          <bar-blam s="?"></bar-blam>
+        </track-blam>
+      </sequencer-blam>
     </audio-blam>
+
+    <bank-blam id="cowBank">
+      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-01.mp3" reverse=""></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-02.mp3" reverse=""></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-03.mp3" reverse=""></sample-blam>
+      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-04.mp3" reverse=""></sample-blam>
+    </bank-blam>
 
     <script type="module">
       import { random } from 'https://hyperblam.how/static/hyperblam/src/tools/random.js';
@@ -325,9 +449,8 @@
           voice = random.oneOf(window.voices);
         }
         let utterance = new SpeechSynthesisUtterance(text);
-        console.log(utterance);
         utterance.voice = voice;
-        utterance.volume = 0.3;
+        utterance.volume = 0.6;
         window.speechTimeout = window.setTimeout(() => {
           speech.speak(utterance);
         }, pause ? parseInt(pause) * 1000 : 0);
@@ -383,7 +506,7 @@
           thisSlide.classList.add('u-wait');
           window.waiting = true;
           window.lastKey = e.key;
-          fire('slidewaiting', {}, document.body);
+          fire('slideWaiting', {}, document.body);
           return;
         }
         if (window.lastKey !== e.key) {

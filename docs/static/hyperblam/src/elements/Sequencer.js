@@ -59,7 +59,7 @@ class Sequencer extends Base {
     if (value === '') {
       return 0.333;
     }
-    if (value === null) {
+    if (isNaN(value) || value === null) {
       return 0;
     }
     return parseFloat(value);

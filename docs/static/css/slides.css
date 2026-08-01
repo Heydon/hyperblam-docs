@@ -77,6 +77,7 @@ label {
   align-items: center;
   font-size: 1.5em;
   line-height: 1;
+  text-align: right;
 }
 
 input[type="range"] {
@@ -187,6 +188,11 @@ section {
 .l-screen, .l-frame, [class*="l-pos"] {
   position: absolute;
   inset: 0;
+}
+
+.l-frame img {
+  max-inline-size: 80vw;
+  max-block-size: 80vh;
 }
 
 .l-screen {

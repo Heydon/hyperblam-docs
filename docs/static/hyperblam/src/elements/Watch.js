@@ -20,7 +20,7 @@ class Watch extends Template {
           oldValue: mutation.oldValue,
           newValue: mutation.target[mutation.attributeName],
           id: mutation.target.id ? `#${mutation.target.id}` : mutation.target.nodeName.toLowerCase(),
-          time: this.context().currentTime.toFixed(2)
+          time: this.context().currentTime
         };
         this.interpolate(this.template, data);
       }

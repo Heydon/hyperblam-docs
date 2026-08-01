@@ -19,8 +19,9 @@ class Template extends Handle {
 
   interpolate(template, data) {
     const regex = /\[\[(.*?)\]\]/g;
-    let interpolated = template.replace(regex, (match, prop) => {
-      return data[prop];
+    let interpolated = template.replace(regex, (_, prop) => {
+      let parsed = parseFloat(data[prop]) ? parseFloat(data[prop]).toFixed(this.places) : data[prop];
+      return parsed;
     });
     if (this.additive) {
       if (this.count >= this.max) {
@@ -48,6 +49,14 @@ class Template extends Handle {
 
 	set max(value) {
 		this.setAttribute('max', value);
+  }
+
+  get places() {
+    return this.getAttribute('places') || 1;
+	}
+
+	set places(value) {
+		this.setAttribute('places', value);
   }
 }
 

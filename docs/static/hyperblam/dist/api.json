@@ -384,7 +384,7 @@
     "summary": "Watches and renders the changing value of any property/attribute of any element.",
     "props": [
       {
-        "name": "to",
+        "name": "from",
         "type": "string",
         "description": "A CSS selector representing the element to watch. Falls back to the `parentNode` where not supplied."
       },

@@ -2,7 +2,7 @@ import { Base } from '../primitives/Base.js';
 
 class Display extends Base {
   onblamready() {
-    this.elem = document.querySelector(this.to) || this.parentNode;
+    this.elem = document.querySelector(this.from) || this.parentNode;
     this.render();
     this.watchProps(
       [this.elem], 
@@ -16,12 +16,12 @@ class Display extends Base {
     this.textContent = isNaN(value) ? value : parseFloat(value).toFixed(this.places);
   }
 
-  get to() {
-		return this.getAttribute('to');
+  get from() {
+		return this.getAttribute('from');
 	}
 
-	set to(value) {
-		this.setAttribute('to', value);
+	set from(value) {
+		this.setAttribute('from', value);
   }
 
   get prop() {

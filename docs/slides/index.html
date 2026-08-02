@@ -155,7 +155,7 @@
                 </label>
               </dial-blam>
 <pre><code>&lt;sequencer-blam&gt;
-  &lt;track-blam <span class="u-hl">chance="<display-blam to="#cowbellTrack" prop="chance" places="2"></display-blam>"</span>&gt;
+  &lt;track-blam <span class="u-hl">chance="<display-blam from="#cowbellTrack" prop="chance" places="2"></display-blam>"</span>&gt;
     &lt;bar-blam s="?"&gt;&lt;/bar-blam&gt;
   &lt;/track-blam&gt;
 &lt;sequencer-blam&gt;</code></pre>
@@ -173,9 +173,9 @@
                   <input type="range" min="90" max="200" step="1">
                 </label>
               </dial-blam>
-<pre><code>&lt;audio-blam bpm="<span class="u-hl"><display-blam to="audio-blam" prop="bpm"></display-blam></span>"
+<pre><code>&lt;audio-blam bpm="<span class="u-hl"><display-blam from="audio-blam" prop="bpm"></display-blam></span>"
   &lt;sequencer-blam&gt;
-    &lt;track-blam chance="<display-blam to="#cowbellTrack" prop="chance" places="2"></display-blam>"&gt;
+    &lt;track-blam chance="<display-blam from="#cowbellTrack" prop="chance" places="2"></display-blam>"&gt;
       &lt;bar-blam s="?"&gt;&lt;/bar-blam&gt;
     &lt;/track-blam&gt;
   &lt;sequencer-blam&gt;
@@ -202,7 +202,7 @@
                   <input type="range" min="0" max="1" step="0.01">
                 </label>
               </dial-blam>
-<pre><code>&lt;pads-blam reverse="<span class="u-hl"><display-blam to="#cowbell" prop="reverse" places="2"></display-blam></span>"&gt;...&lt;/pads-blam&gt;</code></pre>
+<pre><code>&lt;pads-blam reverse="<span class="u-hl"><display-blam from="#cowbell" prop="reverse" places="2"></display-blam></span>"&gt;...&lt;/pads-blam&gt;</code></pre>
             </div>
           </div>
           <blam-blam to="#cowLength" prop="bypass" event="slideNext" once=""></blam-blam>
@@ -245,7 +245,7 @@
                 </label>
               </dial-blam>
               <pre>&lt;chain-blam&gt;
-  &lt;echo-blam beats="1.5" feeback="0.7"&gt;&lt;/echo-blam&gt;
+  &lt;echo-blam beats="1.5" feeback="<display-blam></display-blam>"&gt;&lt;/echo-blam&gt;
   &lt;reverb-blam&gt;
     &lt;sample-blam mix="1" src="/IR.mp3"&gt;&lt;/sample-blam&gt;
   &lt;/reverb-blam&gt;

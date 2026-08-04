@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -120,6 +120,8 @@
               
             
               
+                <li><a href="#methods">methods</a></li>
+              
             
               
             
@@ -147,14 +149,6 @@
         </tr>
         
         <tr>
-          <th scope="row">transport</th>
-          <td><em>string</em></td>
-          <td></td>
-          <td><p>A CSS selector representing the element used to start and stop listening to analyser data. This element must fire <code>blamplay</code> and <code>blamstop</code> events. At the time of writing, <strong>Media</strong>, <strong>Pads</strong>, and <strong>Notes</strong> do this.</p>
-</td>
-        </tr>
-        
-        <tr>
           <th scope="row">fps</th>
           <td><em>number</em></td>
           <td>25</td>
@@ -165,6 +159,37 @@
       </tbody></table>
     
     
+    
+      <h2 id="methods">Methods</h2>
+      <table>
+        <tbody><tr>
+          <th scope="col">name</th>
+          <th scope="col">args</th>
+          <th scope="col">description</th>
+        </tr>
+        
+        <tr>
+          <th scope="row">start</th>
+          <td style="text-align: left"></td>
+          <td><p>Starts taking data from the associated <code>analyser</code>.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">stop</th>
+          <td style="text-align: left"></td>
+          <td><p>Changes into a non-running state. Frequency data is still taken from the <code>analyser</code> until frequency values all become <code>0</code>. This allows for the audio tail to be visualized.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">startStop</th>
+          <td style="text-align: left"></td>
+          <td><p>Toggles between <code>start</code> and <code>stop</code>.</p>
+</td>
+        </tr>
+        
+      </tbody></table>
     
     <h2 id="examples">Examples</h2>
     

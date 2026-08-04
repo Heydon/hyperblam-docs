@@ -34,7 +34,7 @@ class Display extends Base {
 
   get places() {
     let value = this.getAttribute('places');
-		return value ? parseFloat(value) : 0;
+		return value ? parseFloat(value) : 1;
 	}
 
 	set places(value) {

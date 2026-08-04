@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -89,7 +89,8 @@
     
     
   <div class="l-framed">
-    <rings-blam id="example" fps="6" ratio="1 / 1" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="6">
+    <rings-blam id="example" fps="6" ratio="1 / 1" analyser="#analyser" style="inline-size: 75vw; max-block-size: 100%" count="9">
+      <blam-blam from="sequencer-blam" prop="startStop" event="blamplaystop"></blam-blam>
     </rings-blam>
   </div>
 
@@ -100,9 +101,9 @@
     <div class="l-framed">
       
 <chain-blam id="bus">
-  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" gain="1.25">
+<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -170,11 +171,11 @@
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
+<tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">
   <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
     <path class="on" d="M10 8, 26 16, 10 24z"></path>
-    <path class="off" d="M9 9, 13 9, 13 23, 9 23z M19 9, 23 9, 23 23, 19 23z"></path>
+    <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
 </tap-blam>
@@ -229,12 +230,6 @@
 <switch-blam to="#bassTrack" prop="solo">
   <label>
     bass solo
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#hatTrack" prop="solo">
-  <label>
-    hat solo
     <input type="checkbox">
   </label>
 </switch-blam>

@@ -48,10 +48,12 @@ class Sequencer extends Base {
 
   playPause() {
     this.playing ? this.pause() : this.play();
+    this.fire('blamplaypause', {}, this);
   }
 
   playStop() {
     this.playing ? this.stop() : this.play();
+    this.fire('blamplaystop', {}, this);
   }
 
   get swing() {

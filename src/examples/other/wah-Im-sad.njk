@@ -25,12 +25,13 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <reverb-blam id="spring" mix="0.25">
-    <sample-blam src="{{site.basedircdn}}/static/sounds/IRs/spring.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/IRs/stadium.mp3"></sample-blam>
   </reverb-blam>
+  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <sequencer-blam id="transport">
-  <pads-blam id="kick">
+  <pads-blam id="kick" gain="0.5">
     <chain-blam out="bus">
       <filter-blam freq="150"></filter-blam>
     </chain-blam>

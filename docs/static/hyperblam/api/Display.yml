@@ -10,3 +10,7 @@ props:
   - name: prop
     type: string
     description: The attribute defining the value to be displayed. If not supplied, nothing is displayed.
+  - name: places
+    type: number
+    default: 1
+    description: How many decimal places to use for the displayed value (if numeric).

@@ -235,34 +235,35 @@
               <dial-blam to="#cowEcho" prop="feedback">
                 <label>
                   echo feedback
-                  <input type="range" min="0.1" max="0.75" step="any">
+                  <input type="range" min="0.1" max="0.9" step="any">
                 </label>
               </dial-blam>
               <dial-blam to="#cowVerb" prop="mix">
                 <label>
                   reverb mix
-                  <input type="range" min="0.1" max="0.9" step="any">
+                  <input type="range" min="0.1" max="1" step="any">
                 </label>
               </dial-blam>
               <pre>&lt;chain-blam&gt;
-  &lt;echo-blam beats="1.5" feeback="<display-blam></display-blam>"&gt;&lt;/echo-blam&gt;
+  &lt;echo-blam beats="1.5" <span class="u-hl">feeback="<display-blam from="#cowEcho" prop="feedback" places="2"></display-blam>"</span>&gt;&lt;/echo-blam&gt;
   &lt;reverb-blam&gt;
-    &lt;sample-blam mix="1" src="/IR.mp3"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam <span class="u-hl">mix="<display-blam from="#cowVerb" prop="mix" places="2"></display-blam>"</span> src="/IR.mp3"&gt;&lt;/sample-blam&gt;
   &lt;/reverb-blam&gt;
-&lt;/chain-blam&gt;</pre>         
+&lt;/chain-blam&gt;</pre>
             </div>
           </div>
           <blam-blam to="#cowbellsAmb" prop="playStop" event="slideNext" once=""></blam-blam>
           <blam-blam to="audio-blam" prop="bpm" value="60" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="5">
+        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="12">
           <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
           <div class="l-screen">
             <div class="l-frame">
               <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
             </div>
           </div>
+          <blam-blam to="#reverseGain" prop="gain" value="0" ramp="18" event="slideNext" once=""></blam-blam>
           <blam-blam to="#cowbellsAmb" prop="playStop" event="slideNext" once=""></blam-blam>
         </section>
 
@@ -410,15 +411,17 @@
       </sequencer-blam>
 
       <pads-blam id="cowbellReverse" reverse="0.65" bank="cowBank" gain="0.45">    
-        <blam-blam prop="detune" value="0|400|-1200|-1200|-800|-600|-500|-200"></blam-blam> 
+        <blam-blam prop="detune" value="-2400|0|400|-1200|-1200|-800|-600|-500|-200"></blam-blam> 
         <chain-blam>
-          <echo-blam id="cowEcho" mix="1" beats="1.5" feeback="0.7" cutoff="3000"></echo-blam>
+          <echo-blam id="cowEcho" mix="1" beats="1.5" feeback="0.5" cutoff="3000"></echo-blam>
           <reverb-blam id="cowVerb">
             <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
           </reverb-blam>
           <limiter-blam></limiter-blam>
+          <gain-blam id="reverseGain" gain="1"></gain-blam>
         </chain-blam>
-        <lfo-blam prop="detune" gain="40"></lfo-blam>
+        <lfo-blam prop="detune" gain="30"></lfo-blam>
+        <envelope-blam prop="gain" curve="0 0, 1 0.333, 1 0.4, 0 0.8"></envelope-blam>
       </pads-blam>
 
       <sequencer-blam id="cowbellsAmb">

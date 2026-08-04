@@ -90,6 +90,7 @@
     
       <div class="l-framed u-blend-difference">
         <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="16">
+          <blam-blam from="sequencer-blam" prop="startStop" event="blamplaystop"></blam-blam>
         </bands-blam>
       </div>
     
@@ -110,6 +111,8 @@
     <pan-blam pan="0"></pan-blam>
   </chain-blam>
 </media-blam>
+<blam-blam from="media-blam" to="bands-blam" prop="start" event="blam"></blam-blam>
+<blam-blam from="media-blam" to="bands-blam" prop="stop" event="blamstop"></blam-blam>
 
     </div>
     <div role="progressbar" class="l-framed l-loading">

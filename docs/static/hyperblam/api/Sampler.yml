@@ -41,10 +41,10 @@ props:
     default: false 
     description: By default, samples are played at random and the same sample is never played twice in a row. With `robin` set, samples are cycled through in order. 
 events: 
-  - name: sounds 
-    description: Fired when all of the associated Bank element’s buffers are ready for playing.
   - name: blam 
     description: Fired whenever a sound (buffer) is played.
+  - name: blamend
+    description: Fired whenever a sound stops playing (is either foreshortened or reaches its end).
 methods: 
   - name: play 
     description: Plays one of the associated Bank’s sounds. 

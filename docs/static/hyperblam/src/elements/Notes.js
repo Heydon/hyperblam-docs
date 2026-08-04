@@ -10,11 +10,11 @@ class Notes extends Sampler {
 
   assignBuffer(cipher) {
     if (cipher === 0) {
-      this.sound = null;
+      this.sample = null;
       return;
     }
-    this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.sounds);
-    this.sound = this.bankElem.sounds[this.prevIndex];
+    this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.samples);
+    this.sample = this.bankElem.samples[this.prevIndex];
   }
 
   getNote(note) {

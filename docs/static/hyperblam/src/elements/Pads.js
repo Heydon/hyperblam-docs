@@ -3,18 +3,18 @@ import { Sampler } from '../primitives/Sampler.js';
 class Pads extends Sampler {
   assignBuffer(cipher) {
     if (cipher === 0) {
-      this.sound = null;
+      this.sample = null;
       return;
     }
     if (Number(cipher)) {
-      this.sound = this.bankElem.sounds[cipher - 1];
+      this.sample = this.bankElem.samples[cipher - 1];
     } else {
       if (!this.robin) {
-        this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.sounds);
+        this.prevIndex = this.newIndex(this.prevIndex, this.bankElem.samples);
       } else {
-        this.prevIndex = this.nextIndex(this.prevIndex, this.bankElem.sounds);
+        this.prevIndex = this.nextIndex(this.prevIndex, this.bankElem.samples);
       } 
-      this.sound = this.bankElem.sounds[this.prevIndex];
+      this.sample = this.bankElem.samples[this.prevIndex];
     }
   }
 }

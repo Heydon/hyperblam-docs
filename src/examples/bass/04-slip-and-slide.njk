@@ -27,20 +27,20 @@ elements:
   <div class="l-framed">
     <rings-blam 
       id="example" 
-      fps="12"
+      fps="8"
       ratio="1 / 1"
       analyser="#analyser" 
-      transport="#transport"
       style="inline-size: 75vw; max-block-size: 100%"
       count="{{ visualiser.count }}"
     >
+      <blam-blam from="sequencer-blam" prop="startStop" event="blamplaystop"></blam-blam>
     </rings-blam>
   </div>
 {% endblock %}
 
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
@@ -52,7 +52,7 @@ elements:
   <blam-blam prop="length" value="0.25|0.5|0.5|0.125"></blam-blam>
   <chain-blam out="bus">
     <filter-blam freq="8000" q="15" bypass>
-      <envelope-blam prop="freq" curve="100 0, 2000 0.5" beats></envelope-blam>
+      <envelope-blam prop="freq" curve="100 0, 2000 0.5"></envelope-blam>
     </filter-blam>
   </chain-blam>
   <relay-blam mode="one" chance="0">
@@ -65,8 +65,8 @@ elements:
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
 </tap-blam>
 {% endblock %}
 

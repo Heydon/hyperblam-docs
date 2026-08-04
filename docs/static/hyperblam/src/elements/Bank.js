@@ -3,7 +3,7 @@ import { Handle } from '../primitives/Handle.js';
 class Bank extends Handle {
 	constructor() {
 		super();
-    this.sounds = [];
+    this.samples = [];
     
     this.defaultEvent = 'blamready';
     this.defaultFrom = () => [window];
@@ -17,12 +17,12 @@ class Bank extends Handle {
       this.initBuffers();
     }
     if (event.type === 'blamsource') {
-      this.sounds.push(event.detail);
-      if (this.sounds.length === this.sampleElems.length) {
-        // ↓ Use index to put sounds back in order of source
-        this.sounds.sort(({index:a}, {index:b}) => a - b);
+      this.samples.push(event.detail);
+      if (this.samples.length === this.sampleElems.length) {
+        // ↓ Use index to put samples back in order of source
+        this.samples.sort(({index:a}, {index:b}) => a - b);
         this.fire('blambank', {
-          sounds: this.sounds
+          samples: this.samples
         }, this);
       }
     }

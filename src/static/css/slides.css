@@ -64,6 +64,10 @@ code {
   font-family: var(--font);
 }
 
+pre, code {
+  font-family: inherit;
+}
+
 .u-hl {
   border-radius: 0.125em;
   outline: 0.0625em dotted;

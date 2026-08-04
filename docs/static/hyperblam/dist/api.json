@@ -112,15 +112,24 @@
         "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
       },
       {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
         "name": "fps",
         "type": "number",
         "default": 25,
         "description": "Frames per second. The frequency with which **Analyser** data is read."
+      }
+    ],
+    "methods": [
+      {
+        "name": "start",
+        "description": "Starts taking data from the associated `analyser`."
+      },
+      {
+        "name": "stop",
+        "description": "Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized."
+      },
+      {
+        "name": "startStop",
+        "description": "Toggles between `start` and `stop`."
       }
     ]
   },
@@ -392,6 +401,12 @@
         "name": "prop",
         "type": "string",
         "description": "The attribute defining the value to be displayed. If not supplied, nothing is displayed."
+      },
+      {
+        "name": "places",
+        "type": "number",
+        "default": 1,
+        "description": "How many decimal places to use for the displayed value (if numeric)."
       }
     ]
   },
@@ -993,12 +1008,12 @@
     ],
     "events": [
       {
-        "name": "sounds",
-        "description": "Fired when all of the associated Bank element’s buffers are ready for playing."
-      },
-      {
         "name": "blam",
         "description": "Fired whenever a sound (buffer) is played."
+      },
+      {
+        "name": "blamend",
+        "description": "Fired whenever a sound stops playing (is either foreshortened or reaches its end)."
       }
     ]
   },
@@ -1216,12 +1231,12 @@
     ],
     "events": [
       {
-        "name": "sounds",
-        "description": "Fired when all of the associated Bank element’s buffers are ready for playing."
-      },
-      {
         "name": "blam",
         "description": "Fired whenever a sound (buffer) is played."
+      },
+      {
+        "name": "blamend",
+        "description": "Fired whenever a sound stops playing (is either foreshortened or reaches its end)."
       }
     ],
     "methods": [
@@ -1277,15 +1292,24 @@
         "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
       },
       {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
         "name": "fps",
         "type": "number",
         "default": 25,
         "description": "Frames per second. The frequency with which **Analyser** data is read."
+      }
+    ],
+    "methods": [
+      {
+        "name": "start",
+        "description": "Starts taking data from the associated `analyser`."
+      },
+      {
+        "name": "stop",
+        "description": "Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized."
+      },
+      {
+        "name": "startStop",
+        "description": "Toggles between `start` and `stop`."
       }
     ]
   },
@@ -1371,15 +1395,24 @@
         "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
       },
       {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
         "name": "fps",
         "type": "number",
         "default": 25,
         "description": "Frames per second. The frequency with which **Analyser** data is read."
+      }
+    ],
+    "methods": [
+      {
+        "name": "start",
+        "description": "Starts taking data from the associated `analyser`."
+      },
+      {
+        "name": "stop",
+        "description": "Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized."
+      },
+      {
+        "name": "startStop",
+        "description": "Toggles between `start` and `stop`."
       }
     ]
   },
@@ -1560,15 +1593,24 @@
         "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
       },
       {
-        "name": "transport",
-        "type": "string",
-        "description": "A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this."
-      },
-      {
         "name": "fps",
         "type": "number",
         "default": 25,
         "description": "Frames per second. The frequency with which **Analyser** data is read."
+      }
+    ],
+    "methods": [
+      {
+        "name": "start",
+        "description": "Starts taking data from the associated `analyser`."
+      },
+      {
+        "name": "stop",
+        "description": "Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized."
+      },
+      {
+        "name": "startStop",
+        "description": "Toggles between `start` and `stop`."
       }
     ]
   },

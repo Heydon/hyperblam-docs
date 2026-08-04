@@ -90,6 +90,11 @@ class Base extends HTMLElement {
     return num >= low && num <= high;
   }
 
+  getDuration(node) {
+    const speed = Math.pow(2, this.detune / 1200) * node.playbackRate.value;
+    return node.buffer.duration / speed;
+  }
+
   watchProps(elems, func, filter = undefined, old = false) {
     const callback = (list, observer) => {
 			func(list, observer);

@@ -15,16 +15,15 @@ class Sampler extends WithParams {
 
   instantiate() {
     let node = this.context().createBufferSource();
-    this.reversing = this.sound.reversed && random.chance(this.reverse);
+    this.reversing = this.sample.reversed && random.chance(this.reverse);
     let buffer = this.reversing ? 'reversed' : 'buffer';
-    this.sound.length = this.length ? Math.min(this.length, this.sound.buffer.duration) : this.sound.buffer.duration;
-    node.buffer = this.sound[buffer];
+    node.buffer = this.sample[buffer];
     let gainNode = this.context().createGain();
     // ↓ Start at 0 for pop-suppressing ramp
     gainNode.gain.value = 0;
     node.connect(gainNode)
         .connect(this.gainNode);
-    return { node, gainNode, ...this.sound };
+    return { node, gainNode, ...this.sample };
   }
 
   chokePrev(time) {
@@ -47,7 +46,7 @@ class Sampler extends WithParams {
   }
 
   postPlay() {
-    this.length < 100 && this.instance && this.instance.gainNode.gain.setTargetAtTime(
+    this.length && this.instance && this.instance.gainNode.gain.setTargetAtTime(
       0,
       this.time + this.length, 
       this.choke || 0.005
@@ -58,20 +57,28 @@ class Sampler extends WithParams {
     this.time = time || this.context().currentTime;
     this.assignBuffer(cipher);
 
-    if (this.sound) {
+    if (this.sample) {
       this.prePlay(cipher);
       this.instance.gainNode.gain.setTargetAtTime(
         this.gain,
         this.time,
         0.005
       );
+
+      this.instance.sampleDuration = this.instance.node.buffer.duration;
+      this.instance.modDuration = this.getDuration(this.instance.node);
+      this.instance.clipDuration = this.length ? Math.min(this.length, this.instance.modDuration) : this.instance.modDuration;
       
       if (this.loop) this.instance.node.loop = true;
 
-      let start = this.reversing ? this.sound.buffer.duration - this.start - this.sound.length : this.start;
+      this.instance.node.addEventListener('ended', () => {
+        this.fire('blamend', {}, this);
+      });
+
+      let start = this.reversing && this.length ? this.instance.modDuration - this.instance.clipDuration : this.start;
       this.instance.node.start(this.time, Math.max(start, 0));
       this.fire('blam', {
-        ...this.sound,
+        ...this.instance,
         time: this.time
       }, this);
 
@@ -156,7 +163,7 @@ class Sampler extends WithParams {
 
   get length() {
     let value = this.getAttribute('length');
-		return value ? this.conversions.beats(value) : 100;
+		return value ? this.conversions.beats(value) : null;
 	}
 
 	set length(value) {

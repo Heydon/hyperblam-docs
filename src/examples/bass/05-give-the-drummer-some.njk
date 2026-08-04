@@ -2,7 +2,7 @@
 title: Give the drummer some
 bpm: 100
 visualiser:
-  count: 6
+  count: 9
 elements: 
   - Notes
   - Pads
@@ -32,19 +32,19 @@ elements:
       fps="6"
       ratio="1 / 1"
       analyser="#analyser" 
-      transport="#transport"
       style="inline-size: 75vw; max-block-size: 100%"
       count="{{ visualiser.count }}"
     >
+      <blam-blam from="sequencer-blam" prop="startStop" event="blamplaystop"></blam-blam>
     </rings-blam>
   </div>
 {% endblock %}
 
 {% block audio %}
 <chain-blam id="bus">
-  <analyser-blam id="analyser" smoothing="0.5"></analyser-blam>
+  <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" gain="1.25">
+<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -112,8 +112,8 @@ elements:
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
-  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playPause' %}</button>
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
 </tap-blam>
 {% endblock %}
 
@@ -158,12 +158,6 @@ Fortunately, **HYPERBLAM** sees to this automatically. You’ll see the switch t
 <switch-blam to="#bassTrack" prop="solo">
   <label>
     bass solo
-    <input type="checkbox">
-  </label>
-</switch-blam>
-<switch-blam to="#hatTrack" prop="solo">
-  <label>
-    hat solo
     <input type="checkbox">
   </label>
 </switch-blam>

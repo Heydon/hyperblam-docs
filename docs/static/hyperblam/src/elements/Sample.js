@@ -20,8 +20,8 @@ class Sample extends Base {
     if (!this.src) {
       return;
     }
-    const sound = await fetch(this.src);
-    const arrayBuffer = await sound.arrayBuffer();
+    const sample = await fetch(this.src);
+    const arrayBuffer = await sample.arrayBuffer();
     const buffer = await this.context().decodeAudioData(arrayBuffer);
     const fileName = /[^/]*$/.exec(this.src)[0];
     this.id = this.id || fileName.substring(0, fileName.indexOf('.'));

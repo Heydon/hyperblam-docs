@@ -6,10 +6,14 @@ props:
   - name: analyser
     type: string
     description: A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page.
-  - name: transport
-    type: string
-    description: A CSS selector representing the element used to start and stop listening to analyser data. This element must fire `blamplay` and `blamstop` events. At the time of writing, **Media**, **Pads**, and **Notes** do this.
   - name: fps
     type: number 
     default: 25
     description: Frames per second. The frequency with which **Analyser** data is read.
+methods:
+  - name: start 
+    description: Starts taking data from the associated `analyser`.
+  - name: stop 
+    description: Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized.
+  - name: startStop
+    description: Toggles between `start` and `stop`.

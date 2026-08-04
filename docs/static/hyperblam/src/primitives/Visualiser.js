@@ -4,9 +4,6 @@ class Visualiser extends Base {
   onblamready() {
     this.analyserElem = document.querySelector(this.analyser || 'analyser-blam');
     this.name = this.id || this.analyserElem.id || Math.random().toString(36).substring(2, 6);
-    this.transportElem = this.transport ? document.querySelector(this.transport) : this.closest('sequencer-blam');
-    this.transportElem.addEventListener('blamplay', this);
-    this.transportElem.addEventListener('blamstop', this);
     this.function = 'getFrequencyData';
   }
 
@@ -14,21 +11,26 @@ class Visualiser extends Base {
     console.log(this.data);
   }
 
-  onblamplay() {
+  start() {
+    this.running = true;
     this.logger = setInterval(() => {
-      this.data = this.analyserElem[this.function]()
+      this.data = this.analyserElem[this.function]();
       this.translate();
-      if (this.stopping) {
+      if (!this.running) {
         if (this.data.every(d => d == 0)) {
           clearInterval(this.logger);
-          this.stopping = false;
+          this.running = false;
         }
       }
     }, 1000 / this.fps);
   }
 
-  onblamstop() {
-    this.stopping = true;
+  stop() {
+    this.running = false;
+  }
+
+  startStop() {
+    this.running ? this.stop() : this.start();
   }
 
   get analyser() {
@@ -58,11 +60,6 @@ class Visualiser extends Base {
 
   get ms() {
     return 1000 / this.fps;
-  }
-
-  disconnectedCallback() {
-    this.transportElem.removeEventListener('blamplay');
-    this.transportElem.removeEventListener('blamstop');
   }
 }
 

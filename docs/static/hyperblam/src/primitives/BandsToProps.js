@@ -24,9 +24,17 @@ class BandsToProps extends Visualiser {
 
   translate() {
     this.style.setProperty(`--${this.name}-interval`, `${this.ms / 1000}s`);
+    const properties = [];
     for (let i = 0; i < this.data.length; i++) {
-      this.style.setProperty(`--${this.name}-freq-${i + 1}`, this.data[i] / 255);
+      let key = `--${this.name}-freq-${i + 1}`;
+      let val = this.data[i] / 255;
+      properties.push([key, val]);
+      this.style.setProperty(key, val);
     }
+    this.fire('blam', {
+      data: this.data,
+      css: properties.map(p => p.join(': ')).join(';\n') + ';'
+    }, this);
   }
 
   get shuffle() {

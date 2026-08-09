@@ -3,8 +3,8 @@ import { Handle } from './Handle.js';
 class Template extends Handle {
   constructor() {
     super();
-    this.hidden = true;
     this.count = 0;
+    this.defaultTo = () => [this];
   }
 
   onblamready() {
@@ -20,7 +20,7 @@ class Template extends Handle {
   interpolate(template, data) {
     const regex = /\[\[(.*?)\]\]/g;
     let interpolated = template.replace(regex, (_, prop) => {
-      let parsed = parseFloat(data[prop]) ? parseFloat(data[prop]).toFixed(this.places) : data[prop];
+      let parsed = !isNaN(data[prop]) ? parseFloat(data[prop]).toFixed(this.places) : data[prop];
       return parsed;
     });
     if (this.additive) {

@@ -83,16 +83,18 @@
           <div class="l-screen">
             <div class="l-frame">
               <h1 class="u-squiggle">Making HTML<br>Make Music</h1>
-              <p class="u-tilt">with <a href="https://front-end.social/@heydon">Heydon</a></p>
+              <p class="u-tilt">with <strong>Heydon</strong> &amp; <strong>Moira</strong></p>
             </div>
           </div>
         </section>
 
-        <section class="u-cursor-none u-no-stab">
-          <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/err.mp4"></video>
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/intro_masked.mp4"></video>
+          </media-blam>
         </section>
 
-        <section data-speech="an HTML cowbell button, with a single sample bank" data-pause="1.5" data-voice="Moira">
+        <section data-speech="an HTML cowbell button, with a single sample bank" data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <tap-blam to="#cowbell" prop="play" value="1">
@@ -105,7 +107,7 @@
           </div>
         </section>
 
-        <section data-speech="another HTML cowbell button, this time with multiple samples." data-pause="1.5" data-voice="Moira">
+        <section data-speech="another HTML cowbell button, this time with multiple samples." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <tap-blam to="#cowbell" prop="play">
@@ -121,19 +123,19 @@
           </div>
         </section>
 
-        <section id="lengthSlide" data-speech="another fecking HTML cowbell button, now with a blam blam element." data-pause="1.5" data-voice="Moira">
+        <section id="lengthSlide" data-speech="another fecking HTML cowbell button, now with a blam blam element." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <tap-blam to="#cowbell" prop="play">
                 <button>cowbell</button>
               </tap-blam>
-<pre><code>&lt;blam-blam prop="length" value="0.03|0.05|1|1"&gt;&lt;/blam-blam&gt;</code></pre>
+<pre><code>&lt;blam-blam prop="length" value="0.01|0.02|1|1"&gt;&lt;/blam-blam&gt;</code></pre>
             </div>
           </div>
           <blam-blam to="#cowLength" prop="bypass" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section>
+        <section data-speech="A toy drum machine. For children." data-voice="Moira" data-pause="1">
           <div class="l-screen">
             <div class="l-frame">
               <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
@@ -141,11 +143,13 @@
           </div>
         </section>
 
-        <section class="u-cursor-none u-no-stab">
-          <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/too_slow.mp4"></video>
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/too_slow.mp4"></video>
+          </media-blam>
         </section>
 
-        <section id="trackSlide" data-speech="An HTML range input with the label “more cowbell” associated with a track element with a chance property." data-pause="1.5" data-voice="Moira">
+        <section id="trackSlide" data-speech="An HTML range input with the label “more cowbell” associated with a track element with a chance property." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <dial-blam to="#cowbellTrack" prop="chance">
@@ -161,16 +165,16 @@
 &lt;sequencer-blam&gt;</code></pre>
             </div>
           </div>
-          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="play" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section data-speech="A more. more. cowbell range input" data-pause="1.5" data-voice="Moira">
+        <section data-speech="A more. more. cowbell range input" data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <dial-blam to="audio-blam" prop="bpm">
                 <label>
                   more more<br>cowbell
-                  <input type="range" min="90" max="200" step="1">
+                  <input id="moremoreInput" type="range" min="90" max="200" step="1">
                 </label>
               </dial-blam>
 <pre><code>&lt;audio-blam bpm="<span class="u-hl"><display-blam from="audio-blam" prop="bpm"></display-blam></span>"
@@ -182,6 +186,10 @@
 &lt;/audio-blam&gt;</code></pre>
             </div>
           </div>
+          <blam-blam to="#cowbellTrack" prop="chance" value="0.7" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
+          <blam-blam from="#moremoreInput" to="#cowbells" prop="play" event="focus" once=""></blam-blam>
         </section>
 
         <section id="reverseDiagram">
@@ -193,13 +201,13 @@
           <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section>
+        <section data-speech="A reverse cowgirl range input." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <dial-blam to="#cowbell" prop="reverse">
                 <label>
                   reverse cowgirl
-                  <input type="range" min="0" max="1" step="0.01">
+                  <input id="reverseInput" type="range" min="0" max="1" step="0.01">
                 </label>
               </dial-blam>
 <pre><code>&lt;pads-blam reverse="<span class="u-hl"><display-blam from="#cowbell" prop="reverse" places="2"></display-blam></span>"&gt;...&lt;/pads-blam&gt;</code></pre>
@@ -209,24 +217,54 @@
           <blam-blam to="#cowbell" prop="length" value="1" event="slideNext" once=""></blam-blam>
           <blam-blam to="#cowbellTrack" prop="chance" value="0.5" event="slideNext" once=""></blam-blam>
           <blam-blam to="#cowbell" prop="choke" value="false" event="slideNext" once=""></blam-blam>
-          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+          <blam-blam from="#reverseInput" to="#cowbells" prop="playStop" event="focus" once=""></blam-blam>
         </section>
 
-        <section>
+        <section data-speech="A blam blam element controlling the detune parameter." data-voice="Moira" data-pause="1">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre style="font-size: 1.125em"><code>&lt;blam-blam 
+  prop="detune" 
+  value="0|400|-1200|-800|-600|-500"
+&gt;&lt;/blam-blam&gt;</code></pre>                
+            </div>
+          </div>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section class="u-no-stab" data-speech="A signal chain." data-voice="Moira" data-pause="1">
           <div class="l-screen">
             <div class="l-frame">
               <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/signal_chain.svg" alt="a signal chain starting with an input and ending with an output. Along the way are echo and reverb effects.">              
             </div>
           </div>
-          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
         </section>
 
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
+              <pre>&lt;chain-blam out="bus"&gt;
+  &lt;echo-blam beats="1.5" feeback="0.5"&gt;&lt;/echo-blam&gt;
+  &lt;reverb-blam&gt;
+    &lt;sample-blam mix="0.5" src="/IR.mp3"&gt;&lt;/sample-blam&gt;
+  &lt;/reverb-blam&gt;
+&lt;/chain-blam&gt;</pre>                     
+            </div>
+          </div>
+        </section>
+
+        <section class="u-no-stab" data-speech="A guitar effect or stomp box." data-voice="Moira" data-pause="1">
+          <div class="l-screen">
+            <div class="l-frame">
               <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/stomp_box.svg" alt="a stomp box with rate and feedback dials">               
             </div>
           </div>
+        </section>
+
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.6" src="https://hyperblam.how/static/video/okay_dont_tell_me.mp4"></video>
+          </media-blam>
         </section>
 
         <section>
@@ -256,134 +294,132 @@
           <blam-blam to="audio-blam" prop="bpm" value="60" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="12">
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+              <rings-blam class="u-squiggle" analyser="#reverseAnal" id="cowAmbData" fps="12" ratio="1/1" style="inline-size: 100%">
+              </rings-blam>
+            </div>
+            <div class="l-frame">
+              <log-blam from="#cowAmbData" style="white-space: pre; font-size: 0.6em">[[css]]</log-blam>
+            </div>
+          </div>
+          <blam-blam to="#cowAmbData" prop="start" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#reverseGain" prop="gain" value="0" ramp="24" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbellsAmb" prop="playStop" event="slideNext" once=""></blam-blam>
+        </section>  
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre style="font-size: 0.6em"><code>&lt;g style="--cow-freq: var(--cow-freq-1)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-2)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-3)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-4)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-5)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-6)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-7)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-8)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-9)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-10)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-11)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-12)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-13)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-14)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-15)"&gt;&lt;/g&gt;
+&lt;g style="--cow-freq: var(--cow-freq-16)"&gt;&lt;/g&gt;</code></pre>              
+            </div>
+          </div>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre><code>.cow-stick {
+  transform: translateY(calc((1 - var(--cow-freq)) * 65%));
+  <span class="u-hl">transition: transform var(--cow-interval)</span>;
+}</code></pre>              
+            </div>
+          </div>
+        </section>
+        
+        <section id="cowSticks">
+          <div class="l-screen">
+            <div class="l-frame" style="--gap: 2.25em"> 
+              <props-blam selector=".cow-stick" analyser="#cowbellAnal" id="cowData" fps="9" style="display: contents">
+                <svg overflow="hidden" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="c-cow-chart u-squiggle" viewBox="0 0 876.7 460.3"><g class="cow-stick"><path fill="#fff" d="M161.5 88h8.2v312.5h-8.2z"></path><g class="cow-head" transform="rotate(-8.7 2734.2 4003.8)"><ellipse cx="791" cy="-255.7" rx="15" ry="7.6"></ellipse><path fill="#fff" d="M790.7-340q-1.6 0-2.9.3a19 19 0 0 0-10.5 7.4l-.8 1.1h-1.7q-8 0-9.1 6.3l-.2 1.3-1.2-1.4c-3-3.6-7.2-7-9.4-7.6-1.3-.4-4.6-.2-7.2.3a29 29 0 0 0-9.8 4q-4.9 3.3-1.4 8.2a22 22 0 0 0 22.2 8.7c2-.4 5.4-1.5 7.2-2.4 3.2-1.6 5-.8 6.9 2.8 2.2 4.4 3.2 10 2.4 14l-.3 1.3.6.7c.6.7.7 1.6.2 1.8q-.2 0-.8-.3c-.6-.3-.6-.3-1.4-4.2-1.3-6.6-2.5-10.3-4.1-12q-1.6-2-3.8-.8-2.7 1.4-2 5.5.9 4.4 3.5 5.4 1 .3 3-.4l.6-.2c0 .2-1.3 2.1-2.1 3.1l-.8 1 .5 2.4c1.7 7.7 4.2 16.3 6.9 23l1.2 3-.8 2c-.8 2.2-1.4 5.1-1.4 6.6q0 3.3 2.3 4.1t7.2-1.6c2.2-1 5.9-1.6 8.2-1.4 2.6.3 4 .7 7.4 2q4.3 2 6.4.7c2-1.2 2-5.3 0-10.5l-.7-2 .8-1.8c3-7.2 5.6-16 7.4-24.5l.4-2.2-.6-.6c-.7-.7-2-2.6-2.2-3.1q-.2-.5.7 0l1.6.5c2.5.4 4.9-3 4.9-7q0-3-2.3-4.1-4.4-2.3-7.2 9.9c-.5 2-1.3 6.2-1.3 6.7 0 .2-1.3.9-1.5.8-.5-.2-.3-1.1.3-1.9s.6-.7.3-1.5a22.5 22.5 0 0 1 2.1-13.9c1.2-2.4 1.9-3.2 3-3.8 1.3-.6 2-.5 5.4 1a26.4 26.4 0 0 0 13.8 1.9 26 26 0 0 0 9.4-3.8c1.6-1.2 3.9-3.4 4.9-4.9 2.8-4.2 1.5-7.1-4.3-9.9q-5.8-2.7-11.4-2.7c-2.4 0-2.7 0-3.6.4-2 1-5.8 4.2-8.4 7.3l-1.2 1.4-.3-1.2q-1.2-6.4-9-6.4h-1.8l-.7-1c-1-1.5-3.9-4.1-5.4-5.1q-2.7-1.7-5.2-2.4zM768-306.3a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.5-2.6 2.5 2.6 0 0 1 2.5-2.5m44.8 0a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.4-2.6 2.5 2.6 0 0 1 2.4-2.5m-23.3 35.9q4.5-.2 8.3.6c2.4.6 3.5 1.1 4.5 2.2 1.5 1.6 1.9 2.8 1.5 4.6q-.5 3.5-2.1 2.4c-.8-.4-1-.7-1.4-2.3q-1.1-3.8-4.1-4.1c-.5 0-1.7 0-2.6.2-2.2.4-3.5.4-5.8 0-3-.5-4.4 0-5.6 1.9l-1 2.1q-.4 2-1.4 2.3-.6.4-1 0c-.7-.4-1.4-3.3-1-4.5a7 7 0 0 1 4-4.2c2-.7 4.9-1.2 7.7-1.2m1 14.2q-2.2 0-4.2.7c-1.1.4-3.2 1.7-3.3 2.1q-.2.5 2 1.8a11 11 0 0 0 4.2 1.5c2.8.5 6.2-.4 8.7-2.3q1.3-.8.7-1.1c-.6-.7-2.3-1.6-3.7-2.1q-2-.6-4.3-.6"></path></g></g><path stroke="#fff" stroke-width="3" d="M875.2 381.5v40"></path><g class="cow-stick"><path fill="#fff" d="M319.7 88h8.2v312.5h-8.2z"></path><g class="cow-head" transform="rotate(6.5 -2433.8 -4210.6)"><ellipse cx="791" cy="-255.7" rx="15" ry="7.6"></ellipse><path fill="#fff" d="M790.7-340q-1.6 0-2.9.3a19 19 0 0 0-10.5 7.4l-.8 1.1h-1.7q-8 0-9.1 6.3l-.2 1.3-1.2-1.4c-3-3.6-7.2-7-9.4-7.6-1.3-.4-4.6-.2-7.2.3a29 29 0 0 0-9.8 4q-4.9 3.3-1.4 8.2a22 22 0 0 0 22.2 8.7c2-.4 5.4-1.5 7.2-2.4 3.2-1.6 5-.8 6.9 2.8 2.2 4.4 3.2 10 2.4 14l-.3 1.3.6.7c.6.7.7 1.6.2 1.8q-.2 0-.8-.3c-.6-.3-.6-.3-1.4-4.2-1.3-6.6-2.5-10.3-4.1-12q-1.6-2-3.8-.8-2.7 1.4-2 5.5.9 4.4 3.5 5.4 1 .3 3-.4l.6-.2c0 .2-1.3 2.1-2.1 3.1l-.8 1 .5 2.4c1.7 7.7 4.2 16.3 6.9 23l1.2 3-.8 2c-.8 2.2-1.4 5.1-1.4 6.6q0 3.3 2.3 4.1t7.2-1.6c2.2-1 5.9-1.6 8.2-1.4 2.6.3 4 .7 7.4 2q4.3 2 6.4.7c2-1.2 2-5.3 0-10.5l-.7-2 .8-1.8c3-7.2 5.6-16 7.4-24.5l.4-2.2-.6-.6c-.7-.7-2-2.6-2.2-3.1q-.2-.5.7 0l1.6.5c2.5.4 4.9-3 4.9-7q0-3-2.3-4.1-4.4-2.3-7.2 9.9c-.5 2-1.3 6.2-1.3 6.7 0 .2-1.3.9-1.5.8-.5-.2-.3-1.1.3-1.9s.6-.7.3-1.5a22.5 22.5 0 0 1 2.1-13.9c1.2-2.4 1.9-3.2 3-3.8 1.3-.6 2-.5 5.4 1a26.4 26.4 0 0 0 13.8 1.9 26 26 0 0 0 9.4-3.8c1.6-1.2 3.9-3.4 4.9-4.9 2.8-4.2 1.5-7.1-4.3-9.9q-5.8-2.7-11.4-2.7c-2.4 0-2.7 0-3.6.4-2 1-5.8 4.2-8.4 7.3l-1.2 1.4-.3-1.2q-1.2-6.4-9-6.4h-1.8l-.7-1c-1-1.5-3.9-4.1-5.4-5.1q-2.7-1.7-5.2-2.4zM768-306.3a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.5-2.6 2.5 2.6 0 0 1 2.5-2.5m44.8 0a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.4-2.6 2.5 2.6 0 0 1 2.4-2.5m-23.3 35.9q4.5-.2 8.3.6c2.4.6 3.5 1.1 4.5 2.2 1.5 1.6 1.9 2.8 1.5 4.6q-.5 3.5-2.1 2.4c-.8-.4-1-.7-1.4-2.3q-1.1-3.8-4.1-4.1c-.5 0-1.7 0-2.6.2-2.2.4-3.5.4-5.8 0-3-.5-4.4 0-5.6 1.9l-1 2.1q-.4 2-1.4 2.3-.6.4-1 0c-.7-.4-1.4-3.3-1-4.5a7 7 0 0 1 4-4.2c2-.7 4.9-1.2 7.7-1.2m1 14.2q-2.2 0-4.2.7c-1.1.4-3.2 1.7-3.3 2.1q-.2.5 2 1.8a11 11 0 0 0 4.2 1.5c2.8.5 6.2-.4 8.7-2.3q1.3-.8.7-1.1c-.6-.7-2.3-1.6-3.7-2.1q-2-.6-4.3-.6"></path></g></g><g class="cow-stick"><path fill="#fff" d="M477.7 88h8.3v312.5h-8.3z"></path><g class="cow-head" transform="rotate(-4 5600.3 4361.7)"><ellipse cx="791" cy="-255.7" rx="15" ry="7.6"></ellipse><path fill="#fff" d="M790.7-340q-1.6 0-2.9.3a19 19 0 0 0-10.5 7.4l-.8 1.1h-1.7q-8 0-9.1 6.3l-.2 1.3-1.2-1.4c-3-3.6-7.2-7-9.4-7.6-1.3-.4-4.6-.2-7.2.3a29 29 0 0 0-9.8 4q-4.9 3.3-1.4 8.2a22 22 0 0 0 22.2 8.7c2-.4 5.4-1.5 7.2-2.4 3.2-1.6 5-.8 6.9 2.8 2.2 4.4 3.2 10 2.4 14l-.3 1.3.6.7c.6.7.7 1.6.2 1.8q-.2 0-.8-.3c-.6-.3-.6-.3-1.4-4.2-1.3-6.6-2.5-10.3-4.1-12q-1.6-2-3.8-.8-2.7 1.4-2 5.5.9 4.4 3.5 5.4 1 .3 3-.4l.6-.2c0 .2-1.3 2.1-2.1 3.1l-.8 1 .5 2.4c1.7 7.7 4.2 16.3 6.9 23l1.2 3-.8 2c-.8 2.2-1.4 5.1-1.4 6.6q0 3.3 2.3 4.1t7.2-1.6c2.2-1 5.9-1.6 8.2-1.4 2.6.3 4 .7 7.4 2q4.3 2 6.4.7c2-1.2 2-5.3 0-10.5l-.7-2 .8-1.8c3-7.2 5.6-16 7.4-24.5l.4-2.2-.6-.6c-.7-.7-2-2.6-2.2-3.1q-.2-.5.7 0l1.6.5c2.5.4 4.9-3 4.9-7q0-3-2.3-4.1-4.4-2.3-7.2 9.9c-.5 2-1.3 6.2-1.3 6.7 0 .2-1.3.9-1.5.8-.5-.2-.3-1.1.3-1.9s.6-.7.3-1.5a22.5 22.5 0 0 1 2.1-13.9c1.2-2.4 1.9-3.2 3-3.8 1.3-.6 2-.5 5.4 1a26.4 26.4 0 0 0 13.8 1.9 26 26 0 0 0 9.4-3.8c1.6-1.2 3.9-3.4 4.9-4.9 2.8-4.2 1.5-7.1-4.3-9.9q-5.8-2.7-11.4-2.7c-2.4 0-2.7 0-3.6.4-2 1-5.8 4.2-8.4 7.3l-1.2 1.4-.3-1.2q-1.2-6.4-9-6.4h-1.8l-.7-1c-1-1.5-3.9-4.1-5.4-5.1q-2.7-1.7-5.2-2.4zM768-306.3a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.5-2.6 2.5 2.6 0 0 1 2.5-2.5m44.8 0a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.4-2.6 2.5 2.6 0 0 1 2.4-2.5m-23.3 35.9q4.5-.2 8.3.6c2.4.6 3.5 1.1 4.5 2.2 1.5 1.6 1.9 2.8 1.5 4.6q-.5 3.5-2.1 2.4c-.8-.4-1-.7-1.4-2.3q-1.1-3.8-4.1-4.1c-.5 0-1.7 0-2.6.2-2.2.4-3.5.4-5.8 0-3-.5-4.4 0-5.6 1.9l-1 2.1q-.4 2-1.4 2.3-.6.4-1 0c-.7-.4-1.4-3.3-1-4.5a7 7 0 0 1 4-4.2c2-.7 4.9-1.2 7.7-1.2m1 14.2q-2.2 0-4.2.7c-1.1.4-3.2 1.7-3.3 2.1q-.2.5 2 1.8a11 11 0 0 0 4.2 1.5c2.8.5 6.2-.4 8.7-2.3q1.3-.8.7-1.1c-.6-.7-2.3-1.6-3.7-2.1q-2-.6-4.3-.6"></path></g></g><g class="cow-stick"><path fill="#fff" d="M635.9 88h8.2v312.5h-8.2z"></path><g class="cow-head" transform="rotate(10.7 -1104.4 -925)"><ellipse cx="791" cy="-255.7" rx="15" ry="7.6"></ellipse><path fill="#fff" d="M790.7-340q-1.6 0-2.9.3a19 19 0 0 0-10.5 7.4l-.8 1.1h-1.7q-8 0-9.1 6.3l-.2 1.3-1.2-1.4c-3-3.6-7.2-7-9.4-7.6-1.3-.4-4.6-.2-7.2.3a29 29 0 0 0-9.8 4q-4.9 3.3-1.4 8.2a22 22 0 0 0 22.2 8.7c2-.4 5.4-1.5 7.2-2.4 3.2-1.6 5-.8 6.9 2.8 2.2 4.4 3.2 10 2.4 14l-.3 1.3.6.7c.6.7.7 1.6.2 1.8q-.2 0-.8-.3c-.6-.3-.6-.3-1.4-4.2-1.3-6.6-2.5-10.3-4.1-12q-1.6-2-3.8-.8-2.7 1.4-2 5.5.9 4.4 3.5 5.4 1 .3 3-.4l.6-.2c0 .2-1.3 2.1-2.1 3.1l-.8 1 .5 2.4c1.7 7.7 4.2 16.3 6.9 23l1.2 3-.8 2c-.8 2.2-1.4 5.1-1.4 6.6q0 3.3 2.3 4.1t7.2-1.6c2.2-1 5.9-1.6 8.2-1.4 2.6.3 4 .7 7.4 2q4.3 2 6.4.7c2-1.2 2-5.3 0-10.5l-.7-2 .8-1.8c3-7.2 5.6-16 7.4-24.5l.4-2.2-.6-.6c-.7-.7-2-2.6-2.2-3.1q-.2-.5.7 0l1.6.5c2.5.4 4.9-3 4.9-7q0-3-2.3-4.1-4.4-2.3-7.2 9.9c-.5 2-1.3 6.2-1.3 6.7 0 .2-1.3.9-1.5.8-.5-.2-.3-1.1.3-1.9s.6-.7.3-1.5a22.5 22.5 0 0 1 2.1-13.9c1.2-2.4 1.9-3.2 3-3.8 1.3-.6 2-.5 5.4 1a26.4 26.4 0 0 0 13.8 1.9 26 26 0 0 0 9.4-3.8c1.6-1.2 3.9-3.4 4.9-4.9 2.8-4.2 1.5-7.1-4.3-9.9q-5.8-2.7-11.4-2.7c-2.4 0-2.7 0-3.6.4-2 1-5.8 4.2-8.4 7.3l-1.2 1.4-.3-1.2q-1.2-6.4-9-6.4h-1.8l-.7-1c-1-1.5-3.9-4.1-5.4-5.1q-2.7-1.7-5.2-2.4zM768-306.3a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.5-2.6 2.5 2.6 0 0 1 2.5-2.5m44.8 0a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.4-2.6 2.5 2.6 0 0 1 2.4-2.5m-23.3 35.9q4.5-.2 8.3.6c2.4.6 3.5 1.1 4.5 2.2 1.5 1.6 1.9 2.8 1.5 4.6q-.5 3.5-2.1 2.4c-.8-.4-1-.7-1.4-2.3q-1.1-3.8-4.1-4.1c-.5 0-1.7 0-2.6.2-2.2.4-3.5.4-5.8 0-3-.5-4.4 0-5.6 1.9l-1 2.1q-.4 2-1.4 2.3-.6.4-1 0c-.7-.4-1.4-3.3-1-4.5a7 7 0 0 1 4-4.2c2-.7 4.9-1.2 7.7-1.2m1 14.2q-2.2 0-4.2.7c-1.1.4-3.2 1.7-3.3 2.1q-.2.5 2 1.8a11 11 0 0 0 4.2 1.5c2.8.5 6.2-.4 8.7-2.3q1.3-.8.7-1.1c-.6-.7-2.3-1.6-3.7-2.1q-2-.6-4.3-.6"></path></g></g><g class="cow-stick"><path fill="#fff" d="M794 88h8.2v312.5H794z"></path><g class="cow-head" transform="rotate(-7.8 3313.4 -179.8)"><ellipse cx="791" cy="-255.7" rx="15" ry="7.6"></ellipse><path fill="#fff" d="M790.7-340q-1.6 0-2.9.3a19 19 0 0 0-10.5 7.4l-.8 1.1h-1.7q-8 0-9.1 6.3l-.2 1.3-1.2-1.4c-3-3.6-7.2-7-9.4-7.6-1.3-.4-4.6-.2-7.2.3a29 29 0 0 0-9.8 4q-4.9 3.3-1.4 8.2a22 22 0 0 0 22.2 8.7c2-.4 5.4-1.5 7.2-2.4 3.2-1.6 5-.8 6.9 2.8 2.2 4.4 3.2 10 2.4 14l-.3 1.3.6.7c.6.7.7 1.6.2 1.8q-.2 0-.8-.3c-.6-.3-.6-.3-1.4-4.2-1.3-6.6-2.5-10.3-4.1-12q-1.6-2-3.8-.8-2.7 1.4-2 5.5.9 4.4 3.5 5.4 1 .3 3-.4l.6-.2c0 .2-1.3 2.1-2.1 3.1l-.8 1 .5 2.4c1.7 7.7 4.2 16.3 6.9 23l1.2 3-.8 2c-.8 2.2-1.4 5.1-1.4 6.6q0 3.3 2.3 4.1t7.2-1.6c2.2-1 5.9-1.6 8.2-1.4 2.6.3 4 .7 7.4 2q4.3 2 6.4.7c2-1.2 2-5.3 0-10.5l-.7-2 .8-1.8c3-7.2 5.6-16 7.4-24.5l.4-2.2-.6-.6c-.7-.7-2-2.6-2.2-3.1q-.2-.5.7 0l1.6.5c2.5.4 4.9-3 4.9-7q0-3-2.3-4.1-4.4-2.3-7.2 9.9c-.5 2-1.3 6.2-1.3 6.7 0 .2-1.3.9-1.5.8-.5-.2-.3-1.1.3-1.9s.6-.7.3-1.5a22.5 22.5 0 0 1 2.1-13.9c1.2-2.4 1.9-3.2 3-3.8 1.3-.6 2-.5 5.4 1a26.4 26.4 0 0 0 13.8 1.9 26 26 0 0 0 9.4-3.8c1.6-1.2 3.9-3.4 4.9-4.9 2.8-4.2 1.5-7.1-4.3-9.9q-5.8-2.7-11.4-2.7c-2.4 0-2.7 0-3.6.4-2 1-5.8 4.2-8.4 7.3l-1.2 1.4-.3-1.2q-1.2-6.4-9-6.4h-1.8l-.7-1c-1-1.5-3.9-4.1-5.4-5.1q-2.7-1.7-5.2-2.4zM768-306.3a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.5-2.6 2.5 2.6 0 0 1 2.5-2.5m44.8 0a2.5 2.6 0 0 1 2.5 2.5 2.5 2.6 0 0 1-2.5 2.6 2.5 2.6 0 0 1-2.4-2.6 2.5 2.6 0 0 1 2.4-2.5m-23.3 35.9q4.5-.2 8.3.6c2.4.6 3.5 1.1 4.5 2.2 1.5 1.6 1.9 2.8 1.5 4.6q-.5 3.5-2.1 2.4c-.8-.4-1-.7-1.4-2.3q-1.1-3.8-4.1-4.1c-.5 0-1.7 0-2.6.2-2.2.4-3.5.4-5.8 0-3-.5-4.4 0-5.6 1.9l-1 2.1q-.4 2-1.4 2.3-.6.4-1 0c-.7-.4-1.4-3.3-1-4.5a7 7 0 0 1 4-4.2c2-.7 4.9-1.2 7.7-1.2m1 14.2q-2.2 0-4.2.7c-1.1.4-3.2 1.7-3.3 2.1q-.2.5 2 1.8a11 11 0 0 0 4.2 1.5c2.8.5 6.2-.4 8.7-2.3q1.3-.8.7-1.1c-.6-.7-2.3-1.6-3.7-2.1q-2-.6-4.3-.6"></path></g></g><path d="M55.4 401.7h815.8v129H55.4z"></path><text xml:space="preserve" x="335.2" y="465.4" fill="#fff" stroke-width="2.7" font-family="'Heydon Caps'" font-size="52.6"><tspan x="335.2" y="455.4">FREQUENCIES</tspan></text><text xml:space="preserve" x="-250.9" y="42.4" fill="#fff" stroke-width="2.7" font-family="'Heydon Caps'" font-size="52.6" transform="rotate(-90)"><tspan x="-250.9" y="42.4">COWS</tspan></text><path fill="none" stroke="#fff" stroke-width="3" d="M35.2 1.5h40-20v400h820"></path></svg>
+              </props-blam>
+              <dial-blam id="fpsSlider" to="#cowData" prop="fps">
+                <label>
+                  fps
+                  <input type="range" min="2" max="25">
+                  <display-blam from="#cowData" prop="fps"></display-blam>
+                </label>
+              </dial-blam>
+            </div>
+          </div>
+          <blam-blam to="#cowData" prop="start" event="slideNext" once=""></blam-blam>
+          <blam-blam from="#fpsSlider" to="#cowData" prop="restart"></blam-blam>
+          <blam-blam to="#cowbell" prop="reverse" value="0" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbellTrack" prop="chance" value="0.5" event="slideNext" once=""></blam-blam>
+          <blam-blam to="audio-blam" prop="bpm" value="90" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="play" event="slideNext" once=""></blam-blam>
+        </section>
+
+        <section id="analElem">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre><code style="font-size: 1.9em">&lt;analyser-elem&gt;&lt;/analyser-elem&gt;</code></pre>              
+            </div>
+          </div>
+        </section>
+
+        <section id="analElem2" class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre><code style="font-size: 1.5em">&lt;chain-blam&gt;
+  &lt;echo-blam&gt;&lt;/echo-blam&gt;
+  <span class="u-hl">&lt;analyser-elem&gt;&lt;/analyser-elem&gt;</span> <span class="u-special">(pre)</span>
+  &lt;filter-blam freq="2000"&gt;&lt;/filter-blam&gt;
+  <span class="u-hl">&lt;analyser-elem&gt;&lt;/analyser-elem&gt;</span> <span class="u-special">(post)</span>
+&lt;/chain-blam&gt;</code></pre>              
+            </div>
+          </div>
+        </section>
+
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/blue_peter_spiders.mp4"></video>
+          </media-blam>
+        </section>
+
+        <section data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="5">
           <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
           <div class="l-screen">
-            <div class="l-frame">
+            <div class="l-frame u-squiggle">
               <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
             </div>
           </div>
-          <blam-blam to="#reverseGain" prop="gain" value="0" ramp="18" event="slideNext" once=""></blam-blam>
-          <blam-blam to="#cowbellsAmb" prop="playStop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#rhodesSequencer" prop="play" event="slideNext" once=""></blam-blam>
         </section>
 
-        <!--
-        <section class="u-cursor-none">
-          <video onloadstart="this.volume=0.2" class="u-mono" src="https://hyperblam.how/static/video/intro_masked.mp4"></video>
-        </section>
-
-        <section class="u-cursor-none">
-          <media-blam>
-            <video onloadstart="this.volume=0.2" class="u-mono" src="https://hyperblam.how/static/video/intro_masked.mp4"></video>
-            <chain-blam>
-              <reverb-blam>
-                <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
-              </reverb-blam>
-            </chain-blam>
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/beethoven.mp4"></video>
           </media-blam>
-          <div class="l-screen">
-            <div class="l-frame">
-              <div class="l-pos-tl">
-                <h2><span class="u-impact u-blocked">Reverb</span></h2>
-              </div>
-              <div class="l-pos-br">
-                <div>
-<pre><code>&lt;chain-blam>
-  &lt;reverb-blam>
-    &lt;sample-blam src="stadium.mp3">
-    &lt;/sample-blam>
-  &lt;/reverb-blam>
-&lt;/chain-blam></code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
+          <blam-blam to="#rhodesSequencer" prop="stop" event="slideNext" once=""></blam-blam>
         </section>
-
-        <section class="u-cursor-none">
-          <media-blam>
-            <video onloadstart="this.volume=0.2" class="u-mono" src="https://hyperblam.how/static/video/intro_masked.mp4"></video>
-            <chain-blam>
-              <reverb-blam>
-                <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
-              </reverb-blam>
-              <saturator-blam mode="3" amount="21" mix="1" lowcut="300" highcut="8000"></saturator-blam>
-            </chain-blam>
-          </media-blam>
-          <div class="l-screen">
-            <div class="l-frame">
-              <div class="l-pos-tl">
-                <h2><span class="u-blocked u-impact">Reverb &<br> Saturation</span></h2>
-              </div>
-              <div class="l-pos-br">
-                <div>
-    <pre><code>&lt;chain-blam>
-  &lt;reverb-blam>
-    &lt;sample-blam src="stadium.mp3">
-    &lt;/sample-blam>
-  &lt;/reverb-blam>
-  &lt;saturator-blam>&lt;/saturator-blam>
-&lt;/chain-blam></code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="l-screen">
-            <div class="l-frame">
-              <div class="l-cluster">
-                <tap-blam data-speech="cow, button">
-                  <button>COW</button>
-                </tap-blam>
-                <tap-blam data-speech="bell, button">
-                  <button>BELL</button>
-                </tap-blam>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="u-cursor-none" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira">
-          <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop></video>
-          <div class="l-screen">
-            <div class="l-frame">
-              <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
-            </div>
-          </div>
-        </section>
-
-        <section class="l-vertical">
-          <dial-blam id="cowDial">
-            <label>
-              cowbell 
-              <input type="range" data-speech="cowbell, slider">
-            </label>
-          </dial-blam>
-<pre><code id="cowChance">
-&lt;track-blam chance="0">...&lt;/track-blam></code></pre>
-        </section>
-
-        <section class="u-cursor-none">
-          <video class="u-mono" src="https://hyperblam.how/static/video/dancer.mp4" loop></video>
-        </section>
-
-        <section class="u-cursor-none" data-speech="YListen to me, you dehydrated piece of shit. Most people’s bodies are 70% water. You are running on about 15%, which is about the same water content as beef fucking jerky. Drink some fucking water before I absolutely lose my shit, you dry mouthed motherfucking clown." data-voice="Google UK English 6 (Natural)">
-          <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop></video>
-          <div class="l-framed">
-            <div class="u-alert u-tilt">HYDRATION BREAK</div>
-          </div>
-        </section>-->
       </div>  
 
+      <!-- video bus -->
+      <chain-blam id="garbleBus">
+        <saturator-blam id="garble" mode="4" amount="71" mix="0" lowcut="500" highcut="8000"></saturator-blam>
+        <gain-blam id="garbleGain" gain="3" bypass=""></gain-blam>
+      </chain-blam>
+
       <!-- instruments -->
-      <pads-blam id="stabs" gain="0.6">
-        <bank-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-01.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-02.mp3"></sample-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-03.mp3"></sample-blam>
-        </bank-blam>
+      <pads-blam id="stabs" gain="0.6" bank="stabBank">
         <blam-blam from="section:not(.u-no-stab)" prop="play" event="slideNext"></blam-blam>
       </pads-blam>
 
@@ -397,18 +433,18 @@
         <blam-blam from="body" prop="detune" value="0~4000" event="slideWaiting"></blam-blam>
         <blam-blam from="body" prop="play" event="slideWaiting"></blam-blam>
         <blam-blam from="body" prop="stop" event="slideChange"></blam-blam>
+        <blam-blam from="body" to="#garble" prop="mix" value="1" event="slideWaiting"></blam-blam>
+        <blam-blam from="body" to="#garbleGain" prop="gain" value="3" event="slideWaiting"></blam-blam>
+        <blam-blam from="body" to="#garble" prop="mix" value="0" event="slideChange"></blam-blam>
+        <blam-blam from="body" to="#garbleGain" prop="gain" value="1" event="slideChange"></blam-blam>
       </pads-blam>
 
       <pads-blam id="cowbell" bank="cowBank" choke="0.05"> 
-        <blam-blam id="cowLength" prop="length" value="0.1|0.05|1|1" bypass=""></blam-blam>  
+        <chain-blam out="garbleBus">
+          <analyser-blam id="cowbellAnal"></analyser-blam>
+        </chain-blam>
+        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass=""></blam-blam>  
       </pads-blam>
-
-      <!-- sequencer basic -->
-      <sequencer-blam id="cowbells">
-        <track-blam id="cowbellTrack" to="#cowbell" chance="0">
-          <bar-blam s="?"></bar-blam>
-        </track-blam>
-      </sequencer-blam>
 
       <pads-blam id="cowbellReverse" reverse="0.65" bank="cowBank" gain="0.45">    
         <blam-blam prop="detune" value="-2400|0|400|-1200|-1200|-800|-600|-500|-200"></blam-blam> 
@@ -419,24 +455,66 @@
           </reverb-blam>
           <limiter-blam></limiter-blam>
           <gain-blam id="reverseGain" gain="1"></gain-blam>
+          <analyser-blam id="reverseAnal" smoothing="0.3"></analyser-blam>
         </chain-blam>
         <lfo-blam prop="detune" gain="30"></lfo-blam>
-        <envelope-blam prop="gain" curve="0 0, 1 0.333, 1 0.4, 0 0.8"></envelope-blam>
+        <envelope-blam prop="gain" curve="0 0, 1 0.25, 1 0.4, 0 0.9"></envelope-blam>
       </pads-blam>
+
+      <notes-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="5">
+        <chain-blam out="garbleBus">
+          <filter-blam freq="3000">
+            <lfo-blam prop="freq" beats="4.3" gain="2700" q="5"></lfo-blam>
+          </filter-blam>
+          <reverb-blam mix="0.5">
+            <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
+          </reverb-blam>
+        </chain-blam>
+        <lfo-blam prop="detune" gain="35" beats="1.5"></lfo-blam>
+      </notes-blam>
+
+      <!-- sequencers -->
+      <sequencer-blam id="cowbells">
+        <track-blam id="cowbellTrack" to="#cowbell" chance="0">
+          <bar-blam s="?"></bar-blam>
+        </track-blam>
+      </sequencer-blam>
+
+      <sequencer-blam id="rhodesSequencer">
+        <track-blam id="rhodesTrack" to="#rhodes" chance="0.9">
+          <bar-blam s="E3 0 0 0 G#3 B3 0 G#4"></bar-blam>
+          <bar-blam s="? 0 0 0 ? ? 0 ?"></bar-blam>
+        </track-blam>
+      </sequencer-blam>
 
       <sequencer-blam id="cowbellsAmb">
         <track-blam id="cowbellAmbTrack" to="#cowbellReverse" chance="0.4">
           <bar-blam s="?"></bar-blam>
         </track-blam>
       </sequencer-blam>
-    </audio-blam>
 
-    <bank-blam id="cowBank">
-      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-01.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-02.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-03.mp3" reverse=""></sample-blam>
-      <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-04.mp3" reverse=""></sample-blam>
-    </bank-blam>
+      <!-- banks -->
+
+      <bank-blam id="stabBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-01.mp3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-02.mp3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-03.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="cowBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-01.mp3" reverse=""></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-02.mp3" reverse=""></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-03.mp3" reverse=""></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-04.mp3" reverse=""></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="rhodesBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/rhodes-01.mp3" root="E3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/rhodes-02.mp3" root="E3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/rhodes-03.mp3" root="E3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/rhodes-04.mp3" root="E3"></sample-blam>
+      </bank-blam>      
+    </audio-blam>
 
     <script type="module">
       import { random } from 'https://hyperblam.how/static/hyperblam/src/tools/random.js';
@@ -481,62 +559,77 @@
         target.dispatchEvent(event);
       }
 
-      const slides = [... document.querySelectorAll('section')];
-      const videos = [... document.querySelectorAll('video')];
+      const slides = [...document.querySelectorAll('section')];
+      const videos = [...document.querySelectorAll('video')];
 
       slides.forEach((s, i) => {
         s.hidden = true;
       });
-      
-      slides[0].hidden = false;
 
-      document.addEventListener('keydown', e => {
-        let thisSlide = document.querySelector('section:not([hidden])');
-        if (!event.key.includes('Arrow')) {
-          return;
-        }
-        if (document.activeElement.tagName === 'INPUT') {
-          return;
-        }
-        let back = ['Up', 'Left'].some(key => e.key.includes(key));
-        let newDir = back ? 'previous' : 'next';
-        let newSlide = thisSlide[`${newDir}ElementSibling`];
-        if (!newSlide) {
-          return;
-        }
-        if (!window.waiting) {
-          window.speech.cancel();
-          thisSlide.classList.add('u-wait');
-          window.waiting = true;
-          window.lastKey = e.key;
-          fire('slideWaiting', {}, document.body);
-          return;
-        }
-        if (window.lastKey !== e.key) {
-          return;  
-        }
-        slides.forEach(slide => slide.hidden = true);
-        clearTimeout(window.speechTimeout);
-        thisSlide.classList.remove('u-wait');
-        window.waiting = newSlide.hidden = false;
-        if (newSlide.dataset.speech) {
-          utter(newSlide);
-        }
-        videos.forEach(video => {
-          video.pause();
-          video.currentTime = 0;
-        });
-        let newVideo = newSlide.querySelector('video');
-        newVideo && newVideo.play();
-
+      const slideEvents = (oldSlide, newSlide) => {
         fire('slideChange', {}, document.body);
-        fire('slidePrev', {}, thisSlide);
+        oldSlide && fire('slidePrev', {}, oldSlide);
         fire('slideNext', {}, newSlide);
-      });
+      }
+      
+      window.addEventListener('blamready', () => {
+        let startSlide;
+        if (window.location.hash) {
+          startSlide = slides.find(s => {
+            return s.id && window.location.hash.includes(s.id);
+          });
+        } else {
+          startSlide = slides[0];
+        }
+        startSlide.hidden = false;
+        slideEvents(null, startSlide);
 
-      videos.forEach(video => {
-        video.addEventListener('play', event => {
-          event.stopPropagation();
+        document.addEventListener('keydown', e => {
+          let thisSlide = document.querySelector('section:not([hidden])');
+          if (!event.key.includes('Arrow')) {
+            return;
+          }
+          if (document.activeElement.tagName === 'INPUT') {
+            return;
+          }
+          let back = ['Up', 'Left'].some(key => e.key.includes(key));
+          let newDir = back ? 'previous' : 'next';
+          let newSlide = thisSlide[`${newDir}ElementSibling`];
+          if (!newSlide) {
+            return;
+          }
+          if (!window.waiting) {
+            window.speech.cancel();
+            thisSlide.classList.add('u-wait');
+            window.waiting = true;
+            window.lastKey = e.key;
+            fire('slideWaiting', {}, document.body);
+            return;
+          }
+          if (window.lastKey !== e.key) {
+            return;  
+          }
+          slides.forEach(slide => slide.hidden = true);
+          clearTimeout(window.speechTimeout);
+          thisSlide.classList.remove('u-wait');
+          window.waiting = newSlide.hidden = false;
+          if (newSlide.dataset.speech) {
+            utter(newSlide);
+          }
+          videos.forEach(video => {
+            video.pause();
+            video.currentTime = 0;
+          });
+          let newVideo = newSlide.querySelector('video');
+          newVideo && newVideo.play();
+
+          slideEvents(thisSlide, newSlide);
+        });
+
+        videos.forEach(video => {
+          video.addEventListener('play', event => {
+            event.stopPropagation();
+          });
         });
       });
     </script>

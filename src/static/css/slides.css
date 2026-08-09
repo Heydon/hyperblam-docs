@@ -187,6 +187,7 @@ section {
   inline-size: 100dvw;
   block-size: 100dvh;
   position: relative;
+  overflow: hidden;
 }
 
 .l-screen, .l-frame, [class*="l-pos"] {
@@ -212,7 +213,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1.5em;
+  gap: var(--gap, 1.5em);
   font-size: 5cqmin;
 }
 
@@ -317,8 +318,27 @@ h3 {
   }
 }
 
+@keyframes warp {
+  0% {
+    filter: url("#warp-1");
+  }
+  25% {
+    filter: url("#warp-2");
+  }
+  50% {
+    filter: url("#warp-3");
+  }
+  75% {
+    filter: url("#warp-4");
+  }
+}
+
 section:not([hidden]) .u-squiggle {
   animation: squiggle 0.25s linear infinite alternate;
+}
+
+section:not([hidden]) .u-warp {
+  animation: warp 0.25s linear infinite alternate;
 }
 
 @keyframes jolt {
@@ -354,6 +374,10 @@ section {
 
 .u-impact {
   font-family: var(--font-display);
+}
+
+.u-special {
+  font-family: var(--font-special);
 }
 
 .u-impact.u-blocked {
@@ -394,4 +418,15 @@ section {
 
 [hidden] {
   display: none;
+}
+
+/* cow animations */
+
+.c-cow-chart {
+  max-inline-size: 75%;
+}
+
+.cow-stick {
+  transform: translateY(calc((1 - var(--cowData-freq)) * 65%));
+  transition: transform var(--cowData-interval);
 }

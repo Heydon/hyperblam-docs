@@ -22,7 +22,7 @@ class Visualiser extends Base {
           this.running = false;
         }
       }
-    }, 1000 / this.fps);
+    }, this.ms);
   }
 
   stop() {
@@ -33,20 +33,18 @@ class Visualiser extends Base {
     this.running ? this.stop() : this.start();
   }
 
+  restart() {
+    this.logger && clearInterval(this.logger);
+    this.start();
+    console.log('restart');
+  }
+
   get analyser() {
     return this.getAttribute('analyser');
 	}
 
 	set analyser(value) {
 		this.setAttribute('analyser', value);
-  }
-
-  get transport() {
-    return this.getAttribute('transport');
-	}
-
-	set transport(value) {
-		this.setAttribute('transport', value);
   }
 
   get fps() {

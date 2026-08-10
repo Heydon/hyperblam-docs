@@ -90,7 +90,7 @@
 
         <section class="u-no-stab">
           <media-blam out="garbleBus">
-            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/intro_masked.mp4"></video>
+            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/intro_clean.mp4"></video>
           </media-blam>
         </section>
 
@@ -143,13 +143,25 @@
           </div>
         </section>
 
+        <section data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="5">
+          <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
+          <div class="l-screen">
+            <div class="l-frame u-squiggle">
+              <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
+            </div>
+          </div>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#rhodesSequencer" prop="play" event="slideNext" once=""></blam-blam>
+        </section>
+
         <section class="u-no-stab">
           <media-blam out="garbleBus">
             <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/too_slow.mp4"></video>
           </media-blam>
+          <blam-blam to="#rhodesSequencer" prop="stop" event="slideNext" once=""></blam-blam>
         </section>
 
-        <section id="trackSlide" data-speech="An HTML range input with the label “more cowbell” associated with a track element with a chance property." data-pause="1" data-voice="Moira">
+        <section id="trackSlide" data-speech="An HTML range input. More cowbell." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <dial-blam to="#cowbellTrack" prop="chance">
@@ -198,7 +210,7 @@
               <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/reverse_sample.svg" alt="A sample waveform and the same waveform reversed using Array dot prototype dot reverse.">
             </div>
           </div>
-          <blam-blam to="#cowbells" prop="playStop" event="slideNext" once=""></blam-blam>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
         </section>
 
         <section data-speech="A reverse cowgirl range input." data-pause="1" data-voice="Moira">
@@ -213,6 +225,7 @@
 <pre><code>&lt;pads-blam reverse="<span class="u-hl"><display-blam from="#cowbell" prop="reverse" places="2"></display-blam></span>"&gt;...&lt;/pads-blam&gt;</code></pre>
             </div>
           </div>
+          <blam-blam to="audio-blam" prop="bpm" value="100" event="slideNext" once=""></blam-blam>
           <blam-blam to="#cowLength" prop="bypass" event="slideNext" once=""></blam-blam>
           <blam-blam to="#cowbell" prop="length" value="1" event="slideNext" once=""></blam-blam>
           <blam-blam to="#cowbellTrack" prop="chance" value="0.5" event="slideNext" once=""></blam-blam>
@@ -372,6 +385,7 @@
 <pre><code style="font-size: 1.9em">&lt;analyser-elem&gt;&lt;/analyser-elem&gt;</code></pre>              
             </div>
           </div>
+          <blam-blam to="#cowbells" prop="stop" event="slideNext" once=""></blam-blam>
         </section>
 
         <section id="analElem2" class="u-no-stab">
@@ -393,7 +407,7 @@
           </media-blam>
         </section>
 
-        <section data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Chug chug. Slurp slurp. Fill your belly." data-voice="Moira" data-pause="5">
+        <section data-speech="Time to hydrate again. You must hydrate regularly. If you don't hydrate at least once every 23 minutes, you’re a fecking eejit. I can tell you haven't been hydrating. The absolute state of you. A pork fecking scratching has a higher water content than you do. Get that water in you now, or so help me God. You dried up, water dodging fecking clown." data-voice="Moira" data-pause="5">
           <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
           <div class="l-screen">
             <div class="l-frame u-squiggle">
@@ -418,6 +432,14 @@
         <gain-blam id="garbleGain" gain="3" bypass=""></gain-blam>
       </chain-blam>
 
+      <chain-blam id="crushBus">
+        <gain-blam id="crushGain" gain="0.35" bypass="">
+          <lfo-blam type="square" beats="0.009" gain="0.35">
+            <blam-blam from="#cowbell" prop="beats" value="0.005~0.01" chance="0.6"></blam-blam>
+          </lfo-blam>
+        </gain-blam>
+      </chain-blam>
+
       <!-- instruments -->
       <pads-blam id="stabs" gain="0.6" bank="stabBank">
         <blam-blam from="section:not(.u-no-stab)" prop="play" event="slideNext"></blam-blam>
@@ -437,10 +459,12 @@
         <blam-blam from="body" to="#garbleGain" prop="gain" value="3" event="slideWaiting"></blam-blam>
         <blam-blam from="body" to="#garble" prop="mix" value="0" event="slideChange"></blam-blam>
         <blam-blam from="body" to="#garbleGain" prop="gain" value="1" event="slideChange"></blam-blam>
+        <blam-blam from="body" to="#crushGain" prop="bypass" event="slideWaiting"></blam-blam>
+        <blam-blam from="body" to="#crushGain" prop="bypass" event="slideChange"></blam-blam>
       </pads-blam>
 
       <pads-blam id="cowbell" bank="cowBank" choke="0.05"> 
-        <chain-blam out="garbleBus">
+        <chain-blam out="crushBus">
           <analyser-blam id="cowbellAnal"></analyser-blam>
         </chain-blam>
         <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass=""></blam-blam>  

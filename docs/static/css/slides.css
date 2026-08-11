@@ -426,6 +426,30 @@ section {
   max-inline-size: 75%;
 }
 
+.c-cow-head {
+  inline-size: 50%;
+  transform: scale(clamp(0, calc(var(--cowAmbPeak-peak) * 20), 2));
+  transition: transform var(--cowAmbPeak-interval);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+
+.cow-eyes--open {
+  position: relative;
+  z-index: 2;
+  animation: blink 1s steps(1) infinite;
+}
+
 .cow-stick {
   transform: translateY(calc((1 - var(--cowData-freq)) * 65%));
   transition: transform var(--cowData-interval);

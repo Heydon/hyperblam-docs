@@ -11,7 +11,7 @@ class Peak extends Visualiser {
     let sum = 0;
     for (const band of this.data) {
       sum += band * band;
-    }  
+    }
     return Math.sqrt(sum / this.data.length);
   }
 

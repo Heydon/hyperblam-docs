@@ -46,7 +46,7 @@ class Sampler extends WithParams {
   }
 
   postPlay() {
-    this.length && this.instance && this.instance.gainNode.gain.setTargetAtTime(
+    this.length && !this.loop && this.instance && this.instance.gainNode.gain.setTargetAtTime(
       0,
       this.time + this.length, 
       this.choke || 0.005
@@ -69,7 +69,11 @@ class Sampler extends WithParams {
       this.instance.modDuration = this.getDuration(this.instance.node);
       this.instance.clipDuration = this.length ? Math.min(this.length, this.instance.modDuration) : this.instance.modDuration;
       
-      if (this.loop) this.instance.node.loop = true;
+      if (this.loop) {
+        this.instance.node.loop = true;
+        this.instance.node.loopStart = Math.min(this.start, this.instance.buffer.duration);
+        this.instance.node.loopEnd = this.start + Math.min(this.length || this.instance.buffer.duration);
+      }
 
       this.instance.node.addEventListener('ended', () => {
         this.fire('blamend', {}, this);

@@ -447,7 +447,7 @@ section {
 .cow-eyes--open {
   position: relative;
   z-index: 2;
-  animation: blink 1s steps(1) infinite;
+  animation: blink 1s steps(1) infinite alternate;
 }
 
 .cow-stick {

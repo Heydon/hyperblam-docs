@@ -106,7 +106,7 @@
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam id="tom">
+<pad-blam id="tom">
   <chain-blam out="bus">
     <pan-blam pan="0">
       <blam-blam prop="pan" value="-1~1"></blam-blam>
@@ -121,8 +121,8 @@
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/tom.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="piano" gain="0.7" choke="">
+</pad-blam>
+<pad-blam id="piano" gain="0.7" choke="">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/piano.mp3" reverse=""></sample-blam>
   </bank-blam>
@@ -139,23 +139,23 @@
     <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert=""></blam-blam>
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert="" bypass=""></blam-blam>
-</pads-blam>
-<pads-blam id="kick" out="bus">
+</pad-blam>
+<pad-blam id="kick" out="bus">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/kick-01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/kick-02.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/kick-03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="snare" out="bus">
+</pad-blam>
+<pad-blam id="snare" out="bus">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/snare-01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-400~400"></blam-blam>
   <blam-blam prop="length" value="1|1|1|0.25|0.125|0.05"></blam-blam>
-</pads-blam>
-<pads-blam id="pluck" gain="1.5">
+</pad-blam>
+<pad-blam id="pluck" gain="1.5">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/pluck-01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/pluck-02.mp3"></sample-blam>
@@ -175,7 +175,7 @@
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam id="transport" swing="">
   <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
@@ -233,7 +233,7 @@
       
 
 <p>There’s a lot going on here and I’m not going to explain it all. Instead, why not take a listen while you explore the source code?</p>
-<p>As in the previous example, the original <code><a href="/elements/media">&lt;media-blam&gt;</a></code> and <code>&lt;audio&gt;</code> elements are now missing. And good riddance, frankly, because we can achieve a lot more with the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> and <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> elements: true sample-based instruments.</p>
+<p>As in the previous example, the original <code><a href="/elements/media">&lt;media-blam&gt;</a></code> and <code>&lt;audio&gt;</code> elements are now missing. And good riddance, frankly, because we can achieve a lot more with the <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> and <code><a href="/elements/note">&lt;note-blam&gt;</a></code> elements: true sample-based instruments.</p>
 <p>Also, be sure to look inside <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> where I’ve written the composition (to be <em>rewritten</em> with each play through). The note choices, rhythms, and audio parameters (such as the <code>length</code> of snare sounds) are all fluctuated or randomized. This gives the composition life.</p>
 
 

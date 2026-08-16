@@ -1,6 +1,6 @@
 import { Sampler } from '../primitives/Sampler.js';
 
-class Pads extends Sampler {
+class Pad extends Sampler {
   assignBuffer(cipher) {
     if (cipher === 0) {
       this.sample = null;
@@ -19,4 +19,4 @@ class Pads extends Sampler {
   }
 }
 
-export { Pads }
+export { Pad }

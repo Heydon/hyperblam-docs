@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -109,36 +109,36 @@
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <sequencer-blam id="transport" swing="0.2">
-  <pads-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke="">
+  <pad-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke="">
     <lfo-blam id="wobble" prop="detune" gain="700" beats="0.7"></lfo-blam>
     <blam-blam prop="length" value="0.0625~0.15"></blam-blam>
     <blam-blam prop="reverse" value="1|0"></blam-blam>
-  </pads-blam>
-  <pads-blam out="bus" id="release" bank="stabBank" gain="0.6" choke="">
+  </pad-blam>
+  <pad-blam out="bus" id="release" bank="stabBank" gain="0.6" choke="">
     <envelope-blam prop="detune" curve="-1200 0, 0 0.25" beats=""></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
-  </pads-blam>
-  <pads-blam out="bus" id="drums" bank="drumsBank" gain="1.5">
+  </pad-blam>
+  <pad-blam out="bus" id="drums" bank="drumsBank" gain="1.5">
     <blam-blam prop="detune" value="-200~200"></blam-blam>
-  </pads-blam>
-  <pads-blam id="blip" bank="blipBank">
+  </pad-blam>
+  <pad-blam id="blip" bank="blipBank">
     <chain-blam out="bus">
       <pan-blam pan="0.5"></pan-blam>
     </chain-blam>
     <blam-blam prop="detune" value="0|100|300"></blam-blam>
-  </pads-blam>
-  <notes-blam out="bus" id="bass" bank="bassBank" gain="0.3" choke=""></notes-blam>
-  <pads-blam out="bus" id="piano" bank="pianoBank" gain="1.25">
+  </pad-blam>
+  <note-blam out="bus" id="bass" bank="bassBank" gain="0.3" choke=""></note-blam>
+  <pad-blam out="bus" id="piano" bank="pianoBank" gain="1.25">
     <envelope-blam prop="detune" curve="100 0, 0 0.25" beats=""></envelope-blam>
-  </pads-blam>
-  <pads-blam id="oooh" gain="0.3">
+  </pad-blam>
+  <pad-blam id="oooh" gain="0.3">
     <bank-blam>
       <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/chocolate/oooh.mp3"></sample-blam>
     </bank-blam>
     <chain-blam out="bus">
       <echo-blam feedback="0.3"></echo-blam>
     </chain-blam>
-  </pads-blam>
+  </pad-blam>
   <track-blam class="tay" to="#scratch" chance="0.6">
     <repeat-blam x="16">
       <bar-blam s="0"></bar-blam>
@@ -269,7 +269,7 @@
 <pre><code class="language-html">&lt;envelope-blam prop="detune" curve="-700 0, 0 0.25" beats&gt;&lt;/envelope-blam&gt;
 &lt;blam-blam prop="length" value="4|0.75"&gt;&lt;/blam-blam&gt;
 </code></pre>
-<p>The bass part also has so variety. There's just three samples but played (using <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code>) over four arpeggiated chords. A happy accident: samples repitched to higher notes end up shorter, varying the release time. Some notes are <em>jabbed</em> very briefly.</p>
+<p>The bass part also has so variety. There's just three samples but played (using <code><a href="/elements/note">&lt;note-blam&gt;</a></code>) over four arpeggiated chords. A happy accident: samples repitched to higher notes end up shorter, varying the release time. Some notes are <em>jabbed</em> very briefly.</p>
 <p>The final two bars are in <code>fill</code> mode, meaning notes and note placement are randomized like an improvisation.</p>
 <pre><code class="language-html">&lt;bar-blam s="D2 D3 A2 F3" fill chance="0.75"&gt;&lt;/bar-blam&gt;
 &lt;bar-blam s="D3 F4 A3 F3" fill chance="0.5"&gt;&lt;/bar-blam&gt;

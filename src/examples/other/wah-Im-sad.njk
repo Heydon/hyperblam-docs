@@ -8,7 +8,7 @@ elements:
   - Sequencer 
   - Bar 
   - Track 
-  - Pads 
+  - Pad 
   - Lfo
   - Chain 
   - Phaser
@@ -31,7 +31,7 @@ elements:
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <sequencer-blam id="transport">
-  <pads-blam id="kick" gain="0.5">
+  <pad-blam id="kick" gain="0.5">
     <chain-blam out="bus">
       <filter-blam freq="150"></filter-blam>
     </chain-blam>
@@ -39,8 +39,8 @@ elements:
       <sample-blam src="{{site.basedircdn}}/static/sounds/kit/kick/01.mp3"></sample-blam>
       <sample-blam src="{{site.basedircdn}}/static/sounds/kit/kick/02.mp3"></sample-blam>
     </bank-blam>    
-  </pads-blam>
-  <pads-blam id="guitar" gain="2">
+  </pad-blam>
+  <pad-blam id="guitar" gain="2">
     <bank-blam>
       <sample-blam src="{{site.basedircdn}}/static/sounds/guitar/120bpm/01.mp3"></sample-blam>
       <sample-blam src="{{site.basedircdn}}/static/sounds/guitar/120bpm/02.mp3"></sample-blam>
@@ -60,7 +60,7 @@ elements:
         </lfo-blam>
       </filter-blam>
     </chain-blam>
-  </pads-blam>
+  </pad-blam>
   <track-blam to="#guitar">
     <bar-blam s="? 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>
     <bar-blam s="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"></bar-blam>

@@ -96,17 +96,17 @@
 <p>Musicians are event emitters and listeners too. A drummer hits their sticks together to count their band in. A bassist performs an elaborate arpeggio to herald a group transition. An orchestral conductor is essentially a high frequency JavaScript event emitter in humanoid form.</p>
 <p><strong>HYPERBLAM</strong> enables generative composition by handling <em>events</em> according to <em>probabilities.</em> But you don’t actually have to write the JavaScript for those events; the HTML elements take care of that for you. In <strong>HYPERBLAM</strong>, HTML generates sound that writes HTML that generates sound.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/sequencing_spiderman.svg" alt="Spiderman pointing at himself. One spider man uses HTML to generate sound then the other spider man uses sound to generate HTML" loading="lazy"></p>
-<hr class="u-wave-square">
+<hr class="u-wave-sawtooth">
 <h2 id="events-based-sequencing">Events-based sequencing</h2>
 <p>The <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> element has quite a simple task. It acts as a kind of silent metronome, counting out every step (a quarter-beat, by default) in an infinite sequence. When it knows the exact time the next step should land, it emits a <code>blam</code> event communicating that timing.</p>
 <p>Any <strong>HYPERBLAM</strong> elements listening for that <code>blam</code> event can synchronize itself to the ongoing sequence.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/sequencing1.svg" alt="Timeline showing how the sequencer element sets the future time, transmits an event with time data, then is consumed by a subscriber element, before the time finally coming along." loading="lazy"></p>
-<p>This opens up some possibilities. You could take a steam of live data and use it to trigger <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> sounds directly. A live, but perfectly <em>quantized</em>, musical performance of the stock exchange? Or weather patterns? Github commits?</p>
+<p>This opens up some possibilities. You could take a steam of live data and use it to trigger <code><a href="/elements/note">&lt;note-blam&gt;</a></code> sounds directly. A live, but perfectly <em>quantized</em>, musical performance of the stock exchange? Or weather patterns? Github commits?</p>
 <p>More commonly, you would subscribe to a <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code>’s events using a <code><a href="/elements/track">&lt;track-blam&gt;</a></code> element. That’s where <strong>HYPERBLAM</strong> starts to feel like a drum machine. And it’s one with some pretty cool features, similar to the high-end hardware machines from <strong>Elektron</strong> or <strong>Roland</strong>.</p>
 <h2 id="polymetrics">Polymetrics</h2>
 <p>Each <code><a href="/elements/track">&lt;track-blam&gt;</a></code> element presides over one or more <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code> elements. The <code>s</code> prop (for “sequence”, “steps”, “sounds”, or whatever works best for you) sets out the pattern for that bar. For an instrument like the percussion-optimized <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code>, positive integers represent different samples belonging to a <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>. A <code>0</code> represents no sound; a pause.</p>
 <pre><code class="language-html">&lt;sequencer-blam&gt;
-  &lt;pads-blam&gt;
+  &lt;pad-blam&gt;
     &lt;track-blam&gt;
       &lt;bar-blam s="1 0 0 0 2 0 1 3"&gt;&lt;/bar-blam&gt;
     &lt;/track-blam&gt;
@@ -115,10 +115,10 @@
       &lt;sample-blam src="sounds/2.mp3"&gt;&lt;/sample-blam&gt;
       &lt;sample-blam src="sounds/3.mp3"&gt;&lt;/sample-blam&gt;
     &lt;/bank-blam&gt;
-  &lt;/pads-blam&gt;
+  &lt;/pad-blam&gt;
 &lt;/sequencer-blam&gt;
 </code></pre>
-<p>Good start. But what if I introduce another <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> with another <code><a href="/elements/track">&lt;track-blam&gt;</a></code> with a bar using a pattern of a different length?</p>
+<p>Good start. But what if I introduce another <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> with another <code><a href="/elements/track">&lt;track-blam&gt;</a></code> with a bar using a pattern of a different length?</p>
 <pre><code class="language-html">&lt;audio-blam bpm="90"&gt;
   &lt;sequencer-blam&gt;
     ...
@@ -192,16 +192,16 @@
 <h2 id="blam-blam">Blam Blam!</h2>
 <p>The eponymous <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> element does a lot of heavy lifting. Kind of a mascot for <strong>HYPERBLAM</strong>, this element uses incoming events to change props, write attributes, fire methods, and even apply CSS custom properties.</p>
 <p>In <a href="https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/">“A Light Lo-Fi Listen With LFOs”</a> it does a lot. For a start, it is affecting both the <code>length</code> and <code>detune</code> values of the electronic snare sound, adding texture, tension, and—most of all—variety.</p>
-<pre><code class="language-html">&lt;pads-blam id="snare" out="bus"&gt;
+<pre><code class="language-html">&lt;pad-blam id="snare" out="bus"&gt;
   &lt;bank-blam&gt;
     &lt;sample-blam src="/sounds/minimal/snare-01.mp3"&gt;&lt;/sample-blam&gt;
     &lt;sample-blam src="/sounds/minimal/snare-02.mp3"&gt;&lt;/sample-blam&gt;
   &lt;/bank-blam&gt;
   &lt;blam-blam prop="detune" value="-400|0|0|400|900"&gt;&lt;/blam-blam&gt;
   &lt;blam-blam prop="length" value="1|1|1|0.25|0.125"&gt;&lt;/blam-blam&gt;
-&lt;/pads-blam&gt;
+&lt;/pad-blam&gt;
 </code></pre>
-<p>Each time the <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> schedules a sound, it fires a <code>blam</code> event, letting the <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the <code>|</code>-separated syntax and applied. One pad; multiple sounds.</p>
+<p>Each time the <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> schedules a sound, it fires a <code>blam</code> event, letting the <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the <code>|</code>-separated syntax and applied. One pad; multiple sounds.</p>
 <h2 id="visualization">Visualization</h2>
 <p>The <code><a href="/elements/analyser">&lt;analyser-blam&gt;</a></code> element converts the incoming signal into frequency data. You can use this data to visualize frequency <em>bands</em> with elements like <code><a href="/elements/props">&lt;props-blam&gt;</a></code> and <code><a href="/elements/peak">&lt;peak-blam&gt;</a></code>, which convert the data into CSS custom properties.</p>
 <p>But you can also create synchronized visual effects just based on events. In the <a href="https://hyperblam.how/examples/typerblam">“Typerblam”</a> example, <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> elements create <a href="https://en.wikipedia.org/wiki/Random_seed">seed numbers</a>, as custom properties, with values between <code>0</code> and <code>1</code>.</p>

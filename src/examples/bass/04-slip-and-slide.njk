@@ -2,7 +2,7 @@
 title: Slip and slide
 bpm: 100
 elements: 
-  - Notes
+  - Note
   - Bank 
   - Sample 
   - Blam
@@ -42,7 +42,7 @@ elements:
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
+<note-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -56,12 +56,12 @@ elements:
     </filter-blam>
   </chain-blam>
   <relay-blam mode="one" chance="0">
-    <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass></envelope-blam>
-    <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
+    <envelope-blam to="note-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass></envelope-blam>
+    <envelope-blam to="note-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
   </relay-blam>
-</notes-blam>
+</note-blam>
 <sequencer-blam id="transport">
-  <track-blam to="notes-blam" chance="0.7">
+  <track-blam to="note-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -92,12 +92,12 @@ But just slides are not enough variety.
 
 ```html 
 <relay-blam mode="one" chance="0.333">
-  <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass></envelope-blam>
-  <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
+  <envelope-blam to="note-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass></envelope-blam>
+  <envelope-blam to="note-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass></envelope-blam>
 </relay-blam>
 ```
 
-I’ve used a `<relay-blam>` and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note `mode="one"`. There is a 33.333% chance that _one_ of the envelopes will be applied when `<notes-blam>` plays a sound. Because `bypass` is applied to each individual `<envelope-blam>` element, they do not trigger independently. 
+I’ve used a `<relay-blam>` and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note `mode="one"`. There is a 33.333% chance that _one_ of the envelopes will be applied when `<note-blam>` plays a sound. Because `bypass` is applied to each individual `<envelope-blam>` element, they do not trigger independently. 
 
 When used with `<blam-blam>`, `<relay-blam>` might want to be in the `'all'` or `'some'` modes. You may also want to omit `bypass` and use different `event` or `to` values. This creates multiple dimensions of event handling.
 
@@ -105,7 +105,7 @@ Crucially, the chance of this envelope/slide occuring at all is just `0.333` (or
 
 All we need now is a gnarly envelope filter. [Bootsy Collins](https://en.wikipedia.org/wiki/Bootsy_Collins) famously uses a Musitronics Mu-Tron III, which can go for [many hundreds of dollars](https://reverb.com/uk/p/mu-tron-mutron-iii). It works by detecting peaks in the playing, which it designates as the “attack” (start) phase of notes, then  filters the sound accordingly.
 
-**HYPERBLAM’s** `<filter-blam>` and `<envelope-blam>` cost nothing (and together are less than `2KB` to download). No peak analysis is needed, since the event sent from `<notes-blam>` tells us when each successive note starts.
+**HYPERBLAM’s** `<filter-blam>` and `<envelope-blam>` cost nothing (and together are less than `2KB` to download). No peak analysis is needed, since the event sent from `<note-blam>` tells us when each successive note starts.
 
 ```html
 <filter-blam freq="8000" q="10" bypass>
@@ -132,7 +132,7 @@ As a pedant, I want to point out that the sound you are hearing is not technical
     <input type="checkbox">
   </label>
 </switch-blam>
-<kbd-blam to="notes-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="note-blam" prop="play" key="1"></kbd-blam>
 <watch-blam hidden from="audio-blam *:not(rings-blam)" to="#log" additive bypass>
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>

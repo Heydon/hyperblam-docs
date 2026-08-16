@@ -8,8 +8,8 @@ elements:
   - Chain 
   - Analyser 
   - Sequencer 
-  - Pads 
-  - Notes
+  - Pad 
+  - Note
   - Lfo
   - Blam 
   - Envelope 
@@ -37,36 +37,36 @@ elements:
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <sequencer-blam id="transport" swing="0.2">
-  <pads-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke>
+  <pad-blam out="bus" id="scratch" bank="stabBank" gain="0.6" choke>
     <lfo-blam id="wobble" prop="detune" gain="700" beats="0.7"></lfo-blam>
     <blam-blam prop="length" value="0.0625~0.15"></blam-blam>
     <blam-blam prop="reverse" value="1|0"></blam-blam>
-  </pads-blam>
-  <pads-blam out="bus" id="release" bank="stabBank" gain="0.6" choke>
+  </pad-blam>
+  <pad-blam out="bus" id="release" bank="stabBank" gain="0.6" choke>
     <envelope-blam prop="detune" curve="-1200 0, 0 0.25" beats></envelope-blam>
     <blam-blam prop="length" value="4|0.75"></blam-blam>
-  </pads-blam>
-  <pads-blam out="bus" id="drums" bank="drumsBank" gain="1.5">
+  </pad-blam>
+  <pad-blam out="bus" id="drums" bank="drumsBank" gain="1.5">
     <blam-blam prop="detune" value="-200~200"></blam-blam>
-  </pads-blam>
-  <pads-blam id="blip" bank="blipBank">
+  </pad-blam>
+  <pad-blam id="blip" bank="blipBank">
     <chain-blam out="bus">
       <pan-blam pan="0.5"></pan-blam>
     </chain-blam>
     <blam-blam prop="detune" value="0|100|300"></blam-blam>
-  </pads-blam>
-  <notes-blam out="bus" id="bass" bank="bassBank" gain="0.3" choke></notes-blam>
-  <pads-blam out="bus" id="piano" bank="pianoBank" gain="1.25">
+  </pad-blam>
+  <note-blam out="bus" id="bass" bank="bassBank" gain="0.3" choke></note-blam>
+  <pad-blam out="bus" id="piano" bank="pianoBank" gain="1.25">
     <envelope-blam prop="detune" curve="100 0, 0 0.25" beats></envelope-blam>
-  </pads-blam>
-  <pads-blam id="oooh" gain="0.3">
+  </pad-blam>
+  <pad-blam id="oooh" gain="0.3">
     <bank-blam>
       <sample-blam src="{{site.basedircdn}}/static/sounds/chocolate/oooh.mp3"></sample-blam>
     </bank-blam>
     <chain-blam out="bus">
       <echo-blam feedback="0.3"></echo-blam>
     </chain-blam>
-  </pads-blam>
+  </pad-blam>
   <track-blam class="tay" to="#scratch" chance="0.6">
     <repeat-blam x="16">
       <bar-blam s="0"></bar-blam>
@@ -198,7 +198,7 @@ A second instrument plays the same **Chocolate Rain** sample at the end of each 
 <blam-blam prop="length" value="4|0.75"></blam-blam>
 ```
 
-The bass part also has so variety. There's just three samples but played (using `<notes-blam>`) over four arpeggiated chords. A happy accident: samples repitched to higher notes end up shorter, varying the release time. Some notes are _jabbed_ very briefly.
+The bass part also has so variety. There's just three samples but played (using `<note-blam>`) over four arpeggiated chords. A happy accident: samples repitched to higher notes end up shorter, varying the release time. Some notes are _jabbed_ very briefly.
   
 The final two bars are in `fill` mode, meaning notes and note placement are randomized like an improvisation.
 

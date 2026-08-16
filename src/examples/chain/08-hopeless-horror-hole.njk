@@ -4,7 +4,7 @@ bpm: 90
 visualiser:
   count: 16
 elements: 
-  - Pads
+  - Pad
   - Bank 
   - Sample 
   - Blam
@@ -53,15 +53,15 @@ elements:
     <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
 </chain-blam>
-<pads-blam bank="plucks" id="original">
+<pad-blam bank="plucks" id="original">
   <chain-blam>
     <echo-blam beats="0.666"></echo-blam>
     <reverb-blam mix="0.25">
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/plate.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</pads-blam>
-<pads-blam bank="plucks" id="pluck" gain="20" detune="-1200" robin>
+</pad-blam>
+<pad-blam bank="plucks" id="pluck" gain="20" detune="-1200" robin>
   <lfo-blam prop="detune" gain="50"></lfo-blam>
   <envelope-blam prop="gain" curve="0 0, 1 0.25" beats></envelope-blam>
   <chain-blam out="bus">
@@ -72,8 +72,8 @@ elements:
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/stadium.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</pads-blam>
-<pads-blam bank="plucks" id="pluck2" gain="0.5">
+</pad-blam>
+<pad-blam bank="plucks" id="pluck2" gain="0.5">
   <blam-blam prop="gain" value="0.125|0.25|0.33|0.5"></blam-blam>
   <envelope-blam prop="detune" curve="0 0, 0 0.25, -300 1"></envelope-blam>
   <chain-blam out="plate">
@@ -82,8 +82,8 @@ elements:
       <lfo-blam prop="pan" gain="0.4" beats="9"></lfo-blam>
     </pan-blam>
   </chain-blam>
-</pads-blam>
-<pads-blam bank="plucks" id="plucksRev" reverse>
+</pad-blam>
+<pad-blam bank="plucks" id="plucksRev" reverse>
   <chain-blam out="plate">
     <echo-blam beats="0.25" feedback="0.666" cutoff="1000"></echo-blam>
   </chain-blam>
@@ -91,8 +91,8 @@ elements:
     <blam-blam prop="beats" value="0.25|1|0.125"></blam-blam>
   </lfo-blam>
   <envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"></envelope-blam>
-</pads-blam>
-<notes-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
+</pad-blam>
+<note-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
   <envelope-blam prop="gain" curve="0.5 0, 0 0.008"></envelope-blam>
   <chain-blam out="bus">
     <echo-blam beats="0.125" feedback="0.7"></echo-blam>
@@ -100,7 +100,7 @@ elements:
       <sample-blam src="{{ site.basedir }}/static/sounds/IRs/spring.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</notes-blam>
+</note-blam>
 <bank-blam id="plucks">
   <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-01.mp3" reverse></sample-blam>
   <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/pluck-02.mp3" reverse></sample-blam>
@@ -137,7 +137,7 @@ elements:
 
 {% renderTemplate "md" %}
 
-There’s no reason why two or more instruments (`<pads-blam>` elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit `bank` prop, pointing to the `<bank-blam>`’s `id`.
+There’s no reason why two or more instruments (`<pad-blam>` elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit `bank` prop, pointing to the `<bank-blam>`’s `id`.
 
 This example uses 3 tiers of chaining. Some chains connect direct with the `bus` chain and some go via a `plate` chain, for adding [plate reverb](https://www.izotope.com/community/blog/plate-reverb). This saves loading the plate impulse response twice.
 
@@ -153,16 +153,16 @@ Another `<envelope-blam>` is used to bend the pitch at the tail of the accompany
 <envelope-blam prop="detune" curve="0 0, 0 0.25, -300 1"></envelope-blam>
 ```
 
-Finally, a third `<pads-blam>` plays each of its _plucks_ in reverse, with a rapid vibrato applied using an `<lfo-blam>`. The `<envelope-blam>` tames the sharpness of the reversed sound by dipping the gain at the tail.
+Finally, a third `<pad-blam>` plays each of its _plucks_ in reverse, with a rapid vibrato applied using an `<lfo-blam>`. The `<envelope-blam>` tames the sharpness of the reversed sound by dipping the gain at the tail.
 
 ```html 
-<pads-blam bank="plucks" id="pluckRev" gain="0.8" reverse>
+<pad-blam bank="plucks" id="pluckRev" gain="0.8" reverse>
   <chain-blam out="plate">
     <echo-blam beats="0.25" feedback="0.666" cutoff="1000"></echo-blam>
   </chain-blam>
   <lfo-blam prop="detune" beats="0.25" gain="100"></lfo-blam>
   <envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"></envelope-blam>
-</pads-blam>
+</pad-blam>
 ```
 
 Since this composition generates indefinitely, you can put it on at bedtime and enjoy a whole night of vividly unpleasant dreams.

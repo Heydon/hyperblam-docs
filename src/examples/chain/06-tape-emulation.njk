@@ -5,7 +5,7 @@ video: static.mp4
 visualiser:
   count: 12
 elements: 
-  - Pads
+  - Pad
   - Bank 
   - Sample 
   - Blam
@@ -31,7 +31,7 @@ elements:
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam id="piano" gain="0.7" choke>
+<pad-blam id="piano" gain="0.7" choke>
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/piano.mp3" reverse></sample-blam>
   </bank-blam>
@@ -48,7 +48,7 @@ elements:
     <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert></blam-blam>
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert bypass></blam-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam id="transport" swing>
   <track-blam id="pianoTrack" to="#piano">
     <bar-blam s="1 0 0 0 0 0 0 0"></bar-blam>
@@ -68,7 +68,7 @@ elements:
   
 I’m always looking for new and better ways to emulate degraded tape. That wobbly, fluttery sound just does something to my Xennial brain. [Logic](https://support.apple.com/en-gb/guide/logicpro/lgcef18b8994/mac), [Helix](https://line6.com/support/topic/62459-retro-reel/), and other platforms all have their tape emulation plugins. 
 
-Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pads-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
+Using **HYPERBLAM**, I’ve arrived at a pretty realistic and satisfying algorithm using a filter (`<filter-blam>`), an LFO controlling the `<pad-blam>`s `detune` property (which modulates pitch, creating a _vibrato_) and a couple of `<blam-blam>`s. 
 
 ```html
 <chain-blam out="bus">

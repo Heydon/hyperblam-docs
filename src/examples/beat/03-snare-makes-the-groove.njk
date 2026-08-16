@@ -2,7 +2,7 @@
 title: Snare makes the groove
 bpm: 90
 elements: 
-  - Pads 
+  - Pad 
   - Bank 
   - Sample 
   - Dial
@@ -25,29 +25,29 @@ elements:
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam id="hat" choke="0.05" out="bus">
+<pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="0~60"></blam-blam>
-</pads-blam>
-<pads-blam id="kick" out="bus">
+</pad-blam>
+<pad-blam id="kick" out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="snare" out="bus">
+</pad-blam>
+<pad-blam id="snare" out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-30~30"></blam-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam id="transport">
   <track-blam to="#hat">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>

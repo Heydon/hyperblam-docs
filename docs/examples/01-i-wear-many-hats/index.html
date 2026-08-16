@@ -103,14 +103,14 @@
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam id="hat" choke="0.05" out="bus">
+<pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="0~60"></blam-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam id="transport">
   <track-blam to="#hat">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
@@ -158,18 +158,18 @@
 &lt;bar-blam s="1 2 0 0 ? 0 ?"&gt;&lt;/bar-blam&gt;
 </code></pre>
 <p>Positive integers reference samples by index, as loaded by an associated <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>...</p>
-<pre><code class="language-html">&lt;pads-blam id="hat" choke out="bus"&gt;
+<pre><code class="language-html">&lt;pad-blam id="hat" choke out="bus"&gt;
   &lt;bank-blam&gt;
     &lt;sample-blam src="/static/sounds/kit-garage/hat/01.mp3"&gt;&lt;/sample-blam&gt;
     &lt;sample-blam src="/static/sounds/kit-garage/hat/02.mp3"&gt;&lt;/sample-blam&gt;
     &lt;sample-blam src="/static/sounds/kit-garage/hat/03.mp3"&gt;&lt;/sample-blam&gt;
   &lt;/bank-blam&gt;
   &lt;blam-blam prop="detune" value="-25~25"&gt;&lt;/blam-blam&gt;
-&lt;/pads-blam&gt;
+&lt;/pad-blam&gt;
 </code></pre>
-<p>... whereas the <code>?</code> cipher means “pick any sample”. The way the sample-based instrument, <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>, is designed, a random sample <strong>but never the previously played sample</strong> will be selected. Unless there’s only one sample given, of course.</p>
-<p>In this case, the three samples are a closed hat (<code>1</code>), another slightly different closed hat for variety (<code>2</code>) and an open hat (<code>3</code>). Note <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>’s <code>choke</code> attribute. It ensures the previous sample/sound is silenced when the next one begins playing. This is critical for sequencing hi-hats, since the open hat must be forced shut to be played closed.</p>
-<p>In addition, a <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code>, scheduling a sound, and assigns a value to the <code>detune</code> property/<code>audioParam</code> between <code>0</code> and <code>60</code> cents.</p>
+<p>... whereas the <code>?</code> cipher means “pick any sample”. The way the sample-based instrument, <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code>, is designed, a random sample <strong>but never the previously played sample</strong> will be selected. Unless there’s only one sample given, of course.</p>
+<p>In this case, the three samples are a closed hat (<code>1</code>), another slightly different closed hat for variety (<code>2</code>) and an open hat (<code>3</code>). Note <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code>’s <code>choke</code> attribute. It ensures the previous sample/sound is silenced when the next one begins playing. This is critical for sequencing hi-hats, since the open hat must be forced shut to be played closed.</p>
+<p>In addition, a <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code>, scheduling a sound, and assigns a value to the <code>detune</code> property/<code>audioParam</code> between <code>0</code> and <code>60</code> cents.</p>
 <pre><code>&lt;blam-blam prop="detune" value="0~60"&gt;&lt;/blam-blam&gt;
 </code></pre>
 <p>This adds additional tonal variety, making it sound somewhat like we are dealing in more than three samples.</p>
@@ -191,7 +191,7 @@
     <display-blam from="audio-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<kbd-blam to="pads-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="pad-blam" prop="play" key="1"></kbd-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>

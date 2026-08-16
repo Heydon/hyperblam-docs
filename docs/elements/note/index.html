@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-<title>Pads element : HYPERBLAM</title>
+<title>Note element : HYPERBLAM</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -91,16 +91,16 @@
     
     
   <main class="l-column l-flow" tabindex="-1">
-    <h1>Pads</h1>
+    <h1>Note</h1>
     
-      <p></p><p>An instrument optimized for drums and other rhythmic or non-melodic patterns.</p>
+      <p></p><p>A pitched instrument, using multiple, randomized samples to create tonal variety.</p>
 <p></p>
     
     
     <dl>
       <div>
         <dt>class</dt>
-        <dd>Pads</dd>
+        <dd>Note</dd>
       </div>
       <div>
         <dt>extends</dt>
@@ -108,7 +108,7 @@
       </div>
       <div>
         <dt>tag</dt>
-        <dd><code>&lt;pads-blam&gt;</code></dd>
+        <dd><code>&lt;note-blam&gt;</code></dd>
       </div>
       <div>
         <dt>see</dt>
@@ -143,6 +143,22 @@
         </tr>
         
         <tr>
+          <th scope="row">root</th>
+          <td><em>string</em></td>
+          <td>C4</td>
+          <td><p>The root note for the buffers/sounds where not supplied by the individual <strong>Sample</strong> element. Used to calculate pitch shifts.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">notes</th>
+          <td><em>string</em></td>
+          <td>‘C4 D#4 G4’</td>
+          <td><p>A set of notes from which to select at random.</p>
+</td>
+        </tr>
+        
+        <tr>
           <th scope="row">bank</th>
           <td><em>string</em></td>
           <td></td>
@@ -159,7 +175,7 @@
         </tr>
         
         <tr>
-          <th scope="row">gain (`AudioParam`)</th>
+          <th scope="row">gain</th>
           <td><em>number</em></td>
           <td>1</td>
           <td><p>The gain level for samples played by this element. All subsequent gain settings in the signal chain are relative to this.</p>
@@ -167,7 +183,7 @@
         </tr>
         
         <tr>
-          <th scope="row">detune (`AudioParam`)</th>
+          <th scope="row">detune</th>
           <td><em>number</em></td>
           <td>0</td>
           <td><p>Maps to the buffer’s <code>detune</code> parameter. Set the detune value in cents. <code>100</code> means a half step (semitone) up and <code>-100</code> means a half step (semitone) down.</p>
@@ -257,9 +273,9 @@
         
         <tr>
           <th scope="row">play</th>
-          <td style="text-align: left"><p><strong>cipher</strong>: The number (not zero-based) or <code>id</code> of the specific sound. Where <code>undefined</code>, either a random sound or the next sound is played, depending on whether <code>robin</code> is true, <strong>time</strong>: When, relative to the context’s <code>currentTime</code>, to play the sound. Immediately, if not set.</p>
+          <td style="text-align: left"><p><strong>cipher</strong>: The note (such as ‘C4’) or <code>id</code> Where <code>undefined</code>, either a random note or the next note from <code>notes</code> is played, depending on whether <code>robin</code> is true, <strong>time</strong>: When, relative to the context’s <code>currentTime</code>, to play the sound. Immediately, if not set.</p>
 </td>
-          <td><p>Plays one of the associated Bank’s sounds.</p>
+          <td><p>Plays one of the associated Bank’s sounds at a given pitch.</p>
 </td>
         </tr>
         
@@ -277,6 +293,44 @@
     
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
         
       
     
@@ -303,112 +357,10 @@
       
     
       
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-        
-      
-    
-      
     
     
-    <p>Examples that use the <strong>Pads</strong> element:</p>
+    <p>Examples that use the <strong>Note</strong> element:</p>
     <ul class="l-examples">
-      
-        <li>
-          <a href="https://hyperblam.how/examples/01-i-wear-many-hats/">I wear many hats</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/02-can-one-kick-it/">Can one kick it?</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/03-snare-makes-the-groove/">Snare makes the groove</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/04-getting-ghosted/">Getting ghosted</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/05-saturation-shenanigans/">Saturation shenanigans</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/06-tape-emulation/">Tape emulation</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/radioactive-orb/">Radioactive orb</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/wah-Im-sad/">Wah, I’m Sad</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/06-automayhem/">Automayhem</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/07-make-it-fed/">Make It Fed</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
-        </li>
       
         <li>
           <a href="https://hyperblam.how/examples/ch-ch-ch-chocolate/">Ch-ch-ch-chocolate</a>
@@ -419,7 +371,15 @@
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/01-just-the-samples/">Just the samples</a>
+          <a href="https://hyperblam.how/examples/02-pentatonic-party/">A (minor) pentatonic party</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/03-breathe-and-stop/">Breathe and stop</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/04-slip-and-slide/">Slip and slide</a>
         </li>
       
         <li>
@@ -428,10 +388,6 @@
       
         <li>
           <a href="https://hyperblam.how/examples/06-a-motif-with-some-mojo/">A motif with some mojo</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/08-hopeless-horror-hole/">Hopeless Horror hole</a>
         </li>
       
     </ul>

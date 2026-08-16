@@ -277,7 +277,7 @@
                   <input id="reverseInput" type="range" min="0" max="1" step="0.01">
                 </label>
               </dial-blam>
-<pre><code>&lt;pads-blam reverse="<span class="u-hl"><display-blam from="#cowbell" prop="reverse" places="2"></display-blam></span>">...&lt;/pads-blam></code></pre>
+<pre><code>&lt;pad-blam reverse="<span class="u-hl"><display-blam from="#cowbell" prop="reverse" places="2"></display-blam></span>">...&lt;/pad-blam></code></pre>
             </div>
           </div>
           <blam-blam to="audio-blam" prop="bpm" value="100" event="slideNext" once></blam-blam>
@@ -528,11 +528,11 @@
       </chain-blam>
 
       <!-- instruments -->
-      <pads-blam id="stabs" gain="0.6" bank="stabBank">
+      <pad-blam id="stabs" gain="0.6" bank="stabBank">
         <blam-blam from="section:not(.u-no-stab)" prop="play" event="slideNext"></blam-blam>
-      </pads-blam>
+      </pad-blam>
 
-      <pads-blam id="radio" gain="0.07" detune="0" loop>
+      <pad-blam id="radio" gain="0.07" detune="0" loop>
         <bank-blam>
           <sample-blam src="{{site.basedir}}/static/sounds/slides/radio.mp3" reverse></sample-blam>
         </bank-blam>
@@ -550,16 +550,16 @@
         <blam-blam from="body" to="#garbleGain" prop="gain" value="1" event="slideChange"></blam-blam>
         <blam-blam from="body" to="#crushGain" prop="bypass" event="slideWaiting"></blam-blam>
         <blam-blam from="body" to="#crushGain" prop="bypass" event="slideChange"></blam-blam>
-      </pads-blam>
+      </pad-blam>
 
-      <pads-blam id="cowbell" bank="cowBank" choke="0.05"> 
+      <pad-blam id="cowbell" bank="cowBank" choke="0.05"> 
         <chain-blam out="crushBus">
           <analyser-blam id="cowbellAnal"></analyser-blam>
         </chain-blam>
         <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass></blam-blam>  
-      </pads-blam>
+      </pad-blam>
 
-      <pads-blam id="cowbellReverse" reverse="0.65" bank="cowBank" gain="0.45">    
+      <pad-blam id="cowbellReverse" reverse="0.65" bank="cowBank" gain="0.45">    
         <blam-blam prop="detune" value="-2400|0|400|-1200|-1200|-800|-600|-500|-200"></blam-blam> 
         <chain-blam>
           <echo-blam id="cowEcho" mix="1" beats="1.5" feeback="0.5" cutoff="3000"></echo-blam>
@@ -572,9 +572,9 @@
         </chain-blam>
         <lfo-blam prop="detune" gain="30"></lfo-blam>
         <envelope-blam prop="gain" curve="0 0, 1 0.25, 1 0.4, 0 0.9"></envelope-blam>
-      </pads-blam>
+      </pad-blam>
 
-      <notes-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="5">
+      <note-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="5">
         <chain-blam out="garbleBus">
           <filter-blam freq="3000">
             <lfo-blam prop="freq" beats="4.3" gain="2700" q="5"></lfo-blam>
@@ -584,7 +584,7 @@
           </reverb-blam>
         </chain-blam>
         <lfo-blam prop="detune" gain="35" beats="1.5"></lfo-blam>
-      </notes-blam>
+      </note-blam>
 
       <!-- sequencers -->
       <sequencer-blam id="cowbells">

@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -103,7 +103,7 @@
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
+<note-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -117,12 +117,12 @@
     </filter-blam>
   </chain-blam>
   <relay-blam mode="one" chance="0">
-    <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats="" bypass=""></envelope-blam>
-    <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats="" bypass=""></envelope-blam>
+    <envelope-blam to="note-blam" prop="detune" curve="-300 0, 0 0.125" beats="" bypass=""></envelope-blam>
+    <envelope-blam to="note-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats="" bypass=""></envelope-blam>
   </relay-blam>
-</notes-blam>
+</note-blam>
 <sequencer-blam id="transport">
-  <track-blam to="notes-blam" chance="0.7">
+  <track-blam to="note-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -161,15 +161,15 @@
 <p>Each pair of numbers represents the value and the time (from the start of the sample) at which it should be assigned. In this case, we start three semitones (or three frets) down and slide up very quickly. Since <code>beats</code> is set, <code>0.125</code> represents <code>0.125</code> beats from the start of the sample/sound. Were it not set, <code>0.125</code> would be relative to the length of the sample itself.</p>
 <p>But just slides are not enough variety.</p>
 <pre><code class="language-html">&lt;relay-blam mode="one" chance="0.333"&gt;
-  &lt;envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass&gt;&lt;/envelope-blam&gt;
-  &lt;envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass&gt;&lt;/envelope-blam&gt;
+  &lt;envelope-blam to="note-blam" prop="detune" curve="-300 0, 0 0.125" beats bypass&gt;&lt;/envelope-blam&gt;
+  &lt;envelope-blam to="note-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats bypass&gt;&lt;/envelope-blam&gt;
 &lt;/relay-blam&gt;
 </code></pre>
-<p>I’ve used a <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code> and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note <code>mode="one"</code>. There is a 33.333% chance that <em>one</em> of the envelopes will be applied when <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> plays a sound. Because <code>bypass</code> is applied to each individual <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> element, they do not trigger independently.</p>
+<p>I’ve used a <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code> and added a companion envelope that performs a kind of note bend (raising and lowering the pitch). Note <code>mode="one"</code>. There is a 33.333% chance that <em>one</em> of the envelopes will be applied when <code><a href="/elements/note">&lt;note-blam&gt;</a></code> plays a sound. Because <code>bypass</code> is applied to each individual <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> element, they do not trigger independently.</p>
 <p>When used with <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>, <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code> might want to be in the <code>'all'</code> or <code>'some'</code> modes. You may also want to omit <code>bypass</code> and use different <code>event</code> or <code>to</code> values. This creates multiple dimensions of event handling.</p>
 <p>Crucially, the chance of this envelope/slide occuring at all is just <code>0.333</code> (or 33.333%). To recap: our bassline is made of 4 different samples, randomly selected and played at different pitches, representing different notes in the minor pentatonic scale, sustained for varying lengths of time, and occassionally embellished with a sliding action.</p>
 <p>All we need now is a gnarly envelope filter. <a href="https://en.wikipedia.org/wiki/Bootsy_Collins">Bootsy Collins</a> famously uses a Musitronics Mu-Tron III, which can go for <a href="https://reverb.com/uk/p/mu-tron-mutron-iii">many hundreds of dollars</a>. It works by detecting peaks in the playing, which it designates as the “attack” (start) phase of notes, then  filters the sound accordingly.</p>
-<p><strong>HYPERBLAM’s</strong> <code><a href="/elements/filter">&lt;filter-blam&gt;</a></code> and <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> cost nothing (and together are less than <code>2KB</code> to download). No peak analysis is needed, since the event sent from <code><a href="/elements/notes">&lt;notes-blam&gt;</a></code> tells us when each successive note starts.</p>
+<p><strong>HYPERBLAM’s</strong> <code><a href="/elements/filter">&lt;filter-blam&gt;</a></code> and <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> cost nothing (and together are less than <code>2KB</code> to download). No peak analysis is needed, since the event sent from <code><a href="/elements/note">&lt;note-blam&gt;</a></code> tells us when each successive note starts.</p>
 <pre><code class="language-html">&lt;filter-blam freq="8000" q="10" bypass&gt;
   &lt;envelope-blam prop="freq" curve="200 0, 11000 0.25"&gt;&lt;/envelope-blam&gt;
 &lt;/filter-blam&gt;
@@ -197,7 +197,7 @@
     <input type="checkbox">
   </label>
 </switch-blam>
-<kbd-blam to="notes-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="note-blam" prop="play" key="1"></kbd-blam>
 <watch-blam hidden="" from="audio-blam *:not(rings-blam)" to="#log" additive="" bypass="">
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>

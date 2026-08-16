@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -103,7 +103,7 @@
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<notes-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
+<note-blam choke="0.02" notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -116,40 +116,40 @@
       <envelope-blam prop="freq" curve="100 0, 2500 0.5" beats=""></envelope-blam>
     </filter-blam>
   </chain-blam>
-  <relay-blam mode="one" chance="0.333" to="notes-blam">
-    <envelope-blam to="notes-blam" prop="detune" curve="-300 0, 0 0.125" beats="" off=""></envelope-blam>
-    <envelope-blam to="notes-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats="" off=""></envelope-blam>
+  <relay-blam mode="one" chance="0.333" to="note-blam">
+    <envelope-blam to="note-blam" prop="detune" curve="-300 0, 0 0.125" beats="" off=""></envelope-blam>
+    <envelope-blam to="note-blam" prop="detune" curve="0 0, 50 0.25, 0 0.5" beats="" off=""></envelope-blam>
   </relay-blam>
-</notes-blam>
-<pads-blam id="kick" out="bus" detune="300">
+</note-blam>
+<pad-blam id="kick" out="bus" detune="300">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="hat" choke="" out="bus" detune="300">
+</pad-blam>
+<pad-blam id="hat" choke="" out="bus" detune="300">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="snare" out="bus" detune="200">
+</pad-blam>
+<pad-blam id="snare" out="bus" detune="200">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="snareSoft" out="bus">
+</pad-blam>
+<pad-blam id="snareSoft" out="bus">
   <bank-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam id="transport">
-  <track-blam id="bassTrack" to="notes-blam" chance="0.7">
+  <track-blam id="bassTrack" to="note-blam" chance="0.7">
     <repeat-blam x="3">
       <bar-blam s="A1 0 0 ? 0 ? ? 0"></bar-blam>
       <bar-blam s="C2 0 ? 0 0 ? ? 0"></bar-blam>
@@ -204,7 +204,7 @@
 
 <p>It’s neat how the pattern keeps changing and generating new melodies and syncopations. But it’s perhaps a little too random. What might be nice is a periodic coalescence: a coming together of the separate threads to form a familiar motif or “hook”.</p>
 <p>I’ve introduced a new element, <code><a href="/elements/repeat">&lt;repeat-blam&gt;</a></code>, to repeat the same bass and snare patterns 3 times over.</p>
-<pre><code class="language-html">&lt;track-blam id="bassTrack" to="notes-blam" chance="0.7"&gt;
+<pre><code class="language-html">&lt;track-blam id="bassTrack" to="note-blam" chance="0.7"&gt;
   &lt;repeat-blam x="3"&gt;
     &lt;bar-blam s="A1 0 0 ? 0 ? ? 0"&gt;&lt;/bar-blam&gt;
     &lt;bar-blam s="C2 0 ? 0 0 ? ? 0"&gt;&lt;/bar-blam&gt;

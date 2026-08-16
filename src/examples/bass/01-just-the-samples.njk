@@ -1,7 +1,7 @@
 ---
 title: Just the samples
 elements: 
-  - Pads
+  - Pad
   - Bank 
   - Sample 
   - Tap
@@ -26,7 +26,7 @@ visualiser:
       count="{{ visualiser.count }}"
     >
       <blam-blam from="tap-blam" prop="start"></blam-blam>
-      <blam-blam from="pads-blam" event="blamend" prop="stop"></blam-blam>
+      <blam-blam from="pad-blam" event="blamend" prop="stop"></blam-blam>
     </rings-blam>
   </div>
 {% endblock %}
@@ -35,15 +35,15 @@ visualiser:
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam choke robin out="bus">
+<pad-blam choke robin out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/03.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/04.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<tap-blam to="pads-blam" prop="play">
+</pad-blam>
+<tap-blam to="pad-blam" prop="play">
   <button class="u-round" aria-label="play">{% icon 'play' %}</button>
 </tap-blam>
 {% endblock %}
@@ -52,18 +52,18 @@ visualiser:
 
 {% renderTemplate "md" %}
 
-I’m going to create an expressive, generative bassline from just 4 individual samples. By applying the `robin` prop to the `<pads-blam>` element here, these samples can be played in order. Just press the `<tap-blam>` button repeatedly.
+I’m going to create an expressive, generative bassline from just 4 individual samples. By applying the `robin` prop to the `<pad-blam>` element here, these samples can be played in order. Just press the `<tap-blam>` button repeatedly.
 
 ```html
-<pads-blam choke robin out="bus">
+<pad-blam choke robin out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/03.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/04.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<tap-blam to="pads-blam" prop="play">
+</pad-blam>
+<tap-blam to="pad-blam" prop="play">
   <button class="u-round" aria-label="play">{% icon 'play' %}</button>
 </tap-blam>
 ```
@@ -77,5 +77,5 @@ Note the application of `choke`, ensuring each previous sample is silenced as th
 {% endblock %}
 
 {% block controls %}
-<kbd-blam to="pads-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="pad-blam" prop="play" key="1"></kbd-blam>
 {% endblock %}

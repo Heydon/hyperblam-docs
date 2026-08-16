@@ -5,7 +5,7 @@ elements:
   - Filter 
   - Bank 
   - Sample 
-  - Pads 
+  - Pad 
   - Blam 
   - Sequencer 
   - Track 
@@ -19,7 +19,7 @@ elements:
 {% extends 'layouts/scroll.njk' %}
 
 {% block audio %}
-<pads-blam>
+<pad-blam>
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/geiger/1.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/geiger/2.mp3"></sample-blam>
@@ -33,9 +33,9 @@ elements:
     </filter-blam>
   </chain-blam>
   <blam-blam prop="detune" value="-50~50"></blam-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam bpm="400">
-  <track-blam id="counter" to="pads-blam" chance="0">
+  <track-blam id="counter" to="pad-blam" chance="0">
     <bar-blam s="?"></bar-blam>
     <blam-blam to="#counter" from="#intersectable" prop="chance" value="1"></blam-blam>
   </track-blam>
@@ -65,7 +65,7 @@ A classic example of sonification is the [Geiger Counter](https://en.wikipedia.o
 This example uses the Geiger Counter as an analog. The closer the **radioactive orb**, the higher the probability (`chance`) a clicking sound will be heard. 
 
 ```html
-<track-blam id="counter" to="pads-blam" chance="0">
+<track-blam id="counter" to="pad-blam" chance="0">
   <bar-blam s="?"></bar-blam>
   <blam-blam to="#counter" from="#intersectable" prop="chance" value="1"></blam-blam>
 </track-blam>
@@ -88,5 +88,5 @@ For an additional sense of distance, the same `<intersect-blam>` controls a `<fi
 {% endblock %}
 
 {% block controls %}
-<kbd-blam key="1" to="pads-blam" prop="play"></kbd-blam>
+<kbd-blam key="1" to="pad-blam" prop="play"></kbd-blam>
 {% endblock %}

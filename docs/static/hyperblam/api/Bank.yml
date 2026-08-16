@@ -1,7 +1,7 @@
 name: Bank
 category: Sampling
 defined: true
-summary: Organizes samples into a single bank for provisioning a sample-based instrument like Pads or Notes.
+summary: Organizes samples into a single bank for provisioning a sample-based instrument like Pad or Note.
 extends: Handle
 props: 
   - name: event

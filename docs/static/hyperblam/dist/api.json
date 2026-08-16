@@ -137,7 +137,7 @@
     "name": "Bank",
     "category": "Sampling",
     "defined": true,
-    "summary": "Organizes samples into a single bank for provisioning a sample-based instrument like Pads or Notes.",
+    "summary": "Organizes samples into a single bank for provisioning a sample-based instrument like Pad or Note.",
     "extends": "Handle",
     "props": [
       {
@@ -917,7 +917,7 @@
     ]
   },
   {
-    "name": "Notes",
+    "name": "Note",
     "extends": "Sampler",
     "category": "Sampling",
     "defined": true,
@@ -946,13 +946,13 @@
         "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element."
       },
       {
-        "name": "gain (`AudioParam`)",
+        "name": "gain",
         "type": "number",
         "default": 1,
         "description": "The gain level for samples played by this element. All subsequent gain settings in the signal chain are relative to this."
       },
       {
-        "name": "detune (`AudioParam`)",
+        "name": "detune",
         "type": "number",
         "default": 0,
         "description": "Maps to the buffer’s `detune` parameter. Set the detune value in cents. `100` means a half step (semitone) up and `-100` means a half step (semitone) down."
@@ -1046,7 +1046,7 @@
         "name": "spread",
         "type": "boolean",
         "default": false,
-        "description": "For non-tonal instruments like Pads. Whether to spread the individual sounds over the range of keys (one sound per key)."
+        "description": "For non-tonal instruments like Pad. Whether to spread the individual sounds over the range of keys (one sound per key)."
       },
       {
         "name": "from",
@@ -1164,7 +1164,7 @@
     ]
   },
   {
-    "name": "Pads",
+    "name": "Pad",
     "extends": "Sampler",
     "category": "Sampling",
     "defined": true,
@@ -1181,13 +1181,13 @@
         "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element."
       },
       {
-        "name": "gain (`AudioParam`)",
+        "name": "gain",
         "type": "number",
         "default": 1,
         "description": "The gain level for samples played by this element. All subsequent gain settings in the signal chain are relative to this."
       },
       {
-        "name": "detune (`AudioParam`)",
+        "name": "detune",
         "type": "number",
         "default": 0,
         "description": "Maps to the buffer’s `detune` parameter. Set the detune value in cents. `100` means a half step (semitone) up and `-100` means a half step (semitone) down."

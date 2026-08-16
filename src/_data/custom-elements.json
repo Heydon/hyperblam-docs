@@ -122,7 +122,7 @@
             "name": "Base",
             "module": "/static/hyperblam/src/helpers/Base.js"
           },
-          "summary": "Organizes samples into a single bank for provisioning a sample-based instrument like Pads or Notes."
+          "summary": "Organizes samples into a single bank for provisioning a sample-based instrument like Pad or Notes."
         }
       ],
       "exports": [
@@ -1088,7 +1088,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "For non-tonal instruments like Pads. Whether to spread the individual sounds over the range of keys (one sound per key).",
+              "description": "For non-tonal instruments like Pad. Whether to spread the individual sounds over the range of keys (one sound per key).",
               "default": "false"
             },
             {
@@ -1128,12 +1128,12 @@
     },
     {
       "kind": "javascript-module",
-      "path": "static/hyperblam/src/elements/Pads.js",
+      "path": "static/hyperblam/src/elements/Pad.js",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "Pads",
+          "name": "Pad",
           "members": [
             {
               "kind": "method",
@@ -1155,10 +1155,10 @@
       "exports": [
         {
           "kind": "js",
-          "name": "Pads",
+          "name": "Pad",
           "declaration": {
-            "name": "Pads",
-            "module": "static/hyperblam/src/elements/Pads.js"
+            "name": "Pad",
+            "module": "static/hyperblam/src/elements/Pad.js"
           }
         }
       ]

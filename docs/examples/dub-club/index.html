@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -113,37 +113,37 @@
 
   <!-- sequencer! -->
   <sequencer-blam swing="0.25" id="transport">
-    <pads-blam id="organ" bank="organBank" length="0.333" gain="1.2" out="bus">
+    <pad-blam id="organ" bank="organBank" length="0.333" gain="1.2" out="bus">
       <blam-blam id="lengthBlam" prop="length" value="0.25|0.125|0.125"></blam-blam>
       <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
-    </pads-blam>
+    </pad-blam>
 
     <!-- instruments! -->
-    <pads-blam id="kick" bank="kickBank" out="bus" gain="1.5"></pads-blam>
-    <pads-blam id="hat" bank="hatBank" choke="0.005" gain="0.7">
+    <pad-blam id="kick" bank="kickBank" out="bus" gain="1.5"></pad-blam>
+    <pad-blam id="hat" bank="hatBank" choke="0.005" gain="0.7">
       <!-- chain for a single instrument -->
       <chain-blam out="bus">
         <pan-blam pan="-0.5"></pan-blam>
       </chain-blam>
       <!-- parameter randomization on every trigger -->
       <blam-blam prop="detune" value="-30~30"></blam-blam>
-    </pads-blam>
-    <pads-blam id="snare" bank="snareBank">
+    </pad-blam>
+    <pad-blam id="snare" bank="snareBank">
       <chain-blam out="bus">
         <echo-blam id="dub" beats="1" cutoff="2500" feedback="0.6">
           <blam-blam prop="beats" value="0.5|0.25|0.333|0.125|0.0625"></blam-blam>
         </echo-blam>
         <pan-blam pan="0.25"></pan-blam>
       </chain-blam>
-    </pads-blam>
-    <pads-blam id="snareGhost" bank="snareGhostBank" out="bus"></pads-blam>
-    <pads-blam id="cow" bank="cowBank" reverse="0.05" gain="0.7">
+    </pad-blam>
+    <pad-blam id="snareGhost" bank="snareGhostBank" out="bus"></pad-blam>
+    <pad-blam id="cow" bank="cowBank" reverse="0.05" gain="0.7">
       <chain-blam out="bus">
         <pan-blam id="ghostPan" pan="0.65"></pan-blam>
       </chain-blam>
-    </pads-blam>
+    </pad-blam>
     <!-- melodic instrument (no `out`; bypasses bus chain directly to speakers) -->
-    <notes-blam id="bass" bank="bassBank" notes="E2 G2 B2 A#2 E3" choke=""></notes-blam>
+    <note-blam id="bass" bank="bassBank" notes="E2 G2 B2 A#2 E3" choke=""></note-blam>
     <!-- 
       tracks!
       (with bars setting out triggers)

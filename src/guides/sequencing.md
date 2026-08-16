@@ -22,7 +22,7 @@ Any **HYPERBLAM** elements listening for that `blam` event can synchronize itsel
 
 ![Timeline showing how the sequencer element sets the future time, transmits an event with time data, then is consumed by a subscriber element, before the time finally coming along.]({{site.basedircdn}}/static/images/illustrations/sequencing1.svg)
 
-This opens up some possibilities. You could take a steam of live data and use it to trigger `<notes-blam>` sounds directly. A live, but perfectly *quantized*, musical performance of the stock exchange? Or weather patterns? Github commits?
+This opens up some possibilities. You could take a steam of live data and use it to trigger `<note-blam>` sounds directly. A live, but perfectly *quantized*, musical performance of the stock exchange? Or weather patterns? Github commits?
 
 More commonly, you would subscribe to a `<sequencer-blam>`’s events using a `<track-blam>` element. That’s where **HYPERBLAM** starts to feel like a drum machine. And it’s one with some pretty cool features, similar to the high-end hardware machines from **Elektron** or **Roland**.
 
@@ -32,7 +32,7 @@ Each `<track-blam>` element presides over one or more `<bar-blam>` elements. The
 
 ```html
 <sequencer-blam>
-  <pads-blam>
+  <pad-blam>
     <track-blam>
       <bar-blam s="1 0 0 0 2 0 1 3"></bar-blam>
     </track-blam>
@@ -41,11 +41,11 @@ Each `<track-blam>` element presides over one or more `<bar-blam>` elements. The
       <sample-blam src="sounds/2.mp3"></sample-blam>
       <sample-blam src="sounds/3.mp3"></sample-blam>
     </bank-blam>
-  </pads-blam>
+  </pad-blam>
 </sequencer-blam>
 ```
 
-Good start. But what if I introduce another `<pads-blam>` with another `<track-blam>` with a bar using a pattern of a different length?
+Good start. But what if I introduce another `<pad-blam>` with another `<track-blam>` with a bar using a pattern of a different length?
 
 ```html
 <audio-blam bpm="90">
@@ -152,17 +152,17 @@ The eponymous `<blam-blam>` element does a lot of heavy lifting. Kind of a masco
 In [“A Light Lo-Fi Listen With LFOs”]({{site.basedir}}/examples/07-a-light-lo-fi-listen-with-lfos/) it does a lot. For a start, it is affecting both the `length` and `detune` values of the electronic snare sound, adding texture, tension, and—most of all—variety.
 
 ```html
-<pads-blam id="snare" out="bus">
+<pad-blam id="snare" out="bus">
   <bank-blam>
     <sample-blam src="/sounds/minimal/snare-01.mp3"></sample-blam>
     <sample-blam src="/sounds/minimal/snare-02.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-400|0|0|400|900"></blam-blam>
   <blam-blam prop="length" value="1|1|1|0.25|0.125"></blam-blam>
-</pads-blam>
+</pad-blam>
 ```
 
-Each time the `<pads-blam>` schedules a sound, it fires a `blam` event, letting the `<blam-blam>` elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the `|`-separated syntax and applied. One pad; multiple sounds.
+Each time the `<pad-blam>` schedules a sound, it fires a `blam` event, letting the `<blam-blam>` elements know in advance. Precisely as the sound is starting to play, a value is randomly plucked from the `|`-separated syntax and applied. One pad; multiple sounds.
 
 ## Visualization
 

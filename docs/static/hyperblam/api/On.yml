@@ -19,7 +19,7 @@ props:
   - name: spread 
     type: boolean 
     default: false 
-    description: For non-tonal instruments like Pads. Whether to spread the individual sounds over the range of keys (one sound per key).
+    description: For non-tonal instruments like Pad. Whether to spread the individual sounds over the range of keys (one sound per key).
   - name: from
     description: CSS selector. Must be a **Midi** element. If not set, looks for an ancestor **Midi** element.
   - name: to

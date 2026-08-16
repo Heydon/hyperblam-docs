@@ -79,7 +79,7 @@ class Sampler extends WithParams {
         this.fire('blamend', {}, this);
       });
 
-      let start = this.reversing && this.length ? this.instance.modDuration - this.instance.clipDuration : this.start;
+      let start = this.reversing && this.length ? this.instance.sampleDuration - this.instance.clipDuration : this.start;
       this.instance.node.start(this.time, Math.max(start, 0));
       this.fire('blam', {
         ...this.instance,

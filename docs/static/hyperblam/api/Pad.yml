@@ -1,4 +1,4 @@
-name: Pads 
+name: Pad
 extends: Sampler
 category: Sampling
 defined: true 

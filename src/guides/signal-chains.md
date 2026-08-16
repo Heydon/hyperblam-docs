@@ -52,7 +52,7 @@ That doesn’t really look, or feel, like a pedal board—or a modular synthesiz
 
 ```html
 <audio-blam>
-  <pads-blam>
+  <pad-blam>
     <chain-blam>
       <gain-blam gain="0.75"></gain-blam>
       <pan-blam pan="0.5"></pan-blam>
@@ -60,7 +60,7 @@ That doesn’t really look, or feel, like a pedal board—or a modular synthesiz
     <bank-blam>
       <sample-blam src="/path/to/sound.mp3"></sample-blam>
     </bank-blam>
-  </pads-blam>
+  </pad-blam>
 </audio-blam>
 ```
 

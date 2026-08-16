@@ -19,7 +19,7 @@ By default, **HYPERBLAM** instruments will play a different sample from their sa
 
 ![Three buffers converge on an icon of a dice which, in turn, points at a source node.]({{site.basedircdn}}/static/images/illustrations/humanization1.svg)
 
-A tonal instrument like the standard `<notes-blam>` will select random samples even as it is augmenting their pitch. This multidimensional variation is not common even in expensive, commercial sample-based instruments. At least, not without a lot of configuration. Take a listen to the [“pentatonic party”]({{site.basedir}}/examples/02-pentatonic-party) example to see this in action.
+A tonal instrument like the standard `<note-blam>` will select random samples even as it is augmenting their pitch. This multidimensional variation is not common even in expensive, commercial sample-based instruments. At least, not without a lot of configuration. Take a listen to the [“pentatonic party”]({{site.basedir}}/examples/02-pentatonic-party) example to see this in action.
 
 ## Randomized parameters
 

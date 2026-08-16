@@ -2,7 +2,7 @@
 title: I wear many hats
 bpm: 90
 elements: 
-  - Pads 
+  - Pad 
   - Bank 
   - Sample 
   - Display
@@ -24,14 +24,14 @@ elements:
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<pads-blam id="hat" choke="0.05" out="bus">
+<pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="0~60"></blam-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam id="transport">
   <track-blam to="#hat">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
@@ -72,21 +72,21 @@ Note the `s` notation for the bars:
 Positive integers reference samples by index, as loaded by an associated `<bank-blam>`...
 
 ```html 
-<pads-blam id="hat" choke out="bus">
+<pad-blam id="hat" choke out="bus">
   <bank-blam>
     <sample-blam src="/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
     <sample-blam src="/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
     <sample-blam src="/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="-25~25"></blam-blam>
-</pads-blam>
+</pad-blam>
 ```
 
-... whereas the `?` cipher means “pick any sample”. The way the sample-based instrument, `<pads-blam>`, is designed, a random sample **but never the previously played sample** will be selected. Unless there’s only one sample given, of course.
+... whereas the `?` cipher means “pick any sample”. The way the sample-based instrument, `<pad-blam>`, is designed, a random sample **but never the previously played sample** will be selected. Unless there’s only one sample given, of course.
   
-In this case, the three samples are a closed hat (`1`), another slightly different closed hat for variety (`2`) and an open hat (`3`). Note `<pads-blam>`’s `choke` attribute. It ensures the previous sample/sound is silenced when the next one begins playing. This is critical for sequencing hi-hats, since the open hat must be forced shut to be played closed.
+In this case, the three samples are a closed hat (`1`), another slightly different closed hat for variety (`2`) and an open hat (`3`). Note `<pad-blam>`’s `choke` attribute. It ensures the previous sample/sound is silenced when the next one begins playing. This is critical for sequencing hi-hats, since the open hat must be forced shut to be played closed.
 
-In addition, a `<blam-blam>` element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from `<pads-blam>`, scheduling a sound, and assigns a value to the `detune` property/`audioParam` between `0` and `60` cents.
+In addition, a `<blam-blam>` element is incorporated to fluctuate the tuning of each sample as it is played. This element listens for an event from `<pad-blam>`, scheduling a sound, and assigns a value to the `detune` property/`audioParam` between `0` and `60` cents.
 
 ```
 <blam-blam prop="detune" value="0~60"></blam-blam>
@@ -108,5 +108,5 @@ Finally, a `<dial-blam>` is proffered for controlling the `<sequencer>`’s `bpm
     <display-blam from="audio-blam" prop="bpm" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
-<kbd-blam to="pads-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="pad-blam" prop="play" key="1"></kbd-blam>
 {% endblock %}

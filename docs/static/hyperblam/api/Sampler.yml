@@ -8,11 +8,11 @@ props:
   - name: out 
     type: string 
     description: An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element.
-  - name: gain (`AudioParam`)
+  - name: gain
     type: number 
     default: 1
     description: The gain level for samples played by this element. All subsequent gain settings in the signal chain are relative to this.
-  - name: detune (`AudioParam`)
+  - name: detune
     type: number 
     default: 0
     description: Maps to the buffer’s `detune` parameter. Set the detune value in cents. `100` means a half step (semitone) up and `-100` means a half step (semitone) down. 

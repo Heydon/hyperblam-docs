@@ -69,7 +69,7 @@ elements:
 <chain-blam id="bus">
   <analyser-blam gain="100"></analyser-blam>
 </chain-blam>
-<pads-blam id="keys" out="bus" choke>
+<pad-blam id="keys" out="bus" choke>
   <bank-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/effects/key-01.mp3"></sample-blam>
     <sample-blam src="{{site.basedir}}/static/sounds/effects/key-02.mp3"></sample-blam>
@@ -80,7 +80,7 @@ elements:
   <blam-blam prop="--stretch-x" to="#glyphs" value="0~1"></blam-blam>
   <blam-blam prop="--stretch-y" to="#glyphs" value="0~1"></blam-blam>
   <one-blam prop="hidden" to="#glyphs > *" robin revert></one-blam>
-</pads-blam>
+</pad-blam>
 <sequencer-blam>
   <track-blam to="#keys">
     <bar-blam s="?" chance="0.3"></bar-blam>
@@ -98,7 +98,7 @@ This simple visualization introduces a new event-based element: `<one-blam>`. It
 <one-blam prop="hidden" to="#glyphs > *" robin revert></one-blam>
 ```
 
-Every time the parent `<pads-blam>` triggers a sound, the next `#glyphs > *` element is unhidden. Since `revert` is also in place, all but the selected element are reverted to their initial `hidden` state each time.
+Every time the parent `<pad-blam>` triggers a sound, the next `#glyphs > *` element is unhidden. Since `revert` is also in place, all but the selected element are reverted to their initial `hidden` state each time.
 
 The `<one-blam>` is used in conjunction with a couple of `<blam-blam>`s setting CSS custom properties. These are like [seed numbers](https://en.wikipedia.org/wiki/Random_seed), setting a random value between `0` and `1` at each sound event:
 

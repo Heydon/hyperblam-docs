@@ -2,7 +2,7 @@
 title: Breathe and stop
 bpm: 100
 elements: 
-  - Notes
+  - Note
   - Bank 
   - Sample 
   - Blam
@@ -43,7 +43,7 @@ visualiser:
 <chain-blam id="bus">
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
-<notes-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" robin>
+<note-blam choke notes="A1 A1 A1 C2 D2 D#2 E2 G1 A2 C3" robin>
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -56,9 +56,9 @@ visualiser:
       <envelope-blam prop="freq" curve="200 0, 11000 0.25"></envelope-blam>
     </filter-blam>
   </chain-blam>
-</notes-blam>
+</note-blam>
 <sequencer-blam id="transport">
-  <track-blam to="notes-blam" chance="0.7">
+  <track-blam to="note-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -77,7 +77,7 @@ I go about this in a few different ways. Firstly, the sequence itself is [syncop
 
 ```html
 <sequencer-blam bpm="90" id="transport">
-  <track-blam to="notes-blam" chance="0.7">
+  <track-blam to="note-blam" chance="0.7">
     <bar-blam s="A1 0 ? 0 0 ? 0 ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
@@ -91,15 +91,15 @@ The third way pauses are introduced is by varying how long each note is sustaine
 <blam-blam prop="length" value="0.25|0.5|0.5|0.125"></blam-blam>
 ```
 
-For each note `<notes-blam>` plays, `<blam-blam>` assigns one of its `|`-separated values. These are relative to the duration of the sample itself. It’s the sound of a bass player selectively lifting their finger from the fretboard to cut notes short. Common practice.
+For each note `<note-blam>` plays, `<blam-blam>` assigns one of its `|`-separated values. These are relative to the duration of the sample itself. It’s the sound of a bass player selectively lifting their finger from the fretboard to cut notes short. Common practice.
 
 {% endrenderTemplate %}
 
 {% endblock %}
 
 {% block controls %}
-<kbd-blam to="notes-blam" prop="play" key="1"></kbd-blam>
-<kbd-blam to="notes-blam" prop="play" value="A1" key="2"></kbd-blam>
+<kbd-blam to="note-blam" prop="play" key="1"></kbd-blam>
+<kbd-blam to="note-blam" prop="play" value="A1" key="2"></kbd-blam>
 <watch-blam hidden from="audio-blam *:not(rings-blam)" to="#log" additive bypass>
   <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
 </watch-blam>

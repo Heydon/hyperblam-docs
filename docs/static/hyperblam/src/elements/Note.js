@@ -2,7 +2,7 @@ import { Sampler } from '../primitives/Sampler.js';
 import { nameToNum } from '../tools/nameToNum.js';
 import { random } from '../tools/random.js';
 
-class Notes extends Sampler {
+class Note extends Sampler {
   constructor() {
     super();
     this.tonal = true;
@@ -56,4 +56,4 @@ class Notes extends Sampler {
   }
 }
 
-export { Notes }
+export { Note }

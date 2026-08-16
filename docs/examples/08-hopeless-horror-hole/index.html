@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -110,15 +110,15 @@
     <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
 </chain-blam>
-<pads-blam bank="plucks" id="original">
+<pad-blam bank="plucks" id="original">
   <chain-blam>
     <echo-blam beats="0.666"></echo-blam>
     <reverb-blam mix="0.25">
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</pads-blam>
-<pads-blam bank="plucks" id="pluck" gain="20" detune="-1200" robin="">
+</pad-blam>
+<pad-blam bank="plucks" id="pluck" gain="20" detune="-1200" robin="">
   <lfo-blam prop="detune" gain="50"></lfo-blam>
   <envelope-blam prop="gain" curve="0 0, 1 0.25" beats=""></envelope-blam>
   <chain-blam out="bus">
@@ -129,8 +129,8 @@
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</pads-blam>
-<pads-blam bank="plucks" id="pluck2" gain="0.5">
+</pad-blam>
+<pad-blam bank="plucks" id="pluck2" gain="0.5">
   <blam-blam prop="gain" value="0.125|0.25|0.33|0.5"></blam-blam>
   <envelope-blam prop="detune" curve="0 0, 0 0.25, -300 1"></envelope-blam>
   <chain-blam out="plate">
@@ -139,8 +139,8 @@
       <lfo-blam prop="pan" gain="0.4" beats="9"></lfo-blam>
     </pan-blam>
   </chain-blam>
-</pads-blam>
-<pads-blam bank="plucks" id="plucksRev" reverse="">
+</pad-blam>
+<pad-blam bank="plucks" id="plucksRev" reverse="">
   <chain-blam out="plate">
     <echo-blam beats="0.25" feedback="0.666" cutoff="1000"></echo-blam>
   </chain-blam>
@@ -148,8 +148,8 @@
     <blam-blam prop="beats" value="0.25|1|0.125"></blam-blam>
   </lfo-blam>
   <envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"></envelope-blam>
-</pads-blam>
-<notes-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
+</pad-blam>
+<note-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
   <envelope-blam prop="gain" curve="0.5 0, 0 0.008"></envelope-blam>
   <chain-blam out="bus">
     <echo-blam beats="0.125" feedback="0.7"></echo-blam>
@@ -157,7 +157,7 @@
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/spring.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
-</notes-blam>
+</note-blam>
 <bank-blam id="plucks">
   <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/pluck-01.mp3" reverse=""></sample-blam>
   <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/minimal/pluck-02.mp3" reverse=""></sample-blam>
@@ -211,7 +211,7 @@
     <div class="l-flow">
       
 
-<p>There’s no reason why two or more instruments (<code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit <code>bank</code> prop, pointing to the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>’s <code>id</code>.</p>
+<p>There’s no reason why two or more instruments (<code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> elements here) can’t feed from the same sample bank. It’s just that each instrument will need to take an explicit <code>bank</code> prop, pointing to the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>’s <code>id</code>.</p>
 <p>This example uses 3 tiers of chaining. Some chains connect direct with the <code>bus</code> chain and some go via a <code>plate</code> chain, for adding <a href="https://www.izotope.com/community/blog/plate-reverb">plate reverb</a>. This saves loading the plate impulse response twice.</p>
 <p>Here, one instrument plays the sample samples an ocatve down (<code>detune="-1200"</code>) with the <em>attack</em> softened using  an <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code>. The gain starts at <code>0</code> and is ramped to <code>1</code> <code>0.5</code> beats in.</p>
 <pre><code class="language-html">&lt;envelope-blam prop="gain" curve="0 0, 1 0.5" beats&gt;&lt;/envelope-blam&gt;
@@ -219,14 +219,14 @@
 <p>Another <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> is used to bend the pitch at the tail of the accompanying (higher tuned) instrument. It makes the sound extra unsettling.</p>
 <pre><code>&lt;envelope-blam prop="detune" curve="0 0, 0 0.25, -300 1"&gt;&lt;/envelope-blam&gt;
 </code></pre>
-<p>Finally, a third <code><a href="/elements/pads">&lt;pads-blam&gt;</a></code> plays each of its <em>plucks</em> in reverse, with a rapid vibrato applied using an <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code>. The <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> tames the sharpness of the reversed sound by dipping the gain at the tail.</p>
-<pre><code class="language-html">&lt;pads-blam bank="plucks" id="pluckRev" gain="0.8" reverse&gt;
+<p>Finally, a third <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> plays each of its <em>plucks</em> in reverse, with a rapid vibrato applied using an <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code>. The <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code> tames the sharpness of the reversed sound by dipping the gain at the tail.</p>
+<pre><code class="language-html">&lt;pad-blam bank="plucks" id="pluckRev" gain="0.8" reverse&gt;
   &lt;chain-blam out="plate"&gt;
     &lt;echo-blam beats="0.25" feedback="0.666" cutoff="1000"&gt;&lt;/echo-blam&gt;
   &lt;/chain-blam&gt;
   &lt;lfo-blam prop="detune" beats="0.25" gain="100"&gt;&lt;/lfo-blam&gt;
   &lt;envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"&gt;&lt;/envelope-blam&gt;
-&lt;/pads-blam&gt;
+&lt;/pad-blam&gt;
 </code></pre>
 <p>Since this composition generates indefinitely, you can put it on at bedtime and enjoy a whole night of vividly unpleasant dreams.</p>
 

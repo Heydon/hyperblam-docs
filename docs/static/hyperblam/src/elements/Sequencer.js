@@ -28,7 +28,7 @@ class Sequencer extends Base {
 
   play() {
     this.playing = true; 
-    this.c.resume();
+    if (this.c.state === 'suspended') this.c.resume();
     this.time = this.c.currentTime;
     this.scheduling = setInterval(this.schedule.bind(this), 25);
     this.fire('blamplay', {}, this);

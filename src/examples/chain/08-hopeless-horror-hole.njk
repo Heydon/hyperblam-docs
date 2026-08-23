@@ -20,9 +20,6 @@ elements:
   - Analyser
 ---
 
-{% set previousPost = collections.chain | getPreviousCollectionItem %}
-{% set nextPost = collections.chain | getNextCollectionItem %}
-
 {% extends 'layouts/example.njk' %}
 
 
@@ -92,8 +89,8 @@ elements:
   </lfo-blam>
   <envelope-blam prop="gain" curve="1 0, 1 0.8, 0 1"></envelope-blam>
 </pad-blam>
-<note-blam id="knocks" bank="plucks" notes="C5 C6" gain="13">
-  <envelope-blam prop="gain" curve="0.5 0, 0 0.008"></envelope-blam>
+<note-blam id="knocks" bank="plucks" notes="C5 C6" gain="10">
+  <envelope-blam prop="gain" curve="0.5 0, 0 0.04"></envelope-blam>
   <chain-blam out="bus">
     <echo-blam beats="0.125" feedback="0.7"></echo-blam>
     <reverb-blam mix="0.85">

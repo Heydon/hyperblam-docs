@@ -13,9 +13,6 @@ elements:
   - Tap
 ---
 
-{% set previousPost = collections.other | getPreviousCollectionItem %}
-{% set nextPost = collections.other | getNextCollectionItem %}
-
 {% extends 'layouts/scroll.njk' %}
 
 {% block audio %}

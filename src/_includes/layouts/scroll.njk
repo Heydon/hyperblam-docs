@@ -1,5 +1,8 @@
 {% extends 'layouts/base.njk' %}
 
+{% set previousPost = collections[sorted] | getPreviousCollectionItem %}
+{% set nextPost = collections[sorted] | getNextCollectionItem %}
+
 {% block bodyTag %}
 <body class="l-scroll u-chevrons">
 {% endblock %}
@@ -52,14 +55,16 @@
     {% endblock %}
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
-  <nav class="l-cluster" aria-label="more examples">
+  <nav class="l-cluster u-font-special" aria-label="more examples">
     {% if previousPost %}
-      <a class="u-font-special" href="{{ previousPost.url }}" aria-label="previous example">← prev</a>     
+      <a href="{{ previousPost.url }}" aria-label="previous example">← previous</a>
+    {% else %}
+      <a href="{{site.basedir}}/examples" aria-label="examples index">index</a>
     {% endif %}
     {% if nextPost %}
-      <a class="u-font-special" href="{{ nextPost.url }}" aria-label="next example">next →</a>
+      <a href="{{ nextPost.url }}" aria-label="next example">next →</a>
     {% else %}
-      <a class="u-font-special" href="{{site.basedir}}/examples/" aria-label="next example">index</a>
+      <a href="{{ nextPost.url }}/examples">index</a>
     {% endif %}
   </nav>
 </footer>

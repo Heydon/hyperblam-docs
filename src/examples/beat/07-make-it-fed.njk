@@ -19,9 +19,6 @@ elements:
   - Analyser
 ---
 
-{% set previousPost = collections.beat | getPreviousCollectionItem %}
-{% set nextPost = collections.beat | getNextCollectionItem %}
-
 {% extends 'layouts/example.njk' %}
 
 {% block audio %}

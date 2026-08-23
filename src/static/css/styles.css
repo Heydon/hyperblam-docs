@@ -67,7 +67,7 @@ kbd {
 }
 
 a:hover {
-  text-underline-offset: 0.333em;
+  text-underline-offset: 0.25em;
 }
 
 main [href*="/examples/"] {

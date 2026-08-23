@@ -137,6 +137,24 @@ eleventyConfig.setLibrary("md", markdownRenderer);
     return null;
   });
 
+  ['bass', 'beat', 'chain', 'other'].forEach(cat => {
+    eleventyConfig.addCollection(`${cat}Sorted`, collection => {
+      return collection.getFilteredByGlob(`src/examples/${cat}/*.njk`).sort((a, b) => {
+        if (a.fileSlug > b.fileSlug) return 1;
+        else if (a.fileSlug < b.fileSlug) return -1;
+        else return 0;
+      });
+    });
+  });
+
+  eleventyConfig.addCollection('examplesAscending', (collection) =>
+    collection.getFilteredByGlob("_posts/*.md").sort((a, b) => {
+      if (a.data.title > b.data.title) return -1;
+      else if (a.data.title < b.data.title) return 1;
+      else return 0;
+    })
+  );
+
   eleventyConfig.addTransform('all', (content, outputPath) => {
     if (!outputPath.endsWith('.html')) {
       return content;

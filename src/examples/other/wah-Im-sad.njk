@@ -17,9 +17,6 @@ elements:
   - Reverb
 ---
 
-{% set previousPost = collections.other | getPreviousCollectionItem %}
-{% set nextPost = collections.other | getNextCollectionItem %}
-
 {% extends 'layouts/example.njk' %}
 
 {% block audio %}

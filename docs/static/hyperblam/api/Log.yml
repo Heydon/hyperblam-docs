@@ -1,6 +1,10 @@
 name: Log
 category: Visualizing
-extends: Handle
+extends: Template
 draft: true
 defined: true
 summary: Listens to events and uses the element’s HTML as a template for appending event data to an elected element. Data props are included using square bracket syntax like `[[prop]]`.
+props: 
+  - name: mode 
+    default: “events”
+    description: By default, the element listens for events and templates event data. All data includes **name** (of the attribute/prop or event type), **id** (the `id` or a selector representing the invoking element), and **target** (the invoking element itself). For a mode of “props”, the **value** and **oldValue** are also available.

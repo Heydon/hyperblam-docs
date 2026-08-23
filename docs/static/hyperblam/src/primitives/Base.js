@@ -95,7 +95,7 @@ class Base extends HTMLElement {
     return node.buffer.duration / speed;
   }
 
-  watchProps(elems, func, filter = undefined, old = false) {
+  watchProps(elems, func, filter = undefined) {
     const callback = (list, observer) => {
 			func(list, observer);
 		};
@@ -104,11 +104,11 @@ class Base extends HTMLElement {
     const settings = { 
       attributes: true,
       attributeFilter: filter,
-      attributeOldValue: old
+      attributeOldValue: true
     }
 
     for (const elem of elems) {
-      observer.observe(elem, settings);
+      elem instanceof Node && observer.observe(elem, settings);
     }
     return observer;
   }

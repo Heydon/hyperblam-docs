@@ -86,6 +86,10 @@ img, picture, video, canvas, svg {
   margin-inline: auto;
 }
 
+video {
+  filter: contrast(10);
+}
+
 figcaption {
   padding-block: var(--s-l);
   font-size: 0.85rem;

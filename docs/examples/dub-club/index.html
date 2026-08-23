@@ -16,13 +16,13 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -90,14 +90,14 @@
     
       <div class="l-framed u-blend-difference">
         <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="12">
-          <blam-blam from="sequencer-blam" prop="startStop" event="blamplaystop"></blam-blam>
+          <blam-blam from="sequencer-blam" prop="startStop" for="blamplaystop"></blam-blam>
         </bands-blam>
       </div>
     
-    <aside class="l-framed l-log u-blend-difference" aria-label="Props log">
+    <aside class="l-framed l-log u-blend-difference" aria-label="Data log">
       <ul id="log" class="s-playstop" hidden=""></ul>
     </aside>
-    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
+    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" for="blamsources"></blam-blam>
     <div class="l-framed">
       
   <!-- bus! (master signal chain) -->
@@ -238,7 +238,7 @@
     </div>
     <div role="progressbar" class="l-framed l-loading">
       <span id="samples">installing</span><span class="u-flash">...</span>
-      <log-blam from="sample-blam" to="#samples" event="blamsource" hidden="">
+      <log-blam from="sample-blam" to="#samples" for="blamsource" hidden="">
         sampling [[file]]
       </log-blam>
     </div>
@@ -300,10 +300,10 @@
 <kbd-blam key="4" to="#cow" prop="play"></kbd-blam>
 <kbd-blam key="5" to="#bass" prop="play"></kbd-blam>
 <kbd-blam key="6" to="#organ" prop="play"></kbd-blam>
-<watch-blam hidden="" from="audio-blam *:not(bands-blam)" to="#log" additive="" bypass="">
-  <li><strong>[[id]]</strong> [[name]] → [[newValue]]</li>
-</watch-blam>
-<blam-blam from="sequencer-blam" to="watch-blam" prop="bypass" event="blamplay" once=""></blam-blam>
+<log-blam hidden="" from="audio-blam *:not(bands-blam)" to="#log" mode="props" additive="" bypass="">
+  <li><strong>[[id]]</strong> [[name]] → [[value]]</li>
+</log-blam>
+<blam-blam from="sequencer-blam" to="log-blam" prop="bypass" for="blamplay" once=""></blam-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
@@ -311,8 +311,8 @@
     <a class="u-font-special" href="https://hyperblam.how/examples/#otherexamples" aria-label="previous example">← back</a>
   </nav>
 </footer>
-<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>
-<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamstop"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamplay"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamstop"></blam-blam>
 </audio-blam>
 
     

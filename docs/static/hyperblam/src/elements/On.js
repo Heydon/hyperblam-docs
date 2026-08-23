@@ -5,7 +5,7 @@ class On extends Handle {
     super();
     this.defaultFrom = () => [this.closest('midi-blam')];
     this.defaultTo = () => [this.closest('[data-sampler-blam]')];
-    this.defaultEvent = 'midiOn';
+    this.defaultFor = ['midiOn'];
   }
 
   inRange(noteNum) {

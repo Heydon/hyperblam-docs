@@ -1,11 +1,12 @@
-import { Handle } from './Handle.js';
+import { ListenWatch } from './ListenWatch.js';
 import { random } from '../tools/random.js';
 
-class Set extends Handle {
+class Set extends ListenWatch {
   constructor() {
     super();
     this.c = this.context();
     this.reverting = false;
+    this.defaultMode = ['events'];
   }
 
   onblamready() {
@@ -15,7 +16,7 @@ class Set extends Handle {
 
   choose(value) {
     if (value.includes('|')) {
-      let values = value.split('|').map(v => this.stringNumBool(v));
+      let values = value.split('|').map(v => this.unString(v));
       if (this.robin) {
         this.prevIndex = this.nextIndex(this.prevIndex, values);
       } else {
@@ -28,9 +29,9 @@ class Set extends Handle {
       return random.floatBetween(values[0], values[1]);
     }
     if (value.includes(' ')) {
-      return value.split(' ').map(arg => this.stringNumBool(arg));
+      return value.split(' ').map(arg => this.unString(arg));
     }
-    return this.stringNumBool(value);
+    return this.unString(value);
   }
 
   triage(event, to, value) {
@@ -39,9 +40,16 @@ class Set extends Handle {
       return;
     }
 
+    if (this.prop === 'class') {
+      to.classList.remove(this.value);
+      to.offsetHeight;
+      to.classList.add(this.value);
+      return;
+    }
+
     let time = event?.detail?.time || this.getTime();
-    if (event?.detail?.x !== undefined && !!Number(value)) {
-      value *= event.detail.x;
+    if (typeof event?.detail?.x === 'number') {
+      value *= JSON.parse(event.detail.x);
     }
 
     switch (typeof to[this.prop]) {
@@ -87,6 +95,16 @@ class Set extends Handle {
         this.unlisten();
       }
     }    
+  }
+
+  handleWatch(list, observer) {
+    console.log(list[0]);
+    let event = {
+      detail: {
+        time: this.getTime()
+      }
+    }
+    this.handle(event);
   }
 
   get ramp() {

@@ -1,20 +1,18 @@
 import { Base } from './Base.js';
-import { random } from '../tools/random.js';
 
 class Handle extends Base {
   constructor() {
     super();
     this.defaultFrom = () => [this.parentNode];
     this.defaultTo = () => [this.parentNode];
-    this.defaultEvent = 'blam';
+    this.defaultFor = ['blam'];
   }
 
-  stringNumBool(string) {
+  unString(string) {
     try {
       return JSON.parse(string);
     } catch {
-      let notNum = !Number(string) && string !== '0';
-      return notNum ? string : parseFloat(string);
+      return string === 'undefined' ? undefined : string;
     }
   }
 
@@ -23,13 +21,8 @@ class Handle extends Base {
     this.toElems = this.to ? [...document.querySelectorAll(this.to)] : this.defaultTo();
   }
 
-  onblamready() {
-    this.setToFrom();
-    this.listen();
-  }
-
   handleEvent(event) {
-    if (event.type === this.event && !this.bypass) {
+    if (this.for.includes(event.type) && !this.bypass) {
       this.handle(event);
       this.fire('blam', {}, this);
     } else {
@@ -40,15 +33,26 @@ class Handle extends Base {
   listen() {
     if (this.fromElems?.length && this.toElems?.length) {
       for (const from of this.fromElems) {
-        from.addEventListener(this.event, this);
+        for (const event of this.for) {
+          if (event !== 'any') {
+            from.addEventListener(event, this);
+          }
+        }
       }
     }
   }
 
   unlisten() {
     for (const from of this.fromElems) {
-      from.removeEventListener(this.event, this);
+      for (const event of this.for) {
+        from.removeEventListener(event, this);
+      }
     }    
+  }
+
+  onblamready() {
+    this.setToFrom();
+    this.listen();
   }
 
   get from() {
@@ -67,12 +71,13 @@ class Handle extends Base {
 		this.setAttribute('to', value);
   }
 
-  get event() {
-    return this.getAttribute('event') || this.defaultEvent;
+  get for() {
+    let value = this.getAttribute('for')
+    return value ? value.split(' ') : this.defaultFor;
 	}
 
-	set event(value) {
-		this.setAttribute('event', value);
+	set for(value) {
+		this.setAttribute('for', value);
   }
 
   get prop() {
@@ -98,10 +103,6 @@ class Handle extends Base {
 
 	set chance(value) {
 		this.setAttribute('chance', value);
-  }
-
-  connectedCallback() {
-    this.listen();
   }
 
   disconnectedCallback() {

@@ -4,7 +4,7 @@ class Kbd extends Set {
   constructor() {
     super();
     this.defaultFrom = () => [window];
-    this.defaultEvent = 'keydown';
+    this.defaultFor = ['keydown'];
   }
 
   handle(event, value) {

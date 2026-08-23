@@ -1,7 +1,7 @@
 name: Set
 category: Controlling
 summary: Handles events to affect a prop, set an attribute, execute a method, or append a CSS custom property. Which of these three are applicable is automatically determined from the `prop` name supplied.
-extends: Handle
+extends: ListenWatch
 props: 
   - name: ramp
     type: number
@@ -12,7 +12,7 @@ props:
     default: false
     description: When `revert` is applied, values do not _stick_. Once set, the next event reverts them to the original value (the one taken from the element during initialization). Used with a low `chance`, you create the effect of a regular value that just occasionally, and momentarily, strays.
   - name: prop
-    description: Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. 
+    description: Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart.
   - name: value 
     type: string 
     default: 'null'
@@ -25,3 +25,6 @@ props:
     type: boolean 
     default: false 
     description: Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”).
+  - name: mode 
+    default: “events” 
+    description: By default, **Set** just listens for events. Use `mode="props"` to listen for prop changes instead.

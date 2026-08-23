@@ -142,7 +142,6 @@
     "props": [
       {
         "name": "event",
-        "type": "string",
         "default": "blamready",
         "description": "By default, the **Bank** fetches and converts constituent samples on the `blamready` event, which is fired on the window when all elements have been defined."
       },
@@ -161,6 +160,12 @@
         "type": "string",
         "default": "null",
         "description": "Not applicable for **Bank**."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "blam",
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "bypass",
@@ -236,7 +241,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart."
       },
       {
         "name": "value",
@@ -257,6 +262,18 @@
         "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
+        "name": "mode",
+        "type": "string",
+        "default": "“events”",
+        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
+      },
+      {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
@@ -265,12 +282,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "event",
-        "type": "string",
-        "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
       },
       {
         "name": "bypass",
@@ -321,7 +332,6 @@
     "props": [
       {
         "name": "event",
-        "type": "string",
         "default": "input",
         "description": "Do not supply an `event` prop for this element. It must use the child input’s `input` event."
       },
@@ -341,7 +351,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart."
       },
       {
         "name": "value",
@@ -360,6 +370,18 @@
         "type": "boolean",
         "default": false,
         "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "default": "“events”",
+        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
       },
       {
         "name": "from",
@@ -489,10 +511,10 @@
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
       },
       {
-        "name": "event",
+        "name": "for",
         "type": "string",
         "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "bypass",
@@ -636,7 +658,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart."
       },
       {
         "name": "value",
@@ -657,6 +679,18 @@
         "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
+        "name": "mode",
+        "type": "string",
+        "default": "“events”",
+        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
+      },
+      {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
@@ -665,12 +699,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "event",
-        "type": "string",
-        "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
       },
       {
         "name": "bypass",
@@ -755,26 +783,51 @@
   {
     "name": "Log",
     "category": "Visualizing",
-    "extends": "Handle",
+    "extends": "Template",
     "draft": true,
     "defined": true,
     "summary": "Listens to events and uses the element’s HTML as a template for appending event data to an elected element. Data props are included using square bracket syntax like `[[prop]]`.",
     "props": [
       {
-        "name": "from",
+        "name": "mode",
         "type": "string",
-        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
+        "default": "“events”",
+        "description": "By default, the element listens for events and templates event data. All data includes **name** (of the attribute/prop or event type), **id** (the `id` or a selector representing the invoking element), and **target** (the invoking element itself). For a mode of “props”, the **value** and **oldValue** are also available."
+      },
+      {
+        "name": "additive",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to log cumulatively or to just log the most recent data."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "default": 16,
+        "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
+      },
+      {
+        "name": "places",
+        "type": "number",
+        "default": 1,
+        "description": "For numeric data, the number of (fixed) decimal places. Set to `3`, `1` will become `1.000`."
       },
       {
         "name": "to",
         "type": "string",
-        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+        "description": "A selector for the element to which templated data will be appended. If not set (`null`), it defaults to the **Template**-based element itself.",
+        "default": "null"
       },
       {
-        "name": "event",
+        "name": "for",
         "type": "string",
-        "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
       },
       {
         "name": "prop",
@@ -891,10 +944,10 @@
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
       },
       {
-        "name": "event",
+        "name": "for",
         "type": "string",
         "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "prop",
@@ -1059,95 +1112,16 @@
         "description": "CSS selector. If not set, it looks for a single **Sampler**-based element."
       },
       {
-        "name": "event",
+        "name": "for",
         "type": "string",
         "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "prop",
         "type": "string",
         "default": "null",
         "description": "The property (which may be a method or map to an `audioParam`) to affect at the `event`."
-      },
-      {
-        "name": "bypass",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to stop responding to events as they happen."
-      },
-      {
-        "name": "chance",
-        "type": "boolean",
-        "default": 1,
-        "description": "The probability that the `event` will be responded to. From `0` to `1`."
-      }
-    ]
-  },
-  {
-    "name": "One",
-    "defined": true,
-    "category": "Automating",
-    "extends": "Set",
-    "summary": "Like **Blam** but it only affects one of the elements selected using `to`.",
-    "props": [
-      {
-        "name": "fwd",
-        "type": "boolean",
-        "default": false,
-        "description": "By default, one element is chosen at random, each time (but never the same element twice in a row). With `fwd` set, the elements are targeted in order. Used with the “hidden” as the `prop` and `revert`, selected elements appear and disappear like slides in a slideshow."
-      },
-      {
-        "name": "revert",
-        "type": "boolean",
-        "default": false,
-        "description": "In the case of **One**, `revert` reverts all `prop` values at each event, before setting the `value` just for the chosen _one_."
-      },
-      {
-        "name": "ramp",
-        "type": "number",
-        "default": null,
-        "description": "In beats. Where the `prop` is an `audioParam`, whether to ramp the value. For example, for `gain`, whether to fade/slide between the start and end values."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
-      },
-      {
-        "name": "value",
-        "type": "string",
-        "default": "null",
-        "description": "**Set**-derived elements support special `value` syntax. Separate with `|` and one value is chosen at random. You can “prefer” certian values by including them more than once, like `0.1|0.1|0.2`. Separate with `~` and a value is chosen within the range `[x]~[n]`. Separate with ` ` (a single space) if you are supplying multiple args to an element’s method."
-      },
-      {
-        "name": "once",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to only handle the event one time. Interesting, compositionally, when paired with a low `chance`."
-      },
-      {
-        "name": "robin",
-        "type": "boolean",
-        "default": false,
-        "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
-      },
-      {
-        "name": "from",
-        "type": "string",
-        "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
-      },
-      {
-        "name": "to",
-        "type": "string",
-        "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "event",
-        "type": "string",
-        "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
       },
       {
         "name": "bypass",
@@ -1425,7 +1399,6 @@
     "props": [
       {
         "name": "event",
-        "type": "string",
         "default": "change",
         "description": "Do not supply an `event` prop for this element. It must use a child fieldset’s `change` event."
       },
@@ -1438,6 +1411,12 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "blam",
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "prop",
@@ -1489,10 +1468,10 @@
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
       },
       {
-        "name": "event",
+        "name": "for",
         "type": "string",
         "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "bypass",
@@ -1761,7 +1740,7 @@
         "name": "max",
         "type": "number",
         "default": null,
-        "description": "The maximum number of elements to affect. If not set (null), it the total number of elements selected with `to`."
+        "description": "The maximum number of elements to affect. If not set (null), it is the total number of elements selected with `to`. There is some special behavior too... If `max=\"1\"` and `robin` are in place, both the target `to` elements _and_ the `value`s (where using |-separated syntax) are cycled through, in order. If the number of `to` elements and the number of potential `value`s differ, there’s a polymetric effect."
       },
       {
         "name": "revert",
@@ -1779,7 +1758,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart."
       },
       {
         "name": "value",
@@ -1800,6 +1779,18 @@
         "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
       },
       {
+        "name": "mode",
+        "type": "string",
+        "default": "“events”",
+        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
+      },
+      {
         "name": "from",
         "type": "string",
         "description": "A CSS selector representing all elements from which events will be listened to. If not set, the node array defaults to the element’s `defaultFrom` function’s return value."
@@ -1808,12 +1799,6 @@
         "name": "to",
         "type": "string",
         "description": "A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value."
-      },
-      {
-        "name": "event",
-        "type": "string",
-        "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
       },
       {
         "name": "bypass",
@@ -1838,7 +1823,6 @@
     "props": [
       {
         "name": "event",
-        "type": "string",
         "default": "input",
         "description": "Do not supply an `event` prop for this element. It must use the child input’s `input` event."
       },
@@ -1869,7 +1853,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart."
       },
       {
         "name": "once",
@@ -1882,6 +1866,18 @@
         "type": "boolean",
         "default": false,
         "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "default": "“events”",
+        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
       },
       {
         "name": "from",
@@ -1917,19 +1913,16 @@
     "props": [
       {
         "name": "to",
-        "type": "string",
-        "description": "The elements that should receive the custom properties. These elements and their child descendants will be subject to the values (where they're used).",
-        "default": null
+        "default": null,
+        "description": "The elements that should receive the custom properties. These elements and their child descendants will be subject to the values (where they're used)."
       },
       {
         "name": "event",
-        "type": "string",
         "default": null,
         "description": "Not applicable."
       },
       {
         "name": "from",
-        "type": "string",
         "description": "A selector to match all the elements to watch for attribute changes."
       },
       {
@@ -1937,42 +1930,6 @@
         "type": "string",
         "default": null,
         "description": "A space-separated set of attribute names to watch over. If not set, all attributes are converted to CSS custom properties (when changed)."
-      },
-      {
-        "name": "additive",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to log cumulatively or to just log the most recent data."
-      },
-      {
-        "name": "max",
-        "type": "number",
-        "default": 16,
-        "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "Not applicable."
-      },
-      {
-        "name": "places",
-        "type": "number",
-        "default": 1,
-        "description": "For numeric data, the number of (fixed) decimal places. Set to `3`, `1` will become `1.000`."
-      },
-      {
-        "name": "bypass",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to stop responding to events as they happen."
-      },
-      {
-        "name": "chance",
-        "type": "boolean",
-        "default": 1,
-        "description": "The probability that the `event` will be responded to. From `0` to `1`."
       }
     ]
   },
@@ -1985,9 +1942,7 @@
     "props": [
       {
         "name": "event",
-        "type": "string",
-        "default": "click",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "default": "click"
       },
       {
         "name": "ramp",
@@ -2005,7 +1960,7 @@
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property."
+        "description": "Can be the name of a property (which may map to an `audioParam`), an attribute, a method/function, or prepend with `--` to make it a CSS custom property. If `class`, the `className` is removed and reapplied at each event, triggering _reflow_ so that animations (if in place) restart."
       },
       {
         "name": "value",
@@ -2024,6 +1979,18 @@
         "type": "boolean",
         "default": false,
         "description": "Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”)."
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "default": "“events”",
+        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "default": "“blam any”",
+        "description": "By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes."
       },
       {
         "name": "from",
@@ -2091,10 +2058,10 @@
         "description": "Stops the **Track** from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out."
       },
       {
-        "name": "event",
+        "name": "for",
         "type": "string",
         "default": "blam",
-        "description": "The event type to listen for. For many Event-based elements, this is the generic custom event `blam`."
+        "description": "A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event."
       },
       {
         "name": "prop",
@@ -2119,75 +2086,6 @@
       {
         "name": "blambar",
         "description": "Fired at the start of each new bar."
-      }
-    ]
-  },
-  {
-    "name": "Watch",
-    "category": "Visualizing",
-    "extends": "Template",
-    "draft": true,
-    "defined": true,
-    "summary": "Observes changes to **HYERBLAM** element attributes and logs those changes using the element’s HTML as a template. Data props are included using square bracket syntax (`[[prop]]`). The available props are **name** (the attribute name), **oldValue** (the previous attribute value), **newValue** (the new attribute value), **id** (the element `id` if present, or the `nodeName`), and **time** (the approximate `currentTime` the attribute changed).",
-    "props": [
-      {
-        "name": "allowed",
-        "type": "string",
-        "default": null,
-        "description": "A space-separated set of attribute names to watch over. If not set, all attributes trigger templating/appending."
-      },
-      {
-        "name": "event",
-        "type": "string",
-        "default": null,
-        "description": "Not applicable. Watches attributes instead."
-      },
-      {
-        "name": "from",
-        "type": "string",
-        "description": "A selector to match all the elements to watch for attribute changes. Filtered to only include **HYPERBLAM** elements."
-      },
-      {
-        "name": "additive",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to log cumulatively or to just log the most recent data."
-      },
-      {
-        "name": "max",
-        "type": "number",
-        "default": 16,
-        "description": "The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy."
-      },
-      {
-        "name": "prop",
-        "type": "string",
-        "default": "null",
-        "description": "Not applicable."
-      },
-      {
-        "name": "places",
-        "type": "number",
-        "default": 1,
-        "description": "For numeric data, the number of (fixed) decimal places. Set to `3`, `1` will become `1.000`."
-      },
-      {
-        "name": "to",
-        "type": "string",
-        "description": "A selector for the element to which templated data will be appended. If not set (`null`), it defaults to the **Template**-based element itself.",
-        "default": "null"
-      },
-      {
-        "name": "bypass",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to stop responding to events as they happen."
-      },
-      {
-        "name": "chance",
-        "type": "boolean",
-        "default": 1,
-        "description": "The probability that the `event` will be responded to. From `0` to `1`."
       }
     ]
   }

@@ -26,8 +26,8 @@ elements:
       style="inline-size: 75vw; max-block-size: 100%"
       count="{{ visualiser.count }}"
     >
-      <blam-blam from="media-blam" prop="start" event="blam"></blam-blam>
-      <blam-blam from="media-blam" prop="stop" event="blamstop"></blam-blam>
+      <blam-blam from="media-blam" prop="start" for="blam"></blam-blam>
+      <blam-blam from="media-blam" prop="stop" for="blamstop"></blam-blam>
     </rings-blam>
   </div>
 {% endblock %}
@@ -53,8 +53,8 @@ elements:
     <filter-blam type="highpass" freq="110"></filter-blam>
   </chain-blam>
 </media-blam>
-<blam-blam from="media-blam" to="bands-blam" prop="start" event="blam"></blam-blam>
-<blam-blam from="media-blam" to="bands-blam" prop="stop" event="blamstop"></blam-blam>
+<blam-blam from="media-blam" to="bands-blam" prop="start" for="blam"></blam-blam>
+<blam-blam from="media-blam" to="bands-blam" prop="stop" for="blamstop"></blam-blam>
 {% endblock %}
 
 {% block dialog %}

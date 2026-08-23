@@ -1,6 +1,6 @@
-import { Handle } from './Handle.js';
+import { ListenWatch } from './ListenWatch.js';
 
-class Template extends Handle {
+class Template extends ListenWatch {
   constructor() {
     super();
     this.count = 0;
@@ -8,7 +8,7 @@ class Template extends Handle {
   }
 
   onblamready() {
-    this.setToFrom();
+    super.onblamready();
     this.init();
   }
 
@@ -20,7 +20,7 @@ class Template extends Handle {
   interpolate(template, data) {
     const regex = /\[\[(.*?)\]\]/g;
     let interpolated = template.replace(regex, (_, prop) => {
-      let parsed = !isNaN(data[prop]) ? parseFloat(data[prop]).toFixed(this.places) : data[prop];
+      let parsed = Number.isFinite(data[prop]) ? data[prop].toFixed(this.places) : data[prop];
       return parsed;
     });
     if (this.additive) {

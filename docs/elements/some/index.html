@@ -16,13 +16,13 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -150,7 +150,7 @@
           <th scope="row">max</th>
           <td><em>number</em></td>
           <td></td>
-          <td><p>The maximum number of elements to affect. If not set (null), it the total number of elements selected with <code>to</code>.</p>
+          <td><p>The maximum number of elements to affect. If not set (null), it is the total number of elements selected with <code>to</code>. There is some special behavior too... If <code>max="1"</code> and <code>robin</code> are in place, both the target <code>to</code> elements <em>and</em> the <code>value</code>s (where using |-separated syntax) are cycled through, in order. If the number of <code>to</code> elements and the number of potential <code>value</code>s differ, there’s a polymetric effect.</p>
 </td>
         </tr>
         
@@ -174,7 +174,7 @@
           <th scope="row">prop</th>
           <td><em>string</em></td>
           <td>null</td>
-          <td><p>Can be the name of a property (which may map to an <code>audioParam</code>), an attribute, a method/function, or prepend with <code>--</code> to make it a CSS custom property.</p>
+          <td><p>Can be the name of a property (which may map to an <code>audioParam</code>), an attribute, a method/function, or prepend with <code>--</code> to make it a CSS custom property. If <code>class</code>, the <code>className</code> is removed and reapplied at each event, triggering <em>reflow</em> so that animations (if in place) restart.</p>
 </td>
         </tr>
         
@@ -203,6 +203,22 @@
         </tr>
         
         <tr>
+          <th scope="row">mode</th>
+          <td><em>string</em></td>
+          <td>“events”</td>
+          <td><p>By default, <strong>Set</strong> just listens for events. Use <code>mode="props"</code> to listen for prop changes instead.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">for</th>
+          <td><em>string</em></td>
+          <td>“blam any”</td>
+          <td><p>By default, <strong>ListenWatch</strong>-based elements listen for <code>blam</code> events and <em>any</em> prop/attribute changes.</p>
+</td>
+        </tr>
+        
+        <tr>
           <th scope="row">from</th>
           <td><em>string</em></td>
           <td></td>
@@ -215,14 +231,6 @@
           <td><em>string</em></td>
           <td></td>
           <td><p>A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s <code>defaultTo</code> function’s return value.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">event</th>
-          <td><em>string</em></td>
-          <td>blam</td>
-          <td><p>The event type to listen for. For many Event-based elements, this is the generic custom event <code>blam</code>.</p>
 </td>
         </tr>
         
@@ -266,7 +274,7 @@
       
     
       
-    
+        
       
     
       
@@ -301,8 +309,17 @@
     
       
     
+      
     
-    <p class="u-note"><strong class="u-note__shout">OH FUN!</strong> There are currently no examples using <strong>Some</strong>.</p>
+    
+    <p>Examples that use the <strong>Some</strong> element:</p>
+    <ul class="l-examples">
+      
+        <li>
+          <a href="https://hyperblam.how/examples/typerblam/">Typerblam</a>
+        </li>
+      
+    </ul>
     
   </main>
 

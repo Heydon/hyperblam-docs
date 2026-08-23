@@ -1,7 +1,7 @@
 name: Template
 category: Visualizing
-extends: Handle
-draft: true
+extends: ListenWatch
+summary: Takes data from events or prop changes (mutations) and templates it. Data props are interpolated using double square brackets. For example, interpolate a `name` prop like **the name is [[name]]**.
 props: 
   - name: additive
     type: boolean
@@ -11,8 +11,6 @@ props:
     type: number
     default: 16
     description: The number of times data is logged before clearing the `to` element and starting over. Stops the DOM getting too unwieldy.
-  - name: prop 
-    description: Not applicable.
   - name: places
     type: number 
     default: 1

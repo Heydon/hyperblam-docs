@@ -11,8 +11,19 @@ class Some extends Set {
       this.toElems.forEach((elem, i) => elem[this.prop] = this.baseValues[i]);
     }
 
-    let amount = random.integerBetween(this.min, this.max || this.toElems.length);
-    let chosen = random.some(this.toElems, amount);
+    let chosen;
+
+    if (this.max < 2) {
+      if (this.robin) {
+        this.prevIndex = this.nextIndex(this.prevIndex, this.toElems);
+      } else {
+        this.prevIndex = this.newIndex(this.prevIndex, this.toElems);
+      }
+      chosen = [this.toElems[this.prevIndex]];
+    } else {
+      let amount = random.integerBetween(this.min, this.max || this.toElems.length);
+      chosen = random.some(this.toElems, amount);
+    }
 
     for (const [i, to] of chosen.entries()) {
       this.triage(event, to, value);

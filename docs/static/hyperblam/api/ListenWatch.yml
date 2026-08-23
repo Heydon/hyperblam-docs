@@ -1,0 +1,12 @@
+name: ListenWatch
+category: Automating
+extends: Handle
+summary: Handles either events, prop changes (attribute mutations), or both.
+props: 
+  - name: mode
+    type: string 
+    default: “events props”
+    description: Space separated. Which to listen/watch `for`... events, props, or both.
+  - name: for 
+    default: “blam any”
+    description: By default, **ListenWatch**-based elements listen for `blam` events and _any_ prop/attribute changes.

@@ -5,7 +5,7 @@ class Bank extends Handle {
 		super();
     this.samples = [];
     
-    this.defaultEvent = 'blamready';
+    this.defaultFor = ['blamready'];
     this.defaultFrom = () => [window];
     this.defaultTo = () => [this];
 
@@ -13,7 +13,7 @@ class Bank extends Handle {
 	}
 
   handleEvent(event) {
-    if (event.type === this.event) {
+    if (this.for.includes(event.type)) {
       this.initBuffers();
     }
     if (event.type === 'blamsource') {
@@ -21,9 +21,6 @@ class Bank extends Handle {
       if (this.samples.length === this.sampleElems.length) {
         // ↓ Use index to put samples back in order of source
         this.samples.sort(({index:a}, {index:b}) => a - b);
-        this.fire('blambank', {
-          samples: this.samples
-        }, this);
       }
     }
   }

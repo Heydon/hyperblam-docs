@@ -51,27 +51,6 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/01-basic-gain-control/</loc>
-    <lastmod>2026-06-21T17:25:03.826Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/02-getting-absolutely-panned/</loc>
-    <lastmod>2026-06-21T17:25:03.826Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/03-shimmer-shimmer-ya/</loc>
-    <lastmod>2026-06-21T17:25:03.826Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://hyperblam.how/examples/06-tape-emulation/</loc>
     <lastmod>2026-06-21T17:25:03.827Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -135,41 +114,6 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/06-automayhem/</loc>
-    <lastmod>2026-06-23T19:02:04.079Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/07-make-it-fed/</loc>
-    <lastmod>2026-06-23T19:02:04.080Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/</loc>
-    <lastmod>2026-06-23T19:02:04.080Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/ch-ch-ch-chocolate/</loc>
-    <lastmod>2026-06-23T19:02:04.081Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/dub-club/</loc>
-    <lastmod>2026-06-26T11:31:06.476Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://hyperblam.how/guides/LFOs/</loc>
     <lastmod>2026-07-15T09:09:23.653Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -198,69 +142,6 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/01-just-the-samples/</loc>
-    <lastmod>2026-07-15T09:09:39.438Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/02-pentatonic-party/</loc>
-    <lastmod>2026-07-15T09:09:39.439Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/03-breathe-and-stop/</loc>
-    <lastmod>2026-07-15T09:09:39.439Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/04-slip-and-slide/</loc>
-    <lastmod>2026-07-15T09:09:39.439Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/05-give-the-drummer-some/</loc>
-    <lastmod>2026-07-15T09:09:39.439Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/06-a-motif-with-some-mojo/</loc>
-    <lastmod>2026-07-15T09:09:39.440Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/04-I-hope-you-like-LFOs/</loc>
-    <lastmod>2026-07-15T09:09:39.440Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/05-babys-first-blam/</loc>
-    <lastmod>2026-07-15T09:09:39.440Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hyperblam.how/examples/08-hopeless-horror-hole/</loc>
-    <lastmod>2026-07-15T09:09:39.440Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://hyperblam.how/examples/typerblam/</loc>
     <lastmod>2026-07-15T09:09:39.441Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -268,8 +149,127 @@
   </url>
 
   <url>
+    <loc>https://hyperblam.how/examples/01-just-the-samples/</loc>
+    <lastmod>2026-08-21T13:09:33.603Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/02-pentatonic-party/</loc>
+    <lastmod>2026-08-21T13:09:33.603Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/03-breathe-and-stop/</loc>
+    <lastmod>2026-08-21T13:09:33.603Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/04-slip-and-slide/</loc>
+    <lastmod>2026-08-21T13:09:33.603Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/05-give-the-drummer-some/</loc>
+    <lastmod>2026-08-21T13:09:33.604Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/06-a-motif-with-some-mojo/</loc>
+    <lastmod>2026-08-21T13:09:33.604Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/06-automayhem/</loc>
+    <lastmod>2026-08-21T13:09:33.604Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/07-make-it-fed/</loc>
+    <lastmod>2026-08-21T13:09:33.604Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/01-basic-gain-control/</loc>
+    <lastmod>2026-08-21T13:09:33.605Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/02-getting-absolutely-panned/</loc>
+    <lastmod>2026-08-21T13:09:33.605Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/03-shimmer-shimmer-ya/</loc>
+    <lastmod>2026-08-21T13:09:33.605Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/04-I-hope-you-like-LFOs/</loc>
+    <lastmod>2026-08-21T13:09:33.605Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/05-babys-first-blam/</loc>
+    <lastmod>2026-08-21T13:09:33.606Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/</loc>
+    <lastmod>2026-08-21T13:09:33.606Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/08-hopeless-horror-hole/</loc>
+    <lastmod>2026-08-21T13:09:33.606Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/ch-ch-ch-chocolate/</loc>
+    <lastmod>2026-08-21T13:09:33.606Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/dub-club/</loc>
+    <lastmod>2026-08-21T13:09:33.607Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://hyperblam.how/slides/</loc>
-    <lastmod>2026-07-15T09:09:39.441Z</lastmod>
+    <lastmod>2026-08-21T13:09:33.607Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

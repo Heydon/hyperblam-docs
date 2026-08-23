@@ -9,10 +9,10 @@ props:
   - name: to
     type: string
     description: A CSS selector representing all elements to affect in response to the event. If not set, the node array defaults to the element’s `defaultTo` function’s return value.
-  - name: event
+  - name: for
     type: string
     default: blam
-    description: The event type to listen for. For many Event-based elements, this is the generic custom event `blam`.
+    description: A space separated list of events the element should be “listening for”. Most **HYPERBLAM** elements emit a generic `blam` event.
   - name: prop
     type: string
     default: 'null'

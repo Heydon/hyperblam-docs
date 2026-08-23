@@ -28,21 +28,21 @@
           style="inline-size: 75vw; max-block-size: 100%"
           count="{{ visualiser.count }}"
         >
-          <blam-blam from="sequencer-blam" prop="startStop" event="blamplaystop"></blam-blam>
+          <blam-blam from="sequencer-blam" prop="startStop" for="blamplaystop"></blam-blam>
         </bands-blam>
       </div>
     {% endblock %}
-    <aside class="l-framed l-log u-blend-difference" aria-label="Props log">
+    <aside class="l-framed l-log u-blend-difference" aria-label="Data log">
       <ul id="log" class="s-playstop" hidden></ul>
     </aside>
-    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
+    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" for="blamsources"></blam-blam>
     <div class="l-framed">
       {% block audio %}
       {% endblock %}
     </div>
     <div role="progressbar" class="l-framed l-loading">
       <span id="samples">installing</span><span class="u-flash">...</span>
-      <log-blam from="sample-blam" to="#samples" event="blamsource" hidden>
+      <log-blam from="sample-blam" to="#samples" for="blamsource" hidden>
         sampling [[file]]
       </log-blam>
     </div>
@@ -71,8 +71,8 @@
     <a class="u-font-special" href="{{ site.basedir }}/examples/#{{tags[1]}}examples" aria-label="previous example">← back</a>
   </nav>
 </footer>
-<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>
-<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamstop"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamplay"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamstop"></blam-blam>
 </audio-blam>
 {% endblock %}
 

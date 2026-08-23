@@ -4,7 +4,7 @@ class Dial extends Set {
   constructor() {
     super();
     this.defaultFrom = () => [this.querySelector('[type="number"], [type="range"]')];
-    this.defaultEvent = 'input';
+    this.defaultFor = ['input'];
     this.conversions = {
       beats: value => this.hertzToBeats(value)
     }

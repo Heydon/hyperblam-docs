@@ -4,7 +4,7 @@ class Switch extends Set {
   constructor() {
     super();
     this.defaultFrom = () => [this.querySelector('[type="checkbox"]')];
-    this.defaultEvent = 'input';
+    this.defaultFor = ['input'];
   }
 
   onblamready() {

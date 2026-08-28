@@ -1,16 +1,16 @@
 name: BandsToProps
 extends: Visualiser 
 category: Visualizing
-summary: Primitive for converting **Analyser** frequency data to CSS custom properties. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Additionally, `--[name]-interval` represents the duration of one frame (based on the `fps` value). This is useful for applying CSS transitions between data changes.
+summary: Primitive for converting `<analyser-blam>` frequency data to CSS custom properties. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Additionally, `--[name]-interval` represents the duration of one frame (based on the `fps` value). This is useful for applying CSS transitions between data changes.
 props:
   - name: first 
     type: number
     default: undefined 
-    description: The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**.
+    description: The first of the data bands to use. If `undefined`, it’s the very first band provided by the `<analyser-blam>`.
   - name: last 
     type: number
     default: undefined 
-    description: The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**.
+    description: The last of the data bands to use. If `undefined`, it’s the very last band provided by the `<analyser-blam>`.
   - name: shuffle 
     type: boolean 
     default: false 

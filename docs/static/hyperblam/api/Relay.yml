@@ -7,6 +7,6 @@ props:
   - name: mode 
     default: all
     type: string 
-    description: One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the **Relay**. Elements without `off` are activated independently _and_ via **Relay**.
+    description: One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the `<relay-blam>`. Elements without `off` are activated independently _and_ via `<relay-blam>`.
   - name: prop 
-    description: Not applicable for **Relay**. The `prop` is defined on each subject element.
+    description: Not applicable for `<relay-blam>`. The `prop` is defined on each subject element.

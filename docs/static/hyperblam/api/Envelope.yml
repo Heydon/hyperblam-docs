@@ -2,7 +2,7 @@ name: Envelope
 extends: Handle
 category: Modulating
 defined: true
-summary: An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest **Sampler**-based element’s `blam` event.
+summary: An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest `<sampler-blam>`-based element’s `blam` event.
 props: 
   - name: curve
     type: string

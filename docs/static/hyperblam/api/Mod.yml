@@ -16,7 +16,7 @@ props:
   - name: beats
     type: number
     default: 16
-    description: The frequency of the built-in LFO in beats, mapped to the `bpm` of an ancestor **Audio** or **Sequencer** element.
+    description: The frequency of the built-in LFO in beats, mapped to the `bpm` of an ancestor `<audio-blam>` element.
   - name: invert
     type: boolean
     default: false

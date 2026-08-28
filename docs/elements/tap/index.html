@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -199,7 +199,7 @@
           <th scope="row">mode</th>
           <td><em>string</em></td>
           <td>“events”</td>
-          <td><p>By default, <strong>Set</strong> just listens for events. Use <code>mode="props"</code> to listen for prop changes instead.</p>
+          <td><p>By default, <strong>Set</strong>-based elements just listens for events. Use <code>mode="props"</code> to listen for prop changes instead.</p>
 </td>
         </tr>
         
@@ -255,7 +255,7 @@
         
         <tr>
           <th scope="row">blam</th>
-          <td><p>Fired whenever the <code>&lt;button&gt;</code> is clicked. Where <code>to</code> is not set, <code>Tap</code> just fires this event. Then users can trigger handlers like <code>&lt;relay-blam&gt;</code> directly.</p>
+          <td><p>Fired whenever the <code>&lt;button&gt;</code> is clicked. Where <code>to</code> is not set, <code>Tap</code> just fires this event. Then users can trigger handlers like <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code> directly.</p>
 </td>
         </tr>
         
@@ -355,6 +355,10 @@
         
       
     
+      
+        
+      
+    
     
     <p>Examples that use the <strong>Tap</strong> element:</p>
     <ul class="l-examples">
@@ -433,6 +437,10 @@
       
         <li>
           <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>
         </li>
       
     </ul>

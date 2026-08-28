@@ -1,19 +1,22 @@
 name: Bar
 category: Sequencing
 defined: true
-summary: Defines a single bar’s pattern, as handled by a parent **Track** element.
+summary: Defines a single bar’s pattern, as handled by a containing `<track-blam>` element.
 props: 
   - name: s
     type: string
     description: The space-separated pattern representing the distribution of notes or sounds. `0` represents a pause (skipped sound/beat).
+  - name: span
+    type: number 
+    description: Just how many of the beats/triggers defined by `s` to actually use. If the `s` value is `1 0 2 0` but `span` is `3`, the pattern will repeat as `1 0 2`. If `span` is `7`, the repeated pattern will become `1 0 2 0 1 0 2` (partially looped back). Useful for quickly introducing different polymeters.
   - name: chance
     type: number
     default: 1
-    description: The probability that any one sound in the `s` pattern will be played. Overrides a parent **Track’s** `chance`.
+    description: The probability that any one sound in the `s` pattern will be played. Overrides a parent `<track-blam>`’s chance`.
   - name: fill
     type: boolean
     default: false
     description: Whether to play a fill (a randomized rearrangement of the bar’s pattern).
 events: 
   - name: blam 
-    description: Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element.
+    description: Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor `<track-blam>` element.

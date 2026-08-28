@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -142,7 +142,7 @@
           <th scope="row">mode</th>
           <td><em>string</em></td>
           <td>all</td>
-          <td><p>One of <code>'one'</code>, <code>'some'</code>, or <code>'all'</code>. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ <code>off</code> state is circumvented. Elements with <code>off</code> are <em>only</em> activated by the <strong>Relay</strong>. Elements without <code>off</code> are activated independently <em>and</em> via <strong>Relay</strong>.</p>
+          <td><p>One of <code>'one'</code>, <code>'some'</code>, or <code>'all'</code>. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ <code>off</code> state is circumvented. Elements with <code>off</code> are <em>only</em> activated by the <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code>. Elements without <code>off</code> are activated independently <em>and</em> via <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code>.</p>
 </td>
         </tr>
         
@@ -150,7 +150,7 @@
           <th scope="row">prop</th>
           <td><em>string</em></td>
           <td>null</td>
-          <td><p>Not applicable for <strong>Relay</strong>. The <code>prop</code> is defined on each subject element.</p>
+          <td><p>Not applicable for <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code>. The <code>prop</code> is defined on each subject element.</p>
 </td>
         </tr>
         
@@ -235,6 +235,8 @@
     
       
         
+      
+    
       
     
       

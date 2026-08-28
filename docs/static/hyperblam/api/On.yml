@@ -21,6 +21,6 @@ props:
     default: false 
     description: For non-tonal instruments like Pad. Whether to spread the individual sounds over the range of keys (one sound per key).
   - name: from
-    description: CSS selector. Must be a **Midi** element. If not set, looks for an ancestor **Midi** element.
+    description: CSS selector. Must be a `<midi-blam>` element. If not set, looks for an ancestor `<midi-blam>` element.
   - name: to
     description: CSS selector. If not set, it looks for a single **Sampler**-based element.

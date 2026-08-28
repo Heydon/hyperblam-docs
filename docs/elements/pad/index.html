@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -154,7 +154,7 @@
           <th scope="row">out</th>
           <td><em>string</em></td>
           <td></td>
-          <td><p>An <code>id</code> for the next element in the signal chain. If not supplied this defaults to a descendant <strong>Chain</strong> element or (if no <strong>Chain</strong> is included) the ancestor <strong>Audio</strong> element.</p>
+          <td><p>An <code>id</code> for the next element in the signal chain. If not supplied this defaults to a descendant <code><a href="/elements/chain">&lt;chain-blam&gt;</a></code> element or (if no <code><a href="/elements/chain">&lt;chain-blam&gt;</a></code> is included) the containing <code><a href="/elements/audio">&lt;audio-blam&gt;</a></code> element.</p>
 </td>
         </tr>
         
@@ -178,7 +178,7 @@
           <th scope="row">length</th>
           <td><em>number</em></td>
           <td>100</td>
-          <td><p>Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a <strong>Blam</strong> element for interesting effects. For compatibility with other elements, it must be a numeric value, but no <code>length</code> is set at all for values of <code>100</code> or over.</p>
+          <td><p>Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> element for interesting effects. For compatibility with other elements, it must be a numeric value, but no <code>length</code> is set at all for values of <code>100</code> or over.</p>
 </td>
         </tr>
         
@@ -210,7 +210,7 @@
           <th scope="row">reverse</th>
           <td><em>boolean|number</em></td>
           <td>false</td>
-          <td><p>Whether to play the reversed version of the sample. Set as a Boolean, there's a 100% chance. Set with a number/float sets the probability. For example, <code>reverse="0.25"</code> means a a 25% chance the sample will be played in reverse. It can only do so where the <code>&lt;sample-blam&gt;</code> element has <code>reverse</code> set (meaning the reversed sample was created).</p>
+          <td><p>Whether to play the reversed version of the sample. Set as a Boolean, there's a 100% chance. Set with a number/float sets the probability. For example, <code>reverse="0.25"</code> means a a 25% chance the sample will be played in reverse. It can only do so where the <code><a href="/elements/sample">&lt;sample-blam&gt;</a></code> element has <code>reverse</code> set (meaning the reversed sample was created).</p>
 </td>
         </tr>
         
@@ -267,7 +267,7 @@
           <th scope="row">stop</th>
           <td style="text-align: left"><p><strong>time</strong>: When to stop the sound. By default, it’s immediately, using <code>currentTime</code>.</p>
 </td>
-          <td><p>Stops the previous sound, using <code>choke</code> for easing. Only really useful for longer sounds. To adjust the length of sound playback, use <code>length</code>. To stop a sequence, of <code>play()</code> events, use <strong>Sequencer’s</strong> <code>stop</code> event.</p>
+          <td><p>Stops the previous sound, using <code>choke</code> for easing. Only really useful for longer sounds. To adjust the length of sound playback, use <code>length</code>. To stop a sequence, of <code>play()</code> events, use <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code>’s <code>stop</code> event.</p>
 </td>
         </tr>
         
@@ -362,6 +362,10 @@
         
       
     
+      
+        
+      
+    
     
     <p>Examples that use the <strong>Pad</strong> element:</p>
     <ul class="l-examples">
@@ -432,6 +436,10 @@
       
         <li>
           <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>
         </li>
       
     </ul>

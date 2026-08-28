@@ -2,7 +2,7 @@ name: Some
 defined: true
 category: Automating
 extends: Set
-summary: Like **Blam** but it only affects _some_ of the elements selected using `to`.
+summary: Like `<blam-blam>` but it only affects _some_ of the elements selected using `to`.
 props: 
   - name: min 
     type: number 
@@ -13,4 +13,4 @@ props:
     default: null 
     description: The maximum number of elements to affect. If not set (null), it is the total number of elements selected with `to`. There is some special behavior too... If `max="1"` and `robin` are in place, both the target `to` elements _and_ the `value`s (where using |-separated syntax) are cycled through, in order. If the number of `to` elements and the number of potential `value`s differ, there’s a polymetric effect.
   - name: revert 
-    description: In the case of **Some**, `revert` reverts all `prop` values at each event, before setting the `value` just for _some_.
+    description: In the case of `<some-blam>`, `revert` reverts all `prop` values at each event, before setting the `value` just for _some_.

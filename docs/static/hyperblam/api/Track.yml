@@ -2,24 +2,30 @@ name: Track
 extends: Handle 
 category: Sequencing
 defined: true 
-summary: Corresponds to a **Sequencer** and uses child **Bar** elements to define repeating rhythmic patterns.
+summary: Corresponds to a `<sequencer-blam>` and uses child `<bar-blam>` elements to define repeating rhythmic patterns.
 props: 
   - name: solo 
     type: boolean 
     default: false 
-    description: When applied, all other **Track** elements belonging to the ancestor **Sequencer** are suspended (their sounds aren’t played).
+    description: When applied, all other `<track-blam>` elements belonging to the ancestor `<sequencer-blam>` are suspended (their sounds aren’t played).
   - name: overrides
     type: string 
     default: 'null'
-    description: A space-separated list of **Track** `id`s. **Tracks** (belonging to a common **Sequencer**) whose sounds will _not_ play when this **Track** plays a sound. Important for polymetric sequencing, to avoid “collisions”.
+    description: A space-separated list of `<track-blam>` `id`s. Tracks (belonging to a common `<sequencer-blam>`) whose sounds will _not_ play when this `<track-blam>` plays a sound. Important for polymetric sequencing, to avoid “collisions”.
   - name: from
-    description: A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor **Sequencer** element for **Tracks**.
+    description: A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor `<sequencer-blam>` element for `<track-blam>`s.
   - name: to
     description: A CSS selector representing all elements that respond to stated events. Typically one or more **Sampler**-based elements.
   - name: suspend 
     type: boolean
     default: false 
-    description: Stops the **Track** from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out.
+    description: Stops the `<track-blam>` from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out.
+  - name: part 
+    type: string 
+    default: null 
+    description: For compositional purposes, you can group `<bar-blam>`s into parts, using the `<part-blam>` element. The `part` prop takes a CSS selector corresponding to the first `<part-blam>` element it matches. If no `part` is set, the entire contents of the `<track-blam>` is considered the “part”.
 events: 
-  - name: blambar
-    description: Fired at the start of each new bar.
+  - name: blam
+    description: Fired on both the `<track-elem>` itself and the newly selected `<bar-blam>`.
+  - name: blampart
+    description: Fired on the `<track-elem>` whenever a new part (`<part-elem>`) is chosen. If the `part` value is falsy, the “part” is the entire structure belonging to the `<track-elem>`.

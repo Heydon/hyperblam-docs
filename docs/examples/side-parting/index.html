@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-    <title>Saturation shenanigans : HYPERBLAM</title>
+    <title>Side parting : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -11,15 +11,15 @@
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
-    <meta property="og:title" content="Saturation shenanigans">
+    <meta property="og:title" content="Side parting">
     <meta property="og:site_name" content="HYPERBLAM">
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -80,7 +80,7 @@
   
     </a>
   </nav>
-  <h1 class="u-font-larger">Saturation shenanigans</h1>
+  <h1 class="u-font-larger">Side parting</h1>
 </header>
 
     
@@ -89,7 +89,7 @@
     
     
       <div class="l-framed u-blend-difference">
-        <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="12">
+        <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="8">
           <blam-blam from="sequencer-blam" prop="startStop" for="blamplaystop"></blam-blam>
         </bands-blam>
       </div>
@@ -102,7 +102,6 @@
       
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam amount="25"></saturator-blam>
 </chain-blam>
 <pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
@@ -133,20 +132,35 @@
   </bank-blam>
 </pad-blam>
 <sequencer-blam id="transport" swing="0.25">
-  <track-blam to="#hat" chance="0.8">
-    <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
-    <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
+  <track-blam id="hatTrack" to="#hat" part=".basic">
+    <part-blam class="basic">
+      <bar-blam s="1 0 2 0 1 0 2 0"></bar-blam>
+    </part-blam>
+    <part-blam class="open">
+      <bar-blam s="1 0 2 3 1 0 3 0"></bar-blam>
+      <bar-blam s="1 0 2 1 3 2 1 3"></bar-blam>
+    </part-blam>
+    <part-blam class="ten">
+      <bar-blam s="1 2 3 1 2 3 1 2 1 2" fill=""></bar-blam>
+    </part-blam>
   </track-blam>
-  <track-blam id="kickTrack" to="#kick" chance="0.7" override="snareSoftTrack">
-    <bar-blam s="1 0 2 0 3"></bar-blam>
-    <bar-blam s="1 0 2 0 3 0 ? 0"></bar-blam>
+  <track-blam id="kickTrack" to="#kick">
+    <bar-blam s="1 2 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="1 0 0 2 0 0 0 0"></bar-blam>
+    <part-blam class="fourToFloor">
+      <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
+    </part-blam>
+    <part-blam class="ten">
+      <bar-blam s="0 0 ? 0 0 ? 0 ? 0 0"></bar-blam>
+    </part-blam>
   </track-blam>
-  <track-blam to="#snare" override="kickTrack snareSoftTrack">
-    <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-  </track-blam>
-  <track-blam id="snareSoftTrack" to="#snareSoft" chance="0.5">
-    <bar-blam s="0 0 0 0 0 0 0 ? 0 0 ?"></bar-blam>
-    <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
+  <track-blam to="#snare" part=".basic" override="kickTrack">
+    <part-blam class="basic">
+      <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+    </part-blam>
+    <part-blam class="ten">
+      <bar-blam s="? 0 0 ? 0 0 ? 0 ? ?"></bar-blam>
+    </part-blam>
   </track-blam>
 </sequencer-blam>
 <tap-blam to="sequencer-blam" prop="playStop">
@@ -175,17 +189,36 @@
     <div class="l-flow">
       
 
-<p>You may have noticed each demo includes a <code><a href="/elements/chain">&lt;chain-blam&gt;</a></code> with <code>id="bus"</code>. I’ve created a many-to-one relationship by connecting other chains and instruments to this shared one. Spot all the <code>out="bus"</code> props.</p>
-<p>The advantage of a <a href="https://mackie.com/en/blog/all/what_mix_bus.html?srsltid=AfmBOopUScjCjDnzXbxzmk_Jo3XYi-w5pHB5MmY7NnK1alEP6T9yphGj">mix bus</a> is that multiple sources can share the same effects and effect parameters.</p>
-<p>In this case, I have just an <code><a href="/elements/analyser">&lt;analyser-blam&gt;</a></code> element and a newly introduced <code><a href="/elements/saturator">&lt;saturator-blam&gt;</a></code>. The <a href="/elements/Analyser/"><strong>Analyser</strong></a> doesn’t actually affect the sound; it converts the signal into data for visualization. The <a href="http://localhost:8080/elements/Saturator/"><strong>Saturator</strong></a> really does affect the sound, though. <em>Big style</em>.</p>
-<p>The <code><a href="/elements/saturator">&lt;saturator-blam&gt;</a></code> element is an interface for a web audio <a href="https://developer.mozilla.org/en-US/docs/Web/API/WaveShaperNode"><code>WaveShaperNode</code></a>. This node literally lets you shape the incoming waveform, mathematically, and is usually applied to create distortion. Here, the bombastic distorted beat you are hearing is brought to you by...</p>
-<pre><code class="language-html">Math.tanh(x * a);
+<p>In the main <a href="%7B%7Bsite.basedir%7D%7D/examples/#beatexamples">beat examples</a>, the focus is primarily on creating a generative beat that changes constantly over time. This is possible by combining <strong>probabilities</strong> and polymetrics.</p>
+<p>But what if you wanted to create separate parts? Verse and chorus, maybe? Or <em>“intense bit with loads of kick drum”</em> and <em>“bit where the snare is on the one and the time signature changes”</em>?</p>
+<p><strong>HYPERBLAM</strong>’s <code><a href="/elements/part">&lt;part-blam&gt;</a></code> lets you organize <code><a href="/elements/track">&lt;track-blam&gt;</a></code> parts into their own patterns. Which part is currently active is defined on the <code><a href="/elements/track">&lt;track-blam&gt;</a></code>’s <code>part</code> prop. In the following example, a hi-hat track is currently looping the part which matches the CSS selector <code>.basic</code> (a class):</p>
+<pre><code class="language-html">&lt;track-blam id="hatTrack" to="#hat" part=".basic"&gt;
+  &lt;part-blam class="basic"&gt;
+    &lt;bar-blam s="1 0 2 0 1 0 2 0"&gt;&lt;/bar-blam&gt;
+  &lt;/part-blam&gt;
+  &lt;part-blam class="open"&gt;
+    &lt;bar-blam s="1 0 2 3 1 0 3 0"&gt;&lt;/bar-blam&gt;
+    &lt;bar-blam s="1 0 2 1 3 2 1 3"&gt;&lt;/bar-blam&gt;
+  &lt;/part-blam&gt;
+&lt;/track-blam&gt;
 </code></pre>
-<p>... where <code>a</code> represents the distortion amount. The element offers other algorithms via its <code>mode</code> prop. Each was created using trial and error because:</p>
-<ol>
-<li>I’m not a mathematician.</li>
-<li>Distortion <em>should</em> sound messed up and unruly, so all the better that I don’t know what I’m doing here.</li>
-</ol>
+<p>The <code>class="open"</code> part includes a two-bar pattern incorporating a third (<code>3</code>) sample mapped to an open hi-hat sound. You could switch to this in the UI, using <code><a href="/elements/switch">&lt;switch-blam&gt;</a></code>...</p>
+<pre><code class="language-html">&lt;switch-blam to="#hatTrack" prop="part" value=".open"&gt;
+  &lt;label&gt;
+    open hats
+    &lt;input type="checkbox"&gt;
+  &lt;/label&gt;
+&lt;/switch-blam&gt;
+</code></pre>
+<p>... or you could randomly switch between these parts using <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>. Here, there’s a 50% chance the hi-hat playing style will switch between the two parts available.</p>
+<pre><code class="language-html">&lt;blam-blam to="#hatTrack" prop="part" value=".open|.basic" chance="0.5"&gt;&lt;/blam-blam&gt;
+</code></pre>
+<p>Flipping the “10 break” switch makes each <code><a href="/elements/track">&lt;track-blam&gt;</a></code> use its contribution to a lively, snare-led breakdown part identified as <code>class="ten"</code>. Note how the hi-hat’s part uses a bar with <code>fill</code>, mixing up where open hats are placed each time.</p>
+<pre><code class="language-html">&lt;part-blam class="ten"&gt;
+  &lt;bar-blam s="1 2 3 1 2 3 1 2 1 2" fill&gt;&lt;/bar-blam&gt;
+&lt;/part-blam&gt;
+</code></pre>
+<p>This gives the breakdown a varied, improvisational feel, differing each time it is brought in. With <code><a href="/elements/part">&lt;part-blam&gt;</a></code> you can introduce major compositional shifts without undermining ongoing generative fluctuations.</p>
 
 
 
@@ -196,15 +229,21 @@
 <footer>
   <div class="l-cluster">
     
-<dial-blam to="saturator-blam" prop="amount">
+<switch-blam to="#hatTrack" prop="part" value=".open">
   <label>
-    amount
-    <input type="range" min="0" max="100" step="1">
+    open hats
+    <input type="checkbox">
   </label>
-</dial-blam>
-<switch-blam to="saturator-blam" prop="bypass">
+</switch-blam>
+<switch-blam to="#kickTrack" prop="part" value=".fourToFloor">
   <label>
-    bypass
+    4 to the floor
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="track-blam" prop="part" value=".ten">
+  <label>
+    10 break
     <input type="checkbox">
   </label>
 </switch-blam>
@@ -217,10 +256,10 @@
   </div>
   <nav class="l-cluster u-font-special" aria-label="more examples">
     
-      <a href="/examples/04-getting-ghosted/" aria-label="previous example">← previous</a>
+      <a href="/examples/radioactive-orb/" aria-label="previous example">← previous</a>
     
     
-      <a href="/examples/06-automayhem/" aria-label="next example">next →</a>
+      <a href="/examples/typerblam/" aria-label="next example">next →</a>
     
   </nav>
 </footer>

@@ -7,7 +7,7 @@ props:
   - name: root 
     type: string 
     default: C4
-    description: The root note for the buffers/sounds where not supplied by the individual **Sample** element. Used to calculate pitch shifts.
+    description: The root note for the buffers/sounds where not supplied by the individual `<sample-blam>` element. Used to calculate pitch shifts.
   - name: notes 
     type: string 
     default: ‘C4 D#4 G4’

@@ -149,7 +149,7 @@ module.exports = async function(eleventyConfig) {
   });
 
   eleventyConfig.addCollection('examplesAscending', (collection) =>
-    collection.getFilteredByGlob("_posts/*.md").sort((a, b) => {
+    collection.getFilteredByGlob('_posts/*.md').sort((a, b) => {
       if (a.data.title > b.data.title) return -1;
       else if (a.data.title < b.data.title) return 1;
       else return 0;
@@ -170,7 +170,8 @@ module.exports = async function(eleventyConfig) {
       d.classList.add(`u-wave-${random.oneOf(waveforms)}`);
     });
 
-    if (outputPath.includes('/guides') || outputPath.includes('/example')) {
+    let linkElement = ['/guides', '/example', '/elements'].some(sub => outputPath.includes(sub));
+    if (linkElement) {
       const elementRefs = [...document.querySelectorAll('p > code')];
       elementRefs.forEach(ref => {
         if (ref.innerHTML.includes('-blam&gt;')) {

@@ -7,7 +7,7 @@ props:
   - name: beats
     type: number
     default: 1
-    description: The interval of echos, relative to the bpm set by an ancestor **Audio** or **Sequencer** element.
+    description: The interval of echos, relative to the bpm set by an ancestor `<audio-blam>` or `<sequencer-blam>` element.
   - name: feedback
     type: number
     default: 0.5

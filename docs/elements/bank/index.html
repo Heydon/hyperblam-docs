@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -144,7 +144,7 @@
           <th scope="row">event</th>
           <td><em></em></td>
           <td>blamready</td>
-          <td><p>By default, the <strong>Bank</strong> fetches and converts constituent samples on the <code>blamready</code> event, which is fired on the window when all elements have been defined.</p>
+          <td><p>By default, the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code> fetches and converts constituent samples on the <code>blamready</code> event, which is fired on the window when all elements have been defined.</p>
 </td>
         </tr>
         
@@ -152,7 +152,7 @@
           <th scope="row">from</th>
           <td><em>string</em></td>
           <td></td>
-          <td><p>A CSS selector representing all elements from which events should be listened to. Defaults to <code>window</code> for <strong>Bank</strong>.</p>
+          <td><p>A CSS selector representing all elements from which events should be listened to. Defaults to <code>window</code> for <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>.</p>
 </td>
         </tr>
         
@@ -160,7 +160,7 @@
           <th scope="row">to</th>
           <td><em>string</em></td>
           <td></td>
-          <td><p>A CSS selector representing all elements to affect in response to the event. Defaults to the <strong>Bank</strong> element itself, in this case, and should not be altered.</p>
+          <td><p>A CSS selector representing all elements to affect in response to the event. Defaults to the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code> element itself, in this case, and should not be altered.</p>
 </td>
         </tr>
         
@@ -168,7 +168,7 @@
           <th scope="row">prop</th>
           <td><em>string</em></td>
           <td>null</td>
-          <td><p>Not applicable for <strong>Bank</strong>.</p>
+          <td><p>Not applicable for <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>.</p>
 </td>
         </tr>
         
@@ -208,7 +208,7 @@
         
         <tr>
           <th scope="row">blambank</th>
-          <td><p>Fired when all the <strong>Bank</strong>’s samples have been converted to buffers and are ready for use. The data contains the buffers as <code>sounds</code>.</p>
+          <td><p>Fired when all the <code><a href="/elements/bank">&lt;bank-blam&gt;</a></code>’s samples have been converted to buffers and are ready for use. The data contains the buffers as <code>sounds</code>.</p>
 </td>
         </tr>
         
@@ -294,6 +294,10 @@
     
       
     
+      
+    
+      
+        
       
     
       
@@ -398,6 +402,10 @@
       
         <li>
           <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>
         </li>
       
     </ul>

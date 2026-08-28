@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -93,7 +93,7 @@
   <main class="l-column l-flow" tabindex="-1">
     <h1>Bar</h1>
     
-      <p></p><p>Defines a single bar’s pattern, as handled by a parent <strong>Track</strong> element.</p>
+      <p></p><p>Defines a single bar’s pattern, as handled by a containing <code><a href="/elements/track">&lt;track-blam&gt;</a></code> element.</p>
 <p></p>
     
     
@@ -149,10 +149,18 @@
         </tr>
         
         <tr>
+          <th scope="row">span</th>
+          <td><em>number</em></td>
+          <td></td>
+          <td><p>Just how many of the beats/triggers defined by <code>s</code> to actually use. If the <code>s</code> value is <code>1 0 2 0</code> but <code>span</code> is <code>3</code>, the pattern will repeat as <code>1 0 2</code>. If <code>span</code> is <code>7</code>, the repeated pattern will become <code>1 0 2 0 1 0 2</code> (partially looped back). Useful for quickly introducing different polymeters.</p>
+</td>
+        </tr>
+        
+        <tr>
           <th scope="row">chance</th>
           <td><em>number</em></td>
           <td>1</td>
-          <td><p>The probability that any one sound in the <code>s</code> pattern will be played. Overrides a parent <strong>Track’s</strong> <code>chance</code>.</p>
+          <td><p>The probability that any one sound in the <code>s</code> pattern will be played. Overrides a parent <code><a href="/elements/track">&lt;track-blam&gt;</a></code>’s chance`.</p>
 </td>
         </tr>
         
@@ -176,7 +184,7 @@
         
         <tr>
           <th scope="row">blam</th>
-          <td><p>Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor <strong>Track</strong> element.</p>
+          <td><p>Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor <code><a href="/elements/track">&lt;track-blam&gt;</a></code> element.</p>
 </td>
         </tr>
         
@@ -276,6 +284,10 @@
         
       
     
+      
+        
+      
+    
     
     <p>Examples that use the <strong>Bar</strong> element:</p>
     <ul class="l-examples">
@@ -354,6 +366,10 @@
       
         <li>
           <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>
         </li>
       
     </ul>

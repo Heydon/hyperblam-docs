@@ -6,16 +6,16 @@ extends: Handle
 props: 
   - name: event
     default: blamready
-    description: By default, the **Bank** fetches and converts constituent samples on the `blamready` event, which is fired on the window when all elements have been defined.
+    description: By default, the `<bank-blam>` fetches and converts constituent samples on the `blamready` event, which is fired on the window when all elements have been defined.
   - name: from
-    description: A CSS selector representing all elements from which events should be listened to. Defaults to `window` for **Bank**.
+    description: A CSS selector representing all elements from which events should be listened to. Defaults to `window` for `<bank-blam>`.
   - name: to
-    description: A CSS selector representing all elements to affect in response to the event. Defaults to the **Bank** element itself, in this case, and should not be altered.
+    description: A CSS selector representing all elements to affect in response to the event. Defaults to the `<bank-blam>` element itself, in this case, and should not be altered.
   - name: prop
     type: string
-    description: Not applicable for **Bank**.
+    description: Not applicable for `<bank-blam>`.
 events: 
   - name: blambank
-    description: Fired when all the **Bank**’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`.
+    description: Fired when all the `<bank-blam>`’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`.
 
   

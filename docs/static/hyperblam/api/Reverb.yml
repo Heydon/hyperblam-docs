@@ -2,11 +2,11 @@ name: Reverb
 extends: Box 
 category: Processing
 defined: true 
-summary: Convolution based reverb effect using a sample from a **Sample** element as the impulse response (IR).
+summary: Convolution based reverb effect using a sample from a `<sample-blam>` element as the impulse response (IR).
 props: 
   - name: src 
     type: string 
-    description: The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child Sample element.
+    description: The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child `<sample-blam>` element.
   - name: cutoff 
     type: number 
     default: 10000

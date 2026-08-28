@@ -1,15 +1,15 @@
 name: Visualiser
 extends: Base
 category: Visualizing
-summary: Base element for translating **Analyser** data. Data is namespaced by taking the element’s id, taking the **Analyser’s** `id`, or generating a random 4 character string, in that order of priority.
+summary: Base element for translating `<analyser-blam>` data. Data is namespaced by taking the element’s `id`, taking the `<analyser-blam>`’s `id`, or generating a random 4 character string, in that order of priority.
 props:
   - name: analyser
     type: string
-    description: A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page.
+    description: A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page.
   - name: fps
     type: number 
     default: 25
-    description: Frames per second. The frequency with which **Analyser** data is read.
+    description: Frames per second. The frequency with which `<analyser-blam>` data is read.
 methods:
   - name: start 
     description: Starts taking data from the associated `analyser`.

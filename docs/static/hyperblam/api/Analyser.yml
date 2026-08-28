@@ -2,7 +2,7 @@ name: Analyser
 defined: true
 extends: Box
 category: Visualizing
-summary: Put it anywhere in a **Chain** element and extract frequency or time domain data for visualization.
+summary: Put it anywhere in a `<chain-blam>` element and extract frequency or time domain data for visualization.
 props:
   - name: bands
     type: number
@@ -11,13 +11,13 @@ props:
   - name: gain
     type: number
     default: 1
-    description: Use this to adjust the strength of the signal. It does not affect the audio output; only the signal _data_. The mix coming out of an **Analyser** is 100% dry by default. It is not recommended you change the `mix`.
+    description: Use this to adjust the strength of the signal. It does not affect the audio output; only the signal _data_. The mix coming out of an `<analyser-blam>` is 100% dry by default. It is not recommended you change the `mix`.
   - name: smoothing
     type: number 
     default: 0
     description: An alias for the [`smoothingTimeConstant`](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/smoothingTimeConstant). Makes transitions between data points smoother.
   - name: bypass 
-    description: For **Analyser**, bypassing will mean data will be zeroed.
+    description: For `<analyser-blam>`, bypassing will mean data will be zeroed.
 methods: 
   - name: getFrequencyData
     description: Get a snapshot of the [frequency data](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/getByteFrequencyData)

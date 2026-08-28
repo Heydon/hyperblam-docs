@@ -1,0 +1,4 @@
+name: Part
+category: Sequencing
+defined: true
+summary: Groups `<bar-blam>` and `<repeat-blam>` elements together for compositional purposes. Corresponds to `<track-blam>`’s `part` prop, identifying the currently active `<part-blam>`.

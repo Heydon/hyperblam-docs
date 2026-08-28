@@ -2,20 +2,16 @@ import { Base } from '../primitives/Base.js';
 import { random } from '../tools/random.js';
 
 class Bar extends Base {
-  patternToValues(pattern) {
-    let parts = pattern.split(' ');
-    let values = parts.map(v => {
+  patternToValues() {
+    let values = this.s.split(' ').map(v => {
       if (v === '?') {
         return undefined;
       }
-      if (v === '0') {
-        return 0;
-      }
-      if (!!Number(v)) {
-        return parseInt(v);
-      }
-      return v;
+      return JSON.parse(v);
     });
+    if (this.span) {
+      return Array(this.span).fill().map((_, i) => values[i % values.length]).slice(0, this.span);
+    }
     return values;
   }
 
@@ -32,6 +28,15 @@ class Bar extends Base {
 
 	set s(value) {
 		this.setAttribute('s', value);
+  }
+
+  get span() {
+    let value = this.getAttribute('span');
+    return value ? parseFloat(value) : null;
+	}
+
+	set span(value) {
+		this.setAttribute('span', value);
   }
 
   get fill() {
@@ -51,22 +56,13 @@ class Bar extends Base {
 		this.setAttribute('chance', value);
   }
 
-  get x() {
-    let value = this.getAttribute('x');
-    return value ? parseFloat(value) : 1;
-	}
-
-	set x(value) {
-		this.setAttribute('x', value);
-  }
-
   static get observedAttributes () {
     return ['s'];
   }
 
   attributeChangedCallback(name) {
-    if (name === 's') {
-      this.steps = this.patternToValues(this.s);
+    if (['s', 'span'].includes(name)) {
+      this.steps = this.patternToValues();
     }
   }
 }

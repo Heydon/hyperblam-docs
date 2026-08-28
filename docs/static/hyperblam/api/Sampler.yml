@@ -7,7 +7,7 @@ props:
     description:  By default, the sample bank for the element will be a descendant Bank element. Or you can supply an `id` for a remote Bank element.
   - name: out 
     type: string 
-    description: An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element.
+    description: An `id` for the next element in the signal chain. If not supplied this defaults to a descendant `<chain-blam>` element or (if no `<chain-blam>` is included) the containing `<audio-blam>` element.
   - name: gain
     type: number 
     default: 1
@@ -19,7 +19,7 @@ props:
   - name: length
     type: number 
     default: 100 
-    description: Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over.
+    description: Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a `<blam-blam>` element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over.
   - name: start
     type: number 
     default: 0
@@ -50,5 +50,5 @@ methods:
     description: Plays one of the associated Bank’s sounds. 
     args: '**cipher**: The number (not zero-based) or `id` of the specific sound. Where `undefined`, either a random sound or the next sound is played, depending on whether `robin` is true, **time**: When, relative to the context’s `currentTime`, to play the sound. Immediately, if not set.'
   - name: stop 
-    description: Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use **Sequencer’s** `stop` event. 
+    description: Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use `<sequencer-blam>`’s `stop` event. 
     args: '**time**: When to stop the sound. By default, it’s immediately, using `currentTime`.'

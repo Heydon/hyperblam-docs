@@ -7,7 +7,7 @@ class BandsToProps extends Visualiser {
       .fill().map((_, i) => i + 1)
       .slice(
         this.first ? this.first - 1 : undefined, 
-        this.last ? this.last : undefined
+        this.last || undefined
       );
     let indices = [];
     for(let i = 0; i < count; i++) {

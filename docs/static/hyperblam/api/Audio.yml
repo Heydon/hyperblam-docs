@@ -10,7 +10,7 @@ props:
   - name: bpm
     type: number
     default: config.bpm
-    description: The tempo, in beats per minute. Used in calculations by **Sequencer**, **LFO**, **Echo** and others.
+    description: The tempo, in beats per minute. Used in calculations by `<sequencer-blam>`, `<lfo-blam>`, `<echo-blam>` and others.
 events: 
   - name: blamsources
     description: Fired when all descendant sound sources are ready for playing.

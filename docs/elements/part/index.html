@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-<title>Sequencer element : HYPERBLAM</title>
+<title>Part element : HYPERBLAM</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -91,16 +91,16 @@
     
     
   <main class="l-column l-flow" tabindex="-1">
-    <h1>Sequencer</h1>
+    <h1>Part</h1>
     
-      <p></p><p>Schedules future beats in a sequence and alerts subscribing elements.</p>
+      <p></p><p>Groups <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code> and <code><a href="/elements/repeat">&lt;repeat-blam&gt;</a></code> elements together for compositional purposes. Corresponds to <code><a href="/elements/track">&lt;track-blam&gt;</a></code>’s <code>part</code> prop, identifying the currently active <code><a href="/elements/part">&lt;part-blam&gt;</a></code>.</p>
 <p></p>
     
     
     <dl>
       <div>
         <dt>class</dt>
-        <dd>Sequencer</dd>
+        <dd>Part</dd>
       </div>
       <div>
         <dt>extends</dt>
@@ -108,7 +108,7 @@
       </div>
       <div>
         <dt>tag</dt>
-        <dd><code>&lt;sequencer-blam&gt;</code></dd>
+        <dd><code>&lt;part-blam&gt;</code></dd>
       </div>
       <div>
         <dt>see</dt>
@@ -116,15 +116,9 @@
           <ul class="u-list-inline">
             
               
-                <li><a href="#props">props</a></li>
-              
             
               
-                <li><a href="#methods">methods</a></li>
-              
             
-              
-                <li><a href="#events">events</a></li>
               
             
             <li><a href="#examples">examples</a></li>
@@ -133,132 +127,17 @@
       </div>
     </dl>
     
-      <h2 id="props">Props</h2>
-      <table>
-        <tbody><tr>
-          <th scope="col">name</th>
-          <th scope="col">type</th>
-          <th scope="col">default</th>
-          <th scope="col">description</th>
-        </tr>
-        
-        <tr>
-          <th scope="row">scale</th>
-          <td><em>number</em></td>
-          <td>1</td>
-          <td><p>The size of the interval in quarter-beats. <code>2</code> would mean each interval is, in effect, a half-beat.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">swing</th>
-          <td><em>boolean|number</em></td>
-          <td>null</td>
-          <td><p>Applied as a Boolean attribute, it applies a swing of <code>0.333</code>, making adjacent beats the first and last beats of a triplet. Supply a number to adjust this value.</p>
-</td>
-        </tr>
-        
-      </tbody></table>
     
-    
-      <h2 id="events">Events</h2>
-      <table>
-        <tbody><tr>
-          <th scope="col">type</th>
-          <th scope="col">description</th>
-        </tr>
-        
-        <tr>
-          <th scope="row">blam</th>
-          <td><p>Critically contains the time for the scheduled beat (relative to <code>currentTime</code>), but also supplies <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> and <code><a href="/elements/track">&lt;track-blam&gt;</a></code> information.</p>
-</td>
-        </tr>
-        
-      </tbody></table>
-    
-    
-      <h2 id="methods">Methods</h2>
-      <table>
-        <tbody><tr>
-          <th scope="col">name</th>
-          <th scope="col">args</th>
-          <th scope="col">description</th>
-        </tr>
-        
-        <tr>
-          <th scope="row">play</th>
-          <td style="text-align: left"></td>
-          <td><p>Starts the sequencer, which begins emitting <code>blam</code> events at intervals according to the current <code>scale</code>.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">stop</th>
-          <td style="text-align: left"></td>
-          <td><p>Ceases emitting <code>blam</code> events and resets all descendant <code><a href="/elements/track">&lt;track-blam&gt;</a></code> elements, essentially rewinding each to the beginning of their first <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code>’s <code>s</code> pattern.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">pause</th>
-          <td style="text-align: left"></td>
-          <td><p>Ceases emitting <code>blam</code> events. Does not reset any constituent <code><a href="/elements/track">&lt;track-blam&gt;</a></code>s.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">playStop</th>
-          <td style="text-align: left"></td>
-          <td><p>Toggles between <code>play</code> and <code>stop</code>.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">playPause</th>
-          <td style="text-align: left"></td>
-          <td><p>Toggles between <code>play</code> and <code>pause</code>.</p>
-</td>
-        </tr>
-        
-      </tbody></table>
     
     <h2 id="examples">Examples</h2>
     
     
       
-        
+    
       
     
       
-        
-      
     
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
       
     
       
@@ -266,27 +145,33 @@
       
     
       
-        
+    
       
     
       
-        
+    
       
     
       
-        
+    
       
     
       
-        
+    
       
     
       
-        
+    
       
     
       
-        
+    
+      
+    
+      
+    
+      
+    
       
     
       
@@ -303,101 +188,9 @@
         
       
     
-      
-        
-      
     
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-    <p>Examples that use the <strong>Sequencer</strong> element:</p>
+    <p>Examples that use the <strong>Part</strong> element:</p>
     <ul class="l-examples">
-      
-        <li>
-          <a href="https://hyperblam.how/examples/01-i-wear-many-hats/">I wear many hats</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/02-can-one-kick-it/">Can one kick it?</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/03-snare-makes-the-groove/">Snare makes the groove</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/04-getting-ghosted/">Getting ghosted</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/05-saturation-shenanigans/">Saturation shenanigans</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/06-tape-emulation/">Tape emulation</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/radioactive-orb/">Radioactive orb</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/wah-Im-sad/">Wah, I’m Sad</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/typerblam/">Typerblam</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/03-breathe-and-stop/">Breathe and stop</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/04-slip-and-slide/">Slip and slide</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/05-give-the-drummer-some/">Give the drummer some</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/06-a-motif-with-some-mojo/">A motif with some mojo</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/06-automayhem/">Automayhem</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/07-make-it-fed/">Make It Fed</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/08-hopeless-horror-hole/">Hopeless Horror hole</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/ch-ch-ch-chocolate/">Ch-ch-ch-chocolate</a>
-        </li>
-      
-        <li>
-          <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
-        </li>
       
         <li>
           <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>

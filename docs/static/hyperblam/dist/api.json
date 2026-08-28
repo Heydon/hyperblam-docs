@@ -4,7 +4,7 @@
     "defined": true,
     "extends": "Box",
     "category": "Visualizing",
-    "summary": "Put it anywhere in a **Chain** element and extract frequency or time domain data for visualization.",
+    "summary": "Put it anywhere in a `<chain-blam>` element and extract frequency or time domain data for visualization.",
     "props": [
       {
         "name": "bands",
@@ -16,7 +16,7 @@
         "name": "gain",
         "type": "number",
         "default": 1,
-        "description": "Use this to adjust the strength of the signal. It does not affect the audio output; only the signal _data_. The mix coming out of an **Analyser** is 100% dry by default. It is not recommended you change the `mix`."
+        "description": "Use this to adjust the strength of the signal. It does not affect the audio output; only the signal _data_. The mix coming out of an `<analyser-blam>` is 100% dry by default. It is not recommended you change the `mix`."
       },
       {
         "name": "smoothing",
@@ -28,7 +28,7 @@
         "name": "bypass",
         "type": "boolean",
         "default": false,
-        "description": "For **Analyser**, bypassing will mean data will be zeroed."
+        "description": "For `<analyser-blam>`, bypassing will mean data will be zeroed."
       },
       {
         "name": "mix",
@@ -64,7 +64,7 @@
         "name": "bpm",
         "type": "number",
         "default": "config.bpm",
-        "description": "The tempo, in beats per minute. Used in calculations by **Sequencer**, **LFO**, **Echo** and others."
+        "description": "The tempo, in beats per minute. Used in calculations by `<sequencer-blam>`, `<lfo-blam>`, `<echo-blam>` and others."
       }
     ],
     "events": [
@@ -86,19 +86,19 @@
         "name": "count",
         "type": "number",
         "default": 16,
-        "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats."
+        "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from `<analyser-blam>` `bands`) then the pattern repeats."
       },
       {
         "name": "first",
         "type": "number",
         "default": "undefined",
-        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**."
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the `<analyser-blam>`."
       },
       {
         "name": "last",
         "type": "number",
         "default": "undefined",
-        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the `<analyser-blam>`."
       },
       {
         "name": "shuffle",
@@ -109,13 +109,13 @@
       {
         "name": "analyser",
         "type": "string",
-        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+        "description": "A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page."
       },
       {
         "name": "fps",
         "type": "number",
         "default": 25,
-        "description": "Frames per second. The frequency with which **Analyser** data is read."
+        "description": "Frames per second. The frequency with which `<analyser-blam>` data is read."
       }
     ],
     "methods": [
@@ -143,23 +143,23 @@
       {
         "name": "event",
         "default": "blamready",
-        "description": "By default, the **Bank** fetches and converts constituent samples on the `blamready` event, which is fired on the window when all elements have been defined."
+        "description": "By default, the `<bank-blam>` fetches and converts constituent samples on the `blamready` event, which is fired on the window when all elements have been defined."
       },
       {
         "name": "from",
         "type": "string",
-        "description": "A CSS selector representing all elements from which events should be listened to. Defaults to `window` for **Bank**."
+        "description": "A CSS selector representing all elements from which events should be listened to. Defaults to `window` for `<bank-blam>`."
       },
       {
         "name": "to",
         "type": "string",
-        "description": "A CSS selector representing all elements to affect in response to the event. Defaults to the **Bank** element itself, in this case, and should not be altered."
+        "description": "A CSS selector representing all elements to affect in response to the event. Defaults to the `<bank-blam>` element itself, in this case, and should not be altered."
       },
       {
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Not applicable for **Bank**."
+        "description": "Not applicable for `<bank-blam>`."
       },
       {
         "name": "for",
@@ -183,7 +183,7 @@
     "events": [
       {
         "name": "blambank",
-        "description": "Fired when all the **Bank**’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`."
+        "description": "Fired when all the `<bank-blam>`’s samples have been converted to buffers and are ready for use. The data contains the buffers as `sounds`."
       }
     ]
   },
@@ -191,7 +191,7 @@
     "name": "Bar",
     "category": "Sequencing",
     "defined": true,
-    "summary": "Defines a single bar’s pattern, as handled by a parent **Track** element.",
+    "summary": "Defines a single bar’s pattern, as handled by a containing `<track-blam>` element.",
     "props": [
       {
         "name": "s",
@@ -199,10 +199,15 @@
         "description": "The space-separated pattern representing the distribution of notes or sounds. `0` represents a pause (skipped sound/beat)."
       },
       {
+        "name": "span",
+        "type": "number",
+        "description": "Just how many of the beats/triggers defined by `s` to actually use. If the `s` value is `1 0 2 0` but `span` is `3`, the pattern will repeat as `1 0 2`. If `span` is `7`, the repeated pattern will become `1 0 2 0 1 0 2` (partially looped back). Useful for quickly introducing different polymeters."
+      },
+      {
         "name": "chance",
         "type": "number",
         "default": 1,
-        "description": "The probability that any one sound in the `s` pattern will be played. Overrides a parent **Track’s** `chance`."
+        "description": "The probability that any one sound in the `s` pattern will be played. Overrides a parent `<track-blam>`’s chance`."
       },
       {
         "name": "fill",
@@ -214,7 +219,7 @@
     "events": [
       {
         "name": "blam",
-        "description": "Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor **Track** element."
+        "description": "Fired whenever the bar begins. Useful for compositional changes, made on the fly. Instigated by an ancestor `<track-blam>` element."
       }
     ]
   },
@@ -265,7 +270,7 @@
         "name": "mode",
         "type": "string",
         "default": "“events”",
-        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+        "description": "By default, **Set**-based elements just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
       },
       {
         "name": "for",
@@ -307,7 +312,7 @@
       {
         "name": "out",
         "type": "string",
-        "description": "The `id` of the next element to connect to, in the signal chain. If not set, it connects to the ancestor **Audio** element."
+        "description": "The `id` of the next element to connect to, in the signal chain. If not set, it connects to the containing `<audio-blam>` element."
       },
       {
         "name": "mix",
@@ -375,7 +380,7 @@
         "name": "mode",
         "type": "string",
         "default": "“events”",
-        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+        "description": "By default, **Set**-based elements just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
       },
       {
         "name": "for",
@@ -443,7 +448,7 @@
         "name": "beats",
         "type": "number",
         "default": 1,
-        "description": "The interval of echos, relative to the bpm set by an ancestor **Audio** or **Sequencer** element."
+        "description": "The interval of echos, relative to the bpm set by an ancestor `<audio-blam>` or `<sequencer-blam>` element."
       },
       {
         "name": "feedback",
@@ -476,7 +481,7 @@
     "extends": "Handle",
     "category": "Modulating",
     "defined": true,
-    "summary": "An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest **Sampler**-based element’s `blam` event.",
+    "summary": "An auxiliary envelope. Control any `audioParam` of any element by describing a curve for its value. Uses the closest `<sampler-blam>`-based element’s `blam` event.",
     "props": [
       {
         "name": "curve",
@@ -682,7 +687,7 @@
         "name": "mode",
         "type": "string",
         "default": "“events”",
-        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+        "description": "By default, **Set**-based elements just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
       },
       {
         "name": "for",
@@ -725,7 +730,7 @@
         "name": "prop",
         "type": "string",
         "default": "gain",
-        "description": "The `audioParam` to which the **LFO** connects. This may be mapped to a `prop` or exposed separately. Its value at the time of connection represents the _center_ value for oscillation."
+        "description": "The `audioParam` to which the `<lfo-blam>` connects. This may be mapped to a `prop` or exposed separately. Its value at the time of connection represents the _center_ value for oscillation."
       },
       {
         "name": "type",
@@ -743,7 +748,7 @@
         "name": "beats",
         "type": "number",
         "default": 1,
-        "description": "The frequency of the LFO in beats, mapped to the `bpm` of an ancestor **Audio** or **Sequencer** element."
+        "description": "The frequency of the LFO in beats, mapped to the `bpm` of an ancestor `<audio-blam>` or `<sequencer-blam>` element."
       },
       {
         "name": "detune",
@@ -764,7 +769,7 @@
     "extends": "Box",
     "category": "Processing",
     "defined": true,
-    "summary": "A hard-wired limiter module that does its best to eliminate clipping. Best used at the end of a **Chain**.",
+    "summary": "A hard-wired limiter module that does its best to eliminate clipping. Best used at the end of a `<chain-blam>`.",
     "props": [
       {
         "name": "mix",
@@ -925,7 +930,7 @@
         "name": "beats",
         "type": "number",
         "default": 16,
-        "description": "The frequency of the built-in LFO in beats, mapped to the `bpm` of an ancestor **Audio** or **Sequencer** element."
+        "description": "The frequency of the built-in LFO in beats, mapped to the `bpm` of an ancestor `<audio-blam>` element."
       },
       {
         "name": "invert",
@@ -980,7 +985,7 @@
         "name": "root",
         "type": "string",
         "default": "C4",
-        "description": "The root note for the buffers/sounds where not supplied by the individual **Sample** element. Used to calculate pitch shifts."
+        "description": "The root note for the buffers/sounds where not supplied by the individual `<sample-blam>` element. Used to calculate pitch shifts."
       },
       {
         "name": "notes",
@@ -996,7 +1001,7 @@
       {
         "name": "out",
         "type": "string",
-        "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element."
+        "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant `<chain-blam>` element or (if no `<chain-blam>` is included) the containing `<audio-blam>` element."
       },
       {
         "name": "gain",
@@ -1014,7 +1019,7 @@
         "name": "length",
         "type": "number",
         "default": 100,
-        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over."
+        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a `<blam-blam>` element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over."
       },
       {
         "name": "start",
@@ -1055,7 +1060,7 @@
       },
       {
         "name": "stop",
-        "description": "Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use **Sequencer’s** `stop` event.",
+        "description": "Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use `<sequencer-blam>`’s `stop` event.",
         "args": "**time**: When to stop the sound. By default, it’s immediately, using `currentTime`."
       }
     ],
@@ -1104,7 +1109,7 @@
       {
         "name": "from",
         "type": "string",
-        "description": "CSS selector. Must be a **Midi** element. If not set, looks for an ancestor **Midi** element."
+        "description": "CSS selector. Must be a `<midi-blam>` element. If not set, looks for an ancestor `<midi-blam>` element."
       },
       {
         "name": "to",
@@ -1152,7 +1157,7 @@
       {
         "name": "out",
         "type": "string",
-        "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant **Chain** element or (if no **Chain** is included) the ancestor **Audio** element."
+        "description": "An `id` for the next element in the signal chain. If not supplied this defaults to a descendant `<chain-blam>` element or (if no `<chain-blam>` is included) the containing `<audio-blam>` element."
       },
       {
         "name": "gain",
@@ -1170,7 +1175,7 @@
         "name": "length",
         "type": "number",
         "default": 100,
-        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a **Blam** element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over."
+        "description": "Foreshorten the sample. The value, in beats, represents the new length. Can be randomized using a `<blam-blam>` element for interesting effects. For compatibility with other elements, it must be a numeric value, but no `length` is set at all for values of `100` or over."
       },
       {
         "name": "start",
@@ -1221,7 +1226,7 @@
       },
       {
         "name": "stop",
-        "description": "Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use **Sequencer’s** `stop` event.",
+        "description": "Stops the previous sound, using `choke` for easing. Only really useful for longer sounds. To adjust the length of sound playback, use `length`. To stop a sequence, of `play()` events, use `<sequencer-blam>`’s `stop` event.",
         "args": "**time**: When to stop the sound. By default, it’s immediately, using `currentTime`."
       }
     ]
@@ -1254,22 +1259,28 @@
     ]
   },
   {
+    "name": "Part",
+    "category": "Sequencing",
+    "defined": true,
+    "summary": "Groups `<bar-blam>` and `<repeat-blam>` elements together for compositional purposes. Corresponds to `<track-blam>`’s `part` prop, identifying the currently active `<part-blam>`."
+  },
+  {
     "name": "Peak",
     "extends": "Visualiser",
     "category": "Visualizing",
     "defined": true,
-    "summary": "Takes **Analyser** data, finds the peak (RMS-based) value and coverts it to a single CSS custom property of the format `--[name]-peak` on the element. Additionally, `--[name]-interval` represents the duration of one frame (based on the `fps` value). This is useful for applying CSS transitions between data changes.",
+    "summary": "Takes `<analyser-blam>` data, finds the peak (RMS-based) value and coverts it to a single CSS custom property of the format `--[name]-peak` on the element. Additionally, `--[name]-interval` represents the duration of one frame (based on the `fps` value). This is useful for applying CSS transitions between data changes.",
     "props": [
       {
         "name": "analyser",
         "type": "string",
-        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+        "description": "A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page."
       },
       {
         "name": "fps",
         "type": "number",
         "default": 25,
-        "description": "Frames per second. The frequency with which **Analyser** data is read."
+        "description": "Frames per second. The frequency with which `<analyser-blam>` data is read."
       }
     ],
     "methods": [
@@ -1337,7 +1348,7 @@
     "category": "Visualizing",
     "extends": "BandsToProps",
     "defined": true,
-    "summary": "Converts **Analyser** frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Finally, `--[name]-freq-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
+    "summary": "Converts `<analyser-blam>` frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Finally, `--[name]-freq-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
     "props": [
       {
         "name": "selector",
@@ -1349,13 +1360,13 @@
         "name": "first",
         "type": "number",
         "default": "undefined",
-        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**."
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the `<analyser-blam>`."
       },
       {
         "name": "last",
         "type": "number",
         "default": "undefined",
-        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the `<analyser-blam>`."
       },
       {
         "name": "shuffle",
@@ -1366,13 +1377,13 @@
       {
         "name": "analyser",
         "type": "string",
-        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+        "description": "A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page."
       },
       {
         "name": "fps",
         "type": "number",
         "default": 25,
-        "description": "Frames per second. The frequency with which **Analyser** data is read."
+        "description": "Frames per second. The frequency with which `<analyser-blam>` data is read."
       }
     ],
     "methods": [
@@ -1449,13 +1460,13 @@
         "name": "mode",
         "default": "all",
         "type": "string",
-        "description": "One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the **Relay**. Elements without `off` are activated independently _and_ via **Relay**."
+        "description": "One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the `<relay-blam>`. Elements without `off` are activated independently _and_ via `<relay-blam>`."
       },
       {
         "name": "prop",
         "type": "string",
         "default": "null",
-        "description": "Not applicable for **Relay**. The `prop` is defined on each subject element."
+        "description": "Not applicable for `<relay-blam>`. The `prop` is defined on each subject element."
       },
       {
         "name": "from",
@@ -1492,13 +1503,13 @@
     "extends": "Base",
     "category": "Sequencing",
     "defined": true,
-    "summary": "Group some **Track** element’s **Bars** and repeat the enclosed pattern/part `x` number of times.",
+    "summary": "Group some `<track-blam>` element’s `<bar-blam>`s and repeat the enclosed pattern/part `x` number of times.",
     "props": [
       {
         "name": "x",
         "type": "number",
         "default": 1,
-        "description": "How many times the enclosed pattern/part should be repeated. If `x=\"3\"`, the **Bar** or **Bars** will play 3 times before the next **Bar** or **Repeat** element is played."
+        "description": "How many times the enclosed pattern/part should be repeated. If `x=\"3\"`, the `<bar-blam>` or `<bar-blam>`s will play 3 times before the next `<bar-blam>` or `<repeat-blam>` element is played."
       }
     ]
   },
@@ -1507,12 +1518,12 @@
     "extends": "Box",
     "category": "Processing",
     "defined": true,
-    "summary": "Convolution based reverb effect using a sample from a **Sample** element as the impulse response (IR).",
+    "summary": "Convolution based reverb effect using a sample from a `<sample-blam>` element as the impulse response (IR).",
     "props": [
       {
         "name": "src",
         "type": "string",
-        "description": "The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child Sample element."
+        "description": "The Sample element supplying the impulse response for convolution. Supply an `id` with this prop, or just supply a child `<sample-blam>` element."
       },
       {
         "name": "cutoff",
@@ -1546,19 +1557,19 @@
         "name": "count",
         "type": "number",
         "default": 16,
-        "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from **Analyser** `bands`) then the pattern repeats."
+        "description": "The number of elements to render, mapping to data bands. If there are more elements than bands (taken from `<analyser-blam>` `bands`) then the pattern repeats."
       },
       {
         "name": "first",
         "type": "number",
         "default": "undefined",
-        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the **Analyser**."
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the `<analyser-blam>`."
       },
       {
         "name": "last",
         "type": "number",
         "default": "undefined",
-        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the **Analyser**."
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the `<analyser-blam>`."
       },
       {
         "name": "shuffle",
@@ -1569,13 +1580,13 @@
       {
         "name": "analyser",
         "type": "string",
-        "description": "A CSS selector for the **Analyser** element. Defaults to the first **Analyser** found in the page."
+        "description": "A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page."
       },
       {
         "name": "fps",
         "type": "number",
         "default": 25,
-        "description": "Frames per second. The frequency with which **Analyser** data is read."
+        "description": "Frames per second. The frequency with which `<analyser-blam>` data is read."
       }
     ],
     "methods": [
@@ -1697,7 +1708,7 @@
     "events": [
       {
         "name": "blam",
-        "description": "Critically contains the time for the scheduled beat (relative to `currentTime`), but also supplies **Sequencer** and **Track** information."
+        "description": "Critically contains the time for the scheduled beat (relative to `currentTime`), but also supplies `<sequencer-blam>` and `<track-blam>` information."
       }
     ],
     "methods": [
@@ -1707,11 +1718,11 @@
       },
       {
         "name": "stop",
-        "description": "Ceases emitting `blam` events and resets all descendant **Track** elements, essentially rewinding each to the beginning of their first **Bar**’s `s` pattern."
+        "description": "Ceases emitting `blam` events and resets all descendant `<track-blam>` elements, essentially rewinding each to the beginning of their first `<bar-blam>`’s `s` pattern."
       },
       {
         "name": "pause",
-        "description": "Ceases emitting `blam` events. Does not reset any constituent **Tracks**."
+        "description": "Ceases emitting `blam` events. Does not reset any constituent `<track-blam>`s."
       },
       {
         "name": "playStop",
@@ -1728,7 +1739,7 @@
     "defined": true,
     "category": "Automating",
     "extends": "Set",
-    "summary": "Like **Blam** but it only affects _some_ of the elements selected using `to`.",
+    "summary": "Like `<blam-blam>` but it only affects _some_ of the elements selected using `to`.",
     "props": [
       {
         "name": "min",
@@ -1746,7 +1757,7 @@
         "name": "revert",
         "type": "boolean",
         "default": false,
-        "description": "In the case of **Some**, `revert` reverts all `prop` values at each event, before setting the `value` just for _some_."
+        "description": "In the case of `<some-blam>`, `revert` reverts all `prop` values at each event, before setting the `value` just for _some_."
       },
       {
         "name": "ramp",
@@ -1782,7 +1793,7 @@
         "name": "mode",
         "type": "string",
         "default": "“events”",
-        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+        "description": "By default, **Set**-based elements just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
       },
       {
         "name": "for",
@@ -1871,7 +1882,7 @@
         "name": "mode",
         "type": "string",
         "default": "“events”",
-        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+        "description": "By default, **Set**-based elements just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
       },
       {
         "name": "for",
@@ -1984,7 +1995,7 @@
         "name": "mode",
         "type": "string",
         "default": "“events”",
-        "description": "By default, **Set** just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
+        "description": "By default, **Set**-based elements just listens for events. Use `mode=\"props\"` to listen for prop changes instead."
       },
       {
         "name": "for",
@@ -2027,24 +2038,24 @@
     "extends": "Handle",
     "category": "Sequencing",
     "defined": true,
-    "summary": "Corresponds to a **Sequencer** and uses child **Bar** elements to define repeating rhythmic patterns.",
+    "summary": "Corresponds to a `<sequencer-blam>` and uses child `<bar-blam>` elements to define repeating rhythmic patterns.",
     "props": [
       {
         "name": "solo",
         "type": "boolean",
         "default": false,
-        "description": "When applied, all other **Track** elements belonging to the ancestor **Sequencer** are suspended (their sounds aren’t played)."
+        "description": "When applied, all other `<track-blam>` elements belonging to the ancestor `<sequencer-blam>` are suspended (their sounds aren’t played)."
       },
       {
         "name": "overrides",
         "type": "string",
         "default": "null",
-        "description": "A space-separated list of **Track** `id`s. **Tracks** (belonging to a common **Sequencer**) whose sounds will _not_ play when this **Track** plays a sound. Important for polymetric sequencing, to avoid “collisions”."
+        "description": "A space-separated list of `<track-blam>` `id`s. Tracks (belonging to a common `<sequencer-blam>`) whose sounds will _not_ play when this `<track-blam>` plays a sound. Important for polymetric sequencing, to avoid “collisions”."
       },
       {
         "name": "from",
         "type": "string",
-        "description": "A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor **Sequencer** element for **Tracks**."
+        "description": "A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor `<sequencer-blam>` element for `<track-blam>`s."
       },
       {
         "name": "to",
@@ -2055,7 +2066,13 @@
         "name": "suspend",
         "type": "boolean",
         "default": false,
-        "description": "Stops the **Track** from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out."
+        "description": "Stops the `<track-blam>` from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out."
+      },
+      {
+        "name": "part",
+        "type": "string",
+        "default": null,
+        "description": "For compositional purposes, you can group `<bar-blam>`s into parts, using the `<part-blam>` element. The `part` prop takes a CSS selector corresponding to the first `<part-blam>` element it matches. If no `part` is set, the entire contents of the `<track-blam>` is considered the “part”."
       },
       {
         "name": "for",
@@ -2084,8 +2101,12 @@
     ],
     "events": [
       {
-        "name": "blambar",
-        "description": "Fired at the start of each new bar."
+        "name": "blam",
+        "description": "Fired on both the `<track-elem>` itself and the newly selected `<bar-blam>`."
+      },
+      {
+        "name": "blampart",
+        "description": "Fired on the `<track-elem>` whenever a new part (`<part-elem>`) is chosen. If the `part` value is falsy, the “part” is the entire structure belonging to the `<track-elem>`."
       }
     ]
   }

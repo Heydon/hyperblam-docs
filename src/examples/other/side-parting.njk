@@ -1,0 +1,164 @@
+---
+title: Side parting
+bpm: 90
+elements: 
+  - Pad 
+  - Part
+  - Bank 
+  - Sample 
+  - Sequencer 
+  - Track 
+  - Bar 
+  - Tap
+  - Switch
+  - Kbd
+---
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<pad-blam id="hat" choke="0.05" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+  </bank-blam>
+  <blam-blam prop="detune" value="0~60"></blam-blam>
+</pad-blam>
+<pad-blam id="kick" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+  </bank-blam>
+</pad-blam>
+<pad-blam id="snare" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+  </bank-blam>
+</pad-blam>
+<pad-blam id="snareSoft" out="bus">
+  <bank-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
+  </bank-blam>
+</pad-blam>
+<sequencer-blam id="transport" swing="0.25">
+  <track-blam id="hatTrack" to="#hat" part=".basic">
+    <part-blam class="basic">
+      <bar-blam s="1 0 2 0 1 0 2 0"></bar-blam>
+    </part-blam>
+    <part-blam class="open">
+      <bar-blam s="1 0 2 3 1 0 3 0"></bar-blam>
+      <bar-blam s="1 0 2 1 3 2 1 3"></bar-blam>
+    </part-blam>
+    <part-blam class="ten">
+      <bar-blam s="1 2 3 1 2 3 1 2 1 2" fill></bar-blam>
+    </part-blam>
+  </track-blam>
+  <track-blam id="kickTrack" to="#kick">
+    <bar-blam s="1 2 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="1 0 0 2 0 0 0 0"></bar-blam>
+    <part-blam class="fourToFloor">
+      <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
+    </part-blam>
+    <part-blam class="ten">
+      <bar-blam s="0 0 ? 0 0 ? 0 ? 0 0"></bar-blam>
+    </part-blam>
+  </track-blam>
+  <track-blam to="#snare" part=".basic" override="kickTrack">
+    <part-blam class="basic">
+      <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+    </part-blam>
+    <part-blam class="ten">
+      <bar-blam s="? 0 0 ? 0 0 ? 0 ? ?"></bar-blam>
+    </part-blam>
+  </track-blam>
+</sequencer-blam>
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+In the main [beat examples]({{site.basedir}}/examples/#beatexamples), the focus is primarily on creating a generative beat that changes constantly over time. This is possible by combining **probabilities** and polymetrics. 
+
+But what if you wanted to create separate parts? Verse and chorus, maybe? Or _“intense bit with loads of kick drum”_ and _“bit where the snare is on the one and the time signature changes”_?
+
+**HYPERBLAM**’s `<part-blam>` lets you organize `<track-blam>` parts into their own patterns. Which part is currently active is defined on the `<track-blam>`’s `part` prop. In the following example, a hi-hat track is currently looping the part which matches the CSS selector `.basic` (a class):
+
+```html
+<track-blam id="hatTrack" to="#hat" part=".basic">
+  <part-blam class="basic">
+    <bar-blam s="1 0 2 0 1 0 2 0"></bar-blam>
+  </part-blam>
+  <part-blam class="open">
+    <bar-blam s="1 0 2 3 1 0 3 0"></bar-blam>
+    <bar-blam s="1 0 2 1 3 2 1 3"></bar-blam>
+  </part-blam>
+</track-blam>
+```
+
+The `class="open"` part includes a two-bar pattern incorporating a third (`3`) sample mapped to an open hi-hat sound. You could switch to this in the UI, using `<switch-blam>`...
+
+```html
+<switch-blam to="#hatTrack" prop="part" value=".open">
+  <label>
+    open hats
+    <input type="checkbox">
+  </label>
+</switch-blam>
+```
+
+... or you could randomly switch between these parts using `<blam-blam>`. Here, there’s a 50% chance the hi-hat playing style will switch between the two parts available.
+
+```html
+<blam-blam to="#hatTrack" prop="part" value=".open|.basic" chance="0.5"></blam-blam>
+```
+
+Flipping the “10 break” switch makes each `<track-blam>` use its contribution to a lively, snare-led breakdown part identified as `class="ten"`. Note how the hi-hat’s part uses a bar with `fill`, mixing up where open hats are placed each time. 
+
+```html
+<part-blam class="ten">
+  <bar-blam s="1 2 3 1 2 3 1 2 1 2" fill></bar-blam>
+</part-blam>
+```
+
+This gives the breakdown a varied, improvisational feel, differing each time it is brought in. With `<part-blam>` you can introduce major compositional shifts without undermining ongoing generative fluctuations.
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<switch-blam to="#hatTrack" prop="part" value=".open">
+  <label>
+    open hats
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#kickTrack" prop="part" value=".fourToFloor">
+  <label>
+    4 to the floor
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="track-blam" prop="part" value=".ten">
+  <label>
+    10 break
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<kbd-blam to="#kick" key="1" prop="play"></kbd-blam>
+<kbd-blam to="#snare" key="2" prop="play"></kbd-blam>
+<kbd-blam to="#snareSoft" key="3" prop="play"></kbd-blam>
+<kbd-blam to="#hat" key="4" prop="play"></kbd-blam>
+{% endblock %}

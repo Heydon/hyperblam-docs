@@ -27,4 +27,4 @@ props:
     description: Only applies when using `|`-separated `value` syntax. Whether to cycle from first to last and back again (a “round robin”).
   - name: mode 
     default: “events” 
-    description: By default, **Set** just listens for events. Use `mode="props"` to listen for prop changes instead.
+    description: By default, **Set**-based elements just listens for events. Use `mode="props"` to listen for prop changes instead.

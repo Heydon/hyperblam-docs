@@ -10,23 +10,23 @@ class Track extends Handle {
   onblamready() {
     super.onblamready();
     this.barElems = [...this.querySelectorAll('bar-blam')];
-    this.parts = [...this.querySelectorAll(':scope > :where(bar-blam, repeat-blam)')];
-    this.indices = this.createIndices();
+    let bits = [...this.querySelectorAll(':scope > :where(bar-blam, repeat-blam)')];
+    this.indices = this.createIndices(bits);
     this.reset();
   }
 
-  createIndices() {
+  createIndices(bits) {
     let indices = [];
-    this.parts.forEach((p, i) => {
-      let part;
-      if (p.repeat) {
-        let barElems = [...p.querySelectorAll('bar-blam')];
+    bits.forEach((b, i) => {
+      let bit;
+      if (b.repeat) {
+        let barElems = [...b.querySelectorAll('bar-blam')];
         let mapped = barElems.map(b => this.barElems.indexOf(b));
-        part = new Array(p.x).fill(mapped).flat();
+        bit = new Array(b.x).fill(mapped).flat();
       } else {
-        part = this.barElems.indexOf(p);
+        bit = this.barElems.indexOf(b);
       }
-      indices.push(part);
+      indices.push(bit);
     });
     return indices.flat();
   }
@@ -39,34 +39,7 @@ class Track extends Handle {
               t.probable && !t.suspend && 
               !(this.solo && !t.solo))
     });
-    if (
-      !this.probable ||
-      overridden 
-    ) 
-    return false;
-    return true;
-  }
-
-  play(player, tracks) {
-    this.playOrNot(tracks) && player.play(this.cipher, this.time);
-    if (this.cipher !== 0) {
-      this.fire('blam', { 
-        time: this.time
-      },
-      this);
-    }
-  }
-
-  reset() {
-    this.bars = this.bar = this.step = 0;
-  }
-
-  getBar() {
-    return this.barElems[this.indices[this.bar]];
-  }
-
-  barBlam(data) {
-    this.fire('blam', data, this.getBar());
+    return !(!this.probable || overridden);
   }
 
   handle(event) {
@@ -75,19 +48,39 @@ class Track extends Handle {
     }
     this.step++;
     this.time = event.detail.time;
+    let data = { time: this.time };
 
     if (this.step > this.getBar().steps.length - 1) {
-      let data = { time: this.time };
-      this.barBlam(data);
-      this.fire('blambar', data, this);
+      this.partChanging && this.setPart();
       this.step = 0;
       this.bar++;
       this.bars++;
+      this.fire('blam', data, this.getBar());
+      this.fire('blam', data, this);
     }
 
-    if (this.bar > this.indices.length - 1) {
+    if (this.bar > (this.partElem.indices.length - 1)) {
+      this.partChanging && this.fire('blampart', data, this);
       this.bar = 0;
     }
+  }
+
+  play(player, tracks) {
+    this.playOrNot(tracks) && player.play(this.cipher, this.time);
+  }
+
+  reset() {
+    this.bars = this.bar = this.step = 0;
+  }
+
+  setPart() {
+    this.partElem = this.querySelector(this.part) || this;
+    this.partChanging = false;
+    this.bar = 0;
+  }
+
+  getBar() {
+    return this.barElems[this.partElem.indices[this.bar]];
   }
 
   get solo() {
@@ -114,6 +107,28 @@ class Track extends Handle {
 	set suspend(value) {
 		this.toBoolean('suspend', value);
 	}
+
+  get part() {
+    return this.getAttribute('part');
+	}
+
+	set part(value) {
+		this.setAttribute('part', value);
+  }
+
+  static get observedAttributes () {
+    return ['part'];
+  }
+
+  attributeChangedCallback(name) {
+    if (name === 'part') {
+      this.partChanging = true;
+    }
+  }
+
+  connectedCallback() {
+    this.setPart();
+  }
 }
 
 export { Track }

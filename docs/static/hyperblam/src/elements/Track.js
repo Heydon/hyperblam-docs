@@ -10,7 +10,7 @@ class Track extends Handle {
   onblamready() {
     super.onblamready();
     this.barElems = [...this.querySelectorAll('bar-blam')];
-    let bits = [...this.querySelectorAll(':scope > :where(bar-blam, repeat-blam)')];
+    let bits = [...this.querySelectorAll(':scope :where(bar-blam, repeat-blam)')];
     this.indices = this.createIndices(bits);
     this.reset();
   }
@@ -51,7 +51,6 @@ class Track extends Handle {
     let data = { time: this.time };
 
     if (this.step > this.getBar().steps.length - 1) {
-      this.partChanging && this.setPart();
       this.step = 0;
       this.bar++;
       this.bars++;
@@ -59,9 +58,10 @@ class Track extends Handle {
       this.fire('blam', data, this);
     }
 
-    if (this.bar > (this.partElem.indices.length - 1)) {
-      this.partChanging && this.fire('blampart', data, this);
+    if (this.bar > this.partElem.indices.length - 1) {
       this.bar = 0;
+      this.partChanging && this.setPart();
+      this.partChanging && this.fire('blampart', data, this);
     }
   }
 
@@ -76,7 +76,6 @@ class Track extends Handle {
   setPart() {
     this.partElem = this.querySelector(this.part) || this;
     this.partChanging = false;
-    this.bar = 0;
   }
 
   getBar() {

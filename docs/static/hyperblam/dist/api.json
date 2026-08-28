@@ -2072,7 +2072,7 @@
         "name": "part",
         "type": "string",
         "default": null,
-        "description": "For compositional purposes, you can group `<bar-blam>`s into parts, using the `<part-blam>` element. The `part` prop takes a CSS selector corresponding to the first `<part-blam>` element it matches. If no `part` is set, the entire contents of the `<track-blam>` is considered the “part”."
+        "description": "For compositional purposes, you can group `<bar-blam>`s into parts, using the `<part-blam>` element. The `part` prop takes a CSS selector corresponding to the first `<part-blam>` element it matches. If no `part` is set, the entire contents of the `<track-blam>` is considered the “part”. Parts change when the current part comes to its end, so the immediacy of the shift depends on how close to the end of the part the change is made."
       },
       {
         "name": "for",

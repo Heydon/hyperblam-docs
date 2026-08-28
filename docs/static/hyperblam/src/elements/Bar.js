@@ -7,7 +7,10 @@ class Bar extends Base {
       if (v === '?') {
         return undefined;
       }
-      return JSON.parse(v);
+      if (isFinite(v)) {
+        return parseInt(v);
+      }
+      return v;
     });
     if (this.span) {
       return Array(this.span).fill().map((_, i) => values[i % values.length]).slice(0, this.span);

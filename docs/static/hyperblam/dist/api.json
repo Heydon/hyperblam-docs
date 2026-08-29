@@ -575,6 +575,64 @@
     ]
   },
   {
+    "name": "Freqs",
+    "category": "Visualizing",
+    "extends": "BandsToProps",
+    "defined": true,
+    "summary": "Converts `<analyser-blam>` frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Finally, `--[name]-freq-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
+    "props": [
+      {
+        "name": "selector",
+        "type": "string",
+        "default": null,
+        "description": "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-freq: --[name]-freq-[index]`), meaning all selected elements can be affected with a single declaration."
+      },
+      {
+        "name": "first",
+        "type": "number",
+        "default": "undefined",
+        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the `<analyser-blam>`."
+      },
+      {
+        "name": "last",
+        "type": "number",
+        "default": "undefined",
+        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the `<analyser-blam>`."
+      },
+      {
+        "name": "shuffle",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to shuffle the band/frequency data."
+      },
+      {
+        "name": "analyser",
+        "type": "string",
+        "description": "A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page."
+      },
+      {
+        "name": "fps",
+        "type": "number",
+        "default": 25,
+        "description": "Frames per second. The frequency with which `<analyser-blam>` data is read."
+      }
+    ],
+    "methods": [
+      {
+        "name": "start",
+        "description": "Starts taking data from the associated `analyser`."
+      },
+      {
+        "name": "stop",
+        "description": "Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized."
+      },
+      {
+        "name": "startStop",
+        "description": "Toggles between `start` and `stop`."
+      }
+    ]
+  },
+  {
     "name": "Gain",
     "extends": "Box",
     "category": "Processing",
@@ -1340,64 +1398,6 @@
         "type": "boolean",
         "default": false,
         "description": "Whether to send _just_ the dry signal. If set, the `dry` signal is sent using the `wet` signal’s gain value, for parity."
-      }
-    ]
-  },
-  {
-    "name": "Props",
-    "category": "Visualizing",
-    "extends": "BandsToProps",
-    "defined": true,
-    "summary": "Converts `<analyser-blam>` frequency data into CSS custom properties and (optionally) maps those values to selected elements. For each data band, it places a custom property of the format `--[name]-freq-[index]` on the root. Finally, `--[name]-freq-interval` represents the duration of one frame (based on the `fps` value). This is useful for CSS transitions.",
-    "props": [
-      {
-        "name": "selector",
-        "type": "string",
-        "default": null,
-        "description": "A CSS selector representing all the elements to which data values should be mapped. Each element’s `--[name]-[type]` property is mapped to a specific band (`--[name]-freq: --[name]-freq-[index]`), meaning all selected elements can be affected with a single declaration."
-      },
-      {
-        "name": "first",
-        "type": "number",
-        "default": "undefined",
-        "description": "The first of the data bands to use. If `undefined`, it’s the very first band provided by the `<analyser-blam>`."
-      },
-      {
-        "name": "last",
-        "type": "number",
-        "default": "undefined",
-        "description": "The last of the data bands to use. If `undefined`, it’s the very last band provided by the `<analyser-blam>`."
-      },
-      {
-        "name": "shuffle",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether to shuffle the band/frequency data."
-      },
-      {
-        "name": "analyser",
-        "type": "string",
-        "description": "A CSS selector for the `<analyser-blam>` element. Defaults to the first `<analyser-blam>` found in the page."
-      },
-      {
-        "name": "fps",
-        "type": "number",
-        "default": 25,
-        "description": "Frames per second. The frequency with which `<analyser-blam>` data is read."
-      }
-    ],
-    "methods": [
-      {
-        "name": "start",
-        "description": "Starts taking data from the associated `analyser`."
-      },
-      {
-        "name": "stop",
-        "description": "Changes into a non-running state. Frequency data is still taken from the `analyser` until frequency values all become `0`. This allows for the audio tail to be visualized."
-      },
-      {
-        "name": "startStop",
-        "description": "Toggles between `start` and `stop`."
       }
     ]
   },

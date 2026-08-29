@@ -1,30 +1,31 @@
-import { BandsToProps } from '../primitives/BandsToProps.js';
+import { ListenWatch } from '../primitives/ListenWatch.js';
 
-class Props extends BandsToProps {
-	onblamready() {
-		super.onblamready();
-		this.init();
-	}
-
-	init() {
-    this.bandElems = [...this.querySelectorAll(this.selector)];
-		this.bandElems.length && this.distribute();
+class Props extends ListenWatch {
+  constructor() {
+    super();
+    this.name = this.id || this.nodeName.toLowerCase();
   }
 
-	distribute() {
-		let indices = this.createIndices(this.bandElems.length);
-		this.bandElems.forEach((b, i) => {
-      b.style.setProperty(`--${this.name}-freq`, `var(--${this.name}-freq-${indices[i]})`);
-    });
-	}
+  handle(event) {
+    let data = event.detail;
+    if (!data) return;
+    let index = this.fromElems.indexOf(event.target) + 1;
+    for (const [i, to] of this.toElems.entries()) {
+      Object.keys(data).forEach((k, i) => {
+        to.style.setProperty(`--${this.name}-${index}-${k}`, data[k]);
+      });
+    }
+  }
 
-	get selector() {
-    return this.getAttribute('selector') || null;
-	}
-
-	set selector(value) {
-		this.setAttribute('selector', value);
-	}
+  handleWatch(list, observer) {
+    if (this.bypass) return;
+    for (const [i, to] of this.toElems.entries()) {
+      for (const r of list) {
+        let index = this.fromElems.indexOf(r.target) + 1;
+        to.style.setProperty(`--${this.name}-${index}-${r.attributeName}`, r.target[r.attributeName]);
+      }    
+    }
+  }
 }
 
 export { Props }

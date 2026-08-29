@@ -166,7 +166,7 @@ Each time the `<pad-blam>` schedules a sound, it fires a `blam` event, letting t
 
 ## Visualization
 
-The `<analyser-blam>` element converts the incoming signal into frequency data. You can use this data to visualize frequency _bands_ with elements like `<props-blam>` and `<peak-blam>`, which convert the data into CSS custom properties.
+The `<analyser-blam>` element converts the incoming signal into frequency data. You can use this data to visualize frequency _bands_ with elements like `<freqs-blam>` and `<peak-blam>`, which convert the data into CSS custom properties.
 
 But you can also create synchronized visual effects just based on events. In the [“Typerblam”]({{site.basedir}}/examples/typerblam) example, `<blam-blam>` elements create [seed numbers](https://en.wikipedia.org/wiki/Random_seed), as custom properties, with values between `0` and `1`.
 

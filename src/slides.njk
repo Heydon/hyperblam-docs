@@ -335,6 +335,21 @@
           <blam-blam to="#cowbellTrack" for="slideNext" prop="chance" value="0.4"></blam-blam>
           <blam-blam from="#snare" to="#dancer" prop="class" value="u-punch"></blam-blam>
         </section>
+
+        <section id="spinner">
+          <div class="l-screen"> 
+            <img style="height: 90%" class="u-spin" src="{{site.basedir}}/static/images/slides/spinner.svg" alt="loading spinner">
+            <div class="l-frame">
+              <dial-blam to="audio-blam" prop="bpm" style="font-size: 0.75em">
+                <label>
+                  bpm
+                  <input type="range" min="0" max="240">
+                </label>
+              </dial-blam>
+            </div> 
+          </div>
+          <props-blam id="spinnerProps" from="audio-blam" to="#spinner" mode="props"></props-blam>      
+        </section>
       </div>
 
 <!-- buses -->

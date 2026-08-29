@@ -190,6 +190,13 @@ section {
   overflow: hidden;
 }
 
+.l-screen, .l-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .l-screen, .l-frame, [class*="l-pos"] {
   position: absolute;
   inset: 0;
@@ -209,10 +216,6 @@ section {
 }
 
 .l-frame, [class*="l-pos"] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   gap: var(--gap, 1.5em);
   font-size: 5cqmin;
 }
@@ -386,6 +389,19 @@ section, .u-jolt {
 
 .u-punch {
   animation: punch 0.125s linear 1;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.u-spin {
+  animation: spin calc(240 / var(--spinnerProps-1-bpm) * 0.25s) linear infinite;
 }
 
 .u-impact {

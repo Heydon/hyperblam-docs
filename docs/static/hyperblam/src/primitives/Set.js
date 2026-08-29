@@ -42,8 +42,9 @@ class Set extends ListenWatch {
 
     if (this.prop === 'class') {
       to.classList.remove(this.value);
-      to.offsetHeight;
-      to.classList.add(this.value);
+      setTimeout(() => {
+        to.classList.add(this.value);
+      }, 1);
       return;
     }
 
@@ -57,7 +58,7 @@ class Set extends ListenWatch {
         to.setAttribute(this.prop, value);
         break;
       case 'boolean':
-        to[this.prop] = !to[this.prop];
+        to[this.prop] = this.value === null ? !to[this.prop] : value;
         break;
       case 'function':
         if (Array.isArray(value)) {
@@ -91,6 +92,8 @@ class Set extends ListenWatch {
       
       this.reverting = revert ? false : true;
 
+      this.fire('blam', {}, this);
+
       if (this.once) {
         this.unlisten();
       }
@@ -98,7 +101,6 @@ class Set extends ListenWatch {
   }
 
   handleWatch(list, observer) {
-    console.log(list[0]);
     let event = {
       detail: {
         time: this.getTime()

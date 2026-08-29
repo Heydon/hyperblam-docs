@@ -24,7 +24,6 @@ class Handle extends Base {
   handleEvent(event) {
     if (this.for.includes(event.type) && !this.bypass) {
       this.handle(event);
-      this.fire('blam', {}, this);
     } else {
       super.handleEvent(event);
     }

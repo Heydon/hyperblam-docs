@@ -368,8 +368,24 @@ section:not([hidden]) .u-warp {
   }
 }
 
-section {
+section, .u-jolt {
   animation: jolt 0.3s linear 1;
+}
+
+@keyframes punch {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2)
+  }
+  100% {
+    transform: scale(2)
+  }
+}
+
+.u-punch {
+  animation: punch 0.125s linear 1;
 }
 
 .u-impact {
@@ -388,8 +404,13 @@ section {
   animation: var(--wait, distort) var(--wait-speed, 0.2s) infinite alternate;
 }
 
-.u-wait video {
+.u-wait video, .u-contrast {
   filter: contrast(5);
+}
+
+.hat-top {
+  transform: translateY(var(--hatHeight));
+  transition: transform 0.125s ease-in-out;
 }
 
 @keyframes distort {

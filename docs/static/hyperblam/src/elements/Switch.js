@@ -22,13 +22,13 @@ class Switch extends Set {
 
   sync(to) {
     let toValue = to[0].target[this.prop];
-    let state = this.value ? this.value === toValue : !!toValue;
+    let state = this.value ? this.value === toValue : toValue;
     this.input.checked = this.reverse ? !state : state;
   }
 
   handle(event) {
     let value;
-    if (!this.value) {
+    if (this.value === null) {
       value = event.target.checked;
     } else {
       value = event.target.checked ? this.value : this.initial;

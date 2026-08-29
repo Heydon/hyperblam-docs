@@ -26,8 +26,6 @@ class Echo extends Box {
 
   setMix() {
     this.setParam('wet', this.mix);
-    this.setParam('dry', 1);
-    this.prevMix = this.mix;
   }
 
   passOrBypass() {

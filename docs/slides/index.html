@@ -200,6 +200,7 @@
               <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/okay_dont_tell_me.mp4"></video>
             </media-blam>
           </div>
+          <blam-blam to="#beat" for="slideWaiting" prop="stop"></blam-blam>
         </section>
 
         <section>
@@ -208,15 +209,15 @@
               <bands-blam id="basicVis" fps="9" analyser="#bossAnalyser" transport="#transport" class="u-squiggle" style="inline-size: 75vw; max-block-size: 100%" count="8">
               </bands-blam>
             </div>
-            <div class="l-frame u-blend">
+            <div class="l-frame u-blend" style="justify-content: space-between; font-size: 1.5em">
               <dial-blam to="#snare" prop="detune">
-                <label>
+                <label style="padding: 1em">
                   tune snare
                   <input type="range" min="-500" max="500" step="10">
                 </label>
               </dial-blam>
               <dial-blam to="#kick" prop="detune">
-                <label>
+                <label style="padding: 1em">
                   tune kicks
                   <input type="range" min="-500" max="500" step="10">
                 </label>
@@ -226,6 +227,7 @@
           <blam-blam to="#basicVis" for="slideNext" prop="start"></blam-blam>
           <blam-blam to="#cowbellTrack" for="slideNext" prop="solo" value="false"></blam-blam>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
+          <blam-blam to="#beat" for="slideNext" prop="play"></blam-blam>
         </section>
 
         <section class="u-no-stab">
@@ -244,6 +246,7 @@
 <pre><code>odd ? time : time + (quarterBeat * swing)</code></pre>
             </div>
           </div>
+          <blam-blam to="#beat" for="slideWaiting" prop="stop"></blam-blam>
         </section>
 
         <section>
@@ -263,6 +266,7 @@
             </div>
           </div>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
+          <blam-blam to="#beat" for="slideNext" prop="play"></blam-blam>
         </section>
 
         <section id="#hiHat" data-speech="a hi hat. In the closed position." data-pause="1" data-voice="Moira">
@@ -313,7 +317,6 @@
           <media-blam out="garbleBus">
             <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/one_second.mp4"></video>
           </media-blam>
-          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
         </section>
 
         <section>
@@ -321,13 +324,17 @@
             <media-blam out="garbleBus">
               <video class="u-contrast" id="dancer" onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/dancer.mp4" loop=""></video>
             </media-blam>
+            <div class="l-frame u-blend">
+
+            </div>
           </div>
           <blam-blam to=".hatTrack" for="slideNext" prop="solo" value="false"></blam-blam>
           <blam-blam to="#cowbellTrack" for="slideNext" prop="chance" value="0.4"></blam-blam>
           <blam-blam from="#snare" to="#dancer" prop="class" value="u-punch"></blam-blam>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
         </section>
 
-        <section id="spinner">
+        <section id="clockSlide" class="u-no-stab">
           <div class="l-screen"> 
             <img style="height: 90%" class="u-spin" src="https://hyperblam.how/static/images/slides/spinner.svg" alt="loading spinner">
             <div class="l-frame">
@@ -339,7 +346,10 @@
               </dial-blam>
             </div> 
           </div>
-          <props-blam id="spinnerProps" from="audio-blam" to="#spinner" mode="props"></props-blam>      
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam to="#clockTrack" for="slideNext" prop="suspend" value="false"></blam-blam>
+          <blam-blam to="#clockCustomProps" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam id="clockCustomProps" from="#clock" prop="--spinnerDegs" to="" value="0deg|45deg|90deg|135deg|180deg|225deg|270deg" robin="" bypass=""></blam-blam>
         </section>
       </div>
 
@@ -418,6 +428,14 @@
         <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass=""></blam-blam>  
       </pad-blam>
 
+      <pad-blam id="clock" bank="clockBank">
+        <chain-blam>
+          <reverb-blam mix="0.25" cutoff="500">
+            <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
+          </reverb-blam>
+        </chain-blam>
+      </pad-blam>
+
 <!-- sequencers -->
       <sequencer-blam id="beat" swing="0">
         <track-blam id="kickTrack" to="#kick" part=".basic">
@@ -451,6 +469,10 @@
 
         <track-blam id="cowbellTrack" to="#cowbell" solo="" chance="0.0">
           <bar-blam s="?"></bar-blam>
+        </track-blam>
+
+        <track-blam id="clockTrack" to="#clock" suspend="">
+          <bar-blam s="? 0 0 0 ? 0 0 0"></bar-blam>
         </track-blam>
       </sequencer-blam>
 
@@ -505,6 +527,11 @@
         <sample-blam src="https://hyperblam.how/static/sounds/kit-tight/ride-02.mp3"></sample-blam>
         <sample-blam src="https://hyperblam.how/static/sounds/kit-tight/ride-03.mp3"></sample-blam>
         <sample-blam src="https://hyperblam.how/static/sounds/kit-tight/ride-04.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="clockBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/tick.mp3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/tock.mp3"></sample-blam>
       </bank-blam>
     </audio-blam>
 
@@ -595,6 +622,7 @@
             thisSlide.classList.add('u-wait');
             window.waiting = true;
             window.lastKey = e.key;
+            fire('slideWaiting', {}, thisSlide);
             fire('slideWaiting', {}, document.body);
             return;
           }

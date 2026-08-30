@@ -74,7 +74,6 @@ class Track extends Handle {
 
   setPart() {
     this.partElem = this.querySelector(this.part) || this;
-    console.log('this.partElem', this.partElem);
     this.partChanging = false;
   }
 

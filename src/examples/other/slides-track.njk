@@ -1,0 +1,316 @@
+---
+title: Smashing Tune
+bpm: 90
+elements: 
+  - Pad 
+  - Part
+  - Bank 
+  - Sample 
+  - Sequencer 
+  - Track 
+  - Bar 
+  - Tap
+  - Switch
+  - Kbd
+---
+
+{% block visual %}
+
+{% endblock %}
+
+{% extends 'layouts/example.njk' %}
+
+{% block audio %}
+
+<!-- instruments -->
+      <pad-blam id="stabs" gain="0.6" bank="stabBank">
+        <blam-blam from="section:not(.u-no-stab, .u-rip)" prop="play" for="slideNext"></blam-blam>
+      </pad-blam>
+
+      <pad-blam id="rip" gain="0.25" bank="ripBank">
+        <blam-blam from="section.u-rip" prop="play" for="slideNext"></blam-blam>
+      </pad-blam>
+
+      <pad-blam id="radio" gain="0.07" detune="0" loop>
+        <bank-blam>
+          <sample-blam src="{{site.basedir}}/static/sounds/slides/radio.mp3" reverse></sample-blam>
+        </bank-blam>
+        <lfo-blam id="radioSpeed" prop="detune" gain="800" beats="3" type="square">
+          <blam-blam from="body" prop="beats" value="0.01~0.5" for="slideWaiting"></blam-blam>
+          <lfo-blam prop="gain" gain="800" beats="9.1"></lfo-blam>
+        </lfo-blam>
+        <blam-blam from="body" prop="detune" value="0~4000" for="slideWaiting"></blam-blam>
+        <blam-blam from="body" prop="length" value="1~3" for="slideWaiting"></blam-blam>
+        <blam-blam from="body" prop="play" for="slideWaiting"></blam-blam>
+        <blam-blam from="body" prop="stop" for="slideChange"></blam-blam>
+        <blam-blam from="body" to="#garble" prop="bypass" value="false" for="slideWaiting"></blam-blam>
+        <blam-blam from="body" to="#garble" prop="bypass" value="true" for="slideChange"></blam-blam>
+        <blam-blam from="body" to="#crushGain" prop="bypass" for="slideWaiting"></blam-blam>
+        <blam-blam from="body" to="#crushGain" prop="bypass" for="slideChange"></blam-blam>
+      </pad-blam>
+
+      <pad-blam id="kick" bank="kickBank" out="subdueBus">
+      </pad-blam>
+
+
+      <pad-blam id="hat" bank="hatBank" choke gain="1.5">
+        <chain-blam out="subdueBus">
+          <pan-blam pan="-0.5"></pan-blam>
+        </chain-blam>
+        <blam-blam prop="detune" value="-25~25"></blam-blam>
+      </pad-blam>
+
+      <pad-blam id="snare" bank="snareBank" gain="2" detune="300">
+        <chain-blam out="subdueBus">
+          <echo-blam cutoff="3000" bypass>
+            <blam-blam prop="beats" value="0.125|0.25|0.5"></blam-blam>
+            <blam-blam prop="feedback" value="0.3~0.7"></blam-blam>
+          </echo-blam>
+        </chain-blam>
+      </pad-blam>
+
+      <pad-blam id="snareGhost" bank="snareBank" out="subdueBus">
+      </pad-blam>
+
+      <pad-blam id="ride" bank="rideBank">
+        <chain-blam out="subdueBus">
+          <pan-blam pan="0.6"></pan-blam>
+        </chain-blam>
+      </pad-blam>
+
+      <pad-blam id="cowbell" bank="cowBank" choke="0.05" gain="0.4"> 
+        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass></blam-blam> 
+        <chain-blam out="subdueBus">
+          <pan-blam pan="0.25"></pan-blam>
+        </chain-blam>
+      </pad-blam>
+
+      <note-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="9">
+        <chain-blam out="subdueBus">
+          <filter-blam freq="3000">
+            <lfo-blam prop="freq" beats="4.3" gain="2000" q="5">
+              <blam-blam prop="beats" from="#beat" value="3~6" chance="0.25" ramp="0.125" revert></blam-blam>
+            </lfo-blam>
+          </filter-blam>
+          <reverb-blam mix="0.4">
+            <sample-blam src="{{site.basedir}}/static/sounds/IRs/stadium.mp3"></sample-blam>
+          </reverb-blam>
+        </chain-blam>
+        <lfo-blam prop="detune" gain="45" beats="1">
+          <blam-blam prop="beats" value="3|3|0.25|0.125" from="#beat" chance="0.25" ramp="0.125" revert></blam-blam>
+          <blam-blam prop="gain" value="50|50|25|100|200" from="#beat" chance="0.25" ramp="0.125" revert></blam-blam>
+        </lfo-blam>
+      </note-blam>
+
+      <note-blam id="bass" choke notes="E2 E2 G2 A2 A#2 E3">
+        <bank-blam>
+          <sample-blam src="{{site.basedircdn}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+          <sample-blam src="{{site.basedircdn}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+          <sample-blam src="{{site.basedircdn}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+        </bank-blam>
+        <blam-blam prop="length" value="0.25|0.25|0.5|0.125"></blam-blam>
+        <chain-blam out="subdueBlam">
+          <filter-blam freq="8000" q="10" bypass>
+            <envelope-blam prop="freq" curve="200 0, 11000 0.25" beats></envelope-blam>
+          </filter-blam>
+        </chain-blam>
+      </note-blam>
+
+      <pad-blam id="organ" bank="organBank" length="0.125" gain="3.5">
+        <blam-blam prop="length" value="0.125|0.25"></blam-blam>
+        <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
+        <chain-blam out="subdueBus">
+          <pan-blam pan="-0.4"></pad-blam>
+          <reverb-blam>
+            <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
+          </reverb-blam>
+        </chain-blam>
+      </pad-blam>
+
+      <pad-blam id="clock" bank="clockBank">
+        <chain-blam>
+          <reverb-blam mix="0.25" cutoff="500">
+            <sample-blam src="{{site.basedir}}/static/sounds/IRs/stadium.mp3"></sample-blam>
+          </reverb-blam>
+        </chain-blam>
+      </pad-blam>
+
+<!-- sequencers -->
+      <sequencer-blam id="beat" swing="0.2">
+        <track-blam id="stabTrack" to="#stabs" override="bassTrack">
+          <bar-blam s="? 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 ? 0 0"></bar-blam>
+          <repeat-blam x="6">
+            <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          </repeat-blam>
+        </track-blam>
+
+        <track-blam id="kickTrack" to="#kick" part=".basic" override="organTrack">
+          <part-blam class="basic">
+            <bar-blam s="1 0 0 0 0 0 0 4"></bar-blam>
+            <bar-blam s="2 0 0 0 0 4 0 3"></bar-blam>
+          </part-blam>
+        </track-blam>
+
+        <track-blam class="hatTrack" id="hatClosedTrack" to="#hat" part=".basic" chance="0.9">
+          <part-blam class="basic">
+            <bar-blam s="1 0 2 0 3 2 1 0 3 0"></bar-blam>
+          </part-blam>         
+        </track-blam>
+
+        <track-blam class="hatTrack" id="hatOpenTrack" to="#hat" part=".basic" chance="0.1" override="hatClosedTrack">
+          <part-blam class="basic">
+            <bar-blam s="4"></bar-blam>
+          </part-blam>         
+        </track-blam>
+
+        <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack">
+          <part-blam class="basic">
+            <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
+          </part-blam>        
+        </track-blam>
+
+        <track-blam id="rideTrack" to="#ride" chance="0.5" suspend>
+          <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
+        </track-blam>
+
+        <track-blam id="cowbellTrack" to="#cowbell" chance="0.4">
+          <bar-blam s="?"></bar-blam>
+        </track-blam>
+
+        <track-blam id="clockTrack" to="#clock" suspend>
+          <bar-blam s="? 0 0 0 ? 0 0 0"></bar-blam>
+        </track-blam>
+
+        <track-blam class="bassTrack" id="bassTrack" to="#bass">
+          <bar-blam s="0 0 0 E3 0 0 ? ?"></bar-blam>
+          <bar-blam s="0 0 0 E4 0 ? 0 ?"></bar-blam>
+        </track-blam>
+
+        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes">
+          <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
+        </track-blam>
+
+        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes">
+          <repeat-blam x="3">
+            <bar-blam s="E4 0 0 0 A#4 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="G4 0 0 0 C#5 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="A#4 0 0 0 E5 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="D5 0 0 0 G#5 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="C#5 0 0 0 G5 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="A#4 0 0 0 E5 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="G4 0 0 0 C#5 0"></bar-blam>
+          </repeat-blam>
+        </track-blam>
+
+        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack">
+          <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
+        </track-blam>
+      </sequencer-blam>
+
+<!-- banks -->
+      <bank-blam id="stabBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/stab-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/stab-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/stab-03.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="ripBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/rip.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="cowBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/cow-01.mp3" reverse></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/cow-02.mp3" reverse></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/cow-03.mp3" reverse></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/cow-04.mp3" reverse></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="rhodesBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/rhodes-01.mp3" root="E3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/rhodes-02.mp3" root="E3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/rhodes-03.mp3" root="E3"></sample-blam>
+      </bank-blam>   
+
+      <bank-blam id="kickBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/kick-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/kick-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/kick-ghost-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/kick-ghost-02.mp3"></sample-blam>
+      </bank-blam> 
+
+      <bank-blam id="hatBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/hat-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/hat-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/hat-03.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/hat-04.mp3"></sample-blam>
+      </bank-blam> 
+
+      <bank-blam id="snareBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/snare-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/snare-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/snare-03.mp3"></sample-blam>
+      </bank-blam> 
+
+      <bank-blam id="snareGhostBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/snare-ghost-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/snare-ghost-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/snare-ghost-03.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="rideBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/ride-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/ride-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/ride-03.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/kit-tight/ride-04.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="clockBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/tick.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/tock.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="bassBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="organBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/dubbing/organ-01.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/dubbing/organ-02.mp3"></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/dubbing/organ-03.mp3"></sample-blam> 
+      </bank-blam>
+
+    </audio-blam>
+    <tap-blam to="sequencer-blam" prop="playStop">
+      <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+    </tap-blam>
+
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+Some weird, **CZARFACE** and **EL-P** inspired hip-hop for my **Smashing Magazine** presentation. 
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+
+{% endblock %}

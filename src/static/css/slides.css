@@ -456,7 +456,7 @@ section, .u-jolt {
 
 .c-cow-head {
   inline-size: 50%;
-  transform: scale(clamp(0, calc(var(--cowAmbPeak-peak) * 20), 2));
+  transform: scale(clamp(0.5, calc(var(--cowAmbPeak-peak) * 20), 1.75));
   transition: transform var(--cowAmbPeak-interval);
 }
 

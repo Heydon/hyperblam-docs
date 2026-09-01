@@ -81,7 +81,6 @@
       <div>
 
 <!-- slides -->
-
         <section>
           <div class="l-screen">
             <div class="l-frame">
@@ -112,6 +111,14 @@
           </div>
         </section>
 
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
+            </div>
+          </div>
+        </section>
+
         <section data-speech="another cowbell button. With multiple samples." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
@@ -138,7 +145,7 @@
           </div>          
         </section>
 
-        <section id="lengthSlide" data-speech="Another fecking cowbell button. With an element called blam blam." data-pause="1" data-voice="Moira">
+        <section id="lengthSlide" data-speech="Yet another fecking cowbell button." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <tap-blam to="#cowbell" prop="play">
@@ -153,7 +160,7 @@
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/illustrations/sequencing_spiderman.svg" alt="spiderman pointing at himself.">
             </div>
           </div>
         </section>
@@ -197,7 +204,7 @@
           <blam-blam to="#beat" for="slideWaiting" prop="stop"></blam-blam>
         </section>
 
-        <section>
+        <section data-speech="sick beat, babes" data-pause="4" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
               <bands-blam id="basicVis" fps="9" analyser="#bossAnalyser" class="u-squiggle" style="inline-size: 75vw; max-block-size: 100%" count="8">
@@ -343,6 +350,16 @@
           <blam-blam to="#crush" for="slideWaiting" prop="bypass" value="false"></blam-blam>
         </section>
 
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <media-blam out="garbleBus">
+              <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/blue_peter_spiders.mp4"></video>
+            </media-blam>
+          </div>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam to=".hypnoVis" for="slideNext" prop="stop"></blam-blam>
+        </section>        
+
         <section class="u-rip" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Glug Glug. Slurp slurp. Fill your belly. Down it. Down it. Down it. Down it. Down it. Down it. Down it." data-voice="Moira" data-pause="5">
           <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
           <div class="l-screen">
@@ -350,24 +367,38 @@
               <h2 class="u-alert u-tilt"><span class="u-blocked u-impact">HYDRATION BREAK</span></h2>
             </div>
           </div>
-          <blam-blam to="#rhodesTrack" prop="suspend" value="false" for="slideNext"></blam-blam>
-          <blam-blam to="#rhodesTrack" prop="solo" value="true" for="slideNext"></blam-blam>
-          <blam-blam to=".hypnoVis" for="slideNext" prop="stop"></blam-blam>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
+          <blam-blam to=".rhodesTrack" prop="suspend" value="false" for="slideNext"></blam-blam>
+          <blam-blam to=".rhodesTrack" prop="solo" value="true" for="slideNext"></blam-blam>
           <blam-blam to="#crush" for="slideNext" prop="bypass" value="true"></blam-blam>
           <blam-blam to="#crush" for="slideWaiting" prop="bypass" value="false"></blam-blam>
+        </section>
+
+        <section>
+          <div class="l-screen">
+            <div class="l-frame">
+<pre><code>&lt;note-blam id="rhodes"&gt;
+  &lt;bank-blam id="rhodesBank"&gt;
+    &lt;sample-blam src="rhodes-01.mp3" root="E3"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="rhodes-02.mp3" root="G3"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="rhodes-03.mp3" root="A#3"&gt;&lt;/sample-blam&gt;
+  &lt;/bank-blam&gt;
+&lt;/note-blam&gt;</code></pre>
+            </div>
+          </div>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam to="#crush" for="slideNext" prop="bypass" value="true"></blam-blam>
         </section>
 
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-<pre><code>&lt;track-blam to="#rhodes"&gt;
-  &lt;bar-blam s="E3 0 0 0 G#3 B3 0 G#4"&gt;&lt;/bar-blam&gt;
-  &lt;bar-blam s="? 0 0 0 ? ? 0"&gt;&lt;/bar-blam&gt;
-&lt;/track-blam&gt;</code></pre>
+<pre style="font-size: 2.25em"><code>E4 0 0 0 A#4 0 0
+G4 0 0 0 C#5 0
+A#4 0 0 0 E5 0 0
+D5 0 0 0 G#5 0</code></pre>
             </div>
           </div>
-          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
-          <blam-blam to="#crush" for="slideNext" prop="bypass" value="true"></blam-blam>
         </section>
 
         <section class="u-no-stab">
@@ -391,17 +422,67 @@
             <div class="l-frame">
               <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/tape2.svg" alt="shows how LFOs and blam events make for irregular modulation">
             </div>
+          </div>
+        </section>
+
+        <section id="bassIntro" data-speech="Bass. How low can you go? Death row. What a brother know." data-pause="0.5" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame u-squiggle">
+              <h1 class="u-impact" style="font-size: 8em">BASS.</h1>
+            </div>
             <div class="l-frame">
-              <switch-blam to="#subdueBus" prop="bypass" style="margin-top: auto; font-size: 0.75em; padding: 0.5em">
+              <switch-blam to="#bassTrack" prop="solo" value="true" style="margin-top: auto; font-size: 0.75em; padding: 0.5em">
                 <label>
-                  mute
+                  bass
                   <input type="checkbox">
                 </label>
-              </switch-blam>
+              </switch-blam>              
+            </div>
+          </div>
+          <blam-blam to="#bassTrack" for="slideNext" prop="suspend" value="false"></blam-blam>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/envelope1.svg" alt="diagram of ADSR">
             </div>
           </div>
         </section>
 
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/envelope2.svg" alt="more fluid curve with envelope custom element">
+            </div>
+          </div>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre><code>&lt;filter-blam freq="8000"&gt;
+  &lt;envelope-blam 
+    prop="freq" 
+    curve="200 0, 11000 0.25"
+  &gt;
+  &lt;/envelope-blam&gt;
+&lt;/filter-blam&gt;</code></pre>
+            </div>
+          </div>
+          <blam-blam to="#autoFilter" for="slideNext" prop="bypass" value="false"></blam-blam>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <media-blam out="garbleBus">
+              <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/creative_drums_1.mp4"></video>
+            </media-blam>
+          </div>
+          <blam-blam to="#beat" for="slideWaiting" prop="stop"></blam-blam>
+        </section> 
+
+<!--
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
@@ -413,18 +494,18 @@
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-<pre><code>&lt;chain-blam&gt;
-  &lt;phaser-blam q="2"&gt;&lt;/phaser-blam&gt;
-  &lt;saturator-blam mode="3" mix="0.5"&gt;&lt;/saturator-blam&gt;
-  &lt;gain-blam gain="0.5"&gt;
-    &lt;lfo-blam prop="gain" gain="0.5"&gt;&lt;/lfo-blam&gt;
-  &lt;/gain-blam&gt;
-&lt;/chain-blam&gt;</code></pre>             
+<pre><code>&lt;chain-blam>
+  &lt;phaser-blam q="2">&lt;/phaser-blam>
+  &lt;saturator-blam mode="3" mix="0.5">&lt;/saturator-blam>
+  &lt;gain-blam gain="0.5">
+    &lt;lfo-blam prop="gain" gain="0.5">&lt;/lfo-blam>
+  &lt;/gain-blam>
+&lt;/chain-blam></code></pre>             
             </div>
           </div>
         </section>
 
-        <!--<section id="clockSlide" class="u-no-stab" id="spinner">
+        <section id="clockSlide" class="u-no-stab" id="spinner">
           <div class="l-screen"> 
             <img style="height: 90%" class="u-spin" src="https://hyperblam.how/static/images/slides/spinner.svg" alt="loading spinner">
             <div class="l-frame">
@@ -499,8 +580,6 @@
       <pad-blam id="kick" bank="kickBank" out="subdueBus">
       </pad-blam>
 
-      <pad-blam id="kickGhost" bank="kickBank" out="subdueBus">
-      </pad-blam>
 
       <pad-blam id="hat" bank="hatBank" choke="" gain="1.5">
         <chain-blam out="subdueBus">
@@ -509,9 +588,9 @@
         <blam-blam prop="detune" value="-25~25"></blam-blam>
       </pad-blam>
 
-      <pad-blam id="snare" bank="snareBank" gain="1.5">
+      <pad-blam id="snare" bank="snareBank" gain="2">
         <chain-blam out="subdueBus">
-          <echo-blam cutoff="3000">
+          <echo-blam cutoff="3000" bypass="">
             <blam-blam prop="beats" value="0.125|0.25|0.5"></blam-blam>
             <blam-blam prop="feedback" value="0.3~0.7"></blam-blam>
           </echo-blam>
@@ -521,14 +600,20 @@
       <pad-blam id="snareGhost" bank="snareBank" out="subdueBus">
       </pad-blam>
 
-      <pad-blam id="ride" bank="rideBank" out="subdueBus">
+      <pad-blam id="ride" bank="rideBank">
+        <chain-blam out="subdueBus">
+          <pan-blam pan="0.6"></pan-blam>
+        </chain-blam>
       </pad-blam>
 
-      <pad-blam id="cowbell" bank="cowBank" choke="0.05" out="subdueBus" gain="0.5"> 
-        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass=""></blam-blam>  
+      <pad-blam id="cowbell" bank="cowBank" choke="0.05" gain="0.4"> 
+        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass=""></blam-blam> 
+        <chain-blam out="subdueBus">
+          <pan-blam pan="0.25"></pan-blam>
+        </chain-blam>
       </pad-blam>
 
-      <note-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="5">
+      <note-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="7">
         <chain-blam out="subdueBus">
           <filter-blam freq="3000">
             <lfo-blam prop="freq" beats="4.3" gain="2000" q="5">
@@ -540,10 +625,35 @@
           </reverb-blam>
         </chain-blam>
         <lfo-blam prop="detune" gain="45" beats="1">
-          <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="#beat" chance="0.25" ramp="0.125" revert=""></blam-blam>
-          <blam-blam prop="gain" value="50|50|25|100|300" from="#beat" chance="0.25" ramp="0.125" revert=""></blam-blam>
+          <blam-blam prop="beats" value="3|3|0.25|0.125" from="#beat" chance="0.25" ramp="0.125" revert=""></blam-blam>
+          <blam-blam prop="gain" value="50|50|25|100|250" from="#beat" chance="0.25" ramp="0.125" revert=""></blam-blam>
         </lfo-blam>
       </note-blam>
+
+      <note-blam id="bass" choke="" notes="E2 E2 G2 A2 A#2 E3">
+        <bank-blam>
+          <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+          <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+          <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+        </bank-blam>
+        <blam-blam prop="length" value="0.25|0.25|0.5|0.125"></blam-blam>
+        <chain-blam out="subdueBlam">
+          <filter-blam id="autoFilter" freq="8000" q="10" bypass="">
+            <envelope-blam prop="freq" curve="100 0, 8000 0.5"></envelope-blam>
+          </filter-blam>
+        </chain-blam>
+      </note-blam>
+
+      <pad-blam id="organ" bank="organBank" length="0.125" gain="3.5">
+        <blam-blam prop="length" value="0.125|0.25"></blam-blam>
+        <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
+        <chain-blam out="subdueBus">
+          <pan-blam pan="-0.4"></pan-blam></chain-blam></pad-blam>
+          <reverb-blam>
+            <sample-blam src="https://hyperblam.how/static/sounds/IRs/spring.mp3"></sample-blam>
+          </reverb-blam>
+        
+      
 
       <pad-blam id="clock" bank="clockBank">
         <chain-blam>
@@ -554,8 +664,16 @@
       </pad-blam>
 
 <!-- sequencers -->
-      <sequencer-blam id="beat" swing="0">
-        <track-blam id="kickTrack" to="#kick" part=".basic">
+      <sequencer-blam id="beat">
+        <track-blam id="stabTrack" to="#stabs" override="bassTrack" suspend="">
+          <bar-blam s="? 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 ? 0 0"></bar-blam>
+          <repeat-blam x="6">
+            <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          </repeat-blam>
+        </track-blam>
+
+        <track-blam id="kickTrack" to="#kick" part=".basic" override="organTrack">
           <part-blam class="basic">
             <bar-blam s="1 0 0 0 0 0 0 4"></bar-blam>
             <bar-blam s="2 0 0 0 0 4 0 3"></bar-blam>
@@ -568,23 +686,23 @@
           </part-blam>         
         </track-blam>
 
-        <track-blam class="hatTrack" id="hatOpenTrack" to="#hat" part=".basic" chance="0.1" suspend="" override="hatClosedTrack">
+        <track-blam class="hatTrack" id="hatOpenTrack" to="#hat" part=".basic" chance="0.1" override="hatClosedTrack" suspend="">
           <part-blam class="basic">
             <bar-blam s="4"></bar-blam>
           </part-blam>         
         </track-blam>
 
-        <track-blam id="snareTrack" to="#snare" part=".basic">
+        <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack">
           <part-blam class="basic">
             <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
           </part-blam>        
         </track-blam>
 
-        <track-blam id="rideTrack" to="#ride" suspend="">
+        <track-blam id="rideTrack" to="#ride" chance="0.5" suspend="">
           <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
         </track-blam>
 
-        <track-blam id="cowbellTrack" to="#cowbell" solo="" chance="0.0">
+        <track-blam id="cowbellTrack" to="#cowbell" chance="0" solo="">
           <bar-blam s="?"></bar-blam>
         </track-blam>
 
@@ -592,9 +710,41 @@
           <bar-blam s="? 0 0 0 ? 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam id="rhodesTrack" to="#rhodes" chance="0.9" suspend="">
-          <bar-blam s="E3 0 0 F#3 G#3 B3 0 G#4"></bar-blam>
-          <bar-blam s="? 0 0 0 ? ? 0"></bar-blam>
+        <track-blam class="bassTrack" id="bassTrack" to="#bass" suspend="">
+          <bar-blam s="0 0 0 E3 0 0 ? ?"></bar-blam>
+          <bar-blam s="0 0 0 E4 0 ? 0 ?"></bar-blam>
+        </track-blam>
+
+        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes" suspend="">
+          <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
+        </track-blam>
+
+        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes" suspend="">
+          <repeat-blam x="3">
+            <bar-blam s="E4 0 0 0 A#4 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="G4 0 0 0 C#5 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="A#4 0 0 0 E5 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="D5 0 0 0 G#5 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="C#5 0 0 0 G5 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="A#4 0 0 0 E5 0 0"></bar-blam>
+          </repeat-blam>
+          <repeat-blam x="3">
+            <bar-blam s="G4 0 0 0 C#5 0"></bar-blam>
+          </repeat-blam>
+        </track-blam>
+
+        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack" suspend="">
+          <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
         </track-blam>
       </sequencer-blam>
 
@@ -658,6 +808,18 @@
       <bank-blam id="clockBank">
         <sample-blam src="https://hyperblam.how/static/sounds/slides/tick.mp3"></sample-blam>
         <sample-blam src="https://hyperblam.how/static/sounds/slides/tock.mp3"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="bassBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/bass/01.mp3" root="A1"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/bass/03.mp3" root="E2"></sample-blam>
+      </bank-blam>
+
+      <bank-blam id="organBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/dubbing/organ-01.mp3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/dubbing/organ-02.mp3"></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/dubbing/organ-03.mp3"></sample-blam> 
       </bank-blam>
     </audio-blam>
 

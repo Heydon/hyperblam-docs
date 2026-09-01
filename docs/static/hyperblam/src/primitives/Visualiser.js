@@ -36,7 +36,6 @@ class Visualiser extends Base {
   restart() {
     this.logger && clearInterval(this.logger);
     this.start();
-    console.log('restart');
   }
 
   get analyser() {

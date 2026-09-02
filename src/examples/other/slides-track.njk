@@ -1,5 +1,5 @@
 ---
-title: Smashing Tune
+title: Secret Tune
 bpm: 90
 elements: 
   - Pad 
@@ -110,10 +110,16 @@ elements:
         </bank-blam>
         <blam-blam prop="length" value="0.25|0.25|0.5|0.125"></blam-blam>
         <chain-blam out="subdueBlam">
-          <filter-blam freq="8000" q="10" bypass>
+          <filter-blam freq="8000" q="10">
             <envelope-blam prop="freq" curve="200 0, 11000 0.25" beats></envelope-blam>
           </filter-blam>
         </chain-blam>
+        <envelope-blam 
+          prop="detune"
+          curve="-300 0, 0 0.25"
+          chance="0.2"
+        >
+        </envelope-blam>
       </note-blam>
 
       <pad-blam id="organ" bank="organBank" length="0.125" gain="3.5">
@@ -183,15 +189,17 @@ elements:
         </track-blam>
 
         <track-blam class="bassTrack" id="bassTrack" to="#bass">
-          <bar-blam s="0 0 0 E3 0 0 ? ?"></bar-blam>
-          <bar-blam s="0 0 0 E4 0 ? 0 ?"></bar-blam>
+          <bar-blam s="0 0 0 E3"></bar-blam>
+          <bar-blam s="? ? ? ?" chance="0.6"></bar-blam>
+          <bar-blam s="0 0 0 E4"></bar-blam>
+          <bar-blam s="0 0 ? ?" chance="0.6"></bar-blam>
         </track-blam>
 
-        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes">
+        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes" suspend>
           <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes">
+        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes" suspend>
           <repeat-blam x="3">
             <bar-blam s="E4 0 0 0 A#4 0 0"></bar-blam>
           </repeat-blam>
@@ -305,7 +313,7 @@ elements:
 
 {% renderTemplate "md" %}
 
-Some weird, **CZARFACE** and **EL-P** inspired hip-hop for my **Smashing Magazine** presentation. 
+Some weird shit. 
 
 {% endrenderTemplate %}
 

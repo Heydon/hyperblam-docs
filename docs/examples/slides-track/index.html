@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -185,10 +185,12 @@
         </bank-blam>
         <blam-blam prop="length" value="0.25|0.25|0.5|0.125"></blam-blam>
         <chain-blam out="subdueBlam">
-          <filter-blam freq="8000" q="10" bypass="">
+          <filter-blam freq="8000" q="10">
             <envelope-blam prop="freq" curve="200 0, 11000 0.25" beats=""></envelope-blam>
           </filter-blam>
         </chain-blam>
+        <envelope-blam prop="detune" curve="-300 0, 0 0.25" chance="0.2">
+        </envelope-blam>
       </note-blam>
 
       <pad-blam id="organ" bank="organBank" length="0.125" gain="3.5">
@@ -258,15 +260,17 @@
         </track-blam>
 
         <track-blam class="bassTrack" id="bassTrack" to="#bass">
-          <bar-blam s="0 0 0 E3 0 0 ? ?"></bar-blam>
-          <bar-blam s="0 0 0 E4 0 ? 0 ?"></bar-blam>
+          <bar-blam s="0 0 0 E3"></bar-blam>
+          <bar-blam s="? ? ? ?" chance="0.6"></bar-blam>
+          <bar-blam s="0 0 0 E4"></bar-blam>
+          <bar-blam s="0 0 ? ?" chance="0.6"></bar-blam>
         </track-blam>
 
-        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes">
+        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes" suspend="">
           <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes">
+        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes" suspend="">
           <repeat-blam x="3">
             <bar-blam s="E4 0 0 0 A#4 0 0"></bar-blam>
           </repeat-blam>
@@ -397,7 +401,7 @@
     <div class="l-flow">
       
 
-<p>Some weird, <strong>CZARFACE</strong> and <strong>EL-P</strong> inspired hip-hop for my <strong>Smashing Magazine</strong> presentation.</p>
+<p>Some weird shit.</p>
 
 
 

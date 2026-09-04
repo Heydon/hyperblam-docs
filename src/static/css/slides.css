@@ -4,6 +4,7 @@
   --font: 'Courier Prime', monospace;
   --font-display: Impact, sans-serif;
   --font-special: 'Heydon Caps', cursive;
+  --wave-sine: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 20"><path fill="none" d="M-1,11.5 C 20,-20 20,40 41,8.9" stroke="%23eee" stroke-width="2"></path></svg>');
   --grip: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="%23101010" stroke-width="2" overflow="visible" stroke-linecap="round"><path d="M1 1, 1 15 M8 1, 8 15 M15 1, 15 15"></path></svg>');
   color: var(--color-fore);
   background-color: var(--color-back);
@@ -266,6 +267,21 @@ h3 {
 
 /* utilities */
 
+@keyframes sine {
+  0% {
+    background-position: -1000%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
+.u-sine {
+  background-image: var(--wave-sine);
+  background-size: calc(var(--trem-1-gain, 0.25) * 100%) calc(var(--trem-1-beats, 0.25) * 100%);
+  animation: sine 1s linear infinite;
+}
+
 .u-blend {
   mix-blend-mode: difference;
 }
@@ -334,14 +350,17 @@ h3 {
   75% {
     filter: url("#warp-4");
   }
+  100% {
+    filter: none;
+  }
 }
 
 section:not([hidden]) .u-squiggle {
   animation: squiggle 0.25s linear infinite alternate;
 }
 
-section:not([hidden]) .u-warp {
-  animation: warp 0.25s linear infinite alternate;
+.u-squiggle-1 {
+  animation: squiggle 0.25s linear 1;
 }
 
 @keyframes jolt {
@@ -349,30 +368,61 @@ section:not([hidden]) .u-warp {
     transform: translateY(0);
   }
   20% {
-    transform: translateY(-2rem);
+    transform: translateY(-2em);
   }
   30% {
-    transform: translateY(2rem);
+    transform: translateY(2em);
   }
   40% {
-    transform: translateY(-1.5rem);
+    transform: translateY(-1.5em);
   }
   50% {
-    transform: translateY(1.5rem);
+    transform: translateY(1.5em);
   }
   60% {
-    transform: translateY(-0.75rem);
+    transform: translateY(-0.75em);
   }
   80% {
-    transform: translateY(0.75rem);
+    transform: translateY(0.75em);
   }
   100% {
-    transform: translateY(0rem);
+    transform: translateY(0em);
+  }
+}
+
+@keyframes joltSmall {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateY(-0.25em);
+  }
+  30% {
+    transform: translateY(0.25em);
+  }
+  40% {
+    transform: translateY(-0.2em);
+  }
+  50% {
+    transform: translateY(0.2em);
+  }
+  60% {
+    transform: translateY(-0.1em);
+  }
+  80% {
+    transform: translateY(0.1em);
+  }
+  100% {
+    transform: translateY(0em);
   }
 }
 
 section, .u-jolt {
   animation: jolt 0.3s linear 1;
+}
+
+.u-jolt-small {
+  animation: joltSmall 0.1s linear;
 }
 
 @keyframes punch {
@@ -403,6 +453,20 @@ section, .u-jolt {
   font-family: var(--font-special);
 }
 
+@keyframes slide {
+  0% {
+    transform: translateX(2.25em);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.u-slide {
+  animation: slide 0.25s linear 1;
+}
+
 .u-impact.u-blocked {
   line-height: 1.4;
 }
@@ -412,12 +476,20 @@ section, .u-jolt {
 }
 
 .u-wait video, .u-contrast {
-  filter: contrast(5);
+  filter: grayscale(1) contrast(5);
 }
 
 .hat-top {
   transform: translateY(var(--hatHeight));
   transition: transform 0.125s ease-in-out;
+}
+
+.u-invert {
+  filter: invert(1);
+}
+
+.u-no-invert {
+  filter: invert(0);
 }
 
 @keyframes distort {

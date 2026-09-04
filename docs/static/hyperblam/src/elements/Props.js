@@ -23,7 +23,7 @@ class Props extends ListenWatch {
       for (const r of list) {
         let index = this.fromElems.indexOf(r.target) + 1;
         to.style.setProperty(`--${this.name}-${index}-${r.attributeName}`, r.target[r.attributeName]);
-      }    
+      }
     }
   }
 }

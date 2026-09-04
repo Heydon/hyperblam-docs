@@ -180,7 +180,7 @@ elements:
           <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
         </track-blam>
 
-        <track-blam id="cowbellTrack" to="#cowbell" chance="0.4">
+        <track-blam id="cowbellTrack" to="#cowbell" chance="0.4" suspend>
           <bar-blam s="?"></bar-blam>
         </track-blam>
 
@@ -195,11 +195,11 @@ elements:
           <bar-blam s="0 0 ? ?" chance="0.6"></bar-blam>
         </track-blam>
 
-        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes" suspend>
+        <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes">
           <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes" suspend>
+        <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes">
           <repeat-blam x="3">
             <bar-blam s="E4 0 0 0 A#4 0 0"></bar-blam>
           </repeat-blam>
@@ -223,7 +223,7 @@ elements:
           </repeat-blam>
         </track-blam>
 
-        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack">
+        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack" suspend>
           <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
         </track-blam>
       </sequencer-blam>

@@ -1,6 +1,11 @@
 :root {
   --color-fore: #fff;
   --color-back: #000;
+  --s-xs: 0.4em;
+  --s-s: 0.75em;
+  --s-m: 1.5em;
+  --s-l: 2.5em;
+  --s-xl: 3.5em;
   --font: 'Courier Prime', monospace;
   --font-display: Impact, sans-serif;
   --font-special: 'Heydon Caps', cursive;
@@ -52,6 +57,45 @@ button:active {
   top: 0.125em;
   transform: none;
   box-shadow: none;
+}
+
+[type="radio"] {
+  display: none;
+}
+
+fieldset:has([type="radio"]) {
+  display: flex;
+  align-items: center;
+  border: 0;
+}
+
+label:has([type="radio"]) {
+  padding: calc(var(--s-s) / 2) var(--s-s);
+  border: 2px solid var(--color-fore);
+  background-color: var(--color-back);
+  cursor: pointer;
+}
+
+label:has([type="radio"]):first-of-type {
+  border-radius: 0.25em 0 0 0.25em;
+}
+
+label:has([type="radio"]):last-of-type {
+  border-radius: 0 0.25em 0.25em 0;
+}
+
+label:has([type="radio"]) + label {
+  border-inline-start: 0;
+}
+
+label:has([type="radio"]:checked) {
+  background-color: var(--color-fore);
+  color: var(--color-back);
+}
+
+.u-legend {
+  display: inline;
+  padding: 0 var(--s-xs);
 }
 
 pre {
@@ -269,7 +313,7 @@ h3 {
 
 @keyframes sine {
   0% {
-    background-position: -1000%;
+    background-position: -100%;
   }
   100% {
     background-position: 0;
@@ -278,7 +322,8 @@ h3 {
 
 .u-sine {
   background-image: var(--wave-sine);
-  background-size: calc(var(--trem-1-gain, 0.25) * 100%) calc(var(--trem-1-beats, 0.25) * 100%);
+  background-size: 50% calc(var(--trem-1-gain, 0.25) * 100%);
+  background-repeat: repeat-x;
   animation: sine 1s linear infinite;
 }
 
@@ -360,7 +405,7 @@ section:not([hidden]) .u-squiggle {
 }
 
 .u-squiggle-1 {
-  animation: squiggle 0.25s linear 1;
+  animation: distort 0.25s linear 1;
 }
 
 @keyframes jolt {
@@ -475,8 +520,34 @@ section, .u-jolt {
   animation: var(--wait, distort) var(--wait-speed, 0.2s) infinite alternate;
 }
 
+@keyframes smear {
+  0% {
+    filter: blur(0) contrast(1);
+    transform: scale(1);
+  }
+  20% {
+    filter: blur(0.05em) contrast(2);
+    transform: scale(1.5);
+  }
+  50% {
+    filter: blur(0.1em) contrast(1);
+  }
+  70% {
+    filter: blur(0.1em) contrast(1.25);
+    transform: scale(1);
+  }
+  87% {
+    filter: blur(0) contrast(3);
+    transform: scale(1.5);
+  }
+}
+
+.u-smear {
+  animation: smear 5s infinite alternate;
+}
+
 .u-wait video, .u-contrast {
-  filter: grayscale(1) contrast(5);
+  filter: grayscale(1) contrast(50);
 }
 
 .hat-top {

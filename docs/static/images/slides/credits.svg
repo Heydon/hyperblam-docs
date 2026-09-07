@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg width="260.38mm" height="1308.9mm" version="1.1" viewBox="0 0 260.38 1308.9" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(-18.302 -5.921)" fill="#ffffff" font-family="'Courier Prime'" font-weight="bold" stroke-linecap="round" stroke-linejoin="round">
-  <text x="93.355034" y="29.70228" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="93.355034" y="29.70228" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
-  <g text-anchor="middle">
-   <text x="147.16844" y="360.37595" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="147.16844" y="360.37595" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">no dependencies</tspan></text>
-   <text x="147.45616" y="193.01904" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="147.45616" y="193.01904" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">hosted on git.gay</tspan></text>
-   <text x="144.06223" y="536.39233" font-size="17.129px" stroke-width="3.4682" text-align="center" xml:space="preserve"><tspan x="144.06223" y="536.39233" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">ANY TIME SIGNATURES</tspan></text>
+<svg width="260.38mm" height="1908mm" version="1.1" viewBox="0 0 260.38 1908" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-18.302 -5.921)">
+  <g fill="#ffffff" font-weight="bold" stroke-linecap="round" stroke-linejoin="round">
+   <g font-family="'Courier Prime'">
+    <text x="93.355034" y="29.70228" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="93.355034" y="29.70228" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
+    <g text-anchor="middle">
+     <text x="147.16844" y="374.17111" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="147.16844" y="374.17111" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">no dependencies</tspan></text>
+     <text x="147.45616" y="199.91663" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="147.45616" y="199.91663" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">hosted on git.gay</tspan></text>
+     <text x="144.06223" y="557.08508" font-size="17.129px" stroke-width="3.4682" text-align="center" xml:space="preserve"><tspan x="144.06223" y="557.08508" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">ANY TIME SIGNATURES</tspan></text>
+    </g>
+    <text x="32.211346" y="642.52686" font-size="19.437px" stroke-width="3.9355" style="line-height:0.9" xml:space="preserve"><tspan x="32.211346" y="642.52686" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.9355" style="line-height:0.9">NO VENTURE CAPITAL</tspan></text>
+    <text x="144.03119" y="831.60687" font-size="20.215px" stroke-width="4.093" text-align="center" text-anchor="middle" style="line-height:1" xml:space="preserve"><tspan x="144.03119" y="831.60687" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">no TECHBROS</tspan></text>
+   </g>
+   <g font-family="'Courier Prime'" font-size="17.129px" stroke-width="3.4682" text-anchor="middle">
+    <text x="148.70987" y="113.71888" text-align="center" xml:space="preserve"><tspan x="148.70987" y="113.71888" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">JUST CUSTOM ELEMENTS</tspan></text>
+    <text x="146.01053" y="288.16943" text-align="center" xml:space="preserve"><tspan x="146.01053" y="288.16943" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">SONIFICATION</tspan></text>
+    <text x="142.44814" y="915.38934" text-align="center" xml:space="preserve"><tspan x="142.44814" y="915.38934" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">AUXILIARY ENVELOPES</tspan></text>
+    <text x="140.29601" y="998.75507" text-align="center" xml:space="preserve"><tspan x="140.29601" y="998.75507" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">LFOs FOR YOUR LFOs</tspan></text>
+   </g>
+   <g font-family="'Courier Prime'">
+    <text x="93.355034" y="473.06848" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="93.355034" y="473.06848" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
+    <text x="88.512741" y="1092.8041" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="88.512741" y="1092.8041" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
+    <text x="17.897943" y="1268.0049" font-size="17.26px" stroke-width="3.4946" style="line-height:0.9" xml:space="preserve"><tspan x="17.897943" y="1268.0049" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4946" style="line-height:0.9">SIGNAL CHAINS AND BUSES</tspan></text>
+   </g>
+   <g font-family="'Courier Prime'" text-anchor="middle">
+    <text x="143.83286" y="1354.0629" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="143.83286" y="1354.0629" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">CSS for visualization</tspan></text>
+    <text x="142.75148" y="1440.55" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="142.75148" y="1440.55" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">no MICROSOFT</tspan></text>
+    <text x="137.57156" y="1179.0662" font-size="20.691px" stroke-width="4.1893" text-align="center" xml:space="preserve"><tspan x="137.57156" y="1179.0662" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.1893">NO Tone.js</tspan></text>
+    <text x="144.77234" y="1652.9714" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="144.77234" y="1652.9714" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">EAT SHIT, FASCISTS</tspan></text>
+   </g>
+   <text x="33.976013" y="739.19348" font-family="'Courier Prime'" font-size="33.618px" stroke-width="6.8067" style="line-height:0.9" xml:space="preserve"><tspan x="33.976013" y="739.19348" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.8067" style="line-height:0.9">QUEEEEEEER</tspan></text>
+   <g text-anchor="middle">
+    <text x="141.24266" y="1746.9705" font-family="'Courier Prime'" font-size="27.08px" stroke-width="5.483" text-align="center" xml:space="preserve"><tspan x="141.24266" y="1746.9705" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="5.483">DON’T WRITE JS</tspan></text>
+    <text x="145.85371" y="1833.7512" font-family="'Courier Prime'" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="145.85371" y="1833.7512" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">Made in Norwich, UK</tspan></text>
+    <text x="147.71648" y="1531.9207" font-family="'Comic Sans MS'" font-size="26.558px" stroke-width="5.3774" text-align="center" xml:space="preserve"><tspan x="147.71648" y="1531.9207">NOT “TRAINED” </tspan><tspan x="147.71648" y="1566.399">ON C.S.A.M.</tspan></text>
+   </g>
   </g>
-  <text x="32.211346" y="618.38531" font-size="19.437px" stroke-width="3.9355" style="line-height:0.9" xml:space="preserve"><tspan x="32.211346" y="618.38531" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.9355" style="line-height:0.9">NO VENTURE CAPITAL</tspan></text>
-  <text x="144.03119" y="701.09979" font-size="20.215px" stroke-width="4.093" text-align="center" text-anchor="middle" style="line-height:1" xml:space="preserve"><tspan x="144.03119" y="701.09979" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">no TECHBROS</tspan></text>
-  <g font-size="17.129px" stroke-width="3.4682" text-anchor="middle">
-   <text x="148.70987" y="110.27008" text-align="center" xml:space="preserve"><tspan x="148.70987" y="110.27008" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">JUST CUSTOM ELEMENTS</tspan></text>
-   <text x="146.01053" y="277.82306" text-align="center" xml:space="preserve"><tspan x="146.01053" y="277.82306" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">SONIFICATION</tspan></text>
-   <text x="142.44814" y="781.43347" text-align="center" xml:space="preserve"><tspan x="142.44814" y="781.43347" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">AUXILIARY ENVELOPES</tspan></text>
-   <text x="140.29601" y="861.3504" text-align="center" xml:space="preserve"><tspan x="140.29601" y="861.3504" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">LFOs FOR YOUR LFOs</tspan></text>
-  </g>
-  <text x="93.355034" y="455.82452" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="93.355034" y="455.82452" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
-  <text x="88.512741" y="951.95062" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="88.512741" y="951.95062" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
-  <text x="17.897943" y="1120.2538" font-size="17.26px" stroke-width="3.4946" style="line-height:0.9" xml:space="preserve"><tspan x="17.897943" y="1120.2538" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4946" style="line-height:0.9">SIGNAL CHAINS AND BUSES</tspan></text>
-  <g text-anchor="middle">
-   <text x="143.83286" y="1202.863" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="143.83286" y="1202.863" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">CSS for visualization</tspan></text>
-   <text x="142.75148" y="1285.9014" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="142.75148" y="1285.9014" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.093" style="line-height:1">no MICROSOFT</tspan></text>
-   <text x="137.57156" y="1034.7638" font-size="20.691px" stroke-width="4.1893" text-align="center" xml:space="preserve"><tspan x="137.57156" y="1034.7638" fill="#ffffff" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="4.1893">NO Tone.js</tspan></text>
-  </g>
+  <text transform="matrix(.26458 0 0 .26458 18.302 5.921)" fill="#000000" font-family="Impact" font-size="74.667px" font-stretch="condensed" stroke-width="1.8898" style="shape-inside:url(#rect10);white-space:pre" xml:space="preserve"/>
  </g>
 </svg>

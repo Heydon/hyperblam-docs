@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8181.0767mm"
+   height="4049.7014mm"
+   version="1.1"
+   viewBox="0 0 8181.0769 4049.7014"
+   xml:space="preserve"
+   id="svg7"
+   sodipodi:docname="hat_tracks.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   inkscape:dataloss="true"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs7" /><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.025646341"
+     inkscape:cx="14173.562"
+     inkscape:cy="7388.9681"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg7" /><text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:204.515px;font-family:'Courier Prime';-inkscape-font-specification:'Courier Prime Bold';writing-mode:lr-tb;direction:ltr;fill:#ffffff;stroke:none;stroke-width:51.7612;stroke-linecap:round;stroke-linejoin:round"
+     x="-966.13086"
+     y="3016.0178"
+     id="text28"
+     transform="rotate(-1.616835)"><tspan
+       sodipodi:role="line"
+       x="-966.13086"
+       y="3016.0178"
+       style="fill:#ffffff;stroke-width:51.7612"
+       id="tspan29">        &lt;track-blam chance=&quot;0.15&quot; override=&quot;hatClosed&quot;&gt;</tspan><tspan
+       sodipodi:role="line"
+       x="-966.13086"
+       y="3271.6616"
+       style="fill:#ffffff;stroke-width:51.7612"
+       id="tspan31">          &lt;bar-blam s=&quot;4&quot;&gt;&lt;/bar-blam&gt;         </tspan><tspan
+       sodipodi:role="line"
+       x="-966.13086"
+       y="3527.3054"
+       style="fill:#ffffff;stroke-width:51.7612"
+       id="tspan32">        &lt;/track-blam&gt;</tspan></text></svg>

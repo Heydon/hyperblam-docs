@@ -462,6 +462,23 @@ section:not([hidden]) .u-squiggle {
   }
 }
 
+@keyframes scroll {
+  0% {
+    background-position-y: 0
+  }
+  100% {
+    background-position-y: 1200%;
+  }
+}
+
+.u-scroll-back {
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  background-position-x: center;
+  animation: scroll 200s linear infinite;
+  background-image: url('/static/images/slides/credits.svg');
+}
+
 section, .u-jolt {
   animation: jolt 0.3s linear 1;
 }

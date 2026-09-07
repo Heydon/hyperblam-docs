@@ -90,7 +90,7 @@
           </div>
         </section>
 
-        <section>
+        <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
               <h2 class="u-contrast">🍀 GOOD LUCK.</h2>
@@ -115,6 +115,14 @@
     &lt;sample-blam src="<span class="u-hl">cowbell-01.mp3</span>"&gt;&lt;/sample-blam&gt;
   &lt;/bank-blam&gt;
 &lt;/pad-blam&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
             </div>
           </div>
         </section>
@@ -161,14 +169,6 @@
           <div class="l-screen">
             <div class="l-frame">
               <img class="u-squiggle" src="https://hyperblam.how/static/images/illustrations/sequencing_spiderman.svg" alt="spiderman pointing at himself.">
-            </div>
-          </div>
-        </section>
-
-        <section class="u-no-stab">
-          <div class="l-screen">
-            <div class="l-frame">
-              <img class="u-squiggle" src="https://hyperblam.how/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
             </div>
           </div>
         </section>
@@ -289,7 +289,7 @@
           </div>
           <blam-blam from="#swingSwitch" to="#dancer" prop="hidden"></blam-blam>
           <blam-blam from="#kick" to="#dancer" prop="class" value="u-punch"></blam-blam>
-          <blam-blam from="#snare" to="#dancer" prop="currentTime" value="0|0.5" chance="0.5"></blam-blam>
+          <blam-blam from="#snare" to="#dancer" prop="currentTime" value="0|0.5|1" chance="0.5"></blam-blam>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
           <blam-blam to="#beat" for="slideNext" prop="play"></blam-blam>
         </section>
@@ -681,6 +681,14 @@ D5 0 D5 0 G#5 0</code></pre>
             </div>
           </div>
         </section>
+
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="https://hyperblam.how/static/video/cannot_think.mp4"></video>
+          </media-blam>
+          <blam-blam to="#basicVis" for="slideNext" prop="stop"></blam-blam>
+          <blam-blam to="#beat" for="slideWaiting" prop="stop"></blam-blam>
+        </section> 
         
         <section id="togetherSlide" class="u-no-stab">
           <div class="l-screen u-contrast">
@@ -689,32 +697,14 @@ D5 0 D5 0 G#5 0</code></pre>
           <div class="l-screen u-blend">
             <video id="togetherDancer" class="u-contrast" src="https://hyperblam.how/static/video/dancer.mp4" loop=""></video>
           </div>
-          <div class="l-screen">
-            <div class="l-frame u-blend">
-              <svg id="comicOverlay" width="297mm" height="210mm" version="1.1" viewBox="0 0 297 210" xmlns="http://www.w3.org/2000/svg">
-                <g font-weight="bold" stroke-linecap="round" stroke-linejoin="round">
-                  <text x="9.9600506" y="26.474081" font-family="'Courier Prime'" font-size="31.402px" stroke-width="6.358" xml:space="preserve"><tspan x="9.9600506" y="26.474081" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="6.358">NO AI</tspan></text>
-                  <g font-family="'Comic Sans MS'" text-anchor="middle">
-                  <text x="232.71553" y="173.37889" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="232.71553" y="173.37889" style="line-height:1">no</tspan><tspan x="232.71553" y="194.5688" style="line-height:1">dependencies</tspan></text>
-                  <text x="64.59922" y="73.472046" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="64.59922" y="73.472046" style="line-height:1">hosted on</tspan><tspan x="64.59922" y="94.661964" style="line-height:1">git.gay</tspan></text>
-                  <text x="102.09571" y="122.32805" font-size="17.129px" stroke-width="3.4682" text-align="center" xml:space="preserve"><tspan x="102.09571" y="122.32805">ANY</tspan><tspan x="102.09571" y="144.5656">TIME SIGNATURES</tspan></text>
-                  </g>
-                  <text x="4.2336774" y="177.18901" font-family="'Comic Sans MS'" font-size="19.437px" stroke-width="3.9355" style="line-height:0.9" xml:space="preserve"><tspan x="4.2336774" y="177.18901" style="line-height:0.9">NO VENTURE</tspan><tspan x="4.2336774" y="195.61942" style="line-height:0.9">CAPITAL</tspan></text>
-                  <g text-anchor="middle">
-                  <text x="240.33894" y="102.76199" font-family="'Comic Sans MS'" font-size="20.215px" stroke-width="4.093" text-align="center" style="line-height:1" xml:space="preserve"><tspan x="240.33894" y="102.76199" style="line-height:1">no</tspan><tspan x="240.33894" y="123.9519" style="line-height:1">TECHBROS</tspan></text>
-                  <text x="206.81732" y="24.828611" font-family="'Comic Sans MS'" font-size="17.129px" stroke-width="3.4682" text-align="center" xml:space="preserve"><tspan x="206.81732" y="24.828611">JUST</tspan><tspan x="206.81732" y="47.066158">CUSTOM ELEMENTS</tspan></text>
-                  <text x="208.42226" y="86.618378" font-family="'Courier Prime'" font-size="17.129px" stroke-width="3.4682" text-align="center" xml:space="preserve"><tspan x="208.42226" y="86.618378" font-family="'Comic Sans MS'" font-weight="bold" stroke-width="3.4682">SONIFICATION</tspan></text>
-                  </g>
-                </g>
-              </svg>
-            </div>
-          </div>
+          <div class="l-screen u-scroll-back u-blend"></div>
           <blam-blam to="#stabTrack, #organTrack, #rideTrack, #violinTrack, .rhodesTrack" prop="suspend" value="false" for="slideNext"></blam-blam>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
           <blam-blam to="#beat" prop="play" for="slideNext"></blam-blam>
           <blam-blam from="#organ" to="#togetherBaby" prop="class" value="u-squiggle-1"></blam-blam>
           <blam-blam from="#snare" to="#togetherDancer" prop="class" value="u-punch"></blam-blam>
-          <some-blam from="#snare" prop="fill" value="#fff|#000" to="#comicOverlay text" revert="" max="1"></some-blam>
+          <blam-blam to="#beat" for="slideNext" prop="start"></blam-blam>
+          <blam-blam from="#snare" to="#togetherDancer" prop="currentTime" value="0|0.5|1" chance="0.5"></blam-blam>
         </section>
 
         <section id="clockSlide" class="u-no-stab">
@@ -738,8 +728,8 @@ D5 0 D5 0 G#5 0</code></pre>
         <section id="clockSlide" class="u-no-stab">
           <div class="l-screen"> 
             <div class="l-frame">
-              <h2>thank you</h2>
-              <p>(go to hyperblam.how)</p>
+              <h2>I have run out of slides</h2>
+              <p>(please go to hyperblam.how)</p>
             </div>
           </div>
           <blam-blam to="#beat" for="slideNext" prop="stop"></blam-blam>
@@ -1015,7 +1005,7 @@ D5 0 D5 0 G#5 0</code></pre>
           <bar-blam s="? 0 0 0 0"></bar-blam>
         
 
-        <track-blam id="violinTrack" to="#violin" chance="0.25" suspend="">
+        <track-blam id="violinTrack" to="#violin" chance="0.2" suspend="">
           <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
         </track-blam>
           <bar-blam s="? 0 0 0 0"></bar-blam>

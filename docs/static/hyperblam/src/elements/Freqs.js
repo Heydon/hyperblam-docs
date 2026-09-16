@@ -19,7 +19,7 @@ class Freqs extends BandsToProps {
 	}
 
 	get selector() {
-    return this.getAttribute('selector') || null;
+    return this.getAttribute('selector') || ':scope > *';
 	}
 
 	set selector(value) {

@@ -13,6 +13,7 @@ class Lfo extends Osc {
       outElem.addEventListener('blamparams', this);
     }
     this.start(this.c.currentTime);
+    this.passOrBypass();
   }
 
   onblamparams(event) {
@@ -29,6 +30,10 @@ class Lfo extends Osc {
         this.gainNode.gain.value = gain;
       }
     }
+  }
+
+  passOrBypass() {
+    this.params.gain.setValueAtTime(this.bypass ? 0 : this.gain, this.context().currentTime);
   }
 
   get prop() {
@@ -67,7 +72,7 @@ class Lfo extends Osc {
 
   attributeChangedCallback(name, oldVal, newVal) {
     if (name === 'bypass') {
-      this.params.gain = this.bypass ? 0 : this.gain;
+      this.passOrBypass();
     }
     super.attributeChangedCallback(name, oldVal, newVal);
   }

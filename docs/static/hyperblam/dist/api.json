@@ -1460,7 +1460,7 @@
         "name": "mode",
         "default": "all",
         "type": "string",
-        "description": "One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `off` state is circumvented. Elements with `off` are _only_ activated by the `<relay-blam>`. Elements without `off` are activated independently _and_ via `<relay-blam>`."
+        "description": "One of `'one'`, `'some'`, or `'all'`. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ `bypass` state is circumvented. Elements with `bypass` are _only_ activated by the `<relay-blam>`. Elements without `bypass` are activated independently _and_ via `<relay-blam>`."
       },
       {
         "name": "prop",

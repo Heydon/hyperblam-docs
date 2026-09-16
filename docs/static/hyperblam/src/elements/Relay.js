@@ -8,7 +8,7 @@ class Relay extends Handle {
     this.select = {
       one: h => [random.oneOf(h)],
       some: h => random.some(h),
-      all: h => [h]
+      all: h => h
     }
   }
 
@@ -20,7 +20,9 @@ class Relay extends Handle {
   handle(event) {
     if (random.chance(this.chance)) {
       let handlers = this.select[this.mode](this.handlerElems);
+      console.log('handlers', handlers);
       handlers.forEach(h => {
+        console.log('h', h);
         h.handle(event);
       });
     }

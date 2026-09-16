@@ -1,0 +1,8 @@
+name: Props
+category: Visualizing
+extends: ListenWatch
+summary: Converts property or event data into custom properties. Uses the format `--[name]-[key]` where _name_ is the `<prop-blam>` element’s `id` (or its `nodeName` as a fallback) and _key_ is the name of the property/attribute or the property key in the event data.
+draft: true
+props:
+  - name: to 
+    description: For `<props-blam>` the default `to` is the element itself (it hosts the CSS custom properties).

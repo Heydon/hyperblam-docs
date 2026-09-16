@@ -4,6 +4,7 @@ class Props extends ListenWatch {
   constructor() {
     super();
     this.name = this.id || this.nodeName.toLowerCase();
+    this.defaultTo = () => [this];
   }
 
   handle(event) {
@@ -12,7 +13,7 @@ class Props extends ListenWatch {
     let index = this.fromElems.indexOf(event.target) + 1;
     for (const [i, to] of this.toElems.entries()) {
       Object.keys(data).forEach((k, i) => {
-        to.style.setProperty(`--${this.name}-${index}-${k}`, data[k]);
+        to.style.setProperty(`--${this.name}-${k}`, data[k]);
       });
     }
   }
@@ -22,7 +23,7 @@ class Props extends ListenWatch {
     for (const [i, to] of this.toElems.entries()) {
       for (const r of list) {
         let index = this.fromElems.indexOf(r.target) + 1;
-        to.style.setProperty(`--${this.name}-${index}-${r.attributeName}`, r.target[r.attributeName]);
+        to.style.setProperty(`--${this.name}-${r.attributeName}`, r.target[r.attributeName]);
       }
     }
   }

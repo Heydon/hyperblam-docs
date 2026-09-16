@@ -9,14 +9,13 @@
   --font: 'Courier Prime', monospace;
   --font-display: Impact, sans-serif;
   --font-special: 'Heydon Caps', cursive;
-  --wave-sine: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 20"><path fill="none" d="M-1,11.5 C 20,-20 20,40 41,8.9" stroke="%23eee" stroke-width="2"></path></svg>');
+  --wave-sine: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 40 20"><path fill="none" d="M-1,11.5 C 20,-20 20,40 41,8.5" stroke="%23eee" stroke-width="0.5"></path></svg>');
   --grip: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="%23101010" stroke-width="2" overflow="visible" stroke-linecap="round"><path d="M1 1, 1 15 M8 1, 8 15 M15 1, 15 15"></path></svg>');
   color: var(--color-fore);
   background-color: var(--color-back);
   font-family: var(--font);
   text-align: center;
   line-height: 1.4;
-  cursor: url('cursor_small.svg'), auto !important;
 }
 
 * {
@@ -40,6 +39,11 @@ a {
   text-decoration-style: wavy;
   text-decoration-thickness: 0.045em;
   text-underline-offset: 0.25em;
+}
+
+i {
+  all: unset;
+  display: inline-block;
 }
 
 button {
@@ -327,6 +331,22 @@ h3 {
   animation: sine 1s linear infinite;
 }
 
+@keyframes stretch {
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+  20% {
+    transform: scaleX(2) scaleY(0.25);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+.u-stretch {
+  animation: stretch 0.25s ease-in-out 1; 
+}
+
 .u-blend {
   mix-blend-mode: difference;
 }
@@ -435,6 +455,27 @@ section:not([hidden]) .u-squiggle {
   }
 }
 
+@keyframes amp {
+  0% {
+    transform: scaleY(1);
+  }
+  20% {
+    transform: scaleY(2.5);
+  }
+  35% {
+    transform: scaleY(0.5);
+  }
+  50% {
+    transform: scaleY(1.25);
+  }
+  75% {
+    transform: scaleY(0.75);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
 @keyframes joltSmall {
   0% {
     transform: translateX(0);
@@ -481,6 +522,11 @@ section:not([hidden]) .u-squiggle {
 
 section, .u-jolt {
   animation: jolt 0.3s linear 1;
+}
+
+.u-amp {
+  transform-box: fill-box;
+  animation: amp 0.25s linear 1;
 }
 
 .u-jolt-small {
@@ -563,6 +609,25 @@ section, .u-jolt {
   animation: smear 5s infinite alternate;
 }
 
+@keyframes tracking {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000%;
+  }
+}
+
+.u-wave {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 40 20"><path fill="none" d="M-1,11.5 C 20,-20 20,40 41,8.5" stroke="%23eee" stroke-width="0.5"></path></svg>');
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: calc(var(--lfo-freq, 50) * 1%) calc(var(--lfo-gain, 50) * 1%);
+  position: absolute;
+  inset: 0;
+  animation: tracking 30s ease-in-out infinite alternate;
+}
+
 .u-wait video, .u-contrast {
   filter: grayscale(1) contrast(50);
 }
@@ -582,26 +647,31 @@ section, .u-jolt {
 
 @keyframes distort {
   0% {
-    filter: url(#distort-3);
+    filter: url(#distort-3) grayscale(1) contrast(50);
   }
   33% {
-    filter: url(#distort-1);
+    filter: url(#distort-1) grayscale(1) contrast(50);
   }
   64% {
-    filter: url(#distort-5);
+    filter: url(#distort-5) grayscale(1) contrast(50);
   }
   66% {
-    filter: url(#distort-4);
+    filter: url(#distort-4) grayscale(1) contrast(50);
   }
   70% {
-    filter: url(#distort-1);
+    filter: url(#distort-1) grayscale(1) contrast(50);
   }
   90% {
-    filter: url(#distort-2);
+    filter: url(#distort-2) grayscale(1) contrast(50);
   }
   100% {
-    filter: url(#distort-3);
+    filter: url(#distort-3) grayscale(1) contrast(50);
   }
+}
+
+.scratch-hand {
+  transform: var(--hand-pos, translate(0%, 0%));
+  transition: transform ease-in-out calc((1 - (var(--fronVars-detune) / 1000)) * 0.25s);
 }
 
 [hidden] {
@@ -618,6 +688,12 @@ section, .u-jolt {
   inline-size: 50%;
   transform: scale(clamp(0.5, calc(var(--cowAmbPeak-peak) * 20), 1.75));
   transition: transform var(--cowAmbPeak-interval);
+}
+
+#basicVis > span {
+  display: inline-block;
+  transform: scaleY(calc(0.5 + (var(--basicVis-freq) * 2)));
+  transition: transform var(--basicVis-interval);
 }
 
 @keyframes blink {

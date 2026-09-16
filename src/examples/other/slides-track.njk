@@ -1,5 +1,5 @@
 ---
-title: Secret Tune
+title: Secret Sauce
 bpm: 90
 elements: 
   - Pad 
@@ -60,7 +60,7 @@ elements:
         <blam-blam prop="detune" value="-25~25"></blam-blam>
       </pad-blam>
 
-      <pad-blam id="snare" bank="snareBank" gain="2" detune="300">
+      <pad-blam id="snare" bank="snareBank" gain="2" detune="400">
         <chain-blam out="subdueBus">
           <echo-blam cutoff="3000" bypass>
             <blam-blam prop="beats" value="0.125|0.25|0.5"></blam-blam>
@@ -69,7 +69,10 @@ elements:
         </chain-blam>
       </pad-blam>
 
-      <pad-blam id="snareGhost" bank="snareBank" out="subdueBus">
+      <pad-blam id="snareGhost" bank="snareGhostBank" out="subdueBus" detune="400" gain="0.7">
+        <chain-blam>
+          <filter-blam freq="300" type="highpass"></filter-blam>
+        </chain-blam>
       </pad-blam>
 
       <pad-blam id="ride" bank="rideBank">
@@ -79,7 +82,7 @@ elements:
       </pad-blam>
 
       <pad-blam id="cowbell" bank="cowBank" choke="0.05" gain="0.4"> 
-        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass></blam-blam> 
+        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1"></blam-blam> 
         <chain-blam out="subdueBus">
           <pan-blam pan="0.25"></pan-blam>
         </chain-blam>
@@ -141,20 +144,44 @@ elements:
         </chain-blam>
       </pad-blam>
 
+      <pad-blam id="fron" bank="scratchBank" detune="450" choke>
+        <lfo-blam id="wobble" prop="detune" gain="700" beats="0.7"></lfo-blam>
+        <blam-blam prop="length" value="0.1~0.25"></blam-blam>
+        <blam-blam prop="reverse" value="1|0"></blam-blam>
+      </pad-blam>
+
+      <pad-blam id="teers" bank="scratchBank" choke>
+        <lfo-blam id="wobble" prop="detune" gain="200" beats="1"></lfo-blam>
+        <chain-blam>
+          <echo-blam>
+            <blam-blam prop="beats" value="0.125|0.25|0.5|1"></blam-blam>
+          </echo-blam>
+        </chain-blam>
+      </pad-blam>
+
 <!-- sequencers -->
       <sequencer-blam id="beat" swing="0.2">
-        <track-blam id="stabTrack" to="#stabs" override="bassTrack">
-          <bar-blam s="? 0 0 0 0 0 0 0"></bar-blam>
-          <bar-blam s="0 0 0 0 0 ? 0 0"></bar-blam>
-          <repeat-blam x="6">
-            <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
-          </repeat-blam>
+        <track-blam id="fronTrack" to="#fron" chance="0.7">
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="1 1 1 1 1 1 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="1 1 1 1 0 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam id="kickTrack" to="#kick" part=".basic" override="organTrack">
+        <track-blam id="teersTrack" to="#teers">
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 0 2 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
+        </track-blam>
+
+        <track-blam id="kickTrack" to="#kick" part=".basic" override="organTrack snareGhostTrack">
           <part-blam class="basic">
             <bar-blam s="1 0 0 0 0 0 0 4"></bar-blam>
             <bar-blam s="2 0 0 0 0 4 0 3"></bar-blam>
+          </part-blam>
+          <part-blam class="toFloor">
+            <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
           </part-blam>
         </track-blam>
 
@@ -170,13 +197,20 @@ elements:
           </part-blam>         
         </track-blam>
 
-        <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack">
+        <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack snareGhostTrack">
           <part-blam class="basic">
             <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-          </part-blam>        
+          </part-blam>
+          <part-blam class="syncopate">
+            <bar-blam s="0 ? 0 0 ? 0 0 ?" chance="0.8"></bar-blam>
+          </part-blam> 
         </track-blam>
 
-        <track-blam id="rideTrack" to="#ride" chance="0.5" suspend>
+        <track-blam id="snareGhostTrack" to="#snareGhost" override="organTrack" chance="0.35" gain="0.9" detune="400" suspend>
+          <bar-blam s="? ? 0 0 ? ? 0 ? ?"></bar-blam>
+        </track-blam>
+
+        <track-blam id="rideTrack" to="#ride" chance="0.25" override="hatClosedTrack hatOpenTrack">
           <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
         </track-blam>
 
@@ -196,7 +230,7 @@ elements:
         </track-blam>
 
         <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes">
-          <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
+          <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 G3"></bar-blam>
         </track-blam>
 
         <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes">
@@ -223,8 +257,16 @@ elements:
           </repeat-blam>
         </track-blam>
 
-        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack" suspend>
+        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack">
           <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
+        </track-blam>
+
+        <track-blam id="stabTrack" to="#stabs" override="bassTrack">
+          <bar-blam s="? 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 ? 0 0"></bar-blam>
+          <repeat-blam x="6">
+            <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          </repeat-blam>
         </track-blam>
       </sequencer-blam>
 
@@ -302,6 +344,11 @@ elements:
         <sample-blam src="{{site.basedir}}/static/sounds/dubbing/organ-03.mp3"></sample-blam> 
       </bank-blam>
 
+      <bank-blam id="scratchBank">
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/fronteers_front.mp3" reverse></sample-blam>
+        <sample-blam src="{{site.basedir}}/static/sounds/slides/fronteers_teers.mp3" reverse></sample-blam>
+      </bank-blam>
+
     </audio-blam>
     <tap-blam to="sequencer-blam" prop="playStop">
       <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
@@ -320,5 +367,33 @@ Some weird shit.
 {% endblock %}
 
 {% block controls %}
+
+<switch-blam to="#snareTrack" prop="part" value=".syncopate">
+  <label>
+    syncopate
+    <input type="checkbox">
+  </label>
+</switch-blam>
+
+<switch-blam to="#kickTrack" prop="part" value=".toFloor">
+  <label>
+    double kicks
+    <input type="checkbox">
+  </label>
+</switch-blam>
+
+<switch-blam to="#rhodesTrack2, #bassTrack, #hatOpenTrack, #hatClosedTrack, #organTrack" prop="suspend">
+  <label>
+    break 1
+    <input type="checkbox">
+  </label>
+</switch-blam>
+
+<switch-blam to="#rhodesTrack1, #snareTrack, #stabTrack, #snareGhostTrack, #rideTrack" prop="suspend">
+  <label>
+    break 2
+    <input type="checkbox">
+  </label>
+</switch-blam>
 
 {% endblock %}

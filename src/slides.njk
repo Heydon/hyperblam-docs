@@ -176,6 +176,12 @@
 
         <section class="u-no-stab">
           <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="{{site.basedir}}/static/video/hoover1.mp4"></video>
+          </media-blam>
+        </section>
+
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
             <video onloadstart="this.volume=0.7" src="{{site.basedir}}/static/video/too_slow.mp4"></video>
           </media-blam>
         </section>
@@ -394,7 +400,7 @@
           </div>
         </section>-->
 
-        <section class="u-rip" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and swallow it down. Gobble gobble. You love water don’t you. Water makes you wet. Gobble gobble. Glug glug. Tip your head back. Feel the water hit the back of your throat. Glug Glug. Slurp slurp. Fill your belly. Down it. Down it. Down it. Down it. Down it. Down it. Down it." data-voice="Moira" data-pause="5">
+        <section class="u-rip" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Take it in your mouth and apply suction. Suck it up like a Hoover. Gobble gobble. You love water don’t you. Glug glug. Tip your head back. Feel the water hit the back of your throat. Glug Glug. Slurp slurp. Fill your belly. Down it. Down it. Down it. Down it. Down it. Down it. Down it." data-voice="Moira" data-pause="5">
           <video class="u-mono" src="{{site.basedir}}/static/video/bottle.mp4" loop></video>
           <div class="l-screen">
             <div class="l-frame u-squiggle">
@@ -405,6 +411,13 @@
           <blam-blam to=".rhodesTrack" prop="solo" value="true" for="slideNext"></blam-blam>
           <blam-blam to=".rhodesTrack" prop="suspend" value="false" for="slideNext"></blam-blam>
           <blam-blam to=".hypnoVis" for="slideNext" prop="stop"></blam-blam>
+        </section>
+
+        <section class="u-no-stab">
+          <media-blam out="garbleBus">
+            <video onloadstart="this.volume=0.7" src="{{site.basedir}}/static/video/hoover3.mp4"></video>
+          </media-blam>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
         </section>
 
         <section>
@@ -419,7 +432,6 @@
 &lt;/note-blam></code></pre>
             </div>
           </div>
-          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
         </section>
 
         <section class="u-no-stab">
@@ -487,6 +499,29 @@ D5 0 D5 0 G#5 0</code></pre>
           <div class="l-screen">
             <div class="l-frame">
               <img class="u-squiggle" src="{{site.basedir}}/static/images/slides/envelope2.svg" alt="diagram of envelope curve">
+            </div>
+          </div>
+        </section>
+
+        <section id="bassBitsSlide" class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre style="font-size: 0.6em"><code>&lt;note-blam id="bass" bank="bassBank" choke notes="E2 E2 G2 A2 A#2 E3">
+  &lt;blam-blam prop="length" value="0.25|0.5|0.125">&lt;/blam-blam>
+  &lt;chain-blam out="bus">
+    &lt;filter-blam freq="8000" q="10">
+      &lt;envelope-blam prop="freq" curve="200 0, 11000 0.25">&lt;/envelope-blam>
+    &lt;/filter-blam>
+  &lt;/chain-blam>
+  &lt;envelope-blam prop="detune" curve="-300 0, 0 0.2" chance="0.2">&lt;/envelope-blam>
+&lt;/note-blam>
+
+...
+
+&lt;track-blam id="bassTrack" to="#bass">
+  &lt;bar-blam s="0 0 0 E3">&lt;/bar-blam>
+  &lt;bar-blam s="? ? ? ?" chance="0.6">&lt;/bar-blam>
+&lt;/track-blam></code></pre>
             </div>
           </div>
         </section>
@@ -658,7 +693,7 @@ D5 0 D5 0 G#5 0</code></pre>
           </div>
           <div class="l-frame u-blend" style="justify-content: center">
             <h2 class="u-alert u-tilt"><span class="u-blocked u-impact u-squiggle">SATURATION!</span></h2>
-            <radios-blam to="#busFuzz" prop="mode" style="padding: 0.5em; font-size: 0.7em">
+            <radios-blam id="radios" to="#busFuzz" prop="mode" style="padding: 0.5em; font-size: 0.7em">
               <fieldset aria-labelledby="modeLabel">
                 <span class="u-legend" id="modeLabel">mode</span>
                 <label>
@@ -682,7 +717,7 @@ D5 0 D5 0 G#5 0</code></pre>
               </label>
             </dial-blam>
           </div>
-          <blam-blam to="#glitchVideo" from="#snare" prop="class" value="u-invert|u-no-invert"></blam-blam>
+          <blam-blam from="#kick" to="#radios" prop="class" value="u-squiggle-1"></blam-blam>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
           <blam-blam to="#busFuzz" for="slideNext" prop="bypass" value="false"></blam-blam>
           <blam-blam to=".rhodesTrack" for="slideNext" prop="suspend" value="true"></blam-blam>
@@ -715,12 +750,13 @@ D5 0 D5 0 G#5 0</code></pre>
         </section>
 
         <section class="u-no-stab">
-          <media-blam out="garbleBus">
-            <video onloadstart="this.volume=0.7" src="{{site.basedir}}/static/video/cannot_think.mp4"></video>
-          </media-blam>
-          <blam-blam to="#basicVis" for="slideNext" prop="stop"></blam-blam>
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" src="{{site.basedir}}/static/images/slides/accordion.svg" alt="Spectrally analysed accordion pumped into a computer to make HTML">              
+            </div>
+          </div>
           <blam-blam to="#beat" for="slideWaiting" prop="stop"></blam-blam>
-        </section> 
+        </section>
         
         <section id="togetherSlide" class="u-no-stab">
           <div class="l-screen u-contrast">
@@ -729,19 +765,22 @@ D5 0 D5 0 G#5 0</code></pre>
           <div class="l-screen u-blend">
             <video id="togetherDancer" class="u-contrast" src="{{site.basedir}}/static/video/dancer.mp4" loop></video>
           </div>
-          <div class="l-full-screen u-scroll-back u-blend"></div>
-          <blam-blam to="#stabTrack, #organTrack, #rideTrack, #violinTrack, .rhodesTrack" prop="suspend" value="false" for="slideNext"></blam-blam>
+          <div class="l-full-screen u-blend">
+            <div class="l-full-screen u-squiggle">
+              <div class="l-full-screen u-scroll-back"></div>
+            </div>
+          </div>
+          <blam-blam to="#snareGhostTrack, #stabTrack, #organTrack, #rideTrack, #violinTrack, .rhodesTrack" prop="suspend" value="false" for="slideNext"></blam-blam>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
           <blam-blam to="#beat" prop="play" for="slideNext"></blam-blam>
           <blam-blam from="#organ" to="#togetherBaby" prop="class" value="u-squiggle-1"></blam-blam>
           <blam-blam from="#snare" to="#togetherDancer" prop="class" value="u-punch"></blam-blam>
-          <blam-blam to="#beat" for="slideNext" prop="start"></blam-blam>
           <blam-blam from="#snare" to="#togetherDancer" prop="currentTime" value="0|0.5|1" chance="0.5"></blam-blam>
         </section>
 
-        <section id="clockSlide" class="u-no-stab" id="spinner">
+        <section class="u-no-stab" id="spinner">
           <div class="l-screen"> 
-            <img style="height: 90%" class="u-spin" src="{{site.basedir}}/static/images/slides/spinner.svg" alt="loading spinner">
+            <img id="spinnerGraphic" style="height: 90%" class="u-spin" src="{{site.basedir}}/static/images/slides/spinner.svg" alt="loading spinner">
             <div class="l-frame">
               <dial-blam to="audio-blam" prop="bpm" style="font-size: 0.75em">
                 <label>
@@ -751,13 +790,13 @@ D5 0 D5 0 G#5 0</code></pre>
               </dial-blam>
             </div> 
           </div>
-          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam to="#stabTrack" prop="suspend" value="true" for="slideNext"></blam-blam>
           <blam-blam to="#clockTrack" for="slideNext" prop="suspend" value="false"></blam-blam>
           <blam-blam to="#clockCustomProps" for="slideNext" prop="bypass" value="false"></blam-blam>
-          <blam-blam id="clockCustomProps" from="#clock" prop="--spinnerDegs" to="" value="0deg|45deg|90deg|135deg|180deg|225deg|270deg" robin bypass></blam-blam>
+          <blam-blam id="clockCustomProps" from="sequencer-blam" prop="--spinnerDegs" to="#spinnerGraphic" value="0deg|45deg|90deg|135deg|180deg|225deg|270deg" robin bypass></blam-blam>
         </section>
 
-        <section id="clockSlide" class="u-no-stab" id="spinner">
+        <section class="u-no-stab" id="spinner">
           <div class="l-screen"> 
             <div class="l-frame">
               <h2>I have run out of slides</h2>
@@ -951,6 +990,7 @@ D5 0 D5 0 G#5 0</code></pre>
             <lfo-blam prop="pan" gain="0.5" beats="3"></lfo-blam>
           </pan-blam>
         </chain-blam>
+        <blam-blam chance="0.3" detune="1200" revert></blam-blam>
       </pad-blam>
 
 <!-- sequencers -->
@@ -968,12 +1008,19 @@ D5 0 D5 0 G#5 0</code></pre>
             <bar-blam s="1 0 0 0 0 0 0 4"></bar-blam>
             <bar-blam s="2 0 0 0 0 4 0 3"></bar-blam>
           </part-blam>
+          <part-blam class="fourToFloor">
+            <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
+            <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
+          </part-blam>
         </track-blam>
 
         <track-blam class="hatTrack" id="hatClosedTrack" to="#hat" part=".basic" chance="0.9" suspend>
           <part-blam class="basic">
             <bar-blam s="1 0 2 0 3 2 1 0 3 0"></bar-blam>
-          </part-blam>         
+          </part-blam>   
+          <part-blam class="loadsOfHats">
+            <bar-blam s="1 2 3 2 1 2 3 2 1"></bar-blam>
+          </part-blam>       
         </track-blam>
 
         <track-blam class="hatTrack" id="hatOpenTrack" to="#hat" part=".basic" chance="0.1" override="hatClosedTrack" suspend>
@@ -985,14 +1032,20 @@ D5 0 D5 0 G#5 0</code></pre>
         <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack snareGhostTrack kickTrack">
           <part-blam class="basic">
             <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-          </part-blam>        
+          </part-blam>
+          <part-blam class="snareFirst">
+            <bar-blam s="? 0 0 ? 0 0 ? 0"></bar-blam>
+          </part-blam>   
+          <part-blam class="snareSync">
+            <bar-blam s="0 ? 0 0 ? 0 0 ?"></bar-blam>
+          </part-blam>   
         </track-blam>
 
-        <track-blam id="snareGhostTrack" to="#snareGhost" override="organTrack" chance="0.5" gain="0.7" detune="300" suspend>
+        <track-blam id="snareGhostTrack" to="#snareGhost" override="organTrack" chance="0.35" gain="0.7" detune="400" suspend>
           <bar-blam s="? ? 0 0 ? ? 0 ? ?"></bar-blam>      
         </track-blam>
 
-        <track-blam id="rideTrack" to="#ride" chance="0.2" suspend override="hatTrack">
+        <track-blam id="rideTrack" to="#ride" chance="0.2" suspend override="hatOpenTrack hatClosedTrack">
           <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
         </track-blam>
 
@@ -1004,11 +1057,19 @@ D5 0 D5 0 G#5 0</code></pre>
           <bar-blam s="? 0 0 0 ? 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam class="bassTrack" id="bassTrack" to="#bass" suspend>
-          <bar-blam s="0 0 0 E3"></bar-blam>
-          <bar-blam s="? ? ? ?" chance="0.6"></bar-blam>
-          <bar-blam s="0 0 0 E4"></bar-blam>
-          <bar-blam s="0 0 ? ?" chance="0.6"></bar-blam>
+        <track-blam class="bassTrack" id="bassTrack" to="#bass" part=".main" suspend>
+          <part-blam class="main">
+            <bar-blam s="0 0 0 E3"></bar-blam>
+            <bar-blam s="? ? ? ?" chance="0.6"></bar-blam>
+            <bar-blam s="0 0 0 E4"></bar-blam>
+            <bar-blam s="0 0 ? ?" chance="0.6"></bar-blam>
+          </part-blam>
+          <part-blam class="sparse">
+            <bar-blam s="E2 0 0 E3"></bar-blam>
+            <bar-blam s="0 0 0 F2"></bar-blam>
+            <bar-blam s="E2 0 0 E4"></bar-blam>
+            <bar-blam s="0 0 0 F3"></bar-blam>
+          </part-blam>
         </track-blam>
 
         <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes" suspend>

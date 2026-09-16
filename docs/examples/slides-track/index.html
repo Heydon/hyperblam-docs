@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-    <title>Secret Tune : HYPERBLAM</title>
+    <title>Secret Sauce : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -11,15 +11,15 @@
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
-    <meta property="og:title" content="Secret Tune">
+    <meta property="og:title" content="Secret Sauce">
     <meta property="og:site_name" content="HYPERBLAM">
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -80,7 +80,7 @@
   
     </a>
   </nav>
-  <h1 class="u-font-larger">Secret Tune</h1>
+  <h1 class="u-font-larger">Secret Sauce</h1>
 </header>
 
     
@@ -135,7 +135,7 @@
         <blam-blam prop="detune" value="-25~25"></blam-blam>
       </pad-blam>
 
-      <pad-blam id="snare" bank="snareBank" gain="2" detune="300">
+      <pad-blam id="snare" bank="snareBank" gain="2" detune="400">
         <chain-blam out="subdueBus">
           <echo-blam cutoff="3000" bypass="">
             <blam-blam prop="beats" value="0.125|0.25|0.5"></blam-blam>
@@ -144,7 +144,10 @@
         </chain-blam>
       </pad-blam>
 
-      <pad-blam id="snareGhost" bank="snareBank" out="subdueBus">
+      <pad-blam id="snareGhost" bank="snareGhostBank" out="subdueBus" detune="400" gain="0.7">
+        <chain-blam>
+          <filter-blam freq="300" type="highpass"></filter-blam>
+        </chain-blam>
       </pad-blam>
 
       <pad-blam id="ride" bank="rideBank">
@@ -154,7 +157,7 @@
       </pad-blam>
 
       <pad-blam id="cowbell" bank="cowBank" choke="0.05" gain="0.4"> 
-        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1" bypass=""></blam-blam> 
+        <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1"></blam-blam> 
         <chain-blam out="subdueBus">
           <pan-blam pan="0.25"></pan-blam>
         </chain-blam>
@@ -212,20 +215,44 @@
         </chain-blam>
       </pad-blam>
 
+      <pad-blam id="fron" bank="scratchBank" detune="450" choke="">
+        <lfo-blam id="wobble" prop="detune" gain="700" beats="0.7"></lfo-blam>
+        <blam-blam prop="length" value="0.1~0.25"></blam-blam>
+        <blam-blam prop="reverse" value="1|0"></blam-blam>
+      </pad-blam>
+
+      <pad-blam id="teers" bank="scratchBank" choke="">
+        <lfo-blam id="wobble" prop="detune" gain="200" beats="1"></lfo-blam>
+        <chain-blam>
+          <echo-blam>
+            <blam-blam prop="beats" value="0.125|0.25|0.5|1"></blam-blam>
+          </echo-blam>
+        </chain-blam>
+      </pad-blam>
+
 <!-- sequencers -->
       <sequencer-blam id="beat" swing="0.2">
-        <track-blam id="stabTrack" to="#stabs" override="bassTrack">
-          <bar-blam s="? 0 0 0 0 0 0 0"></bar-blam>
-          <bar-blam s="0 0 0 0 0 ? 0 0"></bar-blam>
-          <repeat-blam x="6">
-            <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
-          </repeat-blam>
+        <track-blam id="fronTrack" to="#fron" chance="0.7">
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="1 1 1 1 1 1 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="1 1 1 1 0 0 0 0"></bar-blam>
         </track-blam>
 
-        <track-blam id="kickTrack" to="#kick" part=".basic" override="organTrack">
+        <track-blam id="teersTrack" to="#teers">
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 0 2 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 1 0 2 0"></bar-blam>
+        </track-blam>
+
+        <track-blam id="kickTrack" to="#kick" part=".basic" override="organTrack snareGhostTrack">
           <part-blam class="basic">
             <bar-blam s="1 0 0 0 0 0 0 4"></bar-blam>
             <bar-blam s="2 0 0 0 0 4 0 3"></bar-blam>
+          </part-blam>
+          <part-blam class="toFloor">
+            <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
           </part-blam>
         </track-blam>
 
@@ -241,13 +268,20 @@
           </part-blam>         
         </track-blam>
 
-        <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack">
+        <track-blam id="snareTrack" to="#snare" part=".basic" override="organTrack snareGhostTrack">
           <part-blam class="basic">
             <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
-          </part-blam>        
+          </part-blam>
+          <part-blam class="syncopate">
+            <bar-blam s="0 ? 0 0 ? 0 0 ?" chance="0.8"></bar-blam>
+          </part-blam> 
         </track-blam>
 
-        <track-blam id="rideTrack" to="#ride" chance="0.5" suspend="">
+        <track-blam id="snareGhostTrack" to="#snareGhost" override="organTrack" chance="0.35" gain="0.9" detune="400" suspend="">
+          <bar-blam s="? ? 0 0 ? ? 0 ? ?"></bar-blam>
+        </track-blam>
+
+        <track-blam id="rideTrack" to="#ride" chance="0.25" override="hatClosedTrack hatOpenTrack">
           <bar-blam s="? ? ? ? ? ? ? ?"></bar-blam>
         </track-blam>
 
@@ -267,7 +301,7 @@
         </track-blam>
 
         <track-blam class="rhodesTrack" id="rhodesTrack1" to="#rhodes">
-          <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 0"></bar-blam>
+          <bar-blam s="E3 0 0 0 0 0 B3 0 0 0 0 G3"></bar-blam>
         </track-blam>
 
         <track-blam class="rhodesTrack" id="rhodesTrack2" to="#rhodes">
@@ -294,8 +328,16 @@
           </repeat-blam>
         </track-blam>
 
-        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack" suspend="">
+        <track-blam id="organTrack" to="#organ" chance="0.25" override="stabTrack rhodesTrack bassTrack">
           <bar-blam s="1 0 0 0 ? 0 0 ? 0 ? 0 0 0"></bar-blam>
+        </track-blam>
+
+        <track-blam id="stabTrack" to="#stabs" override="bassTrack">
+          <bar-blam s="? 0 0 0 0 0 0 0"></bar-blam>
+          <bar-blam s="0 0 0 0 0 ? 0 0"></bar-blam>
+          <repeat-blam x="6">
+            <bar-blam s="0 0 0 0 0 0 0 0"></bar-blam>
+          </repeat-blam>
         </track-blam>
       </sequencer-blam>
 
@@ -373,6 +415,11 @@
         <sample-blam src="https://hyperblam.how/static/sounds/dubbing/organ-03.mp3"></sample-blam> 
       </bank-blam>
 
+      <bank-blam id="scratchBank">
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/fronteers_front.mp3" reverse=""></sample-blam>
+        <sample-blam src="https://hyperblam.how/static/sounds/slides/fronteers_teers.mp3" reverse=""></sample-blam>
+      </bank-blam>
+
     
     <tap-blam to="sequencer-blam" prop="playStop">
       <button aria-pressed="false" class="u-round" aria-label="play">
@@ -412,6 +459,34 @@
 <footer>
   <div class="l-cluster">
     
+
+<switch-blam to="#snareTrack" prop="part" value=".syncopate">
+  <label>
+    syncopate
+    <input type="checkbox">
+  </label>
+</switch-blam>
+
+<switch-blam to="#kickTrack" prop="part" value=".toFloor">
+  <label>
+    double kicks
+    <input type="checkbox">
+  </label>
+</switch-blam>
+
+<switch-blam to="#rhodesTrack2, #bassTrack, #hatOpenTrack, #hatClosedTrack, #organTrack" prop="suspend">
+  <label>
+    break 1
+    <input type="checkbox">
+  </label>
+</switch-blam>
+
+<switch-blam to="#rhodesTrack1, #snareTrack, #stabTrack, #snareGhostTrack, #rideTrack" prop="suspend">
+  <label>
+    break 2
+    <input type="checkbox">
+  </label>
+</switch-blam>
 
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>

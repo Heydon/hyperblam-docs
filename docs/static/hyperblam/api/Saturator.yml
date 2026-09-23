@@ -11,7 +11,7 @@ props:
   - name: mode
     default: 1 
     type: number 
-    description: The type of waveshaping algorithm applied. At the time of writing, 4 modes are offered. Check the source file for more. They formulas appear in the `makeCurve()` function.  
+    description: The type of waveshaping algorithm applied. At the time of writing, 5 modes are offered. Check the source file for more. The formulas appear in the `makeCurve()` function. Mode 4 has unusual behavior... adjusting `amount` radically changes the character of the distortion.
   - name: lowcut 
     default: 100
     type: number 

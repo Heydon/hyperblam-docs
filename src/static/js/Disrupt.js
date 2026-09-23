@@ -1,6 +1,17 @@
 import { random } from '../hyperblam/dist/hyperblam/tools/random.js';
 
 class Disrupt extends HTMLElement {
+  constructor() {
+    super();
+    this.remains = { x: 1, y: 0 }
+
+    this.select = {
+      one: h => [random.oneOf(h)],
+      some: h => random.some(h),
+      all: h => h
+    }
+  }
+
   shift(value) {
     if (!random.chance(this.frequency)) {
       return value;
@@ -16,21 +27,28 @@ class Disrupt extends HTMLElement {
     let data = path.getPathData();
     data.forEach(seg => {
       seg.values.forEach((val, index) => {
-        if (this.axes.includes('x') && index % 2 == 1) {
-          seg.values[index] = this.shift(val);
-        }
-        if (this.axes.includes('y') && index % 2 == 0) {
-          seg.values[index] = this.shift(val);
-        }               
+        for (const [k, v] of Object.entries(this.remains)) {
+          if (this.axes.includes(k) && index % 2 == v) {
+            seg.values[index] = this.shift(val);
+          }        
+        }   
       });
     });
     path.setPathData(data);
   }
 
   disrupt() {
-    this.paths.forEach(path => {
+    let paths = this.select[this.mode](this.paths);
+    console.log(paths);
+    paths.forEach(path => {
       this.disruptPath(path);
     });
+  }
+
+  restore() {
+    this.paths.forEach(path => {
+      this.restorePath(path);
+    });    
   }
 
   get frequency() {
@@ -51,26 +69,28 @@ class Disrupt extends HTMLElement {
 		this.setAttribute('gain', value);
   }
 
-  get gain() {
-    let value = this.getAttribute('gain');
-    return value ? parseFloat(value) : 10;
-	}
-
-	set gain(value) {
-		this.setAttribute('gain', value);
-  }
-
   get axes() {
-    let axes = this.getAttribute('axes');
-    return value || 'xy';
+    return this.getAttribute('axes') || 'xy';
 	}
 
 	set axes(value) {
 		this.setAttribute('axes', value);
   }
+
+  get mode() {
+    let value = this.getAttribute('mode');
+		return ['one', 'some', 'all'].find(v => v === value) || 'all';
+	}
+
+	set mode(value) {
+		this.setAttribute('mode', value);
+  }
   
   connectedCallback() {
     this.paths = [...this.querySelectorAll('path')];
+    console.log(this.paths);
     this.strings = this.paths.map(path => path.getAttribute('d'));
   }
 }
+
+export { Disrupt }

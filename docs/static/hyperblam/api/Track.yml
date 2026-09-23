@@ -26,6 +26,6 @@ props:
     description: For compositional purposes, you can group `<bar-blam>`s into parts, using the `<part-blam>` element. The `part` prop takes a CSS selector corresponding to the first `<part-blam>` element it matches. If no `part` is set, the entire contents of the `<track-blam>` is considered the “part”. Parts change when the current part comes to its end, so the immediacy of the shift depends on how close to the end of the part the change is made.
 events: 
   - name: blam
-    description: Fired on both the `<track-elem>` itself and the newly selected `<bar-blam>`.
+    description: Fired on both the `<track-elem>` itself and the newly selected `<bar-blam>` whenever the `<bar-blam>` changes.
   - name: blampart
     description: Fired on the `<track-elem>` whenever a new part (`<part-elem>`) is chosen. If the `part` value is falsy, the “part” is the entire structure belonging to the `<track-elem>`.

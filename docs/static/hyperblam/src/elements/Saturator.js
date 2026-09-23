@@ -26,13 +26,16 @@ class Saturator extends Box {
     });
   }
 
+  limit(x) {
+    return Math.max(-1, Math.min(1, x));
+  }
+
   makeCurve() {
     const a = this.amount;
     const samples = 44100;
     const curve = new Float32Array(samples);
-  
     for (let i = 0; i < samples; i++) {
-      const x = (i * 2) / samples - 1;
+      let x = (i * 2) / samples - 1;
       if (this.mode == 1) {
         curve[i] = Math.tanh(x * a);
       }
@@ -40,10 +43,13 @@ class Saturator extends Box {
         curve[i] = Math.cos(x * a);
       }
       if (this.mode == 3) {
-        curve[i] = (a * 20) * Math.abs(x / a);
+        curve[i] = Math.abs(x * (a / 2));
       }
       if (this.mode == 4) {
         curve[i] = Math.sin(a * Math.acos(x / 5));
+      }
+      if (this.mode == 5) {
+        curve[i] = Math.sin(x * a);
       }
     }
     return curve;

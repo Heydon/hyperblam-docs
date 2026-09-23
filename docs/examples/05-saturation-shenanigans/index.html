@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -102,7 +102,7 @@
       
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam amount="25"></saturator-blam>
+  <saturator-blam id="crunchy" amount="25" mode="1"></saturator-blam>
 </chain-blam>
 <pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
@@ -196,10 +196,37 @@
 <footer>
   <div class="l-cluster">
     
+<radios-blam to="#crunchy" prop="mode">
+  <fieldset aria-labelledby="modeLabel">
+    <span class="u-legend" id="modeLabel">mode</span>
+    <label>
+      <input type="radio" name="mode" value="1">
+      1
+    </label>
+    <label>
+      <input type="radio" name="mode" value="2">
+      2
+    </label>
+    <label>
+      <input type="radio" name="mode" value="3">
+      3
+    </label>
+    <label>
+      <input type="radio" name="mode" value="4">
+      4
+    </label>
+    <label>
+      <input type="radio" name="mode" value="5">
+      5
+    </label>
+  </fieldset>
+</radios-blam>
+
 <dial-blam to="saturator-blam" prop="amount">
   <label>
     amount
     <input type="range" min="0" max="100" step="1">
+    <display-blam from="saturator-blam" prop="amount" places="0" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
 <switch-blam to="saturator-blam" prop="bypass">

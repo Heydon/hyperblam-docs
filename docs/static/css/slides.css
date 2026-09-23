@@ -117,6 +117,10 @@ pre, code {
   font-family: inherit;
 }
 
+svg[hidden] {
+  display: none;
+}
+
 .u-hl {
   border-radius: 0.125em;
   outline: 0.0625em dotted;
@@ -252,8 +256,8 @@ section {
 }
 
 .l-frame img {
-  max-inline-size: 80vw;
-  max-block-size: 80vh;
+  max-inline-size: 85vw;
+  max-block-size: 85vh;
 }
 
 .l-screen {
@@ -520,8 +524,12 @@ section:not([hidden]) .u-squiggle {
   background-image: url('/static/images/slides/credits.svg');
 }
 
-section, .u-jolt {
-  animation: jolt 0.3s linear 1;
+section {
+  animation: warp 0.4s 1, jolt 0.4s 1;
+}
+
+.u-jolt {
+  animation: jolt 0.3s 1;
 }
 
 .u-amp {
@@ -530,7 +538,7 @@ section, .u-jolt {
 }
 
 .u-jolt-small {
-  animation: joltSmall 0.1s linear;
+  animation: joltSmall 0.2s linear;
 }
 
 @keyframes punch {
@@ -669,9 +677,13 @@ section, .u-jolt {
   }
 }
 
-.scratch-hand {
+.scratch-hand, .scratch-hand-sequenced {
   transform: var(--hand-pos, translate(0%, 0%));
   transition: transform ease-in-out calc((1 - (var(--fronVars-detune) / 1000)) * 0.25s);
+}
+
+.scratch-hand-sequenced {
+  transition: transform ease-in-out 0.125s;
 }
 
 [hidden] {
@@ -715,6 +727,7 @@ section, .u-jolt {
 }
 
 .cow-stick {
+  --cowData-freq: 0;
   transform: translateY(calc((1 - var(--cowData-freq)) * 65%));
   transition: transform var(--cowData-interval);
 }

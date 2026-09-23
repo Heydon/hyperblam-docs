@@ -15,7 +15,7 @@ class Sequencer extends Base {
       this.time += this.quarterBeat * this.scale;
       this.trackElems && this.trackElems.forEach(t => {
         let b = t.getBar();
-        t.probable = !t.suspend && random.chance(Math.max(b.chance || t.chance));
+        t.probable = (!t.suspend || (t.suspend && t.solo)) && random.chance(Math.max(b.chance || t.chance));
         t.cipher = b.getCipher(t.step);
       });
       this.fire('blam', {
@@ -27,6 +27,7 @@ class Sequencer extends Base {
   }
 
   play() {
+    console.log('play');
     this.playing = true; 
     if (this.c.state === 'suspended') this.c.resume();
     this.time = this.c.currentTime;
@@ -41,6 +42,7 @@ class Sequencer extends Base {
   }
 
   stop() {
+    console.log('stop');
     this.pause();
     this.odd = 1;
     this.trackElems.length && this.trackElems.forEach(t => t.reset());

@@ -21,7 +21,7 @@ elements:
 {% block audio %}
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam amount="25"></saturator-blam>
+  <saturator-blam id="crunchy" amount="25" mode="1"></saturator-blam>
 </chain-blam>
 <pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
@@ -99,10 +99,37 @@ Math.tanh(x * a);
 {% endblock %}
 
 {% block controls %}
+<radios-blam to="#crunchy" prop="mode">
+  <fieldset aria-labelledby="modeLabel">
+    <span class="u-legend" id="modeLabel">mode</span>
+    <label>
+      <input type="radio" name="mode" value="1">
+      1
+    </label>
+    <label>
+      <input type="radio" name="mode" value="2">
+      2
+    </label>
+    <label>
+      <input type="radio" name="mode" value="3">
+      3
+    </label>
+    <label>
+      <input type="radio" name="mode" value="4">
+      4
+    </label>
+    <label>
+      <input type="radio" name="mode" value="5">
+      5
+    </label>
+  </fieldset>
+</radios-blam>
+
 <dial-blam to="saturator-blam" prop="amount">
   <label>
     amount
     <input type="range" min="0" max="100" step="1">
+    <display-blam from="saturator-blam" prop="amount" places="0" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
 <switch-blam to="saturator-blam" prop="bypass">

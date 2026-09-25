@@ -27,7 +27,6 @@ class Sequencer extends Base {
   }
 
   play() {
-    console.log('play');
     this.playing = true; 
     if (this.c.state === 'suspended') this.c.resume();
     this.time = this.c.currentTime;
@@ -42,7 +41,6 @@ class Sequencer extends Base {
   }
 
   stop() {
-    console.log('stop');
     this.pause();
     this.odd = 1;
     this.trackElems.length && this.trackElems.forEach(t => t.reset());

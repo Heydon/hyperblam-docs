@@ -926,59 +926,64 @@ D5 0 D5 0 G#5 0</code></pre>
         </section>
         
         <section id="togetherSlide">
-          <div class="l-screen u-contrast">
-            <video id="togetherBaby" style="transform: scale(1.5)" src="https://hyperblam.how/static/video/baby.mp4" loop=""></video>
-          </div>
-          <div class="l-screen u-blend">
-            <video id="togetherDancer" class="u-contrast" src="https://hyperblam.how/static/video/dancer.mp4" loop=""></video>
-          </div>
-          <div class="l-full-screen u-blend">
-            <div class="l-full-screen u-squiggle">
-              <div class="l-full-screen u-scroll-back"></div>
+          <props-blam style="display: contents" from="#busFuzz" id="bz" mode="props">
+            <div class="l-screen u-contrast">
+              <video id="togetherBaby" style="transform: scale(1.5)" src="https://hyperblam.how/static/video/baby.mp4" loop=""></video>
             </div>
-          </div>
-          <div class="l-frame u-blend">
-            <div class="l-cluster" style="justify-content: space-around; width: 100%">
-              <switch-blam to="#snareTrack" prop="part" value=".syncopate" style="font-size: 0.5em">
-                <label>
-                  off beat
-                  <input type="checkbox">
-                </label>
-              </switch-blam>
-              <switch-blam to="#bassTrack" prop="part" value=".deep" style="font-size: 0.5em">
-                <label>
-                  deep
-                  <input type="checkbox">
-                </label>
-              </switch-blam>
-              <switch-blam to=".scratchTrack, #rhodesTrack1, #bassTrack, #snareTrack, #kickTrack, #snareGhostTrack, .hatTrack" prop="solo" style="font-size: 0.5em">
-                <label>
-                  break
-                  <input type="checkbox">
-                </label>
-              </switch-blam>
+            <div class="l-screen u-blend">
+              <video id="togetherDancer" class="u-contrast" src="https://hyperblam.how/static/video/dancer.mp4" loop=""></video>
             </div>
-            <div class="l-cluster" style="justify-content: space-around; width: 100%">
-              <switch-blam to="#kickTrack" prop="part" value=".toFloor" style="font-size: 0.5em">
-                <label>
-                  double kick
-                  <input type="checkbox">
-                </label>
-              </switch-blam>
-              <switch-blam to="#stabTrack, #organTrack, #rhodesTrack2, #snareTrack, #kickTrack, .scratchTrack, #cowbellTrack" prop="solo" style="font-size: 0.5em">
-                <label>
-                  break 2
-                  <input type="checkbox">
-                </label>
-              </switch-blam>
-              <dial-blam to="#busFuzz" prop="mix" style="font-size: 0.5em">
-                <label>
-                  fuzz
-                  <input type="range" min="0" max="1" step="any">
-                </label>
-              </dial-blam>
+            <div class="l-screen u-blend">
+              <video id="togetherCow" class="u-contrast" src="https://hyperblam.how/static/video/cow_ascii.mp4" loop=""></video>
             </div>
-          </div>
+            <div class="l-full-screen u-blend">
+              <div class="l-full-screen u-squiggle">
+                <div class="l-full-screen u-scroll-back"></div>
+              </div>
+            </div>
+            <div class="l-frame u-blend">
+              <div class="l-cluster" style="justify-content: space-around; width: 100%">
+                <switch-blam to="#snareTrack" prop="part" value=".syncopate" style="font-size: 0.5em">
+                  <label>
+                    off beat
+                    <input type="checkbox">
+                  </label>
+                </switch-blam>
+                <switch-blam to="#bassTrack" prop="part" value=".deep" style="font-size: 0.5em">
+                  <label>
+                    deep
+                    <input type="checkbox">
+                  </label>
+                </switch-blam>
+                <switch-blam to=".scratchTrack, #rhodesTrack1, #bassTrack, #snareTrack, #kickTrack, #snareGhostTrack, .hatTrack" prop="solo" style="font-size: 0.5em">
+                  <label>
+                    break
+                    <input type="checkbox">
+                  </label>
+                </switch-blam>
+              </div>
+              <div class="l-cluster" style="justify-content: space-around; width: 100%">
+                <switch-blam to="#kickTrack" prop="part" value=".toFloor" style="font-size: 0.5em">
+                  <label>
+                    double kick
+                    <input type="checkbox">
+                  </label>
+                </switch-blam>
+                <switch-blam to="#stabTrack, #organTrack, #rhodesTrack2, #snareTrack, #kickTrack, .scratchTrack, #cowbellTrack" prop="solo" style="font-size: 0.5em">
+                  <label>
+                    break 2
+                    <input type="checkbox">
+                  </label>
+                </switch-blam>
+                <dial-blam to="#busFuzz" prop="mix" style="font-size: 0.5em">
+                  <label>
+                    fuzz
+                    <input type="range" min="0" max="1" step="any">
+                  </label>
+                </dial-blam>
+              </div>
+            </div>
+          </props-blam>
           <blam-blam to=".rhodesTrack" prop="solo" value="false" for="slideNext"></blam-blam>
           <blam-blam to="#busFuzz" prop="bypass" value="false"></blam-blam>
           <blam-blam to="#busFuzz" for="slideNext" prop="mix" value="0"></blam-blam>
@@ -989,6 +994,7 @@ D5 0 D5 0 G#5 0</code></pre>
           <blam-blam from="#organ" to="#togetherBaby" prop="class" value="u-squiggle-1"></blam-blam>
           <blam-blam from="#snare" to="#togetherDancer" prop="class" value="u-punch"></blam-blam>
           <blam-blam from="#snare" to="#togetherDancer" prop="currentTime" value="0|0.25|0.5|0.75|1" chance="0.75"></blam-blam>
+          <blam-blam from=".scratchTrack" to="#togetherBaby" prop="currentTime" value="0|0.25|0.5|0.75|1" chance="0.75"></blam-blam>
         </section>
 
         <section class="u-no-stab" id="spinner">

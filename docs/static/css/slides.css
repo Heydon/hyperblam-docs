@@ -520,7 +520,7 @@ section:not([hidden]) .u-squiggle {
   background-size: 90% auto;
   background-repeat: repeat-y;
   background-position-x: center;
-  animation: scroll 300s linear infinite;
+  animation: scroll calc(500s - (var(--bz-mix, 0) * 500s)) linear infinite;
   background-image: url('/static/images/slides/credits.svg');
 }
 
@@ -589,6 +589,10 @@ section {
 
 .u-wait {
   animation: var(--wait, distort) var(--wait-speed, 0.2s) infinite alternate;
+}
+
+#togetherCow {
+  transform: scale(calc(var(--bz-mix, 0) * 2));
 }
 
 @keyframes smear {

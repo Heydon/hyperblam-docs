@@ -115,6 +115,19 @@
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
+              <tap-blam to="#cowbell" prop="play" value="1">
+                <button>cowbell</button>
+              </tap-blam>
+<pre><code>&lt;tap-blam to="#cowbell" prop="play" value="1">
+  &lt;button>cowbell&lt;/button>
+&lt;/tap-blam></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
               <img class="u-squiggle" src="{{site.basedir}}/static/images/slides/drum_machine.svg" alt="drum machine with a single drum pad highlighted.">
             </div>
           </div>
@@ -161,7 +174,7 @@
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-              <img class="u-squiggle" src="{{site.basedir}}/static/images/illustrations/sequencing_spiderman.svg" alt="spiderman pointing at himself.">
+              <img class="u-squiggle" src="{{site.basedir}}/static/images/slides/spidermen.svg" alt="spiderman pointing at himself.">
             </div>
           </div>
         </section>
@@ -479,13 +492,19 @@ D5 0 D5 0 G#5 0</code></pre>
               <div class="l-cluster" style="margin-top: auto; font-size: 0.6em; padding: 1em; gap: 3em">
                 <switch-blam to="#subdueBus" prop="bypass">
                   <label>
-                    mute
+                    unmute
                     <input type="checkbox">
                   </label>
                 </switch-blam>
-                <switch-blam to=".tapeBlam" prop="bypass">
+                <switch-blam to="#rhodesReverb" prop="bypass" reverse>
                   <label>
-                    bypass
+                    reverb
+                    <input type="checkbox">
+                  </label>
+                </switch-blam>
+                <switch-blam to=".tapeBlam" prop="bypass" reverse>
+                  <label>
+                    tape
                     <input type="checkbox">
                   </label>
                 </switch-blam>
@@ -535,7 +554,7 @@ D5 0 D5 0 G#5 0</code></pre>
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-              <img class="u-squiggle" src="{{site.basedir}}/static/images/slides/tape2.svg" alt="shows how LFOs and blam events make for irregular modulation">
+              <img class="u-squiggle" style="max-inline-size: 95vw" src="{{site.basedir}}/static/images/slides/tape2.svg" alt="shows how LFOs and blam events make for irregular modulation">
             </div>
           </div>
         </section>
@@ -608,25 +627,25 @@ D5 0 D5 0 G#5 0</code></pre>
         </section> 
 
         <section id="organGhost">
-          <div id="babyBass" class="l-screen u-contrast">
-            <media-blam out="garbleBus">
-              <video id="babyBassVid" style="transform: scale(1.5)" src="{{site.basedir}}/static/video/baby.mp4" loop></video>
+          <div id="babyBass" class="l-screen u-contrast" style="transform: scale(1.5)">
+            <media-blam out="garbleBus" style="display: block">
+              <video id="babyBassVid" src="{{site.basedir}}/static/video/baby.mp4" loop></video>
             </media-blam>
           </div>
           <div class="l-frame l-cluster u-blend" style="justify-content: space-around">
-            <switch-blam to="#organTrack" prop="suspend" style="font-size: 0.6em" reverse>
+            <switch-blam to="#organTrack" prop="suspend" style="font-size: 0.7em" reverse>
               <label>
                 organ<br>chords
                 <input type="checkbox">
               </label>
             </switch-blam>
-            <switch-blam to="#snareGhostTrack, #hatTrack" prop="suspend" style="font-size: 0.6em" reverse>
+            <switch-blam to="#snareGhostTrack, #hatTrack" prop="suspend" style="font-size: 0.7em" reverse>
               <label>
                 ghost<br>snare
                 <input type="checkbox">
               </label>
             </switch-blam>
-            <switch-blam to="#bassTrack" prop="part" value=".deep" style="font-size: 0.5em">
+            <switch-blam to="#bassTrack" prop="part" value=".deep" style="font-size: 0.7em">
               <label>
                 deep
                 <input type="checkbox">
@@ -640,6 +659,24 @@ D5 0 D5 0 G#5 0</code></pre>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
           <blam-blam to="#beat" for="slideNext" prop="play"></blam-blam>
         </section>
+
+        <section id="partsSlide" class="u-no-stab">
+          <div class="l-screen">
+            <div class="l-frame">
+<pre><code>&lt;track-blam to="#bass" <span class="u-hl">part=".main"</span>>
+  &lt;part-blam class="main">
+    &lt;bar-blam s="0 0 0 E3">&lt;/bar-blam>
+    &lt;bar-blam s="<span class="u-hl">?</span> ? ? ?" <span class="u-hl">chance="0.6"</span>>&lt;/bar-blam>
+  &lt;/part-blam>
+  &lt;part-blam class="deep">
+    &lt;bar-blam s="E1 0 0 F2">&lt;/bar-blam>
+    &lt;bar-blam s="E1 E2 ? ?">&lt;/bar-blam>
+  &lt;/part-blam>
+&lt;/track-blam></code></pre>
+            </div>
+          </div>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
+        </section> 
 
 <!-- visualizations -->
         <section class="u-no-stab">
@@ -655,7 +692,6 @@ D5 0 D5 0 G#5 0</code></pre>
               <log-blam from="#freqs" style="white-space: pre; font-size: 0.6em">[[css]]</log-blam>
             </div>
           </div>
-          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
           <blam-blam to="#freqs" prop="start" for="slideNext"></blam-blam>
         </section>
 
@@ -728,7 +764,7 @@ D5 0 D5 0 G#5 0</code></pre>
         <section class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-<pre style="font-size: 1.5em"><code>&lt;analyser-blam>&lt;analyser-blam></code></pre>
+<pre style="font-size: 1.5em"><code>&lt;analyser-blam>&lt;/analyser-blam></code></pre>
             </div>
           </div>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
@@ -968,7 +1004,9 @@ D5 0 D5 0 G#5 0</code></pre>
         <section id="togetherSlide">
           <props-blam style="display: contents" from="#busFuzz" id="bz" mode="props">
             <div class="l-screen u-contrast">
-              <video id="togetherBaby" style="transform: scale(1.5)" src="{{site.basedir}}/static/video/baby.mp4" loop></video>
+              <div id="togetherBaby" class="l-screen">
+                <video id="togetherBabyVid" src="{{site.basedir}}/static/video/baby.mp4" loop></video>
+              </div>
             </div>
             <div class="l-screen u-blend">
               <video id="togetherDancer" class="u-contrast" src="{{site.basedir}}/static/video/dancer.mp4" loop></video>
@@ -1031,10 +1069,12 @@ D5 0 D5 0 G#5 0</code></pre>
           <blam-blam to=".scratchTrack, #snareGhostTrack" for="slideNext" prop="suspend" value="true"></blam-blam>
           <blam-blam to="#bassTrack" for="slideNext" prop="part" value=".main"></blam-blam>
           <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="true"></blam-blam>
+
           <blam-blam from="#organ" to="#togetherBaby" prop="class" value="u-squiggle-1"></blam-blam>
-          <blam-blam from="#snare" to="#togetherDancer" prop="class" value="u-punch"></blam-blam>
+          <blam-blam from="#snare" to="#togetherBabyVid" prop="class" value="u-punch"></blam-blam>
+
           <blam-blam from="#snare" to="#togetherDancer" prop="currentTime" value="0|0.25|0.5|0.75|1" chance="0.75"></blam-blam>
-          <blam-blam from=".scratchTrack" to="#togetherBaby" prop="currentTime" value="0|0.25|0.5|0.75|1" chance="0.75"></blam-blam>
+          <blam-blam from=".scratchTrack" to="#togetherBabyVid" prop="currentTime" value="0|0.25|0.5|0.75|1" chance="0.75"></blam-blam>
         </section>
 
         <section class="u-no-stab" id="spinner">
@@ -1172,18 +1212,18 @@ D5 0 D5 0 G#5 0</code></pre>
       <note-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="5">
         <chain-blam out="subdueBus">
           <filter-blam freq="3000">
-            <lfo-blam prop="freq" beats="4.3" gain="2000" q="5">
-              <blam-blam class="tapeBlam" prop="beats" from="#beat" value="3~6" chance="0.25" ramp="0.125" revert></blam-blam>
+            <lfo-blam class="tapeBlam" prop="freq" beats="4.3" gain="2000" q="5">
+              <blam-blam prop="beats" from="#beat" value="3~6" chance="0.25" ramp="0.125" revert></blam-blam>
             </lfo-blam>
           </filter-blam>
-          <reverb-blam mix="0.4">
+          <reverb-blam mix="0.4" id="rhodesReverb">
             <sample-blam src="{{site.basedir}}/static/sounds/IRs/stadium.mp3"></sample-blam>
           </reverb-blam>
           <gain-blam id="rhodesTrem" bypass>
             <lfo-blam gain="0.25"></lfo-blam>
           </gain-blam>
         </chain-blam>
-        <lfo-blam prop="detune" gain="45" beats="1">
+        <lfo-blam prop="detune" gain="45" beats="1" class="tapeBlam">
           <blam-blam class="tapeBlam" prop="beats" value="3|3|0.25|0.125" from="#beat" chance="0.25" ramp="0.125" revert></blam-blam>
           <blam-blam class="tapeBlam" prop="gain" value="50|50|25|100|250" from="#beat" chance="0.25" ramp="0.125" revert></blam-blam>
         </lfo-blam>

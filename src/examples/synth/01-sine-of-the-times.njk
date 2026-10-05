@@ -1,0 +1,37 @@
+---
+title: Sine of the times
+bpm: 90
+elements: 
+  - Poly
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <reverb-blam cutoff="1000">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/stadium.mp3"></sample-blam>
+  </reverb-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<poly-blam curve="0 0, 1 1, 0 3" out="bus" type="square">
+  <lfo-blam prop="detune" gain="25" beats="0.25">
+    <envelope-blam prop="gain" curve="0 0, 35 2" beats></envelope-blam>
+  </lfo-blam>
+</poly-blam>
+<tap-blam to="poly-blam" prop="play">
+  <button>Play note</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

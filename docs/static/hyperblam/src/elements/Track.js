@@ -4,7 +4,7 @@ class Track extends Handle {
   constructor() {
     super();
     this.defaultFrom = () => [this.closest('sequencer-blam')];
-    this.defaultTo = () => [this.closest('[data-sampler-blam]')];
+    this.defaultTo = () => [this.closest('[data-input-blam]')];
   }
 
   onblamready() {

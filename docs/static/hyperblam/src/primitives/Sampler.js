@@ -4,25 +4,33 @@ import { random } from '../tools/random.js';
 class Sampler extends WithParams {
   constructor() {
 		super();
-    this.setAttribute('data-sampler-blam', '');
-    this.gainNode = this.context().createGain();
+    this.setAttribute('data-input-blam', '');
 	}
 
   onblamready() {
     this.bankElem = this.bank ? document.getElementById(this.bank) : this.querySelector('bank-blam');
+    this.c = this.context();
+    this.gainNode = this.c.createGain();
     this.gainNode.connect(this.getOut().inNode);
   }
 
   instantiate() {
-    let node = this.context().createBufferSource();
+    let node = this.c.createBufferSource();
     this.reversing = this.sample.reversed && random.chance(this.reverse);
     let buffer = this.reversing ? 'reversed' : 'buffer';
     node.buffer = this.sample[buffer];
-    let gainNode = this.context().createGain();
+    let gainNode = this.c.createGain();
     // ↓ Start at 0 for pop-suppressing ramp
     gainNode.gain.value = 0;
+
     node.connect(gainNode)
         .connect(this.gainNode);
+
+    this.mirrorParams({
+      detune: node.detune,
+      gain: gainNode.gain
+    });
+    
     return { node, gainNode, ...this.sample };
   }
 
@@ -34,14 +42,9 @@ class Sampler extends WithParams {
     this.instance = this.instantiate();
     this.instance.node.detune.setTargetAtTime(
       this.detune,
-      this.context().currentTime,
+      this.c.currentTime,
       0.005
     );
-
-    this.mirrorParams({
-      detune: this.instance.node.detune,
-      gain: this.instance.gainNode.gain
-    });
     this.chokePrev(this.time);
   }
 
@@ -54,7 +57,7 @@ class Sampler extends WithParams {
   }
 
   play(cipher, time) {
-    this.time = time || this.context().currentTime;
+    this.time = time || this.c.currentTime;
     this.assignBuffer(cipher);
 
     if (this.sample) {
@@ -93,7 +96,7 @@ class Sampler extends WithParams {
   }
 
   stop(time) {
-    time = time || this.context().currentTime;
+    time = time || this.c.currentTime;
     this.prevGainNode && 
     this.prevGainNode.gain.setTargetAtTime(0, time, this.choke || 0.005);
   }

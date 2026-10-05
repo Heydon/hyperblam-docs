@@ -1,0 +1,91 @@
+{% extends 'layouts/base.njk' %}
+
+{% set previousPost = collections[sorted] | getPreviousCollectionItem %}
+{% set nextPost = collections[sorted] | getNextCollectionItem %}
+
+{% block nav %}
+<header class="l-box">
+  <a href="#main" class="l-skip">skip to content</a>
+  <nav>
+    <a class="c-logo c-logo-small" href="{{site.basedir}}/examples/" aria-label="Hyperblam examples index">
+      {{ logo | safe }}
+    </a>
+  </nav>
+  <h1 class="u-font-larger">{{ title }}</h1>
+</header>
+{% endblock %}
+{% block main %}
+<audio-blam {% if bpm %}bpm="{{bpm}}"{% endif %}>
+  <main tabindex="-1" class="l-frame">
+    {% if video %}
+    <div class="l-framed u-fit s-playstop" hidden>
+      <video src="{{site.basedircdn}}/static/video/{{video}}{{buster}}" autoplay muted loop></video>
+    </div>
+    {% endif %}
+    {% block visual %}
+      <div class="l-framed u-blend-difference">
+        <bands-blam 
+          id="example" 
+          fps="8"
+          analyser="#analyser" 
+          transport="#transport"
+          style="inline-size: 75vw; max-block-size: 100%"
+          count="{{ visualiser.count }}"
+        >
+          <blam-blam from="sequencer-blam" prop="startStop" for="blamplaystop"></blam-blam>
+        </bands-blam>
+      </div>
+    {% endblock %}
+    <aside class="l-framed l-log u-blend-difference" aria-label="Data log">
+      <ul id="log" class="s-playstop" hidden></ul>
+    </aside>
+    <div class="l-framed">
+      {% block audio %}
+      {% endblock %}
+    </div>
+  </main>
+  <dialog>
+    <header>
+      <button class="u-ghost" aria-label="close">
+        <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path transform-box="fill-box" transform-origin="center" transform="rotate(45)" d="M8 15, 24 15, 24 17, 8 17z"></path><path transform-box="fill-box" transform-origin="center" transform="rotate(-45)" d="M8 15, 24 15, 24 17, 8 17z"></path></svg>
+      </button>
+    </header>
+    <div class="l-flow">
+      {% block dialog %}
+      {% endblock %}
+    </div>
+  </dialog>
+{% endblock %}
+
+{% block footer %}
+<footer>
+  <div class="l-cluster">
+    {% block controls %}
+    {% endblock %}
+    <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
+  </div>
+  <nav class="l-cluster u-font-special" aria-label="more examples">
+    {% if previousPost %}
+      <a href="{{ previousPost.url }}" aria-label="previous example">← previous</a>
+    {% else %}
+      <a href="{{site.basedir}}/examples" aria-label="examples index">index</a>
+    {% endif %}
+    {% if nextPost %}
+      <a href="{{ nextPost.url }}" aria-label="next example">next →</a>
+    {% else %}
+      <a href="{{ nextPost.url }}/examples">index</a>
+    {% endif %}
+  </nav>
+</footer>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamplay"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamstop"></blam-blam>
+</audio-blam>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{site.basedir}}/{{site.hyperblampath}}"></script>
+<script type="module">
+  import { dialog } from '{{site.basedir}}/static/js/dialog.js';
+  dialog('dialog', '#info');
+</script>
+{% endblock %}

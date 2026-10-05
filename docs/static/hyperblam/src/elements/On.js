@@ -4,7 +4,7 @@ class On extends Handle {
   constructor() {
     super();
     this.defaultFrom = () => [this.closest('midi-blam')];
-    this.defaultTo = () => [this.closest('[data-sampler-blam]')];
+    this.defaultTo = () => [this.closest('[data-input-blam]')];
     this.defaultFor = ['midiOn'];
   }
 

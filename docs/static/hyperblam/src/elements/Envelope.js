@@ -4,13 +4,7 @@ import { random } from '../tools/random.js';
 class Envelope extends Handle {
   constructor() {
     super();
-    this.defaultFrom = () => [this.closest('[data-sampler-blam]')];
-  }
-
-  parseCurve() {
-    this.pairs = this.curve.replaceAll(', ', ',').split(',').map(pair => {
-      return pair.split(' ').map(string => parseFloat(string));
-    });
+    this.defaultFrom = () => [this.closest('[data-input-blam]')];
   }
 
   handle(event) {
@@ -25,6 +19,7 @@ class Envelope extends Handle {
       let data = event.detail;
       let length = data.clipDuration;
       let time = data.time;
+      console.log(this, time);
       let x = !this.beats ? length : this.beat;
       param.cancelScheduledValues(time);
       for (let pair of this.pairs) {

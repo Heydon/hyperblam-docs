@@ -138,7 +138,7 @@ module.exports = async function(eleventyConfig) {
     return null;
   });
 
-  ['bass', 'beat', 'chain', 'other'].forEach(cat => {
+  ['bass', 'beat', 'chain', 'synth', 'other'].forEach(cat => {
     eleventyConfig.addCollection(`${cat}Sorted`, collection => {
       return collection.getFilteredByGlob(`src/examples/${cat}/*.njk`).sort((a, b) => {
         if (a.fileSlug > b.fileSlug) return 1;

@@ -52,10 +52,7 @@ class WithParams extends Base {
   }
 
   attributeChangedCallback(name, _, value) {
-    let param = this.params[name];
-    if (param) {
-      this.setParam(name, value);
-    }
+    this.params[name] && this.setParam(name, value);
   }
 }
 

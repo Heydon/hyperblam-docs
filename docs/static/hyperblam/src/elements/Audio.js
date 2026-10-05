@@ -14,9 +14,10 @@ class Audio extends WithParams {
   }
 
   onblamready() {
+    this.inNode.connect(this.context().destination);
     this.sourceElems = [...this.querySelectorAll('sample-blam, media-blam > audio, media-blam > video')];
     if (this.sourceElems.length < 1) {
-      this.fire('blamsources', {}, this, true);
+      this.fire('blamsources', {}, this);
       return;
     }
     this.addEventListener('blamsource', this);
@@ -25,7 +26,6 @@ class Audio extends WithParams {
   onblamsource() {
     this.sampleCount++;
     if (this.sourceElems.length == this.sampleCount) {
-      this.inNode.connect(this.context().destination);
       this.fire('blamsources', {}, this);
     }
   }

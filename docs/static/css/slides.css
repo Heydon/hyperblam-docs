@@ -437,22 +437,22 @@ section:not([hidden]) .u-squiggle {
     transform: translateY(0);
   }
   20% {
-    transform: translateY(-2em);
+    transform: translateY(-1.25em);
   }
   30% {
-    transform: translateY(2em);
+    transform: translateY(1.25em);
   }
   40% {
-    transform: translateY(-1.5em);
-  }
-  50% {
-    transform: translateY(1.5em);
-  }
-  60% {
     transform: translateY(-0.75em);
   }
-  80% {
+  50% {
     transform: translateY(0.75em);
+  }
+  60% {
+    transform: translateY(-0.333em);
+  }
+  80% {
+    transform: translateY(0.333em);
   }
   100% {
     transform: translateY(0em);
@@ -529,7 +529,7 @@ section {
 }
 
 .u-jolt {
-  animation: jolt 0.3s 1;
+  animation: jolt 0.1s 1;
 }
 
 .u-amp {

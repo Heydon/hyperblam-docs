@@ -28,7 +28,7 @@ class Base extends HTMLElement {
     if (this.time) {
       return this.time;
     }
-    let timeElem = this.closest(`[data-sampler-blam], sequencer-blam`);
+    let timeElem = this.closest(`[data-input-blam], sequencer-blam`);
     return timeElem?.time || this.context().currentTime;
   }
 
@@ -41,16 +41,7 @@ class Base extends HTMLElement {
 	}
 
   getOut() {
-    let idElem = this.out && document.getElementById(this.out);
-    if (idElem) {
-      return idElem;
-    }
-    let descElem = !this.isChain && this.querySelector('chain-blam');
-    if (descElem) {
-      return descElem;
-    }
-    
-    return this.closest('audio-blam');
+    return this.out && document.getElementById(this.out) || !this.isChain && this.querySelector('chain-blam') || this.closest('audio-blam');
   }
 
   toBoolean(name, value) {
@@ -93,6 +84,12 @@ class Base extends HTMLElement {
   getDuration(node) {
     const speed = Math.pow(2, this.detune / 1200) * node.playbackRate.value;
     return node.buffer.duration / speed;
+  }
+
+  parseCurve() {
+    this.pairs = this.curve.replaceAll(', ', ',').split(',').map(pair => {
+      return pair.split(' ').map(string => parseFloat(string));
+    });
   }
 
   watchProps(elems, func, filter = undefined) {

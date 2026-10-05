@@ -96,6 +96,14 @@
           </media-blam>
         </section>
 
+        <section data-speech="The HTML audio element. Except it’s covered in flies." data-pause="1" data-voice="Moira">
+          <div class="l-screen">
+            <div class="l-frame">
+              <img class="u-squiggle" style="max-inline-size: 70vw" src="https://hyperblam.how/static/images/slides/audio.svg" alt="the HTML audio element covered in flies">
+            </div>
+          </div>
+        </section>
+
         <section data-speech="an HTML button. Labelled cowbell." data-pause="1" data-voice="Moira">
           <div class="l-screen">
             <div class="l-frame">
@@ -117,7 +125,7 @@
               <tap-blam to="#cowbell" prop="play" value="1">
                 <button>cowbell</button>
               </tap-blam>
-<pre><code>&lt;tap-blam to="#cowbell" prop="play" value="1"&gt;
+<pre style="font-size: 1em;"><code>&lt;tap-blam to="#cowbell" prop="play"&gt;
   &lt;button&gt;cowbell&lt;/button&gt;
 &lt;/tap-blam&gt;</code></pre>
             </div>
@@ -164,7 +172,15 @@
               <tap-blam to="#cowbell" prop="play">
                 <button>cowbell</button>
               </tap-blam>
-<pre><code>&lt;blam-blam prop="length" value="0.01|0.02|1|1"&gt;&lt;/blam-blam&gt;</code></pre>
+<pre style="font-size:0.75em"><code>&lt;pad-blam id="cowbell"&gt;
+  &lt;bank-blam&gt;
+    &lt;sample-blam src="<span class="u-hl">cowbell-01.mp3</span>"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="<span class="u-hl">cowbell-02.mp3</span>"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="<span class="u-hl">cowbell-03.mp3</span>"&gt;&lt;/sample-blam&gt;
+    &lt;sample-blam src="<span class="u-hl">cowbell-04.mp3</span>"&gt;&lt;/sample-blam&gt;
+  &lt;/bank-blam&gt;
+  <span class="u-hl">&lt;blam-blam prop="length" value="0.01|0.02|1|1"&gt;&lt;/blam-blam&gt;</span>
+&lt;/pad-blam&gt;</code></pre>
             </div>
           </div>
           <blam-blam to="#cowLength" prop="bypass" for="slideNext" once=""></blam-blam>
@@ -423,7 +439,7 @@
           </div>
         </section>-->
 
-        <section class="u-rip" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Gobble gobble. You love water don’t you. Water makes you wet. Glug glug. Tip your head back. Feel the water hit the back of your throat. Glug Glug. Slurp slurp. Fill your belly. Down it. Down it. Down it. Down it. Down it. Down it. Down it." data-voice="Moira" data-pause="5">
+        <section class="u-rip" data-speech="You must hydrate. Hydration is important. Drink 7 litres of water every day. Do it now. Put the water in your mouth. Take it. Gobble gobble. You love water don’t you. Water makes you wet. Glug glug. Tip your head back. Feel the water hit the back of your throat. Glug Glug. Slurp slurp. Fill your belly. Your body is 70% water but it should be 100% water. You are letting yourself down. You are a disappointment to yourself, your family and your 5 a side team. Who are all big beautiful blobs of sentient water. The best time to start drinking water is the day before yesterday. The second best time to start drinking water is yesterday. The third best time for drinking water is now. Down it. Down it. Down it. Down it. Down it. Down it. Down it." data-voice="Moira" data-pause="5">
           <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
           <div class="l-screen">
             <div class="l-frame u-squiggle">
@@ -512,6 +528,9 @@ D5 0 D5 0 G#5 0</code></pre>
               </dial-blam>
             </div>
           </div>
+          <blam-blam to="#rhodesReverb" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
+          <blam-blam to=".tapeBlam" for="slideNext" prop="bypass" value="false"></blam-blam>
         </section>
 
         <section class="u-no-stab">
@@ -527,7 +546,6 @@ D5 0 D5 0 G#5 0</code></pre>
 &lt;/note-blam&gt;</code></pre>
             </div>
           </div>
-          <blam-blam to="#subdueBus" for="slideNext" prop="bypass" value="false"></blam-blam>
         </section>
 
         <section class="u-no-stab">
@@ -578,7 +596,7 @@ D5 0 D5 0 G#5 0</code></pre>
 <pre style="font-size: 0.6em"><code>&lt;note-blam id="bass" bank="bassBank" choke notes="E2 E2 G2 A2 A#2 E3"&gt;
   &lt;blam-blam prop="length" value="0.25|0.5|0.125"&gt;&lt;/blam-blam&gt;
   &lt;chain-blam out="bus"&gt;
-    &lt;filter-blam freq="8000" q="10"&gt;
+    &lt;filter-blam freq="8000" q="12"&gt;
       &lt;envelope-blam prop="freq" curve="200 0, 11000 0.25"&gt;&lt;/envelope-blam&gt;
     &lt;/filter-blam&gt;
   &lt;/chain-blam&gt;
@@ -642,7 +660,7 @@ D5 0 D5 0 G#5 0</code></pre>
         <section id="partsSlide" class="u-no-stab">
           <div class="l-screen">
             <div class="l-frame">
-<pre><code>&lt;track-blam to="#bass" <span class="u-hl">part=".main"</span>&gt;
+<pre style="font-size: 0.68em"><code>&lt;track-blam to="#bass" <span class="u-hl">part=".main"</span>&gt;
   &lt;part-blam class="main"&gt;
     &lt;bar-blam s="0 0 0 E3"&gt;&lt;/bar-blam&gt;
     &lt;bar-blam s="<span class="u-hl">?</span> ? ? ?" <span class="u-hl">chance="0.6"</span>&gt;&lt;/bar-blam&gt;
@@ -651,6 +669,7 @@ D5 0 D5 0 G#5 0</code></pre>
     &lt;bar-blam s="E1 0 0 F2"&gt;&lt;/bar-blam&gt;
     &lt;bar-blam s="E1 E2 ? ?"&gt;&lt;/bar-blam&gt;
   &lt;/part-blam&gt;
+  &lt;blam-blam prop="part" value=".main|.deep" chance="0.25"&gt;&lt;blam-blam&gt;
 &lt;/track-blam&gt;</code></pre>
 <h3>(micro- and macro-generative composition)</h3>
             </div>
@@ -950,7 +969,7 @@ D5 0 D5 0 G#5 0</code></pre>
           </div>
         </section>
 
-        <section class="u-rip" data-speech="Time to hydrate again. You must hydrate regularly. If you don't hydrate at least once every 23 minutes, you’re a fecking eejit. I can tell you haven't been hydrating. The absolute state of you. A pork fecking scratching has a higher water content than you do. Get that water in you now, or so help me God. You dried up, water dodging fecking clown. Feck. Feck. Fecking. Feck. Feck. Fecking. Fecker. Feck." data-voice="Moira" data-pause="5">
+        <section class="u-rip" data-speech="Time to hydrate again. You must hydrate regularly. If you don't hydrate at least once every 23 minutes, you’re a fecking eejit. I can tell you haven't been hydrating. The absolute state of you. A pork fecking scratching has a higher water content than you do. Get that water in you now, or so help me God. You dried up, water dodging fecking clown. Go join the circus with all the other dehydrated circus performers. Feck. Feck. Fecking. Feck. Feck. Fecking. Fecker. Feck." data-voice="Moira" data-pause="5">
           <video class="u-mono" src="https://hyperblam.how/static/video/bottle.mp4" loop=""></video>
           <div class="l-screen">
             <div class="l-frame u-squiggle">
@@ -1193,7 +1212,7 @@ D5 0 D5 0 G#5 0</code></pre>
       <note-blam id="bass" bank="bassBank" choke="" notes="E2 E2 G2 A2 A#2 E3" gain="1.25">
         <blam-blam prop="length" value="0.25|0.25|0.5|0.125"></blam-blam>
         <chain-blam out="subdueBus">
-          <filter-blam freq="8000" q="10">
+          <filter-blam freq="8000" q="12">
             <envelope-blam prop="freq" curve="200 0, 11000 0.25" beats=""></envelope-blam>
           </filter-blam>
         </chain-blam>

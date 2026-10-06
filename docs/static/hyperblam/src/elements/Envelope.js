@@ -19,8 +19,7 @@ class Envelope extends Handle {
       let data = event.detail;
       let length = data.clipDuration;
       let time = data.time;
-      console.log(this, time);
-      let x = !this.beats ? length : this.beat;
+      let x = this.beats || !this.length ? this.beat : length;
       param.cancelScheduledValues(time);
       for (let pair of this.pairs) {
         param.linearRampToValueAtTime(

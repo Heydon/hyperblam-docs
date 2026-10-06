@@ -15,10 +15,14 @@ elements:
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
-<poly-blam curve="0 0, 1 1, 0 3" out="bus" type="square">
+<poly-blam curve="0 0, 1 1, 0 3" type="square" release="4">
   <lfo-blam prop="detune" gain="25" beats="0.25">
     <envelope-blam prop="gain" curve="0 0, 35 2" beats></envelope-blam>
   </lfo-blam>
+  <envelope-blam prop="detune" curve="0 0, -500 2" beats></envelope-blam>
+  <chain-blam out="bus">
+    <saturator-blam mode="2"></saturator-blam>
+  </chain-blam>
 </poly-blam>
 <tap-blam to="poly-blam" prop="play">
   <button>Play note</button>

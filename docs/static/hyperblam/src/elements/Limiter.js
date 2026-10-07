@@ -7,11 +7,11 @@ class Limiter extends Box {
 
     this.node = this.c.createDynamicsCompressor();
     let time = this.c.currentTime;
-    this.node.threshold.setValueAtTime(-24, time);
-    this.node.knee.setValueAtTime(30, time);
-    this.node.ratio.setValueAtTime(12, time);
-    this.node.attack.setValueAtTime(0.003, time);
-    this.node.release.setValueAtTime(0.25, time);
+    this.node.threshold.setValueAtTime(-0.5, time);
+    this.node.knee.setValueAtTime(0, time);
+    this.node.ratio.setValueAtTime(20, time);
+    this.node.attack.setValueAtTime(0.001, time);
+    this.node.release.setValueAtTime(0.05, time);
     this.inNode.connect(this.node)
                .connect(this.wetGainNode);
   }

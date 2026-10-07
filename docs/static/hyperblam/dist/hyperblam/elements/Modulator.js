@@ -1,0 +1,1 @@
+import{Operator}from"../primitives/Operator.js";class Modulator extends Operator{onblamready(){super.onblamready(),this.carrierElems=this.out?[...document.querySelectorAll(this.out)]:[this.closest("carrier-blam")]}}export{Modulator};

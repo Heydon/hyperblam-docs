@@ -2,21 +2,29 @@ import { WithParams } from './WithParams.js';
 
 
 class Operator extends WithParams {
+  constructor() {
+    super();
+    this.conversions.beats = value => this.beatsToHertz(value);
+  }
+
   onblamready() {
     this.c = this.context();
     this.outNode = this.c.createGain();
+    this.mirrorParams({
+      gain: this.outNode.gain
+    });
   }
 
   connectGain() {
-    this.gainNode = this.c.createGain();
-    this.gainNode.gain.value = 0;
-    this.gainNode.connect(this.outNode);
+    this.envGainNode = this.c.createGain();
+    this.envGainNode.gain.value = 0;
+    this.envGainNode.connect(this.outNode);
   }
 
   connectInput() {
     this.node = this.c.createOscillator();
     this.node.type = this.type;
-    this.node.connect(this.gainNode);    
+    this.node.connect(this.envGainNode); 
   }
 
   instantiate(note) {
@@ -24,7 +32,6 @@ class Operator extends WithParams {
     this.connectInput();
     this.node.frequency.value = this.setFreq(note);
     this.mirrorParams({
-      gain: this.gainNode.gain,
       detune: this.node.detune,
       freq: this.node.frequency,
       type: this.node
@@ -32,7 +39,7 @@ class Operator extends WithParams {
   }
 
   stop() {
-    this.prevGainNode && this.prevGainNode.gain.linearRampToValueAtTime(
+    this.prevEnvGainNode && this.prevEnvGainNode.gain.linearRampToValueAtTime(
       0, 
       this.time + (this.release * this.beat)
     );
@@ -40,7 +47,7 @@ class Operator extends WithParams {
 
   envelope() {
     for (let pair of this.pairs) {
-      this.gainNode.gain.linearRampToValueAtTime(
+      this.envGainNode.gain.linearRampToValueAtTime(
         pair[0], 
         this.time + (pair[1] * this.beat)
       );
@@ -65,7 +72,7 @@ class Operator extends WithParams {
       time: this.time
     }, this);
 
-    this.prevGainNode = this.gainNode;
+    this.prevEnvGainNode = this.envGainNode;
   }
 
   get type() {

@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -106,16 +106,16 @@
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio class="u-blend-difference" controls="" src="https://hyperblam.how/static/sounds/minimal/piano.mp3"></audio>
+  <audio class="u-blend-difference" controls="" src="https://hyperblam.how/static/sounds/minimal/piano.mp3" loop=""></audio>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
-      <lfo-blam prop="gain" gain="0.5" beats="0.25">
-        <lfo-blam prop="beats" gain="0.25" beats="4"></lfo-blam>
-        <lfo-blam prop="gain" gain="0.4" beats="5"></lfo-blam>
+      <lfo-blam prop="gain" gain="0.5" beats="1">
+        <lfo-blam prop="gain" gain="0.5" beats="3"></lfo-blam>
+        <lfo-blam prop="beats" gain="7" beats="5"></lfo-blam>
       </lfo-blam>
     </gain-blam>
     <pan-blam pan="0">
-      <lfo-blam prop="pan" gain="1" beats="5"></lfo-blam>
+      <lfo-blam prop="pan" gain="1" beats="7"></lfo-blam>
     </pan-blam>
   </chain-blam>
 </media-blam>
@@ -139,9 +139,9 @@
 
 <p>Now we’re cooking. In this example, the LFO is controlled by another LFO. LFO inception! In fact, why not have <em>two</em> meta-LFOs: one for modulating the rate (<code>beats</code>) and one for depth (<code>gain</code>)? Even better, their own rates differ, so the <em>relationship</em> between depth and rate evolves over time too.</p>
 <pre><code class="language-html">&lt;gain-blam gain="0.5"&gt;
-  &lt;lfo-blam prop="gain" gain="0.5" beats="0.25"&gt;
-    &lt;lfo-blam prop="beats" gain="0.25" beats="4"&gt;&lt;/lfo-blam&gt;
-    &lt;lfo-blam prop="gain" gain="0.4" beats="5"&gt;&lt;/lfo-blam&gt;
+  &lt;lfo-blam prop="gain" gain="0.5" beats="1"&gt;
+    &lt;lfo-blam prop="gain" gain="0.5" beats="3"&gt;&lt;/lfo-blam&gt;
+    &lt;lfo-blam prop="beats" gain="7" beats="5"&gt;&lt;/lfo-blam&gt;
   &lt;/lfo-blam&gt;
 &lt;/gain-blam&gt;
 </code></pre>

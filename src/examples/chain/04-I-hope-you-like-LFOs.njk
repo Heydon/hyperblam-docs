@@ -36,16 +36,16 @@ elements:
   <analyser-blam id="analyser" smoothing="0.25"></analyser-blam>
 </chain-blam>
 <media-blam id="transport">
-  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/minimal/piano.mp3"></audio>
+  <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/minimal/piano.mp3" loop></audio>
   <chain-blam out="bus">
     <gain-blam gain="0.5">
-      <lfo-blam prop="gain" gain="0.5" beats="0.25">
-        <lfo-blam prop="beats" gain="0.25" beats="4"></lfo-blam>
-        <lfo-blam prop="gain" gain="0.4" beats="5"></lfo-blam>
+      <lfo-blam prop="gain" gain="0.5" beats="1">
+        <lfo-blam prop="gain" gain="0.5" beats="3"></lfo-blam>
+        <lfo-blam prop="beats" gain="7" beats="5"></lfo-blam>
       </lfo-blam>
     </gain-blam>
     <pan-blam pan="0">
-      <lfo-blam prop="pan" gain="1" beats="5"></lfo-blam>
+      <lfo-blam prop="pan" gain="1" beats="7"></lfo-blam>
     </pan-blam>
   </chain-blam>
 </media-blam>
@@ -59,9 +59,9 @@ Now we’re cooking. In this example, the LFO is controlled by another LFO. LFO 
 
 ```html 
 <gain-blam gain="0.5">
-  <lfo-blam prop="gain" gain="0.5" beats="0.25">
-    <lfo-blam prop="beats" gain="0.25" beats="4"></lfo-blam>
-    <lfo-blam prop="gain" gain="0.4" beats="5"></lfo-blam>
+  <lfo-blam prop="gain" gain="0.5" beats="1">
+    <lfo-blam prop="gain" gain="0.5" beats="3"></lfo-blam>
+    <lfo-blam prop="beats" gain="7" beats="5"></lfo-blam>
   </lfo-blam>
 </gain-blam>
 ```

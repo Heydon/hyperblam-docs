@@ -10,7 +10,9 @@ class Osc extends WithParams {
     this.oscNode.type = this.type;
 
     this.conversions.beats = value => this.beatsToHertz(value);
+  }
 
+  onblamready() {
     this.mirrorParams({
       gain: this.gainNode.gain,
       beats: this.oscNode.frequency,

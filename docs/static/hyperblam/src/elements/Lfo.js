@@ -7,6 +7,7 @@ class Lfo extends Osc {
   }
 
   onblamready() {
+    super.onblamready();
     this.outElems = this.out ? [...document.querySelectorAll(this.out)] : this.defaultOut();
     for (const outElem of this.outElems) {
       this.connect(outElem);
@@ -23,12 +24,8 @@ class Lfo extends Osc {
   connect(outElem) {
     let target = outElem?.params[this.prop];
     if (target) {
+      this.gainNode.gain.value = this.convertValue(this.prop, this.gain, outElem);
       this.gainNode.connect(target);
-      if (this.prop === 'beats') {
-        // ↓ Convert
-        let gain = outElem.conversions.beats(this.gain);
-        this.gainNode.gain.value = gain;
-      }
     }
   }
 

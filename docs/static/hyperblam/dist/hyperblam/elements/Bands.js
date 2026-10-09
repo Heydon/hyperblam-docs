@@ -1,1 +1,0 @@
-import{Frame}from"../primitives/Frame.js";class Bands extends Frame{}export{Bands};

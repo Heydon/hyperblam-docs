@@ -1,6 +1,0 @@
-name: Rings
-summary: Draws frequency bands as concentric rings or filled circles. Try not to get hypnotized.
-extends: Frame
-draft: true
-category: Visualizing
-defined: true

@@ -24,8 +24,8 @@ class Lfo extends Osc {
   connect(outElem) {
     let target = outElem?.params[this.prop];
     if (target) {
-      this.gainNode.gain.value = this.convertValue(this.prop, this.gain, outElem);
       this.gainNode.connect(target);
+      this.gainNode.gain.value = this.convertValue(this.prop, outElem[this.prop], outElem);
     }
   }
 

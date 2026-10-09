@@ -9,6 +9,7 @@ class Osc extends WithParams {
     this.oscNode.connect(this.gainNode);
     this.oscNode.type = this.type;
 
+    this.inHertz = true;
     this.conversions.beats = value => this.beatsToHertz(value);
   }
 

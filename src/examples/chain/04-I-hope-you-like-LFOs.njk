@@ -1,5 +1,6 @@
 ---
 title: I hope you like LFOs
+bpm: 60
 elements:
   - Media 
   - Chain 
@@ -37,15 +38,15 @@ elements:
 </chain-blam>
 <media-blam id="transport">
   <audio class="u-blend-difference" controls src="{{site.basedir}}/static/sounds/minimal/piano.mp3" loop></audio>
-  <chain-blam out="bus">
+  <chain-blam out="bus" gain="0.75">
     <gain-blam gain="0.5">
       <lfo-blam prop="gain" gain="0.5" beats="1">
         <lfo-blam prop="gain" gain="0.5" beats="3"></lfo-blam>
-        <lfo-blam prop="beats" gain="7" beats="5"></lfo-blam>
+        <lfo-blam prop="beats" gain="8" beats="7"></lfo-blam>
       </lfo-blam>
     </gain-blam>
     <pan-blam pan="0">
-      <lfo-blam prop="pan" gain="1" beats="7"></lfo-blam>
+      <lfo-blam prop="pan" gain="0.6" beats="5"></lfo-blam>
     </pan-blam>
   </chain-blam>
 </media-blam>
@@ -60,8 +61,8 @@ Now we’re cooking. In this example, the LFO is controlled by another LFO. LFO 
 ```html 
 <gain-blam gain="0.5">
   <lfo-blam prop="gain" gain="0.5" beats="1">
-    <lfo-blam prop="gain" gain="0.5" beats="3"></lfo-blam>
-    <lfo-blam prop="beats" gain="7" beats="5"></lfo-blam>
+    <lfo-blam prop="gain" gain="0.25" beats="3"></lfo-blam>
+    <lfo-blam prop="beats" gain="4" beats="7"></lfo-blam>
   </lfo-blam>
 </gain-blam>
 ```

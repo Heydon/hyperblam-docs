@@ -1,0 +1,82 @@
+---
+title: Not a Farfisa But A Nearfisa
+bpm: 90
+elements: 
+  - Synth 
+  - Operator
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <echo-blam></echo-blam>
+  <reverb-blam cutoff="200">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
+  </reverb-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+<!--<synth-blam out="bus" curve="1 0.0625, 0.7 0.25" release="0.125" type="sawtooth" detune="1200">
+  <lfo-blam prop="detune" gain="25" beats="0.25"></lfo-blam>
+  <lfo-blam prop="detune" gain="100" beats="0.5">
+    <envelope-blam prop="beats" curve="0.0625 0, 2 2"></envelope-blam>
+  </lfo-blam>-->
+  <!--<blam-blam prop="type" value="square|triangle|sine|sawtooth"></blam-blam>
+</synth-blam>-->
+
+<synth-blam notes="C3 D3 D#3 F3 G3 C4 D4 D#4 F4 G4">
+  <operator-blam out="bus" curve="1 0.01" release="0.625" type="sawtooth">
+  </operator-blam>
+  <operator-blam out="bus" gain="0.5" curve="1 0.01" release="0.625" type="sawtooth" offset="12">
+  </operator-blam>
+  <operator-blam out="bus" gain="0.5" curve="1 0.01" release="0.625" type="sawtooth" offset="24" feedback="30">
+  </operator-blam>
+  <lfo-blam prop="detune" gain="50" beats="0.25" type="triangle"></lfo-blam>
+  <lfo-blam prop="detune" gain="25" beats="2" type="triangle"></lfo-blam>
+</synth-blam>
+
+<!--
+
+<synth-blam detune="-1200">
+  <operator-blam curve="0 0, 1 1, 0 6" release="6" type="sawtooth">
+    <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
+    <chain-blam out="bus">
+      <gain-blam gain="0.5">
+        <lfo-blam prop="gain" gain="0.5" beats="17"></lfo-blam>
+      </gain-blam>
+    </chain-blam>
+  </operator-blam>
+  <operator-blam curve="0 0, 1 2, 0 11" release="6" type="sawtooth" offset="7">
+    <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
+    <chain-blam out="bus">
+      <filter-blam freq="7000">
+        <lfo-blam prop="freq" gain="6500" q="5" beats="9"></lfo-blam>
+      </filter-blam>
+    </chain-blam>
+  </operator-blam>
+  <lfo-blam prop="gain" gain="0.5" beats="0.25">
+    <lfo-blam prop="beats" gain="5" beats="5"></lfo-blam>
+  </lfo-blam>
+  <lfo-blam prop="detune" gain="50" beats="0.5">
+    <lfo-blam prop="gain" gain="0.5" beats="23"></lfo-blam>
+  </lfo-blam>
+</synth-blam>
+
+-->
+
+<tap-blam to="synth-blam" prop="play">
+  <button>Play note</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

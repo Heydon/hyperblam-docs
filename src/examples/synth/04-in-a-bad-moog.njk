@@ -1,0 +1,48 @@
+---
+title: In a bad moog
+bpm: 100
+elements: 
+  - Synth 
+  - carrier
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <reverb-blam mix="0.3" cutoff="1000">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
+  </reverb-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+
+<synth-blam gain="4" notes="C1 D#1 F1 G1 C1 C2 D#2 F2 C2" out="bus">
+  <carrier-blam curve="0 0, 1 0.2" release="0.05" type="sawtooth">
+    <chain-blam>
+      <filter-blam type="bandpass" freq="1000" q="4">
+        <envelope-blam prop="freq" curve="100 0, 4000 0.666, 500 1"></envelope-blam>
+        <lfo-blam prop="freq" gain="100"></lfo-blam>
+        <lfo-blam prop="freq" gain="100" beats="2.3"></lfo-blam>
+      </filter-blam>
+      <filter-blam type="highpass" freq="200"></filter-blam>
+    </chain-blam>
+    <lfo-blam prop="detune" gain="25" beats="0.7"></lfo-blam>
+    <lfo-blam prop="detune" gain="25" beats="1.3"></lfo-blam>
+  </carrier-blam>
+</synth-blam>
+
+<tap-blam to="synth-blam" prop="play">
+  <button>play note</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

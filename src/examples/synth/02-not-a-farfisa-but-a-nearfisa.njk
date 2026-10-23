@@ -1,6 +1,6 @@
 ---
 title: Not a Farfisa But A Nearfisa
-bpm: 70
+bpm: 100
 elements: 
   - Synth 
   - carrier
@@ -10,38 +10,75 @@ elements:
 
 {% block audio %}
 <chain-blam id="bus">
-  <reverb-blam cutoff="1000">
-    <sample-blam src="{{site.basedir}}/static/sounds/IRs/spring.mp3"></sample-blam>
-  </reverb-blam>
-  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<!-- percussion
-<synth-blam notes="C7 D#7 G7">
-  <carrier-blam out="bus" curve="1 0.01, 0 0.125" release="0.01" type="sawtooth" feedback="3179">
-  </carrier-blam>  
-</synth-blam> -->
+<chain-blam id="spring" out="bus">
+  <reverb-blam cutoff="1500">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/roland-spring-medium.mp3"></sample-blam>
+  </reverb-blam>
+</chain-blam>
 
-<synth-blam id="nearfisa" notes="C5 D#5 G5">
-  <carrier-blam out="bus" curve="1 0.01, 0.8 0.25" release="0.01" type="triangle">
+<chain-blam id="room" out="bus">
+  <reverb-blam mix="0.15">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
+  </reverb-blam>
+</chain-blam>
+
+<synth-blam id="nearfisa" gain="0.4" notes="C5 G5 F5 G5 D#5 F5 D5 D#5">
+  <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
   </carrier-blam>
-  <carrier-blam out="bus" gain="0.75" curve="1 0.01, 0.8 0.25" release="0.01" type="triangle" offset="12">
+  <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
   </carrier-blam>
-  <carrier-blam out="bus" gain="1" curve="1 0.01, 0.8 0.25" release="0.01" type="triangle" offset="24">
+  <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
   </carrier-blam>
-  <lfo-blam prop="detune" gain="50" beats="0.2" type="triangle"></lfo-blam>
-  <lfo-blam prop="detune" gain="25" beats="2.3" type="triangle"></lfo-blam>
+  <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass></lfo-blam>
+  <chain-blam class="tremolo" out="spring" bypass>
+    <gain-blam gain="0.3">
+      <lfo-blam prop="gain" gain="0.7" beats="0.2"></lfo-blam>
+    </gain-blam>
+  </chain-blam>
+</synth-blam>
+
+<synth-blam id="kick" notes="C1" gain="6" out="room">
+  <carrier-blam curve="0 0, 1 0.01, 0 0.3" feedback="10">
+  </carrier-blam>
+  <carrier-blam gain="0.2" curve="0 0, 1 0.01, 0 0.04" release="0.1" type="square" offset="12">
+  </carrier-blam>
+</synth-blam>
+
+<synth-blam id="snare" notes="D5" gain="5" out="room">
+  <carrier-blam gain="0.5" curve="0 0, 1 0.01, 0 0.3" type="square" feedback="600">
+    <chain-blam>
+      <filter-blam type="highpass" freq="500"></filter-blam>
+    </chain-blam>
+  </carrier-blam>
 </synth-blam>
 
 <sequencer-blam>
-  <track-blam to="#nearfisa">
-    <bar-blam s="C5 0 G5 0 F5 0 G5 0 D#5 0 F5 0 D5 0 D#5 0"></bar-blam>
+  <track-blam id="nearfisaTrack" to="#nearfisa" part="#main">
+    <part-blam id="main">
+      <bar-blam s="C5 0 G5 0 F5 0 G5 0 D#5 0 F5 0 D5 0 D#5 0"></bar-blam>
+    </part-blam>
+    <part-blam id="fast">
+      <bar-blam s="C5 D5 D#5 C5 D5 D#5 F5 D5 D#5 F5 G5 D#5 D5 F5 D#5 D5"></bar-blam>
+      <bar-blam s="C5 D5 D#5 C5 D5 D#5 F5 D5 D#5 F5 G5 D#5 D5 D#5 D5 B4"></bar-blam>
+    </part-blam>
+  </track-blam>
+
+  <track-blam to="#kick" class="drums" suspend>
+    <bar-blam s="C1 C1 0 0 0 0 C1 C1 0 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="C1 C1 0 0 0 0 C1 C1 0 0 0 0 0 0 D#1 D#1"></bar-blam>
+  </track-blam>
+
+  <track-blam to="#snare" class="drums" suspend>
+    <bar-blam s="0 0 0 0 ? 0 0 0 0 0 0 0 ? 0 0 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
 
 <tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+  <blam-blam to="#nearfisa carrier-blam" prop="stop"></blam-blam>
 </tap-blam>
 {% endblock %}
 
@@ -54,5 +91,34 @@ elements:
 {% endblock %}
 
 {% block controls %}
-<kbd-blam to="#nearfisa" prop="play" key="1"></kbd-blam>
+<switch-blam to=".vibrato" prop="bypass" reverse>
+  <label>
+    vibrato
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".tremolo" prop="bypass" reverse>
+  <label>
+    tremolo
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".drums" prop="suspend" reverse>
+  <label>
+    drums
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#nearfisaTrack" prop="part" value="#fast">
+  <label>
+    part 2
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<dial-blam to="#nearfisa carrier-blam" prop="feedback">
+  <label>
+    osc<br>feedback
+    <input type="range" min="-1000" max="1000">
+  </label>
+</dial-blam>
 {% endblock %}

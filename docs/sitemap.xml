@@ -316,4 +316,18 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://hyperblam.how/examples/03-feelin-hype-hype-hype/</loc>
+    <lastmod>2026-10-22T11:20:50.076Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/04-in-a-bad-moog/</loc>
+    <lastmod>2026-10-23T13:24:11.811Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

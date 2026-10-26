@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -107,8 +107,8 @@
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam detune="-1200" notes="C4 E4 F#4 G4">
-  <carrier-blam curve="0 0, 1 1, 0 6" release="6" type="sawtooth">
+<synth-blam notes="C3 E3 F#3 G3">
+  <carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth">
     <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
     <chain-blam out="bus">
       <gain-blam gain="0.5">
@@ -116,9 +116,9 @@
       </gain-blam>
       <pan-blam pan="0.3"></pan-blam>
     </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
   </carrier-blam>
-  <carrier-blam curve="0 0, 1 2, 0 11" release="6" type="sawtooth" offset="7">
+  <carrier-blam gain="0.75" curve="0 0, 1 2, 0 11" release="4" type="sawtooth" offset="7">
     <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
     <chain-blam out="bus">
       <filter-blam freq="7000">
@@ -126,7 +126,7 @@
       </filter-blam>
       <pan-blam pan="-0.3"></pan-blam>
     </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
   </carrier-blam>
   <lfo-blam prop="gain" gain="0.5" beats="0.25">
     <lfo-blam prop="beats" gain="5" beats="5"></lfo-blam>

@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -100,21 +100,22 @@
     <div class="l-framed">
       
 <chain-blam id="bus">
-  <reverb-blam mix="0.2">
-    <sample-blam src="https://hyperblam.how/static/sounds/IRs/roland-spring-soft.mp3"></sample-blam>
+  <reverb-blam mix="0.3">
+    <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam notes="C4 D4 E4 G4 A4" out="bus">
-  <carrier-blam curve="0 0, 1 0.03, 0 2" release="2">
+<synth-blam notes="C4 D4 E4 G4 A4 C5 D5 E5 G5 A5" out="bus">
+  <carrier-blam curve="0 0, 1 0.03, 0 2">
     <modulator-blam curve="0 0, 1 0.03, 0 1.25" ratio="3" gain="750">
-      <blam-blam prop="gain" value="100~3000"></blam-blam>
+      <blam-blam prop="gain" value="100~2000"></blam-blam>
     </modulator-blam>
   </carrier-blam>
   <carrier-blam curve="0 0, 1 0.02, 0 0.06" release="2" offset="-12">
   </carrier-blam>
+  <envelope-blam prop="detune" curve="0 0, -20 0.25, 0 0.7"></envelope-blam>
 </synth-blam>
 
 <tap-blam to="synth-blam" prop="play">
@@ -145,7 +146,7 @@
 <dial-blam prop="gain" to="modulator-blam">
   <label>
     mod index
-    <input type="range" min="0" max="3000">
+    <input type="range" min="0" max="2000">
   </label>
 </dial-blam>
 

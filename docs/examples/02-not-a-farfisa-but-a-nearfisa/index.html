@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -105,8 +105,9 @@
 
 <chain-blam id="spring" out="bus">
   <reverb-blam cutoff="1500">
-    <sample-blam src="https://hyperblam.how/static/sounds/IRs/roland-spring-medium.mp3"></sample-blam>
+    <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
+  <gain-blam id="nearfisaGain"></gain-blam>
 </chain-blam>
 
 <chain-blam id="room" out="bus">
@@ -115,7 +116,7 @@
   </reverb-blam>
 </chain-blam>
 
-<synth-blam id="nearfisa" gain="0.4" notes="C5 G5 F5 G5 D#5 F5 D5 D#5">
+<synth-blam id="nearfisa" gain="0.4">
   <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
   </carrier-blam>
   <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
@@ -124,8 +125,8 @@
   </carrier-blam>
   <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass=""></lfo-blam>
   <chain-blam class="tremolo" out="spring" bypass="">
-    <gain-blam gain="0.3">
-      <lfo-blam prop="gain" gain="0.7" beats="0.2"></lfo-blam>
+    <gain-blam gain="0.6">
+      <lfo-blam prop="gain" gain="0.4" beats="0.3"></lfo-blam>
     </gain-blam>
   </chain-blam>
 </synth-blam>
@@ -141,11 +142,21 @@
   <carrier-blam gain="0.5" curve="0 0, 1 0.01, 0 0.3" type="square" feedback="600">
     <chain-blam>
       <filter-blam type="highpass" freq="500"></filter-blam>
+      <pan-blam pan="0.1"></pan-blam>
     </chain-blam>
   </carrier-blam>
 </synth-blam>
 
-<sequencer-blam>
+<synth-blam id="hat" notes="D#6" gain="4">
+  <carrier-blam gain="0.25" curve="0 0, 1 0.01, 0.4 0.02, 0 0.05" feedback="600" type="square">
+  </carrier-blam>
+  <chain-blam out="room">
+    <filter-blam type="highpass" freq="800"></filter-blam>
+    <pan-blam pan="-0.3"></pan-blam>
+  </chain-blam>
+</synth-blam>
+
+<sequencer-blam swing="0.15">
   <track-blam id="nearfisaTrack" to="#nearfisa" part="#main">
     <part-blam id="main">
       <bar-blam s="C5 0 G5 0 F5 0 G5 0 D#5 0 F5 0 D5 0 D#5 0"></bar-blam>
@@ -163,6 +174,9 @@
 
   <track-blam to="#snare" class="drums" suspend="">
     <bar-blam s="0 0 0 0 ? 0 0 0 0 0 0 0 ? 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#hat" class="drums" suspend="">
+    <bar-blam s="? 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
 
@@ -209,6 +223,12 @@
     <input type="checkbox">
   </label>
 </switch-blam>
+<switch-blam to="#nearfisaGain" prop="gain" value="0" ramp="3" reverse="">
+  <label>
+    organ off
+    <input type="checkbox">
+  </label>
+</switch-blam>
 <switch-blam to=".drums" prop="suspend" reverse="">
   <label>
     drums
@@ -224,7 +244,7 @@
 <dial-blam to="#nearfisa carrier-blam" prop="feedback">
   <label>
     osc<br>feedback
-    <input type="range" min="-1000" max="1000">
+    <input type="range" min="0" max="1000">
   </label>
 </dial-blam>
 

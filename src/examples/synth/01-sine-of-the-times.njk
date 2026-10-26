@@ -17,8 +17,8 @@ elements:
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam detune="-1200" notes="C4 E4 F#4 G4">
-  <carrier-blam curve="0 0, 1 1, 0 6" release="6" type="sawtooth">
+<synth-blam notes="C3 E3 F#3 G3">
+  <carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth">
     <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
     <chain-blam out="bus">
       <gain-blam gain="0.5">
@@ -26,9 +26,9 @@ elements:
       </gain-blam>
       <pan-blam pan="0.3"></pan-blam>
     </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
   </carrier-blam>
-  <carrier-blam curve="0 0, 1 2, 0 11" release="6" type="sawtooth" offset="7">
+  <carrier-blam gain="0.75" curve="0 0, 1 2, 0 11" release="4" type="sawtooth" offset="7">
     <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
     <chain-blam out="bus">
       <filter-blam freq="7000">
@@ -36,7 +36,7 @@ elements:
       </filter-blam>
       <pan-blam pan="-0.3"></pan-blam>
     </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
   </carrier-blam>
   <lfo-blam prop="gain" gain="0.5" beats="0.25">
     <lfo-blam prop="beats" gain="5" beats="5"></lfo-blam>

@@ -289,7 +289,7 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/01-sine-of-the-times/</loc>
+    <loc>https://hyperblam.how/examples/05-headphone-hypnosis/</loc>
     <lastmod>2026-10-09T15:33:50.689Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -317,15 +317,29 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/03-feelin-hype-hype-hype/</loc>
+    <loc>https://hyperblam.how/examples/04-feelin-hype-hype-hype/</loc>
     <lastmod>2026-10-22T11:20:50.076Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/04-in-a-bad-moog/</loc>
+    <loc>https://hyperblam.how/examples/03-in-a-bad-moog/</loc>
     <lastmod>2026-10-23T13:24:11.811Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/guides/synthesis/</loc>
+    <lastmod>2026-10-27T07:27:32.690Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/01-theramin-imal-viable-product/</loc>
+    <lastmod>2026-10-27T10:34:07.774Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

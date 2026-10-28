@@ -1,5 +1,5 @@
 ---
-title: Super-Mega-Ultra Saw
+title: Headphone Hypnosis
 bpm: 90
 elements: 
   - Synth 
@@ -26,7 +26,7 @@ elements:
       </gain-blam>
       <pan-blam pan="0.3"></pan-blam>
     </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
   </carrier-blam>
   <carrier-blam gain="0.75" curve="0 0, 1 2, 0 11" release="4" type="sawtooth" offset="7">
     <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
@@ -36,7 +36,7 @@ elements:
       </filter-blam>
       <pan-blam pan="-0.3"></pan-blam>
     </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
   </carrier-blam>
   <lfo-blam prop="gain" gain="0.5" beats="0.25">
     <lfo-blam prop="beats" gain="5" beats="5"></lfo-blam>
@@ -54,6 +54,16 @@ elements:
 {% block dialog %}
 
 {% renderTemplate "md" %}
+
+Since **HYPERBLAM** takes a modular/hybrid approach to synthesis, the possibilities for inventing sounds and textures are pretty endless. 
+
+One application I know I will be returning to is creating generative ambient sound. This is just a first foray into that territory. It’s best experienced on headphones since there is a lot of space created with reverb, filters and panning.
+
+It’s important to note that not just `<synth-blam>` can be subject to modulations and effects, but each of its operators (carriers and—to some extent—modulators), independently. For example, the two `<carrier-blam>`s are panned independently to the left and right. This widens the overall sound considerably.
+
+Also be aware than just four notes (`C3 E3 F#3 G3`) are ever triggered here. The complexity of the sound comes entirely from overtones, LFOs, filters, envelopes, and a huge reverb.
+
+Apropos of nothing in particular, **HYPERBLAM**’s synthesis capability comes in at around 6KB. **Spitfire Audio** just released a hybrid synth instrument/library that's 40GB. Not to say these implementations are entirely the same but... that’s quite the size discrepancy.
 
 {% endrenderTemplate %}
 

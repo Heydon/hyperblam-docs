@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -187,7 +187,7 @@
     <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
-  <blam-blam to="#nearfisa carrier-blam" prop="stop"></blam-blam>
+  <blam-blam to="#nearfisa" prop="stop"></blam-blam>
 </tap-blam>
 
     </div>
@@ -201,6 +201,45 @@
     <div class="l-flow">
       
 
+<p>The <a href="https://en.wikipedia.org/wiki/Farfisa">Farfisa</a> transistor organ is one of my favorite sounds. My <a href="https://www.musicradar.com/reviews/tech/yamaha-reface-dx-629156">Reface DX</a> has a couple of different Farfisa presets I’ve grabbed.</p>
+<p>You get 90% of the sound just by adding octave-separated overtones. This implementation uses three <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>s:</p>
+<pre><code class="language-html">&lt;synth-blam id="nearfisa"&gt;
+  &lt;carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle"&gt;
+  &lt;/carrier-blam&gt;
+  &lt;carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9"&gt;
+  &lt;/carrier-blam&gt;
+  &lt;carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24"&gt;
+  &lt;/carrier-blam&gt;
+&lt;/synth-blam&gt;
+</code></pre>
+<p>Some things to note:</p>
+<ul>
+<li>Amplitude envelopes (<code>curve</code>) match, using a very sharp attack. In more complex synthesis, different carriers and modulators might have diverging envelopes.</li>
+<li>The <code>type</code>, in each case, is <em>triangle</em>. A pure sine wave isn’t shrill enough for a Farfisa and wouldn’t cut through a mix.</li>
+<li>The <code>offset</code> determines how many semitones to diverge from the fundamental. The second <code>&lt;carrier-blam&gt;</code> isn’t <em>quite</em> offset by the full octave. This is to emulate a worn out Farfisa’s transistor being slightly under voltage. Slight detuning like this subtly adds analog-like character.</li>
+</ul>
+<p>The Farfisa’s vibrato is almost as iconic as the instrument itself. Where a single <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code> is placed as a child of the <code><a href="/elements/synth">&lt;synth-blam&gt;</a></code>, it modulates all operators (the three <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>s here) simultaneously. Individual operators can have their own <code>detune</code> setting and this vibrato effect will be relative to that value.</p>
+<pre><code>&lt;synth-blam id="nearfisa"&gt;
+  &lt;carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle"&gt;
+  &lt;/carrier-blam&gt;
+  &lt;carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9"&gt;
+  &lt;/carrier-blam&gt;
+  &lt;carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24"&gt;
+  &lt;/carrier-blam&gt;
+  &lt;lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass&gt;&lt;/lfo-blam&gt;
+&lt;/synth-blam&gt;
+</code></pre>
+<p>The primitive electronic drum sounds are all created with the same handful of synthesizer elements. These use short decays and <code>feedback</code> loops to disrupt the signals into harsher, percussive sounds.</p>
+<pre><code class="language-html">&lt;synth-blam id="snare" notes="D5" gain="5" out="room"&gt;
+  &lt;carrier-blam gain="0.5" curve="0 0, 1 0.01, 0 0.3" type="square" feedback="600"&gt;
+    &lt;chain-blam&gt;
+      &lt;filter-blam type="highpass" freq="500"&gt;&lt;/filter-blam&gt;
+      &lt;pan-blam pan="0.1"&gt;&lt;/pan-blam&gt;
+    &lt;/chain-blam&gt;
+  &lt;/carrier-blam&gt;
+&lt;/synth-blam&gt;
+</code></pre>
+<p>For more information, read the <a href="/guides/synthesis"><strong>Synthesis guide</strong></a>.</p>
 
 
 
@@ -252,10 +291,10 @@
   </div>
   <nav class="l-cluster u-font-special" aria-label="more examples">
     
-      <a href="/examples/01-sine-of-the-times/" aria-label="previous example">← previous</a>
+      <a href="/examples/01-theramin-imal-viable-product/" aria-label="previous example">← previous</a>
     
     
-      <a href="/examples/03-feelin-hype-hype-hype/" aria-label="next example">next →</a>
+      <a href="/examples/03-in-a-bad-moog/" aria-label="next example">next →</a>
     
   </nav>
 </footer>

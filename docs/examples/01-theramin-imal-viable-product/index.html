@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-    <title>Feelin’ Hype Hype Hype : HYPERBLAM</title>
+    <title>Theramin-imal viable product : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -11,15 +11,15 @@
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
-    <meta property="og:title" content="Feelin’ Hype Hype Hype">
+    <meta property="og:title" content="Theramin-imal viable product">
     <meta property="og:site_name" content="HYPERBLAM">
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -80,7 +80,7 @@
   
     </a>
   </nav>
-  <h1 class="u-font-larger">Feelin’ Hype Hype Hype</h1>
+  <h1 class="u-font-larger">Theramin-imal viable product</h1>
 </header>
 
     
@@ -100,27 +100,33 @@
     <div class="l-framed">
       
 <chain-blam id="bus">
-  <reverb-blam mix="0.3">
+  <reverb-blam mix="0.25">
     <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
-  <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam notes="C4 D4 E4 G4 A4 C5 D5 E5 G5 A5" out="bus">
-  <carrier-blam curve="0 0, 1 0.03, 0 2">
-    <modulator-blam curve="0 0, 1 0.03, 0 1.25" ratio="3" gain="750">
-      <blam-blam prop="gain" value="100~2000"></blam-blam>
-    </modulator-blam>
-  </carrier-blam>
-  <carrier-blam curve="0 0, 1 0.02, 0 0.06" release="2" offset="-12">
-  </carrier-blam>
-  <envelope-blam prop="detune" curve="0 0, -20 0.25, 0 0.7"></envelope-blam>
+<synth-blam id="theramin" notes="C4" detune="0" out="bus">
+  <carrier-blam curve="0 0, 1 2" release="2"></carrier-blam>
+  <lfo-blam prop="detune" gain="25" beats="2.5"></lfo-blam>
+  <lfo-blam class="vibrato" prop="detune" gain="0" beats="0.21"></lfo-blam>
+  <lfo-blam class="vibrato" prop="detune" gain="0" beats="0.47"></lfo-blam>
 </synth-blam>
 
-<tap-blam to="synth-blam" prop="play">
-  <button>hit steel drum</button>
-</tap-blam>
+<div class="l-cluster">
+  <tap-blam to="#theramin" prop="play">
+    <button>start</button>
+    <blam-blam to="rings-blam" prop="start" once=""></blam-blam>
+  </tap-blam>
+  <tap-blam id="move" to="#theramin" prop="detune" ramp="1" value="-500|1200|2400|300|1500|2700|3600">
+    <button>move</button>
+    <blam-blam to="#move" prop="ramp" value="2|1|0.5|0.5"></blam-blam>
+    <blam-blam to=".vibrato" prop="gain" ramp="1" value="0|0|0|0|100|200" chance="0.333"></blam-blam>
+  </tap-blam>
+  <tap-blam to="#theramin" prop="stop">
+    <button>stop</button>
+  </tap-blam>
+</div>
 
     </div>
   </main>
@@ -133,6 +139,34 @@
     <div class="l-flow">
       
 
+<p>The simplest of synthesizer setups just produces a sine wave. Traditionally, this is the waveform used by a <a href="https://en.wikipedia.org/wiki/Theremin">theramin</a>, hence this example.</p>
+<p>In <strong>HYPERBLAM</strong> synthesis, a <code><a href="/elements/synth">&lt;synth-blam&gt;</a></code> houses any number of <a href="https://www.etherdiver.com/how-to-synth-a-guide-to-programming-synthesizers/fm-basics-i/#operator">operators</a>. These are either <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>s or <code><a href="/elements/modulator">&lt;modulator-blam&gt;</a></code>s. A single one of the first category is all we need here. It produces a wave of <code>type</code> sine by default.</p>
+<pre><code class="language-html">&lt;synth-blam id="theramin" notes="C4" detune="0" out="bus"&gt;
+  &lt;carrier-blam curve="0 0, 1 2" release="2"&gt;&lt;/carrier-blam&gt;
+&lt;/synth-blam&gt;
+</code></pre>
+<p>Since we want our theramin tone to be continuous, the envelope <code>curve</code> starts at zero, moves to one after two beats, and stays there. The <code>release</code> value sets how many beats it’ll take for the signal to diminish when <strong>stop</strong> is pressed.</p>
+<p>Like with <code><a href="/elements/note">&lt;note-blam&gt;</a></code>, we can supply a comma-separated list of <code>notes</code> to choose from. It’s just that these notes determine the frequency of an oscillator rather than the playback speed of a sample.</p>
+<p>In this case, we are just going to play the note <strong>C4</strong>. The change in pitch you hear (when pressing the <strong>move!</strong> button) is entirely down to automating the synth’s <code>detune</code> property.</p>
+<pre><code class="language-html">&lt;tap-blam id="move" to="#theramin" prop="detune" ramp="1" value="-500|1200|2400|300|1500|2700|3600"&gt;
+  &lt;button&gt;move!&lt;/button&gt;
+  &lt;blam-blam to="#move" prop="ramp" value="2|1|0.5|0.5"&gt;&lt;/blam-blam&gt;
+  &lt;blam-blam to=".vibrato" prop="gain" ramp="1" value="0|0|0|0|100|200" chance="0.333"&gt;&lt;/blam-blam&gt;
+&lt;/tap-blam&gt;
+</code></pre>
+<p>Since a theramin’s pitch changes gradually, as you move your hand closer and further away from its sensor, each detuning occurs with a <em>ramp</em>. The speed/duration of <code>ramp</code> is fluctuated using a <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>.</p>
+<p>The second <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> affects two <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code>s simultaneously. When a gain value above zero is applied, you hear a vibrato effect. The vibrato effect can be simple and steady or complex and turbulent, depending on how <em>much</em> gain is applied to how <em>many</em> LFOs. Attaching multiple parallel LFOs to the same <code>detune</code> parameter is the easiest way to create complex oscillation patterns.</p>
+<pre><code class="language-html">&lt;lfo-blam class="vibrato" prop="detune" gain="0" beats="0.21"&gt;&lt;/lfo-blam&gt;
+&lt;lfo-blam class="vibrato" prop="detune" gain="0" beats="0.47"&gt;&lt;/lfo-blam&gt;
+</code></pre>
+<p>All of the above is to emulate the sound of someone <em>dicking about</em> with a theramin. Because expert theramin players are rare but anyone can play one.</p>
+<p>The synth is routed through a <em>bus</em> with a nice plate reverb to place the theramin in a large space.</p>
+<pre><code class="language-html">&lt;chain-blam id="bus"&gt;
+  &lt;reverb-blam mix="0.25"&gt;
+    &lt;sample-blam src="{{site.basedir}}/static/sounds/IRs/plate.mp3"&gt;&lt;/sample-blam&gt;
+  &lt;/reverb-blam&gt;
+&lt;/chain-blam&gt;
+</code></pre>
 
 
 
@@ -143,21 +177,15 @@
 <footer>
   <div class="l-cluster">
     
-<dial-blam prop="gain" to="modulator-blam">
-  <label>
-    mod index
-    <input type="range" min="0" max="2000">
-  </label>
-</dial-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster u-font-special" aria-label="more examples">
     
-      <a href="/examples/02-not-a-farfisa-but-a-nearfisa/" aria-label="previous example">← previous</a>
+      <a href="https://hyperblam.how/examples" aria-label="examples index">index</a>
     
     
-      <a href="/examples/04-in-a-bad-moog/" aria-label="next example">next →</a>
+      <a href="/examples/02-not-a-farfisa-but-a-nearfisa/" aria-label="next example">next →</a>
     
   </nav>
 </footer>

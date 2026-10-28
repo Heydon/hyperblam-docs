@@ -3,7 +3,19 @@ title: Not a Farfisa But A Nearfisa
 bpm: 100
 elements: 
   - Synth 
-  - carrier
+  - Carrier
+  - Lfo 
+  - Chain 
+  - Reverb 
+  - Analyser 
+  - Sample 
+  - Filter 
+  - Sequencer 
+  - Track 
+  - Part 
+  - Bar
+  - Pan 
+  - Tap
 ---
 
 {% extends 'layouts/example-synth.njk' %}
@@ -92,13 +104,63 @@ elements:
 
 <tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
-  <blam-blam to="#nearfisa carrier-blam" prop="stop"></blam-blam>
+  <blam-blam to="#nearfisa" prop="stop"></blam-blam>
 </tap-blam>
 {% endblock %}
 
 {% block dialog %}
 
 {% renderTemplate "md" %}
+
+The [Farfisa](https://en.wikipedia.org/wiki/Farfisa) transistor organ is one of my favorite sounds. My [Reface DX](https://www.musicradar.com/reviews/tech/yamaha-reface-dx-629156) has a couple of different Farfisa presets I’ve grabbed.
+
+You get 90% of the sound just by adding octave-separated overtones. This implementation uses three `<carrier-blam>`s:
+
+```html
+<synth-blam id="nearfisa">
+  <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
+  </carrier-blam>
+  <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
+  </carrier-blam>
+</synth-blam>
+```
+
+Some things to note:
+
+- Amplitude envelopes (`curve`) match, using a very sharp attack. In more complex synthesis, different carriers and modulators might have diverging envelopes.
+- The `type`, in each case, is _triangle_. A pure sine wave isn’t shrill enough for a Farfisa and wouldn’t cut through a mix.
+- The `offset` determines how many semitones to diverge from the fundamental. The second `<carrier-blam>` isn’t _quite_ offset by the full octave. This is to emulate a worn out Farfisa’s transistor being slightly under voltage. Slight detuning like this subtly adds analog-like character.
+
+The Farfisa’s vibrato is almost as iconic as the instrument itself. Where a single `<lfo-blam>` is placed as a child of the `<synth-blam>`, it modulates all operators (the three `<carrier-blam>`s here) simultaneously. Individual operators can have their own `detune` setting and this vibrato effect will be relative to that value.
+
+```
+<synth-blam id="nearfisa">
+  <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
+  </carrier-blam>
+  <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
+  </carrier-blam>
+  <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass></lfo-blam>
+</synth-blam>
+```
+
+The primitive electronic drum sounds are all created with the same handful of synthesizer elements. These use short decays and `feedback` loops to disrupt the signals into harsher, percussive sounds.
+
+```html
+<synth-blam id="snare" notes="D5" gain="5" out="room">
+  <carrier-blam gain="0.5" curve="0 0, 1 0.01, 0 0.3" type="square" feedback="600">
+    <chain-blam>
+      <filter-blam type="highpass" freq="500"></filter-blam>
+      <pan-blam pan="0.1"></pan-blam>
+    </chain-blam>
+  </carrier-blam>
+</synth-blam>
+```
+
+For more information, read the [**Synthesis guide**](/guides/synthesis).
 
 {% endrenderTemplate %}
 

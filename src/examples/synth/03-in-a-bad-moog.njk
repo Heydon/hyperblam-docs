@@ -37,6 +37,7 @@ elements:
 </synth-blam>
 
 <chain-blam id="drums" out="bus">
+  <gain-blam gain="1.5"></gain-blam>
   <saturator-blam amount="30" lowcut="60"></saturator-blam>
 </chain-blam>
 
@@ -48,12 +49,25 @@ elements:
   </bank-blam>
 </pad-blam>
 
-<pad-blam id="snare" out="drums">
+<pad-blam class="snare" out="drums">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
   </bank-blam>
+</pad-blam>
+
+<pad-blam class="snare" gain="3">
+  <bank-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/chocolate/clap/01.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/chocolate/clap/02.mp3"></sample-blam>
+    <sample-blam src="{{site.basedircdn}}/static/sounds/chocolate/clap/03.mp3"></sample-blam>
+  </bank-blam>
+  <chain-blam out="drums">
+    <reverb-blam mix="0.15">
+      <sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
 </pad-blam>
 
 <pad-blam id="snareSoft" out="drums">
@@ -84,7 +98,7 @@ elements:
   <track-blam to="#hat" chance="0.25">
     <bar-blam s="0 ?"></bar-blam>
   </track-blam>
-  <track-blam to="#snare">
+  <track-blam to=".snare">
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
     <bar-blam s="0 0 0 0 ? 0 0 0"></bar-blam>
   </track-blam>
@@ -98,9 +112,6 @@ elements:
   </track-blam>
 </sequencer-blam>
 
-<tap-blam to="synth-blam" prop="play">
-  <button>play note</button>
-</tap-blam>
 <tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
   <blam-blam to="#nearfisa carrier-blam" prop="stop"></blam-blam>
@@ -111,11 +122,47 @@ elements:
 
 {% renderTemplate "md" %}
 
+As you’ll read in the [**Synthesis guide**](/guides/synthesis), I set out to capture the wild moog sound played by James Brown on [Blow Your Head](https://www.youtube.com/watch?v=vEaO7De2K40&list=RDvEaO7De2K40&start_radio=1).
+
+Since then, I’ve made some modifications to enable an even nastier sound. These include a second `<carrier-blam>` used as a harmonizer, creating an octave overtone. 
+
+```html 
+<synth-blam id="synth" gain="4" notes="C1 D#1 F1 G1 C1 C2 D#2 F2 C2 C3 D#3 F3 C3">
+  <carrier-blam curve="0.03 0, 1 0.2" release="0.05" type="sawtooth">
+    <modulator-blam class="mod" ratio="3.1" type="triangle" gain="0"></modulator-blam>
+  </carrier-blam>
+  <carrier-blam id="octave" curve="0.03 0, 1 0.2" release="0.05" type="sawtooth" offset="12" gain="0">
+    <modulator-blam class="mod" ratio="2.7" type="square" gain="0"></modulator-blam>
+  </carrier-blam>
+</synth-blam>
+```
+
+As you can see, there are also `<modulator-blam>` elements in place. These modulate the frequency of their parent `<carrier-blam>`s. Given the non-integer `ratio`s, and depending on the gain, this can really mess with the sound. Use the **instability** slider to try it out.
+
+The drums here use the sample-based `<pad-blam>` instrument. Yep: there's no reason why you can’t mix sampling and synthesis within **HYPERBLAM**. Also, check out that lush spring reverb applied to the clap samples.
+
+```html 
+<chain-blam out="drums">
+  <reverb-blam mix="0.15">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
+  </reverb-blam>
+</chain-blam>
+```
+
 {% endrenderTemplate %}
 
 {% endblock %}
 
 {% block controls %}
+<tap-blam to="synth-blam" prop="play">
+  <button>note</button>
+</tap-blam>
+<dial-blam to="synth-blam" prop="gain">
+  <label>
+    level
+    <input type="range" min="0" max="4" step="0.1">
+  </label>
+</dial-blam>
 <switch-blam to="#octave" prop="gain" value="0.75" ramp="3">
   <label>
     octaver

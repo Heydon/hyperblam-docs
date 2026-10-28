@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="utf-8">
     
-    <title>Super-Mega-Ultra Saw : HYPERBLAM</title>
+    <title>Feelin’ Hype Hype Hype : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -11,7 +11,7 @@
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
-    <meta property="og:title" content="Super-Mega-Ultra Saw">
+    <meta property="og:title" content="Feelin’ Hype Hype Hype">
     <meta property="og:site_name" content="HYPERBLAM">
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
@@ -80,11 +80,11 @@
   
     </a>
   </nav>
-  <h1 class="u-font-larger">Super-Mega-Ultra Saw</h1>
+  <h1 class="u-font-larger">Feelin’ Hype Hype Hype</h1>
 </header>
 
     
-<audio-blam bpm="90">
+<audio-blam bpm="100">
   <main tabindex="-1" class="l-frame">
     
     
@@ -100,44 +100,26 @@
     <div class="l-framed">
       
 <chain-blam id="bus">
-  <reverb-blam cutoff="2000">
-    <sample-blam src="https://hyperblam.how/static/sounds/IRs/cavern.mp3"></sample-blam>
+  <reverb-blam mix="0.2">
+    <sample-blam src="https://hyperblam.how/static/sounds/IRs/plate.mp3"></sample-blam>
   </reverb-blam>
   <limiter-blam></limiter-blam>
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam notes="C3 E3 F#3 G3">
-  <carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth">
-    <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
-    <chain-blam out="bus">
-      <gain-blam gain="0.5">
-        <lfo-blam prop="gain" gain="0.5" beats="17"></lfo-blam>
-      </gain-blam>
-      <pan-blam pan="0.3"></pan-blam>
-    </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
+<synth-blam class="steel" notes="C4 D4 E4 G4 A4 C5 D5 E5 G5 A5" out="bus">
+  <carrier-blam curve="0 0, 1 0.03, 0 2">
+    <modulator-blam curve="0 0, 1 0.03, 0 1.25" ratio="3" gain="750">
+      <blam-blam prop="gain" value="100~2000"></blam-blam>
+    </modulator-blam>
   </carrier-blam>
-  <carrier-blam gain="0.75" curve="0 0, 1 2, 0 11" release="4" type="sawtooth" offset="7">
-    <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
-    <chain-blam out="bus">
-      <filter-blam freq="7000">
-        <lfo-blam prop="freq" gain="6500" q="5" beats="9"></lfo-blam>
-      </filter-blam>
-      <pan-blam pan="-0.3"></pan-blam>
-    </chain-blam>
-    <blam-blam prop="type" value="triangle|sawtooth|square"></blam-blam>
+  <carrier-blam curve="0 0, 1 0.02, 0 0.06" release="2" offset="-12">
   </carrier-blam>
-  <lfo-blam prop="gain" gain="0.5" beats="0.25">
-    <lfo-blam prop="beats" gain="5" beats="5"></lfo-blam>
-  </lfo-blam>
-  <lfo-blam prop="detune" gain="25" beats="1">
-    <lfo-blam prop="gain" gain="20" beats="23"></lfo-blam>
-  </lfo-blam>
+  <envelope-blam prop="detune" curve="0 0, -40 0.25, 0 0.7"></envelope-blam>
 </synth-blam>
 
-<tap-blam to="synth-blam" prop="play">
-  <button>Play note</button>
+<tap-blam to=".steel" prop="play">
+  <button>hit steel drum</button>
 </tap-blam>
 
     </div>
@@ -151,6 +133,21 @@
     <div class="l-flow">
       
 
+<p>A more subtle application of FM (frequency modulation) than found in the <a href="/examples/03-in-a-bad-moog">”In A Bad Moog”</a> example’s “instability” control.</p>
+<p>In this case, the ratio is 3:1 (<code>ratio="3"</code>), creating a stable metallic timbre. The <code><a href="/elements/modulator">&lt;modulator-blam&gt;</a></code> has a shorter <code>curve</code> than its parent <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>, meaning the metallic timbre is only at the start of the sound. The effect is a pseudo-steel drum sound.</p>
+<pre><code class="language-html">&lt;synth-blam class="steel" notes="C4 D4 E4 G4 A4 C5 D5 E5 G5 A5" out="bus"&gt;
+  &lt;carrier-blam curve="0 0, 1 0.03, 0 2"&gt;
+    &lt;modulator-blam curve="0 0, 1 0.03, 0 1.25" ratio="2" gain="500"&gt;
+      &lt;blam-blam prop="gain" value="100~2000"&gt;&lt;/blam-blam&gt;
+    &lt;/modulator-blam&gt;
+  &lt;/carrier-blam&gt;
+  &lt;carrier-blam curve="0 0, 1 0.02, 0 0.06" release="2" offset="-12"&gt;
+  &lt;/carrier-blam&gt;
+  &lt;envelope-blam prop="detune" curve="0 0, -35 0.25, 0 0.7"&gt;&lt;/envelope-blam&gt;
+&lt;/synth-blam&gt;
+</code></pre>
+<p>The <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> element fluctuates the <code><a href="/elements/modulator">&lt;modulator-blam&gt;</a></code> element’s gain, simulating softer versus harder hits of the drum. The second <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code> emits a very short, detuned knocking sound and the <code><a href="/elements/envelope">&lt;envelope-blam&gt;</a></code>, affecting <code>detune</code>, creates a slight bowing effect for added authenticity.</p>
+<p>Consult the <a href="/guides/synthesis"><strong>Synthesis guide</strong></a> for more context.</p>
 
 
 
@@ -161,15 +158,21 @@
 <footer>
   <div class="l-cluster">
     
+<dial-blam prop="gain" to="modulator-blam">
+  <label>
+    mod index
+    <input type="range" min="0" max="2000">
+  </label>
+</dial-blam>
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
   <nav class="l-cluster u-font-special" aria-label="more examples">
     
-      <a href="https://hyperblam.how/examples" aria-label="examples index">index</a>
+      <a href="/examples/03-in-a-bad-moog/" aria-label="previous example">← previous</a>
     
     
-      <a href="/examples/02-not-a-farfisa-but-a-nearfisa/" aria-label="next example">next →</a>
+      <a href="/examples/05-headphone-hypnosis/" aria-label="next example">next →</a>
     
   </nav>
 </footer>

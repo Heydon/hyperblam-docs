@@ -1,0 +1,72 @@
+---
+title: Feelin’ Hype Hype Hype
+bpm: 100
+elements: 
+  - Synth 
+  - carrier
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <reverb-blam mix="0.2">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/plate.mp3"></sample-blam>
+  </reverb-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+
+<synth-blam class="steel" notes="C4 D4 E4 G4 A4 C5 D5 E5 G5 A5" out="bus">
+  <carrier-blam curve="0 0, 1 0.03, 0 2">
+    <modulator-blam curve="0 0, 1 0.03, 0 1.25" ratio="3" gain="750">
+      <blam-blam prop="gain" value="100~2000"></blam-blam>
+    </modulator-blam>
+  </carrier-blam>
+  <carrier-blam curve="0 0, 1 0.02, 0 0.06" release="2" offset="-12">
+  </carrier-blam>
+  <envelope-blam prop="detune" curve="0 0, -40 0.25, 0 0.7"></envelope-blam>
+</synth-blam>
+
+<tap-blam to=".steel" prop="play">
+  <button>hit steel drum</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+A more subtle application of FM (frequency modulation) than found in the [”In A Bad Moog”](/examples/03-in-a-bad-moog) example’s “instability” control. 
+
+In this case, the ratio is 3:1 (`ratio="3"`), creating a stable metallic timbre. The `<modulator-blam>` has a shorter `curve` than its parent `<carrier-blam>`, meaning the metallic timbre is only at the start of the sound. The effect is a pseudo-steel drum sound.
+
+```html
+<synth-blam class="steel" notes="C4 D4 E4 G4 A4 C5 D5 E5 G5 A5" out="bus">
+  <carrier-blam curve="0 0, 1 0.03, 0 2">
+    <modulator-blam curve="0 0, 1 0.03, 0 1.25" ratio="2" gain="500">
+      <blam-blam prop="gain" value="100~2000"></blam-blam>
+    </modulator-blam>
+  </carrier-blam>
+  <carrier-blam curve="0 0, 1 0.02, 0 0.06" release="2" offset="-12">
+  </carrier-blam>
+  <envelope-blam prop="detune" curve="0 0, -35 0.25, 0 0.7"></envelope-blam>
+</synth-blam>
+```
+
+The `<blam-blam>` element fluctuates the `<modulator-blam>` element’s gain, simulating softer versus harder hits of the drum. The second `<carrier-blam>` emits a very short, detuned knocking sound and the `<envelope-blam>`, affecting `detune`, creates a slight bowing effect for added authenticity.
+
+Consult the [**Synthesis guide**](/guides/synthesis) for more context.
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<dial-blam prop="gain" to="modulator-blam">
+  <label>
+    mod index
+    <input type="range" min="0" max="2000">
+  </label>
+</dial-blam>
+{% endblock %}

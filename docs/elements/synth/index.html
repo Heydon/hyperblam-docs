@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -175,38 +175,6 @@
         </tr>
         
         <tr>
-          <th scope="row">type</th>
-          <td><em>string</em></td>
-          <td>‘sine’</td>
-          <td><p>The basic waveform used by the operator. Can be ‘sine’, ‘triangle’, ‘square’, or ‘sawtooth’.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">curve</th>
-          <td><em>string</em></td>
-          <td>‘0 0, 1 0.005’</td>
-          <td><p>The amplitude envelope for the operator’s principle oscillator.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">release</th>
-          <td><em>number</em></td>
-          <td>1</td>
-          <td><p>In <strong>HYPERBLAM</strong>, the R (release) in ADSR is defined separately to the main envelope (<code>curve</code>). This enables synchronizing the diminishing of amplitude curves with events.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">feedback</th>
-          <td><em>number</em></td>
-          <td>0</td>
-          <td><p>How much of the operator’s oscillator to loop back into its own frequency param. This is good for creating interesting overtones. At very high numbers, you can create pseudo-noise.</p>
-</td>
-        </tr>
-        
-        <tr>
           <th scope="row">out</th>
           <td><em>string</em></td>
           <td></td>
@@ -226,7 +194,13 @@
         
         <tr>
           <th scope="row">blam</th>
-          <td><p>Fired whenever <code>play()</code> is executed. Contains the <code>time</code> data property as standard (which is used in synchronization by various elements).</p>
+          <td><p>Fired whenever <code>play()</code> is executed. Contains the <code>time</code> data property as standard (which is used in synchronization by various elements). Proxy for subject operators’ <code>play()</code> methods.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">blamstop</th>
+          <td><p>Fired whenever <code>stop()</code> is executed. Contains the <code>time</code> data property as standard (which is used in synchronization by various elements). Proxy for subject operators’ <code>stop()</code> methods.</p>
 </td>
         </tr>
         
@@ -333,12 +307,16 @@
         
       
     
+      
+        
+      
+    
     
     <p>Examples that use the <strong>Synth</strong> element:</p>
     <ul class="l-examples">
       
         <li>
-          <a href="https://hyperblam.how/examples/01-sine-of-the-times/">Super-Mega-Ultra Saw</a>
+          <a href="https://hyperblam.how/examples/05-headphone-hypnosis/">Headphone Hypnosis</a>
         </li>
       
         <li>
@@ -346,11 +324,15 @@
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/03-feelin-hype-hype-hype/">Feelin’ Hype Hype Hype</a>
+          <a href="https://hyperblam.how/examples/04-feelin-hype-hype-hype/">Feelin’ Hype Hype Hype</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/04-in-a-bad-moog/">In a bad moog</a>
+          <a href="https://hyperblam.how/examples/03-in-a-bad-moog/">In a bad moog</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/01-theramin-imal-viable-product/">Theramin-imal viable product</a>
         </li>
       
     </ul>

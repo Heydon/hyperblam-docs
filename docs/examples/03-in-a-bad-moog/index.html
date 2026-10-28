@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -154,7 +154,7 @@
     <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/chocolate/clap/03.mp3"></sample-blam>
   </bank-blam>
   <chain-blam out="drums">
-    <reverb-blam mix="0.15">
+    <reverb-blam mix="0.05">
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
@@ -209,7 +209,8 @@
     <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
-  <blam-blam to="#nearfisa carrier-blam" prop="stop"></blam-blam>
+  <blam-blam to="#nearfisa" prop="stop"></blam-blam>
+  <blam-blam to="rings-blam" prop="startStop"></blam-blam>
 </tap-blam>
 
     </div>
@@ -236,11 +237,11 @@
 </code></pre>
 <p>As you can see, there are also <code><a href="/elements/modulator">&lt;modulator-blam&gt;</a></code> elements in place. These modulate the frequency of their parent <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>s. Given the non-integer <code>ratio</code>s, and depending on the gain, this can really mess with the sound. Use the <strong>instability</strong> slider to try it out.</p>
 <p>The drums here use the sample-based <code><a href="/elements/pad">&lt;pad-blam&gt;</a></code> instrument. Yep: there's no reason why you can’t mix sampling and synthesis within <strong>HYPERBLAM</strong>. Also, check out that lush spring reverb applied to the clap samples.</p>
-<pre><code class="language-html">&lt;chain-blam out="drums"&gt;
-  &lt;reverb-blam mix="0.15"&gt;
-    &lt;sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"&gt;&lt;/sample-blam&gt;
-  &lt;/reverb-blam&gt;
-&lt;/chain-blam&gt;
+<pre><code class="language-html">  &lt;chain-blam out="drums"&gt;
+    &lt;reverb-blam mix="0.15"&gt;
+      &lt;sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"&gt;&lt;/sample-blam&gt;
+    &lt;/reverb-blam&gt;
+  &lt;/chain-blam&gt;
 </code></pre>
 
 
@@ -253,7 +254,7 @@
   <div class="l-cluster">
     
 <tap-blam to="synth-blam" prop="play">
-  <button>note</button>
+  <button>blast</button>
 </tap-blam>
 <dial-blam to="synth-blam" prop="gain">
   <label>

@@ -116,7 +116,7 @@
 <div class="l-cluster">
   <tap-blam to="#theramin" prop="play">
     <button>start</button>
-    <blam-blam to="rings-blam" prop="start" once=""></blam-blam>
+    <blam-blam to="rings-blam" prop="startStop"></blam-blam>
   </tap-blam>
   <tap-blam id="move" to="#theramin" prop="detune" ramp="1" value="-500|1200|2400|300|1500|2700|3600">
     <button>move</button>
@@ -145,22 +145,22 @@
   &lt;carrier-blam curve="0 0, 1 2" release="2"&gt;&lt;/carrier-blam&gt;
 &lt;/synth-blam&gt;
 </code></pre>
-<p>Since we want our theramin tone to be continuous, the envelope <code>curve</code> starts at zero, moves to one after two beats, and stays there. The <code>release</code> value sets how many beats it’ll take for the signal to diminish when <strong>stop</strong> is pressed.</p>
+<p>Since we want our theramin tone to be continuous, the envelope <code>curve</code> starts at <code>0</code>, moves to <code>1</code> after two beats, and stays there. The <code>release</code> value sets how many beats it’ll take for the signal to diminish when <strong>STOP</strong> is pressed.</p>
 <p>Like with <code><a href="/elements/note">&lt;note-blam&gt;</a></code>, we can supply a comma-separated list of <code>notes</code> to choose from. It’s just that these notes determine the frequency of an oscillator rather than the playback speed of a sample.</p>
-<p>In this case, we are just going to play the note <strong>C4</strong>. The change in pitch you hear (when pressing the <strong>move!</strong> button) is entirely down to automating the synth’s <code>detune</code> property.</p>
+<p>In this case, we are just going to play the note <strong>C4</strong>. The change in pitch you hear (when pressing the <strong>MOVE</strong> button) is entirely down to automating the synth’s <code>detune</code> property.</p>
 <pre><code class="language-html">&lt;tap-blam id="move" to="#theramin" prop="detune" ramp="1" value="-500|1200|2400|300|1500|2700|3600"&gt;
-  &lt;button&gt;move!&lt;/button&gt;
+  &lt;button&gt;move&lt;/button&gt;
   &lt;blam-blam to="#move" prop="ramp" value="2|1|0.5|0.5"&gt;&lt;/blam-blam&gt;
   &lt;blam-blam to=".vibrato" prop="gain" ramp="1" value="0|0|0|0|100|200" chance="0.333"&gt;&lt;/blam-blam&gt;
 &lt;/tap-blam&gt;
 </code></pre>
 <p>Since a theramin’s pitch changes gradually, as you move your hand closer and further away from its sensor, each detuning occurs with a <em>ramp</em>. The speed/duration of <code>ramp</code> is fluctuated using a <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code>.</p>
-<p>The second <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> affects two <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code>s simultaneously. When a gain value above zero is applied, you hear a vibrato effect. The vibrato effect can be simple and steady or complex and turbulent, depending on how <em>much</em> gain is applied to how <em>many</em> LFOs. Attaching multiple parallel LFOs to the same <code>detune</code> parameter is the easiest way to create complex oscillation patterns.</p>
+<p>The second <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> affects two <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code>s simultaneously. When a gain value above <code>0</code> is applied, you hear a vibrato effect. The vibrato effect can be simple and steady or complex and turbulent, depending on how <em>much</em> gain is applied to how <em>many</em> LFOs. Attaching multiple parallel LFOs to the same <code>detune</code> parameter is the easiest way to create complex oscillation patterns.</p>
 <pre><code class="language-html">&lt;lfo-blam class="vibrato" prop="detune" gain="0" beats="0.21"&gt;&lt;/lfo-blam&gt;
 &lt;lfo-blam class="vibrato" prop="detune" gain="0" beats="0.47"&gt;&lt;/lfo-blam&gt;
 </code></pre>
-<p>All of the above is to emulate the sound of someone <em>dicking about</em> with a theramin. Because expert theramin players are rare but anyone can play one.</p>
-<p>The synth is routed through a <em>bus</em> with a nice plate reverb to place the theramin in a large space.</p>
+<p>All of the above is to emulate the sound of someone <em>dicking about</em> with a theramin. Because expert <em>theraminists</em> are rare but anyone can have a go.</p>
+<p>The synth is routed through a <em>bus</em> with a <code><a href="/elements/reverb">&lt;reverb-blam&gt;</a></code> a nice <a href="https://www.izotope.com/community/blog/plate-reverb?srsltid=AYCX9vJu_-cNytpLSBWfaFAsL6nab3pR87G04PKPbT_Q-Q-jxIEh_Puk">plate reverb</a>. This gives the sound a space to breathe in.</p>
 <pre><code class="language-html">&lt;chain-blam id="bus"&gt;
   &lt;reverb-blam mix="0.25"&gt;
     &lt;sample-blam src="{{site.basedir}}/static/sounds/IRs/plate.mp3"&gt;&lt;/sample-blam&gt;

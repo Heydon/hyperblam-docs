@@ -64,7 +64,7 @@ The `<synth-blam>` element itself doesn’t make sound, it just channels it.
 
 When the above synth’s `play()` function is triggered, each `<carrier-blam>` plays out, using the sharp attack defined by each matching envelope `curve`. The second two carriers, in this case, take frequencies that are `offset` from the fundamental (base note) produced by the first carrier. This is a form of additive synthesis; we are adding harmonics. 
 
-This code is a simplified version of the [“Not A Farfisa But A Nearfisa”]({{site.basedir}}/examples/02-not-a-farfia-but-a-nearfisa) example. Note that the second carrier doesn’t *quite* set an octave (12 semitone) `offset`. This reproduces the authentic sound of a worn out, *detuned* Farfisa organ suffering from one oscillator being slightly under voltage.
+This code is a simplified version of the [“Not A Farfisa But A Nearfisa”]({{site.basedir}}/examples/02-not-a-farfisa-but-a-nearfisa) example. Note that the second carrier doesn’t *quite* set an octave (12 semitone) `offset`. This reproduces the authentic sound of a worn out, *detuned* Farfisa organ suffering from one oscillator being slightly under voltage.
 
 ```html
 <synth-blam notes="C4 D#4 G4">

@@ -64,7 +64,7 @@ elements:
     <sample-blam src="{{site.basedircdn}}/static/sounds/chocolate/clap/03.mp3"></sample-blam>
   </bank-blam>
   <chain-blam out="drums">
-    <reverb-blam mix="0.15">
+    <reverb-blam mix="0.05">
       <sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
     </reverb-blam>
   </chain-blam>
@@ -114,7 +114,8 @@ elements:
 
 <tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
-  <blam-blam to="#nearfisa carrier-blam" prop="stop"></blam-blam>
+  <blam-blam to="#nearfisa" prop="stop"></blam-blam>
+  <blam-blam to="rings-blam" prop="startStop"></blam-blam>
 </tap-blam>
 {% endblock %}
 
@@ -142,11 +143,11 @@ As you can see, there are also `<modulator-blam>` elements in place. These modul
 The drums here use the sample-based `<pad-blam>` instrument. Yep: there's no reason why you can’t mix sampling and synthesis within **HYPERBLAM**. Also, check out that lush spring reverb applied to the clap samples.
 
 ```html 
-<chain-blam out="drums">
-  <reverb-blam mix="0.15">
-    <sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
-  </reverb-blam>
-</chain-blam>
+  <chain-blam out="drums">
+    <reverb-blam mix="0.15">
+      <sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
 ```
 
 {% endrenderTemplate %}
@@ -155,7 +156,7 @@ The drums here use the sample-based `<pad-blam>` instrument. Yep: there's no rea
 
 {% block controls %}
 <tap-blam to="synth-blam" prop="play">
-  <button>note</button>
+  <button>blast</button>
 </tap-blam>
 <dial-blam to="synth-blam" prop="gain">
   <label>

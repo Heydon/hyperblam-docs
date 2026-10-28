@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -96,6 +96,8 @@
       <p></p><p>A versatile element for creating synth sounds. The sound is sculpted using any number of subject <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code> and <code><a href="/elements/modulator">&lt;modulator-blam&gt;</a></code> elements. Each of which can use any <code>type</code> of waveform and be associated with any <code><a href="/elements/chain">&lt;chain-blam&gt;</a></code> effects. In addition, modulation elements like <code><a href="/elements/lfo">&lt;lfo-blam&gt;</a></code> and event-reactive elements like <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> can be used per <code><a href="/elements/synth">&lt;synth-blam&gt;</a></code> and/or per constituent operator (<code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code> or <code><a href="/elements/modulator">&lt;modulator-blam&gt;</a></code>).</p>
 <p></p>
     
+    
+      <p class="u-note"><strong class="u-note__shout">DRAFT!</strong> This element is in early development and is liable to change or possibly be replaced.</p>
     
     <dl>
       <div>
@@ -225,7 +227,8 @@
         
         <tr>
           <th scope="row">stop</th>
-          <td style="text-align: left"></td>
+          <td style="text-align: left"><p><strong>time</strong>: When, relative to the context’s <code>currentTime</code>, to play the sound. Immediately, if not set.</p>
+</td>
           <td><p>Triggers the <code>release</code> ramp for notes currently playing. This is applied automatically at the start of each <code>play()</code> but may be needed for manual intervention too.</p>
 </td>
         </tr>

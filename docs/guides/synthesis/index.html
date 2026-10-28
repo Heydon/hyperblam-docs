@@ -133,7 +133,7 @@
 &lt;/synth-blam&gt;
 </code></pre>
 <p>When the above synth’s <code>play()</code> function is triggered, each <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code> plays out, using the sharp attack defined by each matching envelope <code>curve</code>. The second two carriers, in this case, take frequencies that are <code>offset</code> from the fundamental (base note) produced by the first carrier. This is a form of additive synthesis; we are adding harmonics.</p>
-<p>This code is a simplified version of the <a href="https://hyperblam.how/examples/02-not-a-farfia-but-a-nearfisa">“Not A Farfisa But A Nearfisa”</a> example. Note that the second carrier doesn’t <em>quite</em> set an octave (12 semitone) <code>offset</code>. This reproduces the authentic sound of a worn out, <em>detuned</em> Farfisa organ suffering from one oscillator being slightly under voltage.</p>
+<p>This code is a simplified version of the <a href="https://hyperblam.how/examples/02-not-a-farfisa-but-a-nearfisa">“Not A Farfisa But A Nearfisa”</a> example. Note that the second carrier doesn’t <em>quite</em> set an octave (12 semitone) <code>offset</code>. This reproduces the authentic sound of a worn out, <em>detuned</em> Farfisa organ suffering from one oscillator being slightly under voltage.</p>
 <pre><code class="language-html">&lt;synth-blam notes="C4 D#4 G4"&gt;
   &lt;carrier-blam curve="0 0, 0.01 1" release="0.1"&gt;&lt;/carrier-blam&gt;
   &lt;carrier-blam curve="0 0, 0.01 1" release="0.1" offset="11.9"&gt;&lt;/carrier-blam&gt;

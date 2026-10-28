@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -88,7 +88,7 @@
   <main tabindex="-1" class="l-frame">
     
     <div class="l-framed u-fit s-playstop" hidden="">
-      <video src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/video/static.mp4?bust=1793190093276" autoplay="" muted="" loop=""></video>
+      <video src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/video/static.mp4?bust=1793198957238" autoplay="" muted="" loop=""></video>
     </div>
     
     
@@ -117,13 +117,10 @@
     <reverb-blam mix="0.125">
       <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
     </reverb-blam>
-    <filter-blam freq="1000">
-      <blam-blam prop="freq" value="8000|8000|1500|750" from="sequencer-blam" chance="0.75" ramp="0.333"></blam-blam>
-    </filter-blam>
   </chain-blam>
   <lfo-blam prop="detune" gain="66" beats="1">
-    <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.125" revert=""></blam-blam>
-    <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.125" revert=""></blam-blam>
+    <blam-blam prop="beats" value="3|3|0.25|0.125|0.0625" from="sequencer-blam" chance="0.25" ramp="0.5" revert=""></blam-blam>
+    <blam-blam prop="gain" value="50|50|25|100|300" from="sequencer-blam" chance="0.25" ramp="0.5" revert=""></blam-blam>
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert="" bypass=""></blam-blam>
 </pad-blam>

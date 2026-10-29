@@ -1,0 +1,196 @@
+---
+title: Not a Farfisa But A Nearfisa
+bpm: 100
+elements: 
+  - Synth 
+  - Carrier
+  - Lfo 
+  - Chain 
+  - Reverb 
+  - Analyser 
+  - Sample 
+  - Filter 
+  - Sequencer 
+  - Track 
+  - Part 
+  - Bar
+  - Pan 
+  - Tap
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+
+<chain-blam id="spring" out="bus">
+  <reverb-blam cutoff="1500">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/plate.mp3"></sample-blam>
+  </reverb-blam>
+  <gain-blam id="nearfisaGain"></gain-blam>
+</chain-blam>
+
+<chain-blam id="room" out="bus">
+  <reverb-blam mix="0.15">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/room-medium.mp3"></sample-blam>
+  </reverb-blam>
+</chain-blam>
+
+<synth-blam id="nearfisa" gain="0.4" out="spring">
+  <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
+  </carrier-blam>
+  <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
+  </carrier-blam>
+  <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass></lfo-blam>
+</synth-blam>
+
+<synth-blam id="kick" notes="C1" gain="6" out="room">
+  <carrier-blam curve="0 0, 1 0.01, 0 0.3" feedback="10">
+  </carrier-blam>
+  <carrier-blam gain="0.2" curve="0 0, 1 0.01, 0 0.04" release="0.1" type="square" offset="12">
+  </carrier-blam>
+</synth-blam>
+
+<synth-blam id="snare" notes="D5" gain="5" out="room">
+  <carrier-blam gain="0.5" curve="0 0, 1 0.01, 0 0.3" type="square" feedback="600">
+    <chain-blam>
+      <filter-blam type="highpass" freq="500"></filter-blam>
+      <pan-blam pan="0.1"></pan-blam>
+    </chain-blam>
+  </carrier-blam>
+</synth-blam>
+
+<synth-blam id="hat" notes="D#6" gain="4">
+  <carrier-blam gain="0.25" curve="0 0, 1 0.01, 0.4 0.02, 0 0.05" feedback="600" type="square">
+  </carrier-blam>
+  <chain-blam out="room">
+    <filter-blam type="highpass" freq="800"></filter-blam>
+    <pan-blam pan="-0.3"></pan-blam>
+  </chain-blam>
+</synth-blam>
+
+<sequencer-blam swing="0.15">
+  <track-blam id="nearfisaTrack" to="#nearfisa" part="#main">
+    <part-blam id="main">
+      <bar-blam s="C5 0 G5 0 F5 0 G5 0 D#5 0 F5 0 D5 0 D#5 0"></bar-blam>
+    </part-blam>
+    <part-blam id="fast">
+      <bar-blam s="C5 D5 D#5 C5 D5 D#5 F5 D5 D#5 F5 G5 D#5 D5 F5 D#5 D5"></bar-blam>
+      <bar-blam s="C5 D5 D#5 C5 D5 D#5 F5 D5 D#5 F5 G5 D#5 D5 D#5 D5 B4"></bar-blam>
+    </part-blam>
+  </track-blam>
+
+  <track-blam to="#kick" class="drums" suspend>
+    <bar-blam s="C1 C1 0 0 0 0 C1 C1 0 0 0 0 0 0 0 0"></bar-blam>
+    <bar-blam s="C1 C1 0 0 0 0 C1 C1 0 0 0 0 0 0 D#1 D#1"></bar-blam>
+  </track-blam>
+
+  <track-blam to="#snare" class="drums" suspend>
+    <bar-blam s="0 0 0 0 ? 0 0 0 0 0 0 0 ? 0 0 0"></bar-blam>
+  </track-blam>
+  <track-blam to="#hat" class="drums" suspend>
+    <bar-blam s="? 0"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+
+<tap-blam to="sequencer-blam" prop="playStop">
+  <button aria-pressed="false" class="u-round" aria-label="play">{% icon 'playStop' %}</button>
+  <blam-blam to="#nearfisa" prop="stop"></blam-blam>
+  <blam-blam to="rings-blam" prop="startStop"></blam-blam>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+The [Farfisa](https://en.wikipedia.org/wiki/Farfisa) transistor organ is one of my favorite sounds. My [Reface DX](https://www.musicradar.com/reviews/tech/yamaha-reface-dx-629156) has a couple of different Farfisa presets I’ve grabbed.
+
+You get 90% of the sound just by adding octave-separated overtones. This implementation uses three `<carrier-blam>`s:
+
+```html
+<synth-blam id="nearfisa">
+  <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
+  </carrier-blam>
+  <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
+  </carrier-blam>
+</synth-blam>
+```
+
+Some things to note:
+
+- Amplitude envelopes (`curve`) match, using a very sharp attack. In more complex synthesis, different carriers and modulators might have diverging envelopes.
+- The `type`, in each case, is _triangle_. A pure sine wave isn’t shrill enough for a Farfisa and wouldn’t cut through a mix.
+- The `offset` determines how many semitones to diverge from the fundamental. The second `<carrier-blam>` isn’t _quite_ offset by the full octave. This is to emulate a worn out Farfisa’s transistor being slightly under voltage. Slight detuning like this subtly adds analog-like character.
+
+The Farfisa’s vibrato is almost as iconic as the instrument itself. Where a single `<lfo-blam>` is placed as a child of the `<synth-blam>`, it modulates all operators (the three `<carrier-blam>`s here) simultaneously. Individual operators can have their own `detune` setting and this vibrato effect will be relative to that value.
+
+```
+<synth-blam id="nearfisa">
+  <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
+  </carrier-blam>
+  <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
+  </carrier-blam>
+  <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass></lfo-blam>
+</synth-blam>
+```
+
+The primitive electronic drum sounds are all created with the same handful of synthesizer elements. These use short decays and `feedback` loops to disrupt the signals into harsher, percussive sounds.
+
+```html
+<synth-blam id="snare" notes="D5" gain="5" out="room">
+  <carrier-blam gain="0.5" curve="0 0, 1 0.01, 0 0.3" type="square" feedback="600">
+    <chain-blam>
+      <filter-blam type="highpass" freq="500"></filter-blam>
+      <pan-blam pan="0.1"></pan-blam>
+    </chain-blam>
+  </carrier-blam>
+</synth-blam>
+```
+
+For more information, read the [**Synthesis guide**](/guides/synthesis).
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+<switch-blam to=".vibrato" prop="bypass" reverse>
+  <label>
+    vibrato
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#nearfisaGain" prop="gain" value="0" ramp="3" reverse>
+  <label>
+    organ off
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to=".drums" prop="suspend" reverse>
+  <label>
+    drums
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<switch-blam to="#nearfisaTrack" prop="part" value="#fast">
+  <label>
+    double<br>time
+    <input type="checkbox">
+  </label>
+</switch-blam>
+<dial-blam to="#nearfisa carrier-blam" prop="feedback">
+  <label>
+    osc<br>feedback
+    <input type="range" min="0" max="1000">
+  </label>
+</dial-blam>
+{% endblock %}

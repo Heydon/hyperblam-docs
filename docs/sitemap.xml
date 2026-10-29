@@ -128,13 +128,6 @@
   </url>
 
   <url>
-    <loc>https://hyperblam.how/examples/04-I-hope-you-like-LFOs/</loc>
-    <lastmod>2026-08-28T12:03:29.824Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://hyperblam.how/examples/05-babys-first-blam/</loc>
     <lastmod>2026-08-28T12:03:29.825Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -290,14 +283,63 @@
 
   <url>
     <loc>https://hyperblam.how/examples/secret-sauce/</loc>
-    <lastmod>2026-10-07T15:28:29.749Z</lastmod>
+    <lastmod>2026-10-09T15:33:50.689Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/05-headphone-hypnosis/</loc>
+    <lastmod>2026-10-09T15:33:50.689Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://hyperblam.how/fronteers/</loc>
-    <lastmod>2026-10-07T15:28:29.749Z</lastmod>
+    <lastmod>2026-10-09T15:33:50.690Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/04-I-hope-you-like-LFOs/</loc>
+    <lastmod>2026-10-09T15:35:43.161Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/02-not-a-farfisa-but-a-nearfisa/</loc>
+    <lastmod>2026-10-16T15:05:18.845Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/04-feelin-hype-hype-hype/</loc>
+    <lastmod>2026-10-22T11:20:50.076Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/03-in-a-bad-moog/</loc>
+    <lastmod>2026-10-23T13:24:11.811Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/guides/synthesis/</loc>
+    <lastmod>2026-10-27T07:27:32.690Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hyperblam.how/examples/01-theramin-imum-viable-product/</loc>
+    <lastmod>2026-10-27T10:34:07.774Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

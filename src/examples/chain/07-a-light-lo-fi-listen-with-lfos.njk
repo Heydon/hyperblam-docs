@@ -66,12 +66,15 @@ elements:
   </lfo-blam>
   <blam-blam id="killswitch" prop="gain" value="0" from="sequencer-blam" chance="0.333" revert bypass></blam-blam>
 </pad-blam>
-<pad-blam id="kick" out="bus">
+<pad-blam id="kick">
   <bank-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/kick-01.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/kick-02.mp3"></sample-blam>
     <sample-blam src="{{site.basedircdn}}/static/sounds/minimal/kick-03.mp3"></sample-blam>
   </bank-blam>
+  <chain-blam out="bus">
+    <filter-blam type="highpass" freq="80"></filter-blam>
+  </chain-blam>
 </pad-blam>
 <pad-blam id="snare" out="bus">
   <bank-blam>

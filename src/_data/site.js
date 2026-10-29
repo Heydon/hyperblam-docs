@@ -20,7 +20,9 @@ module.exports = {
     Processing: 'Elements involved in affecting the character of sounds. Effects, essentially.',
     Controlling: 'Elements for triggering functions, changing props and parameters, and handling MIDI.',
     Automating: 'Elements for changing and randomizing props and parameters automatically (according to events).',
-    Visualizing: 'Elements involved in rendering sound and state data in some way.'
+    Visualizing: 'Elements involved in rendering sound and state data in some way.',
+    Synthesizing: 'Elements involved in the synthesis of sound, using oscillators for input.'
+
   },
   cardAlts: {
     1: 'Drawing of some JavaScript entering some HTML and making it go blam blam.',

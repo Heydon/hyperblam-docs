@@ -1,0 +1,10 @@
+{
+  "tags": "synth",
+  "sorted": "synthSorted",
+  "order": 4,
+  "title": "Synthesis",
+  "summary": "Polyphonic synthesis. But using HTML.",
+  "visualiser": {
+    "count": 8
+  }
+}

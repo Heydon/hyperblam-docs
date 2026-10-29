@@ -1,0 +1,86 @@
+---
+title: Headphone Hypnosis
+bpm: 90
+elements: 
+  - Synth 
+  - carrier
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <reverb-blam cutoff="2000">
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/cavern.mp3"></sample-blam>
+  </reverb-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+
+<synth-blam gain="0.75" notes="C3 E3 F#3 G3" out="bus">
+  <carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth">
+    <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam prop="gain" gain="0.5" beats="17"></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0.3"></pan-blam>
+    </chain-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 2, 0 11" release="4" type="sawtooth" offset="7">
+    <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
+    <chain-blam>
+      <filter-blam freq="7000">
+        <lfo-blam prop="freq" gain="6500" q="5" beats="9"></lfo-blam>
+      </filter-blam>
+      <pan-blam pan="-0.3"></pan-blam>
+    </chain-blam>
+    <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+  </carrier-blam>
+  <lfo-blam prop="gain" gain="0.5" beats="0.25">
+    <lfo-blam prop="beats" gain="5" beats="5"></lfo-blam>
+  </lfo-blam>
+  <lfo-blam prop="detune" gain="25" beats="1">
+    <lfo-blam prop="gain" gain="20" beats="23"></lfo-blam>
+  </lfo-blam>
+</synth-blam>
+
+<tap-blam to="synth-blam" prop="play">
+  <button>trigger</button>
+</tap-blam>
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+Since **HYPERBLAM** takes a modular/hybrid approach to synthesis, the possibilities for inventing sounds and textures are pretty limitless. 
+
+I hate the word “soundscape” but I guess that’s the agreed term for the kind of ambient sound I’m exploring here. It’s best experienced on headphones since there is a lot of space created with reverb, filters, and panning.
+
+It’s important to note that not just `<synth-blam>` can be subject to modulations and effects, but each of its operators (carriers and—to some extent—modulators) independently. For example, the two `<carrier-blam>`s are panned independently to the left and right. This widens the overall sound considerably.
+
+```html
+<carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth">
+  <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
+  <chain-blam>
+    <gain-blam gain="0.5">
+      <lfo-blam prop="gain" gain="0.5" beats="17"></lfo-blam>
+    </gain-blam>
+    <pan-blam pan="0.3"></pan-blam>
+  </chain-blam>
+  <blam-blam prop="type" value="triangle|sawtooth|square|sine"></blam-blam>
+</carrier-blam>
+```
+
+Just four notes (`C3 E3 F#3 G3`) can ever be triggered here. The complexity of the sound comes entirely from overtones, LFOs, filters, envelopes, and a huge reverb. The principle waveform for each `<carrier-blam>` is also randomized (sine, square, triangle, or sawtooth) with each trigger.
+
+Apropos of nothing in particular, **HYPERBLAM**’s synthesis capability comes in at around 6KB. **Spitfire Audio** just released a hybrid synth instrument/library that's 40GB. Not to say these implementations are entirely the same but... that’s quite the size discrepancy.
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

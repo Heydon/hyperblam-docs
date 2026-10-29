@@ -16,10 +16,10 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card3.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
       :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
@@ -88,8 +88,12 @@
   <main tabindex="-1" class="l-frame">
     
     
-
-
+      <div class="l-framed u-blend-difference">
+        <bands-blam id="example" fps="8" analyser="#analyser" style="inline-size: 75vw; max-block-size: 100%" count="8">
+          <blam-blam from="sequencer-blam" prop="startStop" for="blamplaystop"></blam-blam>
+        </bands-blam>
+      </div>
+    
     <aside class="l-framed l-log u-blend-difference" aria-label="Data log">
       <ul id="log" class="s-playstop" hidden=""></ul>
     </aside>
@@ -97,46 +101,33 @@
     <div class="l-framed">
       
 
+<!-- bus -->
+  <chain-blam id="bus">
+    <analyser-blam id="analyser"></analyser-blam>
+  </chain-blam>
+
 <!-- instruments -->
-      <pad-blam id="stabs" gain="0.6" bank="stabBank">
+      <pad-blam id="stabs" gain="0.6" bank="stabBank" out="bus">
         <blam-blam from="section:not(.u-no-stab, .u-rip)" prop="play" for="slideNext"></blam-blam>
       </pad-blam>
 
-      <pad-blam id="rip" gain="0.25" bank="ripBank">
+      <pad-blam id="rip" gain="0.25" bank="ripBank" out="bus">
         <blam-blam from="section.u-rip" prop="play" for="slideNext"></blam-blam>
       </pad-blam>
 
-      <pad-blam id="radio" gain="0.07" detune="0" loop="">
-        <bank-blam>
-          <sample-blam src="https://hyperblam.how/static/sounds/slides/radio.mp3" reverse=""></sample-blam>
-        </bank-blam>
-        <lfo-blam id="radioSpeed" prop="detune" gain="800" beats="3" type="square">
-          <blam-blam from="body" prop="beats" value="0.01~0.5" for="slideWaiting"></blam-blam>
-          <lfo-blam prop="gain" gain="800" beats="9.1"></lfo-blam>
-        </lfo-blam>
-        <blam-blam from="body" prop="detune" value="0~4000" for="slideWaiting"></blam-blam>
-        <blam-blam from="body" prop="length" value="1~3" for="slideWaiting"></blam-blam>
-        <blam-blam from="body" prop="play" for="slideWaiting"></blam-blam>
-        <blam-blam from="body" prop="stop" for="slideChange"></blam-blam>
-        <blam-blam from="body" to="#garble" prop="bypass" value="false" for="slideWaiting"></blam-blam>
-        <blam-blam from="body" to="#garble" prop="bypass" value="true" for="slideChange"></blam-blam>
-        <blam-blam from="body" to="#crushGain" prop="bypass" for="slideWaiting"></blam-blam>
-        <blam-blam from="body" to="#crushGain" prop="bypass" for="slideChange"></blam-blam>
-      </pad-blam>
-
-      <pad-blam id="kick" bank="kickBank" out="subdueBus">
+      <pad-blam id="kick" bank="kickBank" out="bus">
       </pad-blam>
 
 
       <pad-blam id="hat" bank="hatBank" choke="" gain="1.5">
-        <chain-blam out="subdueBus">
+        <chain-blam out="bus">
           <pan-blam pan="-0.5"></pan-blam>
         </chain-blam>
         <blam-blam prop="detune" value="-25~25"></blam-blam>
       </pad-blam>
 
       <pad-blam id="snare" bank="snareBank" gain="2" detune="400">
-        <chain-blam out="subdueBus">
+        <chain-blam out="bus">
           <echo-blam cutoff="3000" bypass="">
             <blam-blam prop="beats" value="0.125|0.25|0.5"></blam-blam>
             <blam-blam prop="feedback" value="0.3~0.7"></blam-blam>
@@ -144,27 +135,27 @@
         </chain-blam>
       </pad-blam>
 
-      <pad-blam id="snareGhost" bank="snareGhostBank" out="subdueBus" detune="400" gain="0.7">
-        <chain-blam>
+      <pad-blam id="snareGhost" bank="snareGhostBank" detune="400" gain="0.7">
+        <chain-blam out="bus">
           <filter-blam freq="300" type="highpass"></filter-blam>
         </chain-blam>
       </pad-blam>
 
       <pad-blam id="ride" bank="rideBank">
-        <chain-blam out="subdueBus">
+        <chain-blam out="bus">
           <pan-blam pan="0.6"></pan-blam>
         </chain-blam>
       </pad-blam>
 
       <pad-blam id="cowbell" bank="cowBank" choke="0.05" gain="0.4"> 
         <blam-blam id="cowLength" prop="length" value="0.01|0.02|1|1"></blam-blam> 
-        <chain-blam out="subdueBus">
+        <chain-blam out="bus">
           <pan-blam pan="0.25"></pan-blam>
         </chain-blam>
       </pad-blam>
 
       <note-blam bank="rhodesBank" id="rhodes" notes="E3 F#3 G#3 B3 G#4 D4" gain="9">
-        <chain-blam out="subdueBus">
+        <chain-blam out="bus">
           <filter-blam freq="3000">
             <lfo-blam prop="freq" beats="4.3" gain="2000" q="5">
               <blam-blam prop="beats" from="#beat" value="3~6" chance="0.25" ramp="0.125" revert=""></blam-blam>
@@ -187,7 +178,7 @@
           <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/bass/03.mp3" root="E2"></sample-blam>
         </bank-blam>
         <blam-blam prop="length" value="0.25|0.25|0.5|0.125"></blam-blam>
-        <chain-blam out="subdueBlam">
+        <chain-blam out="bus">
           <filter-blam freq="8000" q="10">
             <envelope-blam prop="freq" curve="100 0, 3000 0.3" beats=""></envelope-blam>
           </filter-blam>
@@ -199,7 +190,7 @@
       <pad-blam id="organ" bank="organBank" length="0.125" gain="3.5">
         <blam-blam prop="length" value="0.125|0.25"></blam-blam>
         <lfo-blam prop="detune" gain="35" beats="0.25"></lfo-blam>
-        <chain-blam out="subdueBus">
+        <chain-blam out="bus">
           <pan-blam pan="-0.4"></pan-blam></chain-blam></pad-blam>
           <reverb-blam>
             <sample-blam src="https://hyperblam.how/static/sounds/IRs/spring.mp3"></sample-blam>
@@ -208,20 +199,20 @@
       
 
       <pad-blam id="clock" bank="clockBank">
-        <chain-blam>
+        <chain-blam out="bus">
           <reverb-blam mix="0.25" cutoff="500">
             <sample-blam src="https://hyperblam.how/static/sounds/IRs/stadium.mp3"></sample-blam>
           </reverb-blam>
         </chain-blam>
       </pad-blam>
 
-      <pad-blam id="fron" bank="scratchBank" detune="450" choke="">
+      <pad-blam id="fron" bank="scratchBank" detune="450" choke="" out="bus">
         <lfo-blam id="wobble" prop="detune" gain="700" beats="0.7"></lfo-blam>
         <blam-blam prop="length" value="0.1~0.25"></blam-blam>
         <blam-blam prop="reverse" value="1|0"></blam-blam>
       </pad-blam>
 
-      <pad-blam id="teers" bank="scratchBank" choke="">
+      <pad-blam id="teers" bank="scratchBank" choke="" out="bus">
         <lfo-blam id="wobble" prop="detune" gain="200" beats="1"></lfo-blam>
         <chain-blam>
           <echo-blam>
@@ -356,10 +347,6 @@
         <sample-blam src="https://hyperblam.how/static/sounds/slides/stab-03.mp3"></sample-blam>
       </bank-blam>
 
-      <bank-blam id="ripBank">
-        <sample-blam src="https://hyperblam.how/static/sounds/slides/rip.mp3"></sample-blam>
-      </bank-blam>
-
       <bank-blam id="cowBank">
         <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-01.mp3" reverse=""></sample-blam>
         <sample-blam src="https://hyperblam.how/static/sounds/slides/cow-02.mp3" reverse=""></sample-blam>
@@ -406,11 +393,6 @@
         <sample-blam src="https://hyperblam.how/static/sounds/kit-tight/ride-04.mp3"></sample-blam>
       </bank-blam>
 
-      <bank-blam id="clockBank">
-        <sample-blam src="https://hyperblam.how/static/sounds/slides/tick.mp3"></sample-blam>
-        <sample-blam src="https://hyperblam.how/static/sounds/slides/tock.mp3"></sample-blam>
-      </bank-blam>
-
       <bank-blam id="bassBank">
         <sample-blam src="https://hyperblam.how/static/sounds/bass/01.mp3" root="A1"></sample-blam>
         <sample-blam src="https://hyperblam.how/static/sounds/bass/02.mp3" root="C#2"></sample-blam>
@@ -436,6 +418,7 @@
     <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
+      <blam-blam to="bands-blam" prop="startStop"></blam-blam>
     </tap-blam>
 
 

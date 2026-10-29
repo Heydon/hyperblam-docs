@@ -116,7 +116,7 @@
   </reverb-blam>
 </chain-blam>
 
-<synth-blam id="nearfisa" gain="0.4">
+<synth-blam id="nearfisa" gain="0.4" out="spring">
   <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
   </carrier-blam>
   <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
@@ -124,11 +124,6 @@
   <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
   </carrier-blam>
   <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass=""></lfo-blam>
-  <chain-blam class="tremolo" out="spring" bypass="">
-    <gain-blam gain="0.6">
-      <lfo-blam prop="gain" gain="0.4" beats="0.3"></lfo-blam>
-    </gain-blam>
-  </chain-blam>
 </synth-blam>
 
 <synth-blam id="kick" notes="C1" gain="6" out="room">
@@ -257,12 +252,6 @@
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to=".tremolo" prop="bypass" reverse="">
-  <label>
-    tremolo
-    <input type="checkbox">
-  </label>
-</switch-blam>
 <switch-blam to="#nearfisaGain" prop="gain" value="0" ramp="3" reverse="">
   <label>
     organ off
@@ -277,7 +266,7 @@
 </switch-blam>
 <switch-blam to="#nearfisaTrack" prop="part" value="#fast">
   <label>
-    part 2
+    double<br>time
     <input type="checkbox">
   </label>
 </switch-blam>
@@ -292,7 +281,7 @@
   </div>
   <nav class="l-cluster u-font-special" aria-label="more examples">
     
-      <a href="/examples/01-theramin-imal-viable-product/" aria-label="previous example">← previous</a>
+      <a href="/examples/01-theramin-imum-viable-product/" aria-label="previous example">← previous</a>
     
     
       <a href="/examples/03-in-a-bad-moog/" aria-label="next example">next →</a>

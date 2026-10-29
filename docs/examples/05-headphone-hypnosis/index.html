@@ -107,10 +107,10 @@
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam notes="C3 E3 F#3 G3">
+<synth-blam gain="0.75" notes="C3 E3 F#3 G3" out="bus">
   <carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth">
     <lfo-blam prop="gain" gain="0.5" beats="0.61"></lfo-blam>
-    <chain-blam out="bus">
+    <chain-blam>
       <gain-blam gain="0.5">
         <lfo-blam prop="gain" gain="0.5" beats="17"></lfo-blam>
       </gain-blam>
@@ -120,7 +120,7 @@
   </carrier-blam>
   <carrier-blam gain="0.75" curve="0 0, 1 2, 0 11" release="4" type="sawtooth" offset="7">
     <lfo-blam prop="gain" gain="0.5" beats="0.3"></lfo-blam>
-    <chain-blam out="bus">
+    <chain-blam>
       <filter-blam freq="7000">
         <lfo-blam prop="freq" gain="6500" q="5" beats="9"></lfo-blam>
       </filter-blam>
@@ -137,7 +137,7 @@
 </synth-blam>
 
 <tap-blam to="synth-blam" prop="play">
-  <button>Play note</button>
+  <button>trigger</button>
 </tap-blam>
 
     </div>
@@ -151,10 +151,21 @@
     <div class="l-flow">
       
 
-<p>Since <strong>HYPERBLAM</strong> takes a modular/hybrid approach to synthesis, the possibilities for inventing sounds and textures are pretty endless.</p>
-<p>One application I know I will be returning to is creating generative ambient sound. This example is just a first foray into that territory. It’s best experienced on headphones since there is a lot of space created with reverb, filters, and panning.</p>
-<p>It’s important to note that not just <code><a href="/elements/synth">&lt;synth-blam&gt;</a></code> can be subject to modulations and effects, but each of its operators (carriers and—to some extent—modulators), independently. For example, the two <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>s are panned independently to the left and right. This widens the overall sound considerably.</p>
-<p>Also be aware than just four notes (<code>C3 E3 F#3 G3</code>) are ever triggered here. The complexity of the sound comes entirely from overtones, LFOs, filters, envelopes, and a huge reverb. The principle waveform for each <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code> is also randomized (sine. square, triangle, or sawtooth) with each trigger.</p>
+<p>Since <strong>HYPERBLAM</strong> takes a modular/hybrid approach to synthesis, the possibilities for inventing sounds and textures are pretty limitless.</p>
+<p>I hate the word “soundscape” but I guess that’s the agreed term for the kind of ambient sound I’m exploring here. It’s best experienced on headphones since there is a lot of space created with reverb, filters, and panning.</p>
+<p>It’s important to note that not just <code><a href="/elements/synth">&lt;synth-blam&gt;</a></code> can be subject to modulations and effects, but each of its operators (carriers and—to some extent—modulators) independently. For example, the two <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code>s are panned independently to the left and right. This widens the overall sound considerably.</p>
+<pre><code class="language-html">&lt;carrier-blam gain="0.75" curve="0 0, 1 1, 0 6" release="4" type="sawtooth"&gt;
+  &lt;lfo-blam prop="gain" gain="0.5" beats="0.61"&gt;&lt;/lfo-blam&gt;
+  &lt;chain-blam&gt;
+    &lt;gain-blam gain="0.5"&gt;
+      &lt;lfo-blam prop="gain" gain="0.5" beats="17"&gt;&lt;/lfo-blam&gt;
+    &lt;/gain-blam&gt;
+    &lt;pan-blam pan="0.3"&gt;&lt;/pan-blam&gt;
+  &lt;/chain-blam&gt;
+  &lt;blam-blam prop="type" value="triangle|sawtooth|square|sine"&gt;&lt;/blam-blam&gt;
+&lt;/carrier-blam&gt;
+</code></pre>
+<p>Just four notes (<code>C3 E3 F#3 G3</code>) can ever be triggered here. The complexity of the sound comes entirely from overtones, LFOs, filters, envelopes, and a huge reverb. The principle waveform for each <code><a href="/elements/carrier">&lt;carrier-blam&gt;</a></code> is also randomized (sine, square, triangle, or sawtooth) with each trigger.</p>
 <p>Apropos of nothing in particular, <strong>HYPERBLAM</strong>’s synthesis capability comes in at around 6KB. <strong>Spitfire Audio</strong> just released a hybrid synth instrument/library that's 40GB. Not to say these implementations are entirely the same but... that’s quite the size discrepancy.</p>
 
 

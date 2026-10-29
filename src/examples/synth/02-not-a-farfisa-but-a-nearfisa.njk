@@ -38,7 +38,7 @@ elements:
   </reverb-blam>
 </chain-blam>
 
-<synth-blam id="nearfisa" gain="0.4">
+<synth-blam id="nearfisa" gain="0.4" out="spring">
   <carrier-blam curve="0 0, 1 0.01" release="0.1" type="triangle">
   </carrier-blam>
   <carrier-blam gain="0.75" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="11.9">
@@ -46,11 +46,6 @@ elements:
   <carrier-blam gain="1" curve="0 0, 1 0.01" release="0.1" type="triangle" offset="24">
   </carrier-blam>
   <lfo-blam class="vibrato" prop="detune" gain="30" beats="0.25" type="triangle" bypass></lfo-blam>
-  <chain-blam class="tremolo" out="spring" bypass>
-    <gain-blam gain="0.6">
-      <lfo-blam prop="gain" gain="0.4" beats="0.3"></lfo-blam>
-    </gain-blam>
-  </chain-blam>
 </synth-blam>
 
 <synth-blam id="kick" notes="C1" gain="6" out="room">
@@ -174,12 +169,6 @@ For more information, read the [**Synthesis guide**](/guides/synthesis).
     <input type="checkbox">
   </label>
 </switch-blam>
-<switch-blam to=".tremolo" prop="bypass" reverse>
-  <label>
-    tremolo
-    <input type="checkbox">
-  </label>
-</switch-blam>
 <switch-blam to="#nearfisaGain" prop="gain" value="0" ramp="3" reverse>
   <label>
     organ off
@@ -194,7 +183,7 @@ For more information, read the [**Synthesis guide**](/guides/synthesis).
 </switch-blam>
 <switch-blam to="#nearfisaTrack" prop="part" value="#fast">
   <label>
-    part 2
+    double<br>time
     <input type="checkbox">
   </label>
 </switch-blam>

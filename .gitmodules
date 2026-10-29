@@ -1,3 +1,6 @@
 [submodule "src/static/hyperblam"]
 	path = src/static/hyperblam
 	url = https://git.gay/heydon/hyperblam.git
+[submodule "docs/static/hyperblam"]
+	path = docs/static/hyperblam
+	url = https://git.gay/heydon/hyperblam.git

@@ -5,14 +5,10 @@
     <title>Saturation shenanigans : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/fonts.css"></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css"></noscript>
     <link rel="preload" href="https://hyperblam.how/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/HeydonCaps.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Italic.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
     <meta property="og:title" content="Saturation shenanigans">
@@ -20,13 +16,13 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -88,54 +84,55 @@
 </header>
 
     
-<audio-blam>
+<audio-blam bpm="90">
   <main tabindex="-1" class="l-frame">
     
     
-      <div class="l-frame__framed u-blend-difference">
-        <bands-blam id="example" fps="8" analyser="#analyser" transport="#transport" style="inline-size: 75vw; max-block-size: 100%" count="12">
+      <div class="l-framed u-blend-difference">
+        <bands-blam id="example" fps="8" analyser="#analyser" style="inline-size: 75vw; max-block-size: 100%" count="12">
+          <blam-blam from="sequencer-blam" prop="startStop" for="blamplaystop"></blam-blam>
         </bands-blam>
       </div>
     
-    <aside class="l-frame__framed l-log u-blend-difference" aria-label="Props log">
+    <aside class="l-framed l-log u-blend-difference" aria-label="Data log">
       <ul id="log" class="s-playstop" hidden=""></ul>
     </aside>
-    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" event="blamsources"></blam-blam>
-    <div class="l-frame__framed">
+    <blam-blam prop="hidden" from="audio-blam" to=".l-loading" for="blamsources"></blam-blam>
+    <div class="l-framed">
       
 <chain-blam id="bus">
   <analyser-blam id="analyser"></analyser-blam>
-  <saturator-blam amount="25"></saturator-blam>
+  <saturator-blam id="crunchy" amount="25" mode="1"></saturator-blam>
 </chain-blam>
-<pads-blam id="hat" choke="0.05" out="bus">
+<pad-blam id="hat" choke="0.05" out="bus">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/hat/03.mp3"></sample-blam>
   </bank-blam>
   <blam-blam prop="detune" value="0~60"></blam-blam>
-</pads-blam>
-<pads-blam id="kick" out="bus">
+</pad-blam>
+<pad-blam id="kick" out="bus">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/kick/03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="snare" out="bus">
+</pad-blam>
+<pad-blam id="snare" out="bus">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-hard/03.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<pads-blam id="snareSoft" out="bus">
+</pad-blam>
+<pad-blam id="snareSoft" out="bus">
   <bank-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
-    <sample-blam src="https://hyperblam.how/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-soft/01.mp3"></sample-blam>
+    <sample-blam src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/sounds/kit-garage/snare-soft/02.mp3"></sample-blam>
   </bank-blam>
-</pads-blam>
-<sequencer-blam bpm="90" id="transport" swing="">
+</pad-blam>
+<sequencer-blam id="transport" swing="0.25">
   <track-blam to="#hat" chance="0.8">
     <bar-blam s="1 0 2 0 ? ? ? 0"></bar-blam>
     <bar-blam s="1 2 0 0 ? 0 ?"></bar-blam>
@@ -152,19 +149,21 @@
     <bar-blam s="0 0 0 0 0 0 0 ? ? ?"></bar-blam>
   </track-blam>
 </sequencer-blam>
-<tap-blam to="sequencer-blam" prop="playPause">
+<tap-blam to="sequencer-blam" prop="playStop">
   <button aria-pressed="false" class="u-round" aria-label="play">
   <svg viewBox="0 0 32 32" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
     <path class="on" d="M10 8, 26 16, 10 24z"></path>
-    <path class="off" d="M9 9, 13 9, 13 23, 9 23z M19 9, 23 9, 23 23, 19 23z"></path>
+    <path class="off" d="M9 9, 23 9, 23 23, 9 23z"></path>
   </svg>
 </button>
 </tap-blam>
 
     </div>
-    <div role="progressbar" class="l-frame__framed l-loading">
-      loading<span class="u-flash">...</span> 
-      <log-blam from="sample-blam" event="blamsource" prop="file"></log-blam>
+    <div role="progressbar" class="l-framed l-loading">
+      <span id="samples">installing</span><span class="u-flash">...</span>
+      <log-blam from="sample-blam" to="#samples" for="blamsource" hidden="">
+        sampling [[file]]
+      </log-blam>
     </div>
   </main>
   <dialog>
@@ -197,10 +196,37 @@
 <footer>
   <div class="l-cluster">
     
+<radios-blam to="#crunchy" prop="mode">
+  <fieldset aria-labelledby="modeLabel">
+    <span class="u-legend" id="modeLabel">mode</span>
+    <label>
+      <input type="radio" name="mode" value="1">
+      1
+    </label>
+    <label>
+      <input type="radio" name="mode" value="2">
+      2
+    </label>
+    <label>
+      <input type="radio" name="mode" value="3">
+      3
+    </label>
+    <label>
+      <input type="radio" name="mode" value="4">
+      4
+    </label>
+    <label>
+      <input type="radio" name="mode" value="5">
+      5
+    </label>
+  </fieldset>
+</radios-blam>
+
 <dial-blam to="saturator-blam" prop="amount">
   <label>
     amount
     <input type="range" min="0" max="100" step="1">
+    <display-blam from="saturator-blam" prop="amount" places="0" aria-hidden="true"></display-blam>
   </label>
 </dial-blam>
 <switch-blam to="saturator-blam" prop="bypass">
@@ -216,17 +242,17 @@
 
     <button id="info" aria-label="info about this Hyperblam experiment">INFO</button>
   </div>
-  <nav class="l-cluster" aria-label="more examples">
+  <nav class="l-cluster u-font-special" aria-label="more examples">
     
-      <a class="u-font-special" href="/examples/04-getting-ghosted/" aria-label="previous example">← prev</a>
+      <a href="/examples/04-getting-ghosted/" aria-label="previous example">← previous</a>
     
     
-      <a class="u-font-special" href="https://hyperblam.how/examples/06-automayhem/" aria-label="next example">next →</a>
+      <a href="/examples/06-automayhem/" aria-label="next example">next →</a>
     
   </nav>
 </footer>
-<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamplay"></blam-blam>
-<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" event="blamstop"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamplay"></blam-blam>
+<blam-blam from="sequencer-blam" to=".s-playstop" prop="hidden" for="blamstop"></blam-blam>
 </audio-blam>
 
     

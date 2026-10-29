@@ -1,5 +1,0 @@
-name: Limiter
-extends: Box 
-category: Processing
-defined: true 
-summary: A hard-wired limiter module that does its best to eliminate clipping. Best used at the end of a **Chain**.

@@ -5,14 +5,10 @@
 <title>Track element : HYPERBLAM</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/fonts.css"></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css"></noscript>
     <link rel="preload" href="https://hyperblam.how/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/HeydonCaps.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Italic.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
     <meta property="og:title" content="">
@@ -20,13 +16,13 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card4.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -97,7 +93,7 @@
   <main class="l-column l-flow" tabindex="-1">
     <h1>Track</h1>
     
-      <p></p><p>Corresponds to a <strong>Sequencer</strong> and uses child <strong>Bar</strong> elements to define repeating rhythmic patterns.</p>
+      <p></p><p>Corresponds to a <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> and uses child <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code> elements to define repeating rhythmic patterns.</p>
 <p></p>
     
     
@@ -148,7 +144,7 @@
           <th scope="row">solo</th>
           <td><em>boolean</em></td>
           <td>false</td>
-          <td><p>When applied, all other <strong>Track</strong> elements belonging to the ancestor <strong>Sequencer</strong> are suspended (their sounds aren’t played).</p>
+          <td><p>When applied, all other <code><a href="/elements/track">&lt;track-blam&gt;</a></code> elements belonging to the ancestor <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> are suspended (their sounds aren’t played).</p>
 </td>
         </tr>
         
@@ -156,7 +152,7 @@
           <th scope="row">overrides</th>
           <td><em>string</em></td>
           <td>null</td>
-          <td><p>A space-separated list of <strong>Track</strong> <code>id</code>s. <strong>Tracks</strong> (belonging to a common <strong>Sequencer</strong>) whose sounds will <em>not</em> play when this <strong>Track</strong> plays a sound. Important for polymetric sequencing, to avoid “collisions”.</p>
+          <td><p>A space-separated list of <code><a href="/elements/track">&lt;track-blam&gt;</a></code> <code>id</code>s. Tracks (belonging to a common <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code>) whose sounds will <em>not</em> play when this <code><a href="/elements/track">&lt;track-blam&gt;</a></code> plays a sound. Important for polymetric sequencing, to avoid “collisions”.</p>
 </td>
         </tr>
         
@@ -164,7 +160,7 @@
           <th scope="row">from</th>
           <td><em>string</em></td>
           <td></td>
-          <td><p>A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor <strong>Sequencer</strong> element for <strong>Tracks</strong>.</p>
+          <td><p>A CSS selector representing all elements from which events should be listen to. Defaults to an ancestor <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> element for <code><a href="/elements/track">&lt;track-blam&gt;</a></code>s.</p>
 </td>
         </tr>
         
@@ -180,23 +176,23 @@
           <th scope="row">suspend</th>
           <td><em>boolean</em></td>
           <td>false</td>
-          <td><p>Stops the <strong>Track</strong> from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out.</p>
+          <td><p>Stops the <code><a href="/elements/track">&lt;track-blam&gt;</a></code> from playing associated source sounds. Does not stop samples dead (like a mute). Instead, the final sound is allowed to play out.</p>
 </td>
         </tr>
         
         <tr>
-          <th scope="row">value</th>
+          <th scope="row">part</th>
           <td><em>string</em></td>
-          <td>null</td>
-          <td><p><strong>Handle</strong>-derived elements support special <code>value</code> syntax. Separate with <code>|</code> and one value is chosen at random. Separate with <code>~</code> and a value is chosen within the range <code>[x]~[n]</code>. Separate with <code> </code> (a single space) if you are supplying multiple args to an element’s method.</p>
+          <td></td>
+          <td><p>For compositional purposes, you can group <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code>s into parts, using the <code><a href="/elements/part">&lt;part-blam&gt;</a></code> element. The <code>part</code> prop takes a CSS selector corresponding to the first <code><a href="/elements/part">&lt;part-blam&gt;</a></code> element it matches. If no <code>part</code> is set, the entire contents of the <code><a href="/elements/track">&lt;track-blam&gt;</a></code> is considered the “part”. Parts change when the current part comes to its end, so the immediacy of the shift depends on how close to the end of the part the change is made.</p>
 </td>
         </tr>
         
         <tr>
-          <th scope="row">event</th>
+          <th scope="row">for</th>
           <td><em>string</em></td>
           <td>blam</td>
-          <td><p>The event type to listen for. For many Event-based elements, this is the generic custom event <code>blam</code>.</p>
+          <td><p>A space separated list of events the element should be “listening for”. Most <strong>HYPERBLAM</strong> elements emit a generic <code>blam</code> event.</p>
 </td>
         </tr>
         
@@ -236,7 +232,13 @@
         
         <tr>
           <th scope="row">blam</th>
-          <td><p>Fired whenever the current bar’s current step makes a sound. For a more regular series of events, use the parent <strong>Sequencer’s</strong> blam event instead.</p>
+          <td><p>Fired on both the <code>&lt;track-elem&gt;</code> itself and the newly selected <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code> whenever the <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code> changes.</p>
+</td>
+        </tr>
+        
+        <tr>
+          <th scope="row">blampart</th>
+          <td><p>Fired on the <code>&lt;track-elem&gt;</code> whenever a new part (<code>&lt;part-elem&gt;</code>) is chosen. If the <code>part</code> value is falsy, the “part” is the entire structure belonging to the <code>&lt;track-elem&gt;</code>.</p>
 </td>
         </tr>
         
@@ -291,6 +293,8 @@
       
     
       
+        
+      
     
       
     
@@ -326,6 +330,32 @@
     
       
         
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
       
     
     
@@ -373,7 +403,19 @@
         </li>
       
         <li>
+          <a href="https://hyperblam.how/examples/07-make-it-fed/">Make It Fed</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/08-hopeless-horror-hole/">Hopeless Horror hole</a>
+        </li>
+      
+        <li>
           <a href="https://hyperblam.how/examples/ch-ch-ch-chocolate/">Ch-ch-ch-chocolate</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
         </li>
       
         <li>
@@ -381,23 +423,31 @@
         </li>
       
         <li>
+          <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/typerblam/">Typerblam</a>
+        </li>
+      
+        <li>
           <a href="https://hyperblam.how/examples/wah-Im-sad/">Wah, I’m Sad</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/07-tape-emulation/">Tape emulation</a>
+          <a href="https://hyperblam.how/examples/06-tape-emulation/">Tape emulation</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/07-make-it-fed/">Make It Fed</a>
+          <a href="https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/08-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
+          <a href="https://hyperblam.how/examples/secret-sauce/">Secret Sauce</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/09-hopeless-horror-hole/">Hopeless Horror hole</a>
+          <a href="https://hyperblam.how/examples/02-not-a-farfisa-but-a-nearfisa/">Not a Farfisa But A Nearfisa</a>
         </li>
       
     </ul>
@@ -407,7 +457,7 @@
     
     <footer class="u-font-smaller">
       <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
-      <p>Version: <strong>0.0.2</strong></p>
+      <p>Version: <strong>0.0.6</strong></p>
     </footer>
     
     

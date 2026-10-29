@@ -5,14 +5,10 @@
     <title>LFOs : HYPERBLAM</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/fonts.css"></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css"></noscript>
     <link rel="preload" href="https://hyperblam.how/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/HeydonCaps.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Italic.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
     <meta property="og:title" content="LFOs">
@@ -26,7 +22,7 @@
     <meta property="og:image:alt" content="Slogan reading ‘write music, not JavaScript’">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -104,7 +100,7 @@
 <h2 id="alternation">Alternation</h2>
 <p>AC (alternating current) electricity produces a wave that cycles rapidly (<em>alternates</em>) between positive (<code>1</code>) and negative (<code>-1</code>) values. As a guitarist playing at high volume, you may even hear this electrical oscillation as “mains hum” and it can be quite annoying.</p>
 <p>An LFO alternates at a lower, usually inaudible frequency. But it has the same basic anatomy: it cycles between positive and negative values. As with AC electricity, a standard LFO is <em>sinusoidal</em>. A <em>sine wave</em> alternates between <code>1</code> (its <em>peak</em>) and <code>-1</code> (its <em>trough</em>) smoothly and can be represented by a curved, wavy line.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/LFOs1.svg" alt="Diagram of a waveform identifying the peak, the amplitude, which is the distance between the peak and the vertical center line, the wavelength, which is the distance from the start of one peak to the end of one trough." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs1.svg" alt="Diagram of a waveform identifying the peak, the amplitude, which is the distance between the peak and the vertical center line, the wavelength, which is the distance from the start of one peak to the end of one trough." loading="lazy"></p>
 <h2 id="modulation">Modulation</h2>
 <p>What does this mean in practical terms? Well, your LFO is producing a value that changes between <code>1</code> and <code>-1</code> , passing through <code>0</code> in each direction, over time. This value can be connected to an <code>AudioParam</code> and used as a real-time <em>multiplier</em>. This alternating multiplication is called <em>modulation</em>.</p>
 <p>Modulation has many purposes, but perhaps the most iconic are tremolo (gain modulation) and vibrato (pitch/frequency modulation). The terms “vibrato” and “tremolo” are often used interchangeably and it is a source of great consternation. Your guitar’s <em>whammy bar</em> is not a tremolo! <em>Whamming</em> at it loosens the strings, lowering their <em>pitch</em>.</p>
@@ -131,7 +127,7 @@
 &lt;/gain-blam&gt;
 </code></pre>
 <p>The <a href="/examples/03-shimmer-shimmer-ya">“Shimmer Shimmer Ya”</a> example applies this kind of tremolo to a sample of an electric piano. You can control the depth (gain) and rate (frequency) of the LFO using two <code><a href="/elements/dial">&lt;dial-blam&gt;</a></code> elements.</p>
-<p><img src="https://hyperblam.how/static/images/illustrations/LFOs2.svg" alt="Diagram showing how an LFO maps to gain. 1 is max gain, at the peak, 0 is min gain, and 0.5, the default, is at the vertical center." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs2.svg" alt="Diagram showing how an LFO maps to gain. 1 is max gain, at the peak, 0 is min gain, and 0.5, the default, is at the vertical center." loading="lazy"></p>
 <h2 id="changing-the-waveform">Changing the waveform</h2>
 <p>What if we didn’t want our gain value to pass smoothly through zero? What if we wanted to alternate directly between the high and low values? This is what square waveforms are for. You can set the waveform to <code>square</code> using the <code>type</code> prop’.</p>
 <pre><code class="language-html">&lt;lfo-blam 
@@ -141,7 +137,7 @@
   type="square"&gt;
 &lt;/lfo-blam&gt;	
 </code></pre>
-<p><img src="https://hyperblam.how/static/images/illustrations/LFOs3.svg" alt="A square waveform, with the vertical side of a square indicated as an instant switch between 0 and 1 in gain." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs3.svg" alt="A square waveform, with the vertical side of a square indicated as an instant switch between 0 and 1 in gain." loading="lazy"></p>
 <p>Given the <code>x</code> axis represents the time domain, those vertical lines mean an instantaneous <em>switch</em> between low gains of <code>0</code> and <code>1</code>. This gives the tremolo effect quite a different, much <em>harsher</em> character.</p>
 <h2 id="low-frequency-oscillator-oscillators">Low Frequency Oscillator Oscillators</h2>
 <p>No, that’s not a typo. <strong>HYPERBLAM</strong>, like the more complex and high-end hardware synths and samplers, lets you apply LFOs to other LFOs. In the <a href="https://hyperblam.how/examples/04-I-hope-you-like-LFOs">“I Hope You Like LFOs”</a> example, the first LFO’s rate (in <code>beats</code>) is modulated by a secondary LFO.</p>
@@ -159,8 +155,8 @@
 <p>But we don’t need to use an Audio Worklet to get close to this sound. We can emulate lowering the sample rate by employing analog principles instead. That’s right: we can create <strong>a digital emulation of an analog emulation of a digital effect</strong>.</p>
 <p>Set up to alternate between values of <code>0</code> and <code>1</code>, our square wave tremolo already behaves like it is sampling. That’s because digital sampling, no matter how high the sample rate (frequency), can only be done <em>discretely</em>—not <em>continuously</em>. Computers only deal in discrete numbers, you see.</p>
 <figure>
-<p><img src="https://hyperblam.how/static/images/illustrations/LFOs4.svg" alt="A sine wave labeled continuous with individual lines representing discrete sampling points." loading="lazy"></p>
-  <figcaption>The series of “pins” representing discrete sampling points forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs4.svg" alt="A sine wave labeled continuous with individual lines representing discrete sampling points." loading="lazy"></p>
+  <figcaption>The series of “pins” representing discrete sampling points<br> forms a <a href="https://en.wikipedia.org/wiki/Dirac_comb">dirac comb</a>.</figcaption>
 </figure>
 <p>To emulate <em>downsampling</em>, we need to speed up the oscillator considerably. But we mustn’t speed it up so fast that it reaches parity with the rate at which the sound was originally sampled. This is typically 44100Hz. In <code>beats</code>, we might choose a value like <code>0.001</code></p>
 <pre><code class="language-html">&lt;lfo-blam 
@@ -179,15 +175,20 @@
 <p>Truly <em>low</em> frequency amplitude modulation acts as a tremolo effect: you hear the original sound—with its preserved character—simply dipping in amplitude. When the frequency of the carrier and modulator oscillators become similar, that’s when you hear a unified sound. But a new and surprising one.</p>
 <p>It makes me think of the propellor on an airplane. At a slow rate of rotation, it still looks like a propellor. At much higher rates, you it appears as a circle: a completely different shape.</p>
 <figure>
-<p><img src="https://hyperblam.how/static/images/illustrations/LFO_prop.svg" alt="Two propellors. One spins slowly and you can still see its propellor shape. The other spins rapidly and forms a circular shape." loading="lazy"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFO_prop.svg" alt="Two propellors. One spins slowly and you can still see its propellor shape. The other spins rapidly and forms a circular shape." loading="lazy"></p>
   <figcaption>The term <em>waveshaper</em> is usually preserved for a method of distortion. But we are literally shaping a wave here. Plus any augmentation of a wave’s shape is a <em>de facto</em> form of distortion.</figcaption>
 </figure>
+<h2 id="worn-tape-emulation">Worn tape emulation</h2>
+<p>Poorly maintained analog tape has very unstable frequency reproduction, due to <a href="https://babyaud.io/blog/wow-and-flutter">“wow” and “flutter”</a>. It’s something weirdly pleasing to my ear.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/images/illustrations/LFOs5.svg" alt="A cassette tape with tape spooled out and looking chewed up. One wheel is labelled as “irregular rotation speed: wheels struggling to turn” and the tape itself as “more frequent fluctuations: tape chewed up in places”" loading="lazy"></p>
+<p>The <a href="https://hyperblam.how/examples/06-tape-emulation">“Tape Emulation”</a> example uses multiple LFOs, manipulated semi-randomly using event-based <code><a href="/elements/blam">&lt;blam-blam&gt;</a></code> elements, to achieve a wobbly, fluttery lo-fi sound. More details under “INFO” on that page.</p>
+
       </main>
     
     
     <footer class="u-font-smaller">
       <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
-      <p>Version: <strong>0.0.2</strong></p>
+      <p>Version: <strong>0.0.6</strong></p>
     </footer>
     
     

@@ -5,14 +5,10 @@
 <title>Sequencer element : HYPERBLAM</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/fonts.css"></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css"></noscript>
     <link rel="preload" href="https://hyperblam.how/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/HeydonCaps.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Italic.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
     <meta property="og:title" content="">
@@ -26,7 +22,7 @@
     <meta property="og:image:alt" content="Cartoon demonstrating how a wah wah pedal works, moving the position of a frequency band.">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -147,14 +143,6 @@
         </tr>
         
         <tr>
-          <th scope="row">bpm</th>
-          <td><em>number</em></td>
-          <td>null</td>
-          <td><p>The tempo in beats-per-minute. Overrules the ancestor Audio element’s <code>bpm</code> if set.</p>
-</td>
-        </tr>
-        
-        <tr>
           <th scope="row">scale</th>
           <td><em>number</em></td>
           <td>1</td>
@@ -182,7 +170,7 @@
         
         <tr>
           <th scope="row">blam</th>
-          <td><p>Critically contains the time for the scheduled beat (relative to <code>currentTime</code>), but also supplies <strong>Sequencer</strong> and <strong>Track</strong> information.</p>
+          <td><p>Critically contains the time for the scheduled beat (relative to <code>currentTime</code>), but also supplies <code><a href="/elements/sequencer">&lt;sequencer-blam&gt;</a></code> and <code><a href="/elements/track">&lt;track-blam&gt;</a></code> information.</p>
 </td>
         </tr>
         
@@ -207,14 +195,14 @@
         <tr>
           <th scope="row">stop</th>
           <td style="text-align: left"></td>
-          <td><p>Ceases emitting <code>blam</code> events and resets all descendant <strong>Track</strong> elements, essentially rewinding each to the beginning of their first <strong>Bar</strong>’s <code>s</code> pattern.</p>
+          <td><p>Ceases emitting <code>blam</code> events and resets all descendant <code><a href="/elements/track">&lt;track-blam&gt;</a></code> elements, essentially rewinding each to the beginning of their first <code><a href="/elements/bar">&lt;bar-blam&gt;</a></code>’s <code>s</code> pattern.</p>
 </td>
         </tr>
         
         <tr>
           <th scope="row">pause</th>
           <td style="text-align: left"></td>
-          <td><p>Ceases emitting <code>blam</code> events. Does not reset any constituent <strong>Tracks</strong>.</p>
+          <td><p>Ceases emitting <code>blam</code> events. Does not reset any constituent <code><a href="/elements/track">&lt;track-blam&gt;</a></code>s.</p>
 </td>
         </tr>
         
@@ -282,6 +270,8 @@
       
     
       
+        
+      
     
       
     
@@ -317,6 +307,32 @@
     
       
         
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
       
     
     
@@ -364,7 +380,19 @@
         </li>
       
         <li>
+          <a href="https://hyperblam.how/examples/07-make-it-fed/">Make It Fed</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/08-hopeless-horror-hole/">Hopeless Horror hole</a>
+        </li>
+      
+        <li>
           <a href="https://hyperblam.how/examples/ch-ch-ch-chocolate/">Ch-ch-ch-chocolate</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/dub-club/">Dub Club</a>
         </li>
       
         <li>
@@ -372,23 +400,31 @@
         </li>
       
         <li>
+          <a href="https://hyperblam.how/examples/side-parting/">Side parting</a>
+        </li>
+      
+        <li>
+          <a href="https://hyperblam.how/examples/typerblam/">Typerblam</a>
+        </li>
+      
+        <li>
           <a href="https://hyperblam.how/examples/wah-Im-sad/">Wah, I’m Sad</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/07-tape-emulation/">Tape emulation</a>
+          <a href="https://hyperblam.how/examples/06-tape-emulation/">Tape emulation</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/07-make-it-fed/">Make It Fed</a>
+          <a href="https://hyperblam.how/examples/07-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/08-a-light-lo-fi-listen-with-lfos/">A light lo-fi listen with LFOs</a>
+          <a href="https://hyperblam.how/examples/secret-sauce/">Secret Sauce</a>
         </li>
       
         <li>
-          <a href="https://hyperblam.how/examples/09-hopeless-horror-hole/">Hopeless Horror hole</a>
+          <a href="https://hyperblam.how/examples/02-not-a-farfisa-but-a-nearfisa/">Not a Farfisa But A Nearfisa</a>
         </li>
       
     </ul>
@@ -398,7 +434,7 @@
     
     <footer class="u-font-smaller">
       <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
-      <p>Version: <strong>0.0.2</strong></p>
+      <p>Version: <strong>0.0.6</strong></p>
     </footer>
     
     

@@ -5,14 +5,10 @@
 <title>Relay element : HYPERBLAM</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/fonts.css"></noscript>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Heydon/hyperblam-docs@main/src/static/css/fonts.css"></noscript>
     <link rel="preload" href="https://hyperblam.how/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://hyperblam.how/static/css/styles.css"></noscript>
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/HeydonCaps.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Italic.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="preload" href="https://hyperblam.how/static/css/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" type="image/svg+xml" href="https://hyperblam.how/static/images/favicon.svg" sizes="any">
     <meta name="description" content="Documentation for HyperBlam. Make HTML make music.">
     <meta property="og:title" content="">
@@ -20,13 +16,13 @@
     <meta property="og:description" content="Documentation for HyperBlam. Make HTML make music.">
     
     
-    <meta property="og:image" content="https://hyperblam.how/static/images/card2.png">
+    <meta property="og:image" content="https://hyperblam.how/static/images/card1.png">
     
     
-    <meta property="og:image:alt" content="Labeled diagram of a waveform, showing peaks, troughs, and wavelength.">
+    <meta property="og:image:alt" content="Drawing of some JavaScript entering some HTML and making it go blam blam.">
      
     <style>
-      :root{--color-fore:#efefef;--color-back:#101010;color:var(--color-fore);background-color:var(--color-back);line-height:1.5}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
+      :root{--color-fore:#fff;--color-back:#000;color:var(--color-fore);background-color:var(--color-back);line-height:1.5; filter: brightness(0.9)}.l-flow>*+*{margin-block-start:var(--s-l)}.l-flow>p:not(:has(img))+p:not(:has(img)){margin-block-start:var(--s-s)}.l-view{min-block-size:100dvh;display:flex;flex-direction:column;margin:0}.l-view main{margin:var(--s-m) var(--s-s)}.l-skip:not(:focus-visible){transform:translateY(-200%)}.l-skip{outline:0;display:block;position:absolute;z-index:200;inset:0 0 auto 0;text-align:center;padding:var(--s-s);color:var(--color-back);background-color:var(--color-fore)}
     </style>
   </head>
   
@@ -146,7 +142,7 @@
           <th scope="row">mode</th>
           <td><em>string</em></td>
           <td>all</td>
-          <td><p>One of <code>'one'</code>, <code>'some'</code>, or <code>'all'</code>. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ <code>off</code> state is circumvented. Elements with <code>off</code> are <em>only</em> activated by the <strong>Relay</strong>. Elements without <code>off</code> are activated independently <em>and</em> via <strong>Relay</strong>.</p>
+          <td><p>One of <code>'one'</code>, <code>'some'</code>, or <code>'all'</code>. Each time an event is received, which of the subject handler elements to activate. Importantly, elements’ <code>bypass</code> state is circumvented. Elements with <code>bypass</code> are <em>only</em> activated by the <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code>. Elements without <code>bypass</code> are activated independently <em>and</em> via <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code>.</p>
 </td>
         </tr>
         
@@ -154,15 +150,7 @@
           <th scope="row">prop</th>
           <td><em>string</em></td>
           <td>null</td>
-          <td><p>Not applicable for <strong>Relay</strong>. The <code>prop</code> is defined on each subject handler.</p>
-</td>
-        </tr>
-        
-        <tr>
-          <th scope="row">value</th>
-          <td><em>string</em></td>
-          <td>null</td>
-          <td><p>Not applicable for <strong>Relay</strong>. The <code>value</code> is defined on each subject handler.</p>
+          <td><p>Not applicable for <code><a href="/elements/relay">&lt;relay-blam&gt;</a></code>. The <code>prop</code> is defined on each subject element.</p>
 </td>
         </tr>
         
@@ -183,10 +171,10 @@
         </tr>
         
         <tr>
-          <th scope="row">event</th>
+          <th scope="row">for</th>
           <td><em>string</em></td>
           <td>blam</td>
-          <td><p>The event type to listen for. For many Event-based elements, this is the generic custom event <code>blam</code>.</p>
+          <td><p>A space separated list of events the element should be “listening for”. Most <strong>HYPERBLAM</strong> elements emit a generic <code>blam</code> event.</p>
 </td>
         </tr>
         
@@ -267,6 +255,24 @@
     
       
     
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
     
     <p>Examples that use the <strong>Relay</strong> element:</p>
     <ul class="l-examples">
@@ -290,7 +296,7 @@
     
     <footer class="u-font-smaller">
       <p>Created by <a href="https://front-end.social/@heydon">Heydon Pickering</a></p>
-      <p>Version: <strong>0.0.2</strong></p>
+      <p>Version: <strong>0.0.6</strong></p>
     </footer>
     
     

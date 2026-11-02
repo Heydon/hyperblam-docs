@@ -359,6 +359,10 @@ h3 {
   filter: contrast(10);
 }
 
+.u-bandw {
+  filter: grayscale(1) contrast(5);
+}
+
 .u-tilt {
   transform: rotate(var(--tilt, 1.5deg));
 }
@@ -521,7 +525,7 @@ section:not([hidden]) .u-squiggle {
   background-repeat: repeat-y;
   background-position-x: center;
   animation: scroll calc(900s - (var(--bz-mix, 0) * 900s)) linear infinite;
-  background-image: url('/static/images/slides/credits.svg');
+  background-image: url('/static/images/slides/credits_bruce.svg');
 }
 
 section {
@@ -706,7 +710,7 @@ section {
 
 .c-cow-head {
   inline-size: 50%;
-  transform: scale(clamp(0.5, calc(var(--cowAmbPeak-peak) * 20), 1.75));
+  transform: scale(clamp(0.333, calc(var(--cowAmbPeak-peak) * 20), 1.25));
   transition: transform var(--cowAmbPeak-interval);
 }
 

@@ -11,10 +11,12 @@
         {{ group.summary | md | safe }}
         <ul class="l-examples">
           {% for post in collections[group.sorted] | sort(attribute='fileSlug') %}
+            {% if not post.data.hide %}
             <li>
               {% if not post.data.unnumbered %}{{ loop.index }}. {% endif %}
               <a href="{{site.basedir}}{{post.url}}">{{ post.data.title }}</a>
             </li>
+            {% endif %}
           {% endfor %}
         </ul>
       {% endfor %}

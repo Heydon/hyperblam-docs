@@ -111,6 +111,14 @@ input, button, textarea, select {
   font: inherit;
 }
 
+legend {
+  padding-inline: 0.5em;
+}
+
+fieldset {
+  padding: 1em;
+}
+
 h1, h2, h3 {
   font-weight: normal;
   overflow-wrap: break-word;

@@ -1,0 +1,268 @@
+---
+title: Wanderer
+bpm: 90
+hide: true
+eleventyExcludeFromCollections: true
+elements: 
+  - Synth
+---
+
+{% extends 'layouts/example-synth.njk' %}
+
+{% block audio %}
+<chain-blam id="bus">
+  <reverb-blam>
+    <sample-blam src="{{site.basedir}}/static/sounds/IRs/stadium.mp3"></sample-blam>
+  </reverb-blam>
+  <gain-blam gain="0.7"></gain-blam>
+  <limiter-blam></limiter-blam>
+  <analyser-blam id="analyser"></analyser-blam>
+</chain-blam>
+
+<synth-blam id="day" gain="0.4" notes="C3">
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="16" type="triangle">
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam gain="0.5" beats="23" invert></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="11" invert></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="12" offset="7" type="triangle">
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam gain="0.5" beats="37" invert></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="9" invert></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="8" offset="16" type="triangle">
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam gain="0.5" beats="52"></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="13"></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam gain="0.5" curve="0 0, 1 12" offset="10" release="14">
+    <gain-blam gain="0.5">
+      <lfo-blam gain="0.5" beats="119"></lfo-blam>
+    </gain-blam>
+    <chain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="17" invert></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <lfo-blam prop="detune" gain="15" beats="2.3"></lfo-blam>
+  <lfo-blam prop="detune" gain="10" beats="3.7"></lfo-blam>
+  <chain-blam out="bus">
+    <filter-blam freq="4250"></filter-blam>
+    <filter-blam freq="8000">
+      <lfo-blam prop="freq" gain="7000" beats="11"></lfo-blam>
+    </filter-blam>
+    <phaser-blam beats="6" q="2"></phaser-blam>
+  </chain-blam>
+</synth-blam>
+
+<synth-blam id="night" gain="0.4" notes="C4">
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="12">
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam gain="0.5" beats="23" invert></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="11" invert></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="16" offset="3">
+    <chain-blam>
+      <gain-blam gain="0">
+        <lfo-blam gain="0.5" beats="37" invert></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="6" invert></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="14" offset="19">
+    <chain-blam>
+      <gain-blam gain="0">
+        <lfo-blam gain="0.5" beats="52"></lfo-blam>
+      </gain-blam>
+      <pan-blam pan="0">
+        <lfo-blam prop="pan" gain="0.65" beats="7"></lfo-blam>
+      </pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <lfo-blam prop="detune" gain="25" beats="2.3"></lfo-blam>
+  <lfo-blam prop="detune" gain="15" beats="3.7"></lfo-blam>
+  <chain-blam out="bus">
+    <filter-blam freq="8000">
+      <lfo-blam prop="freq" gain="7000" beats="5"></lfo-blam>
+    </filter-blam>
+  </chain-blam>
+</synth-blam>
+
+<synth-blam id="gong" notes="C3" out="bus" gain="0.8">
+  <carrier-blam curve="0 0, 1 0.1, 0 2">
+    <modulator-blam curve="0 0, 1 0.1, 0 1" ratio="2" gain="8000">
+      <blam-blam prop="gain" value="1000|2000|4000"></blam-blam>
+      <blam-blam prop="ratio" value="2.5|2.75|3.25|4.25"></blam-blam>
+    </modulator-blam>
+  </carrier-blam>
+</synth-blam>
+
+<synth-blam id="chime" notes="C5" gain="0.7">
+  <carrier-blam curve="0 0, 1 0.02, 0 1">
+    <modulator-blam curve="0 0, 1 0.02, 0 0.7" ratio="2.414" gain="5000">
+      <blam-blam prop="ratio" value="1~7"></blam-blam>
+    </modulator-blam>
+    <chain-blam>
+      <pan-blam pan="0.5"></pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam curve="0 0, 1 0.02, 0 1" offset="7" delay="0.03~0.125">
+    <modulator-blam curve="0 0, 1 0.02, 0 0.7" ratio="2.414" gain="5000">
+      <blam-blam prop="ratio" value="3~7"></blam-blam>
+    </modulator-blam>
+    <chain-blam>
+      <pan-blam pan="-0.5"></pan-blam>
+    </chain-blam>
+  </carrier-blam>
+  <chain-blam out="bus">
+    <filter-blam type="highpass" freq="500"></filter-blam>
+    <reverb-blam cutoff="1000">
+      <sample-blam src="{{site.basedir}}/static/sounds/IRs/yamaha-spring-hard.mp3"></sample-blam>
+    </reverb-blam>
+  </chain-blam>
+</synth-blam>
+
+<synth-blam id="sleep" notes="E6 F#6 G6 A#6 C7" gain="0.6">
+  <carrier-blam curve="0 0, 1 0.02, 0.7 0.2, 0 1.5"></carrier-blam>
+  <carrier-blam curve="0 0, 1 0.02, 0 0.75" offset="-11.5">
+    <blam-blam prop="gain" value="0~1"></blam-blam>
+  </carrier-blam>
+  <chain-blam out="bus">
+    <echo-blam feedback="0.3"></echo-blam>
+    <filter-blam type="highpass" freq="2000">
+      <lfo-blam prop="freq" gain="500" beats="10"></lfo-blam>
+    </filter-blam>
+    <pan-blam pan="0">
+      <lfo-blam prop="pan" gain="0.5" beats="4.5"></lfo-blam>
+    </pan-blam>
+  </chain-blam>
+</synth-blam>
+
+<synth-blam class="activity" id="meditate" notes="C2" gain="0.2">
+  <carrier-blam curve="0 0, 1 8" type="sawtooth" release="8">
+    <chain-blam>
+      <filter-blam freq="3000" q="7">
+        <lfo-blam prop="freq" gain="1250" beats="3"></lfo-blam>
+        <lfo-blam prop="freq" gain="1250" beats="9"></lfo-blam>
+      </filter-blam>
+    </chain-blam>
+    <lfo-blam prop="detune" gain="35" beats="5.3"></lfo-blam>
+  </carrier-blam>
+  <chain-blam out="bus">
+    <pan-blam pan="0">
+      <lfo-blam prop="pan" gain="0.25" beats="4"></lfo-blam>
+    </pan-blam>
+    <filter-blam freq="2000"></filter-blam>
+  </chain-blam>
+  <lfo-blam prop="detune" gain="20" beats="3"></lfo-blam>
+</synth-blam>
+
+<synth-blam id="wind" notes="C7" gain="0.6">
+  <carrier-blam curve="0 0, 1 8, 0 16" feedback="7000"></carrier-blam>
+  <chain-blam out="bus">
+    <pan-blam pan="0">
+      <lfo-blam prop="pan" gain="0.6" beats="7"></lfo-blam>
+    </pan-blam>
+    <filter-blam type="highpass" freq="600"></filter-blam>
+    <filter-blam freq="0" q="4">
+      <envelope-blam prop="freq" curve="0 1000, 7000 8, 0 16"></envelope-blam>
+      <lfo-blam prop="freq" gain="500" beats="3"></lfo-blam>
+    </filter-blam>
+    <phaser-blam beats="7"></phaser-blam>
+  </chain-blam>
+</synth-blam>
+
+<div class="l-stack">
+  <fieldset>
+    <legend>TIME</legend>
+    <div class="l-cluster">
+      <tap-blam to="#day" prop="play">
+        <button>day</button>
+        <blam-blam to="#night" prop="stop"></blam-blam>
+      </tap-blam>
+      <tap-blam to="#night" prop="play">
+        <button>night</button>
+        <blam-blam to="#day" prop="stop"></blam-blam>
+      </tap-blam>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>ACTIVITY</legend>
+    <div class="l-cluster">
+      <tap-blam to="#meditate" prop="play">
+        <button>meditate</button>
+        <blam-blam to="#sleepSequencer" prop="stop"></blam-blam>
+      </tap-blam>
+      <tap-blam to="#sleepSequencer" prop="play">
+        <button>sleep</button>
+        <blam-blam to="#meditate" prop="stop"></blam-blam>
+      </tap-blam>
+      <tap-blam to=".activity" prop="stop">
+        <button>no activity</button>
+      </tap-blam>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>EVENTS</legend>
+    <div class="l-cluster">
+      <tap-blam to="#gong" prop="play">
+        <button>gong</button>
+      </tap-blam>
+      <tap-blam to="#chime" prop="play">
+        <button>chime</button>
+      </tap-blam>
+      <tap-blam to="#wind" prop="play">
+        <button>wind</button>
+      </tap-blam>
+    </div>
+  </fieldset>
+</div>
+
+
+<sequencer-blam class="activity" id="sleepSequencer">
+  <track-blam to="#sleep" chance="0.6">
+    <bar-blam s="? ? 0"></bar-blam>
+  </track-blam>
+</sequencer-blam>
+
+{% endblock %}
+
+{% block dialog %}
+
+{% renderTemplate "md" %}
+
+Some notes:
+
+- Buttons don’t indicate state. But hitting “night” after hitting “day” will transition between the two.
+- The **Events** buttons connect with some generic noises I designed. The “gong” one could be picking up a book, maybe? The “wind” one could be intermittent or used as a transition 
+- The activities are designed to play over any “time” background sound 
+
+{% endrenderTemplate %}
+
+{% endblock %}
+
+{% block controls %}
+{% endblock %}

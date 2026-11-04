@@ -19,14 +19,14 @@ elements:
   <analyser-blam id="analyser"></analyser-blam>
 </chain-blam>
 
-<synth-blam id="day" gain="0.4" notes="C3">
+<synth-blam id="day" gain="0.5" notes="C3">
   <carrier-blam gain="0.75" curve="0 0, 1 12" release="16" type="triangle">
     <chain-blam>
       <gain-blam gain="0.5">
         <lfo-blam gain="0.5" beats="23" invert></lfo-blam>
       </gain-blam>
       <pan-blam pan="0">
-        <lfo-blam prop="pan" gain="0.65" beats="11" invert></lfo-blam>
+        <lfo-blam prop="pan" gain="0.8" beats="11" invert></lfo-blam>
       </pan-blam>
     </chain-blam>
   </carrier-blam>
@@ -36,7 +36,7 @@ elements:
         <lfo-blam gain="0.5" beats="37" invert></lfo-blam>
       </gain-blam>
       <pan-blam pan="0">
-        <lfo-blam prop="pan" gain="0.65" beats="9" invert></lfo-blam>
+        <lfo-blam prop="pan" gain="0.8" beats="9" invert></lfo-blam>
       </pan-blam>
     </chain-blam>
   </carrier-blam>
@@ -46,7 +46,7 @@ elements:
         <lfo-blam gain="0.5" beats="52"></lfo-blam>
       </gain-blam>
       <pan-blam pan="0">
-        <lfo-blam prop="pan" gain="0.65" beats="13"></lfo-blam>
+        <lfo-blam prop="pan" gain="0.8" beats="13"></lfo-blam>
       </pan-blam>
     </chain-blam>
   </carrier-blam>
@@ -71,24 +71,24 @@ elements:
   </chain-blam>
 </synth-blam>
 
-<synth-blam id="night" gain="0.4" notes="C4">
+<synth-blam id="night" gain="0.5" notes="C4">
   <carrier-blam gain="0.75" curve="0 0, 1 12" release="12">
     <chain-blam>
       <gain-blam gain="0.5">
         <lfo-blam gain="0.5" beats="23" invert></lfo-blam>
       </gain-blam>
       <pan-blam pan="0">
-        <lfo-blam prop="pan" gain="0.65" beats="11" invert></lfo-blam>
+        <lfo-blam prop="pan" gain="0.8" beats="11" invert></lfo-blam>
       </pan-blam>
     </chain-blam>
   </carrier-blam>
-  <carrier-blam gain="0.75" curve="0 0, 1 12" release="16" offset="3">
+  <carrier-blam gain="0.75" curve="0 0, 1 12" release="16" offset="4">
     <chain-blam>
       <gain-blam gain="0">
         <lfo-blam gain="0.5" beats="37" invert></lfo-blam>
       </gain-blam>
       <pan-blam pan="0">
-        <lfo-blam prop="pan" gain="0.65" beats="6" invert></lfo-blam>
+        <lfo-blam prop="pan" gain="0.8" beats="6" invert></lfo-blam>
       </pan-blam>
     </chain-blam>
   </carrier-blam>
@@ -98,7 +98,7 @@ elements:
         <lfo-blam gain="0.5" beats="52"></lfo-blam>
       </gain-blam>
       <pan-blam pan="0">
-        <lfo-blam prop="pan" gain="0.65" beats="7"></lfo-blam>
+        <lfo-blam prop="pan" gain="0.8" beats="7"></lfo-blam>
       </pan-blam>
     </chain-blam>
   </carrier-blam>
@@ -115,7 +115,7 @@ elements:
   <carrier-blam curve="0 0, 1 0.1, 0 2">
     <modulator-blam curve="0 0, 1 0.1, 0 1" ratio="2" gain="8000">
       <blam-blam prop="gain" value="1000|2000|4000"></blam-blam>
-      <blam-blam prop="ratio" value="2.5|2.75|3.25|4.25"></blam-blam>
+      <blam-blam prop="ratio" value="1|2|3|4|5"></blam-blam>
     </modulator-blam>
   </carrier-blam>
 </synth-blam>
@@ -123,7 +123,7 @@ elements:
 <synth-blam id="chime" notes="C5" gain="0.7">
   <carrier-blam curve="0 0, 1 0.02, 0 1">
     <modulator-blam curve="0 0, 1 0.02, 0 0.7" ratio="2.414" gain="5000">
-      <blam-blam prop="ratio" value="1~7"></blam-blam>
+      <blam-blam prop="ratio" value="1|2|4"></blam-blam>
     </modulator-blam>
     <chain-blam>
       <pan-blam pan="0.5"></pan-blam>
@@ -145,9 +145,9 @@ elements:
   </chain-blam>
 </synth-blam>
 
-<synth-blam id="sleep" notes="E6 F#6 G6 A#6 C7" gain="0.6">
+<synth-blam id="sleep" notes="E6 F#6 G6 A#6 C7" gain="0.5">
   <carrier-blam curve="0 0, 1 0.02, 0.7 0.2, 0 1.5"></carrier-blam>
-  <carrier-blam curve="0 0, 1 0.02, 0 0.75" offset="-11.5">
+  <carrier-blam curve="0 0, 1 0.02, 0 0.75" offset="12">
     <blam-blam prop="gain" value="0~1"></blam-blam>
   </carrier-blam>
   <chain-blam out="bus">
@@ -161,23 +161,40 @@ elements:
   </chain-blam>
 </synth-blam>
 
-<synth-blam class="activity" id="meditate" notes="C2" gain="0.2">
-  <carrier-blam curve="0 0, 1 8" type="sawtooth" release="8">
+<synth-blam class="activity" id="meditate" notes="C3" gain="0.2">
+  <carrier-blam curve="0 0, 1 8" type="square" release="8">
+  </carrier-blam>
+  <carrier-blam curve="0 0, 1 8" gain="0.5" type="square" offset="4" release="8">
     <chain-blam>
-      <filter-blam freq="3000" q="7">
-        <lfo-blam prop="freq" gain="1250" beats="3"></lfo-blam>
-        <lfo-blam prop="freq" gain="1250" beats="9"></lfo-blam>
-      </filter-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam prop="gain" gain="0.7" beats="11" invert></lfo-blam>
+      </gain-blam>
     </chain-blam>
-    <lfo-blam prop="detune" gain="35" beats="5.3"></lfo-blam>
+  </carrier-blam>
+  <carrier-blam curve="0 0, 1 8" gain="0.7" type="square" offset="7" release="8">
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam prop="gain" gain="0.6" beats="9"></lfo-blam>
+      </gain-blam>
+    </chain-blam>
+  </carrier-blam>
+  <carrier-blam curve="0 0, 1 8" gain="0.4" type="square" offset="11" release="8">
+    <chain-blam>
+      <gain-blam gain="0.5">
+        <lfo-blam prop="gain" gain="0.4" beats="17" invert></lfo-blam>
+      </gain-blam>
+    </chain-blam>
   </carrier-blam>
   <chain-blam out="bus">
     <pan-blam pan="0">
       <lfo-blam prop="pan" gain="0.25" beats="4"></lfo-blam>
     </pan-blam>
     <filter-blam freq="2000"></filter-blam>
+    <filter-blam freq="3000" q="8">
+      <lfo-blam prop="freq" gain="2600" beats="3"></lfo-blam>
+    </filter-blam>
   </chain-blam>
-  <lfo-blam prop="detune" gain="20" beats="3"></lfo-blam>
+  <lfo-blam prop="detune" gain="10" beats="3"></lfo-blam>
 </synth-blam>
 
 <synth-blam id="wind" notes="C7" gain="0.6">
@@ -243,7 +260,7 @@ elements:
 
 
 <sequencer-blam class="activity" id="sleepSequencer">
-  <track-blam to="#sleep" chance="0.6">
+  <track-blam to="#sleep" chance="0.55">
     <bar-blam s="? ? 0"></bar-blam>
   </track-blam>
 </sequencer-blam>
